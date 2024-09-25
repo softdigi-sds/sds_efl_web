@@ -1,13 +1,17 @@
 import React from 'react';
+import { LOGO } from '../services/ImageService';
 
 
 const ElectricDuelFooter: React.FC = () => {
   return (
-    <footer className="footer has-background-dark">
+    <>
+    <footer className="footer">
       <div className="container">
         <div className="columns has-text-white">
           <div className="column">
-            <h3 className="title is-4 has-text-white">Electric<span className="has-text-success">Fuel</span></h3>
+            <div className=" mb-3">
+              <img src={LOGO} alt="" />
+            </div>
             <p>TTL ELECTRIC FUEL PVT. LTD., headquartered at Hyderabad is one of the fastest developing EV Charging Company.</p>
           </div>
 
@@ -60,6 +64,7 @@ const ElectricDuelFooter: React.FC = () => {
         </div>
       </div>
     </footer>
+    </>
   );
 };
 

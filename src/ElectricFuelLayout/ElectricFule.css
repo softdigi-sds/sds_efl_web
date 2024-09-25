@@ -116,3 +116,9 @@
   
     
 }
+.footer{
+    background-image: url('../assets/images/Eletric/footer-bg.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
