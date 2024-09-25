@@ -1,0 +1,102 @@
+.top {
+    position: relative;
+    border-bottom: 1px solid #eee;
+}
+
+.topmenu {
+    background-color: #fff;
+    padding: 2px 2px;
+}
+
+.container {
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.row {
+    margin-right: -15px;
+    margin-left: -15px;
+}
+
+.topmenu p {
+    padding: 10px 0px;
+    color: #999;
+    margin: 0;
+    font-size: 14px;
+}
+
+.topmenu p span {
+    padding-right: 50px;
+}
+
+.social-icon ul {
+    margin: 0;
+    padding: 10px 0px 0px 0px;
+}
+
+.list-inline {
+    list-style: none;
+}
+
+.list-inline>li {
+    display: inline-block;
+}
+
+.social-icon ul li a {
+    float: left;
+    margin-right: 5px;
+    width: 30px;
+    height: 28px;
+    text-align: center;
+    display: table;
+}
+
+.social-icon ul li {
+    padding: 0;
+    margin: 0;
+}
+
+.social-icon ul li a i {
+    vertical-align: middle;
+    display: table-cell;
+    color: #fff;
+    background-color: #00a85a;
+    border-radius: 50px;
+}
+
+.header {
+    position: relative;
+    z-index: 555;
+    width: 100%;
+    background-color: #fff;
+    border-bottom: 1px solid #eee;
+}
+
+.img-responsive img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+.navbar-hover-green:hover {
+    color: green !important;
+}
+
+
+.navbar {
+    float: right;
+    color: black !important;
+    font-size: 16px !important;
+}
+
+.navbar-item a {
+    display: block;
+    color: #333;
+    position: relative;
+    text-decoration: none;
+}
+
+.navbar-item a:hover {
+    color: #00ff00;
+    transition: color 0.3s ease-in-out;
+}

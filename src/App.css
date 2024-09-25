@@ -1,0 +1,91 @@
+.smart-modal .modal-card-head {
+    padding: 0.5em;
+    background:#fff;   
+}
+.smart-modal .modal-card-title{
+    color: #000;;
+}
+.smart-modal .modal-card-foot{
+    padding:0.5em;
+}
+.smart-justify-left{
+    justify-content: left !important;
+}
+.smart-justify-right{
+    justify-content: right !important;
+}
+.smart-modal-80 .modal-card{
+    width:80%;
+}
+.smart-modal-90 .modal-card{
+    width:90%;
+}
+.smart-modal-70 .modal-card{
+    width:70%;
+}
+.smart-modal-60 .modal-card{
+    width:60%;
+}
+.smart-modal-50 .modal-card{
+    width:50%;
+}
+.smart-modal-40 .modal-card{
+    width:40%;
+}
+.smart-modal-30 .modal-card{
+    width:30%;
+}
+
+/* image styles **/
+.smart-image-full{
+    width:100%;
+    height:100%;
+    /* object-fit: cover; */
+}
+.smart-cursor-pointer{
+    cursor: pointer;
+}
+
+::-webkit-scrollbar {
+    width: 5px; /* width of the scrollbar */
+  }
+  
+  /* Scrollbar Handle */
+  ::-webkit-scrollbar-thumb {
+    background-color: #9a9d9e; /* color of the scrollbar handle */
+    border-radius: 3px; /* roundness of the scrollbar handle */
+  }
+  
+  /* Scrollbar Track when hovering */
+  ::-webkit-scrollbar-track:hover {
+    background-color: #f0f0f0; /* color of the scrollbar track when hovering */
+  }
+
+  .smart-modal-close-button{
+    position: absolute;
+    font-size: 1.2em;
+    right:1.5em;
+  }
+
+  .smart-image-loader{    
+    position: absolute;
+    top:40%;
+     height:1em;
+  }
+  .smart_hide{
+    display:none;
+  }
+  .display_none{
+    opacity: 0;
+  }
+  .crop-business-form .label{
+    font-family: var(--alex-font-family);
+  }
+  .smart-file-disp{
+    color: #000;
+  }
+  body {
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #333;
+  }
