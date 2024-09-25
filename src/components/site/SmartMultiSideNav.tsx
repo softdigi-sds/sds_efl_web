@@ -25,8 +25,8 @@ const SmartMultiSideNav: React.FC<SideNavProps> = (props) => {
       <div className="smart-side-nav-menu">
         {logo && (
           <div className="smart-side-nav-menu-logo-box ">
-            <figure className="image is-128x128">
-              <img className="is-rounded" src={logo} alt="" />
+            <figure className="image my-3">
+              <img className="smart-side-nav-logo" src={logo} alt="" />
             </figure>
           </div>
         )}

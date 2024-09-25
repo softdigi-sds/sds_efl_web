@@ -50,7 +50,9 @@ const Login: React.FC = () => {
     });
   };
 
-  const handleLogin = () => {}
+  const handleLogin = () => {
+    navigate("/e-fuel/dashboard");
+  }
   
 //   const handleLogin = () => {
 //     setFormSubmit(true);

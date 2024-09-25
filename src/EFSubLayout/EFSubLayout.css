@@ -1,0 +1,34 @@
+.smart-list-items{
+padding: 5px 10px !important;
+position: relative;
+}
+
+.smart-menu-list li:nth-child(9){
+  
+    position: absolute;
+    bottom: 10%;
+   
+}
+.smart-menu-list li:nth-child(10){
+ 
+    position: absolute;
+    bottom: 5%;
+  
+}
+.smart-menu-list li:nth-child(11){
+ 
+    position: absolute;
+    bottom: 0%;
+   
+}
+.smart-ef-sub-layout-main-container{
+    display: flex;
+    flex-direction: row;
+}
+.smart-ef-header-container{
+    background-color: black;
+    width: calc(100vw - 200px);
+    padding: 10px;
+    color: white;
+    
+}

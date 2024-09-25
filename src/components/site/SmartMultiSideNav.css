@@ -51,7 +51,7 @@ border-right:1px solid gray ;
     /* left: 100%; */
     z-index: 5;
     padding: 10px 0;
-    background-color: aliceblue;
+    background-color: black;
 }
 .smart-list-items:hover .first-smart-sub-menu{
     display: block;
@@ -71,6 +71,16 @@ border-right:1px solid gray ;
     color: black;
     transition: 0.05s;
 }
+.smart-list-item-active{
+    margin: 0px 2px;
+    cursor: pointer;
+    padding:3px 10px ;
+    color: black;
+    transition: 0.05s;
+    background-color: aqua;
+    border-radius: 10px;
+}
+
 
 .first-smart-sub-menu .smart-sub-menu-items:hover .second-smart-sub-menu {
     display: block;

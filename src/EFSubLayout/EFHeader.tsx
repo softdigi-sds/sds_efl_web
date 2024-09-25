@@ -2,8 +2,8 @@ import React from 'react'
 
 const EFHeader = () => {
   return (
-    <div>
-      
+    <div className='smart-ef-header'>
+      Header
     </div>
   )
 }
