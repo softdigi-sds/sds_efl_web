@@ -7,18 +7,21 @@ position: relative;
   
     position: absolute;
     bottom: 10%;
+    width: 180px;
    
 }
 .smart-menu-list li:nth-child(10){
  
     position: absolute;
     bottom: 5%;
+    width: 180px;
   
 }
 .smart-menu-list li:nth-child(11){
  
     position: absolute;
     bottom: 0%;
+    width: 180px;
    
 }
 .smart-ef-sub-layout-main-container{

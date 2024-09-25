@@ -12,6 +12,15 @@
     position: relative;
  
 }
+.smart-list-item-active{
+    margin: 5px 5px;
+    cursor: pointer;
+    padding:10px 10px ;
+    color: black;
+    transition: 0.05s;
+    background-color: aqua;
+    border-radius: 10px;
+}
 .smart-list-items:hover{
     background-color: beige;
     border-radius: 10px;
@@ -23,10 +32,7 @@
     color: inherit;
     border-radius: 0;
 }
-.smart-list-items-active{
-    background-color:rgb(229, 252, 252);
-    border-radius: 10px;
-}
+
 .smart-side-nav-menu-logo-box{
     display: flex;
     justify-content: center;
