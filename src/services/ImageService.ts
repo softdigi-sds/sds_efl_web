@@ -12,4 +12,8 @@ export { default as OUR_SERVICE_CARD_THREE } from "../assets/images/Eletric/s3.j
 export { default as OUR_SERVICE_CARD_FOUR } from "../assets/images/Eletric/s4.jpg";
 export { default as OUR_SERVICE_CARD_FIVE } from "../assets/images/Eletric/s5.jpg";
 export { default as OUR_SERVICE_CARD_SIX } from "../assets/images/Eletric/s6.jpg";
+export { default as ELETRIC_HOME_APP_IMG } from "../assets/images/Eletric/app.png";
+// play store
+export { default as ELETRIC_HOME_GOOGLEPLAY } from "../assets/images/Eletric/gap.png";
+export { default as ELETRIC_HOME_APPLE } from "../assets/images/Eletric/apple.png";
 

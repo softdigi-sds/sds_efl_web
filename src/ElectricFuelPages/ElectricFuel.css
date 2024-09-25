@@ -1,9 +1,10 @@
-.our-services-container{
-    background-color:#242430 ;
+.our-services-container {
+    background-color: #242430;
     min-height: 100vh;
     padding: 3rem;
 }
-.our-services-header-text{
+
+.our-services-header-text {
     color: white;
     font-size: 2.3rem;
     text-align: center;
@@ -11,10 +12,12 @@
     font-family: roboto;
     margin-bottom: 20px;
 }
-.our-services-header-text span{
+
+.our-services-header-text span {
     color: #00a85a;
 }
-.our-services-card-header-bar{
+
+.our-services-card-header-bar {
     width: 60px;
     height: 5px;
     background-color: #00a85a;
@@ -22,36 +25,41 @@
     transition: transform 0.9s ease;
 }
 
-.our-services-card-header{
+.our-services-card-header {
     font-size: 1.3rem;
     font-weight: 400;
     font-family: roboto;
     color: #000;
     margin-top: 20px;
 }
-.our-services-card-body{
+
+.our-services-card-body {
     background-color: #fff;
     padding: 1.2rem;
     cursor: pointer;
     min-height: 420px;
-   
+
 }
-.our-services-card-body .images img{
-    transform: scale(1); 
-  transition: transform 0.3s ease;
+
+.our-services-card-body .images img {
+    transform: scale(1);
+    transition: transform 0.3s ease;
 }
-.our-services-card-body .images:hover img{
+
+.our-services-card-body .images:hover img {
     transform: scale(1.1);
-    
+
 }
-.our-services-card-content{
+
+.our-services-card-content {
     font-weight: 400px;
     font-size: 14px;
     color: #9b9b9b;
     padding: 0px 0px 0px 6px;
     margin: 20px 0;
-    font-family: Inter;}
-    
+    font-family: Inter;
+}
+
 .eletric-home-page-slider {
     min-height: 39.5rem;
     background-image: url('../assets/images/Eletric/services-bg.png');
@@ -61,13 +69,62 @@
 }
 
 .smart-customer-home-page-details {
-    padding-left:135px;
-  padding-top:180px;
+    padding-left: 135px;
+    padding-top: 180px;
 
 }
-.eletric-home-page-words{
-    color:#ad1c53;
+
+.eletric-home-page-words {
+    color: #ad1c53;
 }
-.smart-customer-home-page-details-one{
-    float: none; list-style: none;  width: 1349px; z-index: 0; display: none;
+
+.smart-customer-home-page-details-one {
+    float: none;
+    list-style: none;
+    width: 1349px;
+    z-index: 0;
+    display: none;
+}
+
+.smart-eletric-mobile-content {
+    background-color: #fff;
+    padding: 80px 0px 80px 0px;
+
+}
+
+.smart-electric-app-para {
+    color: #777;
+    line-height: 1.6;
+    padding: 10px 0px 0px 18px;
+}
+
+.smart-electric-app-para-two {
+    overflow: hidden;
+    padding: 10px 0px 0px 40px;
+}
+
+.smart-electric-app-para-two li {
+    position: relative;
+}
+
+.smart-electric-app-para-two li:after {
+    content: '\f101 ';
+    font-family: 'FontAwesome';
+    position: absolute;
+    left: 0px;
+    color: #a6134b;
+    font-size: 16px;
+    top: 2px;
+}
+
+.smart-electric-app-para-two li {
+    color: #999;
+    padding: 4px 14px;
+    display: block;
+    font-size: 14px;
+}
+.smart-electric-app-para-two h6{
+    color: #333;
+padding: 20px 0px 0px 18px;
+
 }
