@@ -56,7 +56,7 @@
     margin: 0;
 }
 
-.social-icon ul li a i {
+.social-icon ul li  i {
     vertical-align: middle;
     display: table-cell;
     color: #fff;

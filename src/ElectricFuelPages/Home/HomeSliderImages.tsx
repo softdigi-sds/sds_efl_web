@@ -13,8 +13,6 @@ const HomeSliderImages: React.FC<HomePageSliderProps> = () => {
   const imageSlider = () => {
     return (
       <div style={{ position: "relative" }}>
-        <div className="columns is-flex-mobile">
-          <div className="column">
             <div className="smart-customer-home-page-details">
               <div className="is-size-2">
                 <h2>
@@ -26,18 +24,14 @@ const HomeSliderImages: React.FC<HomePageSliderProps> = () => {
                 </h2>
               </div>
             </div>
-          </div>
-          <div className="column is-flex is-justify-content-center">
             <div className="customer-home-side-images">
               <div
-                className="smart-customer-home-page-details"
-                style={{ height: "500px;" }}
+                className="customer-home-right-image"
               >
                 <img src={ELETRIC_HOME_IMAGE_1} alt="" />
               </div>
             </div>
-          </div>
-        </div>
+         
       </div>
     );
   };
@@ -45,8 +39,8 @@ const HomeSliderImages: React.FC<HomePageSliderProps> = () => {
   const imageSliderTwo = () => {
     return (
       <div style={{ position: "relative" }}>
-        <div className="columns is-flex-mobile">
-          <div className="column smart-customer-home-page-details">
+   
+          <div className="smart-customer-home-page-details">
             <div className="is-size-2">
               <h2>
                 <span className="eletric-home-page-words">WE ELECTRIFY</span>
@@ -57,14 +51,14 @@ const HomeSliderImages: React.FC<HomePageSliderProps> = () => {
               </h2>
             </div>
           </div>
-          <div className="column is-flex is-justify-content-center">
+          <div className="">
             <div className="customer-home-side-images">
               <div className="customer-home-right-image">
                 <img src={ELETRIC_HOME_IMAGE_2} alt="" />
               </div>
             </div>
           </div>
-        </div>
+        
       </div>
     );
   };
@@ -72,8 +66,7 @@ const HomeSliderImages: React.FC<HomePageSliderProps> = () => {
   const imageSliderThree = () => {
     return (
       <div style={{ position: "relative" }}>
-        <div className="columns is-flex-mobile">
-          <div className="column">
+
             <div className="smart-customer-home-page-details">
               <div className="is-size-2">
                 <h2>
@@ -85,15 +78,15 @@ const HomeSliderImages: React.FC<HomePageSliderProps> = () => {
                 </h2>
               </div>
             </div>
-          </div>
-          <div className="column is-flex is-justify-content-center">
+          
+          <div className="">
             <div className="customer-home-side-images">
               <div className="customer-home-right-image">
                 <img src={ELETRIC_HOME_IMAGE_3} alt="" />
               </div>
             </div>
           </div>
-        </div>
+        
       </div>
     );
   };
@@ -101,8 +94,7 @@ const HomeSliderImages: React.FC<HomePageSliderProps> = () => {
   const imageSliderFour = () => {
     return (
       <div style={{ position: "relative" }}>
-        <div className="columns is-flex-mobile">
-          <div className="column">
+        
             <div className="smart-customer-home-page-details">
               <div className="is-size-2">
                 <h2>
@@ -111,20 +103,17 @@ const HomeSliderImages: React.FC<HomePageSliderProps> = () => {
                 </h2>
               </div>
             </div>
-          </div>
-          <div className="column is-flex is-justify-content-center">
+          
+          <div className="">
             <div className="customer-home-side-images">
               <div className="customer-home-right-image">
                 <img
                   src={ELETRIC_HOME_IMAGE_4}
-                  height="300"
-                  width="550"
-                  alt=""
                 />
               </div>
             </div>
           </div>
-        </div>
+        
       </div>
     );
   };
