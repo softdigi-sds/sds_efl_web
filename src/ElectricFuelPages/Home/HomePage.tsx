@@ -4,6 +4,7 @@ import HomeSliderImages from './HomeSliderImages'
 import MobileAppContent from './MobileAppContent'
 import CmsPlateForm from './CmsPlateForm'
 import OurMissions from './OurMissions'
+import ElectricVichele from './ElectricVichele'
 
 const HomePage = () => {
   return (
@@ -17,6 +18,7 @@ const HomePage = () => {
       <MobileAppContent/>
       <OurMissions/>
       <CmsPlateForm/>
+      <ElectricVichele/>
     </div>
     </>
   )

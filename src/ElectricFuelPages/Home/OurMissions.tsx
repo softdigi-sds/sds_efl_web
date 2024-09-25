@@ -9,7 +9,7 @@ const OurMissions = () => {
           <div className="row">
             <div className="columns">
               <div className="column is-4">
-                <div className="has-text-weight-bold">Our mission</div>
+                <div className="has-text-weight-bold is-size-4">Our mission</div>
                 <div className="">
                   <p className="pt-3 has-text-white">
                     To provide the most efficient, innovative, and customer
@@ -26,7 +26,7 @@ const OurMissions = () => {
                 </div>
               </div>
               <div className="column is-5">
-                <div className="has-text-weight-bold">
+                <div className="has-text-weight-bold is-size-4">
                   Why choose an Electric Vehicle ?
                 </div>
                 <div className="">
@@ -37,7 +37,9 @@ const OurMissions = () => {
                     buses, and many more to come.
                   </p>
                   <p className="pt-3 has-text-white">
-                  The emission rate of electric vehicles is zero, which enables the restoration of greenhouse gases by keeping the pollution under check.
+                    The emission rate of electric vehicles is zero, which
+                    enables the restoration of greenhouse gases by keeping the
+                    pollution under check.
                   </p>
                 </div>
               </div>
