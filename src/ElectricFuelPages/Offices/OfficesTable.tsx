@@ -19,6 +19,9 @@ const OfficesTable = () => {
     loadTableData();
   }, []);
 
+  const openOfficesForm =()=>{
+
+  }
   const columns: SmartTableNewInterface.SmartTableNewColumnConfig[] = [
     { title: "S.NO", index: "s_no", type: "sno", width: "5" },
     {
@@ -41,6 +44,31 @@ const OfficesTable = () => {
     { title: "email", index: "email" },
     { title: "ID", index: "id" },
   ];
+  const tableTop: SmartTableNewInterface.SmartTableNewTopProps[] = [
+    {
+      type: "CUSTOM",
+      widthClass: "is-10",
+      custom: <p className="has-text-link is-size-4">Offices & Location</p>,
+    },
+    {
+      type: "BUTTONS",
+      widthClass: "is-2",
+      align: "RIGHT",
+      buttons: [
+        
+        {
+          label:"Add",
+          icon:"fa-plus",
+          type:"CUSTOM",
+          action: openOfficesForm,
+        },
+      ],
+      
+    },
+   
+   
+    
+  ]
 
   return (
     <>
@@ -48,6 +76,7 @@ const OfficesTable = () => {
       <SmartSoftTable
         columns={columns}
         data={data}
+        tableTop={tableTop}
         tableProps={{
           className: "table is-hoverable is-bordered is-striped smart-basic-pdf-table",
           isResponsive: true,
