@@ -87,9 +87,7 @@
 }
 
 .smart-eletric-mobile-content {
-    background-color: #fff;
     padding: 80px 0px 80px 0px;
-
 }
 
 .smart-electric-app-para {
@@ -127,4 +125,9 @@
     color: #333;
 padding: 20px 0px 0px 18px;
 
+}
+.smart-electric-our-mission{
+    background-color: #00a85a;
+    background-size: cover;
+    padding: 30px 0px 0px 0px;
 }
