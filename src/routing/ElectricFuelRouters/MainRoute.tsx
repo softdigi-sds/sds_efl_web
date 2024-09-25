@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import ElectricFuelMainLayout from "../../ElectricFuelLayout/ElectricFuelMainLayout";
-import { Dashboard, HomePage, HubsTables, OfficesTable } from "../../ElectricFuelPages";
+import { Dashboard, HomePage, HubsTables, OfficesTable, VendorsTable } from "../../ElectricFuelPages";
 import Login from "../../ElectricFuelPages/LoginPages/Login";
 import ForgotPassword from "../../ElectricFuelPages/LoginPages/ForgotPassword";
 import EFSubLayout from "../../EFSubLayout/EFSubLayout";
@@ -29,6 +29,7 @@ const EFSiteRoute = () => {
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/offices-list" element={<OfficesTable />} />
             <Route path="/hubs-list" element={<HubsTables />} />
+            <Route path="/vendors-list" element={<VendorsTable />} />
           </Routes>
 
           <ToastContainer />

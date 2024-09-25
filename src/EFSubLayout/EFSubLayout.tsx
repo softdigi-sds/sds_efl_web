@@ -18,7 +18,7 @@ const EFSubLayout:React.FC<childrenProps> = (props) => {
         <div><EFSideNav/></div>
         <div className=''>
           <div className='smart-ef-header-container'><EFHeader /></div>  
-          <div>
+          <div className='smart-middle-container'>
             {children}
           </div>
         </div>

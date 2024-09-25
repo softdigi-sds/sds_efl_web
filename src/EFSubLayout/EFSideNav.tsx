@@ -32,7 +32,7 @@ const EFSideNav = () => {
             id: 4,
             label: "Vendors",
             icon: <i className="fa fa-bell-o" aria-hidden="true"></i>,
-            link: "/notification",
+            link: "/e-fuel/vendors-list",
             
           },
           {

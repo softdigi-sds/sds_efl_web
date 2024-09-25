@@ -24,11 +24,21 @@ position: relative;
 .smart-ef-sub-layout-main-container{
     display: flex;
     flex-direction: row;
+    position: relative;
 }
 .smart-ef-header-container{
     background-color: black;
     width: calc(100vw - 200px);
     padding: 10px;
     color: white;
+    position: fixed;
+    margin-left: 200px;
     
+}
+.smart-middle-container{
+    padding: 10px;
+    margin-left: 200px;
+    width: calc(100vw - 200px);
+    padding-top: 50px;
+    z-index: 100;
 }
