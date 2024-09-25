@@ -5,29 +5,19 @@ import "./App.css";
 
 import { useEffect } from "react";
 import "react-toastify/dist/ReactToastify.css";
-import ErrorBoundary from "./contexts/ErrorBoundary";
-import { SiteProvider } from "./contexts/SiteProvider";
-import SiteRoute from "./routing/SiteRoute";
+
 import EFSiteRoute from "./routing/ElectricFuelRouters/MainRoute";
 
 
 function App() {
   useEffect(() => {
-    // Set the loader type globally on the window object
-    window.loaderType = 'STAR';  // This can be changed based on your app logic
+    window.loaderType = 'STAR'; 
 }, []);
 
   return (
-    // <ErrorBoundary>
-    //   <SiteProvider>
-    //     <div className="App">
-    //       <SiteRoute />
-    //     </div>
-    //   </SiteProvider>
-    // </ErrorBoundary>
+
     <>
       <div className="App">
-          {/* <SiteRoute /> */}
           <EFSiteRoute />
         </div>
     </>
