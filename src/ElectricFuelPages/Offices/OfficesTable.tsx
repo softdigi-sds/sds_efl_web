@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from 'react'
 import { get } from '../../services/smartApiService';
 import { SmartSoftTable, SmartTableNewInterface } from '../../core';
@@ -19,60 +18,89 @@ const OfficesTable = () => {
     loadTableData();
   }, []);
 
-  const openOfficesForm =()=>{
-
+  const openOfficesForm = () => {
+ 
   }
+
+  const handleDelete = (rowData: any) => {
+
+    console.log('Delete action for row:', rowData);
+  }
+
+  const buttons = [
+    {
+      label: "",
+      type: "icon",
+      leftIcon: "fa fa-eye",
+      classList: ["delete-color is-clickable is-size-5"],
+      onClick: handleDelete
+    },
+    {
+      label: "",
+      type: "icon",
+      leftIcon: " fa-pencil-square-o",
+      classList: ["delete-color is-clickable is-size-5"],
+      onClick: handleDelete
+    },
+    {
+      label: "",
+      type: "icon",
+      leftIcon: "fa fa-times",
+      classList: ["delete-color is-clickable is-size-5"],
+      onClick: handleDelete
+    },
+  ];
+
   const columns: SmartTableNewInterface.SmartTableNewColumnConfig[] = [
-    { title: "S.NO", index: "s_no", type: "sno", width: "5" },
+    { title: "S.NO", index: "s_no", type: "sno" },
     {
-      title: <span className="has-text-danger">firstName</span>,
-      titleMobile: "firstName",
+      title: "Office City",
+      titleMobile: "Office City",
       index: "firstName",
-      width: "81",
     },
     {
-      title: <span className="has-text-danger">lastName</span>,
-      titleMobile: "lastName",
+      title: "State",
+      titleMobile: "State",
       index: "lastName",
-      width: "81",
     },
-    { title: "age", index: "age" },
+    { title: "Pin Code", index: "age" },
     {
-      title: "gender",
+      title: "Address",
       index: "gender",
     },
-    { title: "email", index: "email" },
-    { title: "ID", index: "id" },
+    { title: "Status", index: "email" },
+    {
+      title: "Action",
+      index: "action",
+      type: "buttons",
+      buttons: buttons,
+      width: "10",
+    },
   ];
+
   const tableTop: SmartTableNewInterface.SmartTableNewTopProps[] = [
     {
       type: "CUSTOM",
       widthClass: "is-10",
-      custom: <p className="has-text-link is-size-4">Offices & Location</p>,
+      custom: <p className="is-size-4">Offices & Location</p>,
     },
     {
       type: "BUTTONS",
       widthClass: "is-2",
       align: "RIGHT",
       buttons: [
-        
         {
-          label:"Add",
-          icon:"fa-plus",
-          type:"CUSTOM",
+          label: "Add",
+          icon: "fa-plus",
+          type: "CUSTOM",
           action: openOfficesForm,
         },
       ],
-      
     },
-   
-   
-    
-  ]
+  ];
 
   return (
     <>
-      <p className="has-text-link is-size-4">Basic Responsive Table</p>
       <SmartSoftTable
         columns={columns}
         data={data}
@@ -82,17 +110,11 @@ const OfficesTable = () => {
           isResponsive: true,
         }}
         paginationProps={{
-          pageSize:5
+          pageSize: 5,
         }}
       />
-   
-
-
-    
-      
-    
     </>
   );
 };
 
-export default OfficesTable
+export default OfficesTable;
