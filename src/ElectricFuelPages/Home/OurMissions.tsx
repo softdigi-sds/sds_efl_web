@@ -37,7 +37,9 @@ const OurMissions = () => {
                     buses, and many more to come.
                   </p>
                   <p className="pt-3 has-text-white">
-                  The emission rate of electric vehicles is zero, which enables the restoration of greenhouse gases by keeping the pollution under check.
+                    The emission rate of electric vehicles is zero, which
+                    enables the restoration of greenhouse gases by keeping the
+                    pollution under check.
                   </p>
                 </div>
               </div>
