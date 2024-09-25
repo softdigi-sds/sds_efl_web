@@ -39,28 +39,28 @@ const EFSideNav = () => {
             id: 5,
             label: "Vendor Rates",
             icon: <i className="fa fa-users" aria-hidden="true"></i>,
-            link: "/user-management",
+            link: "/e-fuel/vendors-rates-list",
             
           },
           {
             id: 5,
             label: "Vehicles Report",
             icon: <i className="fa fa-users" aria-hidden="true"></i>,
-            link: "/user-management",
+            link: "/e-fuel/vehicles-report",
             
           },
           {
             id: 6,
             label: "Consumption  Report",
             icon: <i className="fa fa-users" aria-hidden="true"></i>,
-            link: "/user-management",
+            link: "/e-fuel/consumption-report",
             
           },
           {
             id: 7,
             label: "Invoices",
             icon: <i className="fa fa-users" aria-hidden="true"></i>,
-            link: "/user-management",
+            link: "/e-fuel/invoices",
             
           },
 
@@ -68,21 +68,21 @@ const EFSideNav = () => {
             id: 8,
             label: "Users",
             icon: <i className="fa fa-cogs" aria-hidden="true"></i>,
-            link: "/site-settings",
+            link: "/e-fuel/users",
             
           },
           {
             id: 8,
             label: "Roles",
             icon: <i className="fa fa-cogs" aria-hidden="true"></i>,
-            link: "/site-settings",
+            link: "/e-fuel/roles",
             
           },
           {
             id: 8,
             label: "Site Settings",
             icon: <i className="fa fa-cogs" aria-hidden="true"></i>,
-            link: "/site-settings",
+            link: "/e-fuel/settings",
             
           },
     ]
