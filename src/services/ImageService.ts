@@ -16,4 +16,6 @@ export { default as ELETRIC_HOME_APP_IMG } from "../assets/images/Eletric/app.pn
 // play store
 export { default as ELETRIC_HOME_GOOGLEPLAY } from "../assets/images/Eletric/gap.png";
 export { default as ELETRIC_HOME_APPLE } from "../assets/images/Eletric/apple.png";
+export { default as ELETRIC_HOME_CMS_PLATEFORM } from "../assets/images/Eletric/cms.png";
+export { default as ELETRIC_HOME_LEAVES } from "../assets/images/Eletric/leaves.png";
 
