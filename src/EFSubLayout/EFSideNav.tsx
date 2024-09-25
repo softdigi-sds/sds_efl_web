@@ -25,7 +25,7 @@ const EFSideNav = () => {
             id: 3,
             label: "Hubs",
             icon: <i className="fa fa-car" aria-hidden="true"></i>,
-            link: "/vehicle-details-system",
+            link: "/e-fuel/hubs-list",
             
           },
           {
