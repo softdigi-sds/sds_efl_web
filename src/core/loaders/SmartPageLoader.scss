@@ -1,0 +1,112 @@
+/* Loader.css */
+.smart-loader-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(37, 36, 36, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    color:White;
+  }
+  
+  .smart-loader {
+    border: 8px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 8px solid #3498db;
+    width: 60px;
+    height: 60px;
+    animation: spin 2s linear infinite;
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+
+
+
+.smart-spinner-loader {
+    margin-right: 5px;
+    width: 50px;
+    aspect-ratio: 1;
+    display: grid;
+    border: 4px solid #0000;
+    border-radius: 50%;
+    border-color: #ccc #0000;
+    animation: l16 1s infinite linear;
+  }
+  .smart-spinner-loader::before,
+  .smart-spinner-loader::after {    
+    content: "";
+    grid-area: 1/1;
+    margin: 2px;
+    border: inherit;
+    border-radius: 50%;
+  }
+  .smart-spinner-loader::before {
+    border-color: #f03355 #0000;
+    animation: inherit; 
+    animation-duration: .5s;
+    animation-direction: reverse;
+  }
+  .smart-spinner-loader::after {
+    margin: 8px;
+  }
+  @keyframes l16 { 
+    100%{transform: rotate(1turn)}
+  }
+
+  /*  smart settings type loader **/
+  /* HTML: <div class="loader"></div> */
+.smart-settings-loader {
+  margin-right: 5px;
+  width: 50px;
+  aspect-ratio: 1;
+  display: grid;
+  color: #854f1d;
+  background: radial-gradient(farthest-side, currentColor calc(100% - 6px),#0000 calc(100% - 5px) 0);
+  -webkit-mask: radial-gradient(farthest-side,#0000 calc(100% - 13px),#000 calc(100% - 12px));
+  border-radius: 50%;
+  animation: l19 2s infinite linear;
+}
+.smart-settings-loader::before,
+.smart-settings-loader::after {    
+  content: "";
+  grid-area: 1/1;
+  background:
+    linear-gradient(currentColor 0 0) center,
+    linear-gradient(currentColor 0 0) center;
+  background-size: 100% 10px,10px 100%;
+  background-repeat: no-repeat;
+}
+.smart-settings-loader::after {
+   transform: rotate(45deg);
+}
+
+@keyframes l19 { 
+  100%{transform: rotate(1turn)}
+}
+
+
+/*** last delete ***/
+/* HTML: <div class="loader"></div> */
+.smart-start-loader {
+  width: 50px;
+  aspect-ratio: 1;
+  color: #f03355;
+  --_c:no-repeat radial-gradient(farthest-side,currentColor 92%,#0000);
+  background: 
+    var(--_c) 50% 0   /12px 12px,
+    var(--_c) 50% 100%/12px 12px,
+    var(--_c) 100% 50%/12px 12px,
+    var(--_c) 0    50%/12px 12px,
+    var(--_c) 50%  50%/12px 12px,
+    conic-gradient(from 90deg at 4px 4px,#0000 90deg,currentColor 0)
+    -4px -4px/calc(50% + 2px) calc(50% + 2px);
+  animation: l8 1s infinite linear;
+}
+@keyframes l8 {to{transform: rotate(.5turn)}}

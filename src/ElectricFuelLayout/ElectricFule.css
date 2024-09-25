@@ -100,3 +100,19 @@
     color: #00ff00;
     transition: color 0.3s ease-in-out;
 }
+
+.smart-login-button{
+    border: 2px solid gray;
+    background-color: #00a85a;
+    color: white;
+    cursor: pointer;
+    padding: 3px 20px;
+    border-radius: 20px;
+    color:#fff;
+    font-size: 1rem;
+    margin-top: 8px;
+    margin-right: 10px;
+
+  
+    
+}

@@ -1,0 +1,524 @@
+
+/* side Nav css class start*/
+.tooltip-wrapper {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.tooltip-box {
+    position: absolute;
+    background-color: #333;
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 12px;
+    z-index: 100;
+    white-space: nowrap;
+    visibility: visible;
+    opacity: 1;
+    transition: opacity 0.3s ease;
+}
+
+.tooltip-top {
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-bottom: 5px;
+}
+/* .tooltip-top::before{
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 10px solid;
+    border-color: #333 #0000 #0000 #0000;
+    z-index: 5;
+
+   
+  
+} */
+
+
+
+.tooltip-right {
+    top: 50%;
+    left: 100%;
+    transform: translateY(-50%);
+    margin-left: 5px;
+}
+/* .tooltip-right::before{
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: -3%;
+    transform: translateX(-50%);
+    border: 10px solid;
+    border-color: transparent #333 transparent transparent; ;
+    z-index: 5;
+
+   
+  
+} */
+
+
+
+.tooltip-bottom {
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-top: 5px;
+}
+/* .tooltip-bottom::before{
+    content: "";
+    position: absolute;
+    top:-13%;
+    right:50% ;
+    transform: translateX(-50%);
+    border: 10px solid;
+    border-color: transparent transparent #333 transparent;
+    z-index: 5;
+} */
+
+.tooltip-left {
+    top: 50%;
+    right: 100%;
+    transform: translateY(-50%);
+    margin-right: 5px;
+
+}
+/* .tooltip-left::before{
+    content: "";
+    position: absolute;
+    top: 50%;
+    right:-13% ;
+    transform: translateX(-50%);
+    border: 10px solid;
+    border-color: transparent transparent transparent #333;
+    z-index: 5;
+} */
+
+
+
+.smart-side-nav-menu{
+    width: 200px !important;
+    background-color:white;
+    height: 100vh;
+    border-right: .02rem solid gray;
+}
+.smart-list-items{
+    margin: 5px 5px;
+    cursor: pointer;
+    padding:10px 10px ;
+    position: relative;
+ 
+}
+.smart-list-items:hover{
+    background-color: beige;
+    border-radius: 10px;
+    color: brown;
+}
+
+.smart-list-items:hover > * {
+    background-color: transparent;
+    color: inherit;
+    border-radius: 0;
+}
+.smart-list-items-active{
+    background-color:rgb(229, 252, 252);
+    border-radius: 10px;
+}
+.smart-side-nav-menu-logo-box{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  
+    border-radius: 50%;
+}
+.smart-side-nav-menu-logo-box img{
+    width: 100%;
+    height: 100%;
+}
+
+.first-smart-sub-menu{
+    
+border-right:1px solid gray ;
+ transform: translateX(180px);
+    width: 200px;
+    display: none;
+    display: none;
+    position: absolute;
+    top: 0;
+    /* left: 100%; */
+    z-index: 5;
+    padding: 10px 0;
+    background-color: aliceblue;
+}
+.smart-list-items:hover .first-smart-sub-menu{
+    display: block;
+}
+
+.smart-sub-menu-items:hover {
+    background-color: beige;
+    border-radius: 10px;
+    color: brown;
+  
+    /* position: relative; */
+}
+.smart-sub-menu-items{
+    /* margin: 2px 5px; */
+    cursor: pointer;
+    padding:5px 10px ;
+    color: black;
+    transition: 0.05s;
+}
+
+.first-smart-sub-menu .smart-sub-menu-items:hover .second-smart-sub-menu {
+    display: block;
+}
+
+.second-smart-sub-menu {
+    background-color: aliceblue;
+    transform: translateX(190px);
+    width: 200px;
+    padding: 10px;
+    display: none;
+    position: absolute;
+    top:2%;
+    /* border-left:1px solid grey ; */
+    border-right:1px solid grey ;
+    /* left: 100%; */
+    /* z-index: 1; */
+}
+
+.third-smart-sub-menu{
+    background-color: aliceblue;
+    transform: translateX(180px);
+    width: 200px;
+    padding: 10px;
+    display: none;
+    position: absolute;
+    top:2%;
+    /* border-left:1px solid grey ; */
+    border-right:1px solid grey ;
+    /* left: 100%; */
+    z-index: 5; 
+}
+.smart-sub-children-menu-items{
+    /* margin: 2px 5px; */
+    cursor: pointer;
+    padding:5px 5px ;
+    color: black;
+   
+}
+.smart-sub-children-menu-items:hover{
+    background-color: beige;
+    border-radius: 10px;
+    color: brown;
+}
+.smart-sub-children-menu-items:hover .third-smart-sub-menu{
+display: block;
+}
+.smart-sub-third-menu-items{
+    color: black;
+    cursor: pointer;
+    /* padding:5px 10px ; */
+}
+.smart-sub-third-menu-items:hover{
+    background-color: beige;
+    border-radius: 10px;
+    color: brown;
+
+}
+/* side Nav css class end*/
+
+
+/* user card css class start*/
+
+
+.smart-user-card-container{
+    background: rgb(180,58,169);
+    background: linear-gradient(34deg, rgba(180,58,169,1) 0%, rgba(253,29,29,1) 65%, rgba(193,252,69,1) 100%);
+}
+.smart-user-card {
+    width: 300px;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 15px;
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    backdrop-filter: blur(5px);
+    border: 5px solid rgba(255, 255, 255, 0.4); /* Glass border */
+    border-top: 5px solid rgba(255, 255, 255, 0.6); /* Slightly stronger top border */
+    border-left: 5px solid rgba(255, 255, 255, 0.6); 
+}
+
+.smart-user-image {
+    margin-bottom: 20px;
+}
+
+.smart-user-image img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 5px solid white;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.smart-user-info h2 {
+    margin: 10px 0;
+    font-size: 22px;
+    font-weight: bold;
+   
+}
+
+.smart-user-info .smart-title {
+    margin-bottom: 20px;
+    font-size: 14px;
+    color: gray;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.smart-user-info .smart-about {
+    font-size: 14px;
+    margin-bottom: 20px;
+    color: #666;
+}
+
+.smart-social-icons {
+    margin-bottom: 20px;
+}
+
+.smart-social-icons i {
+    margin: 0 10px;
+    font-size: 20px;
+    color: #666;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.smart-social-icons i:hover {
+    color: #333;
+}
+
+.smart-tabs {
+    display: flex;
+    justify-content: space-around;
+    border-top: 1px solid #ddd;
+    padding-top: 10px;
+}
+
+.smart-tabs .smart-tab {
+    font-size: 14px;
+    font-weight: bold;
+    color: #666;
+    cursor: pointer;
+    transition: color 0.3s, border-bottom 0.3s;
+}
+
+
+
+/* side Nav css class start*/
+
+.smart-top-menu-list{
+    display: flex;
+    justify-content: center;
+    /* background-color: rgb(252, 86, 86); */
+    background: rgb(180,58,169);
+background: linear-gradient(34deg, rgba(180,58,169,1) 0%, rgba(253,29,29,1) 65%, rgba(193,252,69,1) 100%);
+    position: relative;
+}
+.smart-top-list-items{
+
+    padding: 10px 20px;
+    cursor: pointer;
+    color: white;
+    font-weight: bold;
+    background: rgba(255, 255, 255, 0.24);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+.smart-top-list-items:hover{
+    background-color: #f2f8fc;
+    color: black;
+}
+
+.smart-top-first-menu-list-container{
+    display: none;
+}
+.smart-top-list-items:hover .smart-top-first-menu-list-container{
+    display: block;
+    /* display: flex; */
+ 
+}
+.smart-top-sec-menu-list-container{
+    display: none;
+}
+.smart-top-first-list-items:hover .smart-top-sec-menu-list-container{
+    display: block;
+}
+.smart-top-first-menu-list{
+    position: absolute;
+ transform: translateY(13px);
+    /* left: 0; */
+    background: rgb(63, 8, 227);
+    /* background: linear-gradient(34deg, rgba(180,58,169,1) 0%, rgba(253,29,29,1) 65%, rgba(193,252,69,1) 100%); */
+    /* padding: 10px; */
+    display: flex;
+}
+.smart-top-sec-menu-list{
+    position: absolute;
+ transform: translateY(13px);
+    /* left: 0; */
+    background: gray;
+  
+    /* padding: 10px; */
+    display: flex;
+    flex-direction: column;
+}
+.smart-top-first-list-items{
+ 
+    padding: 10px 20px;
+    cursor: pointer;
+    color: white;
+    font-weight: bold;
+    background: rgba(255, 255, 255, 0.24);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    width: 200px;
+}
+.smart-top-first-list-items:hover{
+    background-color: #f2f8fc;
+    color: black;
+}
+.smart-top-sec-list-items{
+ 
+    padding: 10px 20px;
+    cursor: pointer;
+    color: white;
+    font-weight: bold;
+    background: rgba(255, 255, 255, 0.24);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    width: 200px;
+}
+.smart-top-sec-list-items:hover{
+    background-color: #f2f8fc;
+    color: black;
+}
+
+/* side Nav css class end*/
+
+/* Smart Calender css start */
+
+.smart-calendar-container {
+    width: 100%;
+  }
+  
+  .smart-calendar-header {
+    display: flex;
+  }
+  
+  .smart-calendar-day {
+    flex: 1;
+    text-align: center;
+    background-color: #218df9;
+    color: white;
+    padding: 10px 0;
+    border: 1px solid #ddd;
+  }
+  .smart-calendar-days{
+    flex: 1;
+    text-align: center;
+    background-color: #ff6f6f;
+    color: white;
+    padding: 10px 0;
+    border: 1px solid #ddd;
+ 
+  }
+  
+  .smart-calendar-grid {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  .smart-calendar-cell {
+    width: 14.28%;  /* 100% / 7 days */
+    border: 1px solid #ddd;
+    min-height: 100px;
+    position: relative;
+    /* background-color: #4753fe; */
+    cursor: pointer;
+    backdrop-filter: blur(10px);
+  }
+  
+  .smart-calendar-cell .smart-calendar-empty {
+    background-color: #f9f9f9;
+  }
+  
+  .smart-calendar-date {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    font-size: 14px;
+  }
+  
+  .smart-calendar-event {
+    margin-top: 20px;
+    padding: 5px;
+    background-color: #eef;
+    border-radius: 4px;
+  }
+  
+  .smart-calendar-event .smart-calendar-time {
+    color: red;
+    font-size: 12px;
+  }
+  
+  .smart-calendar-event .smart-calendar-title {
+    font-weight: bold;
+    font-size: 14px;
+  }
+  
+  .smart-calendar-event .smart-calendar-subtitle {
+    color: green;
+    font-size: 12px;
+  }
+  
+  .smart-calendar-navigation {
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  .smart-calendar-navigation button {
+    background-color: #003366;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 4px;
+    margin: 0 10px;
+  }
+  
+  .smart-calendar-navigation button:hover {
+    background-color: #002244;
+  }
+  
+  .smart-calendar-navigation span {
+    font-size: 18px;
+    font-weight: bold;
+  }
+
+  /* Smart Calender css end */

@@ -2,10 +2,16 @@ import React from 'react';
 import './ElectricFule.css';
 import { LOGO } from '../services/ImageService';
 import HeaderNavBar from './HeaderNavBar';
+import { useNavigate } from 'react-router-dom';
 
 
 
 const ElectricFuelHeader: React.FC = () => {
+
+    const navigate = useNavigate();
+    const handleLogin = (index:string) => {
+      navigate( index);
+    };
     const header_row = () => {
         return (
             <>
@@ -14,7 +20,7 @@ const ElectricFuelHeader: React.FC = () => {
                         <div className="topmenu">
                             <div className="container pl-4 pr-4">
                                 <div className="row">
-                                    <div className="columns">
+                                    <div className="columns is-vcentered">
                                         <div className="column is-8">
                                             <p>
                                                 <span>
@@ -27,10 +33,18 @@ const ElectricFuelHeader: React.FC = () => {
                                                 </span>
                                             </p>
                                         </div>
-                                        <div className="column is-4">
+                                      
+                                        <div className="column is-4 is-flex is-justify-content-flex-end">
+                                            <div >
+                                            <button className='smart-login-button' onClick={()=>handleLogin("/login")}>Login</button>
+                                            </div>
+                                      
                                             <div className="has-text-right">
                                                 <div className="social-icon">
                                                     <ul className="list-inline">
+                                                        <li>
+                                                      
+                                                        </li>
                                                         <li>
                                                             <a href="#">
                                                                 <i className="fa fa-facebook" aria-hidden="true"></i>

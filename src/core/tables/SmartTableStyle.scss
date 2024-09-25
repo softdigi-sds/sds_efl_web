@@ -1,0 +1,177 @@
+.smart-table.smart-table-responsive {
+  @media (max-width: 600px) {
+    thead {
+      border: none;
+      clip: rect(0 0 0 0);
+      height: 1px;
+      margin: -1px;
+      overflow: hidden;
+      padding: 0;
+      position: absolute;
+      width: 1px;
+    }
+
+    tr {
+      border-bottom: 3px solid #ddd;
+      display: block;
+      margin-bottom: .625em;
+    }
+
+    tbody,
+    td {
+      border-bottom: 0px solid #ddd;
+      display: block;
+      font-size: .8em;
+      text-align: right;
+      min-height: 20px;
+      border-width: 0;
+    }
+
+    td:before {
+      /*
+    * aria-label has no advantage, it won't be read inside a table
+    content: attr(aria-label);
+    */
+      content: attr(data-label);
+      float: left;
+      font-weight: bold;
+      text-transform: uppercase;
+    }
+
+    td:last-child {
+      border-bottom: 0;
+    }
+  }
+}
+.smart-table-footer{
+  @media (max-width: 600px) {
+    display:flex;
+  }
+  @media (max-width: 800px) {
+    display:flex;
+  }
+}
+
+.smart-table-head{
+  @media (max-width: 600px) {
+    display:flex;
+  }
+  @media (max-width: 800px) {
+    display:flex;
+  }
+}
+
+
+
+/** sorting styles ***/
+.smart-table thead th.smart-table-sortable {
+  position: relative;
+  padding-left: 1.2em;
+  span.sorticon {
+    cursor: pointer;
+    position: absolute;
+    left: 0;
+    top: 8px;
+    width: 20px;
+  }
+}
+/*** table column widths ***/
+@for $i from 1 through 100 {
+  .smart-table-column-width-#{$i} {
+    width:#{$i}+'%';
+  }
+}
+
+/**** table top stylings *****/
+.smart-table-head{  
+  margin-bottom: 0.4em !important;
+
+  .smart-table-search{
+    width:100%;
+    .control.has-icons-right .icon{
+      pointer-events: all;
+      cursor:pointer;
+    }
+  }
+  // buttons
+  .smart-table-head-buttons{
+    display: flex;
+    .icon{
+      height: 2.5rem;
+      transition: transform 0.3s ease; 
+      cursor: pointer;
+      i{
+        font-size: 1.5rem;
+      }
+      &:hover{
+        font-weight: bold; 
+        transform: scale(1.2);      
+      }
+    }
+  }
+
+
+  .smart-table-head-column{
+    display: flex;
+    &.smart-table-head-right{
+      justify-content: flex-end;
+    }
+    &.smart-table-head-left{
+      justify-content: flex-start;
+    }
+    &.smart-table-head-center{
+      justify-content: space-around;
+    }
+    &.smart-table-head-justify{
+      justify-content: space-evenly;
+    }
+  }
+
+  .smart-table-filter-form .dropdown-menu{
+    top:30px;
+    border:2px solid #b3acac;
+  }
+
+}
+
+
+
+
+
+/*** pagination settings ***/
+.smart-table-pagination button {
+  cursor: pointer;
+}
+.smart-table-pagination .pagination-list{
+  margin-top: 0;
+}
+
+
+/*** action button ****/
+.smart-action-tooltip-button {
+  position: relative;
+  width: 10px;
+  height: 10px;
+  cursor: pointer;
+
+  &:hover {
+    .smart-action-buttons {
+      width: auto;
+    }
+  }
+}
+
+.smart-action-buttons {
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  right: 14px;
+  width: 0;
+  transition: width 0.3s ease;
+  overflow: hidden;
+  padding: 0.1em;
+  background-color: antiquewhite;
+  border-radius: 0.1em;
+  border: 1px solid #ddd;
+  display: flex;
+}

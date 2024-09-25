@@ -1,0 +1,74 @@
+.smart-lnpr-login-card{
+    display: flex;
+    flex-direction: column;
+    
+    width: 330px;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 15px;
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    backdrop-filter: blur(5px);
+    border: 5px solid rgba(255, 255, 255, 0.4); /* Glass border */
+    border-top: 5px solid rgba(255, 255, 255, 0.6); /* Slightly stronger top border */
+    border-left: 5px solid rgba(255, 255, 255, 0.6); 
+    padding-bottom: 3rem;
+  
+}
+.smart-lnpr-login-button{
+    /* width: 200px; */
+    text-align: center;
+    background-color: #019ee3;
+    padding: 0px 30px;
+    color: #fff;
+    font-family: roboto;
+    border-radius: 10px;
+    width: 100%;
+}
+.smart-lnpr-text{
+    text-align: center;
+    color:black;
+    font-size: 2rem;
+    font-family: Fredoka;
+    font-weight: 800;
+    margin-bottom: 1rem;
+
+}
+.smart-lnpr-login-card .smart-border-label-input .label{
+    color: #019ee3;
+ }
+ .smart-lnpr-login-card .smart-border-label-input .input {
+    border: 2px solid #019ee3;
+    border-radius: 8px;
+ }
+ .smart-forgot-text{
+margin-top: -20px;
+color: #aca4a4;
+cursor: pointer;
+ }
+
+
+ .smart-lnpr-login-container{
+    background:url("../../assets/images/sky-bg.jpg");
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-repeat: no-repeat;
+    backdrop-filter: blur(10px);
+    background-size: 100% 100%;
+    position: relative;
+ }
+ .smart-lnpr-login-container::before{
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(181, 238, 248, 0.457); /* Blue color with 50% opacity */
+    z-index: -1; 
+ }
+
+
+

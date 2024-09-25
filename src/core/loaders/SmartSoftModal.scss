@@ -1,0 +1,35 @@
+.modal {
+    z-index: 5000;
+    .modal-card-title{
+        padding:10px;
+    }
+    .modal-card{
+        background-color: #fff;
+        position: relative;
+    }
+    .modal-close-btn {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+    }
+    .modal-card-foot{
+        padding:2px;
+    }
+}
+
+/*** table column widths ***/
+@for $i from 1 through 100 {
+    .smart-modal-#{$i} .modal-card {
+        width:#{$i}+'%';
+    }
+}
+
+.smart-alert-modal{
+    .modal-card{
+        border-radius: 5px;
+    }
+    .modal-card-foot{
+        justify-content: flex-end;
+        border:0;
+    }
+}
