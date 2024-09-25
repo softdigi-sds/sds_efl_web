@@ -88,7 +88,7 @@ const HubsTables = () => {
     {
       type: "CUSTOM",
       widthClass: "is-10",
-      custom: <p className="is-size-4">Offices & Location</p>,
+      custom: <p className="is-size-4">Hubs</p>,
     },
     {
       type: "BUTTONS",
