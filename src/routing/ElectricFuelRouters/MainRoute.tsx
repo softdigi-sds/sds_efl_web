@@ -26,7 +26,7 @@ const EFSiteRoute = () => {
         <Routes>
           <Route path="/*" element={protected_routes()} />
           <Route path="/login" element={<Login />} />
-          <Route path="/forgot-password" element={<ForgotPassword />} />
+      
           
         </Routes>
       </Router>

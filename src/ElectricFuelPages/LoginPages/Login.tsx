@@ -8,6 +8,7 @@ import { useSiteContext } from '../../contexts/SiteProvider';
 import { post } from '../../services/smartApiService';
 import { SmartSoftButton, SmartSoftForm } from '../../core';
 import { SmartFormElementProps } from '../../core/forms/SmartFormInterface';
+import ForgotPassword from './ForgotPassword';
 
 
 
@@ -23,6 +24,11 @@ const Login: React.FC = () => {
   const [formSubmit, setFormSubmit] = useState<boolean>(false);
   const [formErrors, setFormErrors] = useState<FormErrors>({});
   const navigate = useNavigate();
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+
+  const toggleCardFlip = () => {
+      setIsOpen(!isOpen); // Toggle the state
+    };
 //   const { setLoading } =useSiteContext();
 
   // Handle input change with proper typing
@@ -132,6 +138,8 @@ const Login: React.FC = () => {
           
           
                 <div className='smart-lnpr-login-card'>
+                <div className={isOpen?"smart-lnpr-login-card-inner-active":'smart-lnpr-login-card-inner'}>
+                <div className="flip-card-front">
                     <p className='smart-lnpr-text'>Welcome</p>
                 <SmartSoftForm
         formData={formData}
@@ -140,7 +148,7 @@ const Login: React.FC = () => {
         formSubmit={formSubmit}
         handleErrorChange={handleErrorChange}
       />
-      <span className='has-text-right smart-forgot-text'>Forgot Password?</span>
+      <span className='has-text-right smart-forgot-text' onClick={()=>toggleCardFlip()}>Forgot Password?</span>
       <div className='has-text-centered'>
       <SmartSoftButton
           label="Login"
@@ -148,7 +156,11 @@ const Login: React.FC = () => {
           onClick={handleLogin}
         />
       </div>
-     
+      </div>
+      <div className="flip-card-back">
+        <ForgotPassword toggleSidebar={toggleCardFlip} />
+      </div>
+      </div>
                 </div>
           
         

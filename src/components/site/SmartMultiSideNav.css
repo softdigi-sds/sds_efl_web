@@ -1,0 +1,131 @@
+
+.smart-side-nav-menu{
+    width: 200px !important;
+    background-color:white;
+    height: 100vh;
+    border-right: .02rem solid gray;
+}
+.smart-list-items{
+    margin: 5px 5px;
+    cursor: pointer;
+    padding:10px 10px ;
+    position: relative;
+ 
+}
+.smart-list-items:hover{
+    background-color: beige;
+    border-radius: 10px;
+    color: brown;
+}
+
+.smart-list-items:hover > * {
+    background-color: transparent;
+    color: inherit;
+    border-radius: 0;
+}
+.smart-list-items-active{
+    background-color:rgb(229, 252, 252);
+    border-radius: 10px;
+}
+.smart-side-nav-menu-logo-box{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  
+    border-radius: 50%;
+}
+.smart-side-nav-menu-logo-box img{
+    width: 100%;
+    height: 100%;
+}
+
+.first-smart-sub-menu{
+    
+border-right:1px solid gray ;
+ transform: translateX(180px);
+    width: 200px;
+    display: none;
+    display: none;
+    position: absolute;
+    top: 0;
+    /* left: 100%; */
+    z-index: 5;
+    padding: 10px 0;
+    background-color: aliceblue;
+}
+.smart-list-items:hover .first-smart-sub-menu{
+    display: block;
+}
+
+.smart-sub-menu-items:hover {
+    background-color: beige;
+    border-radius: 10px;
+    color: brown;
+  
+    /* position: relative; */
+}
+.smart-sub-menu-items{
+    /* margin: 2px 5px; */
+    cursor: pointer;
+    padding:5px 10px ;
+    color: black;
+    transition: 0.05s;
+}
+
+.first-smart-sub-menu .smart-sub-menu-items:hover .second-smart-sub-menu {
+    display: block;
+}
+
+.second-smart-sub-menu {
+    background-color: aliceblue;
+    transform: translateX(190px);
+    width: 200px;
+    padding: 10px;
+    display: none;
+    position: absolute;
+    top:2%;
+    /* border-left:1px solid grey ; */
+    border-right:1px solid grey ;
+    /* left: 100%; */
+    /* z-index: 1; */
+}
+
+.third-smart-sub-menu{
+    background-color: aliceblue;
+    transform: translateX(180px);
+    width: 200px;
+    padding: 10px;
+    display: none;
+    position: absolute;
+    top:2%;
+    /* border-left:1px solid grey ; */
+    border-right:1px solid grey ;
+    /* left: 100%; */
+    z-index: 5; 
+}
+.smart-sub-children-menu-items{
+    /* margin: 2px 5px; */
+    cursor: pointer;
+    padding:5px 5px ;
+    color: black;
+   
+}
+.smart-sub-children-menu-items:hover{
+    background-color: beige;
+    border-radius: 10px;
+    color: brown;
+}
+.smart-sub-children-menu-items:hover .third-smart-sub-menu{
+display: block;
+}
+.smart-sub-third-menu-items{
+    color: black;
+    cursor: pointer;
+    /* padding:5px 10px ; */
+}
+.smart-sub-third-menu-items:hover{
+    background-color: beige;
+    border-radius: 10px;
+    color: brown;
+
+}
