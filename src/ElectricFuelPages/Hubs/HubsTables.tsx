@@ -21,12 +21,13 @@ const HubsTables = () => {
     loadTableData();
   }, []);
 
-  const openOfficesForm =()=>{
+  const openOfficesForm = (width: number) => {
     let options = {
-      content: <HubsForms />
-  }
-  openModal(options);
-  }
+      content: <HubsForms />,
+      width: 60,
+    };
+    openModal(options);
+  };
   const handleDelete = (rowData: any) => {
 
     console.log('Delete action for row:', rowData);

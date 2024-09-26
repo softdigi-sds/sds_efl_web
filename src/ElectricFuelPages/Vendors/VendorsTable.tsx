@@ -20,12 +20,13 @@ const VendorsTable = () => {
     loadTableData();
   }, []);
 
-  const openOfficesForm =()=>{
+  const openOfficesForm = (width: number) => {
     let options = {
-      content: <VendorsForm />
-  }
-  openModal(options);
-  }
+      content: <VendorsForm/>,
+      width: 60,
+    };
+    openModal(options);
+  };
   const handleDelete = (rowData: any) => {
 
     console.log('Delete action for row:', rowData);
