@@ -4,6 +4,7 @@ const OFFICE_URLS = {
     UPDATE: "/efloffice/update",
     GET_ONE: "/efloffice/get_one",
     DELETE:"/efloffice/delete_one",
+
     
 };
 const HUBS_URLS = {
