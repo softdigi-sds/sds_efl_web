@@ -8,6 +8,7 @@ import { OFFICE_URLS } from '../../api/UserUrls';
 import { post } from '../../services/smartApiService';
 import { admin_states_select } from '../../services/site/SelectBoxServices';
 
+
 interface FormErrors {
   [key: string]: string | null;
 }
@@ -40,7 +41,7 @@ const OfficesForm:React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
   };
 
   useEffect(() => {
-    admin_states_select((data) => setStates(data));
+    admin_states_select((data:any) => setStates(data));
     //  loadData();
   }, []);
   const handleSubmit = () => {

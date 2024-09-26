@@ -1,5 +1,5 @@
 
-import { ROLE_URLS, USER_URLS } from "../../api/AdminUrls";
+import { ROLE_URLS, STATE_URLS, USER_URLS } from "../../api/AdminUrls";
 import { get, post } from "../smartApiService";
 
 /**
@@ -45,8 +45,11 @@ const role_get_select=(call_back:any)=>{
     let url = ROLE_URLS.GET_ALL_SELECT;
     admin_generic_select(url,call_back);
   }
-
+  const admin_states_select=(call_back:any)=>{
+    let url = STATE_URLS.GET_ALL_SELECT_STATES;
+    admin_generic_select(url,call_back);
+  }
 
 export {
-    user_get_select,role_get_select
+    user_get_select,role_get_select,admin_states_select
 };
