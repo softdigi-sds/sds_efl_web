@@ -75,7 +75,7 @@ const EFSideNav = () => {
             id: 8,
             label: "Roles",
             icon: <i className="fa fa-cogs" aria-hidden="true"></i>,
-            link: "/e-fuel/roles",
+            link: "/e-fuel/roles-list",
             
           },
           {

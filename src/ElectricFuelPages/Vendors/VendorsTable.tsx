@@ -112,6 +112,7 @@ const VendorsTable = () => {
 
   return (
     <>
+    <div className="smart-elf-table">
       <SmartSoftTable
         columns={columns}
         data={data}
@@ -124,7 +125,9 @@ const VendorsTable = () => {
           pageSize:5
         }}
       />
+      </div>
       </>
+      
   )
 }
 

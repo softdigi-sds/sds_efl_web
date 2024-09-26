@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react'
 import { get } from '../../services/smartApiService';
 import { SmartSoftTable, SmartTableNewInterface } from '../../core';
 
-const OfficesTable = () => {
-  const [data, setData] = useState([]);
+const RoleTable = () => {
+    const [data, setData] = useState([]);
 
   const loadTableData = () => {   
     const subscription = get("users").subscribe((response) => {
@@ -18,23 +18,32 @@ const OfficesTable = () => {
     loadTableData();
   }, []);
 
-  const openOfficesForm = () => {
- 
+  const openOfficesForm =()=>{
+    // let modelObject = {
+    //   body: (
+    //     <HubsForms
+         
+    //       closeModal={closeModal}
+    //     />
+    //   ),
+    //   modelClass: "customer-model-layout smart-modal-90",
+    //   bodyClose: false,
+    // };
+    // openModal(modelObject);
   }
-
   const handleDelete = (rowData: any) => {
 
     console.log('Delete action for row:', rowData);
   }
 
   const buttons = [
-    {
-      label: "",
-      type: "icon",
-      leftIcon: "fa fa-eye",
-      classList: ["delete-color is-clickable is-size-5"],
-      onClick: handleDelete
-    },
+    // {
+    //   label: "",
+    //   type: "icon",
+    //   leftIcon: "fa fa-eye",
+    //   classList: ["delete-color is-clickable is-size-5"],
+    //   onClick: handleDelete
+    // },
     {
       label: "",
       type: "icon",
@@ -51,24 +60,25 @@ const OfficesTable = () => {
     },
   ];
 
+  const employe_data = () =>{
+    return(
+        <>
+        {/* {.lastName} */}
+        </>
+    )
+  }
+
   const columns: SmartTableNewInterface.SmartTableNewColumnConfig[] = [
     { title: "S.NO", index: "s_no", type: "sno" },
     {
-      title: "Office City",
-      titleMobile: "Office City",
+      title: "Role Name",
       index: "firstName",
     },
     {
-      title: "State",
-      titleMobile: "State",
+      title: "Employee",
       index: "lastName",
+      valueFunction:employe_data,
     },
-    { title: "Pin Code", index: "age" },
-    {
-      title: "Address",
-      index: "gender",
-    },
-    { title: "Status", index: "email" },
     {
       title: "Action",
       index: "action",
@@ -77,32 +87,36 @@ const OfficesTable = () => {
       width: "10",
     },
   ];
-
   const tableTop: SmartTableNewInterface.SmartTableNewTopProps[] = [
     {
       type: "CUSTOM",
       widthClass: "is-10",
-      custom: <p className="is-size-4">Offices & Location</p>,
+      custom: <p className="is-size-4">Role</p>,
     },
     {
       type: "BUTTONS",
       widthClass: "is-2",
       align: "RIGHT",
       buttons: [
+        
         {
-          label: "Add",
-          icon: "fa-plus",
-          type: "CUSTOM",
+          label:"Add",
+          icon:"fa-plus",
+          type:"CUSTOM",
           action: openOfficesForm,
         },
       ],
+      
     },
-  ];
+   
+   
+    
+  ]
 
   return (
     <>
-    <div className="smart-elf-table"> 
-           <SmartSoftTable
+    <div className="smart-elf-table">
+      <SmartSoftTable
         columns={columns}
         data={data}
         tableTop={tableTop}
@@ -111,13 +125,12 @@ const OfficesTable = () => {
           isResponsive: true,
         }}
         paginationProps={{
-          pageSize: 5,
+          pageSize:5
         }}
       />
       </div>
+      </>
+  )
+}
 
-    </>
-  );
-};
-
-export default OfficesTable;
+export default RoleTable

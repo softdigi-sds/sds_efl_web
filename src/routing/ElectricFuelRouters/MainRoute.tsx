@@ -8,6 +8,8 @@ import ForgotPassword from "../../ElectricFuelPages/LoginPages/ForgotPassword";
 import EFSubLayout from "../../EFSubLayout/EFSubLayout";
 import { useSiteContext } from "../../contexts/SiteProvider";
 import SmartSoftModal from "../../core/loaders/SmartSoftModal";
+import RoleTable from "../../ElectricFuelPages/Role/RoleTable";
+import UsersTable from "../../ElectricFuelPages/Users/UsersTable";
 
 const EFSiteRoute = () => {
   const { isModalOpen, modalOptions,closeModal } = useSiteContext();
@@ -34,6 +36,8 @@ const EFSiteRoute = () => {
             <Route path="/hubs-list" element={<HubsTables />} />
             <Route path="/vendors-list" element={<VendorsTable />} />
             <Route path="/vendors-rates-list" element={<VendorRatesTable />} />
+            <Route path="/roles-list" element={<RoleTable />} />
+            <Route path="/users" element={<UsersTable />} />
           </Routes>
 
           <ToastContainer />
