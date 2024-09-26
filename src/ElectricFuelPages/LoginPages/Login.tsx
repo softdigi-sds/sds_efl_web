@@ -1,16 +1,16 @@
 import React, { useState } from 'react';
 
-import { Navigate, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import "./Login.css";
 
-import { showAlertAutoClose } from '../../services/notifyService';
+import { LOGIN_URLS } from '../../api/LoginUrls';
 import { useSiteContext } from '../../contexts/SiteProvider';
-import { post } from '../../services/smartApiService';
 import { SmartSoftButton, SmartSoftForm } from '../../core';
 import { SmartFormElementProps } from '../../core/forms/SmartFormInterface';
-import ForgotPassword from './ForgotPassword';
-import { LOGIN_URLS } from '../../api/LoginUrls';
 import { SmartValid, ValidateFormNew } from '../../core/services/smartValidationService';
+import { showAlertAutoClose } from '../../services/notifyService';
+import { post } from '../../services/smartApiService';
+import ForgotPassword from './ForgotPassword';
 
 
 
@@ -31,7 +31,7 @@ const Login: React.FC = () => {
   const toggleCardFlip = () => {
       setIsOpen(!isOpen); // Toggle the state
     };
-  const { setLoading } =useSiteContext();
+  const { setLoading,setUser } =useSiteContext();
 
   // Handle input change with proper typing
   const handleInputChange = (name: string, value: any) => {
@@ -72,11 +72,9 @@ const Login: React.FC = () => {
     const subscription = post(url, formData, handleError, false).subscribe(
       (response) => {
         setFormSubmit(false);
-      
+        setUser(response.data);
         showAlertAutoClose("Log In Successful", "success");
         setLoading(false);
-        
-      
         navigate("/e-fuel/dashboard");
       }
     );
