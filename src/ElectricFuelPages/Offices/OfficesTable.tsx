@@ -1,21 +1,25 @@
 import React, { useEffect, useState } from 'react'
-import { get } from '../../services/smartApiService';
-import { SmartSoftTable, SmartTableNewInterface } from '../../core';
+import { get, post } from '../../services/smartApiService';
+import { SmartAlert, SmartLoaderInterface, SmartSoftTable, SmartTableNewInterface } from '../../core';
 import { useSiteContext } from '../../contexts/SiteProvider';
 import OfficesForm from './OfficesForm';
+import { OFFICE_URLS } from '../../api/UserUrls';
+import { showAlertAutoClose } from '../../services/notifyService';
 
 const OfficesTable = () => {
   const [data, setData] = useState([]);
-  const { openModal, closeModal } = useSiteContext();
+  const { openModal, closeModal, setLoading } = useSiteContext();
 
-  const loadTableData = () => {   
-    const subscription = get("users").subscribe((response) => {
-      setData(response.data.users);    
+  const loadTableData = () => {  
+    let URL =OFFICE_URLS.GET_ALL 
+    const subscription = get(URL).subscribe((response) => {
+      setData(response.data);    
     });
     return () => {
       subscription.unsubscribe();
     };
   };
+ 
 
   useEffect(() => {   
     loadTableData();
@@ -23,18 +27,73 @@ const OfficesTable = () => {
 
   const openOfficesForm = (width: number) => {
     let options = {
-      content: <OfficesForm />,
+      content: <OfficesForm  loadTableData={loadTableData} dataIn={data}/>,
       width: 60,
     };
     openModal(options);
   };
+  const deleteData = (id:any) => {
+    setLoading(true, "Please Wait....");
+    const handleError = (errorMessage:any) => {
+      showAlertAutoClose(errorMessage,"error" );
+      setLoading(false);
+    };
+    const subscription = post(
+      OFFICE_URLS.DELETE,
+      { id: id },
+      handleError
+    ).subscribe((response) => {
+      showAlertAutoClose("Deleted Successfully...","success");
+      closeModal();
+      loadTableData();
+      // setLoading(false);
+    });
+    return () => {
+      subscription.unsubscribe();
+    };
+  };
+
   
+  const openDeleteModal = (id:any) => {
+    let alertProps: SmartLoaderInterface.SmartAlertInterface = {
+        title: <span className="has-text-danger"><i className="fa fa-check"></i> User Deletion!</span>,
+        alertFunction: (option) => {
+            if (option == "yes") {
+              deleteData(id);
+                SmartAlert.hide()
+            }
+        },
+         content:<p>Note: Do you wish to delete this User? This action cannot be reverted</p>,
+          className:"custom-alert"
+    };
+    
+    SmartAlert.show(alertProps)
+}
 
   const handleDelete = (rowData: any) => {
 
     console.log('Delete action for row:', rowData);
   }
 
+  const viewEditForm = (id:any) => {
+    setLoading(true, "Please Wait....");
+    const handleError = (errorMessage:any) => {
+      showAlertAutoClose(errorMessage,"error", );
+      setLoading(false);
+    };
+    const subscription = post(
+      OFFICE_URLS.GET_ONE,
+      { id: id },
+      handleError
+    ).subscribe((response:any) => {
+      // console.log("response ", response);
+      openOfficesForm(response.data);
+      setLoading(false);
+    });
+    return () => {
+      subscription.unsubscribe();
+    };
+  };
   const buttons = [
     {
       label: "",
@@ -48,14 +107,19 @@ const OfficesTable = () => {
       type: "icon",
       leftIcon: " fa-pencil-square-o",
       classList: ["delete-color is-clickable is-size-5"],
-      onClick: handleDelete
+      onClick: (data:any) => {
+        viewEditForm(data["ID"]);
+      },
     },
     {
       label: "",
       type: "icon",
       leftIcon: "fa fa-times",
       classList: ["delete-color is-clickable is-size-5"],
-      onClick: handleDelete
+      onClick: (data:any) => {
+        openDeleteModal(data["ID"]);
+        
+      },
     },
   ];
 
@@ -63,20 +127,18 @@ const OfficesTable = () => {
     { title: "S.NO", index: "s_no", type: "sno" },
     {
       title: "Office City",
-      titleMobile: "Office City",
-      index: "firstName",
+      index: "office_city",
     },
     {
       title: "State",
-      titleMobile: "State",
-      index: "lastName",
+      index: "state",
     },
-    { title: "Pin Code", index: "age" },
+    { title: "Pin Code", index: "pin_code" },
     {
       title: "Address",
-      index: "gender",
+      index: "address_one",
     },
-    { title: "Status", index: "email" },
+    { title: "Status", index: "status" },
     {
       title: "Action",
       index: "action",

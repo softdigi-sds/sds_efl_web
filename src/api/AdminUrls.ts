@@ -17,7 +17,11 @@ const USER_URLS = {
     GET_ALL_SELECT:"/user/get_all_select"
     
 };
+const STATE_URLS ={
+    GET_ALL_SELECT_STATES: "/state_db/get_all_select"
+}
 export {
     ROLE_URLS,
-    USER_URLS
+    USER_URLS,
+    STATE_URLS
 }
