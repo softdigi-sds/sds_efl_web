@@ -118,7 +118,7 @@ const VendorsTable = () => {
         data={data}
         tableTop={tableTop}
         tableProps={{
-          className: "table is-hoverable is-bordered is-striped smart-efl-table",
+          className: "is-hoverable is-bordered smart-efl-table",
           isResponsive: true,
         }}
         paginationProps={{
