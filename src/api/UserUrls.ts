@@ -5,7 +5,7 @@ const OFFICE_URLS = {
     GET_ONE: "/efloffice/get_one",
     DELETE:"/efloffice/delete_one",
     
-};
+}; 
 const HUBS_URLS = {
     INSERT: "/hubs/insert",
     GET_ALL: "/hubs/get_all",
