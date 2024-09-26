@@ -1,3 +1,47 @@
+/* Table Layout Options */
+
+  
+  .smart-efl-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 1em;
+ 
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    background: rgba(255, 255, 255, 0.3); /* Semi-transparent background */
+    backdrop-filter: blur(10px); /* Apply the frosted glass effect */
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+  
+  .smart-efl-table thead {
+    background-color: rgba(0, 168, 90, 0.8) ;/* Semi-transparent header background */
+    color: #ffffff;
+    font-weight: bold;
+    font-size: 14px;
+  }
+  
+  /* .smart-efl-table th, .smart-efl-table td {
+    padding: 12px 15px;
+  } */
+  
+  .smart-efl-table tbody tr {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    font-size: 14px;
+  }
+  
+  .smart-efl-table tbody tr:nth-of-type(even) {
+    background-color: rgba(255, 255, 255, 0.1); /* Slight transparency for even rows */
+    font-size: 14px;
+  }
+  
+  .smart-efl-table tbody tr:last-of-type {
+    border-bottom: 2px solid rgba(0, 152, 121, 0.8);
+  }
+  
+
+
+
 .our-services-container {
     background-color: #242430;
     min-height: 100vh;
