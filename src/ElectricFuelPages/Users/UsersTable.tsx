@@ -3,13 +3,15 @@ import { get } from '../../services/smartApiService';
 import { SmartSoftTable, SmartTableNewInterface } from '../../core';
 import UsersForm from './UsersForm';
 import { useSiteContext } from '../../contexts/SiteProvider';
+import { USER_URLS } from '../../api/AdminUrls';
 
 const UsersTable = () => {
     const [data, setData] = useState([]);
     const { openModal, closeModal } = useSiteContext();
 
-    const loadTableData = () => {   
-      const subscription = get("users").subscribe((response) => {
+    const loadTableData = () => {  
+      let URL =USER_URLS.GET_ALL 
+      const subscription = get(URL).subscribe((response) => {
         setData(response.data.users);    
       });
       return () => {

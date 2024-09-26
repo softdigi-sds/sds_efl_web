@@ -1,5 +1,6 @@
 const LOGIN_URLS = {
-     LOGIN:"/auth/login"
+     LOGIN:"/auth/login",
+     FORGOT_PASSWORD:"/auth/user_reset"
 };
 
 export {
