@@ -118,7 +118,7 @@ const VendorRatesTable = () => {
         data={data}
         tableTop={tableTop}
         tableProps={{
-          className: "table is-hoverable is-bordered is-striped smart-basic-pdf-table",
+          className: " is-hoverable is-bordered is-striped smart-efl-table",
           isResponsive: true,
         }}
         paginationProps={{

@@ -121,7 +121,7 @@ const UsersTable = () => {
           data={data}
           tableTop={tableTop}
           tableProps={{
-            className: "table is-hoverable is-bordered is-striped smart-basic-pdf-table",
+            className: "smart-efl-table is-hoverable is-bordered is-striped ",
             isResponsive: true,
           }}
           paginationProps={{
