@@ -6,6 +6,7 @@ import "./App.css";
 import { useEffect } from "react";
 import "react-toastify/dist/ReactToastify.css";
 
+import { SiteProvider } from "./contexts/SiteProvider";
 import EFSiteRoute from "./routing/ElectricFuelRouters/MainRoute";
 
 
@@ -16,11 +17,11 @@ function App() {
 
   return (
 
-    <>
+    <SiteProvider>
       <div className="App">
           <EFSiteRoute />
         </div>
-    </>
+    </SiteProvider>
   );
 }
 
