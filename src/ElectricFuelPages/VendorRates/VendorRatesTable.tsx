@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import { SmartSoftTable, SmartTableNewInterface } from '../../core';
 import { get } from '../../services/smartApiService';
+import { useSiteContext } from '../../contexts/SiteProvider';
+import VendorRatesForms from './VendorRatesForms';
 
 const VendorRatesTable = () => {
   const [data, setData] = useState([]);
+  const { openModal, closeModal } = useSiteContext();
 
   const loadTableData = () => {   
     const subscription = get("users").subscribe((response) => {
@@ -19,17 +22,10 @@ const VendorRatesTable = () => {
   }, []);
 
   const openOfficesForm =()=>{
-    // let modelObject = {
-    //   body: (
-    //     <HubsForms
-         
-    //       closeModal={closeModal}
-    //     />
-    //   ),
-    //   modelClass: "customer-model-layout smart-modal-90",
-    //   bodyClose: false,
-    // };
-    // openModal(modelObject);
+    let options = {
+      content: <VendorRatesForms />
+  }
+  openModal(options);
   }
   const handleDelete = (rowData: any) => {
 
