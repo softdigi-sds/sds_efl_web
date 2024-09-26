@@ -6,6 +6,7 @@ import { useSiteContext } from '../../contexts/SiteProvider';
 import { USER_URLS } from '../../api/AdminUrls';
 import { showAlertAutoClose } from '../../services/notifyService';
 import { post } from '../../services/smartApiService';
+import { ALLOW_NUMERIC } from '../../services/PatternSerivce';
 
 interface FormErrors {
   [key: string]: string | null;
@@ -70,7 +71,9 @@ const UsersForm:React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
 
 
   const loginFormValidations = {
-    ename: [SmartValid.required("Password is Required")],
+    ename: [SmartValid.required("User Name is Required")],
+    userId: [SmartValid.required("User ID is Required")],
+    MobileNumber: [SmartValid.required("Mobile Number is Required")],
     email: [
       SmartValid.required("Email ID is Required"),
       SmartValid.email("Please Enter a Valid Email Address"),
@@ -94,6 +97,7 @@ const UsersForm:React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
         label: "User Name",
         isRequired: true,
         inputProps: { isFocussed: true },
+        validations: loginFormValidations.ename,
       },
     },
     {
@@ -104,6 +108,7 @@ const UsersForm:React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
         label: "User ID",
         isRequired: true,
         inputProps: { isFocussed: true },
+        validations: loginFormValidations.userId,
       },
     },
     {
@@ -114,6 +119,8 @@ const UsersForm:React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
         label: "Mobile No.",
         isRequired: true,
         inputProps: { isFocussed: true },
+        validations: loginFormValidations.MobileNumber,
+        allowPattern:ALLOW_NUMERIC
       },
     },
     {
@@ -124,6 +131,7 @@ const UsersForm:React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
         label: "Email ID",
         isRequired: true,
         inputProps: { isFocussed: true },
+        validations: loginFormValidations.email,
       },
     },
   
@@ -133,8 +141,9 @@ const UsersForm:React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
       name: "role",
       element: {
         label: "Role",
-        isRequired:true,
+      
         options: options,
+       
       },
     },
     {

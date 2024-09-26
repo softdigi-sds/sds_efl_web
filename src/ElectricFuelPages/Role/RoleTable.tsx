@@ -1,13 +1,21 @@
 import React, { useEffect, useState } from 'react'
-import { get } from '../../services/smartApiService';
+import { get, post } from '../../services/smartApiService';
 import { SmartSoftTable, SmartTableNewInterface } from '../../core';
+import { ROLE_URLS } from '../../api/AdminUrls';
+import RoleForm from './RoleForm';
+import { useSiteContext } from '../../contexts/SiteProvider';
+import { showAlertAutoClose } from '../../services/notifyService';
+import { user_get_select } from '../../services/site/SelectBoxServices';
 
 const RoleTable = () => {
     const [data, setData] = useState([]);
+  
+    const { openModal, closeModal,setLoading } = useSiteContext();
 
-  const loadTableData = () => {   
-    const subscription = get("users").subscribe((response) => {
-      setData(response.data.users);    
+  const loadTableData = () => {  
+    let URL =ROLE_URLS.GET_ALL 
+    const subscription = get(URL).subscribe((response) => {
+      setData(response.data);    
     });
     return () => {
       subscription.unsubscribe();
@@ -16,40 +24,52 @@ const RoleTable = () => {
 
   useEffect(() => {   
     loadTableData();
+   
   }, []);
+ ;
 
-  const openOfficesForm =()=>{
-    // let modelObject = {
-    //   body: (
-    //     <HubsForms
-         
-    //       closeModal={closeModal}
-    //     />
-    //   ),
-    //   modelClass: "customer-model-layout smart-modal-90",
-    //   bodyClose: false,
-    // };
-    // openModal(modelObject);
+  const openForm =(data:any)=>{
+    let options = {
+      content: <RoleForm loadTableData={loadTableData} dataIn={data}/>,
+      width:40
+  }
+  openModal(options);
   }
   const handleDelete = (rowData: any) => {
 
     console.log('Delete action for row:', rowData);
   }
 
+  const viewEditForm = (id:any) => {
+    setLoading(true, "Please Wait....");
+    const handleError = (errorMessage:any) => {
+      showAlertAutoClose(errorMessage,"error", );
+      setLoading(false);
+    };
+    const subscription = post(
+      ROLE_URLS.GET_ONE,
+      { id: id },
+      handleError
+    ).subscribe((response:any) => {
+      // console.log("response ", response);
+      openForm(response.data);
+      setLoading(false);
+    });
+    return () => {
+      subscription.unsubscribe();
+    };
+  };
+
   const buttons = [
-    // {
-    //   label: "",
-    //   type: "icon",
-    //   leftIcon: "fa fa-eye",
-    //   classList: ["delete-color is-clickable is-size-5"],
-    //   onClick: handleDelete
-    // },
+    
     {
       label: "",
       type: "icon",
       leftIcon: " fa-pencil-square-o",
       classList: ["delete-color is-clickable is-size-5"],
-      onClick: handleDelete
+      onClick: (data:any) => {
+        viewEditForm(data["ID"]);
+      },
     },
     {
       label: "",
@@ -69,15 +89,17 @@ const RoleTable = () => {
   }
 
   const columns: SmartTableNewInterface.SmartTableNewColumnConfig[] = [
-    { title: "S.NO", index: "s_no", type: "sno" },
+    { title: "S.NO", index: "s_no", type: "sno" ,width:"5"},
     {
       title: "Role Name",
-      index: "firstName",
+      index: "role_name",
+      width:"20"
     },
     {
       title: "Employee",
-      index: "lastName",
+      index: "users",
       valueFunction:employe_data,
+      width: "20",
     },
     {
       title: "Action",
@@ -103,7 +125,7 @@ const RoleTable = () => {
           label:"Add",
           icon:"fa-plus",
           type:"CUSTOM",
-          action: openOfficesForm,
+          action: openForm,
         },
       ],
       

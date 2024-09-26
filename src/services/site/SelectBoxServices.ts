@@ -1,29 +1,52 @@
-import { STATE_URLS } from "../../api/AdminUrls";
-import { get } from "../smartApiService";
-type Callback<T> = (data: T) => void;
-type ErrorMessage = string | any;
 
-const admin_generic_select = <T>(url: string, call_back: Callback<T>) => {
-  const handleError = (errorMessage: ErrorMessage) => {
-    console.error('Error fetching data:', errorMessage); 
-  };
-  
-  const subscription = get(url).subscribe(
-    (response) => {
-      call_back(response.data); 
-    }
-  );
-  
-  return () => {
-    subscription.unsubscribe();
-  };
-}
+import { ROLE_URLS, USER_URLS } from "../../api/AdminUrls";
+import { get, post } from "../smartApiService";
 
-const admin_states_select = (call_back: Callback<any>) => {
-  const url = STATE_URLS.GET_ALL_SELECT_STATES;
-  return admin_generic_select(url, call_back);
+/**
+ * 
+ * @param url s
+ * @param call_back 
+ * @returns 
+ */
+const admin_generic_select=(url:string,call_back:any)=>{
+  const handleError = (errorMessage:any) => {}; 
+  const subscription =get(url,).subscribe(
+      (response) => {
+          call_back(response.data);   
+      }
+    );
+    return () => {
+      subscription.unsubscribe();
+    };
 }
+const admin_generic_select_post=(url:string,sector:any,call_back:any)=>{
+  const handleError = (errorMessage:any) => {}; 
+  const subscription =post(url,sector, handleError).subscribe(
+      (response) => {
+          call_back(response.data);   
+      }
+    );
+    return () => {
+      subscription.unsubscribe();
+    };
+}
+/**
+ * 
+ * @param call_back 
+ * @returns 
+ */
+
+
+const user_get_select=(call_back:any)=>{
+  let url = USER_URLS.GET_ALL_SELECT;
+  admin_generic_select(url,call_back);
+}
+const role_get_select=(call_back:any)=>{
+    let url = ROLE_URLS.GET_ALL_SELECT;
+    admin_generic_select(url,call_back);
+  }
+
 
 export {
-  admin_states_select
+    user_get_select,role_get_select
 };
