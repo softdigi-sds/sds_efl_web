@@ -15,10 +15,10 @@ const EFSubLayout:React.FC<childrenProps> = (props) => {
   return (
     <div>
     <div className='smart-ef-sub-layout-main-container'>
-        <div><EFSideNav/></div>
+        <div><EFSideNav isOpen={isOpen}/></div>
         <div className=''>
-          <div className='smart-ef-header-container'><EFHeader /></div>  
-          <div className='smart-middle-container'>
+          <div className={isOpen?"smart-ef-header-container-open":'smart-ef-header-container'}><EFHeader toggleSidebar={toggleSidebar} isOpen={isOpen}/></div>  
+          <div className={isOpen?"smart-middle-container-open":'smart-middle-container'}>
             {children}
           </div>
         </div>

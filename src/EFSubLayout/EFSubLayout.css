@@ -7,21 +7,21 @@ position: relative;
   
     position: absolute;
     bottom: 10%;
-    width: 180px;
+
    
 }
 .smart-menu-list li:nth-child(10){
  
     position: absolute;
     bottom: 5%;
-    width: 180px;
+
   
 }
 .smart-menu-list li:nth-child(11){
  
     position: absolute;
     bottom: 0%;
-    width: 180px;
+    
    
 }
 .smart-ef-sub-layout-main-container{
@@ -32,11 +32,21 @@ position: relative;
 .smart-ef-header-container{
     background-color: black;
     width: calc(100vw - 200px);
-    padding: 20px;
+    padding: 20px ;
     color: white;
     position: fixed;
     margin-left: 200px;
     
+}
+.smart-ef-header-container-open{
+    background-color: black;
+    width:100vw;
+    padding: 20px;
+    color: white;
+    position: fixed;
+    margin-left: -26px;
+ 
+   
 }
 .smart-middle-container{
     padding: 10px;
@@ -49,7 +59,34 @@ position: relative;
    background: #ebebe9;
    min-height: 100vh;
 }
+.smart-middle-container-open{
+    padding: 10px;
+    margin-left: 20px;
+    width: calc(100vw - 20px);
+    padding-top: 70px;
+    z-index: 100;
+
+   background: #ebebe9;
+   min-height: 100vh;
+}
 .smart-side-nav-menu{
     position: fixed;
+    border-right: none !important;
+}
+.smart-side-nav-menu-open{
+    width: 25px;
+    margin-top:70px ;
+}
+.smart-el-header-icon-image img{
+    height: 100%;
+    width: 100%;
+}
+.smart-el-header-icon-image{
+    height: 30px;
+    width: 150px;
+}
+.smart-list-items-open:hover{
+    padding: 0;
+    color: red !important;
 }
 

@@ -9,6 +9,8 @@ import { post } from '../../services/smartApiService';
 import { SmartSoftButton, SmartSoftForm } from '../../core';
 import { SmartFormElementProps } from '../../core/forms/SmartFormInterface';
 import ForgotPassword from './ForgotPassword';
+import { LOGIN_URLS } from '../../api/LoginUrls';
+import { SmartValid, ValidateFormNew } from '../../core/services/smartValidationService';
 
 
 
@@ -29,7 +31,7 @@ const Login: React.FC = () => {
   const toggleCardFlip = () => {
       setIsOpen(!isOpen); // Toggle the state
     };
-//   const { setLoading } =useSiteContext();
+  const { setLoading } =useSiteContext();
 
   // Handle input change with proper typing
   const handleInputChange = (name: string, value: any) => {
@@ -50,61 +52,61 @@ const Login: React.FC = () => {
     });
   };
 
-  const handleLogin = () => {
-    navigate("/e-fuel/dashboard");
-  }
+  // const handleLogin = () => {
+  //   navigate("/e-fuel/dashboard");
+  // }
   
-//   const handleLogin = () => {
-//     setFormSubmit(true);
-//     if (!ValidateFormNew(formData, formElements)) {
-//       return false;
-//     }
+  const handleLogin = () => {
+    setFormSubmit(true);
+    if (!ValidateFormNew(formData, formElements)) {
+      return false;
+    }
 
-//     const handleError = (errorMessage:any) => {
-//       showAlertAutoClose(errorMessage, "error");
-//       setLoading(false);
-//       handleInputChange("epassword", "");
-//     };
-//     setLoading(true, "Logging in....Please Wait");
-//     let url = LOGIN_URLS.LOGIN;
-//     const subscription = post(url, formData, handleError, false).subscribe(
-//       (response) => {
-//         setFormSubmit(false);
+    const handleError = (errorMessage:any) => {
+      showAlertAutoClose(errorMessage, "error");
+      setLoading(false);
+      handleInputChange("epassword", "");
+    };
+    setLoading(true, "Logging in....Please Wait");
+    let url = LOGIN_URLS.LOGIN;
+    const subscription = post(url, formData, handleError, false).subscribe(
+      (response) => {
+        setFormSubmit(false);
       
-//         showAlertAutoClose("Log In Successful", "success");
-//         setLoading(false);
+        showAlertAutoClose("Log In Successful", "success");
+        setLoading(false);
         
       
-//         navigate("/dashboard");
-//       }
-//     );
-//     return () => {
-//       subscription.unsubscribe();
-//     };
-//     // console.log("errors ", formErrors);
-//     /*
-//     //setFormSubmit(true);
+        navigate("/e-fuel/dashboard");
+      }
+    );
+    return () => {
+      subscription.unsubscribe();
+    };
+    // console.log("errors ", formErrors);
+    /*
+    //setFormSubmit(true);
    
-//     */
-//   };
+    */
+  };
 
-//   const loginFormValidations = {
+  const loginFormValidations = {
    
-//     email: [
-//       SmartValid.required("Email ID is Required"),
-//       SmartValid.email("Please Enter a Valid Email Address"),
+    email: [
+      SmartValid.required("Email ID is Required"),
+      SmartValid.email("Please Enter a Valid Email Address"),
       
-//     ],
-//     password: [SmartValid.required("Password is Required")],
+    ],
+    password: [SmartValid.required("Password is Required")],
     
-//   };
+  };
 
   // Define form elements
   const formElements:SmartFormElementProps[] = [
     {
       type: 'TEXT_BOX',
       width: '12',
-      name: 'euserid',
+      name: 'emailid',
       element: {
         // label: 'Email ID',
         isRequired: true,
@@ -112,7 +114,7 @@ const Login: React.FC = () => {
         max: 255,
         inputType: "BORDER_LABEL",
         leftIcon: "fa fa-envelope-square",
-       // validations: loginFormValidations.email,
+        validations: loginFormValidations.email,
       },
     },
     {
@@ -125,7 +127,7 @@ const Login: React.FC = () => {
           placeHolder: 'Password',
           inputType: "BORDER_LABEL",
           leftIcon: "fa fa-envelope-square",
-         // validations: loginFormValidations.password,
+          validations: loginFormValidations.password,
         },
       },
   ];

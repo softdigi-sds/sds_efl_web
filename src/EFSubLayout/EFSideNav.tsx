@@ -1,8 +1,10 @@
 import React from 'react'
 import SmartMultiSideNav from '../components/site/SmartMultiSideNav'
 import { LOGO } from '../services/ImageService'
-
-const EFSideNav = () => {
+interface   childrenProps {
+  isOpen:boolean
+}
+const EFSideNav:React.FC<childrenProps> = ({isOpen}) => {
  
     const listItems = [
       
