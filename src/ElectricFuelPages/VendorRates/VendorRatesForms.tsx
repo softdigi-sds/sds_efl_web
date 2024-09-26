@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { SmartSoftButton, SmartSoftForm } from '../../core';
 import { SmartFormElementProps } from '../../core/forms/SmartFormInterface';
+import SmartHeader from '../../core/general/SmartHeader';
 
 interface FormErrors {
   [key: string]: string | null;
@@ -174,7 +175,7 @@ const VendorRatesForms = () => {
     },
   ];
   return (
-    <>
+    <><div className=""><SmartHeader title={"Vendor Rates Form"} /></div>
        <SmartSoftForm
         formData={formData}
         setFormData={handleInputChange}
