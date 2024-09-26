@@ -1,16 +1,13 @@
-import { useState } from "react";
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
+import EFSubLayout from "../../EFSubLayout/EFSubLayout";
 import ElectricFuelMainLayout from "../../ElectricFuelLayout/ElectricFuelMainLayout";
 import { Dashboard, HomePage, HubsTables, OfficesTable, VendorRatesTable, VendorsTable } from "../../ElectricFuelPages";
 import Login from "../../ElectricFuelPages/LoginPages/Login";
-import ForgotPassword from "../../ElectricFuelPages/LoginPages/ForgotPassword";
-import EFSubLayout from "../../EFSubLayout/EFSubLayout";
 import { useSiteContext } from "../../contexts/SiteProvider";
 import SmartSoftModal from "../../core/loaders/SmartSoftModal";
-
 const EFSiteRoute = () => {
-  const { isModalOpen, modalOptions,closeModal } = useSiteContext();
+  const { isModalOpen,modalOptions, closeModal } = useSiteContext();
   const protected_routes = () => {
     return (
       <>
@@ -48,8 +45,8 @@ const EFSiteRoute = () => {
           <Route path="/*" element={protected_routes()} />
           <Route path="/login" element={<Login />} />
           <Route path="/e-fuel/*" element={site_routes()} />
-      
-          
+
+
         </Routes>
         {isModalOpen && <SmartSoftModal active={isModalOpen} {...modalOptions} closeFunction={closeModal} />}
       </Router>

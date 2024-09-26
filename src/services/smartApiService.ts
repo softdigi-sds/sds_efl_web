@@ -4,7 +4,7 @@ import CryptoJS from "crypto-js";
 import { EMPTY, from, of } from "rxjs";
 import { catchError, switchMap } from "rxjs/operators";
 import config from "../config/config";
-// import { SmartLoader } from "../core";
+import { SmartLoader } from "../core";
 import { showAlertAutoClose } from "./notifyService";
 import { getCsrf, getToken } from "./sessionService";
 
@@ -105,7 +105,7 @@ const processError = (error:any) => {
 
 // Default error handler
 const defaultErrorHandler = (errorMessage:string) => {
-  // SmartLoader.hideLoader(); 
+  SmartLoader.hideLoader(); 
   showAlertAutoClose(errorMessage);
   //console.error('API Request Error:', error);
   // alert(errorMessage);
@@ -137,7 +137,7 @@ const get = (
     customHeaders["Authorization"] = "Bearer " + getToken();
   }
   if(showLoading){
-    // SmartLoader.showLoader(loadingMsg); 
+    SmartLoader.showLoader(loadingMsg); 
   }
   return from(API.get(url, { headers: customHeaders })).pipe(
     catchError((error) => {
@@ -149,7 +149,7 @@ const get = (
     switchMap((response) => {
       response = getDecryptedResponse(response);
       if(showLoading){
-        // SmartLoader.hideLoader(); 
+        SmartLoader.hideLoader(); 
       }
       return of(response); // For example, just returning the response as is
     })

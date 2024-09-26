@@ -50,23 +50,22 @@ export const SiteProvider = ({ children }) => {
     setIsModalOpen(false);
   }, []);
 
-  
   const updateUserOnLoad = () => {
     let session_data = getUserSession();
     if (session_data) {
       setUserData(session_data);
-      if (session_data.ename !== undefined) {     
-      }    
+      if (session_data.ename !== undefined) {
+      }
     }
   };
 
-  const logout = () => {   
+  const logout = () => {
     showAlertAutoClose("Log Out Successful", "success");
     setUser(null);
   };
 
-  useEffect(() => {  
-    updateUserOnLoad();  
+  useEffect(() => {
+    updateUserOnLoad();
   }, []);
 
   return (
@@ -76,13 +75,13 @@ export const SiteProvider = ({ children }) => {
         setUser,
         openModal,
         closeModal,
-         isModalOpen,
-         modalOptions,      
+        isModalOpen,
+        modalOptions,
         logout,
         handleUserChange,
       }}
     >
-      {children}    
+      {children}
     </SiteContext.Provider>
   );
 };
