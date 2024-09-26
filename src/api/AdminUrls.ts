@@ -14,10 +14,15 @@ const USER_URLS = {
     UPDATE: "/user/update",
     GET_ONE: "/user/get_one",
     DELETE:"/user/delete_one",
-    GET_ALL_SELECT:"/role/get_all_select"
+    GET_ALL_SELECT:"/user/get_all_select"
     
 };
 const STATE_URLS ={
+    INSERT: "/state_db/insert",
+    GET_ALL: "/state_db/get_all",
+    UPDATE: "/state_db/update",
+    GET_ONE: "/state_db/get_one",
+    DELETE:"/state_db/delete_one",
     GET_ALL_SELECT_STATES: "/state_db/get_all_select"
 }
 export {

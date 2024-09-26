@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { get, post } from '../../services/smartApiService';
-import { SmartSoftTable, SmartTableNewInterface } from '../../core';
+import { SmartAlert, SmartLoaderInterface, SmartSoftTable, SmartTableNewInterface } from '../../core';
 import { ROLE_URLS } from '../../api/AdminUrls';
 import RoleForm from './RoleForm';
 import { useSiteContext } from '../../contexts/SiteProvider';
@@ -60,6 +60,45 @@ const RoleTable = () => {
     };
   };
 
+  const deleteData = (id:any) => {
+    setLoading(true, "Please Wait....");
+    const handleError = (errorMessage:any) => {
+      showAlertAutoClose(errorMessage,"error" );
+      setLoading(false);
+    };
+    const subscription = post(
+      ROLE_URLS.DELETE,
+      { id: id },
+      handleError
+    ).subscribe((response) => {
+      showAlertAutoClose("Deleted Successfully...","success");
+      closeModal();
+      loadTableData();
+      // setLoading(false);
+    });
+    return () => {
+      subscription.unsubscribe();
+    };
+  };
+
+
+  const openDeleteModal = (id:any) => {
+    let alertProps: SmartLoaderInterface.SmartAlertInterface = {
+        title: <span className="has-text-danger"><i className="fa fa-check"></i> Role Deletion!</span>,
+        alertFunction: (option) => {
+            if (option == "yes") {
+              deleteData(id);
+                SmartAlert.hide()
+            }
+        },
+         content:<p>Note: Do you wish to delete this Role? This action cannot be reverted</p>,
+          className:"custom-alert"
+    };
+    
+    SmartAlert.show(alertProps)
+}
+
+
   const buttons = [
     
     {
@@ -76,7 +115,10 @@ const RoleTable = () => {
       type: "icon",
       leftIcon: "fa fa-times",
       classList: ["delete-color is-clickable is-size-5"],
-      onClick: handleDelete
+      onClick: (data:any) => {
+        openDeleteModal(data["ID"]);
+        
+      },
     },
   ];
 
@@ -96,7 +138,7 @@ const RoleTable = () => {
       width:"20"
     },
     {
-      title: "Employee",
+      title: "Users",
       index: "users",
       valueFunction:employe_data,
       width: "20",
