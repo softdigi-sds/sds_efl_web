@@ -18,6 +18,11 @@ const USER_URLS = {
     
 };
 const STATE_URLS ={
+    INSERT: "/state_db/insert",
+    GET_ALL: "/state_db/get_all",
+    UPDATE: "/state_db/update",
+    GET_ONE: "/state_db/get_one",
+    DELETE:"/state_db/delete_one",
     GET_ALL_SELECT_STATES: "/state_db/get_all_select"
 }
 export {
