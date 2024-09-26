@@ -12,7 +12,7 @@ const UsersTable = () => {
     const loadTableData = () => {  
       let URL =USER_URLS.GET_ALL 
       const subscription = get(URL).subscribe((response) => {
-        setData(response.data.users);    
+        setData(response.data);    
       });
       return () => {
         subscription.unsubscribe();
