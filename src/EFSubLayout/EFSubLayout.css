@@ -35,13 +35,16 @@ position: relative;
     padding: 20px;
     color: white;
     position: fixed;
-    /* margin-left: 200px; */
+    margin-left: 200px;
     
 }
 .smart-middle-container{
     padding: 10px;
-    /* margin-left: 200px; */
+    margin-left: 200px;
     width: calc(100vw - 200px);
     padding-top: 70px;
     z-index: 100;
+}
+.smart-side-nav-menu{
+    position: fixed;
 }
