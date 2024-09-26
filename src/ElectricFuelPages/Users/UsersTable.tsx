@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from 'react'
-import { get } from '../../services/smartApiService';
-import { SmartSoftTable, SmartTableNewInterface } from '../../core';
+import { get, post } from '../../services/smartApiService';
+import { SmartAlert, SmartLoaderInterface, SmartSoftTable, SmartTableNewInterface } from '../../core';
 import UsersForm from './UsersForm';
 import { useSiteContext } from '../../contexts/SiteProvider';
 import { USER_URLS } from '../../api/AdminUrls';
+import { showAlertAutoClose } from '../../services/notifyService';
 
 const UsersTable = () => {
     const [data, setData] = useState([]);
-    const { openModal, closeModal } = useSiteContext();
+    const { openModal, closeModal,setLoading } = useSiteContext();
 
     const loadTableData = () => {  
       let URL =USER_URLS.GET_ALL 
@@ -23,9 +24,9 @@ const UsersTable = () => {
       loadTableData();
     }, []);
   
-    const openOfficesForm =()=>{
+    const openOfficesForm =(data:any)=>{
       let options = {
-        content: <UsersForm />
+        content: <UsersForm loadTableData={loadTableData} dataIn={data}/>
     }
     openModal(options);
     }
@@ -33,6 +34,66 @@ const UsersTable = () => {
   
       console.log('Delete action for row:', rowData);
     }
+
+    const deleteData = (id:any) => {
+      setLoading(true, "Please Wait....");
+      const handleError = (errorMessage:any) => {
+        showAlertAutoClose(errorMessage,"error" );
+        setLoading(false);
+      };
+      const subscription = post(
+        USER_URLS.DELETE,
+        { id: id },
+        handleError
+      ).subscribe((response) => {
+        showAlertAutoClose("Deleted Successfully...","success");
+        closeModal();
+        loadTableData();
+        // setLoading(false);
+      });
+      return () => {
+        subscription.unsubscribe();
+      };
+    };
+  
+
+    const openDeleteModal = (id:any) => {
+      let alertProps: SmartLoaderInterface.SmartAlertInterface = {
+          title: <span className="has-text-danger"><i className="fa fa-check"></i> User Deletion!</span>,
+          alertFunction: (option) => {
+              if (option == "yes") {
+                deleteData(id);
+                  SmartAlert.hide()
+              }
+          },
+           content:<p>Note: Do you wish to delete this User? This action cannot be reverted</p>,
+            className:"custom-alert"
+      };
+      
+      SmartAlert.show(alertProps)
+  }
+
+
+   
+    const viewEditForm = (id:any) => {
+      setLoading(true, "Please Wait....");
+      const handleError = (errorMessage:any) => {
+        showAlertAutoClose(errorMessage,"error", );
+        setLoading(false);
+      };
+      const subscription = post(
+        USER_URLS.GET_ONE,
+        { id: id },
+        handleError
+      ).subscribe((response:any) => {
+        // console.log("response ", response);
+        openOfficesForm(response.data);
+        setLoading(false);
+      });
+      return () => {
+        subscription.unsubscribe();
+      };
+    };
   
     const buttons = [
       {
@@ -47,35 +108,50 @@ const UsersTable = () => {
         type: "icon",
         leftIcon: " fa-pencil-square-o",
         classList: ["delete-color is-clickable is-size-5"],
-        onClick: handleDelete
+        onClick: (data:any) => {
+          viewEditForm(data["ID"]);
+        },
       },
       {
         label: "",
         type: "icon",
         leftIcon: "fa fa-times",
         classList: ["delete-color is-clickable is-size-5"],
-        onClick: handleDelete
+        onClick: (data:any) => {
+          openDeleteModal(data["ID"]);
+          
+        },
       },
     ];
   
   
     const columns: SmartTableNewInterface.SmartTableNewColumnConfig[] = [
-      { title: "S.NO", index: "s_no", type: "sno" },
+      { title: "S.NO", index: "s_no", type: "sno" ,width:"5"},
+      {
+        title: "User ID",
+        index: "euserid",
+        width:"10"
+      },
       {
         title: "Name",
-        index: "firstName",
+        index: "ename",
+         width:"15"
       },
       {
         title: "Email",
-        index: "lastName",
+        index: "emailid",
+         width:"15"
       },
       {
-        title: "Designation",
-        index: "firstName",
+        title: "Mobile Number",
+        index: "mobile_no",
+         width:"15"
       },
+      
       {
         title: "	Status",
-        index: "firstName",
+        index: "active_status",
+         width:"10"
       },
       {
         title: "Action",
