@@ -6,7 +6,8 @@ import HubsTables from "./Hubs/HubsTables";
 import VendorsTable from "./Vendors/VendorsTable";
 import VendorRatesTable from "./VendorRates/VendorRatesTable";
 import VehiclesReportTable from "./VehiclesReport/VehiclesReportTable";
-
+import UsersTable from "./Users/UsersTable";
+import RoleTable from "./Role/RoleTable";
 export {
     HomePage,
     Dashboard,
@@ -15,4 +16,6 @@ export {
     VendorsTable,
     VendorRatesTable,
     VehiclesReportTable,
+    UsersTable,
+    RoleTable
 }

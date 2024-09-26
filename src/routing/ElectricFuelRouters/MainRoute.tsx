@@ -2,14 +2,12 @@ import { useState } from "react";
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import ElectricFuelMainLayout from "../../ElectricFuelLayout/ElectricFuelMainLayout";
-import { Dashboard, HomePage, HubsTables, OfficesTable, VendorRatesTable, VendorsTable } from "../../ElectricFuelPages";
+import { Dashboard, HomePage, HubsTables, OfficesTable, RoleTable, UsersTable, VendorRatesTable, VendorsTable } from "../../ElectricFuelPages";
 import Login from "../../ElectricFuelPages/LoginPages/Login";
 import ForgotPassword from "../../ElectricFuelPages/LoginPages/ForgotPassword";
 import EFSubLayout from "../../EFSubLayout/EFSubLayout";
 import { useSiteContext } from "../../contexts/SiteProvider";
 import SmartSoftModal from "../../core/loaders/SmartSoftModal";
-import RoleTable from "../../ElectricFuelPages/Role/RoleTable";
-import UsersTable from "../../ElectricFuelPages/Users/UsersTable";
 
 const EFSiteRoute = () => {
   const { isModalOpen, modalOptions,closeModal } = useSiteContext();
