@@ -21,12 +21,14 @@ const OfficesTable = () => {
     loadTableData();
   }, []);
 
-  const openOfficesForm = () => {
+  const openOfficesForm = (width: number) => {
     let options = {
-      content: <OfficesForm />
-  }
-  openModal(options);
-  }
+      content: <OfficesForm />,
+      width: 60,
+    };
+    openModal(options);
+  };
+  
 
   const handleDelete = (rowData: any) => {
 
