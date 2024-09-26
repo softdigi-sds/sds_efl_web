@@ -46,7 +46,7 @@ position: relative;
     z-index: 100;
    /* background: url("../assets/images/7413568.jpg"); */
    /* background: url("../assets/images/glass-ef.jpg"); */
-   
+   background: #ebebe9;
    min-height: 100vh;
 }
 .smart-side-nav-menu{
