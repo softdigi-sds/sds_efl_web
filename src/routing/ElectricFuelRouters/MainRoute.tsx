@@ -6,8 +6,11 @@ import { Dashboard, HomePage, HubsTables, OfficesTable, VendorRatesTable, Vendor
 import Login from "../../ElectricFuelPages/LoginPages/Login";
 import ForgotPassword from "../../ElectricFuelPages/LoginPages/ForgotPassword";
 import EFSubLayout from "../../EFSubLayout/EFSubLayout";
+import { useSiteContext } from "../../contexts/SiteProvider";
+import SmartSoftModal from "../../core/loaders/SmartSoftModal";
 
 const EFSiteRoute = () => {
+  const { isModalOpen, modalOptions,closeModal } = useSiteContext();
   const protected_routes = () => {
     return (
       <>
@@ -48,6 +51,7 @@ const EFSiteRoute = () => {
       
           
         </Routes>
+        {isModalOpen && <SmartSoftModal active={isModalOpen} {...modalOptions} closeFunction={closeModal} />}
       </Router>
 
       <ToastContainer />

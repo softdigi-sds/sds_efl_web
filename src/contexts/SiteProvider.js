@@ -9,7 +9,6 @@ import {
 
 import { showAlertAutoClose } from "../services/notifyService";
 import { getUserSession, setUserSession } from "../services/sessionService";
-import SmartModal from "./SmartModal";
 // import sessionActivityService from '../services/sessionActivityService';
 
 const SiteContext = createContext();
@@ -51,30 +50,23 @@ export const SiteProvider = ({ children }) => {
     setIsModalOpen(false);
   }, []);
 
+  
   const updateUserOnLoad = () => {
     let session_data = getUserSession();
     if (session_data) {
       setUserData(session_data);
       if (session_data.ename !== undefined) {     
-      }
-      //console.log("session data " , session_data);
+      }    
     }
   };
 
-  const logout = () => {
-    // Handle logout (e.g., redirect to login page)
-    //console.log('Loading out...');
+  const logout = () => {   
     showAlertAutoClose("Log Out Successful", "success");
     setUser(null);
   };
 
-  useEffect(() => {
-    // health_check();
-    // this is to get the data from session storage
-    updateUserOnLoad();
-    // have health check and get the csrf token
-    // const interval = setInterval(health_check, 60000);
-    // return () => clearInterval(interval);
+  useEffect(() => {  
+    updateUserOnLoad();  
   }, []);
 
   return (
@@ -83,15 +75,14 @@ export const SiteProvider = ({ children }) => {
         setLoading,
         setUser,
         openModal,
-        closeModal,      
+        closeModal,
+         isModalOpen,
+         modalOptions,      
         logout,
         handleUserChange,
       }}
     >
-      {children}
-      {isModalOpen && (
-        <SmartModal modalOptions={modalOptions} closeModal={closeModal} />
-      )}
+      {children}    
     </SiteContext.Provider>
   );
 };

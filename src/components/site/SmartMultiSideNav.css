@@ -15,7 +15,7 @@
 .smart-list-item-active{
     margin: 5px 5px;
     cursor: pointer;
-    padding:10px 10px ;
+    padding:5px 10px ;
     color: black;
     transition: 0.05s;
     background-color: aqua;
