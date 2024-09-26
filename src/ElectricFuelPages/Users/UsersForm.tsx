@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { SmartSoftButton, SmartSoftForm } from '../../core';
 import { SmartFormElementProps } from '../../core/forms/SmartFormInterface';
 import { SmartValid, ValidateFormNew } from '../../core/services/smartValidationService';
@@ -7,6 +7,7 @@ import { USER_URLS } from '../../api/AdminUrls';
 import { showAlertAutoClose } from '../../services/notifyService';
 import { post } from '../../services/smartApiService';
 import { ALLOW_NUMERIC } from '../../services/PatternSerivce';
+import { role_get_select } from '../../services/site/SelectBoxServices';
 
 interface FormErrors {
   [key: string]: string | null;
@@ -21,6 +22,7 @@ const UsersForm:React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
   const [formSubmit, setFormSubmit] = useState<boolean>(false);
   const [formErrors, setFormErrors] = useState<FormErrors>({});
   const {setLoading,closeModal } = useSiteContext();
+  const [allRole, setAllRole] = useState([]);
 
   const handleInputChange = (name: string, value: any) => {
     setFormData((prev:any) => ({ ...prev, [name]: value }));
@@ -37,6 +39,10 @@ const UsersForm:React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
       return updatedFormData;
     });
   };
+  useEffect(() => {   
+   
+    role_get_select((data:any) => setAllRole(data));
+  }, []);
  
   const handleSubmit = () => {
     setFormSubmit(true);
@@ -142,7 +148,7 @@ const UsersForm:React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
       element: {
         label: "Role",
       
-        options: options,
+        options: allRole,
        
       },
     },

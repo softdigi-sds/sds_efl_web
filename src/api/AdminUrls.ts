@@ -14,7 +14,7 @@ const USER_URLS = {
     UPDATE: "/user/update",
     GET_ONE: "/user/get_one",
     DELETE:"/user/delete_one",
-    GET_ALL_SELECT:"/role/get_all_select"
+    GET_ALL_SELECT:"/user/get_all_select"
     
 };
 export {
