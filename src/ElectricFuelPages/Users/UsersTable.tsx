@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import { get } from '../../services/smartApiService';
 import { SmartSoftTable, SmartTableNewInterface } from '../../core';
+import UsersForm from './UsersForm';
+import { useSiteContext } from '../../contexts/SiteProvider';
 
 const UsersTable = () => {
     const [data, setData] = useState([]);
+    const { openModal, closeModal } = useSiteContext();
 
     const loadTableData = () => {   
       const subscription = get("users").subscribe((response) => {
@@ -19,17 +22,10 @@ const UsersTable = () => {
     }, []);
   
     const openOfficesForm =()=>{
-      // let modelObject = {
-      //   body: (
-      //     <HubsForms
-           
-      //       closeModal={closeModal}
-      //     />
-      //   ),
-      //   modelClass: "customer-model-layout smart-modal-90",
-      //   bodyClose: false,
-      // };
-      // openModal(modelObject);
+      let options = {
+        content: <UsersForm />
+    }
+    openModal(options);
     }
     const handleDelete = (rowData: any) => {
   
