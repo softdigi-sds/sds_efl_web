@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import { get } from '../../services/smartApiService';
 import { SmartSoftTable, SmartTableNewInterface } from '../../core';
+import { useSiteContext } from '../../contexts/SiteProvider';
+import OfficesForm from './OfficesForm';
 
 const OfficesTable = () => {
   const [data, setData] = useState([]);
+  const { openModal, closeModal } = useSiteContext();
 
   const loadTableData = () => {   
     const subscription = get("users").subscribe((response) => {
@@ -19,7 +22,10 @@ const OfficesTable = () => {
   }, []);
 
   const openOfficesForm = () => {
- 
+    let options = {
+      content: <OfficesForm />
+  }
+  openModal(options);
   }
 
   const handleDelete = (rowData: any) => {
