@@ -173,7 +173,9 @@ const UsersForm:React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
     },
   ];
   return (
-    <><div className=""><SmartHeader title={"Add User Form"} /></div>
+    <><div className="">
+      {/* <SmartHeader title={"Add User Form"} /> */}
+      </div>
        <SmartSoftForm
         formData={formData}
         setFormData={handleInputChange}

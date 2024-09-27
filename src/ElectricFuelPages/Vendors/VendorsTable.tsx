@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
-import { SmartSoftTable, SmartTableNewInterface } from '../../core';
 import { get } from '../../services/smartApiService';
 import { useSiteContext } from '../../contexts/SiteProvider';
 import VendorsForm from './VendorsForm';
+import { SmartTable, SmartTableNewInterface } from 'soft_digi';
 
 const VendorsTable = () => {
   const [data, setData] = useState([]);
@@ -22,6 +22,7 @@ const VendorsTable = () => {
 
   const openOfficesForm = (width: number) => {
     let options = {
+      title: "Vendors Addition Form",
       content: <VendorsForm/>,
       width: 60,
     };
@@ -109,7 +110,7 @@ const VendorsTable = () => {
   return (
     <>
     <div className="smart-elf-table">
-      <SmartSoftTable
+      <SmartTable
         columns={columns}
         data={data}
         tableTop={tableTop}
