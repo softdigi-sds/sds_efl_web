@@ -1,21 +1,16 @@
-import "./ElectricFuel.css";
-import HomePage from "./Home/HomePage";
+import "./Calender.scss";
 import Dashboard from "./DashBoard/Dashboard";
-import OfficesTable from "./Offices/OfficesTable";
+import "./ElectricFuel.scss";
+import HomePage from "./Home/HomePage";
 import HubsTables from "./Hubs/HubsTables";
-import VendorsTable from "./Vendors/VendorsTable";
-import VendorRatesTable from "./VendorRates/VendorRatesTable";
-import VehiclesReportTable from "./VehiclesReport/VehiclesReportTable";
-import UsersTable from "./Users/UsersTable";
+import OfficesTable from "./Offices/OfficesTable";
 import RoleTable from "./Role/RoleTable";
+import UsersTable from "./Users/UsersTable";
+import VehiclesReportTable from "./VehiclesReport/VehiclesReportTable";
+import VendorRatesTable from "./VendorRates/VendorRatesTable";
+import VendorsTable from "./Vendors/VendorsTable";
 export {
-    HomePage,
-    Dashboard,
-    OfficesTable,
-    HubsTables,
-    VendorsTable,
-    VendorRatesTable,
-    VehiclesReportTable,
-    UsersTable,
-    RoleTable
-}
+    Dashboard, HomePage, HubsTables, OfficesTable, RoleTable, UsersTable,
+    VehiclesReportTable, VendorRatesTable, VendorsTable
+};
+
