@@ -118,19 +118,23 @@ const HubsTables = () => {
     },
   ];
   const columns: SmartTableNewInterface.SmartTableNewColumnConfig[] = [
-    { title: "S.NO", index: "s_no", type: "sno" },
+    { title: "S.NO", index: "s_no", type: "sno", width:"5" },
     {
       title: "Hub Id",
       index: "hub_id",
+      width:"10"
     },
     {
       title: "City",
       index: "office_city",
+      width:"10"
     },
-    { title: "Location", index: "hub_location" },
+    { title: "Location", index: "hub_location", width:"15"},
+
     {
       title: "Access Group",
       index: "sd_efl_office_id",
+      width:"10"
     },
     { title: "State", index: "email" },
     {
