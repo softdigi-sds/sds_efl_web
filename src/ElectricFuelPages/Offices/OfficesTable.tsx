@@ -78,9 +78,7 @@ const OfficesTable = () => {
     SmartAlert.show(alertProps);
   };
 
-  const handleDelete = (rowData: any) => {
-    console.log("Delete action for row:", rowData);
-  };
+
 
   const viewEditForm = (id: any) => { 
     const subscription = post(
