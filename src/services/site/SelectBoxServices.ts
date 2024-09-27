@@ -19,11 +19,11 @@ const admin_generic_select = (url: string, call_back: any) => {
 };
 const admin_generic_select_post = (
   url: string,
-  sector: any,
+  hub_id: any,
   call_back: any
 ) => {
   const handleError = (errorMessage: any) => {};
-  const subscription = post(url, sector, {handleError:handleError}).subscribe((response) => {
+  const subscription = post(url, hub_id, {handleError:handleError}).subscribe((response) => {
     call_back(response.data);
   });
   return () => {
@@ -61,8 +61,13 @@ const vendors_get_all_select = (call_back: any) => {
   let url = VENDERS_URLS.GET_ALL_SELECT;
   admin_generic_select(url, call_back);
 };
+const company_get_all_select = (call_back: any,hub_id:any) => {
+  let url = VENDERS_URLS.GET_ALL_SELECT;
+  admin_generic_select_post(url, call_back,hub_id);
+};
 
 export { admin_states_select, hubs_get_all_select, role_get_select, user_get_select,office_get_all_select ,
-  vendors_get_all_select
+  vendors_get_all_select,
+  company_get_all_select
 };
 

@@ -47,7 +47,7 @@ const ConsumptionReportTable = () => {
   const openForm =(date:any)=>{
 
     let options = {
-      title: <div>Hub: {hub.label}  Date : {date}</div>,
+      title: <div>Hub: {hub?.label}  Date : {date}</div>,
       content: <ConsumptionReportForm loadTableData={loadCalenderData} date={date} hub_id={hub} />
   }
   openModal(options);

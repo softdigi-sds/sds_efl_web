@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { SmartFormInterFace, SmartSoftButton, SmartSoftForm, SmartValid } from "soft_digi";
-import { hubs_get_all_select, vendors_get_all_select } from '../../services/site/SelectBoxServices';
+import { company_get_all_select, hubs_get_all_select, vendors_get_all_select } from '../../services/site/SelectBoxServices';
 import { ValidateFormNew } from 'soft_digi/dist/services/smartValidationService';
 import { VENDER_RATE_URLS } from '../../api/UserUrls';
 import { post } from '../../services/smartApiService';
@@ -47,8 +47,13 @@ const VendorRatesForms:React.FC<HeaderProps> = ({loadTableData,dataIn}) => {
 
   useEffect(() => {   
     hubs_get_all_select((data:any) => setAllHubs(data));
-    vendors_get_all_select((data:any) => setAllVendors(data));
+   
   }, []);
+  // useEffect(() => {   
+  //   let hub_data =formData?.sd_hubs_id?.value
+  //   console.log("Hub data",hub_data)
+  //    company_get_all_select(hub_data,(data:any,) => setAllVendors(data));
+  // }, [formData]);
   const options = [
     { value: 'Minimum', label: 'Minimum' },
     { value: 'Per Unit', label: 'Per Unit' },
