@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { SmartFormInterface, SmartSoftButton, SmartSoftForm } from '../../core';
+import { SmartFormInterFace, SmartSoftButton, SmartSoftForm } from "soft_digi";
 import { ValidateFormNew } from 'soft_digi/dist/services/smartValidationService';
 import { VENDERS_URLS } from '../../api/UserUrls';
 import { post } from '../../services/smartApiService';
@@ -72,7 +72,7 @@ const VendorsForm:React.FC<HeaderProps > = ({loadTableData,dataIn}) => {
     { value: "2", label: "Test" },
     { value: "3", label: "test" },
   ];
-  const formElements:SmartFormInterface.SmartFormElementProps[] = [
+  const formElements:SmartFormInterFace.SmartFormElementProps[] = [
     {
       type: "SELECT_BOX",
       width: "6",

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { SmartFormInterface, SmartSoftButton, SmartSoftForm } from '../../core';
+import { SmartFormInterFace, SmartSoftButton, SmartSoftForm, SmartValid } from "soft_digi";
 import { hubs_get_all_select, vendors_get_all_select } from '../../services/site/SelectBoxServices';
 import { ValidateFormNew } from 'soft_digi/dist/services/smartValidationService';
 import { VENDER_RATE_URLS } from '../../api/UserUrls';
@@ -102,15 +102,26 @@ const VendorRatesForms:React.FC<HeaderProps> = ({loadTableData,dataIn}) => {
     };
   };
 
-  const formElements: SmartFormInterface.SmartFormElementProps[] = [
+  const vendorFormValidations = {
+    hub_id: [SmartValid.required("Hub Id is Required")],
+    company: [SmartValid.required("Company is Required")],
+    comunication: [SmartValid.required("Type is Required")],
+    min_units: [SmartValid.required("Minumum Unit is Required")],
+    rate_unit: [SmartValid.required("Rate Per Unit is Required")],
+    extra_unit: [SmartValid.required("Rate Per Extra Unit is Required")],
+    pin_code: [SmartValid.required("Pin Code is Required")],
+    dates: [SmartValid.required("Date is Required")],
+  };
+  const formElements: SmartFormInterFace.SmartFormElementProps[] = [
     {
       type: 'SELECT_BOX',
       width: '6',
       name: 'sd_hubs_id',
       element: {
-        label: 'Select Hub ID',
+        label: 'Hub ID',
         isRequired: true,
         options: allHubs,
+        validations: vendorFormValidations.hub_id,
       },
     },
     {
@@ -118,10 +129,12 @@ const VendorRatesForms:React.FC<HeaderProps> = ({loadTableData,dataIn}) => {
       width: '6',
       name: 'sd_vendors_id',
       element: {
-        label: 'Select Company',
+        label: 'Company',
         isRequired: true,
+        validations: vendorFormValidations.company,
         // options: allVendors,
         options:options
+   
       },
     },
     {
@@ -136,6 +149,7 @@ const VendorRatesForms:React.FC<HeaderProps> = ({loadTableData,dataIn}) => {
       name: 'unit_rate_type',
       element: {
         label: 'Select Consumption Type',
+        validations: vendorFormValidations.comunication,
         isRequired: true,
         options: options,
       },
@@ -149,6 +163,7 @@ const VendorRatesForms:React.FC<HeaderProps> = ({loadTableData,dataIn}) => {
         label: 'Minimum Units',
         isRequired: true,
         inputProps: { isFocussed: true },
+        validations: vendorFormValidations.min_units,
       },
       hideFunction: () => {
         return formData?.unit_rate_type?.value === 'Minimum' ? false : true; 
@@ -162,6 +177,7 @@ const VendorRatesForms:React.FC<HeaderProps> = ({loadTableData,dataIn}) => {
         label: 'Rate Per Unit',
         isRequired: true,
         inputProps: { isFocussed: true },
+        validations: vendorFormValidations.rate_unit,
       },
       hideFunction: () => {
         return formData?.unit_rate_type?.value === 'Minimum' ? true : false; 
@@ -175,6 +191,7 @@ const VendorRatesForms:React.FC<HeaderProps> = ({loadTableData,dataIn}) => {
         label: 'Rate Per Extra Unit',
         isRequired: true,
         inputProps: { isFocussed: true },
+        validations: vendorFormValidations.extra_unit,
       },
       hideFunction: () => {
         return formData?.unit_rate_type?.value === 'Minimum' ? false : true; 
@@ -193,6 +210,7 @@ const VendorRatesForms:React.FC<HeaderProps> = ({loadTableData,dataIn}) => {
       element: {
         label: 'Select Parking Type',
         isRequired: true,
+        validations: vendorFormValidations.comunication,
         options: options_parking,
       },
     },
@@ -204,6 +222,7 @@ const VendorRatesForms:React.FC<HeaderProps> = ({loadTableData,dataIn}) => {
         label: 'Minimum Number',
         isRequired: true,
         inputProps: { isFocussed: true },
+        validations: vendorFormValidations.min_units,
       },
       hideFunction: () => {
         return formData?.parking_rate_type?.value === 'Minimum' ? false : true; 
@@ -217,6 +236,7 @@ const VendorRatesForms:React.FC<HeaderProps> = ({loadTableData,dataIn}) => {
         label: 'Rate Per Unit',
         isRequired: true,
         inputProps: { isFocussed: true },
+        validations: vendorFormValidations.rate_unit,
       },
       hideFunction: () => {
         return formData?.parking_rate_type?.value === 'Minimum' ? true:false; 
@@ -230,6 +250,7 @@ const VendorRatesForms:React.FC<HeaderProps> = ({loadTableData,dataIn}) => {
         label: 'Rate Per Extra Unit',
         isRequired: true,
         inputProps: { isFocussed: true },
+        validations: vendorFormValidations.extra_unit,
       },
       hideFunction: () => {
         return formData?.parking_rate_type?.value === 'Minimum' ? false : true; 
@@ -244,6 +265,7 @@ const VendorRatesForms:React.FC<HeaderProps> = ({loadTableData,dataIn}) => {
         placeHolder: 'DD-MM-YYYY',
         isRequired: true,
         inputProps: { isFocussed: true },
+        validations: vendorFormValidations.dates,
       },
     },
   ];

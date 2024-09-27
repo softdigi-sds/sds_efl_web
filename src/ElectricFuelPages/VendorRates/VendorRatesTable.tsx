@@ -131,7 +131,7 @@ const VendorRatesTable = () => {
   const columns: SmartTableNewInterface.SmartTableNewColumnConfig[] = [
     { title: "S.NO", index: "s_no", type: "sno" },
     {
-      title: "Hun Id",
+      title: "Hub Id",
       index: "sd_hubs_id",
     },
     {
