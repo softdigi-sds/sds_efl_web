@@ -6,6 +6,7 @@ import { useSiteContext } from '../../contexts/SiteProvider';
 import { HUBS_URLS } from '../../api/UserUrls';
 import { showAlertAutoClose } from '../../services/notifyService';
 import { SmartAlert, SmartLoaderInterface } from 'soft_digi';
+import HubsView from './HubsView';
 
 const HubsTables = () => {
   const [data, setData] = useState([]);
@@ -88,7 +89,14 @@ const HubsTables = () => {
 
     SmartAlert.show(alertProps);
   };
-
+  const openViewdetails = (hubsdetail: any) => {
+    let options = {
+      title: "Hub Details",
+      content: <HubsView hubData={hubsdetail} />,
+      width: 60,
+    };
+    openModal(options);
+  };
 
   const buttons = [
     {
@@ -96,7 +104,9 @@ const HubsTables = () => {
       type: "icon",
       leftIcon: "fa fa-eye",
       classList: ["delete-color is-clickable is-size-5"],
-      onClick: handleDelete
+      onClick: (data: any) => {
+        openViewdetails(data);
+      },
     },
     {
       label: "",
