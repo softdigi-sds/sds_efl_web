@@ -164,3 +164,6 @@ code {
 .image.is-4by3{
   padding-top: 75% !important;
 }
+.pointer{
+  cursor:pointer  !important;
+}

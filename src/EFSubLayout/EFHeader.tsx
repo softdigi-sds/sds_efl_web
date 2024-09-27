@@ -47,20 +47,20 @@ const handleLogout = () => {
             src={BUSSINESS_HEAD_TOP_RIGHT_lOGO}
             alt="Business Head Top Right Logo"
           /> */}
-          <div className="dropdown-menu dropdown-menu-margin mr-6">
+          <div className="dropdown-menu smart-header-dropdown-menu mr-6">
             <div className=" dropdown-content-profile pb-3 ">
               <div className="dropdown-item p-0">
                 <div className="columns mb-0">
                 
                 
                 </div>
-                <div className="business-profile-border mt-0"></div>
+              
               
 
                 <div className="mt-3" key="g9">
-                  <ul className=" has-text-left profile-business-icon-page px-2">
+                  <ul className=" has-text-center profile-business-icon-page px-2">
                     <li
-                      className="customer-profile-test pointer"
+                      className="smart-header-dropdown-list pointer"
                       onClick={() => navigateLink("home/my-profile-form")}
                     >
                       <span className="customer-home-icon-text-color">
@@ -73,7 +73,7 @@ const handleLogout = () => {
                     </li>
                   
                     <li
-                      className="customer-profile-test pointer"
+                      className="smart-header-dropdown-list pointer"
                       onClick={() => navigateLink("settings/pin-change-form")}
                     >
                       <span className="customer-home-icon-text-color">
@@ -82,7 +82,7 @@ const handleLogout = () => {
                       <span>Settings</span>
                     </li>
                     <li
-                      className="customer-profile-test pointer"
+                      className="smart-header-dropdown-list pointer"
                       onClick={handleLogout}
                     >
                       <span className="customer-home-icon-text-color">
@@ -110,8 +110,8 @@ const handleLogout = () => {
             </figure>
        </div>}
        <div className='is-flex' >
-      <div  className='header-close-icon pointer'><i className="fa fa-bars" aria-hidden="true"></i></div> 
-      Electric Fuel
+      <div  className='header-close-icon pointer mt-1 is-size-4'><i className="fa fa-bars" aria-hidden="true"></i></div> 
+     <p className='smart-top-header-title'>Electric Fuel</p> 
        </div>
      
        <div className=' ' >

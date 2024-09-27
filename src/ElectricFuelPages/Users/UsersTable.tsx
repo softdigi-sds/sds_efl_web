@@ -190,7 +190,7 @@ const UsersTable = () => {
   
     return (
       <>
-      <div className="smart-elf-table">
+      <div className="">
         <SmartTable
           columns={columns}
           data={data}
