@@ -108,6 +108,7 @@ const UsersForm:React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
         placeHolder: 'Password',
         // inputType: "BORDER_LABEL",
         // leftIcon: "fa fa-envelope-square",
+        validations: loginFormValidations.password,
       },
     },
     {
