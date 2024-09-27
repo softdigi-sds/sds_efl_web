@@ -102,7 +102,7 @@ const UsersTable = () => {
         onClick: (data: any) => {
           openViewDetails(data);
         },
-      },
+      }, 
       {
         label: "",
         type: "icon",
