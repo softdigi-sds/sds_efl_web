@@ -1,18 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { get, post } from "../../services/smartApiService";
-import {
-  SmartAlert,
-  SmartLoaderInterface,
-  SmartSoftTable,
-  SmartTableNewInterface,
-} from "../../core";
+// import { SmartAlert, SmartLoaderInterface } from "../../core";
 import { useSiteContext } from "../../contexts/SiteProvider";
 import OfficesForm from "./OfficesForm";
 import { OFFICE_URLS } from "../../api/UserUrls";
 import { showAlertAutoClose } from "../../services/notifyService";
 import {
   SmartTable,
-  SmartTableNewInterface as SmartTableInterface,
+  SmartTableNewInterface,
+  SmartAlert,
+  SmartLoaderInterface,
 } from "soft_digi";
 
 const OfficesTable = () => {
@@ -35,6 +32,7 @@ const OfficesTable = () => {
 
   const openOfficesForm = (width: number) => {
     let options = {
+      title: "Offices Addition Form",
       content: <OfficesForm loadTableData={loadTableData} dataIn={data} />,
       width: 60,
     };
@@ -136,7 +134,7 @@ const OfficesTable = () => {
     },
   ];
 
-  const columns: SmartTableInterface.SmartTableNewColumnConfig[] = [
+  const columns: SmartTableNewInterface.SmartTableNewColumnConfig[] = [
     { title: "S.NO", index: "s_no", type: "sno" },
     {
       title: "Office City",
@@ -161,7 +159,7 @@ const OfficesTable = () => {
     },
   ];
 
-  const tableTop: SmartTableInterface.SmartTableNewTopProps[] = [
+  const tableTop: SmartTableNewInterface.SmartTableNewTopProps[] = [
     {
       type: "CUSTOM",
       widthClass: "is-10",
