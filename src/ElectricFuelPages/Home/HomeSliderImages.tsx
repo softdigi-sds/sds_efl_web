@@ -78,7 +78,7 @@ const HomeSliderImages: React.FC = () => {
   return (
     <div>
       <SmartImgSlider
-        title="Our Electric Solutions"
+        // title="Our Electric Solutions"
         images={imageSliderContent.map((item) => ({
           image: item.image,
           content: item.content,

@@ -100,7 +100,7 @@ const RoleForm:React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
       name: "users",
       element: {
         label: "Users",
-    
+        isMulti: true,
         options: allUsers,
        
       },
