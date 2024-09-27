@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
+import { SmartFormInterFace, SmartSoftButton, SmartSoftForm } from "soft_digi";
 import { ROLE_URLS } from '../../api/AdminUrls';
 import { useSiteContext } from '../../contexts/SiteProvider';
-import { SmartSoftButton, SmartSoftForm } from '../../core';
-import { SmartFormElementProps } from '../../core/forms/SmartFormInterface';
 import { SmartValid, ValidateFormNew } from '../../core/services/smartValidationService';
 import { showAlertAutoClose } from '../../services/notifyService';
 import { user_get_select } from '../../services/site/SelectBoxServices';
@@ -80,7 +79,7 @@ const RoleForm:React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
     { value: "2", label: "Test" },
     { value: "3", label: "test" },
   ];
-  const formElements:SmartFormElementProps[] = [
+  const formElements:SmartFormInterFace.SmartFormElementProps[] = [
     {
       type: "TEXT_BOX",
       width: "12",

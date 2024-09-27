@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
+import { SmartFormInterFace, SmartSoftButton, SmartSoftForm } from "soft_digi";
 import { OFFICE_URLS } from '../../api/UserUrls';
 import { useSiteContext } from '../../contexts/SiteProvider';
-import { SmartSoftButton, SmartSoftForm } from '../../core';
-import { SmartFormElementProps } from '../../core/forms/SmartFormInterface';
 import { ValidateFormNew } from '../../core/services/smartValidationService';
 import { showAlertAutoClose } from '../../services/notifyService';
 import { admin_states_select } from '../../services/site/SelectBoxServices';
@@ -72,7 +71,7 @@ const OfficesForm:React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
     { value: "2", label: "Test" },
     { value: "3", label: "test" },
   ];
-  const formElements:SmartFormElementProps[] = [
+  const formElements:SmartFormInterFace.SmartFormElementProps[]= [
     {
       type: "SELECT_BOX",
       width: "6",

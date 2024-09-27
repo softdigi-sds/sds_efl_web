@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
+import { SmartFormInterFace, SmartSoftButton, SmartSoftForm } from "soft_digi";
 import { USER_URLS } from '../../api/AdminUrls';
 import { useSiteContext } from '../../contexts/SiteProvider';
-import { SmartSoftButton, SmartSoftForm } from '../../core';
-import { SmartFormElementProps } from '../../core/forms/SmartFormInterface';
 import { SmartValid, ValidateFormNew } from '../../core/services/smartValidationService';
 import { showAlertAutoClose } from '../../services/notifyService';
 import { ALLOW_NUMERIC } from '../../services/PatternSerivce';
@@ -87,27 +86,28 @@ const UsersForm:React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
     { value: "2", label: "Test" },
     { value: "3", label: "test" },
   ];
-  const formElements:SmartFormElementProps[] = [
+  const formElements:SmartFormInterFace.SmartFormElementProps[] = [
     {
       type: "TEXT_BOX",
       width: "6",
       name: "ename",
       element: {
-        label: "User Name",
+        label: "Name",
         isRequired: true,
         inputProps: { isFocussed: true },
         validations: loginFormValidations.ename,
       },
     },
     {
-      type: "TEXT_BOX",
-      width: "6",
-      name: "euserid",
+      type: 'PASSWORD',
+      width: '6',
+      name: 'epassword',
       element: {
-        label: "User ID",
+       label: 'Password',
         isRequired: true,
-        inputProps: { isFocussed: true },
-        validations: loginFormValidations.userId,
+        placeHolder: 'Password',
+        // inputType: "BORDER_LABEL",
+        // leftIcon: "fa fa-envelope-square",
       },
     },
     {
