@@ -1,17 +1,52 @@
 import { Moment } from "moment";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
 import { SmartCalender, SmartSoftSelect } from "soft_digi";
+import { useSiteContext } from "../../contexts/SiteProvider";
+import { hubs_get_all_select } from "../../services/site/SelectBoxServices";
+import { post } from "../../services/smartApiService";
+import VehicleReportFrom from "./VehicleReportFrom";
 const VehiclesReportTable = () => {
-  const { type } = useParams<{ type: string }>();
+  const { openModal } = useSiteContext();
   const [currentMonth, setCurrentMonth] = useState<Moment>();
+  const [hubs, setHubs] = useState<any>();
   const [hub, setHub] = useState<any>();
+  const [data, setData] = useState<any[]>();
 
-  useEffect(() => {
-    console.log("selected year ", currentMonth?.year(), " month ", currentMonth?.month())
-  }, [currentMonth]);
+  /**
+   *  loads the calander data for month change or hub chnage
+   * 
+   * @returns 
+   */
+  const loadCalenderData = () => {   
+    let _data = {
+      hub_id:hub,
+      year:currentMonth?.clone().year(),
+      month:currentMonth?.clone().month(),
+    };
+    const subscription = post("users",_data).subscribe((response) => {
+      setData(response.data.users);    
+    });
+    return () => {
+      subscription.unsubscribe();
+    };
+  };
+
+  useEffect(() => {   
+   hubs_get_all_select(setHubs);
+  }, []);
 
 
+  useEffect(() => {   
+    loadCalenderData();
+  }, [currentMonth,hub]);
+
+  const openForm =(date:any)=>{
+    let options = {
+      title: <div>Hub:{" HUB NAME "}  Date : {date}</div>,
+      content: <VehicleReportFrom loadTableData={loadCalenderData} date={date} hub_id={hub} />
+  }
+  openModal(options);
+}
 
   const consumption: any[] = [
     {
@@ -36,7 +71,7 @@ const VehiclesReportTable = () => {
     return <div className="calender-div">
       {count_check && count_check.count > 0 ?
         <div>{count_check.count}</div> :
-        <div><i className="fa fa-plus"></i></div>}
+        <div><i onClick={()=>openForm(date)} className="fa fa-plus"></i></div>}
     </div>
   };
 
@@ -46,9 +81,9 @@ const VehiclesReportTable = () => {
   const titleDisp = () => {
     return (
       <div className="is-flex is-justify-content-space-between	is-align-items-center">
-        <div className="is-size-4 site-title"> Consumption Report</div>
+        <div className="is-size-4 site-title"> Vehicles Report</div>
         <div className="">
-          <SmartSoftSelect options={[]} placeHolder="Select hub" value={hub} onChange={(value) => setHub(value)} />
+          <SmartSoftSelect options={hubs} placeHolder="Select hub" value={hub} onChange={(value) => setHub(value)} />
         </div>
       </div>
     );

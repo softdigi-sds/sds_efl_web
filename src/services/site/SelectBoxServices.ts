@@ -1,4 +1,5 @@
 import { ROLE_URLS, STATE_URLS, USER_URLS } from "../../api/AdminUrls";
+import { HUBS_URLS } from "../../api/UserUrls";
 import { get, post } from "../smartApiService";
 
 /**
@@ -22,7 +23,7 @@ const admin_generic_select_post = (
   call_back: any
 ) => {
   const handleError = (errorMessage: any) => {};
-  const subscription = post(url, sector, handleError).subscribe((response) => {
+  const subscription = post(url, sector, {handleError:handleError}).subscribe((response) => {
     call_back(response.data);
   });
   return () => {
@@ -49,7 +50,7 @@ const admin_states_select = (call_back: any) => {
 };
 
 const hubs_get_all_select = (call_back: any) => {
-  let url = USER_URLS.GET_ALL_SELECT;
+  let url = HUBS_URLS.GET_ALL_SELECT;
   admin_generic_select(url, call_back);
 };
 

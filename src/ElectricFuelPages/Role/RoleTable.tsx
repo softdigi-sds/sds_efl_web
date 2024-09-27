@@ -1,11 +1,10 @@
-import React, { useEffect, useState } from 'react'
-import { get, post } from '../../services/smartApiService';
+import { useEffect, useState } from 'react';
+import { SmartAlert, SmartLoaderInterface, SmartTable, SmartTableNewInterface } from 'soft_digi';
 import { ROLE_URLS } from '../../api/AdminUrls';
-import RoleForm from './RoleForm';
 import { useSiteContext } from '../../contexts/SiteProvider';
 import { showAlertAutoClose } from '../../services/notifyService';
-import { user_get_select } from '../../services/site/SelectBoxServices';
-import { SmartAlert, SmartLoaderInterface, SmartTable, SmartTableNewInterface } from 'soft_digi';
+import { get, post } from '../../services/smartApiService';
+import RoleForm from './RoleForm';
 
 const RoleTable = () => {
     const [data, setData] = useState([]);
@@ -42,19 +41,11 @@ const RoleTable = () => {
   }
 
   const viewEditForm = (id:any) => {
-    setLoading(true, "Please Wait....");
-    const handleError = (errorMessage:any) => {
-      showAlertAutoClose(errorMessage,"error", );
-      setLoading(false);
-    };
-    const subscription = post(
+      const subscription = post(
       ROLE_URLS.GET_ONE,
-      { id: id },
-      handleError
-    ).subscribe((response:any) => {
-      // console.log("response ", response);
+      { id: id }
+    ).subscribe((response:any) => {     
       openForm(response.data);
-      setLoading(false);
     });
     return () => {
       subscription.unsubscribe();
@@ -62,20 +53,13 @@ const RoleTable = () => {
   };
 
   const deleteData = (id:any) => {
-    setLoading(true, "Please Wait....");
-    const handleError = (errorMessage:any) => {
-      showAlertAutoClose(errorMessage,"error" );
-      setLoading(false);
-    };
     const subscription = post(
       ROLE_URLS.DELETE,
-      { id: id },
-      handleError
+      { id: id }
     ).subscribe((response) => {
       showAlertAutoClose("Deleted Successfully...","success");
       closeModal();
-      loadTableData();
-      // setLoading(false);
+      loadTableData();     
     });
     return () => {
       subscription.unsubscribe();

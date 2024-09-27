@@ -13,7 +13,7 @@ const HUBS_URLS = {
     UPDATE: "/hubs/update",
     GET_ONE: "/hubs/get_one",
     DELETE:"/hubs/delete_one",
-    GET_ALL_SELECT_USER:"hubs/get_all_selec_user"
+    GET_ALL_SELECT:"/hubs/get_all_select"
     
 };
 const HUB_GROUPS_URLS = {
