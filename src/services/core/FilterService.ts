@@ -110,11 +110,15 @@ const filterIncludes =(item:any, indexs:string[],searchString:string)=>{
      return false;    
 }
 
-
-const sumOfArrayObjectsWithIndex =(item:any[], index:string)=>{
-    if(item && item.length < 1 ) return 0;
-    
-    return false;    
+const sumOfArrayObjectsWithIndex =(items:any[], index:string)=>{
+    if(items && items.length < 1 ) return 0;
+    return items.reduce((total, item) => {
+        // Ensure that the item has the property you're looking for
+        if (item && typeof item[index] === "number") {
+          return total + item[index];
+        }
+        return total;
+      }, 0);   
 }
 
 

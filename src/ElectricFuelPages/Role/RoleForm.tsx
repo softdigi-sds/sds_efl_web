@@ -1,14 +1,11 @@
-import React, { useEffect, useState } from 'react'
-import { SmartSoftButton, SmartSoftForm } from '../../core';
-import { SmartFormElementProps } from '../../core/forms/SmartFormInterface';
-import { SmartValid, ValidateFormNew } from '../../core/services/smartValidationService';
+import React, { useEffect, useState } from 'react';
+import { SmartFormInterFace, SmartSoftButton, SmartSoftForm } from "soft_digi";
+import { ROLE_URLS } from '../../api/AdminUrls';
 import { useSiteContext } from '../../contexts/SiteProvider';
-import { ROLE_URLS, USER_URLS } from '../../api/AdminUrls';
+import { SmartValid, ValidateFormNew } from '../../core/services/smartValidationService';
 import { showAlertAutoClose } from '../../services/notifyService';
-import { post } from '../../services/smartApiService';
-import { ALLOW_NUMERIC } from '../../services/PatternSerivce';
 import { user_get_select } from '../../services/site/SelectBoxServices';
-import SmartHeader from '../../core/general/SmartHeader';
+import { post } from '../../services/smartApiService';
 
 interface FormErrors {
   [key: string]: string | null;
@@ -50,25 +47,19 @@ const RoleForm:React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
     if (!ValidateFormNew(formData,formElements)) {
       return false;
     }
-    const handleError = (errorMessage:any) => {
-      showAlertAutoClose(errorMessage,"error" );
-      setLoading(false);
-    };
-    setLoading(true, "Details Submitting....Please Wait");
+  
     let url = ROLE_URLS.INSERT;
     if (formData.ID !== undefined) {
       formData["id"] = formData.ID;
       url =ROLE_URLS.UPDATE;
     }
 
-    const subscription = post(url, formData, handleError).subscribe(
+    const subscription = post(url, formData).subscribe(
       (response) => {
         //console.log("response form ", response.data);
         loadTableData();
         showAlertAutoClose("Data Saved Successfully", "success");
-        closeModal();
-        // setUser(response.data);
-        setLoading(false);
+        closeModal();       
       }
     );
     return () => {
@@ -88,7 +79,7 @@ const RoleForm:React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
     { value: "2", label: "Test" },
     { value: "3", label: "test" },
   ];
-  const formElements:SmartFormElementProps[] = [
+  const formElements:SmartFormInterFace.SmartFormElementProps[] = [
     {
       type: "TEXT_BOX",
       width: "12",

@@ -159,16 +159,24 @@ const get = (
 const post = (
   url:string,
   data:any,
-  handleError:any,
-  requiresAuthorization = true,
-  customHeaders:any = {}
+  options?:ApiOptions
 ) => {
+  const {   
+    requiresAuthorization=true,
+    customHeaders={},
+    showLoading=true,
+    loadingMsg="Fetching... Please Wait",
+    handleError
+  } = options || {};
   // Check if authorization is Required and if a token is available
   if (requiresAuthorization) {
     // console.log("eneterd insude " , getToken())
     customHeaders["Authorization"] = "Bearer " + getToken();
   }
   customHeaders["X-CSRF-Token"] = getCsrf();
+  if(showLoading){
+    SmartLoader.showLoader(loadingMsg); 
+  }
   // console.log("headers " , customHeaders);
   return from(API.post(url, getPayLoad(data), { headers: customHeaders })).pipe(
     catchError((error) => {
@@ -179,10 +187,10 @@ const post = (
       return EMPTY;
     }),
     switchMap((response) => {
+      if(showLoading){
+        SmartLoader.hideLoader(); 
+      }
       response = getDecryptedResponse(response);
-      // Process the response here
-      // console.log("Response:", response);
-      // Return the response or any modified version of it
       return of(response); // For example, just returning the response as is
     })
   );

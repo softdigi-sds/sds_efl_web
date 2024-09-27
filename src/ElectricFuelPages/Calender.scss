@@ -1,0 +1,24 @@
+.sd_efl-calender {
+    .calendar-days {
+        .calendar-day {
+            align-items: center;
+            display: flex;
+            justify-content: center;
+            &:hover .calender-div{
+                text-decoration: underline;
+                i{
+                    color:red;
+                }
+            }
+            .calender-div{
+                font-size: 1.5em;
+                color:blue;
+                cursor:pointer;              
+                i{
+                    color:rgb(162, 0, 255);
+                    font-size: 1.5em;
+                }
+            }
+        }
+    }
+}

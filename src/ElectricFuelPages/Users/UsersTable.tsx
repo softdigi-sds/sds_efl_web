@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react';
+import { SmartAlert, SmartLoaderInterface, SmartTable, SmartTableNewInterface } from 'soft_digi';
+import { USER_URLS } from '../../api/AdminUrls';
+import { useSiteContext } from '../../contexts/SiteProvider';
+import { showAlertAutoClose } from '../../services/notifyService';
 import { get, post } from '../../services/smartApiService';
 import UsersForm from './UsersForm';
-import { useSiteContext } from '../../contexts/SiteProvider';
-import { USER_URLS } from '../../api/AdminUrls';
-import { showAlertAutoClose } from '../../services/notifyService';
-import { SmartAlert, SmartLoaderInterface, SmartTable, SmartTableNewInterface } from 'soft_digi';
 
 const UsersTable = () => {
     const [data, setData] = useState([]);
@@ -36,16 +36,10 @@ const UsersTable = () => {
       console.log('Delete action for row:', rowData);
     }
 
-    const deleteData = (id:any) => {
-      setLoading(true, "Please Wait....");
-      const handleError = (errorMessage:any) => {
-        showAlertAutoClose(errorMessage,"error" );
-        setLoading(false);
-      };
+    const deleteData = (id:any) => {    
       const subscription = post(
         USER_URLS.DELETE,
-        { id: id },
-        handleError
+        { id: id }
       ).subscribe((response) => {
         showAlertAutoClose("Deleted Successfully...","success");
         closeModal();
@@ -77,19 +71,12 @@ const UsersTable = () => {
 
    
     const viewEditForm = (id:any) => {
-      setLoading(true, "Please Wait....");
-      const handleError = (errorMessage:any) => {
-        showAlertAutoClose(errorMessage,"error", );
-        setLoading(false);
-      };
       const subscription = post(
         USER_URLS.GET_ONE,
-        { id: id },
-        handleError
+        { id: id }
       ).subscribe((response:any) => {
-        // console.log("response ", response);
         openOfficesForm(response.data);
-        setLoading(false);
+      
       });
       return () => {
         subscription.unsubscribe();

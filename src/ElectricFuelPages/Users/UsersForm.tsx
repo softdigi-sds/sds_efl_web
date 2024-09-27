@@ -1,14 +1,12 @@
-import React, { useEffect, useState } from 'react'
-import { SmartSoftButton, SmartSoftForm } from '../../core';
-import { SmartFormElementProps } from '../../core/forms/SmartFormInterface';
-import { SmartValid, ValidateFormNew } from '../../core/services/smartValidationService';
-import { useSiteContext } from '../../contexts/SiteProvider';
+import React, { useEffect, useState } from 'react';
+import { SmartFormInterFace, SmartSoftButton, SmartSoftForm } from "soft_digi";
 import { USER_URLS } from '../../api/AdminUrls';
+import { useSiteContext } from '../../contexts/SiteProvider';
+import { SmartValid, ValidateFormNew } from '../../core/services/smartValidationService';
 import { showAlertAutoClose } from '../../services/notifyService';
-import { post } from '../../services/smartApiService';
 import { ALLOW_NUMERIC } from '../../services/PatternSerivce';
 import { role_get_select } from '../../services/site/SelectBoxServices';
-import SmartHeader from '../../core/general/SmartHeader';
+import { post } from '../../services/smartApiService';
 
 interface FormErrors {
   [key: string]: string | null;
@@ -50,25 +48,18 @@ const UsersForm:React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
     if (!ValidateFormNew(formData,formElements)) {
       return false;
     }
-    const handleError = (errorMessage:any) => {
-      showAlertAutoClose(errorMessage,"error" );
-      setLoading(false);
-    };
-    setLoading(true, "Details Submitting....Please Wait");
     let url = USER_URLS.INSERT;
     if (formData.ID !== undefined) {
       formData["id"] = formData.ID;
       url = USER_URLS.UPDATE;
     }
 
-    const subscription = post(url, formData, handleError).subscribe(
+    const subscription = post(url, formData).subscribe(
       (response) => {
         //console.log("response form ", response.data);
         loadTableData();
         showAlertAutoClose("Data Saved Successfully", "success");
-        closeModal();
-        // setUser(response.data);
-        setLoading(false);
+        closeModal();      
       }
     );
     return () => {
@@ -95,27 +86,28 @@ const UsersForm:React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
     { value: "2", label: "Test" },
     { value: "3", label: "test" },
   ];
-  const formElements:SmartFormElementProps[] = [
+  const formElements:SmartFormInterFace.SmartFormElementProps[] = [
     {
       type: "TEXT_BOX",
       width: "6",
       name: "ename",
       element: {
-        label: "User Name",
+        label: "Name",
         isRequired: true,
         inputProps: { isFocussed: true },
         validations: loginFormValidations.ename,
       },
     },
     {
-      type: "TEXT_BOX",
-      width: "6",
-      name: "euserid",
+      type: 'PASSWORD',
+      width: '6',
+      name: 'epassword',
       element: {
-        label: "User ID",
+       label: 'Password',
         isRequired: true,
-        inputProps: { isFocussed: true },
-        validations: loginFormValidations.userId,
+        placeHolder: 'Password',
+        // inputType: "BORDER_LABEL",
+        // leftIcon: "fa fa-envelope-square",
       },
     },
     {

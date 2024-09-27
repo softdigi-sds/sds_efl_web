@@ -1,6 +1,5 @@
-import React, { useState } from 'react'
-import { SmartSoftButton, SmartSoftForm } from '../../core';
-import { SmartFormElementProps } from '../../core/forms/SmartFormInterface';
+import { useState } from 'react';
+import { SmartFormInterface, SmartSoftButton, SmartSoftForm } from '../../core';
 import SmartHeader from '../../core/general/SmartHeader';
 
 interface FormErrors {
@@ -34,7 +33,7 @@ const HubsForms = () => {
     { value: "2", label: "Test" },
     { value: "3", label: "test" },
   ];
-  const formElements:SmartFormElementProps[] = [
+  const formElements:SmartFormInterface.SmartFormElementProps[] = [
     {
       type: "SELECT_BOX",
       width: "6",

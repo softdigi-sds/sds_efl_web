@@ -13,6 +13,7 @@ const HUBS_URLS = {
     UPDATE: "/hubs/update",
     GET_ONE: "/hubs/get_one",
     DELETE:"/hubs/delete_one",
+    GET_ALL_SELECT:"/hubs/get_all_select"
     
 };
 const HUB_GROUPS_URLS = {
@@ -41,9 +42,8 @@ const VENDER_RATE_URLS = {
 };
 
 export {
-    OFFICE_URLS,
     HUBS_URLS,
-    HUB_GROUPS_URLS,
-    VENDERS_URLS,
+    HUB_GROUPS_URLS, OFFICE_URLS, VENDERS_URLS,
     VENDER_RATE_URLS
-}
+};
+

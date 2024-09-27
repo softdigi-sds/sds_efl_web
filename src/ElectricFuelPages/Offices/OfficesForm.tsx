@@ -1,13 +1,11 @@
-import React, { useEffect, useState } from 'react'
-import { SmartSoftButton, SmartSoftForm } from '../../core';
-import { SmartFormElementProps } from '../../core/forms/SmartFormInterface';
+import React, { useEffect, useState } from 'react';
+import { SmartFormInterFace, SmartSoftButton, SmartSoftForm } from "soft_digi";
+import { OFFICE_URLS } from '../../api/UserUrls';
+import { useSiteContext } from '../../contexts/SiteProvider';
 import { ValidateFormNew } from '../../core/services/smartValidationService';
 import { showAlertAutoClose } from '../../services/notifyService';
-import { useSiteContext } from '../../contexts/SiteProvider';
-import { OFFICE_URLS } from '../../api/UserUrls';
-import { post } from '../../services/smartApiService';
 import { admin_states_select } from '../../services/site/SelectBoxServices';
-import SmartHeader from '../../core/general/SmartHeader';
+import { post } from '../../services/smartApiService';
 
 
 interface FormErrors {
@@ -50,25 +48,18 @@ const OfficesForm:React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
     if (!ValidateFormNew(formData,formElements)) {
       return false;
     }
-    const handleError = (errorMessage:any) => {
-      showAlertAutoClose(errorMessage,"error" );
-      setLoading(false);
-    };
-    setLoading(true, "Details Submitting....Please Wait");
     let url = OFFICE_URLS.INSERT;
     if (formData.ID !== undefined) {
       formData["id"] = formData.ID;
       url = OFFICE_URLS.UPDATE;
     }
 
-    const subscription = post(url, formData, handleError).subscribe(
+    const subscription = post(url, formData).subscribe(
       (response) => {
         //console.log("response form ", response.data);
         loadTableData();
         showAlertAutoClose("Data Saved Successfully", "success");
-        closeModal();
-        // setUser(response.data);
-        setLoading(false);
+        closeModal();       
       }
     );
     return () => {
@@ -80,7 +71,7 @@ const OfficesForm:React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
     { value: "2", label: "Test" },
     { value: "3", label: "test" },
   ];
-  const formElements:SmartFormElementProps[] = [
+  const formElements:SmartFormInterFace.SmartFormElementProps[]= [
     {
       type: "SELECT_BOX",
       width: "6",

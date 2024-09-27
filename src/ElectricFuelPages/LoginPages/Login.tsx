@@ -63,18 +63,15 @@ const Login: React.FC = () => {
     }
 
     const handleError = (errorMessage:any) => {
-      showAlertAutoClose(errorMessage, "error");
-      setLoading(false);
+      showAlertAutoClose(errorMessage, "error");    
       handleInputChange("epassword", "");
-    };
-    setLoading(true, "Logging in....Please Wait");
+    }; 
     let url = LOGIN_URLS.LOGIN;
-    const subscription = post(url, formData, handleError, false).subscribe(
+    const subscription = post(url, formData,{requiresAuthorization:false,handleError:handleError}).subscribe(
       (response) => {
         setFormSubmit(false);
         setUser(response.data);
-        showAlertAutoClose("Log In Successful", "success");
-        setLoading(false);
+        showAlertAutoClose("Log In Successful", "success");      
         navigate("/e-fuel/dashboard");
       }
     );

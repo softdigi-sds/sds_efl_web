@@ -1,5 +1,6 @@
-import React, { useEffect } from "react";
-import "../../ElectricFuelPages/ElectricFuel.css";
+import Aos from "aos";
+import { useEffect } from "react";
+import "../../ElectricFuelPages/ElectricFuel.scss";
 import {
   OUR_SERVICE_CARD_FIVE,
   OUR_SERVICE_CARD_FOUR,
@@ -8,7 +9,6 @@ import {
   OUR_SERVICE_CARD_THREE,
   OUR_SERVICE_CARD_TWO,
 } from "../../services/ImageService";
-import Aos from "aos";
 const OurServices = () => {
   useEffect(() => {
     Aos.init({

@@ -1,16 +1,17 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { get, post } from "../../services/smartApiService";
 // import { SmartAlert, SmartLoaderInterface } from "../../core";
-import { useSiteContext } from "../../contexts/SiteProvider";
-import OfficesForm from "./OfficesForm";
-import { OFFICE_URLS } from "../../api/UserUrls";
-import { showAlertAutoClose } from "../../services/notifyService";
 import {
-  SmartTable,
-  SmartTableNewInterface,
   SmartAlert,
   SmartLoaderInterface,
+  SmartTable,
+  SmartTableNewInterface,
 } from "soft_digi";
+import { OFFICE_URLS } from "../../api/UserUrls";
+import { useSiteContext } from "../../contexts/SiteProvider";
+import { showAlertAutoClose } from "../../services/notifyService";
+import OfficesForm from "./OfficesForm";
+import OfficeTableView from "./OfficeTableView";
 
 const OfficesTable = () => {
   const [data, setData] = useState([]);
@@ -39,15 +40,9 @@ const OfficesTable = () => {
     openModal(options);
   };
   const deleteData = (id: any) => {
-    setLoading(true, "Please Wait....");
-    const handleError = (errorMessage: any) => {
-      showAlertAutoClose(errorMessage, "error");
-      setLoading(false);
-    };
     const subscription = post(
       OFFICE_URLS.DELETE,
-      { id: id },
-      handleError
+      { id: id }
     ).subscribe((response) => {
       showAlertAutoClose("Deleted Successfully...", "success");
       closeModal();
@@ -87,32 +82,35 @@ const OfficesTable = () => {
     console.log("Delete action for row:", rowData);
   };
 
-  const viewEditForm = (id: any) => {
-    setLoading(true, "Please Wait....");
-    const handleError = (errorMessage: any) => {
-      showAlertAutoClose(errorMessage, "error");
-      setLoading(false);
-    };
+  const viewEditForm = (id: any) => { 
     const subscription = post(
       OFFICE_URLS.GET_ONE,
-      { id: id },
-      handleError
+      { id: id }
     ).subscribe((response: any) => {
-      // console.log("response ", response);
       openOfficesForm(response.data);
-      setLoading(false);
     });
     return () => {
       subscription.unsubscribe();
     };
   };
+  const openViewdetails = (office: any) => {
+    let options = {
+      title: "Office Details",
+      content: <OfficeTableView office={office} />,
+      width: 60,
+    };
+    openModal(options);
+  };
+  
   const buttons = [
     {
       label: "",
       type: "icon",
       leftIcon: "fa fa-eye",
       classList: ["delete-color is-clickable is-size-5"],
-      onClick: handleDelete,
+      onClick: (data: any) => {
+        openViewdetails(data);
+      },
     },
     {
       label: "",
