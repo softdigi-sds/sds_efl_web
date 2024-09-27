@@ -13,6 +13,7 @@ const ConsumptionReportTable = () => {
   const [hubs, setHubs] = useState<any>();
   const [hub, setHub] = useState<any>();
   const [data, setData] = useState<any[]>();
+  console.log("hub dat",hubs)
 
   /**
    *  loads the calander data for month change or hub chnage
@@ -44,8 +45,9 @@ const ConsumptionReportTable = () => {
   }, [currentMonth,hub]);
 
   const openForm =(date:any)=>{
+
     let options = {
-      title: <div>Hub:{" HUB NAME "}  Date : {date}</div>,
+      title: <div>Hub: {hub.label}  Date : {date}</div>,
       content: <ConsumptionReportForm loadTableData={loadCalenderData} date={date} hub_id={hub} />
   }
   openModal(options);
@@ -70,7 +72,7 @@ const ConsumptionReportTable = () => {
 
   // ** meeting display boss
   const content = (date: any) => {
-    const count_check = consumption.find((item) => item.date === date);
+    const count_check = data?.find((item) => item.date === date);
     return <div className="calender-div">
       {count_check && count_check.count > 0 ?
         <div>{count_check.count}</div> :
