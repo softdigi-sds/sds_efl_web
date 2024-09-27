@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import { SmartFormInterFace, SmartSoftButton, SmartSoftForm } from "soft_digi";
+import { SmartFormInterFace, SmartSoftButton, SmartSoftForm, SmartValid } from "soft_digi";
 import { OFFICE_URLS } from '../../api/UserUrls';
 import { useSiteContext } from '../../contexts/SiteProvider';
 import { ValidateFormNew } from '../../core/services/smartValidationService';
 import { showAlertAutoClose } from '../../services/notifyService';
 import { admin_states_select } from '../../services/site/SelectBoxServices';
 import { post } from '../../services/smartApiService';
+import { max } from 'date-fns';
+import { ALLOW_NUMERIC } from '../../services/PatternSerivce';
 
 
 interface FormErrors {
@@ -66,6 +68,16 @@ const OfficesForm:React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
       subscription.unsubscribe();
     };
   };
+  const loginFormValidations = {
+    state: [SmartValid.required("State is Required")],
+    city: [SmartValid.required("City is Required")],
+    address: [SmartValid.required("Address is Required")],
+    gst_no: [SmartValid.required("GST No is Required")],
+    pan_no: [SmartValid.required("Pan No is Required")],
+    cin_no: [SmartValid.required("CIN No is Required")],
+    pin_code: [SmartValid.required("Pin Code is Required")],
+  };
+
   const options = [
     { value: "1", label: "Test" },
     { value: "2", label: "Test" },
@@ -80,6 +92,7 @@ const OfficesForm:React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
         label: "State",
         isRequired:true,
         options: states,
+        validations: loginFormValidations.state,
       },
     },
     {
@@ -88,9 +101,11 @@ const OfficesForm:React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
       name: "office_city",
       element: {
         label: "City",
-        placeHolder: "City",
+        // placeHolder: "City",
         isRequired: true,
         inputProps: { isFocussed: true },
+        validations: loginFormValidations.city,
+        max:25,
       },
     },
     {
@@ -100,7 +115,8 @@ const OfficesForm:React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
       element: {
         label: "Address",
         isRequired:true,
-        max:"255",
+        max: 255,
+        validations: loginFormValidations.address,
       },
     },
     {
@@ -112,6 +128,8 @@ const OfficesForm:React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
         // placeHolder: "City",
         isRequired: true,
         inputProps: { isFocussed: true },
+          // pattern:  ALLOW_ALPHABET_SPACE ,
+        validations: loginFormValidations.gst_no,
       },
     },
     {
@@ -122,6 +140,7 @@ const OfficesForm:React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
         label: "PAN No.",
         isRequired: true,
         inputProps: { isFocussed: true },
+        validations: loginFormValidations.pan_no,
       },
     },
     {
@@ -132,6 +151,9 @@ const OfficesForm:React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
         label: "CIN No",
         isRequired: true,
         inputProps: { isFocussed: true },
+        validations: loginFormValidations.cin_no,
+        pattern:  ALLOW_NUMERIC ,
+        max:15,
       },
     },
     {
@@ -143,6 +165,9 @@ const OfficesForm:React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
         // placeHolder: "City",
         isRequired: true,
         inputProps: { isFocussed: true },
+        validations: loginFormValidations.pin_code,
+          pattern:  ALLOW_NUMERIC ,
+        max:8,
       },
     },
   ];

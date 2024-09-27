@@ -145,24 +145,24 @@ const UsersForm:React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
        
       },
     },
-    {
-      type: "FILE",
-      width: "12",
-      name: "profile_img",
-      element: {
-        placeHolder: 
-        (
-          <p>
-           Upload Image <span className="smart-error">*</span>
-          </p>
-        ),
-        fileNameEnable: false,
-        leftIcon: "fa fa-cloud-upload",
-        isMulti: true,
-        isRequired: true,
-        filePreview: true,
-      },
-    },
+    // {
+    //   type: "FILE",
+    //   width: "12",
+    //   name: "profile_img",
+    //   element: {
+    //     placeHolder: 
+    //     (
+    //       <p>
+    //        Upload Image <span className="smart-error">*</span>
+    //       </p>
+    //     ),
+    //     fileNameEnable: false,
+    //     leftIcon: "fa fa-cloud-upload",
+    //     isMulti: true,
+    //     isRequired: true,
+    //     filePreview: true,
+    //   },
+    // },
   ];
   return (
     <><div className="">

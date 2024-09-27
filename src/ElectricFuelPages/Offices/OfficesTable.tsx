@@ -58,7 +58,7 @@ const OfficesTable = () => {
     let alertProps: SmartLoaderInterface.SmartAlertInterface = {
       title: (
         <span className="has-text-danger">
-          <i className="fa fa-check"></i> User Deletion!
+          <i className="fa fa-check"></i> Office Deletion!
         </span>
       ),
       alertFunction: (option) => {
@@ -69,7 +69,7 @@ const OfficesTable = () => {
       },
       content: (
         <p>
-          Note: Do you wish to delete this User? This action cannot be reverted
+          Note: Do you wish to delete this Office? This action cannot be reverted
         </p>
       ),
       className: "custom-alert",
@@ -105,7 +105,7 @@ const OfficesTable = () => {
       label: "",
       type: "icon",
       leftIcon: "fa fa-eye",
-      classList: ["delete-color is-clickable is-size-5"],
+      classList: ["smart-efl-table-view-icon"],
       onClick: (data: any) => {
         openViewdetails(data);
       },
@@ -114,7 +114,7 @@ const OfficesTable = () => {
       label: "",
       type: "icon",
       leftIcon: " fa-pencil-square-o",
-      classList: ["delete-color is-clickable is-size-5"],
+      classList: ["smart-efl-table-edit-icon"],
       onClick: (data: any) => {
         viewEditForm(data["ID"]);
       },
@@ -122,8 +122,8 @@ const OfficesTable = () => {
     {
       label: "",
       type: "icon",
-      leftIcon: "fa fa-times",
-      classList: ["delete-color is-clickable is-size-5"],
+      leftIcon: "fa fa-trash",
+      classList: ["smart-efl-table-delete-icon"],
       onClick: (data: any) => {
         openDeleteModal(data["ID"]);
       },
@@ -138,7 +138,7 @@ const OfficesTable = () => {
     },
     {
       title: "State",
-      index: "state",
+      index: "state_name",
     },
     { title: "Pin Code", index: "pin_code" },
     {

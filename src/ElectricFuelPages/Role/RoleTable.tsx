@@ -90,7 +90,7 @@ const RoleTable = () => {
       label: "",
       type: "icon",
       leftIcon: " fa-pencil-square-o",
-      classList: ["delete-color is-clickable is-size-5"],
+      classList: ["smart-efl-table-edit-icon"],
       onClick: (data:any) => {
         viewEditForm(data["ID"]);
       },
@@ -99,7 +99,7 @@ const RoleTable = () => {
       label: "",
       type: "icon",
       leftIcon: "fa fa-times",
-      classList: ["delete-color is-clickable is-size-5"],
+      classList: ["smart-efl-table-delete-icon"],
       onClick: (data:any) => {
         openDeleteModal(data["ID"]);
         
