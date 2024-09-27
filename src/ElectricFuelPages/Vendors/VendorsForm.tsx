@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { SmartFormInterFace, SmartSoftButton, SmartSoftForm } from "soft_digi";
+import { SmartFormInterFace, SmartSoftButton, SmartSoftForm, SmartValid } from "soft_digi";
 import { ValidateFormNew } from 'soft_digi/dist/services/smartValidationService';
 import { VENDERS_URLS } from '../../api/UserUrls';
 import { post } from '../../services/smartApiService';
@@ -72,6 +72,17 @@ const VendorsForm:React.FC<HeaderProps > = ({loadTableData,dataIn}) => {
     { value: "2", label: "Test" },
     { value: "3", label: "test" },
   ];
+   const vendorFormValidations = {
+    hub_id: [SmartValid.required("Hub Id is Required")],
+    company: [SmartValid.required("Company is Required")],
+    name: [SmartValid.required("Name is Required")],
+   address: [SmartValid.required("Address is Required")],
+   gst_no: [SmartValid.required("GST No is Required")],
+   pan_no: [SmartValid.required("Pan No is Required")],
+    pin_code: [SmartValid.required("Pin Code is Required")],
+    code: [SmartValid.required("Code is Required")],
+    statee: [SmartValid.required("State is Required")],
+  };
   const formElements:SmartFormInterFace.SmartFormElementProps[] = [
     {
       type: "SELECT_BOX",
@@ -80,6 +91,7 @@ const VendorsForm:React.FC<HeaderProps > = ({loadTableData,dataIn}) => {
       element: {
         label: "Hub ID",
         isRequired:true,
+        validations: vendorFormValidations.hub_id,
         options: allHubs,
       },
     },
@@ -91,6 +103,7 @@ const VendorsForm:React.FC<HeaderProps > = ({loadTableData,dataIn}) => {
         label: "Code",
         isRequired: true,
         inputProps: { isFocussed: true },
+        validations: vendorFormValidations.code,
       },
     },
     {
@@ -101,6 +114,7 @@ const VendorsForm:React.FC<HeaderProps > = ({loadTableData,dataIn}) => {
         label: "Company",
         isRequired: true,
         inputProps: { isFocussed: true },
+        validations: vendorFormValidations.company,
       },
     },
     {
@@ -109,7 +123,7 @@ const VendorsForm:React.FC<HeaderProps > = ({loadTableData,dataIn}) => {
       name: "vendor_name",
       element: {
         label: "Name",
-     
+        validations: vendorFormValidations.name,
         isRequired: true,
         inputProps: { isFocussed: true },
       },
@@ -122,6 +136,7 @@ const VendorsForm:React.FC<HeaderProps > = ({loadTableData,dataIn}) => {
         label: "GST No.",
         isRequired: true,
         inputProps: { isFocussed: true },
+        validations: vendorFormValidations.gst_no,
       },
     },
     {
@@ -132,6 +147,7 @@ const VendorsForm:React.FC<HeaderProps > = ({loadTableData,dataIn}) => {
         label: "PAN No.",
         isRequired: true,
         inputProps: { isFocussed: true },
+        validations: vendorFormValidations.pan_no,
       },
     },
     {
@@ -142,6 +158,7 @@ const VendorsForm:React.FC<HeaderProps > = ({loadTableData,dataIn}) => {
         label: "Address-1",
         isRequired:true,
         max:"255",
+        validations: vendorFormValidations.address,
       },
     },
     {
@@ -152,6 +169,7 @@ const VendorsForm:React.FC<HeaderProps > = ({loadTableData,dataIn}) => {
         label: "Address-2",
         isRequired:true,
         max:"255",
+        validations: vendorFormValidations.address,
       },
     },
     {
@@ -161,6 +179,7 @@ const VendorsForm:React.FC<HeaderProps > = ({loadTableData,dataIn}) => {
       element: {
         label: "State",
         isRequired:true,
+        validations: vendorFormValidations.statee,
         options: allStats,
       },
     },
@@ -173,6 +192,7 @@ const VendorsForm:React.FC<HeaderProps > = ({loadTableData,dataIn}) => {
         // placeHolder: "City",
         isRequired: true,
         inputProps: { isFocussed: true },
+        validations: vendorFormValidations.pin_code,
       },
     },
   ];
