@@ -18,10 +18,10 @@ const HubsView: React.FC<HubsViewProps> = ({ hubData }) => {
     <div className="container">
       <table className="table is-bordered is-fullwidth">
         <tbody>
-          <tr>
+          {/* <tr>
             <th>S.NO</th>
             <td>{hubData.s_no}</td>
-          </tr>
+          </tr> */}
           <tr>
             <th>Hub Id</th>
             <td>{hubData.hub_id}</td>

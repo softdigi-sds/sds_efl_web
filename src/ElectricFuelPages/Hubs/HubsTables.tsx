@@ -103,7 +103,7 @@ const HubsTables = () => {
       label: "",
       type: "icon",
       leftIcon: "fa fa-eye",
-      classList: ["delete-color is-clickable is-size-5"],
+      classList: ["smart-efl-table-view-icon"],
       onClick: (data: any) => {
         openViewdetails(data);
       },
@@ -112,7 +112,7 @@ const HubsTables = () => {
       label: "",
       type: "icon",
       leftIcon: " fa-pencil-square-o",
-      classList: ["delete-color is-clickable is-size-5"],
+      classList: ["smart-efl-table-edit-icon"],
       onClick: (data: any) => {
         viewEditForm(data["ID"]);
       },
@@ -120,8 +120,8 @@ const HubsTables = () => {
     {
       label: "",
       type: "icon",
-      leftIcon: "fa fa-times",
-      classList: ["delete-color is-clickable is-size-5"],
+      leftIcon: "fa fa-trash",
+      classList: ["smart-efl-table-delete-icon"],
       onClick: (data: any) => {
         openDeleteModal(data["ID"]);
       },
@@ -139,12 +139,12 @@ const HubsTables = () => {
       index: "office_city",
       width:"10"
     },
-    { title: "Location", index: "hub_location", width:"15"},
+    { title: "Location", index: "hub_location",},
 
     {
       title: "Access Group",
       index: "sd_efl_office_id",
-      width:"10"
+    
     },
     { title: "State", index: "email" },
     {
