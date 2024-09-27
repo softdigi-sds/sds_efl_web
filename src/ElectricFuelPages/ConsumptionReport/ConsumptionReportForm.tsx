@@ -5,6 +5,7 @@ import { SmartSoftButton } from '../../core';
 import { sumOfArrayObjectsWithIndex } from '../../services/core/FilterService';
 import { showAlertAutoClose } from '../../services/notifyService';
 import { post } from '../../services/smartApiService';
+import { CONSUMPTION_URL } from '../../api/UserUrls';
 
 interface FormErrors {
     [key: string]: string | null;
@@ -24,8 +25,10 @@ const ConsumptionReportForm: React.FC<HeaderProps> = ({ loadTableData, date, hub
             hub_id: hub_id,
             date: date
         };
-        const subscription = post("users", _data).subscribe((response) => {
-            setFormData(response.data.users);
+        let URL=CONSUMPTION_URL.GET_ALL_CALENDER_GET_ONE
+        const subscription = post(URL, _data).subscribe((response) => {
+            setFormData(response.data);
+            console.log("response",response.data);
         });
         return () => {
             subscription.unsubscribe();
@@ -46,8 +49,8 @@ const ConsumptionReportForm: React.FC<HeaderProps> = ({ loadTableData, date, hub
     ]
 
     useEffect(() => {
-        //loadData();
-        setFormData(dummy_data);
+        loadData();
+        //setFormData(dummy_data);
     }, [date, hub_id]);
 
     /**
@@ -89,12 +92,12 @@ const ConsumptionReportForm: React.FC<HeaderProps> = ({ loadTableData, date, hub
         { title: "S.NO", index: "s_no", type: "sno", width: "5" },
         {
             title: "Vendor Company Name",
-            index: "name",
+            index: "vendor_company",
             width: "70"
         },
         {
             title: "Vehicles Count",
-            index: "ename",
+            index: "count",
             width: "25",
             valueFunction:(item)=>{
               return  <SmartSoftInput value={item.count} onChange={(value)=>updateVehicleCount(item.id,value)}/>
