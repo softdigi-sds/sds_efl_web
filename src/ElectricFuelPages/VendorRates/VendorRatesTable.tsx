@@ -136,7 +136,7 @@ const VendorRatesTable = () => {
     },
     {
       title: "Company",
-      index: "lastName",
+      index: "vendor_company",
     },
     { title: "Consumption Type", index: "unit_rate_type" },
     { title: "Parking Type", index: "parking_rate_type" },
