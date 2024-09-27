@@ -98,7 +98,7 @@ const RoleTable = () => {
     {
       label: "",
       type: "icon",
-      leftIcon: "fa fa-times",
+      leftIcon: "fa fa-trash",
       classList: ["smart-efl-table-delete-icon"],
       onClick: (data:any) => {
         openDeleteModal(data["ID"]);
@@ -107,14 +107,32 @@ const RoleTable = () => {
     },
   ];
 
-  const employe_data = () =>{
+  const employe_data = (data:any) =>{
     return(
         <>
-        {/* {.lastName} */}
+        <div className="">
+          {data.label}
+        </div>
         </>
     )
   }
 
+  
+  
+  const UserList = (users:any) => {
+    return (
+      <div className='is-flex '>
+        {/* {data.users.map((user) => (
+          <div key={user.value} className='card m-2 p-2'>
+            {user.label}
+          </div>
+        ))} */}
+      </div>
+    );
+  };
+  
+  
+  
   const columns: SmartTableNewInterface.SmartTableNewColumnConfig[] = [
     { title: "S.NO", index: "s_no", type: "sno" ,width:"5"},
     {
@@ -125,7 +143,7 @@ const RoleTable = () => {
     {
       title: "Users",
       index: "users",
-      valueFunction:employe_data,
+      valueFunction:UserList,
       width: "20",
     },
     {
