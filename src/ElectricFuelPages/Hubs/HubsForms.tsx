@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { SmartFormInterface, SmartSoftButton, SmartSoftForm } from '../../core';
+import { SmartFormInterFace, SmartSoftButton, SmartSoftForm, SmartValid } from "soft_digi";
 import SmartHeader from '../../core/general/SmartHeader';
 import { office_get_all_select, role_get_select } from '../../services/site/SelectBoxServices';
 import { ValidateFormNew } from 'soft_digi/dist/services/smartValidationService';
@@ -76,7 +76,15 @@ const HubsForms:React.FC<HeaderProps> = ({loadTableData,dataIn}) => {
     { value: "2", label: "Test" },
     { value: "3", label: "test" },
   ];
-  const formElements:SmartFormInterface.SmartFormElementProps[] = [
+  const hubFormValidations = {
+    city: [SmartValid.required("City is Required")],
+    hub_id: [SmartValid.required("Hub Id is Required")],
+    role: [SmartValid.required("Role is Required")],
+    hub_name: [SmartValid.required("Hub Name is Required")],
+    locations: [SmartValid.required("Location is Required")],
+    pin_code: [SmartValid.required("Pin Code is Required")],
+  };
+  const formElements:SmartFormInterFace.SmartFormElementProps[] = [
     {
       type: "SELECT_BOX",
       width: "6",
@@ -85,6 +93,7 @@ const HubsForms:React.FC<HeaderProps> = ({loadTableData,dataIn}) => {
         label: "Office City",
         isRequired:true,
         options: allOffice,
+        validations: hubFormValidations.city,
       },
     },
     {
@@ -95,6 +104,7 @@ const HubsForms:React.FC<HeaderProps> = ({loadTableData,dataIn}) => {
         label: "Hub ID",
         isRequired: true,
         inputProps: { isFocussed: true },
+        validations: hubFormValidations.hub_id,
       },
     },
   
@@ -106,6 +116,7 @@ const HubsForms:React.FC<HeaderProps> = ({loadTableData,dataIn}) => {
         label: "Access Role",
         isRequired:true,
         options: allRole,
+        validations: hubFormValidations.role,
       },
     },
     {
@@ -116,6 +127,7 @@ const HubsForms:React.FC<HeaderProps> = ({loadTableData,dataIn}) => {
         label: "Hub Name",
         isRequired: true,
         inputProps: { isFocussed: true },
+        validations: hubFormValidations.hub_name,
       },
     },
     {
@@ -126,6 +138,7 @@ const HubsForms:React.FC<HeaderProps> = ({loadTableData,dataIn}) => {
         label: "Location",
         isRequired:true,
         max:"255",
+        validations: hubFormValidations.locations,
       },
     },
   ];
