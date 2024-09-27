@@ -76,7 +76,9 @@ const HubsForms = () => {
     },
   ];
   return (
-    <><div className=""><SmartHeader title={"Add Hubs Form"} /></div>
+    <><div className="">
+      {/* <SmartHeader title={"Add Hubs Form"} /> */}
+      </div>
        <SmartSoftForm
         formData={formData}
         setFormData={handleInputChange}

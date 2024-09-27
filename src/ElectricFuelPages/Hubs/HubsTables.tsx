@@ -23,6 +23,7 @@ const HubsTables = () => {
 
   const openOfficesForm = (width: number) => {
     let options = {
+      title: "Hubs Addition Form",
       content: <HubsForms />,
       width: 60,
     };

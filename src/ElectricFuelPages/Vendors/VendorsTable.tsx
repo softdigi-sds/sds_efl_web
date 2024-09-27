@@ -22,6 +22,7 @@ const VendorsTable = () => {
 
   const openOfficesForm = (width: number) => {
     let options = {
+      title: "Vendors Addition Form",
       content: <VendorsForm/>,
       width: 60,
     };

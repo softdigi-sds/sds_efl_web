@@ -30,6 +30,7 @@ const RoleTable = () => {
 
   const openForm =(data:any)=>{
     let options = {
+      title: "Role Addition Form",
       content: <RoleForm loadTableData={loadTableData} dataIn={data}/>,
       width:40
   }

@@ -175,7 +175,9 @@ const VendorRatesForms = () => {
     },
   ];
   return (
-    <><div className=""><SmartHeader title={"Vendor Rates Form"} /></div>
+    <><div className="">
+      {/* <SmartHeader title={"Vendor Rates Form"} /> */}
+      </div>
        <SmartSoftForm
         formData={formData}
         setFormData={handleInputChange}
