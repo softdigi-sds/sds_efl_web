@@ -34,10 +34,7 @@ const HubsTables = () => {
     };
     openModal(options);
   };
-  const handleDelete = (rowData: any) => {
-
-    console.log('Delete action for row:', rowData);
-  }
+ 
   
   const viewEditForm = (id: any) => { 
     const subscription = post(

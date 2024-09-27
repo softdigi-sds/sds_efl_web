@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react'
-import { get } from '../../services/smartApiService';
+import { get, post } from '../../services/smartApiService';
 import { useSiteContext } from '../../contexts/SiteProvider';
 import VendorsForm from './VendorsForm';
-import { SmartTable, SmartTableNewInterface } from 'soft_digi';
+import { SmartAlert, SmartLoaderInterface, SmartTable, SmartTableNewInterface } from 'soft_digi';
 import { VENDERS_URLS } from '../../api/UserUrls';
+import { showAlertAutoClose } from '../../services/notifyService';
 
 const VendorsTable = () => {
   const [data, setData] = useState([]);
@@ -24,18 +25,72 @@ const VendorsTable = () => {
     loadTableData();
   }, []);
 
-  const openOfficesForm = (width: number) => {
+  const openOfficesForm = (data:any) => {
     let options = {
       title: "Vendors Addition Form",
-      content: <VendorsForm/>,
+      content: <VendorsForm loadTableData={loadTableData} dataIn={data}/>,
       width: 60,
     };
     openModal(options);
   };
-  const handleDelete = (rowData: any) => {
+  const viewEditForm = (id: any) => { 
+    const subscription = post(
+      VENDERS_URLS.GET_ONE,
+      { id: id }
+    ).subscribe((response: any) => {
+      openOfficesForm(response.data);
+    });
+    return () => {
+      subscription.unsubscribe();
+    };
+  };
 
-    console.log('Delete action for row:', rowData);
-  }
+  const deleteData = (id: any) => {
+    const subscription = post(
+      VENDERS_URLS.DELETE,
+      { id: id }
+    ).subscribe((response) => {
+      showAlertAutoClose("Deleted Successfully...", "success");
+      closeModal();
+      loadTableData();
+      // setLoading(false);
+    });
+    return () => {
+      subscription.unsubscribe();
+    };
+  };
+
+  const openDeleteModal = (id: any) => {
+    let alertProps: SmartLoaderInterface.SmartAlertInterface = {
+      title: (
+        <span className="has-text-danger">
+          <i className="fa fa-check"></i> Vendors Deletion!
+        </span>
+      ),
+      alertFunction: (option) => {
+        if (option == "yes") {
+          deleteData(id);
+          SmartAlert.hide();
+        }
+      },
+      content: (
+        <p>
+          Note: Do you wish to delete this Vendors? This action cannot be reverted
+        </p>
+      ),
+      className: "custom-alert",
+    };
+
+    SmartAlert.show(alertProps);
+  };
+  // const openViewdetails = (hubsdetail: any) => {
+  //   let options = {
+  //     title: "Hub Details",
+  //     content: <HubsView hubData={hubsdetail} />,
+  //     width: 60,
+  //   };
+  //   openModal(options);
+  // };
 
   const buttons = [
     {
@@ -43,40 +98,48 @@ const VendorsTable = () => {
       type: "icon",
       leftIcon: "fa fa-eye",
       classList: ["smart-efl-table-view-icon"],
-      onClick: handleDelete
+      onClick: (data: any) => {
+        viewEditForm(data["ID"]);
+      },
     },
     {
       label: "",
       type: "icon",
       leftIcon: " fa-pencil-square-o",
       classList: ["smart-efl-table-edit-icon"],
-      onClick: handleDelete
+      onClick: (data: any) => {
+        viewEditForm(data["ID"]);
+      },
     },
     {
       label: "",
       type: "icon",
       leftIcon: "fa fa-times",
       classList: ["smart-efl-table-delete-icon"],
-      onClick: handleDelete
+      onClick: (data: any) => {
+        openDeleteModal(data["ID"]);
+      },
     },
   ];
   const columns: SmartTableNewInterface.SmartTableNewColumnConfig[] = [
     { title: "S.NO", index: "s_no", type: "sno" },
     {
       title: "Hun Id",
-      index: "firstName",
+      index: "hub_id",
     },
     {
       title: "Code",
-      index: "lastName",
+      index: "vendor_code", 
+
+
     },
-    { title: "Company", index: "age" },
+    { title: "Company", index: "vendor_company" },
     {
       title: "Name",
-      index: "gender",
+      index: "vendor_name",
     },
-    { title: "GST No", index: "email" },
-    { title: "Status", index: "email" },
+    { title: "GST No", index: "gst_no" },
+    { title: "Status", index: "status" },
     {
       title: "Action",
       index: "action",
