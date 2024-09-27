@@ -11,6 +11,7 @@ import { OFFICE_URLS } from "../../api/UserUrls";
 import { useSiteContext } from "../../contexts/SiteProvider";
 import { showAlertAutoClose } from "../../services/notifyService";
 import OfficesForm from "./OfficesForm";
+import OfficeTableView from "./OfficeTableView";
 
 const OfficesTable = () => {
   const [data, setData] = useState([]);
@@ -92,13 +93,24 @@ const OfficesTable = () => {
       subscription.unsubscribe();
     };
   };
+  const openViewdetails = (office: any) => {
+    let options = {
+      title: "Office Details",
+      content: <OfficeTableView office={office} />,
+      width: 60,
+    };
+    openModal(options);
+  };
+  
   const buttons = [
     {
       label: "",
       type: "icon",
       leftIcon: "fa fa-eye",
       classList: ["delete-color is-clickable is-size-5"],
-      onClick: handleDelete,
+      onClick: (data: any) => {
+        openViewdetails(data);
+      },
     },
     {
       label: "",
