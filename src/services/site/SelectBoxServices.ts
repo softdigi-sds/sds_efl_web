@@ -17,15 +17,13 @@ const admin_generic_select = (url: string, call_back: any) => {
     subscription.unsubscribe();
   };
 };
-const admin_generic_select_post = (
-  url: string,
-  hub_id: any,
-  call_back: any
-) => {
+const admin_generic_select_post = (url: string, _data: any, call_back: any) => {
   const handleError = (errorMessage: any) => {};
-  const subscription = post(url, hub_id, {handleError:handleError}).subscribe((response) => {
-    call_back(response.data);
-  });
+  const subscription = post(url, _data, { handleError: handleError }).subscribe(
+    (response) => {
+      call_back(response.data);
+    }
+  );
   return () => {
     subscription.unsubscribe();
   };
@@ -61,13 +59,17 @@ const vendors_get_all_select = (call_back: any) => {
   let url = VENDERS_URLS.GET_ALL_SELECT;
   admin_generic_select(url, call_back);
 };
-const company_get_all_select = (call_back: any,hub_id:any) => {
+const company_get_all_select = (hub_id: any, call_back: any) => {
   let url = VENDERS_URLS.GET_ALL_SELECT;
-  admin_generic_select_post(url, call_back,hub_id);
+  admin_generic_select_post(url, { hub_id: hub_id }, call_back);
 };
 
-export { admin_states_select, hubs_get_all_select, role_get_select, user_get_select,office_get_all_select ,
+export {
+  admin_states_select,
+  hubs_get_all_select,
+  role_get_select,
+  user_get_select,
+  office_get_all_select,
   vendors_get_all_select,
-  company_get_all_select
+  company_get_all_select,
 };
-

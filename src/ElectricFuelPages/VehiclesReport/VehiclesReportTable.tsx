@@ -15,40 +15,52 @@ const VehiclesReportTable = () => {
 
   /**
    *  loads the calander data for month change or hub chnage
-   * 
-   * @returns 
+   *
+   * @returns
    */
-  const loadCalenderData = () => {   
+  const loadCalenderData = () => {
+    //console.log("year", currentMonth?.month());
     let _data = {
-      hub_id:hub,
-      year:currentMonth?.clone().year(),
-      month:currentMonth?.clone().month(),
+      hub_id: hub,
+      year: currentMonth?.clone().year(),
+      month: currentMonth?.clone().format("MM"),
     };
-    let URL=VEHICLES_URL.GET_ALL_CALENDER
-    const subscription = post( URL,_data).subscribe((response) => {
-      setData(response.data);    
+    let URL = VEHICLES_URL.GET_ALL_CALENDER;
+    const subscription = post(URL, _data).subscribe((response) => {
+      setData(response.data);
     });
     return () => {
       subscription.unsubscribe();
     };
   };
 
-  useEffect(() => {   
-   hubs_get_all_select(setHubs);
+  useEffect(() => {
+    hubs_get_all_select(setHubs);
   }, []);
 
+  useEffect(() => {
+    if (hub) {
+      loadCalenderData();
+    }
+  }, [currentMonth, hub]);
 
-  useEffect(() => {   
-    loadCalenderData();
-  }, [currentMonth,hub]);
-
-  const openForm =(date:any)=>{
+  const openForm = (date: any) => {
     let options = {
-      title: <div>Hub: {hub?.label}  Date : {date}</div>,
-      content: <VehicleReportFrom loadTableData={loadCalenderData} date={date} hub_id={hub} />
-  }
-  openModal(options);
-}
+      title: (
+        <div>
+          Hub: {hub?.label} Date : {date}
+        </div>
+      ),
+      content: (
+        <VehicleReportFrom
+          loadTableData={loadCalenderData}
+          date={date}
+          hub_id={hub}
+        />
+      ),
+    };
+    openModal(options);
+  };
 
   const consumption: any[] = [
     {
@@ -66,26 +78,33 @@ const VehiclesReportTable = () => {
     // Add more events
   ];
 
-
   // ** meeting display boss
   const content = (date: any) => {
     const count_check = data?.find((item) => item.date === date);
-    return <div className="calender-div">
-      {count_check && count_check.count > 0 ?
-        <div>{count_check.count}</div> :
-        <div><i onClick={()=>openForm(date)} className="fa fa-plus"></i></div>}
-    </div>
+    return (
+      <div className="calender-div">
+        {count_check && count_check.count > 0 ? (
+          <div>{count_check.count}</div>
+        ) : (
+          <div>
+            <i onClick={() => openForm(date)} className="fa fa-plus"></i>
+          </div>
+        )}
+      </div>
+    );
   };
-
-
-
 
   const titleDisp = () => {
     return (
       <div className="is-flex is-justify-content-space-between	is-align-items-center">
         <div className="is-size-4 site-title"> Vehicles Report</div>
         <div className="">
-          <SmartSoftSelect options={hubs} placeHolder="Select hub" value={hub} onChange={(value) => setHub(value)} />
+          <SmartSoftSelect
+            options={hubs}
+            placeHolder="Select hub"
+            value={hub}
+            onChange={(value) => setHub(value)}
+          />
         </div>
       </div>
     );
@@ -98,7 +117,7 @@ const VehiclesReportTable = () => {
         title={titleDisp()}
         setMonth={setCurrentMonth}
         className="sd_efl-calender"
-      />    
+      />
     </>
   );
 };
