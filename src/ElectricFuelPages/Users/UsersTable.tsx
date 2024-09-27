@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import { get, post } from '../../services/smartApiService';
-import { SmartAlert, SmartLoaderInterface, SmartSoftTable, SmartTableNewInterface } from '../../core';
 import UsersForm from './UsersForm';
 import { useSiteContext } from '../../contexts/SiteProvider';
 import { USER_URLS } from '../../api/AdminUrls';
 import { showAlertAutoClose } from '../../services/notifyService';
+import { SmartAlert, SmartLoaderInterface, SmartTable, SmartTableNewInterface } from 'soft_digi';
 
 const UsersTable = () => {
     const [data, setData] = useState([]);
@@ -190,7 +190,7 @@ const UsersTable = () => {
     return (
       <>
       <div className="smart-elf-table">
-        <SmartSoftTable
+        <SmartTable
           columns={columns}
           data={data}
           tableTop={tableTop}

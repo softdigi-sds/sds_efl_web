@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import { get, post } from '../../services/smartApiService';
-import { SmartAlert, SmartLoaderInterface, SmartSoftTable, SmartTableNewInterface } from '../../core';
 import { ROLE_URLS } from '../../api/AdminUrls';
 import RoleForm from './RoleForm';
 import { useSiteContext } from '../../contexts/SiteProvider';
 import { showAlertAutoClose } from '../../services/notifyService';
 import { user_get_select } from '../../services/site/SelectBoxServices';
+import { SmartAlert, SmartLoaderInterface, SmartTable, SmartTableNewInterface } from 'soft_digi';
 
 const RoleTable = () => {
     const [data, setData] = useState([]);
@@ -180,7 +180,7 @@ const RoleTable = () => {
   return (
     <>
     <div className="smart-elf-table">
-      <SmartSoftTable
+      <SmartTable
         columns={columns}
         data={data}
         tableTop={tableTop}

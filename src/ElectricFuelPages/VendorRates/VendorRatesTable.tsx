@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
-import { SmartSoftTable, SmartTableNewInterface } from '../../core';
 import { get } from '../../services/smartApiService';
 import { useSiteContext } from '../../contexts/SiteProvider';
 import VendorRatesForms from './VendorRatesForms';
+import { SmartTable, SmartTableNewInterface } from 'soft_digi';
 
 const VendorRatesTable = () => {
   const [data, setData] = useState([]);
@@ -110,7 +110,7 @@ const VendorRatesTable = () => {
   return (
     <>
     <div className="smart-elf-table">
-      <SmartSoftTable
+      <SmartTable
         columns={columns}
         data={data}
         tableTop={tableTop}
