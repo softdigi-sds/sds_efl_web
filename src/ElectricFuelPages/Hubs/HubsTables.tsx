@@ -1,16 +1,21 @@
 import React, { useEffect, useState } from 'react'
 import { SmartSoftTable, SmartTableNewInterface } from '../../core';
-import { get } from '../../services/smartApiService';
+import { get, post } from '../../services/smartApiService';
 import HubsForms from './HubsForms';
 import { useSiteContext } from '../../contexts/SiteProvider';
+import { HUBS_URLS } from '../../api/UserUrls';
+import { showAlertAutoClose } from '../../services/notifyService';
+import { SmartAlert, SmartLoaderInterface } from 'soft_digi';
+import HubsView from './HubsView';
 
 const HubsTables = () => {
   const [data, setData] = useState([]);
   const { openModal, closeModal } = useSiteContext();
 
-  const loadTableData = () => {   
-    const subscription = get("users").subscribe((response) => {
-      setData(response.data.users);    
+  const loadTableData = () => {  
+    let URL = HUBS_URLS.GET_ALL; 
+    const subscription = get(URL).subscribe((response) => {
+      setData(response.data);    
     });
     return () => {
       subscription.unsubscribe();
@@ -21,10 +26,10 @@ const HubsTables = () => {
     loadTableData();
   }, []);
 
-  const openOfficesForm = (width: number) => {
+  const openOfficesForm = (data:any) => {
     let options = {
       title: "Hubs Addition Form",
-      content: <HubsForms />,
+      content: <HubsForms loadTableData={loadTableData} dataIn={data}/>,
       width: 60,
     };
     openModal(options);
@@ -33,44 +38,113 @@ const HubsTables = () => {
 
     console.log('Delete action for row:', rowData);
   }
+  
+  const viewEditForm = (id: any) => { 
+    const subscription = post(
+      HUBS_URLS.GET_ONE,
+      { id: id }
+    ).subscribe((response: any) => {
+      openOfficesForm(response.data);
+    });
+    return () => {
+      subscription.unsubscribe();
+    };
+  };
+
+  const deleteData = (id: any) => {
+    const subscription = post(
+      HUBS_URLS.DELETE,
+      { id: id }
+    ).subscribe((response) => {
+      showAlertAutoClose("Deleted Successfully...", "success");
+      closeModal();
+      loadTableData();
+      // setLoading(false);
+    });
+    return () => {
+      subscription.unsubscribe();
+    };
+  };
+
+  const openDeleteModal = (id: any) => {
+    let alertProps: SmartLoaderInterface.SmartAlertInterface = {
+      title: (
+        <span className="has-text-danger">
+          <i className="fa fa-check"></i> Hub Deletion!
+        </span>
+      ),
+      alertFunction: (option) => {
+        if (option == "yes") {
+          deleteData(id);
+          SmartAlert.hide();
+        }
+      },
+      content: (
+        <p>
+          Note: Do you wish to delete this Hub? This action cannot be reverted
+        </p>
+      ),
+      className: "custom-alert",
+    };
+
+    SmartAlert.show(alertProps);
+  };
+  const openViewdetails = (hubsdetail: any) => {
+    let options = {
+      title: "Hub Details",
+      content: <HubsView hubData={hubsdetail} />,
+      width: 60,
+    };
+    openModal(options);
+  };
 
   const buttons = [
     {
       label: "",
       type: "icon",
       leftIcon: "fa fa-eye",
-      classList: ["delete-color is-clickable is-size-5"],
-      onClick: handleDelete
+      classList: ["smart-efl-table-view-icon"],
+      onClick: (data: any) => {
+        openViewdetails(data);
+      },
     },
     {
       label: "",
       type: "icon",
       leftIcon: " fa-pencil-square-o",
-      classList: ["delete-color is-clickable is-size-5"],
-      onClick: handleDelete
+      classList: ["smart-efl-table-edit-icon"],
+      onClick: (data: any) => {
+        viewEditForm(data["ID"]);
+      },
     },
     {
       label: "",
       type: "icon",
-      leftIcon: "fa fa-times",
-      classList: ["delete-color is-clickable is-size-5"],
-      onClick: handleDelete
+      leftIcon: "fa fa-trash",
+      classList: ["smart-efl-table-delete-icon"],
+      onClick: (data: any) => {
+        openDeleteModal(data["ID"]);
+      },
     },
   ];
   const columns: SmartTableNewInterface.SmartTableNewColumnConfig[] = [
-    { title: "S.NO", index: "s_no", type: "sno" },
+    { title: "S.NO", index: "s_no", type: "sno", width:"5" },
     {
-      title: "Hun Id",
-      index: "firstName",
+      title: "Hub Id",
+      index: "hub_id",
+      width:"10"
     },
     {
       title: "City",
-      index: "lastName",
+      index: "office_city",
+      width:"10"
     },
-    { title: "Location", index: "age" },
+    { title: "Location", index: "hub_location",},
+
     {
       title: "Access Group",
-      index: "gender",
+      index: "sd_efl_office_id",
+    
     },
     { title: "State", index: "email" },
     {

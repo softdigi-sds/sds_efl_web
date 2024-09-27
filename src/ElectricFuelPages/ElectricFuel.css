@@ -1,0 +1,300 @@
+/* Table Layout Options */
+
+  
+  .smart-efl-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 1em;
+ 
+    border-radius: 12px;
+    overflow: hidden;
+
+    background: rgba(255, 255, 255, 0.3) !important; 
+    /* background: url("../assets/images/glass-ef.jpg"); */
+  
+    backdrop-filter: blur(10px) !important; /* Apply the frosted glass effect */
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    
+  }
+  
+  .smart-efl-table thead {
+    /* background-color:#fff4 ; */
+   /* background-color: rgba(0, 152, 121, 1); */
+   background: rgb(204,238,220);
+
+    font-weight: bold;
+    font-size: 14px;
+    border-bottom: 2px solid rgba(0, 0, 0, 0.8);
+   
+  }
+  .smart-efl-table thead tr th{
+    color:rgb(35, 225, 130) !important;
+    font-weight: bold;
+    font-family: roboto;
+  }
+  
+  /* .smart-efl-table th, .smart-efl-table td {
+    padding: 12px 15px;
+  } */
+  
+  .smart-efl-table tbody tr {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    font-size: 14px;
+   color: black;
+   background-color: rgb(225,243,232);
+   
+  }
+   .smart-efl-table tbody tr:hover{
+    background-color: #3dca88 !important;
+    color: white !important;
+   }
+
+  .smart-efl-table tbody tr:nth-of-type(even) {
+    /* background-color: rgba(24, 23, 23, 0.1); */
+    font-size: 14px;
+    background-color: rgb(248,248,248);
+  }
+  
+  .smart-efl-table tbody tr:last-of-type {
+    border-bottom: 2px solid rgba(0, 152, 121, 0.8);
+  }
+
+  .smart-efl-table-view-icon{
+    font-size: 1rem;
+   color:rgb(35, 225, 130);
+    cursor: pointer;
+
+  }
+  .smart-efl-table tbody tr:hover .smart-efl-table-view-icon{
+    color:rgb(53, 255, 70);
+
+  }
+  .smart-efl-table-edit-icon{
+    font-size: 1rem;
+   color: #00dd;
+    cursor: pointer;
+  }
+  .smart-efl-table tbody tr:hover .smart-efl-table-edit-icon{
+    color: rgb(0, 0, 255);
+  }
+  .smart-efl-table-delete-icon{
+    font-size: 1rem;
+   color: #ff1d58;
+    cursor: pointer;
+  }
+  .smart-efl-table tbody tr:hover .smart-efl-table-delete-icon{
+    color: #ff0447;
+  }
+  
+  
+  
+
+
+
+.our-services-container {
+    background-color: #242430;
+    min-height: 100vh;
+    padding: 3rem;
+}
+
+.our-services-header-text {
+    color: white;
+    font-size: 2.3rem;
+    text-align: center;
+    /* font-weight: 600; */
+    font-family: roboto;
+    margin-bottom: 20px;
+}
+
+.our-services-header-text span {
+    color: #00a85a;
+}
+
+.our-services-card-header-bar {
+    width: 60px;
+    height: 5px;
+    background-color: #00a85a;
+    margin-top: 3px;
+    transition: transform 0.9s ease;
+}
+
+.our-services-card-header {
+    font-size: 1.3rem;
+    font-weight: 400;
+    font-family: roboto;
+    color: #000;
+    margin-top: 20px;
+}
+
+.our-services-card-body {
+    background-color: #fff;
+    padding: 1.2rem;
+    cursor: pointer;
+    min-height: 420px;
+
+}
+
+.our-services-card-body .images img {
+    transform: scale(1);
+    transition: transform 0.3s ease;
+}
+
+.our-services-card-body .images:hover img {
+    transform: scale(1.1);
+
+}
+
+.our-services-card-content {
+    font-weight: 400px;
+    font-size: 14px;
+    color: #9b9b9b;
+    padding: 0px 0px 0px 6px;
+    margin: 20px 0;
+    font-family: Inter;
+}
+
+.eletric-home-page-slider {
+    min-height: 39.5rem;
+    background-image: url('../assets/images/Eletric/services-bg.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.smart-customer-home-page-details {
+    padding-left: 135px;
+    padding-top: 180px;
+
+}
+
+.eletric-home-page-words {
+    color: #ad1c53;
+}
+
+.smart-customer-home-page-details-one {
+    float: none;
+    list-style: none;
+    width: 1349px;
+    z-index: 0;
+    display: none;
+}
+
+.smart-eletric-mobile-content {
+    padding: 80px 0px 80px 0px;
+}
+
+.smart-electric-app-para {
+    color: #777;
+    line-height: 1.6;
+    padding: 10px 0px 0px 18px;
+}
+
+.smart-electric-app-para-two {
+    overflow: hidden;
+    padding: 10px 0px 0px 40px;
+}
+
+.smart-electric-app-para-two li {
+    position: relative;
+}
+
+.smart-electric-app-para-two li:after {
+    content: '\f101 ';
+    font-family: 'FontAwesome';
+    position: absolute;
+    left: 0px;
+    color: #a6134b;
+    font-size: 16px;
+    top: 2px;
+}
+
+.smart-electric-app-para-two li {
+    color: #999;
+    padding: 4px 17px;
+    display: block;
+    font-size: 14px;
+}
+.smart-electric-app-para-two h6{
+    color: #333;
+padding: 20px 0px 0px 18px;
+
+}
+.smart-electric-our-mission{
+    background-color: #00a85a;
+    background-size: cover;
+    padding: 30px 0px 0px 0px;
+}
+.smart-electric-vaichele-cont{
+    padding: 60px 0px 100px 0px;
+    margin: 0px;
+    overflow: hidden;
+    background-color: #eaefe8;
+}
+.smart-electric-fuel-vichele-con{
+    font-size: 36px;
+    font-weight: 400;
+    color: #333;
+    position: relative;
+    text-align: center;
+    padding: 10px 0px 10px 0px;
+    margin-bottom: 40px;
+    line-height: 1.2;
+}
+.smart-elecric-vichele-card{
+    padding: 60px 0px 0px 0px;
+    margin: 0px;
+}
+.smart-elecric-vichele-card h2 {
+    padding: 0px;
+    color: #ad1c53;
+    font-size: 18px;
+    margin: 0px;
+    font-weight: 400;
+}
+.smart-elecric-vichele-card  h2 span {
+    background-color: #fff;
+    padding: 10px 10px;
+    color: #333;
+}
+.smart-elecric-vichele-card p {
+    padding: 20px 0px 0px 0px;
+    font-size: 14px;
+    margin: 0px;
+}
+.smart-customer-home-page-details {
+    position: absolute;
+    top: 40%;
+    left: 20px;
+    transform: translateY(-50%);
+    z-index: 2; 
+  }
+  
+  .customer-home-side-images {
+    position: relative;
+  }
+  
+  .customer-home-right-image img {
+    width: 100%;
+    height: auto;
+    object-fit: cover; 
+  }
+  
+  .smart-image-home-slider {
+    position: relative;
+  }
+  
+  .is-size-2 h2 {
+    font-size: 2rem;
+  }
+  
+  .eletric-home-page-words {
+    font-weight: bold;
+    font-size: 2rem;
+  }
+  
+  .smart-home-slider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  

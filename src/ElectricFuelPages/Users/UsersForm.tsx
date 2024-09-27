@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { SmartFormInterFace, SmartSoftButton, SmartSoftForm } from "soft_digi";
+import { SmartFormInterFace, SmartSoftButton, SmartSoftForm, SmartValid } from "soft_digi";
 import { USER_URLS } from '../../api/AdminUrls';
 import { useSiteContext } from '../../contexts/SiteProvider';
-import { SmartValid, ValidateFormNew } from '../../core/services/smartValidationService';
+import { ValidateFormNew } from '../../core/services/smartValidationService';
 import { showAlertAutoClose } from '../../services/notifyService';
 import { ALLOW_NUMERIC } from '../../services/PatternSerivce';
 import { role_get_select } from '../../services/site/SelectBoxServices';
@@ -108,6 +108,7 @@ const UsersForm:React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
         placeHolder: 'Password',
         // inputType: "BORDER_LABEL",
         // leftIcon: "fa fa-envelope-square",
+        validations: loginFormValidations.password,
       },
     },
     {
@@ -145,24 +146,24 @@ const UsersForm:React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
        
       },
     },
-    {
-      type: "FILE",
-      width: "12",
-      name: "profile_img",
-      element: {
-        placeHolder: 
-        (
-          <p>
-           Upload Image <span className="smart-error">*</span>
-          </p>
-        ),
-        fileNameEnable: false,
-        leftIcon: "fa fa-cloud-upload",
-        isMulti: true,
-        isRequired: true,
-        filePreview: true,
-      },
-    },
+    // {
+    //   type: "FILE",
+    //   width: "12",
+    //   name: "profile_img",
+    //   element: {
+    //     placeHolder: 
+    //     (
+    //       <p>
+    //        Upload Image <span className="smart-error">*</span>
+    //       </p>
+    //     ),
+    //     fileNameEnable: false,
+    //     leftIcon: "fa fa-cloud-upload",
+    //     isMulti: true,
+    //     isRequired: true,
+    //     filePreview: true,
+    //   },
+    // },
   ];
   return (
     <><div className="">

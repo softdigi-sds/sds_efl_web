@@ -38,21 +38,21 @@ const VendorsTable = () => {
       label: "",
       type: "icon",
       leftIcon: "fa fa-eye",
-      classList: ["delete-color is-clickable is-size-5"],
+      classList: ["smart-efl-table-view-icon"],
       onClick: handleDelete
     },
     {
       label: "",
       type: "icon",
       leftIcon: " fa-pencil-square-o",
-      classList: ["delete-color is-clickable is-size-5"],
+      classList: ["smart-efl-table-edit-icon"],
       onClick: handleDelete
     },
     {
       label: "",
       type: "icon",
       leftIcon: "fa fa-times",
-      classList: ["delete-color is-clickable is-size-5"],
+      classList: ["smart-efl-table-delete-icon"],
       onClick: handleDelete
     },
   ];
