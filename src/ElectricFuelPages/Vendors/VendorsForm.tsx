@@ -78,7 +78,7 @@ const VendorsForm:React.FC<HeaderProps > = ({loadTableData,dataIn}) => {
       width: "6",
       name: "sd_hub_id",
       element: {
-        label: "Select Hub ID",
+        label: "Hub ID",
         isRequired:true,
         options: allHubs,
       },
