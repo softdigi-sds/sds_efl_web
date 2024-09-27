@@ -32,6 +32,7 @@ const VENDERS_URLS = {
     UPDATE: "/vendors/update",
     GET_ONE: "/vendors/get_one",
     DELETE:"/vendors/delete_one",
+ GET_ALL_SELECT:"/vendors/get_all_select"
     
 };
 const VENDER_RATE_URLS = {
