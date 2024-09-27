@@ -5,6 +5,7 @@ import { useSiteContext } from '../../contexts/SiteProvider';
 import { showAlertAutoClose } from '../../services/notifyService';
 import { get, post } from '../../services/smartApiService';
 import UsersForm from './UsersForm';
+import UsersTableView from './UsersTableView';
 
 const UsersTable = () => {
     const [data, setData] = useState([]);
@@ -17,7 +18,7 @@ const UsersTable = () => {
       });
       return () => {
         subscription.unsubscribe();
-      };
+      }; 
     };
   
     useEffect(() => {   
@@ -83,13 +84,24 @@ const UsersTable = () => {
       };
     };
   
+    const openViewDetails = (userData: any) => {
+      let options = {
+        title: "User Details",
+        content: <UsersTableView userData={userData} />,
+        width: 60,
+      };
+      openModal(options);
+    };
+    
     const buttons = [
       {
         label: "",
         type: "icon",
         leftIcon: "fa fa-eye",
         classList: ["smart-efl-table-view-icon"],
-        onClick: handleDelete
+        onClick: (data: any) => {
+          openViewDetails(data);
+        },
       },
       {
         label: "",
