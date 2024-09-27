@@ -51,11 +51,20 @@ const CONSUMPTION_URL ={
     DELETE:"/efl_consumption/delete_one",
     GET_ALL_CALENDER:"/efl_consumption/get_consumption_data"
 }
+const VEHICLES_URL ={
+    INSERT: "/efl_vehicles/insert",
+    GET_ALL: "/efl_vehicles/get_all",
+    UPDATE: "/efl_vehicles/update",
+    GET_ONE: "/efl_vehicles/get_one",
+    DELETE:"/efl_vehicles/delete_one",
+    GET_ALL_CALENDER:"/efl_vehicles/get_parking_data"
+}
 
 export {
     HUBS_URLS,
     HUB_GROUPS_URLS, OFFICE_URLS, VENDERS_URLS,
     VENDER_RATE_URLS,
-    CONSUMPTION_URL
+    CONSUMPTION_URL,
+    VEHICLES_URL
 };
 
