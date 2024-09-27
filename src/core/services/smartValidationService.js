@@ -25,7 +25,7 @@ const valid_pattern = (value, msg, pattern) => {
 const validateEmail = (value, msg, emailPattern) => {
     if (value !== null && value !== undefined) {
         const normalizedEmail = typeof value === 'string' ? value.trim() : value;
-        console.log(" normalized email ", normalizedEmail, " email pattern " , emailPattern)
+       // console.log(" normalized email ", normalizedEmail, " email pattern " , emailPattern)
         
         const patternTest = new RegExp(emailPattern);
         if (!patternTest.test(normalizedEmail)) {
@@ -301,8 +301,6 @@ const SmartValid = {
 }
 
 export {
-    validateInput,
-    validateForm,
     SmartValid,
-    ValidateFormNew
-}
+    ValidateFormNew, validateForm, validateInput
+};

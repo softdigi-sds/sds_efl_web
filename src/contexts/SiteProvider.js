@@ -71,6 +71,7 @@ export const SiteProvider = ({ children }) => {
   return (
     <SiteContext.Provider
       value={{
+        user,
         setLoading,
         setUser,
         openModal,

@@ -141,6 +141,9 @@ const get = (
   }
   return from(API.get(url, { headers: customHeaders })).pipe(
     catchError((error) => {
+      if(showLoading){
+        SmartLoader.hideLoader(); 
+      }
       let errorMessage = processError(error);
       const errorHandler = handleError ? handleError : defaultErrorHandler;
       errorHandler(errorMessage, error);
@@ -180,6 +183,9 @@ const post = (
   // console.log("headers " , customHeaders);
   return from(API.post(url, getPayLoad(data), { headers: customHeaders })).pipe(
     catchError((error) => {
+      if(showLoading){
+        SmartLoader.hideLoader(); 
+      }
       // console.log("error ", error);
       let errorMessage = processError(error);
       const errorHandler = handleError ? handleError : defaultErrorHandler;
