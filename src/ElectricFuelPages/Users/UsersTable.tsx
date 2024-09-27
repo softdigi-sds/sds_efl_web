@@ -101,14 +101,14 @@ const UsersTable = () => {
         label: "",
         type: "icon",
         leftIcon: "fa fa-eye",
-        classList: ["delete-color is-clickable is-size-5"],
+        classList: ["smart-efl-table-view-icon"],
         onClick: handleDelete
       },
       {
         label: "",
         type: "icon",
         leftIcon: " fa-pencil-square-o",
-        classList: ["delete-color is-clickable is-size-5"],
+        classList: ["smart-efl-table-edit-icon"],
         onClick: (data:any) => {
           viewEditForm(data["ID"]);
         },
@@ -116,8 +116,8 @@ const UsersTable = () => {
       {
         label: "",
         type: "icon",
-        leftIcon: "fa fa-times",
-        classList: ["delete-color is-clickable is-size-5"],
+        leftIcon: "fa fa-trash",
+        classList: ["smart-efl-table-delete-icon"],
         onClick: (data:any) => {
           openDeleteModal(data["ID"]);
           

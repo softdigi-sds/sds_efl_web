@@ -45,7 +45,7 @@
    
   }
    .smart-efl-table tbody tr:hover{
-    background-color: #000 !important;
+    background-color: #3dca88 !important;
     color: white !important;
    }
   
@@ -58,6 +58,35 @@
   .smart-efl-table tbody tr:last-of-type {
     border-bottom: 2px solid rgba(0, 152, 121, 0.8);
   }
+
+  .smart-efl-table-view-icon{
+    font-size: 1rem;
+   color:rgb(35, 225, 130);
+    cursor: pointer;
+
+  }
+  .smart-efl-table tbody tr:hover .smart-efl-table-view-icon{
+    color:rgb(53, 255, 70);
+
+  }
+  .smart-efl-table-edit-icon{
+    font-size: 1rem;
+   color: #00dd;
+    cursor: pointer;
+  }
+  .smart-efl-table tbody tr:hover .smart-efl-table-edit-icon{
+    color: rgb(0, 0, 255);
+  }
+  .smart-efl-table-delete-icon{
+    font-size: 1rem;
+   color: #ff1d58;
+    cursor: pointer;
+  }
+  .smart-efl-table tbody tr:hover .smart-efl-table-delete-icon{
+    color: #ff0447;
+  }
+  
+  
   
 
 
