@@ -8,6 +8,7 @@ import { showAlertAutoClose } from '../../services/notifyService';
 import { post } from '../../services/smartApiService';
 import { ALLOW_NUMERIC } from '../../services/PatternSerivce';
 import { role_get_select } from '../../services/site/SelectBoxServices';
+import SmartHeader from '../../core/general/SmartHeader';
 
 interface FormErrors {
   [key: string]: string | null;
@@ -172,7 +173,7 @@ const UsersForm:React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
     },
   ];
   return (
-    <>
+    <><div className=""><SmartHeader title={"Add User Form"} /></div>
        <SmartSoftForm
         formData={formData}
         setFormData={handleInputChange}
