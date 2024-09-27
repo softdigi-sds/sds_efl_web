@@ -2,7 +2,7 @@ import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import EFSubLayout from "../../EFSubLayout/EFSubLayout";
 import ElectricFuelMainLayout from "../../ElectricFuelLayout/ElectricFuelMainLayout";
-import { Dashboard, HomePage, HubsTables, OfficesTable, RoleTable, UsersTable, VehiclesReportTable, VendorRatesTable, VendorsTable } from "../../ElectricFuelPages";
+import { ConsumptionReportTable, Dashboard, HomePage, HubsTables, OfficesTable, RoleTable, UsersTable, VehiclesReportTable, VendorRatesTable, VendorsTable } from "../../ElectricFuelPages";
 import Login from "../../ElectricFuelPages/LoginPages/Login";
 import { useSiteContext } from "../../contexts/SiteProvider";
 import SmartSoftModal from "../../core/loaders/SmartSoftModal";
@@ -34,6 +34,7 @@ const EFSiteRoute = () => {
             <Route path="/roles-list" element={<RoleTable />} />
             <Route path="/users" element={<UsersTable />} />
             <Route path="/vehicles-report" element={<VehiclesReportTable />} />
+            <Route path="/consumption-report" element={<ConsumptionReportTable />} />
           </Routes>
 
           <ToastContainer />

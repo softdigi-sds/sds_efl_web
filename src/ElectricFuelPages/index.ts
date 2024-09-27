@@ -9,8 +9,11 @@ import UsersTable from "./Users/UsersTable";
 import VehiclesReportTable from "./VehiclesReport/VehiclesReportTable";
 import VendorRatesTable from "./VendorRates/VendorRatesTable";
 import VendorsTable from "./Vendors/VendorsTable";
+import ConsumptionReportTable from "./ConsumptionReport/ConsumptionReportTable";
 export {
     Dashboard, HomePage, HubsTables, OfficesTable, RoleTable, UsersTable,
-    VehiclesReportTable, VendorRatesTable, VendorsTable
+    VehiclesReportTable, VendorRatesTable, VendorsTable,
+    ConsumptionReportTable
+
 };
 

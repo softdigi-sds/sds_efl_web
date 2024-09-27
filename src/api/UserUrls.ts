@@ -43,10 +43,19 @@ const VENDER_RATE_URLS = {
     DELETE:"/vendor_rate/delete_one",
     
 };
+const CONSUMPTION_URL ={
+    INSERT: "/efl_consumption/insert",
+    GET_ALL: "/efl_consumption/get_all",
+    UPDATE: "/efl_consumption/update",
+    GET_ONE: "/efl_consumption/get_one",
+    DELETE:"/efl_consumption/delete_one",
+    GET_ALL_CALENDER:"/efl_consumption/get_consumption_data"
+}
 
 export {
     HUBS_URLS,
     HUB_GROUPS_URLS, OFFICE_URLS, VENDERS_URLS,
-    VENDER_RATE_URLS
+    VENDER_RATE_URLS,
+    CONSUMPTION_URL
 };
 

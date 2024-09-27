@@ -114,7 +114,7 @@ const VendorsTable = () => {
     {
       label: "",
       type: "icon",
-      leftIcon: "fa fa-times",
+      leftIcon: "fa fa-trash",
       classList: ["smart-efl-table-delete-icon"],
       onClick: (data: any) => {
         openDeleteModal(data["ID"]);
