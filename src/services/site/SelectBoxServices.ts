@@ -1,5 +1,5 @@
 import { ROLE_URLS, STATE_URLS, USER_URLS } from "../../api/AdminUrls";
-import { HUBS_URLS, OFFICE_URLS } from "../../api/UserUrls";
+import { HUBS_URLS, OFFICE_URLS, VENDERS_URLS } from "../../api/UserUrls";
 import { get, post } from "../smartApiService";
 
 /**
@@ -57,6 +57,12 @@ const office_get_all_select = (call_back: any) => {
   let url = OFFICE_URLS.GET_ALL_SELECT;
   admin_generic_select(url, call_back);
 };
+const vendors_get_all_select = (call_back: any) => {
+  let url = VENDERS_URLS.GET_ALL_SELECT;
+  admin_generic_select(url, call_back);
+};
 
-export { admin_states_select, hubs_get_all_select, role_get_select, user_get_select,office_get_all_select };
+export { admin_states_select, hubs_get_all_select, role_get_select, user_get_select,office_get_all_select ,
+  vendors_get_all_select
+};
 
