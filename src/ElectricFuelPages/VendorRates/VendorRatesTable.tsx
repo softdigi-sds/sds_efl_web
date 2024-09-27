@@ -23,6 +23,7 @@ const VendorRatesTable = () => {
 
   const openOfficesForm = (width: number) => {
     let options = {
+      title: "Vendor Rates Addition Form",
       content: <VendorRatesForms />,
       width: 60,
     };

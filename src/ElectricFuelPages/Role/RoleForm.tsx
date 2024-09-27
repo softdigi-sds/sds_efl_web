@@ -117,7 +117,9 @@ const RoleForm:React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
   
   ];
   return (
-    <><div className=""><SmartHeader title={"Role Form"} /></div>
+    <><div className="">
+      {/* <SmartHeader title={"Role Form"} /> */}
+      </div>
        <SmartSoftForm
         formData={formData}
         setFormData={handleInputChange}
