@@ -58,6 +58,7 @@
   "scripts": {
     "start": "react-scripts start",
     "start-custom": "set PORT=4000 && set REACT_APP_ENV=development && react-scripts start",
+    "start-prod": "set PORT=4000 && set REACT_APP_ENV=production && react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
