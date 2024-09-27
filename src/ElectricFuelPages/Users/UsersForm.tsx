@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { SmartSoftButton, SmartSoftForm } from '../../core';
-import { SmartFormElementProps } from '../../core/forms/SmartFormInterface';
+import { SmartFormInterface, SmartSoftButton, SmartSoftForm } from '../../core';
 import { SmartValid, ValidateFormNew } from '../../core/services/smartValidationService';
 import { useSiteContext } from '../../contexts/SiteProvider';
 import { USER_URLS } from '../../api/AdminUrls';
@@ -8,7 +7,7 @@ import { showAlertAutoClose } from '../../services/notifyService';
 import { post } from '../../services/smartApiService';
 import { ALLOW_NUMERIC } from '../../services/PatternSerivce';
 import { role_get_select } from '../../services/site/SelectBoxServices';
-import SmartHeader from '../../core/general/SmartHeader';
+
 
 interface FormErrors {
   [key: string]: string | null;
@@ -95,7 +94,7 @@ const UsersForm:React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
     { value: "2", label: "Test" },
     { value: "3", label: "test" },
   ];
-  const formElements:SmartFormElementProps[] = [
+  const formElements:SmartFormInterface.SmartFormElementProps[] = [
     {
       type: "TEXT_BOX",
       width: "6",

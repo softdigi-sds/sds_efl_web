@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from 'react'
-import { SmartSoftButton, SmartSoftForm } from '../../core';
-import { SmartFormElementProps } from '../../core/forms/SmartFormInterface';
+import { SmartFormInterface, SmartSoftButton, SmartSoftForm } from '../../core';
 import { ValidateFormNew } from '../../core/services/smartValidationService';
 import { showAlertAutoClose } from '../../services/notifyService';
 import { useSiteContext } from '../../contexts/SiteProvider';
 import { OFFICE_URLS } from '../../api/UserUrls';
 import { post } from '../../services/smartApiService';
 import { admin_states_select } from '../../services/site/SelectBoxServices';
-import SmartHeader from '../../core/general/SmartHeader';
+
 
 
 interface FormErrors {
@@ -80,7 +79,7 @@ const OfficesForm:React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
     { value: "2", label: "Test" },
     { value: "3", label: "test" },
   ];
-  const formElements:SmartFormElementProps[] = [
+  const formElements:SmartFormInterface.SmartFormElementProps[]= [
     {
       type: "SELECT_BOX",
       width: "6",

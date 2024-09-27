@@ -1,7 +1,5 @@
 import React, { useState } from 'react'
-import { SmartSoftButton, SmartSoftForm } from '../../core';
-import { SmartFormElementProps } from '../../core/forms/SmartFormInterface';
-import SmartHeader from '../../core/general/SmartHeader';
+import { SmartFormInterface, SmartSoftButton, SmartSoftForm } from '../../core';
 
 interface FormErrors {
   [key: string]: string | null;
@@ -49,7 +47,7 @@ const VendorRatesForms = () => {
      </>
     );
   };
-  const formElements:SmartFormElementProps[] = [
+  const formElements:SmartFormInterface.SmartFormElementProps[]= [
     {
       type: "SELECT_BOX",
       width: "6",
