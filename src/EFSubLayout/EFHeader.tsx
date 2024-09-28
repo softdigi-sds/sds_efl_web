@@ -1,6 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useSiteContext } from '../contexts/SiteProvider';
+import { ADMIN_USER_LOGO } from '../services/ImageService';
 
 
 
@@ -62,12 +63,22 @@ const EFHeader: React.FC<HeaderProps> = ({ setIsOpen, isOpen }) => {
             <i className='fa fa-bars'></i>
           </a>
         </div>
+        
     
         <div className="navbar-end">
+          <div className=" navbar-item  mr-6">
+          <i className="fa fa-bell" aria-hidden="true"></i>
+          </div>
           <div className="navbar-item has-dropdown is-hoverable ">
             <a className="navbar-link">
               {user?.ename}
-            </a>
+              <img src={ADMIN_USER_LOGO} alt=""  className='is-64x64 is-rounded with-out-pointer'/>
+            </a> 
+            {/* <SmartImageDisplay
+                        srcType="DATA"
+                        imageClass="is-64x64 is-rounded with-out-pointer"
+                        default_img={ADMIN_USER_LOGO}
+                      /> */}
 
             <div className="navbar-dropdown is-right">
               <a className="navbar-item">

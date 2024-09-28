@@ -297,4 +297,36 @@ padding: 20px 0px 0px 18px;
     align-items: center;
     justify-content: center;
   }
+
   
+  .stat-card {
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    position: relative;
+    color: white;
+  }
+  
+  .stat-number {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+
+  
+  
+  .gradient-blue {
+    background: linear-gradient(45deg, #6a11cb, #2575fc);
+  }
+  
+  .gradient-pink {
+    background: linear-gradient(45deg, #ff758c, #ff7eb3);
+  }
+  
+  .gradient-green {
+    background: linear-gradient(45deg, #43e97b, #38f9d7);
+  }
+  
+  .gradient-orange {
+    background: linear-gradient(45deg, #ff9a44, #fc6076);
+  }

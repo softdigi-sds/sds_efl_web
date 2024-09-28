@@ -20,3 +20,5 @@ export { default as ELETRIC_HOME_CMS_PLATEFORM } from "../assets/images/Eletric/
 export { default as ELETRIC_HOME_LEAVES } from "../assets/images/Eletric/leaves.png";
 export { default as ELETRIC_HOME_ADVANTAGE } from "../assets/images/Eletric/advantage1.png";
 
+export { default as ADMIN_USER_LOGO } from "../assets/images/usericon.png";
+

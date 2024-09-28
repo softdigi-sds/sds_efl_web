@@ -3,6 +3,7 @@ import DashboardChart from './DashboardChart'
 import DashboardBarChart from './DashboardBarChart'
 import DashBoardCard from './DashBoardCard'
 import DashBoardTable from './DashBoardTable'
+import '../../ElectricFuelPages/ElectricFuel.css'
 
 const Dashboard = () => {
   return (
