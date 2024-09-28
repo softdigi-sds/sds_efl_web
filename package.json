@@ -40,6 +40,7 @@
     "react-router-dom": "^6.21.1",
     "react-scripts": "5.0.1",
     "react-select": "^5.8.0",
+    "react-signature-canvas": "^1.0.6",
     "react-slick": "^0.30.2",
     "react-stripe-checkout": "^2.6.3",
     "react-sweetalert": "^0.0.1",

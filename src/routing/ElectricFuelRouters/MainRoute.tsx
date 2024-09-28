@@ -2,12 +2,24 @@ import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import EFSubLayout from "../../EFSubLayout/EFSubLayout";
 import ElectricFuelMainLayout from "../../ElectricFuelLayout/ElectricFuelMainLayout";
-import { ConsumptionReportTable, Dashboard, HomePage, HubsTables, OfficesTable, RoleTable, UsersTable, VehiclesReportTable, VendorRatesTable, VendorsTable } from "../../ElectricFuelPages";
+import {
+  ConsumptionReportTable,
+  Dashboard,
+  HomePage,
+  HubsTables,
+  InvoiceTable,
+  OfficesTable,
+  RoleTable,
+  UsersTable,
+  VehiclesReportTable,
+  VendorRatesTable,
+  VendorsTable,
+} from "../../ElectricFuelPages";
 import Login from "../../ElectricFuelPages/LoginPages/Login";
 import { useSiteContext } from "../../contexts/SiteProvider";
 import SmartSoftModal from "../../core/loaders/SmartSoftModal";
 const EFSiteRoute = () => {
-  const { isModalOpen,modalOptions, closeModal } = useSiteContext();
+  const { isModalOpen, modalOptions, closeModal } = useSiteContext();
   const protected_routes = () => {
     return (
       <>
@@ -34,7 +46,11 @@ const EFSiteRoute = () => {
             <Route path="/roles-list" element={<RoleTable />} />
             <Route path="/users" element={<UsersTable />} />
             <Route path="/vehicles-report" element={<VehiclesReportTable />} />
-            <Route path="/consumption-report" element={<ConsumptionReportTable />} />
+            <Route
+              path="/consumption-report"
+              element={<ConsumptionReportTable />}
+            />
+            <Route path="/invoices" element={<InvoiceTable />} />
           </Routes>
 
           <ToastContainer />
@@ -49,10 +65,14 @@ const EFSiteRoute = () => {
           <Route path="/*" element={protected_routes()} />
           <Route path="/login" element={<Login />} />
           <Route path="/e-fuel/*" element={site_routes()} />
-
-
         </Routes>
-        {isModalOpen && <SmartSoftModal active={isModalOpen} {...modalOptions} closeFunction={closeModal} />}
+        {isModalOpen && (
+          <SmartSoftModal
+            active={isModalOpen}
+            {...modalOptions}
+            closeFunction={closeModal}
+          />
+        )}
       </Router>
 
       <ToastContainer />
