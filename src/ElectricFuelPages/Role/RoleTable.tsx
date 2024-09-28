@@ -119,14 +119,14 @@ const RoleTable = () => {
 
   
   
-  const UserList = (users:any) => {
+  const UserList = (data:any) => {
     return (
-      <div className='is-flex '>
-        {/* {data.users.map((user) => (
-          <div key={user.value} className='card m-2 p-2'>
+      <div className='tags '>
+        {data.users.map((user:any) => (
+          <div key={user.value} className='tag is-success mx-1'>
             {user.label}
           </div>
-        ))} */}
+        ))}
       </div>
     );
   };
@@ -144,7 +144,7 @@ const RoleTable = () => {
       title: "Users",
       index: "users",
       valueFunction:UserList,
-      width: "20",
+      // width: "20",
     },
     {
       title: "Action",
