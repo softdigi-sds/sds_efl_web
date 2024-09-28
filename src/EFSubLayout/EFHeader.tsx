@@ -62,7 +62,7 @@ const EFHeader: React.FC<HeaderProps> = ({ setIsOpen, isOpen }) => {
             <i className='fa fa-bars'></i>
           </a>
         </div>
-
+    
         <div className="navbar-end">
           <div className="navbar-item has-dropdown is-hoverable ">
             <a className="navbar-link">
