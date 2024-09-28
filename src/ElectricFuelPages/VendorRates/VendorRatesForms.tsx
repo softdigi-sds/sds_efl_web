@@ -15,6 +15,7 @@ import { VENDER_RATE_URLS } from "../../api/UserUrls";
 import { post } from "../../services/smartApiService";
 import { showAlertAutoClose } from "../../services/notifyService";
 import { useSiteContext } from "../../contexts/SiteProvider";
+import { changeDateTimeZoneFormat } from "../../services/core/CommonService";
 
 interface FormErrors {
   [key: string]: string | null;
@@ -108,6 +109,8 @@ const VendorRatesForms: React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
     let data_in = { ...formData };
     data_in["unit_rate_type"] = data_in["unit_rate_type"].value;
     data_in["parking_rate_type"] = data_in["parking_rate_type"].value;
+
+    data_in["effective_date"] = changeDateTimeZoneFormat(data_in.effective_date,"YYYY-MM-DD");
     const subscription = post(url, data_in).subscribe((response) => {
       //console.log("response form ", response.data);
       loadTableData();

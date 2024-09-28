@@ -100,15 +100,14 @@ const maskMobileNumber = (number: string) => {
   return maskedPart;
 };
 
+
 const changeDateTimeZoneFormat = (
-  dateString: string,
+  dateString:any,
   format: string = "DD-MM-YYYY  HH:MM",
   timeZone: string = "Asia/Kolkata"
 ) => {
-  // Check if the dateString ends with 'Z', if not, add it
-  if (dateString && !dateString.endsWith("Z")) {
-    //dateString += "Z";
-  }
+
+ 
   const userTimezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
   //console.log("timezone ", userTimezone);
   const selectedDateInUTC = moment_timzone.utc(dateString); // Assume the date is already in UTC

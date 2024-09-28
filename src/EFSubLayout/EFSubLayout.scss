@@ -63,22 +63,29 @@
     }
 
     // Brand Logo styles
-    .brand-logo {
-        width: 100%;
-        height: 40px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
+    // .brand-logo {
+    
+    //     width: 100px;
+    //     height: 40px;
+    //     display: flex;
+    //     justify-content: center;
+    //     align-items: center;
+    //     margin-bottom: 10px;
+
+    //     img {
+    //         max-height: 100%;
+    //         max-width: 100%;
+    //         transition: max-width 0.3s ease;
+    //     }
+    // }
+
+    .brand-logo{
         margin-bottom: 10px;
-
-        img {
-            max-height: 100%;
-            max-width: 80%;
-            transition: max-width 0.3s ease;
-        }
+        padding: 10px;
     }
-
     // Expand the logo slightly when sidenav is expanded
+
+
     &.expanded .brand-logo img {
         max-width: 100%;
     }

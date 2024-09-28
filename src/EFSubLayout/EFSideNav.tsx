@@ -1,5 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import { LOGO } from '../services/ImageService';
 interface childrenProps {
   isOpen: boolean
 }
@@ -99,7 +100,7 @@ const EFSideNav: React.FC<childrenProps> = ({ isOpen }) => {
     >
       {/* Brand Logo */}
       <div className="brand-logo">
-        <img src={""} alt="Brand Logo" />
+        <img src={LOGO} alt="Brand Logo" />
       </div>
       {listItems.map((item, index) => {
         return (

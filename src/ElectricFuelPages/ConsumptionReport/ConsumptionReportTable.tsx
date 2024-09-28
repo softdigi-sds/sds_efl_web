@@ -41,7 +41,9 @@ const ConsumptionReportTable = () => {
 
 
   useEffect(() => {   
-    loadCalenderData();
+    if (hub) {
+      loadCalenderData();
+    }
   }, [currentMonth,hub]);
 
   const openForm =(date:any)=>{
