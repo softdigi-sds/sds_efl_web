@@ -1,5 +1,5 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { LOGO } from '../services/ImageService';
 interface childrenProps {
   isOpen: boolean
@@ -88,7 +88,7 @@ const EFSideNav: React.FC<childrenProps> = ({ isOpen }) => {
     },
   ]
   const navigate = useNavigate();
-
+  const location = useLocation();
   const navigateLink = (index: any) => {   
     navigate(index);
   };
@@ -104,7 +104,8 @@ const EFSideNav: React.FC<childrenProps> = ({ isOpen }) => {
       </div>
       {listItems.map((item, index) => {
         return (
-          <a key={`nav_link_${index}`} href="#" onClick={()=>navigateLink(item.link)} className="sidenav-link">
+          <a key={`nav_link_${index}`} href="#" onClick={()=>navigateLink(item.link)} 
+          className={  location.pathname === item.link?"sidenav-active-link":"sidenav-link"}>
             <i className={`icon fa ${item.icon}`}></i>
             <span className="link-text">{item.label}</span>
           </a>

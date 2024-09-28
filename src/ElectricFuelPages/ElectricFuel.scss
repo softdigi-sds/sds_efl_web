@@ -298,3 +298,45 @@ padding: 20px 0px 0px 18px;
     justify-content: center;
   }
   
+
+  .smart-efl-Primary-button {
+    background-image: linear-gradient(to right, #fc00ff 0%, #00dbde  51%, #fc00ff  100%);
+    margin: 10px;
+    padding: 15px 45px;
+    text-align: center;
+    text-transform: uppercase;
+    transition: 0.5s;
+    background-size: 200% auto;
+    color: white;            
+    box-shadow: 0 0 20px #eee;
+    border-radius: 10px;
+    display: block;
+  }
+
+  .smart-efl-Primary-button:hover {
+    background-position: right center; /* change the direction of the change here */
+    color: #fff;
+    text-decoration: none;
+  }
+
+  .smart-table-head .smart-table-head-buttons .button{
+    background-image: linear-gradient(to right, #fc00ff 0%, #00dbde  51%, #fc00ff  100%);
+    margin: 10px;
+    padding: 15px 45px;
+    text-align: center;
+   
+    transition: 0.5s;
+    background-size: 200% auto;
+    color: white;            
+    box-shadow: 0 0 20px #eee;
+    border-radius: 10px;
+    // display: block;
+  }
+  .smart-table-head .smart-table-head-buttons .button:hover{
+    background-position: right center; /* change the direction of the change here */
+    color: #fff;
+    text-decoration: none;
+  }
+  .smart-table-head .smart-table-head-buttons .button .label{
+    color: white;
+  }

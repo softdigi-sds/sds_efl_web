@@ -130,8 +130,18 @@ const OfficesTable = () => {
     },
   ];
 
+  const statusTags = [
+    { value: "SUBMITTED", Label: "SUBMITTED", class: "is-warning" },
+    { value: "QUALIFIED", Label: "QUALIFIED", class: "is-info" },
+    { value: "PAID", Label: "PAID", class: "is-success" },
+    { value: "COMPLIMENTARY", Label: "COMPLIMENTARY", class: "has-text-info" },
+    { value: "CANCELLED", Label: "CANCELLED", class: "is-danger" },
+    { value: "PUBLISHED", Label: "PUBLISHED", class: "is-success" },
+    { value: "ACTIVE", Label: "ACTIVE", class: "is-success" },
+  ];
+
   const columns: SmartTableNewInterface.SmartTableNewColumnConfig[] = [
-    { title: "S.NO", index: "s_no", type: "sno" },
+    { title: "S.NO", index: "s_no", type: "sno",width:"5" },
     {
       title: "Office City",
       index: "office_city",
@@ -145,7 +155,9 @@ const OfficesTable = () => {
       title: "Address",
       index: "address_one",
     },
-    { title: "Status", index: "status" },
+    { title: "Status", index: "status"
+      //  type: "tags", tags: statusTags
+       },
     {
       title: "Action",
       index: "action",
@@ -170,6 +182,7 @@ const OfficesTable = () => {
           label: "Add",
           icon: "fa-plus",
           type: "CUSTOM",
+          // classList:"smart-efl-Primary-button",
           action: openOfficesForm,
         },
       ],

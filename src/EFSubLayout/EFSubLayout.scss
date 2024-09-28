@@ -39,7 +39,9 @@
         font-size: 1.2em;
     }
 }
+         
 
+ 
 
 /*** side nav styles ***/
 // Base sidenav styles
@@ -47,6 +49,7 @@
     width: 60px; // Shrinked width
     height: 100vh;
     background-color: #91076d;
+    // background-image: linear-gradient(to right, #DA22FF 0%, #9733EE  51%, #DA22FF  100%);
     position: fixed;
     top: 0;
     left: 0;
@@ -88,6 +91,7 @@
 
     &.expanded .brand-logo img {
         max-width: 100%;
+        // transform: scale(1.5);
     }
 
     // Individual link styles
@@ -100,6 +104,31 @@
         align-items: center;
         transition: background-color 0.3s;
 
+        &:hover {
+            background-color: #ffffff;
+            color:#91076d;
+        }
+
+        .icon {
+            font-size: 24px;
+            margin-right: 16px;
+        }
+
+        .link-text {
+            display: none; // Initially hidden
+        }
+    }
+    .sidenav-active-link{
+        background-color: #ffffff;
+        color:#91076d;
+        width: 100%;
+        padding: 10px;
+        text-decoration: none;
+    //    transform: scale(1.1);
+        display: flex;
+        align-items: center;
+        transition: background-color 0.3s;
+        
         &:hover {
             background-color: #ffffff;
             color:#91076d;
