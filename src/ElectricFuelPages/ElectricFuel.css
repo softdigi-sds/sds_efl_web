@@ -330,3 +330,12 @@ padding: 20px 0px 0px 18px;
   .gradient-orange {
     background: linear-gradient(45deg, #ff9a44, #fc6076);
   }
+  .canvas{
+    height: 350px !important;
+    width: 350px !important;
+  }
+  .chart-container img {
+    width: 400px;
+    height: 400px;
+  }
+  

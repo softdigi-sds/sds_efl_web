@@ -28,7 +28,7 @@ const data = {
   ]
 };
     return (
-      <div>
+      <div className='canvas'>
         {/* <h3>Pie Chart</h3> */}
         <Pie data={data} />
       </div>

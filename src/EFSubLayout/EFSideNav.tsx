@@ -10,7 +10,7 @@ const EFSideNav: React.FC<childrenProps> = ({ isOpen }) => {
     {
       id: 1,
       label: "Dashboard",
-      icon: "fa-dashcube",
+      icon: "fa-tachometer",
       link: "/e-fuel/dashboard",
 
     },
@@ -18,49 +18,49 @@ const EFSideNav: React.FC<childrenProps> = ({ isOpen }) => {
     {
       id: 2,
       label: "Offices",
-      icon: "fa-cubes",
+      icon: " fa-building",
       link: "/e-fuel/offices-list",
 
     },
     {
       id: 3,
       label: "Hubs",
-      icon: "fa-cubes",
+      icon: "fa-battery-full",
       link: "/e-fuel/hubs-list",
 
     },
     {
       id: 4,
       label: "Vendors",
-      icon: "fa-cubes",
+      icon: "fa-sticky-note-o",
       link: "/e-fuel/vendors-list",
 
     },
     {
       id: 5,
       label: "Vendor Rates",
-      icon: "fa-cubes",
+      icon: "fa fa-flag",
       link: "/e-fuel/vendors-rates-list",
 
     },
     {
       id: 5,
       label: "Vehicles Report",
-      icon: "fa-cubes",
+      icon: "fa-car",
       link: "/e-fuel/vehicles-report",
 
     },
     {
       id: 6,
       label: "Consumption  Report",
-      icon: "fa-cubes",
+      icon: "fa-calendar-check-o",
       link: "/e-fuel/consumption-report",
 
     },
     {
       id: 7,
       label: "Invoices",
-      icon: "fa-cubes",
+      icon: "fa-inr",
       link: "/e-fuel/invoices",
 
     },
@@ -68,21 +68,21 @@ const EFSideNav: React.FC<childrenProps> = ({ isOpen }) => {
     {
       id: 8,
       label: "Users",
-      icon: "fa-cubes",
+      icon: "fa-user",
       link: "/e-fuel/users",
 
     },
     {
       id: 8,
       label: "Roles",
-      icon: "fa-cubes",
+      icon: " fa-users",
       link: "/e-fuel/roles-list",
 
     },
     {
       id: 8,
       label: "Site Settings",
-      icon: "fa-cubes",
+      icon: "fa-cogs",
       link: "/e-fuel/settings",
 
     },

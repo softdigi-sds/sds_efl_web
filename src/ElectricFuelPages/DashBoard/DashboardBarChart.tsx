@@ -37,12 +37,18 @@ const DashboardBarChart: React.FC = () => {
       },
       title: {
         display: true,
-        text: ' Bar Chart',
+        text: 'Bar Chart',
       },
     },
   };
 
-  return <Bar data={data} options={options} />;
+  return (
+    <>
+      <div className="chart-container m-5">
+        <Bar data={data} options={options} />
+      </div>
+    </>
+  );
 };
 
 export default DashboardBarChart;
