@@ -10,10 +10,11 @@ import VehiclesReportTable from "./VehiclesReport/VehiclesReportTable";
 import VendorRatesTable from "./VendorRates/VendorRatesTable";
 import VendorsTable from "./Vendors/VendorsTable";
 import ConsumptionReportTable from "./ConsumptionReport/ConsumptionReportTable";
+import InvoiceTable from "./Invoice/InvoiceTable"
 export {
     Dashboard, HomePage, HubsTables, OfficesTable, RoleTable, UsersTable,
     VehiclesReportTable, VendorRatesTable, VendorsTable,
-    ConsumptionReportTable
+    ConsumptionReportTable, InvoiceTable
 
 };
 
