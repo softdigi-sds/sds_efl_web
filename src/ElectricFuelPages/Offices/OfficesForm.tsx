@@ -135,6 +135,45 @@ const OfficesForm:React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
     {
       type: "TEXT_BOX",
       width: "6",
+      name: "cgst",
+      element: {
+        label: "CGST.",
+        // placeHolder: "City",
+        isRequired: true,
+        inputProps: { isFocussed: true },
+          // pattern:  ALLOW_ALPHABET_SPACE ,
+        validations: loginFormValidations.gst_no,
+      },
+    },
+    {
+      type: "TEXT_BOX",
+      width: "6",
+      name: "igst",
+      element: {
+        label: "IGST No.",
+        // placeHolder: "City",
+        isRequired: true,
+        inputProps: { isFocussed: true },
+          // pattern:  ALLOW_ALPHABET_SPACE ,
+        validations: loginFormValidations.gst_no,
+      },
+    },
+    {
+      type: "TEXT_BOX",
+      width: "6",
+      name: "sgst ",
+      element: {
+        label: "SGST",
+        // placeHolder: "City",
+        isRequired: true,
+        inputProps: { isFocussed: true },
+          // pattern:  ALLOW_ALPHABET_SPACE ,
+        validations: loginFormValidations.gst_no,
+      },
+    },
+    {
+      type: "TEXT_BOX",
+      width: "6",
       name: "pan_no",
       element: {
         label: "PAN No.",
