@@ -1,0 +1,136 @@
+@import 'variables';
+/** site title **/
+.site-title {}
+
+
+/** Table Related Global Styles ***/
+.smart-efl-table_main_container {
+
+    .smart-table-head {
+        div.column {
+            display: flex;
+            align-items: center;
+        }
+    }
+    .smart-table-container{
+        min-height: 300px;
+    }
+
+    .smart-table-pagination {
+        .pagination-list {
+            .pagination-link.is-current {
+                background-color: var(--secondary-color)
+            }
+        }
+    }
+
+    .smart-table-footer {
+        margin-left: 0;
+        margin-right: 0;
+        margin-top: 0;
+        .column {
+            margin: 0;
+            padding: 0 !important;
+        }
+    }
+}
+
+
+.smart-efl-table {
+    width: 100%;
+    font-size: 1em;
+    border-radius: 3px;
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.3) !important;
+    backdrop-filter: blur(10px) !important;
+    /* Apply the frosted glass effect */
+    border: 1px solid rgba(255, 255, 255, 0.2);
+
+    thead {
+        background: var(--secondary-color);
+        font-size: 14px;
+        border-bottom: 2px solid rgba(0, 0, 0, 0.8);
+
+        tr {
+            th {
+                color: var(--white-color);
+                font-weight: bold;
+            }
+        }
+    }
+
+    tbody {
+        tr {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            font-size: 14px;
+            color: black;
+            background-color: rgb(225, 243, 232);
+
+            .smart-efl-table-view-icon {
+                font-size: 1rem;
+                color: rgb(35, 225, 130);
+                cursor: pointer;
+
+            }
+
+            .smart-efl-table-edit-icon {
+                font-size: 1rem;
+                color: #00dd;
+                cursor: pointer;
+            }
+
+            .smart-efl-table-delete-icon {
+                font-size: 1rem;
+                color: #ff1d58;
+                cursor: pointer;
+            }
+
+            &:hover {
+                background-color: #3dca88 !important;
+                color: white !important;
+
+                .smart-efl-table-view-icon {
+                    color: rgb(53, 255, 70);
+                }
+
+                .smart-efl-table-edit-icon {
+                    color: rgb(0, 0, 255);
+                }
+
+                .smart-efl-table-delete-icon {
+                    color: #ff0447;
+                }
+            }
+
+            &:nth-of-type(even) {
+                font-size: 14px;
+                background-color: rgb(248, 248, 248);
+            }
+
+            &:last-of-type {
+                border-bottom: 2px solid rgba(0, 152, 121, 0.8);
+            }
+        }
+    }
+
+}
+
+
+
+/*** buttons for this site : Planned to have three styles of buttons ***/
+.smart-action-button {
+    margin: 10px;
+    padding: 15px 45px;
+    text-align: center;
+    transition: 0.5s;
+    background-size: 200% auto;
+    color: white;
+    box-shadow: 0 0 20px #eee;
+    border-radius: 10px;
+    background-color: $primary-color;
+    transition: background-color 0.3s ease; /* Smooth transition */
+    &:hover{
+        background-color: darken($primary-color, 10%);
+        color:white;
+    }
+}

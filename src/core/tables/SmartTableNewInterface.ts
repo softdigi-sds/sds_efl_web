@@ -105,6 +105,7 @@ export interface SmartHeadButton {
   icon?: string | ReactElement;
   label?: string | ReactElement;
   action?: (data: any, selectedIds: any) => any;
+  className?:string
 }
 
 export interface SmartTableNewTopProps {

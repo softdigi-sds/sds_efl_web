@@ -48,7 +48,7 @@ const SmartTableNew: React.FC<SmartTableNewProps> = (props) => {
     filterFields = [],
     noResutls
   } = props;
-  console.log("pagination props " , paginationProps);
+  //console.log("pagination props " , paginationProps);
   const [currentPage, setCurrentPage] = useState(1);
   const [search, setSearch] = useState("");
   const [pageSize, setPageSize] = useState<number>(
@@ -538,7 +538,7 @@ const SmartTableNew: React.FC<SmartTableNewProps> = (props) => {
     const defaultButtonDisplay = (icon: string | ReactElement | undefined) => {
       if (obj.label) {
         return (
-          <button className="button" onClick={buttonAction}>
+          <button className={`button ${obj.className ? obj.className : ''}`} onClick={buttonAction}>
             <span className="icon">
               {typeof icon === "string" ? (
                 <i className={"fa " + icon}></i>
