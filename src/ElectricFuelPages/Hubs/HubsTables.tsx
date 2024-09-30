@@ -36,7 +36,7 @@ const HubsTables = () => {
     };
     openModal(options);
   };
- 
+  
   
   const viewEditForm = (id: any) => { 
     const subscription = post(

@@ -96,6 +96,8 @@ const OfficesTable = () => {
       title: "Office Details",
       content: <OfficeTableView office={office} />,
       width: 60,
+      className:"sd-efl-modal",
+      closeBody:false,
     };
     openModal(options);
   };

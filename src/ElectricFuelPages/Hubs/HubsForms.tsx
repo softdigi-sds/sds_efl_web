@@ -151,7 +151,7 @@ const HubsForms:React.FC<HeaderProps> = ({loadTableData,dataIn}) => {
         elements={formElements}
         formSubmit={formSubmit}
         handleErrorChange={handleErrorChange}
-      />
+      /> 
       <div className="has-text-right">
       <SmartSoftButton
           label="Cancel"

@@ -89,6 +89,8 @@ const UsersTable = () => {
         title: "User Details",
         content: <UsersTableView userData={userData} />,
         width: 60,
+        className:"sd-efl-modal",
+        closeBody:false,
       };
       openModal(options);
     };

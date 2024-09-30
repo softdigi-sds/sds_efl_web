@@ -31,7 +31,9 @@ const RoleTable = () => {
     let options = {
       title: "Role Addition Form",
       content: <RoleForm loadTableData={loadTableData} dataIn={data}/>,
-      width:40
+      width:40,
+      className:"sd-efl-modal",
+      closeBody:false,
   }
   openModal(options);
   }
