@@ -27,7 +27,7 @@ interface HeaderProps {
 }
 
 const VendorRatesForms: React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
-  const [formData, setFormData] = useState<any>({});
+  const [formData, setFormData] = useState<any>(dataIn ? dataIn : {});
   const [formSubmit, setFormSubmit] = useState<boolean>(false);
   const [allHubs, setAllHubs] = useState([]);
   const [allVendors, setAllVendors] = useState([]);

@@ -104,7 +104,7 @@ const ConsumptionReportTable = () => {
     return (
       <div className="calender-div">
         {count_check && count_check.count > 0 ? (
-          <div>{count_check.count}</div>
+          <div onClick={() => openForm(date)}>{count_check.count}</div>
         ) : (
           <div>
             {this_month && (

@@ -30,6 +30,7 @@ const VendorRatesTable = () => {
   }, []);
 
   const openOfficesForm = (data: any) => {
+    //console.log("data ", data);
     let options = {
       title: "Vendor Rates Addition Form",
       content: <VendorRatesForms loadTableData={loadTableData} dataIn={data} />,
@@ -46,17 +47,6 @@ const VendorRatesTable = () => {
     const subscription = post(VENDER_RATE_URLS.GET_ONE, { id: id }).subscribe(
       (response: any) => {
         let data_out = { ...response.data };
-
-        data_out["unit_rate_type"] = {
-          value: response.data.unit_rate_type,
-          label: response.data.unit_rate_type,
-        };
-
-        data_out["parking_rate_type"] = {
-          value: response.data.parking_rate_type,
-          label: response.data.parking_rate_type,
-        };
-
         openOfficesForm(data_out);
       }
     );
