@@ -1,4 +1,24 @@
-.smart-lnpr-login-card{
+
+.smart-lnpr-login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(
+        to right, 
+        rgba(171, 30, 83, 0.8), 
+        rgba(0, 168, 90, 0.8)
+      );
+}
+
+.smart-lnpr-login-sub-container {
+    width: 100%;
+    max-width: 600px; 
+    padding: 20px;
+    min-height: 500px !important; 
+}
+
+.smart-lnpr-login-card {
     display: flex;
     flex-direction: column;
     width: 330px;
@@ -7,89 +27,85 @@
     border-radius: 15px;
     box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
     text-align: center;
-    backdrop-filter: blur(5px);
-    border: 5px solid rgba(255, 255, 255, 0.4); /* Glass border */
-    border-top: 5px solid rgba(255, 255, 255, 0.6); /* Slightly stronger top border */
+    backdrop-filter: blur(5px); 
+    border: 5px solid rgba(255, 255, 255, 0.4);
+    border-top: 5px solid rgba(255, 255, 255, 0.6); 
     border-left: 5px solid rgba(255, 255, 255, 0.6); 
     padding-bottom: 3rem;
     position: relative;
-    perspective: 1000px; 
+    perspective: 1000px;
     min-height: 350px;
-  
 }
-.smart-lnpr-login-card-inner{
+
+.smart-lnpr-login-card-inner {
     position: relative;
     width: 100%;
     height: 100%;
     text-align: center;
     transition: transform 0.6s;
-    transform-style: preserve-3d; 
+    transform-style: preserve-3d;
 }
 
-
-
-
- .smart-lnpr-login-card-inner-active .flip-card-front {
-  
-    /* Flip the card on hover */
+.smart-lnpr-login-card-inner-active .flip-card-front {
     display: none;
 }
-.smart-lnpr-login-card-inner-active .flip-card-back{
+
+.smart-lnpr-login-card-inner-active .flip-card-back {
     display: block;
 }
-.flip-card-back{
+
+.flip-card-back {
     display: none;
 }
 
-.smart-lnpr-login-button{
-    /* width: 200px; */
+.smart-lnpr-login-button {
     background-color: #019ee3;
-    font-family: roboto;
+    font-family: 'Roboto', sans-serif;
     border-radius: 10px;
     width: 100%;
-    color: #fff
-    ;
+    color: #fff;
+    padding: 10px;
+    margin-top: 20px;
 }
-.smart-lnpr-login-card .smart-border-label-input .label{
+
+.smart-lnpr-login-button:hover {
+    background-color: #007bbf;
+}
+
+.smart-lnpr-login-card .smart-border-label-input .label {
     color: #019ee3;
- }
- .smart-lnpr-login-card .smart-border-label-input .input {
+}
+
+.smart-lnpr-login-card .smart-border-label-input .input {
     border: 2px solid #019ee3;
     border-radius: 8px;
- }
+}
 
- .smart-lnpr-login-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    background-color: #007bff;   }
-  
-  .smart-lnpr-login-sub-container {
-    width: 100%;
-    max-width: 600px;
-    padding: 20px;
-    min-height: 500px !important;
-} 
-  .smart-forgot-text {
+.smart-forgot-text {
     display: block;
     text-align: right;
     font-size: 0.9rem;
     color: #007bff;
     cursor: pointer;
     margin-top: 10px;
-  }
-  
-  .smart-forgot-text:hover {
+}
+
+.smart-forgot-text:hover {
     text-decoration: underline;
-  }
-  
-  @media (max-width: 768px) {
+}
+
+@media (max-width: 768px) {
     .smart-lnpr-login-sub-container {
-      width: 90%;
-      padding: 15px;
+        width: 90%;
+        padding: 15px;
     }
-  }
-  .smart-lnpr-login-sub-container-image{
-    border-radius: 10px;
-  }
+}
+
+.smart-lnpr-text {
+    text-align: center;
+    color: black;
+    font-size: 2rem;
+    font-family: 'Fredoka', sans-serif;
+    font-weight: 800;
+    margin-bottom: 1rem;
+}
