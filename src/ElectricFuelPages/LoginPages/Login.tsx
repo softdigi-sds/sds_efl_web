@@ -112,7 +112,7 @@ const Login: React.FC = () => {
         isRequired: true,
         placeHolder: 'Email ',
         max: 255,
-        inputType: "BORDER_LABEL",
+        // inputType: "BORDER_LABEL",
         leftIcon: "fa fa-envelope-square",
         validations: loginFormValidations.email,
       },
@@ -122,20 +122,20 @@ const Login: React.FC = () => {
       width: '12',
       name: 'epassword',
       element: {
-        label: "PassWord", 
+        label: "Password", 
         isRequired: true,
         placeHolder: 'Password',
-        inputType: "BORDER_LABEL",
+        // inputType: "BORDER_LABEL",
         leftIcon: "fa fa-envelope-square",
         validations: loginFormValidations.password,
       },
     },
-    {
-      type: "LABEL",
-      name: "remember_me",
-      width: "12",
-      labelFunction: passWordPin,
-    },
+    // {
+    //   type: "LABEL",
+    //   name: "remember_me",
+    //   width: "12",
+    //   labelFunction: passWordPin,
+    // },
   ];
 
   return (
@@ -152,7 +152,7 @@ const Login: React.FC = () => {
                 <img src={LOGO} alt="" />
               </div>
                 <div className="flip-card-front">
-                    <p className='smart-lnpr-text'>Welcome</p>
+                    <p className='smart-lnpr-text mb-3'>Welcome</p>
                     <SmartSoftForm
                         formData={formData}
                         setFormData={handleInputChange}
@@ -160,7 +160,7 @@ const Login: React.FC = () => {
                         formSubmit={formSubmit}
                         handleErrorChange={handleErrorChange}
                     />
-                    <span className='smart-forgot-text' onClick={toggleCardFlip}>Forgot Password?</span>
+             
                     <div className='has-text-centered'>
                         <SmartSoftButton
                             label="Login"
@@ -168,6 +168,7 @@ const Login: React.FC = () => {
                             onClick={handleLogin}
                         />
                     </div>
+                    <span className='smart-forgot-text' onClick={toggleCardFlip}>Forgot Password?</span>
                 </div>
                 <div className="flip-card-back">
                     <ForgotPassword toggleSidebar={toggleCardFlip} />
