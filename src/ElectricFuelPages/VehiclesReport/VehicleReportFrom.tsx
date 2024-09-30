@@ -61,9 +61,9 @@ const VehicleReportFrom: React.FC<HeaderProps> = ({ loadTableData, date, hub_id 
         let _data = {
             hub_id:hub_id,
             date:date,
-            data:formData
+            input_data:formData
         }      
-        const subscription = post("users", _data).subscribe(
+        const subscription = post("/efl_vehicles/insert", _data).subscribe(
             (response) => {
                 loadTableData();
                 showAlertAutoClose("Data Saved Successfully", "success");
@@ -78,7 +78,7 @@ const VehicleReportFrom: React.FC<HeaderProps> = ({ loadTableData, date, hub_id 
     const updateVehicleCount=(id:number,count:any)=>{
         //console.log("id " , id , " count " , count);
         const updatedItems = formData.map(item =>
-            item.id === id ? { ...item, vehicle_count: parseFloat(count) } : item
+            item.ID === id ? { ...item, vehicle_count: parseFloat(count) } : item
           );
         //  console.log(" updated items " , updatedItems)
           setFormData(updatedItems);
@@ -98,7 +98,7 @@ const VehicleReportFrom: React.FC<HeaderProps> = ({ loadTableData, date, hub_id 
             index: "vehicle_count",
             width: "25",
             valueFunction:(item)=>{
-              return  <SmartSoftInput value={item.vehicle_count} onChange={(value)=>updateVehicleCount(item.id,value)}/>
+              return  <SmartSoftInput value={item?.vehicle_count} onChange={(value)=>updateVehicleCount(item.ID,value)}/>
             }
         },       
     ];
@@ -125,12 +125,12 @@ const VehicleReportFrom: React.FC<HeaderProps> = ({ loadTableData, date, hub_id 
             <div className="has-text-right">
                 <SmartSoftButton
                     label="Cancel"
-                    classList={["button", "mt-4 mr-4"]}
+                    classList={["button","mt-4 mr-4","smart-third-button"]}
                     onClick={closeModal}
                 />
                 <SmartSoftButton
                     label="Submit"
-                    classList={["button ", "mt-4"]}
+                    classList={["button ","mt-4","smart-action-button"]}
                     onClick={handleSubmit}
                 />
             </div>

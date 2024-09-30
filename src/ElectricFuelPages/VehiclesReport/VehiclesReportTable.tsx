@@ -62,6 +62,7 @@ const VehiclesReportTable = () => {
           hub_id={hub}
         />
       ),
+      className:"sd-efl-modal",
     };
     openModal(options);
   };
