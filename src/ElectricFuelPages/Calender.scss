@@ -1,5 +1,16 @@
+@import '../variables';
 .sd_efl-calender {
-    .calendar-days {
+    .calendar-body{
+        .calendar-weekdays{
+            .calendar-weekday{
+                background-color:$secondary-color;
+                color:#ffffff;
+                margin-bottom: 0;
+              
+            }
+        }
+    }
+    .calendar-days {        
         .calendar-day {
             align-items: center;
             display: flex;
@@ -15,7 +26,7 @@
                 color:blue;
                 cursor:pointer;              
                 i{
-                    color:rgb(162, 0, 255);
+                    color:$primary-color;
                     font-size: 1.5em;
                 }
             }
