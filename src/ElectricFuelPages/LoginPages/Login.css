@@ -43,22 +43,12 @@
 
 .smart-lnpr-login-button{
     /* width: 200px; */
-    text-align: center;
     background-color: #019ee3;
-    padding: 0px 30px;
-    color: #fff;
     font-family: roboto;
     border-radius: 10px;
     width: 100%;
-}
-.smart-lnpr-text{
-    text-align: center;
-    color:black;
-    font-size: 2rem;
-    font-family: Fredoka;
-    font-weight: 800;
-    margin-bottom: 1rem;
-
+    color: #fff
+    ;
 }
 .smart-lnpr-login-card .smart-border-label-input .label{
     color: #019ee3;
@@ -67,34 +57,39 @@
     border: 2px solid #019ee3;
     border-radius: 8px;
  }
- .smart-forgot-text{
-margin-top: -20px;
-color: #aca4a4;
-cursor: pointer;
- }
 
-
- .smart-lnpr-login-container{
-    background:url("../../assets/images/sky-bg.jpg");
+ .smart-lnpr-login-container {
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background-repeat: no-repeat;
-    backdrop-filter: blur(10px);
-    background-size: 100% 100%;
-    position: relative;
- }
- .smart-lnpr-login-container::before{
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
+    background-color: #007bff;   }
+  
+  .smart-lnpr-login-sub-container {
     width: 100%;
-    height: 100%;
-    background-color: rgba(181, 238, 248, 0.457); /* Blue color with 50% opacity */
-    z-index: -1; 
- }
-
-
-
+    max-width: 600px;
+    padding: 20px;
+    min-height: 500px !important;
+} 
+  .smart-forgot-text {
+    display: block;
+    text-align: right;
+    font-size: 0.9rem;
+    color: #007bff;
+    cursor: pointer;
+    margin-top: 10px;
+  }
+  
+  .smart-forgot-text:hover {
+    text-decoration: underline;
+  }
+  
+  @media (max-width: 768px) {
+    .smart-lnpr-login-sub-container {
+      width: 90%;
+      padding: 15px;
+    }
+  }
+  .smart-lnpr-login-sub-container-image{
+    border-radius: 10px;
+  }

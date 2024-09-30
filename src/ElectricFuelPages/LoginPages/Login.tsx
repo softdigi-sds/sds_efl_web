@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
-
 import { useNavigate } from 'react-router-dom';
 import "./Login.css";
-
 import { LOGIN_URLS } from '../../api/LoginUrls';
 import { useSiteContext } from '../../contexts/SiteProvider';
 import { SmartSoftButton, SmartSoftForm } from '../../core';
@@ -11,15 +9,12 @@ import { SmartValid, ValidateFormNew } from '../../core/services/smartValidation
 import { showAlertAutoClose } from '../../services/notifyService';
 import { post } from '../../services/smartApiService';
 import ForgotPassword from './ForgotPassword';
-
-
-
+import { ELETRIC_HOME_APPLE, LOGIN_PAGE_LOGO } from '../../services/ImageService';
 
 // Define the type for form data
-
 interface FormErrors {
-    [key: string]: string | null;
-  }
+  [key: string]: string | null;
+}
 
 const Login: React.FC = () => {
   const [formData, setFormData] = useState({});
@@ -29,18 +24,18 @@ const Login: React.FC = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
   const toggleCardFlip = () => {
-      setIsOpen(!isOpen); // Toggle the state
-    };
-  const { setLoading,setUser } =useSiteContext();
+    setIsOpen(!isOpen); // Toggle the state
+  };
+
+  const { setLoading, setUser } = useSiteContext();
 
   // Handle input change with proper typing
   const handleInputChange = (name: string, value: any) => {
     setFormData((prev) => ({ ...prev, [name]: value }));
-    
   };
 
   // Handle error changes with proper typing
-  const handleErrorChange = (name:string|any, value: any) => {
+  const handleErrorChange = (name: string | any, value: any) => {
     setFormErrors((prev) => {
       const updatedFormData = { ...prev };
       if (value === null || value === '') {
@@ -52,58 +47,47 @@ const Login: React.FC = () => {
     });
   };
 
-  // const handleLogin = () => {
-  //   navigate("/e-fuel/dashboard");
-  // }
-  
   const handleLogin = () => {
     setFormSubmit(true);
     if (!ValidateFormNew(formData, formElements)) {
       return false;
     }
 
-    const handleError = (errorMessage:any) => {
-      showAlertAutoClose(errorMessage, "error");    
+    const handleError = (errorMessage: any) => {
+      showAlertAutoClose(errorMessage, "error");
       handleInputChange("epassword", "");
-    }; 
+    };
+    
     let url = LOGIN_URLS.LOGIN;
-    const subscription = post(url, formData,{requiresAuthorization:false,handleError:handleError}).subscribe(
+    const subscription = post(url, formData, { requiresAuthorization: false, handleError: handleError }).subscribe(
       (response) => {
         setFormSubmit(false);
         setUser(response.data);
-        showAlertAutoClose("Log In Successful", "success");      
+        showAlertAutoClose("Log In Successful", "success");
         navigate("/e-fuel/dashboard");
       }
     );
+    
     return () => {
       subscription.unsubscribe();
     };
-    // console.log("errors ", formErrors);
-    /*
-    //setFormSubmit(true);
-   
-    */
   };
 
   const loginFormValidations = {
-   
     email: [
       SmartValid.required("Email ID is Required"),
       SmartValid.email("Please Enter a Valid Email Address"),
-      
     ],
     password: [SmartValid.required("Password is Required")],
-    
   };
 
   // Define form elements
-  const formElements:SmartFormElementProps[] = [
+  const formElements: SmartFormElementProps[] = [
     {
       type: 'TEXT_BOX',
       width: '12',
       name: 'emailid',
       element: {
-        // label: 'Email ID',
         isRequired: true,
         placeHolder: 'Email ',
         max: 255,
@@ -113,63 +97,54 @@ const Login: React.FC = () => {
       },
     },
     {
-        type: 'PASSWORD',
-        width: '12',
-        name: 'epassword',
-        element: {
-        //  label: 'Password',
-          isRequired: true,
-          placeHolder: 'Password',
-          inputType: "BORDER_LABEL",
-          leftIcon: "fa fa-envelope-square",
-          validations: loginFormValidations.password,
-        },
+      type: 'PASSWORD',
+      width: '12',
+      name: 'epassword',
+      element: {
+        isRequired: true,
+        placeHolder: 'Password',
+        inputType: "BORDER_LABEL",
+        leftIcon: "fa fa-envelope-square",
+        validations: loginFormValidations.password,
       },
+    },
   ];
 
-//   const handleLogin=()=>{
-//     navigate("/dashboard")
-//   }
   return (
     <div className='smart-lnpr-login-container'>
-        <div className='smart-lnpr-login-sub-container'>
-       
-          
-          
-                <div className='smart-lnpr-login-card'>
-                <div className={isOpen?"smart-lnpr-login-card-inner-active":'smart-lnpr-login-card-inner'}>
-                <div className="flip-card-front">
-                    <p className='smart-lnpr-text'>Welcome</p>
-                <SmartSoftForm
-        formData={formData}
-        setFormData={handleInputChange}
-        elements={formElements}
-        formSubmit={formSubmit}
-        handleErrorChange={handleErrorChange}
-      />
-      <span className='has-text-right smart-forgot-text' onClick={()=>toggleCardFlip()}>Forgot Password?</span>
-      <div className='has-text-centered'>
-      <SmartSoftButton
-          label="Login"
-          classList={["button smart-lnpr-login-button","mt-4"]}
-          onClick={handleLogin}
-        />
-      </div>
-      </div>
-      <div className="flip-card-back">
-        <ForgotPassword toggleSidebar={toggleCardFlip} />
-      </div>
-      </div>
-                </div>
-          
-        
+      <div className='smart-lnpr-login-sub-container columns is-vcentered is-centered'>
+        <div className="column is-12 has-text-centered pr-0 ">
+          <img src={LOGIN_PAGE_LOGO} alt="Login" />
         </div>
-    
+        <div className='smart-lnpr-login-card column is-12'>
+          <div className={isOpen ? "smart-lnpr-login-card-inner-active" : 'smart-lnpr-login-card-inner'}>
+            <div className="flip-card-front">
+              <p className='smart-lnpr-text'>Welcome</p>
+              <SmartSoftForm
+                formData={formData}
+                setFormData={handleInputChange}
+                elements={formElements}
+                formSubmit={formSubmit}
+                handleErrorChange={handleErrorChange}
+              />
+              <span className='has-text-right smart-forgot-text' onClick={() => toggleCardFlip()}>Forgot Password?</span>
+              <div className='has-text-centered '>
+                <SmartSoftButton
+                  label="Login"
+                  classList={["smart-lnpr-login-button"]}
+                  onClick={handleLogin}
+                />
+              </div>
+
+            </div>
+            <div className="flip-card-back">
+              <ForgotPassword toggleSidebar={toggleCardFlip} />
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
 
-
-export default Login
-
-
+export default Login;

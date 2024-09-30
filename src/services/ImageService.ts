@@ -21,4 +21,5 @@ export { default as ELETRIC_HOME_LEAVES } from "../assets/images/Eletric/leaves.
 export { default as ELETRIC_HOME_ADVANTAGE } from "../assets/images/Eletric/advantage1.png";
 
 export { default as ADMIN_USER_LOGO } from "../assets/images/usericon.png";
+export { default as LOGIN_PAGE_LOGO } from "../assets/images/sky-bg.jpg";
 
