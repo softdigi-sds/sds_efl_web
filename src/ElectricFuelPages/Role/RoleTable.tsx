@@ -159,8 +159,13 @@ const RoleTable = () => {
   const tableTop: SmartTableNewInterface.SmartTableNewTopProps[] = [
     {
       type: "CUSTOM",
-      widthClass: "is-10",
+      widthClass: "is-6",
       custom: <p className="is-size-4">Role</p>,
+    },
+    {
+      type: "SEARCH",
+      widthClass: "is-4",
+      align: "JUSTIFY",
     },
     {
       type: "BUTTONS",
@@ -192,9 +197,10 @@ const RoleTable = () => {
         tableProps={{
           className: " is-hoverable is-bordered is-striped smart-efl-table ",
           isResponsive: true,
+          searchPlaceHolder: "Search",
         }}
         paginationProps={{
-          pageSize:5
+          pageSize:10
         }}
       />
       </div>

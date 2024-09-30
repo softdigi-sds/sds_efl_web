@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { get, post } from '../../services/smartApiService';
 import { useSiteContext } from '../../contexts/SiteProvider';
 import VendorsForm from './VendorsForm';
-import { SmartAlert, SmartLoaderInterface, SmartTable, SmartTableNewInterface } from 'soft_digi';
+import { SmartAlert, SmartFormInterFace, SmartLoaderInterface, SmartTable, SmartTableNewInterface } from 'soft_digi';
 import { VENDERS_URLS } from '../../api/UserUrls';
 import { showAlertAutoClose } from '../../services/notifyService';
 
@@ -151,14 +151,20 @@ const VendorsTable = () => {
   const tableTop: SmartTableNewInterface.SmartTableNewTopProps[] = [
     {
       type: "CUSTOM",
-      widthClass: "is-10",
+      widthClass: "is-6",
       custom: <p className="is-size-4">Vendors</p>,
+    },
+    {
+      type: "SEARCH",
+      widthClass: "is-4",
+      align: "JUSTIFY",
     },
     {
       type: "BUTTONS",
       widthClass: "is-2",
-      align: "RIGHT",
+      align: "CENTER",
       buttons: [
+        {type:"FILTER"},
         
         {
           label:"Add",
@@ -173,6 +179,28 @@ const VendorsTable = () => {
    
     
   ]
+  const filterFields:SmartFormInterFace.SmartFormElementProps[] = [
+    {
+      type: "TEXT_BOX",
+      width: "12",
+      name: "hub_id",
+      element: {
+        label: "Hub Id",
+      },
+    },
+    {
+      type: "TEXT_BOX",
+      width: "12",
+      name: "vendor_company",
+      element: {
+        label: "Company",
+      },
+    },
+
+     
+    
+  ]
+
 
   return (
     <>
@@ -181,12 +209,14 @@ const VendorsTable = () => {
         columns={columns}
         data={data}
         tableTop={tableTop}
+        filterFields={filterFields}
         tableProps={{
           className: "is-hoverable is-bordered smart-efl-table",
           isResponsive: true,
+          searchPlaceHolder: "Search",
         }}
         paginationProps={{
-          pageSize:5
+          pageSize:10
         }}
       />
       </div>

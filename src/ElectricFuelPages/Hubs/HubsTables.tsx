@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { SmartAlert, SmartLoaderInterface } from 'soft_digi';
+import { SmartAlert, SmartFormInterFace, SmartLoaderInterface } from 'soft_digi';
 import { HUBS_URLS } from '../../api/UserUrls';
 import { useSiteContext } from '../../contexts/SiteProvider';
 import { SmartSoftTable, SmartTableNewInterface } from '../../core';
@@ -21,7 +21,7 @@ const HubsTables = () => {
       subscription.unsubscribe();
     };
   };
-  
+
 
   useEffect(() => {   
     loadTableData();
@@ -184,14 +184,22 @@ const HubsTables = () => {
   const tableTop: SmartTableNewInterface.SmartTableNewTopProps[] = [
     {
       type: "CUSTOM",
-      widthClass: "is-10",
+      widthClass: "is-6",
       custom: <p className="is-size-4">Hubs</p>,
+    },
+    {
+      type: "SEARCH",
+      widthClass: "is-4",
+      align: "JUSTIFY",
     },
     {
       type: "BUTTONS",
       widthClass: "is-2",
-      align: "RIGHT",
-      buttons: [        
+      align: "CENTER",
+      buttons: [ 
+        {
+          type: "FILTER",
+        },       
         {
           label:"Add",
           icon:"fa-plus",
@@ -205,6 +213,28 @@ const HubsTables = () => {
    
     
   ]
+  const filterFields:SmartFormInterFace.SmartFormElementProps[] = [
+    {
+      type: "TEXT_BOX",
+      width: "12",
+      name: "hub_id",
+      element: {
+        label: "Hub Id",
+      },
+    },
+    {
+      type: "TEXT_BOX",
+      width: "12",
+      name: "office_city",
+      element: {
+        label: "City",
+      },
+    },
+
+     
+    
+  ]
+
 
   return (
     <>
@@ -213,12 +243,14 @@ const HubsTables = () => {
         columns={columns}
         data={data}
         tableTop={tableTop}
+        filterFields={filterFields}
         tableProps={{
           className: " is-hoverable is-bordered is-striped smart-efl-table",
           isResponsive: true,
+          searchPlaceHolder: "Search",
         }}
         paginationProps={{
-          pageSize:5
+          pageSize:10
         }}
       />
       </div>

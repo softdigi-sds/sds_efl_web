@@ -148,7 +148,7 @@ const OfficesTable = () => {
       title: "State",
       index: "state_name",
     },
-    { title: "Pin Code", index: "pin_code" },
+    { title: "Pin Code", index: "pin_code",width:"10" },
     {
       title: "Address",
       index: "address_one",
@@ -230,7 +230,7 @@ const OfficesTable = () => {
             searchPlaceHolder: "Search",
           }}
           paginationProps={{
-            pageSize: 5,
+            pageSize: 10,
           }}
         />
       </div>
