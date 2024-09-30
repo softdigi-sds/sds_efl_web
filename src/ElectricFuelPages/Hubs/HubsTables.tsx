@@ -21,6 +21,7 @@ const HubsTables = () => {
       subscription.unsubscribe();
     };
   };
+  
 
   useEffect(() => {   
     loadTableData();
