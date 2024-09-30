@@ -1,11 +1,12 @@
 import { Moment } from "moment";
 import { useEffect, useState } from "react";
-import { SmartCalender, SmartSoftSelect } from "soft_digi";
-import { VEHICLES_URL } from "../../api/UserUrls";
+import { SmartCalender, SmartSoftButton, SmartSoftSelect } from "soft_digi";
 import { useSiteContext } from "../../contexts/SiteProvider";
 import { hubs_get_all_select } from "../../services/site/SelectBoxServices";
 import { post } from "../../services/smartApiService";
 import VehicleReportFrom from "./VehicleReportFrom";
+import { VEHICLES_URL } from "../../api/UserUrls";
+import ImportVehiclesReport from "./ImportVehiclesReport";
 const VehiclesReportTable = () => {
   const { openModal } = useSiteContext();
   const [currentMonth, setCurrentMonth] = useState<Moment>();
@@ -99,11 +100,24 @@ const VehiclesReportTable = () => {
     );
   };
 
+  const openImportForm =(date:any)=>{
+
+    let options = {
+      title:"Importing Form",
+      content: <ImportVehiclesReport loadTableData={loadCalenderData} />
+  }
+  openModal(options);
+  }
   const titleDisp = () => {
     return (
       <div className="is-flex is-justify-content-space-between	is-align-items-center">
         <div className="is-size-4 site-title"> Vehicles Report</div>
-        <div className="">
+        <div className="is-flex">
+        <SmartSoftButton
+          label="Import"
+          classList={["button", " mr-4 mt-1 is-small is-primary"]}
+          onClick={()=>openImportForm(data)}
+          />
           <SmartSoftSelect
             options={hubs}
             placeHolder="Select hub"
