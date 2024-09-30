@@ -31,6 +31,8 @@ const HubsTables = () => {
       title: "Hubs Addition Form",
       content: <HubsForms loadTableData={loadTableData} dataIn={data}/>,
       width: 60,
+      className:"sd-efl-modal",
+      closeBody:false,
     };
     openModal(options);
   };

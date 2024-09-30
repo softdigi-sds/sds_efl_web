@@ -133,4 +133,42 @@
         background-color: darken($primary-color, 10%);
         color:white;
     }
+    &:focus{
+        color:white;
+    }   
+}
+
+/*** buttons for this site : Planned to have three styles of buttons ***/
+.smart-third-button {
+    margin: 10px;
+    padding: 15px 45px;
+    text-align: center;
+    color:$primary-color;
+    box-shadow: 0 0 20px #eee;
+    border-radius: 10px;
+    background-color: white;
+    border:1px solid $primary-color; 
+    transition: background-color 0.3s ease; /* Smooth transition */
+    &:hover{
+        background-color: darken($primary-color, 10%);
+        color:white;
+    }
+    &:focus{
+        color:$primary-color;
+    }   
+}
+
+/*** sd efl modal ***/
+.sd-efl-modal{
+    .modal-card{
+        border:1px solid $primary-color;
+        border-radius: 5px;
+    }
+    .modal-card-title{
+        color:$secondary-color
+    }
+}
+
+.smart-select{
+    border:1px solid #485fc7;
 }
