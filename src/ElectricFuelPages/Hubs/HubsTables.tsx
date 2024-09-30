@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react';
+import { SmartAlert, SmartLoaderInterface } from 'soft_digi';
+import { HUBS_URLS } from '../../api/UserUrls';
+import { useSiteContext } from '../../contexts/SiteProvider';
 import { SmartSoftTable, SmartTableNewInterface } from '../../core';
+import { showAlertAutoClose } from '../../services/notifyService';
 import { get, post } from '../../services/smartApiService';
 import HubsForms from './HubsForms';
-import { useSiteContext } from '../../contexts/SiteProvider';
-import { HUBS_URLS } from '../../api/UserUrls';
-import { showAlertAutoClose } from '../../services/notifyService';
-import { SmartAlert, SmartLoaderInterface } from 'soft_digi';
 import HubsView from './HubsView';
 
 const HubsTables = () => {
@@ -162,13 +162,12 @@ const HubsTables = () => {
       type: "BUTTONS",
       widthClass: "is-2",
       align: "RIGHT",
-      buttons: [
-        
+      buttons: [        
         {
           label:"Add",
           icon:"fa-plus",
           type:"CUSTOM",
-          action: openOfficesForm,
+          action: openOfficesForm
         },
       ],
       

@@ -1,0 +1,112 @@
+:root {
+  --primary-color: #a64167;
+  /* */
+  --secondary-color: #08a95c;
+  /* third color */
+  --third-color:#3b3b3b;
+  /* Yellow */
+  --white-color: #fffffe;
+  /* Text Colors */
+  --text-color: #3b3b3b;
+  /* Text White Color ***/
+  --text-white-color : #fffffe;
+  /* Main text color */
+  --link-color: #007bff;
+  /* Color for hyperlinks */
+  --link-hover-color: #0056b3;
+  /* */
+  --body-background: var(--white-color);
+  /** buttons colors **/
+  --smart-action-button-background: var(--primary-color-side);
+  --smart-action-button-text: var(--white-color);
+  /*** pagination colors ***/
+  --smart-page-active-color: var(--primary-color-side);
+  --smart-page-disabled-color: var(--third-color);
+  /**** ****/
+  --smart-text-opacity: 0.9;
+  --smart-bg-opacity: 0.9;
+
+  /***/
+  --bs-popover-body-padding-y: 0.4em;
+  /***/
+  --bs-popover-body-padding-y: 0.4em;
+  --primary-font-family: 'Baumans';
+  --fredoka-font-family: 'Baumans';
+  --fresca-font-family: 'Baumans';
+
+  --roboto-font-family: 'roboto';
+  --inter-font-family: 'Baumans';
+  --baumans-font-family: 'Baumans';
+  --alex-font-family: 'Baumans';
+}
+
+
+@font-face {
+  font-family: 'DMSans';
+  src: url('../src/assets/fonts/DM_Sans/static/DMSans-Regular.ttf') format('truetype');
+  /* Additional font weights and styles */
+}
+
+@font-face {
+  font-family: 'Fredoka';
+  src: url('../src/assets/fonts/Fredoka/static/Fredoka-Regular.ttf') format('truetype');
+  /* Additional font weights and styles */
+}
+
+@font-face {
+  font-family: 'Fresca';
+  src: url('../src/assets/fonts/Fresca/Fresca-Regular.ttf') format('truetype');
+  /* Additional font weights and styles */
+}
+
+@font-face {
+  font-family: 'Inter';
+  src: url('../src/assets/fonts/Inter/Inter-Regular.ttf') format('truetype');
+  /* Additional font weights and styles */
+}
+
+@font-face {
+  font-family: 'roboto';
+  src: url('../src/assets/fonts/roboto/Roboto-Regular.ttf') format('truetype');
+  /* Additional font weights and styles */
+}
+
+@font-face {
+  font-family: 'AlexBrush';
+  src: url('../src/assets/fonts/Alex_Brush/AlexBrush-Regular.ttf') format('truetype');
+  /* Additional font weights and styles */
+}
+
+@font-face {
+  font-family: 'Baumans';
+  src: url('../src/assets/fonts/Baumans/Baumans-Regular.ttf') format('truetype');
+  /* Additional font weights and styles */
+}
+
+.dm_sans-font-family {
+  font-family: var(--baumans-font-family);
+}
+
+.fredoka-font-family {
+  font-family: var(--baumans-font-family);
+}
+
+.fresca-font-family {
+  font-family: var(--baumans-font-family);
+}
+
+.inter-font-family {
+  font-family: var(--baumans-font-family);
+}
+
+.roboto-font-family {
+  font-family: var(--baumans-font-family);
+}
+
+.alex-font-family {
+  font-family: var(--baumans-font-family);
+}
+
+.baumans-font-family {
+  font-family: var(--baumans-font-family);
+}

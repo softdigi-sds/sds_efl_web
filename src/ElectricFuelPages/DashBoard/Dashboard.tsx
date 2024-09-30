@@ -1,9 +1,7 @@
-import React from 'react'
-import DashboardChart from './DashboardChart'
 import DashboardBarChart from './DashboardBarChart'
 import DashBoardCard from './DashBoardCard'
+import DashboardChart from './DashboardChart'
 import DashBoardTable from './DashBoardTable'
-import '../../ElectricFuelPages/ElectricFuel.css'
 
 const Dashboard = () => {
   return (
