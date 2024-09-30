@@ -1,14 +1,16 @@
 import React, { useState } from "react";
-import { SmartTable, SmartTableNewInterface } from "soft_digi";
+import { SmartFormInterFace, SmartSoftForm, SmartTable, SmartTableNewInterface } from "soft_digi";
 import InvoicebottomTable from "./InvoicebottomTable";
 import SignPad from "../../core/general/SignPad";
+import { SmartFormElementProps } from '../../core/forms/SmartFormInterface';
+import InvoicebillForm from "./InvoicebillForm";
+import { useSiteContext } from "../../contexts/SiteProvider";
 
 const InvoiceTable = () => {
   const [data, setData] = useState([]);
   const [showInvoiceBottom, setShowInvoiceBottom] = useState(false);
   const [showSignPad, setShowSignPad] = useState(false);
-
-
+  const { openModal, closeModal } = useSiteContext();
   const handleSaveSignature = (signature: string) => {
     console.log("Saved signature:", signature);
     setShowSignPad(false);
@@ -35,18 +37,38 @@ const InvoiceTable = () => {
     },
     { title: "Invoices", index: "status" },
   ];
-
+  const openOfficesForm = (data:any) => {
+    let options = {
+      title: "Bill Form",
+      content: <InvoicebillForm />,
+      width: 60,
+      className:"sd-efl-modal",
+      closeBody:false,
+    };
+    openModal(options);
+  };
   const tableTop: SmartTableNewInterface.SmartTableNewTopProps[] = [
     {
       type: "CUSTOM",
       widthClass: "is-10",
       custom: <p className="is-size-4">Invoice</p>,
     },
+    // {
+    //   type: "SEARCH",
+    //   widthClass: "is-2",
+    //   align: "JUSTIFY",
+    // },
+   
     {
       type: "BUTTONS",
       widthClass: "is-2",
       align: "RIGHT",
       buttons: [
+        {
+          label: "Create Bill",
+          type: "CUSTOM",
+          action: openOfficesForm
+        },
         {
           label: "Next",
           type: "CUSTOM",
@@ -65,6 +87,8 @@ const InvoiceTable = () => {
     <>
       {!showInvoiceBottom && (
         <div className="smart-elf-table">
+        
+      
           <SmartTable
             columns={columns}
             data={data}
@@ -76,6 +100,7 @@ const InvoiceTable = () => {
             paginationProps={{
               pageSize: 5,
             }}
+           
           />
         </div>
       )}
