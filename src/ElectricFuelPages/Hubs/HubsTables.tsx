@@ -24,7 +24,7 @@ const HubsTables = () => {
 
   useEffect(() => {   
     loadTableData();
-  }, []);
+  }, []);  
 
   const openOfficesForm = (data:any) => {
     let options = {
