@@ -1,7 +1,7 @@
 
 interface SmartFileDisplayProps {
   updateImages: (files: File[] | null) => void;
-  files: File[]; 
+  files:  File[]|any[]; 
   isMulti?: boolean;
 }
 
