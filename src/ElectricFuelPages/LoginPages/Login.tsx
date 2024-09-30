@@ -9,7 +9,8 @@ import { SmartValid, ValidateFormNew } from '../../core/services/smartValidation
 import { showAlertAutoClose } from '../../services/notifyService';
 import { post } from '../../services/smartApiService';
 import ForgotPassword from './ForgotPassword';
-import { LOGIN_PAGE_LOGO, OUR_SERVICE_CARD_FOUR } from '../../services/ImageService';
+import { LOGIN_PAGE_LOGO, LOGO, OUR_SERVICE_CARD_FOUR } from '../../services/ImageService';
+import { SmartSoftCheckRadioSwitch } from 'soft_digi';
 
 // Define the type for form data
 interface FormErrors {
@@ -17,7 +18,7 @@ interface FormErrors {
 }
 
 const Login: React.FC = () => {
-  const [formData, setFormData] = useState({});
+  const [formData, setFormData] = useState({ checkbox_remember_me: false });
   const [formSubmit, setFormSubmit] = useState<boolean>(false);
   const [formErrors, setFormErrors] = useState<FormErrors>({});
   const navigate = useNavigate();
@@ -31,6 +32,9 @@ const Login: React.FC = () => {
 
   // Handle input change with proper typing
   const handleInputChange = (name: string, value: any) => {
+    if (name === "checkbox_remember_me") {
+      value = value ? "true" : "false";
+    }
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
@@ -80,14 +84,31 @@ const Login: React.FC = () => {
     ],
     password: [SmartValid.required("Password is Required")],
   };
+  const options_remember_me = [{ value: "1", label: "Remember Me" }];
+  const passWordPin = () => {
+    return (
+      <div className="is-flex is-justify-content-space-between mb-4 has-text-weight-medium">
+        <span className="">
+        {/* <SmartSoftCheckRadioSwitch
+          options={options_remember_me}
+          name="checkbox_remember_me"
 
-  // Define form elements
+          value={formData?.checkbox_remember_me === "true" ? "1" : "0"}
+          onChange={(value) => handleInputChange("checkbox_remember_me", value)}
+          isRight={false}
+        /> */}
+        </span>
+      </div>
+    );
+  };
+
   const formElements: SmartFormElementProps[] = [
     {
       type: 'TEXT_BOX',
       width: '12',
       name: 'emailid',
       element: {
+        label: "Email",
         isRequired: true,
         placeHolder: 'Email ',
         max: 255,
@@ -101,12 +122,19 @@ const Login: React.FC = () => {
       width: '12',
       name: 'epassword',
       element: {
+        label: "PassWord", 
         isRequired: true,
         placeHolder: 'Password',
         inputType: "BORDER_LABEL",
         leftIcon: "fa fa-envelope-square",
         validations: loginFormValidations.password,
       },
+    },
+    {
+      type: "LABEL",
+      name: "remember_me",
+      width: "12",
+      labelFunction: passWordPin,
     },
   ];
 
@@ -120,6 +148,9 @@ const Login: React.FC = () => {
             </div>
         <div className='smart-lnpr-login-card column is-6'>
             <div className={isOpen ? "smart-lnpr-login-card-inner-active" : 'smart-lnpr-login-card-inner'}>
+              <div className="mb-6">
+                <img src={LOGO} alt="" />
+              </div>
                 <div className="flip-card-front">
                     <p className='smart-lnpr-text'>Welcome</p>
                     <SmartSoftForm
