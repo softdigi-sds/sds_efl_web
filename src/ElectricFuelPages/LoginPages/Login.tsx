@@ -9,7 +9,7 @@ import { SmartValid, ValidateFormNew } from '../../core/services/smartValidation
 import { showAlertAutoClose } from '../../services/notifyService';
 import { post } from '../../services/smartApiService';
 import ForgotPassword from './ForgotPassword';
-import { OUR_SERVICE_CARD_FOUR } from '../../services/ImageService';
+import { LOGIN_PAGE_LOGO, OUR_SERVICE_CARD_FOUR } from '../../services/ImageService';
 
 // Define the type for form data
 interface FormErrors {
@@ -113,11 +113,11 @@ const Login: React.FC = () => {
   return (
     <div className='smart-lnpr-login-container'>
     <div className='smart-lnpr-login-sub-container columns is-vcentered is-centered'>
-    <div className="smart-lnpr-image-content-mobile">
+
         <div className="column is-6 has-text-centered smart-lnpr-login-card is-vcentered is-centered">
-        
-            <img src={OUR_SERVICE_CARD_FOUR} alt="Login" /></div>
-        </div>
+        <div className="smart-lnpr-image-content-mobile">
+            <img src={LOGIN_PAGE_LOGO} alt="Login" /></div>
+            </div>
         <div className='smart-lnpr-login-card column is-6'>
             <div className={isOpen ? "smart-lnpr-login-card-inner-active" : 'smart-lnpr-login-card-inner'}>
                 <div className="flip-card-front">

@@ -114,6 +114,16 @@
     font-weight: 800;
     margin-bottom: 1rem;
 }
+/* .smart-lnpr-image-content-mobile {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+} */
+.smart-lnpr-image-content-mobile img {
+    max-width: 100%; 
+    height: 500px; 
+}
 @media (max-width: 768px) {
     .smart-lnpr-image-container {
         display: none; 
