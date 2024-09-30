@@ -90,6 +90,29 @@ const UsersForm:React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
     {
       type: "TEXT_BOX",
       width: "6",
+      name: "emailid",
+      element: {
+        label: "Email ID",
+        isRequired: true,
+        inputProps: { isFocussed: true },
+        validations: loginFormValidations.email,
+      },
+    },
+    {
+      type: "TEXT_BOX",
+      width: "6",
+      name: "mobile_no",
+      element: {
+        label: "Mobile No.",
+        isRequired: true,
+        inputProps: { isFocussed: true },
+        validations: loginFormValidations.MobileNumber,
+        allowPattern:ALLOW_NUMERIC
+      },
+    },
+    {
+      type: "TEXT_BOX",
+      width: "6",
       name: "ename",
       element: {
         label: "Name",
@@ -111,29 +134,8 @@ const UsersForm:React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
         validations: loginFormValidations.password,
       },
     },
-    {
-      type: "TEXT_BOX",
-      width: "6",
-      name: "mobile_no",
-      element: {
-        label: "Mobile No.",
-        isRequired: true,
-        inputProps: { isFocussed: true },
-        validations: loginFormValidations.MobileNumber,
-        allowPattern:ALLOW_NUMERIC
-      },
-    },
-    {
-      type: "TEXT_BOX",
-      width: "6",
-      name: "emailid",
-      element: {
-        label: "Email ID",
-        isRequired: true,
-        inputProps: { isFocussed: true },
-        validations: loginFormValidations.email,
-      },
-    },
+    
+   
   
     {
       type: "SELECT_BOX",
