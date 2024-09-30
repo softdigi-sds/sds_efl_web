@@ -1,15 +1,21 @@
+@import 'variables';
 /** site title **/
 .site-title {}
 
 
 /** Table Related Global Styles ***/
 .smart-efl-table_main_container {
+
     .smart-table-head {
         div.column {
             display: flex;
             align-items: center;
         }
     }
+    .smart-table-container{
+        min-height: 300px;
+    }
+
     .smart-table-pagination {
         .pagination-list {
             .pagination-link.is-current {
@@ -17,10 +23,15 @@
             }
         }
     }
+
     .smart-table-footer {
         margin-left: 0;
         margin-right: 0;
         margin-top: 0;
+        .column {
+            margin: 0;
+            padding: 0 !important;
+        }
     }
 }
 
@@ -106,9 +117,8 @@
 
 
 
-/*** buttons for this site : Planned to have three styles of buttons ***/ 
-.smart-action-button{
-    background-image: linear-gradient(to right, var(--primary-color) 0%, var(--primary-color) 51%, var(--primary-color)f 100%);
+/*** buttons for this site : Planned to have three styles of buttons ***/
+.smart-action-button {
     margin: 10px;
     padding: 15px 45px;
     text-align: center;
@@ -117,4 +127,10 @@
     color: white;
     box-shadow: 0 0 20px #eee;
     border-radius: 10px;
+    background-color: $primary-color;
+    transition: background-color 0.3s ease; /* Smooth transition */
+    &:hover{
+        background-color: darken($primary-color, 10%);
+        color:white;
+    }
 }

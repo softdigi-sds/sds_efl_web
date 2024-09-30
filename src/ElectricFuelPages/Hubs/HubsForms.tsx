@@ -1,12 +1,11 @@
 import { useEffect, useState } from 'react';
 import { SmartFormInterFace, SmartSoftButton, SmartSoftForm, SmartValid } from "soft_digi";
-import SmartHeader from '../../core/general/SmartHeader';
-import { office_get_all_select, role_get_select } from '../../services/site/SelectBoxServices';
 import { ValidateFormNew } from 'soft_digi/dist/services/smartValidationService';
 import { HUBS_URLS } from '../../api/UserUrls';
-import { post } from '../../services/smartApiService';
-import { showAlertAutoClose } from '../../services/notifyService';
 import { useSiteContext } from '../../contexts/SiteProvider';
+import { showAlertAutoClose } from '../../services/notifyService';
+import { office_get_all_select, role_get_select } from '../../services/site/SelectBoxServices';
+import { post } from '../../services/smartApiService';
 
 interface FormErrors {
   [key: string]: string | null;
@@ -161,7 +160,7 @@ const HubsForms:React.FC<HeaderProps> = ({loadTableData,dataIn}) => {
         />
       <SmartSoftButton
           label="Submit"
-          classList={["button ","mt-4"]}
+          classList={["button ","mt-4","smart-action-button"]}
           onClick={handleSubmit}
         />
       </div>
