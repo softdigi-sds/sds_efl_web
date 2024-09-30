@@ -73,6 +73,9 @@ const OfficesForm:React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
     city: [SmartValid.required("City is Required")],
     address: [SmartValid.required("Address is Required")],
     gst_no: [SmartValid.required("GST No is Required")],
+    cgst_no: [SmartValid.required("CGST No is Required")],
+    sgst_no: [SmartValid.required("SGST No is Required")],
+    igst_no: [SmartValid.required("IGST No is Required")],
     pan_no: [SmartValid.required("Pan No is Required")],
     cin_no: [SmartValid.required("CIN No is Required")],
     pin_code: [SmartValid.required("Pin Code is Required")],
@@ -86,7 +89,7 @@ const OfficesForm:React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
   const formElements:SmartFormInterFace.SmartFormElementProps[]= [
     {
       type: "SELECT_BOX",
-      width: "6",
+      width: "4",
       name: "state",
       element: {
         label: "State",
@@ -97,7 +100,7 @@ const OfficesForm:React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
     },
     {
       type: "TEXT_BOX",
-      width: "6",
+      width: "4",
       name: "office_city",
       element: {
         label: "City",
@@ -109,71 +112,38 @@ const OfficesForm:React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
       },
     },
     {
-      type: "TEXTAREA",
-      width: "12",
-      name: "address_one",
-      element: {
-        label: "Address",
-        isRequired:true,
-        max: 255,
-        validations: loginFormValidations.address,
-      },
-    },
-    {
       type: "TEXT_BOX",
-      width: "6",
-      name: "gst_no",
-      element: {
-        label: "GST No.",
-        // placeHolder: "City",
-        isRequired: true,
-        inputProps: { isFocussed: true },
-          // pattern:  ALLOW_ALPHABET_SPACE ,
-        validations: loginFormValidations.gst_no,
-      },
-    },
-    {
-      type: "TEXT_BOX",
-      width: "6",
+      width: "4",
       name: "cgst",
       element: {
-        label: "CGST.",
+        label: "CGST (%)",
         // placeHolder: "City",
         isRequired: true,
         inputProps: { isFocussed: true },
           // pattern:  ALLOW_ALPHABET_SPACE ,
-        validations: loginFormValidations.gst_no,
+        validations: loginFormValidations.cgst_no,
+        pattern:  ALLOW_NUMERIC ,
+        max:3,
       },
     },
     {
       type: "TEXT_BOX",
-      width: "6",
-      name: "igst",
+      width: "4",
+      name: "gst_no",
       element: {
-        label: "IGST No.",
+        label: "GST (%)",
         // placeHolder: "City",
         isRequired: true,
         inputProps: { isFocussed: true },
           // pattern:  ALLOW_ALPHABET_SPACE ,
         validations: loginFormValidations.gst_no,
+        pattern:  ALLOW_NUMERIC ,
+        max:3,
       },
     },
     {
       type: "TEXT_BOX",
-      width: "6",
-      name: "sgst ",
-      element: {
-        label: "SGST",
-        // placeHolder: "City",
-        isRequired: true,
-        inputProps: { isFocussed: true },
-          // pattern:  ALLOW_ALPHABET_SPACE ,
-        validations: loginFormValidations.gst_no,
-      },
-    },
-    {
-      type: "TEXT_BOX",
-      width: "6",
+      width: "4",
       name: "pan_no",
       element: {
         label: "PAN No.",
@@ -184,10 +154,10 @@ const OfficesForm:React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
     },
     {
       type: "TEXT_BOX",
-      width: "6",
+      width: "4",
       name: "cin_no",
       element: {
-        label: "CIN No",
+        label: "CRN No",
         isRequired: true,
         inputProps: { isFocussed: true },
         validations: loginFormValidations.cin_no,
@@ -195,9 +165,40 @@ const OfficesForm:React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
         max:15,
       },
     },
+   
     {
       type: "TEXT_BOX",
-      width: "6",
+      width: "4",
+      name: "igst",
+      element: {
+        label: "IGST No.",
+        // placeHolder: "City",
+        isRequired: true,
+        inputProps: { isFocussed: true },
+          // pattern:  ALLOW_ALPHABET_SPACE ,
+        validations: loginFormValidations.igst_no,
+      },
+    },
+    {
+      type: "TEXT_BOX",
+      width: "4",
+      name: "sgst ",
+      element: {
+        label: "SGST (%)",
+        // placeHolder: "City",
+        isRequired: true,
+        inputProps: { isFocussed: true },
+          // pattern:  ALLOW_ALPHABET_SPACE ,
+        validations: loginFormValidations.sgst_no,
+        pattern:  ALLOW_NUMERIC ,
+        max:3,
+      },
+    },
+  
+   
+    {
+      type: "TEXT_BOX",
+      width: "4",
       name: "pin_code",
       element: {
         label: "Pin Code",
@@ -207,6 +208,18 @@ const OfficesForm:React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
         validations: loginFormValidations.pin_code,
           pattern:  ALLOW_NUMERIC ,
         max:8,
+      },
+    },
+    {
+      type: "TEXTAREA",
+      width: "12",
+      name: "address_one",
+      element: {
+        label: "Address",
+        isRequired:true,
+        max: 255,
+        rows: 2,
+        validations: loginFormValidations.address,
       },
     },
   ];

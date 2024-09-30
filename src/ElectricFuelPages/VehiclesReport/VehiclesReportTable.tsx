@@ -40,18 +40,22 @@ const VehiclesReportTable = () => {
   }, []);
 
   useEffect(() => {
-    if (hub) {
+    // update the first when the ubs are loaded
+    if (hubs && hubs.length > 0) {
+      setHub(hubs[0]);
+    }
+  }, [hubs])
+
+  useEffect(() => {
+    if (hub && hub.value && parseInt(hub.value) > 0) {
       loadCalenderData();
     }
   }, [currentMonth, hub]);
 
   const openForm = (date: any) => {
+
     let options = {
-      title: (
-        <div>
-          Hub: {hub?.label} Date : {date}
-        </div>
-      ),
+      title:<div>  Hub: {hub?.label} Date : {date}</div>,
       content: (
         <VehicleReportFrom
           loadTableData={loadCalenderData}
