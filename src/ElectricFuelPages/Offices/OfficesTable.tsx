@@ -3,6 +3,7 @@ import { get, post } from "../../services/smartApiService";
 // import { SmartAlert, SmartLoaderInterface } from "../../core";
 import {
   SmartAlert,
+  SmartFormInterFace,
   SmartLoaderInterface,
   SmartTable,
   SmartTableNewInterface,
@@ -133,15 +134,10 @@ const OfficesTable = () => {
   ];
 
   const statusTags = [
-    { value: "SUBMITTED", Label: "SUBMITTED", class: "is-warning" },
-    { value: "QUALIFIED", Label: "QUALIFIED", class: "is-info" },
-    { value: "PAID", Label: "PAID", class: "is-success" },
-    { value: "COMPLIMENTARY", Label: "COMPLIMENTARY", class: "has-text-info" },
-    { value: "CANCELLED", Label: "CANCELLED", class: "is-danger" },
-    { value: "PUBLISHED", Label: "PUBLISHED", class: "is-success" },
-    { value: "ACTIVE", Label: "ACTIVE", class: "is-success" },
-  ];
-
+    { value: 5, Label: "Active", class: "is-primary" },
+    { value: 10, Label: "Inactive", class: "is-danger" },
+  
+  ]
   const columns: SmartTableNewInterface.SmartTableNewColumnConfig[] = [
     { title: "S.NO", index: "s_no", type: "sno",width:"5" },
     {
@@ -157,8 +153,8 @@ const OfficesTable = () => {
       title: "Address",
       index: "address_one",
     },
-    { title: "Status", index: "status"
-      //  type: "tags", tags: statusTags
+    { title: "Status", index: "status",
+        type: "tags", tags: statusTags
        },
     {
       title: "Action",
@@ -168,18 +164,47 @@ const OfficesTable = () => {
       width: "10",
     },
   ];
+  const filterFields:SmartFormInterFace.SmartFormElementProps[] = [
+    {
+      type: "TEXT_BOX",
+      width: "12",
+      name: "office_city",
+      element: {
+        label: "Office City",
+      },
+    },
+    {
+      type: "TEXT_BOX",
+      width: "12",
+      name: "state_name",
+      element: {
+        label: "State",
+      },
+    },
+
+     
+    
+  ]
 
   const tableTop: SmartTableNewInterface.SmartTableNewTopProps[] = [
     {
       type: "CUSTOM",
-      widthClass: "is-10",
+      widthClass: "is-6",
       custom: <p className="is-size-4">Offices & Location</p>,
+    },
+    {
+      type: "SEARCH",
+      widthClass: "is-4",
+      align: "JUSTIFY",
     },
     {
       type: "BUTTONS",
       widthClass: "is-2",
-      align: "RIGHT",
+      align: "CENTER",
       buttons: [
+        {
+          type: "FILTER",
+        },
         {
           label: "Add",
           icon: "fa-plus",
@@ -198,9 +223,11 @@ const OfficesTable = () => {
           columns={columns}
           data={data}
           tableTop={tableTop}
+          filterFields={filterFields}
           tableProps={{
             className: " is-hoverable is-bordered is-striped smart-efl-table",
             isResponsive: true,
+            searchPlaceHolder: "Search",
           }}
           paginationProps={{
             pageSize: 5,

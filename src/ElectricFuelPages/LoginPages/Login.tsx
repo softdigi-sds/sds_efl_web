@@ -142,7 +142,7 @@ const Login: React.FC = () => {
     <div className='smart-lnpr-login-container'>
     <div className='smart-lnpr-login-sub-container columns is-vcentered is-centered'>
 
-        <div className="column is-6 has-text-centered smart-lnpr-login-card is-vcentered is-centered">
+        <div className="column is-6 has-text-centered smart-lnpr-login-card is-vcentered is-centered p-0 m-0">
         <div className="smart-lnpr-image-content-mobile">
             <img src={LOGIN_PAGE_LOGO} alt="Login" /></div>
             </div>

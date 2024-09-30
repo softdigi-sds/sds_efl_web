@@ -126,6 +126,29 @@ const HubsTables = () => {
       },
     },
   ];
+  const GroupDisplay = (data: any) => {
+    return(
+      <>
+      <div className='tags'>{data?.role.map((item:any)=>(
+        <>
+        <p className='tag'>{item.label}</p>
+        </>
+      ))}</div>
+      </>
+    )
+  }
+  const LocationDisplay = (data: any) => {
+    return(
+      <>
+      <div className='tags'>{data?.city?.label}</div>
+      </>
+    )
+  }
+  const statusTags = [
+    { value: 5, Label: "Active", class: "is-primary" },
+    { value: 10, Label: "Inactive", class: "is-danger" },
+  
+  ]
   const columns: SmartTableNewInterface.SmartTableNewColumnConfig[] = [
     { title: "S.NO", index: "s_no", type: "sno", width:"5" },
     {
@@ -138,14 +161,17 @@ const HubsTables = () => {
       index: "office_city",
       width:"10"
     },
-    { title: "Location", index: "hub_location",},
+    { title: "Location", index: "hub_location",
+      valueFunction:LocationDisplay
+    },
 
     {
       title: "Access Group",
-      index: "sd_efl_office_id",
+      index: "role",
+      valueFunction:GroupDisplay
     
     },
-    { title: "State", index: "email" },
+    { title: "State", index: "status",type:"tags",tags:statusTags },
     {
       title: "Action",
       index: "action",
