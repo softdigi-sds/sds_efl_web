@@ -7,6 +7,7 @@ import { post } from "../../services/smartApiService";
 import VehicleReportFrom from "./VehicleReportFrom";
 import { VEHICLES_URL } from "../../api/UserUrls";
 import ImportVehiclesReport from "./ImportVehiclesReport";
+import { isCurrentMonth } from "../../services/site/DateService";
 const VehiclesReportTable = () => {
   const { openModal } = useSiteContext();
   const [currentMonth, setCurrentMonth] = useState<Moment>();
@@ -44,7 +45,7 @@ const VehiclesReportTable = () => {
     if (hubs && hubs.length > 0) {
       setHub(hubs[0]);
     }
-  }, [hubs])
+  }, [hubs]);
 
   useEffect(() => {
     if (hub && hub.value && parseInt(hub.value) > 0) {
@@ -53,9 +54,13 @@ const VehiclesReportTable = () => {
   }, [currentMonth, hub]);
 
   const openForm = (date: any) => {
-
     let options = {
-      title:<div>  Hub: {hub?.label} Date : {date}</div>,
+      title: (
+        <div>
+          {" "}
+          Hub: {hub?.label} Date : {date}
+        </div>
+      ),
       content: (
         <VehicleReportFrom
           loadTableData={loadCalenderData}
@@ -63,7 +68,7 @@ const VehiclesReportTable = () => {
           hub_id={hub}
         />
       ),
-      className:"sd-efl-modal",
+      className: "sd-efl-modal",
     };
     openModal(options);
   };
@@ -87,36 +92,39 @@ const VehiclesReportTable = () => {
   // ** meeting display boss
   const content = (date: any) => {
     const count_check = data?.find((item) => item.date === date);
+    const this_month = isCurrentMonth(new Date(date));
+    //console.log(" this month ", this_month, "  dt ", date);
     return (
       <div className="calender-div">
         {count_check && count_check.count > 0 ? (
-          <div>{count_check.count}</div>
+          <div onClick={() => openForm(date)}>{count_check.count}</div>
         ) : (
           <div>
-            <i onClick={() => openForm(date)} className="fa fa-plus"></i>
+            {this_month && (
+              <i onClick={() => openForm(date)} className="fa fa-plus"></i>
+            )}
           </div>
         )}
       </div>
     );
   };
 
-  const openImportForm =(date:any)=>{
-
+  const openImportForm = (date: any) => {
     let options = {
-      title:"Importing Form",
-      content: <ImportVehiclesReport loadTableData={loadCalenderData} />
-  }
-  openModal(options);
-  }
+      title: "Importing Form",
+      content: <ImportVehiclesReport loadTableData={loadCalenderData} />,
+    };
+    openModal(options);
+  };
   const titleDisp = () => {
     return (
       <div className="is-flex is-justify-content-space-between	is-align-items-center">
         <div className="is-size-4 site-title"> Vehicles Report</div>
         <div className="is-flex">
-        <SmartSoftButton
-          label="Import"
-          classList={["button", " mr-4 mt-1 is-small is-primary"]}
-          onClick={()=>openImportForm(data)}
+          <SmartSoftButton
+            label="Import"
+            classList={["button", " mr-4 mt-1 is-link is-normal"]}
+            onClick={() => openImportForm(data)}
           />
           <SmartSoftSelect
             options={hubs}

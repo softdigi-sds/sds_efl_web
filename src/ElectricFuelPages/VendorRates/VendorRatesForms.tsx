@@ -12,7 +12,7 @@ import { changeDateTimeZoneFormat } from "../../services/core/CommonService";
 import { showAlertAutoClose } from "../../services/notifyService";
 import {
   company_get_all_select,
-  hubs_get_all_select
+  hubs_get_all_select,
 } from "../../services/site/SelectBoxServices";
 import { post } from "../../services/smartApiService";
 import VendorRatesSubForm from "./VendorRatesSubForm";
@@ -26,7 +26,6 @@ interface HeaderProps {
   dataIn: any;
 }
 
-
 const VendorRatesForms: React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
   const [formData, setFormData] = useState<any>({});
   const [formSubmit, setFormSubmit] = useState<boolean>(false);
@@ -38,51 +37,55 @@ const VendorRatesForms: React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
     setFormData((prev: any) => ({ ...prev, [name]: value }));
   };
 
-  const updateItemProperty = (index:number, dynamicKey:string, newValue:any) => {
-    const _data = {...formData}
+  const updateItemProperty = (
+    index: number,
+    dynamicKey: string,
+    newValue: any
+  ) => {
+    const _data = { ...formData };
     // Create a copy of the items array
-    const updatedItems = _data?.rate_data ? [..._data?.rate_data] :[]
+    const updatedItems = _data?.rate_data ? [..._data?.rate_data] : [];
     // Create a copy of the object at the specific index
     const updatedItem = { ...updatedItems[index] };
     // Update the dynamic property
     updatedItem[dynamicKey] = newValue;
     // Replace the object in the array with the updated object
-    updatedItems[index] = updatedItem;  
+    updatedItems[index] = updatedItem;
     //
     _data.rate_data = updatedItems;
     // Update the state with the new array
     setFormData(_data);
   };
 
-  const subFormDataObj={
-    hsn_code:"",
-    rate_type:"",
-    min_start:"",
-    min_end:"",
-    price:"",
-    extra_price:""
- }
+  const subFormDataObj = {
+    sd_hsn_id: "",
+    rate_type: "",
+    min_start: "",
+    min_end: "",
+    price: "",
+    extra_price: "",
+  };
 
-
-  const addItem=()=>{
-    const _data = {...formData};
-    const updatedItems = _data?.rate_data ? [..._data?.rate_data,subFormDataObj] : [subFormDataObj];
+  const addItem = () => {
+    const _data = { ...formData };
+    const updatedItems = _data?.rate_data
+      ? [..._data?.rate_data, subFormDataObj]
+      : [subFormDataObj];
     _data.rate_data = updatedItems;
-   // console.log("data added " , _data);
-    setFormData(_data);
-  }
-
-  const removeItemAndLast = () => {
-    const _data = {...formData};
-    const updatedItems = _data?.rate_data ? [..._data?.rate_data] : [];
-    const finalItems = updatedItems.length > 0 ? updatedItems.slice(0, updatedItems.length - 1) : [];
-    _data.rate_data = finalItems;
+    // console.log("data added " , _data);
     setFormData(_data);
   };
 
-
-  
-
+  const removeItemAndLast = () => {
+    const _data = { ...formData };
+    const updatedItems = _data?.rate_data ? [..._data?.rate_data] : [];
+    const finalItems =
+      updatedItems.length > 0
+        ? updatedItems.slice(0, updatedItems.length - 1)
+        : [];
+    _data.rate_data = finalItems;
+    setFormData(_data);
+  };
 
   useEffect(() => {
     hubs_get_all_select((data: any) => setAllHubs(data));
@@ -112,28 +115,34 @@ const VendorRatesForms: React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
     { value: "1", label: "Fixed" },
     { value: "2", label: "Minimum" },
     { value: "3", label: "Per Unit" },
-  ]
-
+  ];
 
   const subFormDisplay = () => {
     const sub_data = formData.rate_data ? [...formData.rate_data] : [];
-    return <><div className="columns">
-      <div className="column is-2">HSN CODE</div>
-      <div className="column is-2">Rate Type</div>
-      <div className="column is-2">Range Start</div>
-      <div className="column is-2">Range End</div>
-      <div className="column is-2">Price(Rs)</div>
-      <div className="column is-2">Extra Price(Rs)</div>
-    </div>
-      {sub_data.map((item,index)=>{
-        return <VendorRatesSubForm key={`subform${index}`} formData={item} setFormData={(name,value)=>updateItemProperty(index,name,value)}/>
-      })}
-
-    </>
-  }
-
-
-
+    return (
+      <>
+        <div className="columns">
+          <div className="column is-2">HSN CODE</div>
+          <div className="column is-2">Rate Type</div>
+          <div className="column is-2">Range Start</div>
+          <div className="column is-2">Range End</div>
+          <div className="column is-2">Price(Rs)</div>
+          <div className="column is-2">Extra Price(Rs)</div>
+        </div>
+        {sub_data.map((item, index) => {
+          return (
+            <VendorRatesSubForm
+              key={`subform${index}`}
+              formData={item}
+              setFormData={(name, value) =>
+                updateItemProperty(index, name, value)
+              }
+            />
+          );
+        })}
+      </>
+    );
+  };
 
   const Interrogation = () => {
     return (
@@ -165,10 +174,13 @@ const VendorRatesForms: React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
       url = VENDER_RATE_URLS.UPDATE;
     }
     let data_in = { ...formData };
-    data_in["unit_rate_type"] = data_in["unit_rate_type"].value;
-    data_in["parking_rate_type"] = data_in["parking_rate_type"].value;
+    // data_in["unit_rate_type"] = data_in["unit_rate_type"].value;
+    //data_in["parking_rate_type"] = data_in["parking_rate_type"].value;
 
-    data_in["effective_date"] = changeDateTimeZoneFormat(data_in.effective_date, "YYYY-MM-DD");
+    data_in["effective_date"] = changeDateTimeZoneFormat(
+      data_in.effective_date,
+      "YYYY-MM-DD"
+    );
     const subscription = post(url, data_in).subscribe((response) => {
       //console.log("response form ", response.data);
       loadTableData();
@@ -356,37 +368,36 @@ const VendorRatesForms: React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
         formData={formData}
         setFormData={handleInputChange}
         elements={formElements}
-        formSubmit={formSubmit}       
+        formSubmit={formSubmit}
       />
       <div className="columns">
         <div className="column is-6">
           <span>Rates:</span>
         </div>
         <div className="column is-6 has-text-right">
-        <SmartSoftButton
-          label="Add"
-          classList={["button", "mr-1","is-small is-success"]}
-          onClick={addItem}
-        />
-        
-         <SmartSoftButton
-          label="Remove"
-          classList={["button", "mr-1","is-small is-danger"]}
-          onClick={removeItemAndLast}
-        />
-          
+          <SmartSoftButton
+            label="Add"
+            classList={["button", "mr-1", "is-small is-success"]}
+            onClick={addItem}
+          />
+
+          <SmartSoftButton
+            label="Remove"
+            classList={["button", "mr-1", "is-small is-danger"]}
+            onClick={removeItemAndLast}
+          />
         </div>
       </div>
       {subFormDisplay()}
       <div className="has-text-right">
         <SmartSoftButton
           label="Cancel"
-          classList={["button","mt-4 mr-4","smart-third-button"]}
+          classList={["button", "mt-4 mr-4", "smart-third-button"]}
           onClick={closeModal}
         />
         <SmartSoftButton
           label="Submit"
-          classList={["button ","mt-4","smart-action-button"]}
+          classList={["button ", "mt-4", "smart-action-button"]}
           onClick={handleSubmit}
         />
       </div>

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { SmartAlert, SmartFormInterFace, SmartLoaderInterface } from 'soft_digi';
+import { SmartAlert, SmartLoaderInterface } from 'soft_digi';
 import { HUBS_URLS } from '../../api/UserUrls';
 import { useSiteContext } from '../../contexts/SiteProvider';
 import { SmartSoftTable, SmartTableNewInterface } from '../../core';
@@ -12,55 +12,52 @@ const HubsTables = () => {
   const [data, setData] = useState([]);
   const { openModal, closeModal } = useSiteContext();
 
-  const loadTableData = () => {  
-    let URL = HUBS_URLS.GET_ALL; 
+  const loadTableData = () => {
+    let URL = HUBS_URLS.GET_ALL;
     const subscription = get(URL).subscribe((response) => {
-      setData(response.data);    
+      setData(response.data);
     });
     return () => {
       subscription.unsubscribe();
     };
   };
+  
 
-
-  useEffect(() => {   
+  useEffect(() => {
     loadTableData();
-  }, []);  
+  }, []);
 
-  const openOfficesForm = (data:any) => {
+  const openOfficesForm = (data: any) => {
     let options = {
       title: "Hubs Addition Form",
-      content: <HubsForms loadTableData={loadTableData} dataIn={data}/>,
+      content: <HubsForms loadTableData={loadTableData} dataIn={data} />,
       width: 60,
-      className:"sd-efl-modal",
-      closeBody:false,
+      className: "sd-efl-modal",
+      closeBody: false,
     };
     openModal(options);
   };
-  
-  
-  const viewEditForm = (id: any) => { 
-    const subscription = post(
-      HUBS_URLS.GET_ONE,
-      { id: id }
-    ).subscribe((response: any) => {
-      openOfficesForm(response.data);
-    });
+
+  const viewEditForm = (id: any) => {
+    const subscription = post(HUBS_URLS.GET_ONE, { id: id }).subscribe(
+      (response: any) => {
+        openOfficesForm(response.data);
+      }
+    );
     return () => {
       subscription.unsubscribe();
     };
   };
 
   const deleteData = (id: any) => {
-    const subscription = post(
-      HUBS_URLS.DELETE,
-      { id: id }
-    ).subscribe((response) => {
-      showAlertAutoClose("Deleted Successfully...", "success");
-      closeModal();
-      loadTableData();
-      // setLoading(false);
-    });
+    const subscription = post(HUBS_URLS.DELETE, { id: id }).subscribe(
+      (response) => {
+        showAlertAutoClose("Deleted Successfully...", "success");
+        closeModal();
+        loadTableData();
+        // setLoading(false);
+      }
+    );
     return () => {
       subscription.unsubscribe();
     };
@@ -128,51 +125,53 @@ const HubsTables = () => {
     },
   ];
   const GroupDisplay = (data: any) => {
-    return(
+    return (
       <>
-      <div className='tags'>{data?.role.map((item:any)=>(
-        <>
-        <p className='tag'>{item.label}</p>
-        </>
-      ))}</div>
+        <div className="tags">
+          {data?.role.map((item: any) => (
+            <>
+              <p className="tag">{item.label}</p>
+            </>
+          ))}
+        </div>
       </>
-    )
-  }
+    );
+  };
   const LocationDisplay = (data: any) => {
-    return(
+    return (
       <>
-      <div className='tags'>{data?.city?.label}</div>
+        <div className="tags">{data?.city?.label}</div>
       </>
-    )
-  }
+    );
+  };
   const statusTags = [
     { value: 5, Label: "Active", class: "is-primary" },
     { value: 10, Label: "Inactive", class: "is-danger" },
-  
-  ]
+  ];
   const columns: SmartTableNewInterface.SmartTableNewColumnConfig[] = [
-    { title: "S.NO", index: "s_no", type: "sno", width:"5" },
+    { title: "S.NO", index: "s_no", type: "sno", width: "5" },
     {
       title: "Hub Id",
       index: "hub_id",
-      width:"10"
+      width: "10",
     },
     {
       title: "City",
       index: "office_city",
-      width:"10"
+      width: "10",
     },
-    { title: "Location", index: "hub_location",
-      valueFunction:LocationDisplay
+    {
+      title: "Location",
+      index: "hub_location",
+      valueFunction: LocationDisplay,
     },
 
     {
       title: "Access Group",
       index: "role",
-      valueFunction:GroupDisplay
-    
+      valueFunction: GroupDisplay,
     },
-    { title: "State", index: "status",type:"tags",tags:statusTags },
+    { title: "State", index: "status", type: "tags", tags: statusTags },
     {
       title: "Action",
       index: "action",
@@ -195,46 +194,20 @@ const HubsTables = () => {
     {
       type: "BUTTONS",
       widthClass: "is-2",
-      align: "CENTER",
-      buttons: [ 
+      align: "RIGHT",
+      buttons: [        
         {
-          type: "FILTER",
-        },       
-        {
-          label:"Add",
-          icon:"fa-plus",
-          type:"CUSTOM",
-          action: openOfficesForm
+          label: "Add",
+          icon: "fa-plus",
+          type: "CUSTOM",
+          action: () => openOfficesForm({}),
         },
       ],
-      
     },
    
    
     
   ]
-  const filterFields:SmartFormInterFace.SmartFormElementProps[] = [
-    {
-      type: "TEXT_BOX",
-      width: "12",
-      name: "hub_id",
-      element: {
-        label: "Hub Id",
-      },
-    },
-    {
-      type: "TEXT_BOX",
-      width: "12",
-      name: "office_city",
-      element: {
-        label: "City",
-      },
-    },
-
-     
-    
-  ]
-
 
   return (
     <>
@@ -243,20 +216,17 @@ const HubsTables = () => {
         columns={columns}
         data={data}
         tableTop={tableTop}
-        filterFields={filterFields}
         tableProps={{
           className: " is-hoverable is-bordered is-striped smart-efl-table",
           isResponsive: true,
-          searchPlaceHolder: "Search",
         }}
         paginationProps={{
-          pageSize:10
+          pageSize:5
         }}
       />
       </div>
+    </>
+  );
+};
 
-</>
-  )
-}
-
-export default HubsTables
+export default HubsTables;

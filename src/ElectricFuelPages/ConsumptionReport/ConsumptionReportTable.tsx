@@ -8,6 +8,7 @@ import ConsumptionReportForm from "./ConsumptionReportForm";
 import { CONSUMPTION_URL } from "../../api/UserUrls";
 import SmartButton from "soft_digi/dist/forms/SmartButton";
 import ImportReportTable from "./ImportReportTable";
+import { isCurrentMonth } from "../../services/site/DateService";
 
 const ConsumptionReportTable = () => {
   const { openModal } = useSiteContext();
@@ -15,55 +16,69 @@ const ConsumptionReportTable = () => {
   const [hubs, setHubs] = useState<any>();
   const [hub, setHub] = useState<any>();
   const [data, setData] = useState<any[]>();
-  console.log("hub dat",hubs)
+  // console.log("hub dat",hubs)
 
   /**
    *  loads the calander data for month change or hub chnage
-   * 
-   * @returns 
+   *
+   * @returns
    */
-  const loadCalenderData = () => {   
+  const loadCalenderData = () => {
     let _data = {
-      hub_id:hub,
-      year:currentMonth?.clone().year(),
+      hub_id: hub,
+      year: currentMonth?.clone().year(),
       month: currentMonth?.clone().format("MM"),
     };
-    let URL=CONSUMPTION_URL.GET_ALL_CALENDER
-    const subscription = post(URL,_data).subscribe((response) => {
-      setData(response.data);    
+    let URL = CONSUMPTION_URL.GET_ALL_CALENDER;
+    const subscription = post(URL, _data).subscribe((response) => {
+      setData(response.data);
     });
     return () => {
       subscription.unsubscribe();
     };
   };
 
-  useEffect(() => {   
-   hubs_get_all_select(setHubs);
+  useEffect(() => {
+    hubs_get_all_select(setHubs);
   }, []);
 
+  useEffect(() => {
+    // update the first when the ubs are loaded
+    if (hubs && hubs.length > 0) {
+      setHub(hubs[0]);
+    }
+  }, [hubs]);
 
-  useEffect(() => {   
+  useEffect(() => {
     if (hub) {
       loadCalenderData();
     }
-  }, [currentMonth,hub]);
+  }, [currentMonth, hub]);
 
-  const openForm =(date:any)=>{
-
+  const openForm = (date: any) => {
     let options = {
-      title: <div>Hub: {hub?.label}  Date : {date}</div>,
-      content: <ConsumptionReportForm loadTableData={loadCalenderData} date={date} hub_id={hub} />
-  }
-  openModal(options);
-}
-const openImportForm =(date:any)=>{
-
-  let options = {
-    title:"Importing Form",
-    content: <ImportReportTable loadTableData={loadCalenderData} />
-}
-openModal(options);
-}
+      title: (
+        <div>
+          Hub: {hub?.label} Date : {date}
+        </div>
+      ),
+      content: (
+        <ConsumptionReportForm
+          loadTableData={loadCalenderData}
+          date={date}
+          hub_id={hub}
+        />
+      ),
+    };
+    openModal(options);
+  };
+  const openImportForm = (date: any) => {
+    let options = {
+      title: "Importing Form",
+      content: <ImportReportTable loadTableData={loadCalenderData} />,
+    };
+    openModal(options);
+  };
 
   const consumption: any[] = [
     {
@@ -81,19 +96,25 @@ openModal(options);
     // Add more events
   ];
 
-
   // ** meeting display boss
   const content = (date: any) => {
     const count_check = data?.find((item) => item.date === date);
-    return <div className="calender-div">
-      {count_check && count_check.count > 0 ?
-        <div>{count_check.count}</div> :
-        <div><i onClick={()=>openForm(date)} className="fa fa-plus"></i></div>}
-    </div>
+    const this_month = isCurrentMonth(new Date(date));
+    //console.log(" this month ", this_month, "  dt ", date);
+    return (
+      <div className="calender-div">
+        {count_check && count_check.count > 0 ? (
+          <div>{count_check.count}</div>
+        ) : (
+          <div>
+            {this_month && (
+              <i onClick={() => openForm(date)} className="fa fa-plus"></i>
+            )}
+          </div>
+        )}
+      </div>
+    );
   };
-
-
-
 
   const titleDisp = () => {
     return (
@@ -101,13 +122,17 @@ openModal(options);
         <div className="is-size-4 site-title"> Consumption Report</div>
         <div className="is-flex">
           <SmartSoftButton
-          label="Import"
-          classList={["button", " mr-4 mt-1 is-small is-primary"]}
-          onClick={()=>openImportForm(data)}
+            label="Import"
+            classList={["button", " mr-4 mt-1 is-small is-primary"]}
+            onClick={() => openImportForm(data)}
           />
-            
-        
-          <SmartSoftSelect options={hubs} placeHolder="Select hub" value={hub} onChange={(value) => setHub(value)} />
+
+          <SmartSoftSelect
+            options={hubs}
+            placeHolder="Select hub"
+            value={hub}
+            onChange={(value) => setHub(value)}
+          />
         </div>
       </div>
     );
@@ -120,10 +145,9 @@ openModal(options);
         title={titleDisp()}
         setMonth={setCurrentMonth}
         className="sd_efl-calender"
-      />    
+      />
     </>
   );
 };
 
-
-export default ConsumptionReportTable
+export default ConsumptionReportTable;
