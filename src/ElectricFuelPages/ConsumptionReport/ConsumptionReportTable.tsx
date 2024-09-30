@@ -24,7 +24,7 @@ const ConsumptionReportTable = () => {
     let _data = {
       hub_id:hub,
       year:currentMonth?.clone().year(),
-      month:currentMonth?.clone().month(),
+      month: currentMonth?.clone().format("MM"),
     };
     let URL=CONSUMPTION_URL.GET_ALL_CALENDER
     const subscription = post(URL,_data).subscribe((response) => {

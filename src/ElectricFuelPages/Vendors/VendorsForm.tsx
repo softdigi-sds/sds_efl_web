@@ -149,6 +149,16 @@ const VendorsForm:React.FC<HeaderProps > = ({loadTableData,dataIn}) => {
         inputProps: { isFocussed: true },
         validations: vendorFormValidations.pan_no,
       },
+    }, {
+      type: "TEXT_BOX",
+      width: "6",
+      name: "billing_to",
+      element: {
+        label: "Billing To",
+        isRequired: true,
+        inputProps: { isFocussed: true },
+        validations: vendorFormValidations.pan_no,
+      },
     },
     {
       type: "TEXTAREA",

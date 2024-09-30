@@ -64,11 +64,12 @@ const ConsumptionReportForm: React.FC<HeaderProps> = ({ loadTableData, date, hub
             hub_id:hub_id,
             date:date,
             data:formData
-        }      
-        const subscription = post("users", _data).subscribe(
+        } 
+        let URL=CONSUMPTION_URL.INSERT     
+        const subscription = post(URL, _data).subscribe(
             (response) => {
                 loadTableData();
-                showAlertAutoClose("Data Saved Successfully", "success");
+                showAlertAutoClose(response.data.msg, "success");
                 closeModal();
             }
         );
@@ -96,8 +97,8 @@ const ConsumptionReportForm: React.FC<HeaderProps> = ({ loadTableData, date, hub
             width: "70"
         },
         {
-            title: "Vehicles Count",
-            index: "count",
+            title: "Unit Count",
+            index: "unit_count",
             width: "25",
             valueFunction:(item)=>{
               return  <SmartSoftInput value={item.count} onChange={(value)=>updateVehicleCount(item.id,value)}/>

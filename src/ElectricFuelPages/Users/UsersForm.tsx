@@ -188,12 +188,12 @@ const UsersForm:React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
       <div className="has-text-right">
       <SmartSoftButton
           label="Cancel"
-          classList={["button","mt-4 mr-4"]}
+          classList={["button","mt-4 mr-4", "smart-third-button"]}
           onClick={closeModal}
         />
       <SmartSoftButton
           label="Submit"
-          classList={["button ","mt-4"]}
+          classList={["button ","mt-4", "smart-action-button"]}
           onClick={handleSubmit}
         />
       </div>

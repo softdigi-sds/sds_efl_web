@@ -135,6 +135,45 @@ const OfficesForm:React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
     {
       type: "TEXT_BOX",
       width: "6",
+      name: "cgst",
+      element: {
+        label: "CGST.",
+        // placeHolder: "City",
+        isRequired: true,
+        inputProps: { isFocussed: true },
+          // pattern:  ALLOW_ALPHABET_SPACE ,
+        validations: loginFormValidations.gst_no,
+      },
+    },
+    {
+      type: "TEXT_BOX",
+      width: "6",
+      name: "igst",
+      element: {
+        label: "IGST No.",
+        // placeHolder: "City",
+        isRequired: true,
+        inputProps: { isFocussed: true },
+          // pattern:  ALLOW_ALPHABET_SPACE ,
+        validations: loginFormValidations.gst_no,
+      },
+    },
+    {
+      type: "TEXT_BOX",
+      width: "6",
+      name: "sgst ",
+      element: {
+        label: "SGST",
+        // placeHolder: "City",
+        isRequired: true,
+        inputProps: { isFocussed: true },
+          // pattern:  ALLOW_ALPHABET_SPACE ,
+        validations: loginFormValidations.gst_no,
+      },
+    },
+    {
+      type: "TEXT_BOX",
+      width: "6",
       name: "pan_no",
       element: {
         label: "PAN No.",
@@ -186,12 +225,12 @@ const OfficesForm:React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
       <div className="has-text-right">
       <SmartSoftButton
           label="Cancel"
-          classList={["button","mt-4 mr-4"]}
+          classList={["button","smart-third-button", "mt-4 mr-4" ]}
           onClick={closeModal}
         />
       <SmartSoftButton
           label="Submit"
-          classList={["button ","mt-4"]}
+          classList={["button ","mt-4", "smart-action-button"]}
           onClick={handleSubmit}
         />
       </div>
