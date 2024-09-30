@@ -19,13 +19,14 @@ const VehicleReportFrom: React.FC<HeaderProps> = ({ loadTableData, date, hub_id 
     const [formData, setFormData] = useState<any[]>([]);
     const [formSubmit, setFormSubmit] = useState<boolean>(false);
     const { closeModal } = useSiteContext();
+
     const loadData = () => {
         let _data = {
             hub_id: hub_id,
             date: date
         };
-        const subscription = post("users", _data).subscribe((response) => {
-            setFormData(response.data.users);
+        const subscription = post("/efl_vehicles/get_one_parking_data", _data).subscribe((response) => {
+            setFormData(response.data);
         });
         return () => {
             subscription.unsubscribe();
@@ -45,9 +46,9 @@ const VehicleReportFrom: React.FC<HeaderProps> = ({ loadTableData, date, hub_id 
         }
     ]
 
-    useEffect(() => {
-        //loadData();
-        setFormData(dummy_data);
+    useEffect(() => {   
+        loadData()   
+       // setFormData(dummy_data);
     }, [date, hub_id]);
 
     /**
@@ -77,9 +78,9 @@ const VehicleReportFrom: React.FC<HeaderProps> = ({ loadTableData, date, hub_id 
     const updateVehicleCount=(id:number,count:any)=>{
         //console.log("id " , id , " count " , count);
         const updatedItems = formData.map(item =>
-            item.id === id ? { ...item, count: parseFloat(count) } : item
+            item.id === id ? { ...item, vehicle_count: parseFloat(count) } : item
           );
-          console.log(" updated items " , updatedItems)
+        //  console.log(" updated items " , updatedItems)
           setFormData(updatedItems);
     }
 
@@ -89,21 +90,21 @@ const VehicleReportFrom: React.FC<HeaderProps> = ({ loadTableData, date, hub_id 
         { title: "S.NO", index: "s_no", type: "sno", width: "5" },
         {
             title: "Vendor Company Name",
-            index: "name",
+            index: "vendor_company",
             width: "70"
         },
         {
             title: "Vehicles Count",
-            index: "ename",
+            index: "vehicle_count",
             width: "25",
             valueFunction:(item)=>{
-              return  <SmartSoftInput value={item.count} onChange={(value)=>updateVehicleCount(item.id,value)}/>
+              return  <SmartSoftInput value={item.vehicle_count} onChange={(value)=>updateVehicleCount(item.id,value)}/>
             }
         },       
     ];
 
     const footerComponent=(sortdata:any[])=>{
-        let total_foot_count = sumOfArrayObjectsWithIndex(formData,"count");
+        let total_foot_count = sumOfArrayObjectsWithIndex(formData,"vehicle_count");
         return <tfoot>
              <tr>
               <td colSpan={2} className="has-text-right">Total Count</td>          
