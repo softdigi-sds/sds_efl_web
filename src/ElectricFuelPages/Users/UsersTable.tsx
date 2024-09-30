@@ -166,8 +166,13 @@ const UsersTable = () => {
     const tableTop: SmartTableNewInterface.SmartTableNewTopProps[] = [
       {
         type: "CUSTOM",
-        widthClass: "is-10",
+        widthClass: "is-6",
         custom: <p className="is-size-4">Users</p>,
+      },
+      {
+        type: "SEARCH",
+        widthClass: "is-4",
+        align: "JUSTIFY",
       },
       {
         type: "BUTTONS",
@@ -199,9 +204,10 @@ const UsersTable = () => {
           tableProps={{
             className: "smart-efl-table is-hoverable is-bordered is-striped ",
             isResponsive: true,
+            searchPlaceHolder: "Search",
           }}
           paginationProps={{
-            pageSize:5
+            pageSize:10
           }}
         />
         </div>

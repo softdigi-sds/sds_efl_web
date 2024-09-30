@@ -180,18 +180,18 @@ const InvoiceTable = () => {
   const tableTop: SmartTableNewInterface.SmartTableNewTopProps[] = [
     {
       type: "CUSTOM",
-      widthClass: "is-10",
+      widthClass: "is-4",
       custom: <p className="is-size-4">Invoice</p>,
     },
-    // {
-    //   type: "SEARCH",
-    //   widthClass: "is-2",
-    //   align: "JUSTIFY",
-    // },
+    {
+      type: "SEARCH",
+      widthClass: "is-4",
+      align: "JUSTIFY",
+    },
    
     {
       type: "BUTTONS",
-      widthClass: "is-2",
+      widthClass: "is-4",
       align: "RIGHT",
       buttons: [
         {
@@ -226,9 +226,10 @@ const InvoiceTable = () => {
             tableProps={{
               className: "is-hoverable is-bordered is-striped smart-efl-table",
               isResponsive: true,
+              searchPlaceHolder: "Search",
             }}
             paginationProps={{
-              pageSize: 5,
+              pageSize: 10,
             }}
            
           />

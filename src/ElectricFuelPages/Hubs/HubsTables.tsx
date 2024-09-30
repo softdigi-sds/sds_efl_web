@@ -1,12 +1,12 @@
-import { useEffect, useState } from "react";
-import { SmartAlert, SmartLoaderInterface } from "soft_digi";
-import { HUBS_URLS } from "../../api/UserUrls";
-import { useSiteContext } from "../../contexts/SiteProvider";
-import { SmartSoftTable, SmartTableNewInterface } from "../../core";
-import { showAlertAutoClose } from "../../services/notifyService";
-import { get, post } from "../../services/smartApiService";
-import HubsForms from "./HubsForms";
-import HubsView from "./HubsView";
+import { useEffect, useState } from 'react';
+import { SmartAlert, SmartLoaderInterface } from 'soft_digi';
+import { HUBS_URLS } from '../../api/UserUrls';
+import { useSiteContext } from '../../contexts/SiteProvider';
+import { SmartSoftTable, SmartTableNewInterface } from '../../core';
+import { showAlertAutoClose } from '../../services/notifyService';
+import { get, post } from '../../services/smartApiService';
+import HubsForms from './HubsForms';
+import HubsView from './HubsView';
 
 const HubsTables = () => {
   const [data, setData] = useState([]);
@@ -21,6 +21,7 @@ const HubsTables = () => {
       subscription.unsubscribe();
     };
   };
+  
 
   useEffect(() => {
     loadTableData();
@@ -182,14 +183,19 @@ const HubsTables = () => {
   const tableTop: SmartTableNewInterface.SmartTableNewTopProps[] = [
     {
       type: "CUSTOM",
-      widthClass: "is-10",
+      widthClass: "is-6",
       custom: <p className="is-size-4">Hubs</p>,
+    },
+    {
+      type: "SEARCH",
+      widthClass: "is-4",
+      align: "JUSTIFY",
     },
     {
       type: "BUTTONS",
       widthClass: "is-2",
       align: "RIGHT",
-      buttons: [
+      buttons: [        
         {
           label: "Add",
           icon: "fa-plus",
@@ -198,23 +204,26 @@ const HubsTables = () => {
         },
       ],
     },
-  ];
+   
+   
+    
+  ]
 
   return (
     <>
-      <div className="smart-elf-table">
-        <SmartSoftTable
-          columns={columns}
-          data={data}
-          tableTop={tableTop}
-          tableProps={{
-            className: " is-hoverable is-bordered is-striped smart-efl-table",
-            isResponsive: true,
-          }}
-          paginationProps={{
-            pageSize: 5,
-          }}
-        />
+    <div className="smart-elf-table">
+      <SmartSoftTable
+        columns={columns}
+        data={data}
+        tableTop={tableTop}
+        tableProps={{
+          className: " is-hoverable is-bordered is-striped smart-efl-table",
+          isResponsive: true,
+        }}
+        paginationProps={{
+          pageSize:5
+        }}
+      />
       </div>
     </>
   );
