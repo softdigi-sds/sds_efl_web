@@ -112,38 +112,40 @@ const Login: React.FC = () => {
 
   return (
     <div className='smart-lnpr-login-container'>
-      <div className='smart-lnpr-login-sub-container columns is-vcentered is-centered '>
-        <div className="column is-12 has-text-centered smart-lnpr-login-card is-vcentered is-centered ">
-          <img src={OUR_SERVICE_CARD_FOUR} alt="Login" />
+    <div className='smart-lnpr-login-sub-container columns is-vcentered is-centered'>
+    <div className="smart-lnpr-image-content-mobile">
+        <div className="column is-6 has-text-centered smart-lnpr-login-card is-vcentered is-centered">
+        
+            <img src={OUR_SERVICE_CARD_FOUR} alt="Login" /></div>
         </div>
-        <div className='smart-lnpr-login-card column is-12'>
-          <div className={isOpen ? "smart-lnpr-login-card-inner-active" : 'smart-lnpr-login-card-inner'}>
-            <div className="flip-card-front">
-              <p className='smart-lnpr-text '>Welcome</p>
-              <SmartSoftForm
-                formData={formData}
-                setFormData={handleInputChange}
-                elements={formElements}
-                formSubmit={formSubmit}
-                handleErrorChange={handleErrorChange}
-              />
-              <span className='has-text-right smart-forgot-text' onClick={() => toggleCardFlip()}>Forgot Password?</span>
-              <div className='has-text-centered '>
-                <SmartSoftButton
-                  label="Login"
-                  classList={["smart-lnpr-login-button"]}
-                  onClick={handleLogin}
-                />
-              </div>
-
+        <div className='smart-lnpr-login-card column is-6'>
+            <div className={isOpen ? "smart-lnpr-login-card-inner-active" : 'smart-lnpr-login-card-inner'}>
+                <div className="flip-card-front">
+                    <p className='smart-lnpr-text'>Welcome</p>
+                    <SmartSoftForm
+                        formData={formData}
+                        setFormData={handleInputChange}
+                        elements={formElements}
+                        formSubmit={formSubmit}
+                        handleErrorChange={handleErrorChange}
+                    />
+                    <span className='smart-forgot-text' onClick={toggleCardFlip}>Forgot Password?</span>
+                    <div className='has-text-centered'>
+                        <SmartSoftButton
+                            label="Login"
+                            classList={["smart-lnpr-login-button"]}
+                            onClick={handleLogin}
+                        />
+                    </div>
+                </div>
+                <div className="flip-card-back">
+                    <ForgotPassword toggleSidebar={toggleCardFlip} />
+                </div>
             </div>
-            <div className="flip-card-back">
-              <ForgotPassword toggleSidebar={toggleCardFlip} />
-            </div>
-          </div>
         </div>
-      </div>
     </div>
+</div>
+
   );
 };
 

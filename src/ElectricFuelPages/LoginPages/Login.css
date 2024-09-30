@@ -12,66 +12,43 @@
 }
 
 .smart-lnpr-login-sub-container {
+    display: flex;
+    max-width: 900px;
+    min-height: 500px;
     width: 100%;
-    max-width: 600px; 
-    padding: 20px;
-    min-height: 500px !important; 
+    border-radius: 20px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    background-color: #fff;
 }
 
 .smart-lnpr-login-card {
+    flex: 1;
     display: flex;
-    flex-direction: column;
-    width: 330px;
-    padding: 20px;
-    background: rgba(255, 255, 255, 0.8);
-    border-radius: 15px;
-    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    backdrop-filter: blur(5px); 
-    border: 5px solid rgba(255, 255, 255, 0.4);
-    border-top: 5px solid rgba(255, 255, 255, 0.6); 
-    border-left: 5px solid rgba(255, 255, 255, 0.6); 
-    padding-bottom: 3rem;
-    position: relative;
-    perspective: 1000px;
-    min-height: 350px;
+    justify-content: center;
+    align-items: center;
 }
 
 .smart-lnpr-login-card-inner {
+    padding: 20px 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(to top right, rgba(250, 250, 250, 0.6), rgba(255, 255, 255, 0.9));
     position: relative;
-    width: 100%;
-    height: 100%;
-    text-align: center;
     transition: transform 0.6s;
-    transform-style: preserve-3d;
+    backface-visibility: hidden;
 }
 
-.smart-lnpr-login-card-inner-active .flip-card-front {
-    display: none;
-}
-
-.smart-lnpr-login-card-inner-active .flip-card-back {
-    display: block;
-}
-
-.flip-card-back {
-    display: none;
-}
-
-.smart-lnpr-login-button {
-    background-color: #019ee3;
-    font-family: 'Roboto', sans-serif;
-    border-radius: 10px;
+.smart-lnpr-form .input-group {
     width: 100%;
-    color: #fff;
-    padding: 10px;
-    margin-top: 20px;
+    margin-bottom: 15px;
+    position: relative;
 }
-
-.smart-lnpr-login-button:hover {
-    background-color: #007bbf;
+.smart-lnpr-login-card .smart-border-label-input .label {
+    color: #019ee3;
 }
-
 .smart-lnpr-login-card .smart-border-label-input .label {
     color: #019ee3;
 }
@@ -94,13 +71,41 @@
     text-decoration: underline;
 }
 
-@media (max-width: 768px) {
-    .smart-lnpr-login-sub-container {
-        width: 90%;
-        padding: 15px;
-    }
+
+.smart-lnpr-login-button {
+    background-color: #019ee3;
+    font-family: 'Roboto', sans-serif;
+    border-radius: 10px;
+    width: 100%;
+    color: #fff;
+    padding: 10px;
+    margin-top: 20px;
 }
 
+.smart-lnpr-login-button:hover {
+    background-color: #007bbf;
+}
+
+.smart-lnpr-login-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+}
+
+.smart-lnpr-login-card-inner-active .flip-card-front {
+    display: none;
+}
+
+.smart-lnpr-login-card-inner-active .flip-card-back {
+    display: block;
+}
+
+.flip-card-back {
+    display: none;
+}
 .smart-lnpr-text {
     text-align: center;
     color: black;
@@ -108,4 +113,20 @@
     font-family: 'Fredoka', sans-serif;
     font-weight: 800;
     margin-bottom: 1rem;
+}
+@media (max-width: 768px) {
+    .smart-lnpr-image-container {
+        display: none; 
+    }
+    .smart-lnpr-image-content-mobile{
+        display: none   ;
+    }
+    .smart-lnpr-login-sub-container {
+        flex-direction: column;
+        padding: 15px;
+    }
+
+    .smart-lnpr-login-card {
+        width: 100%;
+    }
 }
