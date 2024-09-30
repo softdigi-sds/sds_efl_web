@@ -1,95 +1,142 @@
-.smart-lnpr-login-card{
-    display: flex;
-    flex-direction: column;
-    width: 330px;
-    padding: 20px;
-    background: rgba(255, 255, 255, 0.8);
-    border-radius: 15px;
-    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    backdrop-filter: blur(5px);
-    border: 5px solid rgba(255, 255, 255, 0.4); /* Glass border */
-    border-top: 5px solid rgba(255, 255, 255, 0.6); /* Slightly stronger top border */
-    border-left: 5px solid rgba(255, 255, 255, 0.6); 
-    padding-bottom: 3rem;
-    position: relative;
-    perspective: 1000px; 
-    min-height: 350px;
-  
-}
-.smart-lnpr-login-card-inner{
-    position: relative;
-    width: 100%;
-    height: 100%;
-    text-align: center;
-    transition: transform 0.6s;
-    transform-style: preserve-3d; 
-}
 
-
-
-
- .smart-lnpr-login-card-inner-active .flip-card-front {
-  
-    /* Flip the card on hover */
-    display: none;
-}
-.smart-lnpr-login-card-inner-active .flip-card-back{
-    display: block;
-}
-.flip-card-back{
-    display: none;
-}
-
-.smart-lnpr-login-button{
-    /* width: 200px; */
-    background-color: #019ee3;
-    font-family: roboto;
-    border-radius: 10px;
-    width: 100%;
-    color: #fff
-    ;
-}
-.smart-lnpr-login-card .smart-border-label-input .label{
-    color: #019ee3;
- }
- .smart-lnpr-login-card .smart-border-label-input .input {
-    border: 2px solid #019ee3;
-    border-radius: 8px;
- }
-
- .smart-lnpr-login-container {
+.smart-lnpr-login-container {
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background-color: #007bff;   }
-  
-  .smart-lnpr-login-sub-container {
+    background: linear-gradient(
+        to right, 
+        rgba(171, 30, 83, 0.8), 
+        rgba(0, 168, 90, 0.8)
+      );
+}
+
+.smart-lnpr-login-sub-container {
+    display: flex;
+    max-width: 900px;
+    min-height: 500px;
     width: 100%;
-    max-width: 600px;
-    padding: 20px;
-    min-height: 500px !important;
-} 
-  .smart-forgot-text {
+    border-radius: 20px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    background-color: #fff;
+}
+
+.smart-lnpr-login-card {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.smart-lnpr-login-card-inner {
+    padding: 20px 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(to top right, rgba(250, 250, 250, 0.6), rgba(255, 255, 255, 0.9));
+    position: relative;
+    transition: transform 0.6s;
+    backface-visibility: hidden;
+}
+
+.smart-lnpr-form .input-group {
+    width: 100%;
+    margin-bottom: 15px;
+    position: relative;
+}
+.smart-lnpr-login-card .smart-border-label-input .label {
+    color: #019ee3;
+}
+.smart-lnpr-login-card .smart-border-label-input .label {
+    color: #019ee3;
+}
+
+.smart-lnpr-login-card .smart-border-label-input .input {
+    border: 2px solid #019ee3;
+    border-radius: 8px;
+}
+
+.smart-forgot-text {
     display: block;
     text-align: right;
     font-size: 0.9rem;
     color: #007bff;
     cursor: pointer;
     margin-top: 10px;
-  }
-  
-  .smart-forgot-text:hover {
+}
+
+.smart-forgot-text:hover {
     text-decoration: underline;
-  }
-  
-  @media (max-width: 768px) {
-    .smart-lnpr-login-sub-container {
-      width: 90%;
-      padding: 15px;
-    }
-  }
-  .smart-lnpr-login-sub-container-image{
+}
+
+
+.smart-lnpr-login-button {
+    background-color: #019ee3;
+    font-family: 'Roboto', sans-serif;
     border-radius: 10px;
-  }
+    width: 100%;
+    color: #fff;
+    padding: 10px;
+    margin-top: 20px;
+}
+
+.smart-lnpr-login-button:hover {
+    background-color: #007bbf;
+}
+
+.smart-lnpr-login-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+}
+
+.smart-lnpr-login-card-inner-active .flip-card-front {
+    display: none;
+}
+
+.smart-lnpr-login-card-inner-active .flip-card-back {
+    display: block;
+}
+
+.flip-card-back {
+    display: none;
+}
+.smart-lnpr-text {
+    text-align: center;
+    color: black;
+    font-size: 2rem;
+    font-family: 'Fredoka', sans-serif;
+    font-weight: 800;
+    margin-bottom: 1rem;
+}
+/* .smart-lnpr-image-content-mobile {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+} */
+.smart-lnpr-image-content-mobile img {
+    max-width: 100%; 
+    height: 500px; 
+}
+@media (max-width: 768px) {
+    .smart-lnpr-image-container {
+        display: none; 
+    }
+    .smart-lnpr-image-content-mobile{
+        display: none   ;
+    }
+    .smart-lnpr-login-sub-container {
+        flex-direction: column;
+        padding: 15px;
+    }
+
+    .smart-lnpr-login-card {
+        width: 100%;
+    }
+}
