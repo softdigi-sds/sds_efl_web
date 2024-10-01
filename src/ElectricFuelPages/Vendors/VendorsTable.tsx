@@ -39,7 +39,7 @@ const VendorsTable = () => {
     const subscription = post(
       VENDERS_URLS.GET_ONE,
       { id: id }
-    ).subscribe((response: any) => {
+    ).subscribe((response: any) => {  
       openOfficesForm(response.data);
     });
     return () => {
