@@ -29,7 +29,7 @@ const VendorWiseInformation = () => {
 
   const openForm =(data:any)=>{
     let options = {
-      title: "Role Addition Form",
+      title: "View Form",
       content:<></>,
       width:40,
       className:"sd-efl-modal",
@@ -54,36 +54,8 @@ const VendorWiseInformation = () => {
     };
   };
 
-  const deleteData = (id:any) => {
-    const subscription = post(
-      ROLE_URLS.DELETE,
-      { id: id }
-    ).subscribe((response) => {
-      showAlertAutoClose("Deleted Successfully...","success");
-      closeModal();
-      loadTableData();     
-    });
-    return () => {
-      subscription.unsubscribe();
-    };
-  };
 
 
-  const openDeleteModal = (id:any) => {
-    let alertProps: SmartLoaderInterface.SmartAlertInterface = {
-        title: <span className="has-text-danger"><i className="fa fa-check"></i> Role Deletion!</span>,
-        alertFunction: (option) => {
-            if (option == "yes") {
-              deleteData(id);
-                SmartAlert.hide()
-            }
-        },
-         content:<p>Note: Do you wish to delete this Role? This action cannot be reverted</p>,
-          className:"custom-alert"
-    };
-    
-    SmartAlert.show(alertProps)
-}
 
 
   const buttons = [
