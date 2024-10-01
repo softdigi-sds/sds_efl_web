@@ -4,6 +4,7 @@ import { ROLE_URLS } from '../../api/AdminUrls';
 import { useSiteContext } from '../../contexts/SiteProvider';
 import { showAlertAutoClose } from '../../services/notifyService';
 import { get, post } from '../../services/smartApiService';
+import VendorDetails from './VendorDetails';
 
 
 const VendorWiseInformation = () => {
@@ -29,9 +30,9 @@ const VendorWiseInformation = () => {
 
   const openForm =(data:any)=>{
     let options = {
-      title: "View Form",
-      content:<></>,
-      width:40,
+      title: "Vendor Details",
+      content:<VendorDetails data={data}/>,
+      width:50,
       className:"sd-efl-modal",
       closeBody:false,
   }
@@ -42,17 +43,6 @@ const VendorWiseInformation = () => {
     console.log('Delete action for row:', rowData);
   }
 
-  const viewEditForm = (id:any) => {
-      const subscription = post(
-      ROLE_URLS.GET_ONE,
-      { id: id }
-    ).subscribe((response:any) => {     
-      openForm(response.data);
-    });
-    return () => {
-      subscription.unsubscribe();
-    };
-  };
 
 
 
@@ -66,7 +56,7 @@ const VendorWiseInformation = () => {
     //   leftIcon: " ",
       classList: ["smart-efl-table-edit-icon","is-small button"],
       onClick: (data:any) => {
-        viewEditForm(data["ID"]);
+        openForm(data["ID"]);
       },
     },
    
