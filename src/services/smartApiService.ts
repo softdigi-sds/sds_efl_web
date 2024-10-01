@@ -89,7 +89,7 @@ const getDecryptedResponse = (response:any) => {
 
 const processError = (error:any) => {
   let msg = "Some Thing Went Wrong";
-  // console.log("code " , error.code);
+  // console.log("code " , error);
   if (error.code === "ERR_BAD_REQUEST") {
     let out = getDecryptedResponse(error?.response);
     msg = out.data && out.data.message ? out.data.message : "Invalid Request";
@@ -99,14 +99,14 @@ const processError = (error:any) => {
     msg = out.data && out.data.message ? out.data.message : "Invalid Request";
     return msg;
   }
-  // console.log("message " , msg);
+   //console.log("message " , msg);
   return msg;
 };
 
 // Default error handler
-const defaultErrorHandler = (errorMessage:string) => {
-  SmartLoader.hideLoader(); 
-  showAlertAutoClose(errorMessage);
+const defaultErrorHandler = (errorMessage:string,error:any) => {
+ // SmartLoader.hideLoader(); 
+  showAlertAutoClose(errorMessage,"error");
   //console.error('API Request Error:', error);
   // alert(errorMessage);
   return EMPTY;
@@ -186,8 +186,7 @@ const post = (
       if(showLoading){
         SmartLoader.hideLoader(); 
       }
-      // console.log("error ", error);
-      let errorMessage = processError(error);
+      let errorMessage = processError(error);     
       const errorHandler = handleError ? handleError : defaultErrorHandler;
       errorHandler(errorMessage, error);
       return EMPTY;

@@ -13,7 +13,7 @@ const EFHeader: React.FC<HeaderProps> = ({ setIsOpen, isOpen }) => {
   const navigate = useNavigate();
   const basenav = "/";
   const { user, setUser, logout, setLoading } = useSiteContext();
-  console.log("user ", user);
+  //console.log("user ", user);
   const navigateLink = (index: any) => {
     // navigate(basenav + "/" + index);
     navigate(basenav + index);

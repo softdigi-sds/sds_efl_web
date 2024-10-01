@@ -1,13 +1,13 @@
 import { Moment } from "moment";
 import { useEffect, useState } from "react";
 import { SmartCalender, SmartSoftButton, SmartSoftSelect } from "soft_digi";
+import { VEHICLES_URL } from "../../api/UserUrls";
 import { useSiteContext } from "../../contexts/SiteProvider";
+import { isCurrentMonth, isDateWithinLastDays } from "../../services/site/DateService";
 import { hubs_get_all_select } from "../../services/site/SelectBoxServices";
 import { post } from "../../services/smartApiService";
-import VehicleReportFrom from "./VehicleReportFrom";
-import { VEHICLES_URL } from "../../api/UserUrls";
 import ImportVehiclesReport from "./ImportVehiclesReport";
-import { isCurrentMonth } from "../../services/site/DateService";
+import VehicleReportFrom from "./VehicleReportFrom";
 const VehiclesReportTable = () => {
   const { openModal } = useSiteContext();
   const [currentMonth, setCurrentMonth] = useState<Moment>();
@@ -91,7 +91,8 @@ const VehiclesReportTable = () => {
 
   // ** meeting display boss
   const content = (date: any) => {
-    const count_check = data?.find((item) => item.date === date);
+    const count_check = data?.find((item) => item.date === date);    
+    const last10Days = isDateWithinLastDays(date);
     const this_month = isCurrentMonth(new Date(date));
     //console.log(" this month ", this_month, "  dt ", date);
     return (
@@ -100,7 +101,7 @@ const VehiclesReportTable = () => {
           <div onClick={() => openForm(date)}>{count_check.count}</div>
         ) : (
           <div>
-            {this_month && (
+            {last10Days && (
               <i onClick={() => openForm(date)} className="fa fa-plus"></i>
             )}
           </div>
