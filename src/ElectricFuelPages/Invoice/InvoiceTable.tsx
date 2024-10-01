@@ -68,9 +68,9 @@ const InvoiceTable = () => {
    
     {
       label: "View",
-      type: "button",
-      // leftIcon: " fa fa-cloud-upload",
-      classList: ["button is-small is-danger"],
+      type: "icon",
+      leftIcon: " fa fa-eye",
+      classList: ["smart-efl-table-view-icon"],
       onClick: (data: any) => {
         navigate("/e-fuel/vendor-wish/" +data["ID"]);
       },
@@ -88,7 +88,7 @@ const InvoiceTable = () => {
     {
       title: "End  Date",
       type: "date",
-      // dateFormat: "DD-MM-YYYY",
+       dateFormat: "DD-MM-YYYY",
       index: "bill_end_date",
     },
     { title: "Total Invoices", index: "total_invoices" },
@@ -109,19 +109,19 @@ const InvoiceTable = () => {
       title: "Total (Rs)",
       index: "total_amount",
     },
+    // {
+    //   title: "",
+    //   index: "action",
+    //   type: "buttons",
+    //   buttons: buttons,
+    //   width: "10",
+    // },
     {
-      title: "",
-      index: "action",
-      type: "buttons",
-      buttons: buttons,
-      width: "10",
-    },
-    {
-      title: "Import",
+      title: "View",
       index: "action",
       type: "buttons",
       buttons: ImportButtons,
-      width: "10",
+      width: "5",
     },
   ];
   const openOfficesForm = (data: any) => {
@@ -137,7 +137,7 @@ const InvoiceTable = () => {
   const tableTop: SmartTableNewInterface.SmartTableNewTopProps[] = [
     {
       type: "CUSTOM",
-      widthClass: "is-4",
+      widthClass: "is-6",
       custom: <p className="is-size-4">Invoice</p>,
     },
     {
@@ -148,7 +148,7 @@ const InvoiceTable = () => {
 
     {
       type: "BUTTONS",
-      widthClass: "is-4",
+      widthClass: "is-2",
       align: "RIGHT",
       buttons: [
         {

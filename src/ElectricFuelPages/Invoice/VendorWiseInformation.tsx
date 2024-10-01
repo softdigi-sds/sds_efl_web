@@ -51,11 +51,11 @@ const VendorWiseInformation = () => {
 
     {
       label: "View",
-      type: "button",
-      //   leftIcon: " ",
-      classList: ["smart-efl-table-edit-icon", "is-small button"],
+      type: "icon",
+         leftIcon: "fa fa-eye",
+      classList: ["smart-efl-table-view-icon", ""],
       onClick: (data: any) => {
-        openForm(data["ID"]);
+        openForm(data);
       },
     },
 
@@ -141,15 +141,43 @@ const VendorWiseInformation = () => {
             />
           </div>
         </div>
-        <div className='column is-4'><p>Start Date: <span>{data?.bill_start_date}</span></p></div>
-        <div className='column is-4'><p>End Date:<span>{data?.bill_start_date}</span></p></div>
-        <div className='column is-4'></div>
-        <div className='column is-4'><p>Parking Amount (Rs):<span>{data?.bill_start_date}</span></p></div>
-        <div className='column is-4'><p>Consumption Amount (Rs):<span>{data?.bill_start_date}</span></p></div>
-        <div className='column is-4'><p>Others(Rs):<span>{data?.bill_start_date}</span></p></div>
-        <div className='column is-4'><p>GST (Rs):<span>{data?.bill_start_date}</span></p></div>
-        <div className='column is-4'><p>Total (Rs):<span>{data?.bill_start_date}</span></p></div>
-        <div className='column is-4'></div>
+        <div className='column is-12'>
+        <div className="container">
+      <table className="table  ">
+        <tbody className='tbody'>
+          {/* <tr>
+            <th>S.NO</th>
+            <td>{hubData.s_no}</td>
+          </tr> */}
+          <tr>
+            <th>Start Date:</th>
+            <td>{data?.bill_start_date}</td>
+            <th>End Date:</th>
+            <td>{data?.bill_start_date}</td>
+            <th></th>
+            <td></td>
+          </tr>
+          <tr>
+            <th>Parking Amount (Rs):</th>
+            <td>{data?.bill_start_date}</td>
+            <th>Consumption Amount (Rs):</th>
+            <td>{data?.bill_start_date}</td>
+            <th>Others(Rs):</th>
+            <td>{data?.bill_start_date}</td>
+          </tr>
+          <tr>
+            <th>GST (Rs):</th>
+            <td>{data?.bill_start_date}</td>
+            <th>Total (Rs):</th>
+            <td>{data?.bill_start_date}</td>
+           
+          </tr>
+     
+        </tbody>
+      </table>
+    </div>
+        </div>
+      
       </div>
     </>
     )
@@ -158,7 +186,7 @@ const VendorWiseInformation = () => {
   return (
     <>
       {BillInformation()}
-      <div className="smart-elf-table">
+      <div >
         <SmartTable
           columns={columns}
           data={data.invoice_data||[]}
