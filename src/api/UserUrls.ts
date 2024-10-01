@@ -50,7 +50,8 @@ const CONSUMPTION_URL ={
     GET_ONE: "/efl_consumption/get_one",
     DELETE:"/efl_consumption/delete_one",
     GET_ALL_CALENDER:"/efl_consumption/get_all_consumption_data",
-    GET_ALL_CALENDER_GET_ONE:"/efl_consumption/get_one_consumption_data"
+    GET_ALL_CALENDER_GET_ONE:"/efl_consumption/get_one_consumption_data",
+    IMPORT_EXCEL: "/efl_consumption/import_excel",
 }
 const VEHICLES_URL ={
     INSERT: "/efl_vehicles/insert",
@@ -59,15 +60,14 @@ const VEHICLES_URL ={
     GET_ONE: "/efl_vehicles/get_one",
     DELETE:"/efl_vehicles/delete_one",
     GET_ALL_CALENDER:"/efl_vehicles/get_all_parking_data",
-    GET_ALL_CALENDER_GET_ONE:"/efl_vehicles/get_one_parking_data"
+    GET_ALL_CALENDER_GET_ONE:"/efl_vehicles/get_one_parking_data",
+    IMPORT_EXCEL: "/efl_vehicles/import_excel",
 
 }
 
 export {
-    HUBS_URLS,
-    HUB_GROUPS_URLS, OFFICE_URLS, VENDERS_URLS,
-    VENDER_RATE_URLS,
-    CONSUMPTION_URL,
-    VEHICLES_URL
+    CONSUMPTION_URL, HUBS_URLS,
+    HUB_GROUPS_URLS, OFFICE_URLS, VEHICLES_URL, VENDERS_URLS,
+    VENDER_RATE_URLS
 };
 

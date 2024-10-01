@@ -40,7 +40,7 @@ const showAlertAutoClose = (
   text: string,
   icon: SweetAlertOptions["icon"] = "info",
   timer = 2000
-) => {
+) => {  
   Swal.fire({
     title: "",
     text: text,
