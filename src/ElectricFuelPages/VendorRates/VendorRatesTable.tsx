@@ -32,7 +32,7 @@ const VendorRatesTable = () => {
   const openOfficesForm = (data: any) => {
     //console.log("data ", data);
     let options = {
-      title: "Vendor Rates Addition Form",
+      title: <>{data.ID?"Vendor Rates Update Form":"Vendor Rates Addition Form"}</>,
       content: <VendorRatesForms loadTableData={loadTableData} dataIn={data} />,
       width: 60,
       className: "sd-efl-modal",

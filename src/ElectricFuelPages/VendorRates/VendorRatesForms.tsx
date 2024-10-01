@@ -213,6 +213,7 @@ const VendorRatesForms: React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
         options: allHubs,
         inputType: "BORDER_LABEL",
         validations: vendorFormValidations.hub_id,
+        inputProps: {disabled:formData.ID&&formData.ID ? true:false}
       },
     },
     {
@@ -225,6 +226,7 @@ const VendorRatesForms: React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
         validations: vendorFormValidations.company,
         options: allVendors,
         inputType: "BORDER_LABEL",
+        inputProps: {disabled:formData.ID&&formData.ID ? true:false}
         //options: options,
       },
     },

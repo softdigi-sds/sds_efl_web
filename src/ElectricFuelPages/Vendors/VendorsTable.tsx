@@ -27,7 +27,7 @@ const VendorsTable = () => {
 
   const openOfficesForm = (data:any) => {
     let options = {
-      title: "Vendors Addition Form",
+      title: <>{data.ID?"Vendors Update Form":"Vendors Addition Form"}</>,
       content: <VendorsForm loadTableData={loadTableData} dataIn={data}/>,
       width: 60,
       className: "sd-efl-modal",
