@@ -9,8 +9,8 @@ const DashBoardCard = () => {
         <div className="column is-one-quarter">
           <div className="stat-card gradient-blue box">
             <div className="stat-number">2050</div>
-            <div className="stat-label">Total Orders</div>
-            <span className="icon is-large">
+            <div className="stat-label">Vehicle Count</div>
+            <span className="icon is-large is-size-4">
               <i className="fa fa-shopping-cart"></i>
             </span>
           </div>
@@ -19,8 +19,8 @@ const DashBoardCard = () => {
         <div className="column is-one-quarter">
           <div className="stat-card gradient-pink box">
             <div className="stat-number">3250</div>
-            <div className="stat-label">Total Expenses</div>
-            <span className="icon is-large">
+            <div className="stat-label"> Consumption Units</div>
+            <span className="icon is-large is-size-4">
               <i className="fa fa-wallet"></i>
             </span>
           </div>
@@ -29,8 +29,8 @@ const DashBoardCard = () => {
         <div className="column is-one-quarter">
           <div className="stat-card gradient-green box">
             <div className="stat-number">87.5%</div>
-            <div className="stat-label">Total Revenue</div>
-            <span className="icon is-large">
+            <div className="stat-label">Number of Vendors</div>
+            <span className="icon is-large is-size-4">
               <i className="fa fa-pie-chart"></i>
             </span>
           </div>
@@ -39,8 +39,8 @@ const DashBoardCard = () => {
         <div className="column is-one-quarter">
           <div className="stat-card gradient-orange box">
             <div className="stat-number">2550</div>
-            <div className="stat-label">New Users</div>
-            <span className="icon is-large">
+            <div className="stat-label"> Total Revenue</div>
+            <span className="icon is-large is-size-4">
               <i className="fa fa-user"></i>
             </span>
           </div>
