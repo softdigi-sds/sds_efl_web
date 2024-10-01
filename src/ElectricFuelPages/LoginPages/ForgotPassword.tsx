@@ -79,7 +79,7 @@ const ForgotPassword:React.FC<LoginProp> = ({toggleSidebar}) => {
            onClick={handleForgotPassword}
         />
       </div>
-      <p onClick={()=>toggleSidebar()}>Back to Login</p>
+      <p className='has-text-centered mt-3 ' onClick={()=>toggleSidebar()}>Back to Login</p>
       </div>
       
       </div>

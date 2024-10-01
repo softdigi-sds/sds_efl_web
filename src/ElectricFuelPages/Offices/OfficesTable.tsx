@@ -37,6 +37,8 @@ const OfficesTable = () => {
       title: "Offices Addition Form",
       content: <OfficesForm loadTableData={loadTableData} dataIn={data} />,
       width: 60,
+      className: "sd-efl-modal",
+      closeBody: false,
     };
     openModal(options);
   };
@@ -201,7 +203,7 @@ const OfficesTable = () => {
       type: "BUTTONS",
       widthClass: "is-2",
       align: "CENTER",
-      buttons: [
+      buttons: [ 
         {
           type: "FILTER",
         },

@@ -11,6 +11,14 @@ const UsersTable = () => {
     const [data, setData] = useState([]);
     const { openModal, closeModal,setLoading } = useSiteContext();
 
+    const nameFunction = (row : any) => {
+      switch (row["active_status"]) {
+        case 5:
+          return <span className="">Active</span>;
+        case 10:
+          return <span className="has-text-danger">InActive</span>;
+      }
+    };
     const loadTableData = () => {  
       let URL =USER_URLS.GET_ALL 
       const subscription = get(URL).subscribe((response) => {
@@ -153,7 +161,8 @@ const UsersTable = () => {
       {
         title: "	Status",
         index: "active_status",
-         width:"10"
+         width:"10",
+         valueFunction: nameFunction,
       },
       {
         title: "Action",
