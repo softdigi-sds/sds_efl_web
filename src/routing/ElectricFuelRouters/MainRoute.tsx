@@ -51,7 +51,7 @@ const EFSiteRoute = () => {
               path="/consumption-report"
               element={<ConsumptionReportTable />}
             />
-             <Route path="/vendor-wish" element={<VendorWiseInformation />} />
+             <Route path="/vendor-wish/:id" element={<VendorWiseInformation />} />
             <Route path="/invoices" element={<InvoiceTable />} />
           </Routes>
 

@@ -5,6 +5,7 @@ import { useSiteContext } from '../../contexts/SiteProvider';
 import { showAlertAutoClose } from '../../services/notifyService';
 import { get, post } from '../../services/smartApiService';
 import VendorsForm from './VendorsForm';
+import VendorsView from './VendorsView';
 
 const VendorsTable = () => {
   const [data, setData] = useState([]);
@@ -39,7 +40,7 @@ const VendorsTable = () => {
     const subscription = post(
       VENDERS_URLS.GET_ONE,
       { id: id }
-    ).subscribe((response: any) => {
+    ).subscribe((response: any) => {  
       openOfficesForm(response.data);
     });
     return () => {
@@ -93,7 +94,16 @@ const VendorsTable = () => {
   //   };
   //   openModal(options);
   // };
-
+  const openViewdetails = (data: any) => {
+    let options = {
+      title: "Office Details",
+      content: <VendorsView office={data} />,
+      width: 60,
+      className: "sd-efl-modal",
+      closeBody: false,
+    };
+    openModal(options);
+  };
   const buttons = [
     {
       label: "",
@@ -101,7 +111,7 @@ const VendorsTable = () => {
       leftIcon: "fa fa-eye",
       classList: ["smart-efl-table-view-icon"],
       onClick: (data: any) => {
-        viewEditForm(data["ID"]);
+        openViewdetails(data);
       },
     },
     {

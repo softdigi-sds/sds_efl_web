@@ -14,10 +14,10 @@ const OfficeTableView = ({ office }: { office: OfficeData }) => {
     <div className="container">
       <table className="table is-bordered is-fullwidth">
         <tbody>
-          <tr>
+          {/* <tr>
             <th>S.NO</th>
             <td>{office.s_no}</td>
-          </tr>
+          </tr> */}
           <tr>
             <th>Office City</th>
             <td>{office.office_city}</td>

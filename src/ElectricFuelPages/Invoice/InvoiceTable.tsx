@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { SmartTable, SmartTableNewInterface } from "soft_digi";
 import { INVOICE_URLS } from "../../api/UserUrls";
 import { useSiteContext } from "../../contexts/SiteProvider";
@@ -13,6 +14,7 @@ const InvoiceTable = () => {
   const [showInvoiceBottom, setShowInvoiceBottom] = useState(false);
   const [showSignPad, setShowSignPad] = useState(false);
   const { openModal, closeModal } = useSiteContext();
+  const navigate = useNavigate();
   const handleSaveSignature = (signature: string) => {
     //console.log("Saved signature:", signature);
     setShowSignPad(false);
@@ -65,12 +67,12 @@ const InvoiceTable = () => {
   const ImportButtons = [
    
     {
-      label: "Import",
+      label: "View",
       type: "button",
       // leftIcon: " fa fa-cloud-upload",
       classList: ["button is-small is-danger"],
       onClick: (data: any) => {
-        openImportForm(data["ID"]);
+        navigate("/e-fuel/vendor-wish/" +data["ID"]);
       },
     },
 
