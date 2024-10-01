@@ -28,7 +28,6 @@ const Notification = () => {
       user: "John Hammond",
       avatar: ADMIN_USER_LOGO,
       action: "attached a file to Isla Nublar SOC2 compliance report",
-      // file: { name: "EY_review.pdf", size: "2mb" },
       time: "Last Wednesday at 9:42 am",
     },
   ];
@@ -56,13 +55,13 @@ const Notification = () => {
                     alt={`${notification.user}'s avatar`}
                   />
                   <div className="notification-info">
-                    <div className="is-flex  is-align-items-center">
+  <div className=" is-align-items-center">
+    <div className="mr-2">{notification.user}</div> 
+    <div className="is-size-7">{notification.action}</div>
+  </div>
+  <div className="is-size-7 has-text-grey">{notification.time}</div>
+</div>
 
-                    <strong>{notification.user}</strong>{" "}
-                    <div>{notification.action}</div>
-                    </div>
-                    <div className="notification-time">{notification.time}</div>
-                  </div>
                 </div>
                 {/* Notification message */}
                 {notification.message && (
