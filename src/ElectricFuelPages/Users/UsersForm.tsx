@@ -89,46 +89,50 @@ const UsersForm:React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
   const formElements:SmartFormInterFace.SmartFormElementProps[] = [
     {
       type: "TEXT_BOX",
-      width: "6",
+      width: "4",
       name: "emailid",
       element: {
         label: "Email ID",
         isRequired: true,
-        inputProps: { isFocussed: true },
+        // inputProps: { isFocussed: true },
+        inputType: "BORDER_LABEL",
         validations: loginFormValidations.email,
       },
     },
     {
       type: "TEXT_BOX",
-      width: "6",
+      width: "4",
       name: "mobile_no",
       element: {
         label: "Mobile No.",
         isRequired: true,
-        inputProps: { isFocussed: true },
+        inputType: "BORDER_LABEL",
+        // inputProps: { isFocussed: true },
         validations: loginFormValidations.MobileNumber,
         allowPattern:ALLOW_NUMERIC
       },
     },
     {
       type: "TEXT_BOX",
-      width: "6",
+      width: "4",
       name: "ename",
       element: {
         label: "Name",
+        inputType: "BORDER_LABEL",
         isRequired: true,
-        inputProps: { isFocussed: true },
+        // inputProps: { isFocussed: true },
         validations: loginFormValidations.ename,
       },
     },
     {
       type: 'PASSWORD',
-      width: '6',
+      width: '4',
       name: 'epassword',
       element: {
        label: 'Password',
         isRequired: true,
         placeHolder: 'Password',
+        inputType: "BORDER_LABEL",
         // inputType: "BORDER_LABEL",
         // leftIcon: "fa fa-envelope-square",
         validations: loginFormValidations.password,
@@ -139,12 +143,13 @@ const UsersForm:React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
   
     {
       type: "SELECT_BOX",
-      width: "6",
+      width: "4",
       name: "role",
       element: {
         label: "Role",
-      
+        inputType: "BORDER_LABEL",
         options: allRole,
+        isMulti: true,
        
       },
     },
@@ -168,9 +173,9 @@ const UsersForm:React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
     // },
   ];
   return (
-    <><div className="">
+    <><div className="sd-efl-input">
       {/* <SmartHeader title={"Add User Form"} /> */}
-      </div>
+    
        <SmartSoftForm
         formData={formData}
         setFormData={handleInputChange}
@@ -196,6 +201,7 @@ const UsersForm:React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
           classList={["button ","mt-4", "smart-action-button"]}
           onClick={handleSubmit}
         />
+      </div>
       </div>
     </>
     )

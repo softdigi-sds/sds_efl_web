@@ -33,7 +33,7 @@ const InvoicebillForm = () => {
           element: {
             placeHolder: "Start Date",
             isRequired: true,
-            inputProps: { isFocussed: true },
+            // inputProps: { isFocussed: true },
           },
         },
         {
@@ -43,7 +43,7 @@ const InvoicebillForm = () => {
           element: {
             placeHolder: "End Date",
             isRequired: true,
-            inputProps: { isFocussed: true },
+            // inputProps: { isFocussed: true },
           },
         },
         {
@@ -59,6 +59,9 @@ const InvoicebillForm = () => {
       ]
   return (
    <>
+   <div className='sd-efl-input'>
+
+  
      <div className="m-6 has-text-right">
      
            <SmartSoftForm
@@ -71,6 +74,7 @@ const InvoicebillForm = () => {
       </div>
       <div className="m-6"></div>
       <div className="m-6"></div>
+      </div>
   
    </>
   )

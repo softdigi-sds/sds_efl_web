@@ -37,6 +37,8 @@ const OfficesTable = () => {
       title: "Offices Addition Form",
       content: <OfficesForm loadTableData={loadTableData} dataIn={data} />,
       width: 60,
+      className: "sd-efl-modal",
+      closeBody: false,
     };
     openModal(options);
   };
@@ -134,8 +136,8 @@ const OfficesTable = () => {
   ];
 
   const statusTags = [
-    { value: 5, Label: "Active", class: "is-primary" },
-    { value: 10, Label: "Inactive", class: "is-danger" },
+    { value: 5, label: "Active", class: "is-primary" },
+    { value: 10, label: "Inactive", class: "is-danger" },
   
   ]
   const columns: SmartTableNewInterface.SmartTableNewColumnConfig[] = [
@@ -201,7 +203,7 @@ const OfficesTable = () => {
       type: "BUTTONS",
       widthClass: "is-2",
       align: "CENTER",
-      buttons: [
+      buttons: [ 
         {
           type: "FILTER",
         },

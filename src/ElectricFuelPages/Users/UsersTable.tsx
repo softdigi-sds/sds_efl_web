@@ -125,7 +125,11 @@ const UsersTable = () => {
         },
       },
     ];
+  const statusTags = [
+    { value: 5, label: "Active", class: "is-primary" },
+    { value: 10, label: "Inactive", class: "is-danger" },
   
+  ]
   
     const columns: SmartTableNewInterface.SmartTableNewColumnConfig[] = [
       { title: "S.NO", index: "s_no", type: "sno" ,width:"5"},
@@ -153,7 +157,8 @@ const UsersTable = () => {
       {
         title: "	Status",
         index: "active_status",
-         width:"10"
+         width:"10",
+         type: "tags", tags: statusTags
       },
       {
         title: "Action",

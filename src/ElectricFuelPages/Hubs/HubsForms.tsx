@@ -95,6 +95,7 @@ const HubsForms: React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
         label: "Office City",
         isRequired: true,
         options: allOffice,
+        inputType: "BORDER_LABEL",
         validations: hubFormValidations.city,
       },
     },
@@ -105,7 +106,8 @@ const HubsForms: React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
       element: {
         label: "Hub ID",
         isRequired: true,
-        inputProps: { isFocussed: true },
+        // inputProps: { isFocussed: true },
+        inputType: "BORDER_LABEL",
         validations: hubFormValidations.hub_id,
       },
     },
@@ -120,6 +122,7 @@ const HubsForms: React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
         options: allRole,
         isMulti: true,
         validations: hubFormValidations.role,
+        inputType: "BORDER_LABEL",
       },
     },
     {
@@ -129,7 +132,8 @@ const HubsForms: React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
       element: {
         label: "Hub Name",
         isRequired: true,
-        inputProps: { isFocussed: true },
+        // inputProps: { isFocussed: true },
+        inputType: "BORDER_LABEL",
         validations: hubFormValidations.hub_name,
       },
     },
@@ -141,13 +145,14 @@ const HubsForms: React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
         label: "Location",
         isRequired: true,
         max: "255",
+        inputType: "BORDER_LABEL",
         validations: hubFormValidations.locations,
       },
     },
   ];
   return (
     <>
-      <div className="">{/* <SmartHeader title={"Add Hubs Form"} /> */}</div>
+      <div className="sd-efl-input">
       <SmartSoftForm
         formData={formData}
         setFormData={handleInputChange}
@@ -166,6 +171,7 @@ const HubsForms: React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
           classList={["button ", "mt-4", "smart-action-button"]}
           onClick={handleSubmit}
         />
+      </div>
       </div>
     </>
   );

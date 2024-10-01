@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { SmartAlert, SmartLoaderInterface } from 'soft_digi';
+import { SmartAlert, SmartFormInterFace, SmartLoaderInterface } from 'soft_digi';
 import { HUBS_URLS } from '../../api/UserUrls';
 import { useSiteContext } from '../../contexts/SiteProvider';
 import { SmartSoftTable, SmartTableNewInterface } from '../../core';
@@ -153,7 +153,7 @@ const HubsTables = () => {
     {
       title: "Hub Id",
       index: "hub_id",
-      width: "10",
+      width: "15",
     },
     {
       title: "City",
@@ -180,6 +180,27 @@ const HubsTables = () => {
       width: "10",
     },
   ];
+  const filterFields:SmartFormInterFace.SmartFormElementProps[] = [
+    {
+      type: "TEXT_BOX",
+      width: "12",
+      name: "office_city",
+      element: {
+        label: "Office City",
+      },
+    },
+    {
+      type: "TEXT_BOX",
+      width: "12",
+      name: "state_name",
+      element: {
+        label: "State",
+      },
+    },
+
+     
+    
+  ]
   const tableTop: SmartTableNewInterface.SmartTableNewTopProps[] = [
     {
       type: "CUSTOM",
@@ -194,8 +215,11 @@ const HubsTables = () => {
     {
       type: "BUTTONS",
       widthClass: "is-2",
-      align: "RIGHT",
+      align: "CENTER",
       buttons: [        
+        {
+          type: "FILTER",
+        },
         {
           label: "Add",
           icon: "fa-plus",
@@ -215,13 +239,14 @@ const HubsTables = () => {
       <SmartSoftTable
         columns={columns}
         data={data}
+        filterFields={filterFields}
         tableTop={tableTop}
         tableProps={{
           className: " is-hoverable is-bordered is-striped smart-efl-table",
           isResponsive: true,
         }}
         paginationProps={{
-          pageSize:5
+          pageSize:10
         }}
       />
       </div>

@@ -192,21 +192,24 @@ const InvoiceTable = () => {
     {
       type: "BUTTONS",
       widthClass: "is-4",
-      align: "RIGHT",
+      align: "CENTER",
       buttons: [
         {
           label: "Create Bill",
+          icon: "fa-plus",
           type: "CUSTOM",
           action: openOfficesForm
         },
         {
           label: "Next",
           type: "CUSTOM",
+          icon: "fa-plus",
           action: () => setShowInvoiceBottom(true), 
         },
         {
           label: "Sign",
           type: "CUSTOM",
+          icon: "fa-plus",
           action: () => setShowSignPad(true),
         },
       ],
@@ -236,11 +239,13 @@ const InvoiceTable = () => {
         </div>
       )}
 
-      {showInvoiceBottom && ( 
-        <div>
-          <InvoicebottomTable />
-        </div>
-      )}
+{showInvoiceBottom && ( 
+  <div>
+    <InvoicebottomTable setShowInvoiceBottom={setShowInvoiceBottom} />
+  </div>
+)}
+
+
 
       {showSignPad && (
         <div>

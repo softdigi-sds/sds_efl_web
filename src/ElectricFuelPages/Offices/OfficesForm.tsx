@@ -96,6 +96,8 @@ const OfficesForm:React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
         isRequired:true,
         options: states,
         validations: loginFormValidations.state,
+        inputProps: { isFocussed: true },
+        inputType: "BORDER_LABEL",
       },
     },
     {
@@ -106,9 +108,11 @@ const OfficesForm:React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
         label: "City",
         // placeHolder: "City",
         isRequired: true,
-        inputProps: { isFocussed: true },
+      
         validations: loginFormValidations.city,
         max:25,
+        // inputProps: { isFocussed: true },
+        inputType: "BORDER_LABEL",
       },
     },
     {
@@ -119,7 +123,8 @@ const OfficesForm:React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
         label: "CGST (%)",
         // placeHolder: "City",
         isRequired: true,
-        inputProps: { isFocussed: true },
+        // inputProps: { isFocussed: true },
+        inputType: "BORDER_LABEL",
           // pattern:  ALLOW_ALPHABET_SPACE ,
         validations: loginFormValidations.cgst_no,
         pattern:  ALLOW_NUMERIC ,
@@ -134,7 +139,8 @@ const OfficesForm:React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
         label: "GST (%)",
         // placeHolder: "City",
         isRequired: true,
-        inputProps: { isFocussed: true },
+        // inputProps: { isFocussed: true },
+        inputType: "BORDER_LABEL",
           // pattern:  ALLOW_ALPHABET_SPACE ,
         validations: loginFormValidations.gst_no,
         pattern:  ALLOW_NUMERIC ,
@@ -148,8 +154,9 @@ const OfficesForm:React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
       element: {
         label: "PAN No.",
         isRequired: true,
-        inputProps: { isFocussed: true },
+        // inputProps: { isFocussed: true },
         validations: loginFormValidations.pan_no,
+        inputType: "BORDER_LABEL",
       },
     },
     {
@@ -159,10 +166,11 @@ const OfficesForm:React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
       element: {
         label: "CRN No",
         isRequired: true,
-        inputProps: { isFocussed: true },
+        // inputProps: { isFocussed: true },
         validations: loginFormValidations.cin_no,
         pattern:  ALLOW_NUMERIC ,
         max:15,
+        inputType: "BORDER_LABEL",
       },
     },
    
@@ -174,9 +182,10 @@ const OfficesForm:React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
         label: "IGST No.",
         // placeHolder: "City",
         isRequired: true,
-        inputProps: { isFocussed: true },
+        // inputProps: { isFocussed: true },
           // pattern:  ALLOW_ALPHABET_SPACE ,
         validations: loginFormValidations.igst_no,
+        inputType: "BORDER_LABEL",
       },
     },
     {
@@ -187,11 +196,12 @@ const OfficesForm:React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
         label: "SGST (%)",
         // placeHolder: "City",
         isRequired: true,
-        inputProps: { isFocussed: true },
+        // inputProps: { isFocussed: true },
           // pattern:  ALLOW_ALPHABET_SPACE ,
         validations: loginFormValidations.sgst_no,
         pattern:  ALLOW_NUMERIC ,
         max:3,
+        inputType: "BORDER_LABEL",
       },
     },
   
@@ -204,10 +214,11 @@ const OfficesForm:React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
         label: "Pin Code",
         // placeHolder: "City",
         isRequired: true,
-        inputProps: { isFocussed: true },
+        // inputProps: { isFocussed: true },
         validations: loginFormValidations.pin_code,
           pattern:  ALLOW_NUMERIC ,
-        max:8,
+        max:6,
+        inputType: "BORDER_LABEL",
       },
     },
     {
@@ -220,14 +231,15 @@ const OfficesForm:React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
         max: 255,
         rows: 2,
         validations: loginFormValidations.address,
+        inputType: "BORDER_LABEL",
       },
     },
   ];
   return (
     <>
-   <div className="">
-    {/* <SmartHeader title={"Office & Locations Form"} /> */}
-    </div>
+   <div className="sd-efl-input">
+    
+    
        <SmartSoftForm
         formData={formData}
         setFormData={handleInputChange}
@@ -246,6 +258,7 @@ const OfficesForm:React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
           classList={["button ","mt-4", "smart-action-button"]}
           onClick={handleSubmit}
         />
+      </div>
       </div>
     </>
   )
