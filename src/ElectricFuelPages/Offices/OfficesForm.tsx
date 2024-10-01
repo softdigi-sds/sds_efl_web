@@ -157,6 +157,7 @@ const OfficesForm:React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
         // inputProps: { isFocussed: true },
         validations: loginFormValidations.pan_no,
         inputType: "BORDER_LABEL",
+        // pattern: "[A-Z]{5}[0-9]{4}[A-Z]{1}",
       },
     },
     {

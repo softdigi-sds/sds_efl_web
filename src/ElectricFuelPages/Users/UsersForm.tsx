@@ -90,7 +90,7 @@ const UsersForm:React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
     {
       type: "TEXT_BOX",
       width: "4",
-      name: "emailid",
+      name: "euserid",
       element: {
         label: "Email ID",
         isRequired: true,
