@@ -45,7 +45,7 @@ const DashboardBarChart: React.FC = () => {
   return (
     <>
       <div className="chart-container m-5">
-        <Bar data={data} options={options} />
+        <Bar data={data} options={options} height={300}/>
       </div>
     </>
   );
