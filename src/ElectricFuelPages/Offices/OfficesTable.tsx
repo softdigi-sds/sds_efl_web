@@ -136,8 +136,8 @@ const OfficesTable = () => {
   ];
 
   const statusTags = [
-    { value: 5, Label: "Active", class: "is-primary" },
-    { value: 10, Label: "Inactive", class: "is-danger" },
+    { value: 5, label: "Active", class: "is-primary" },
+    { value: 10, label: "Inactive", class: "is-danger" },
   
   ]
   const columns: SmartTableNewInterface.SmartTableNewColumnConfig[] = [
