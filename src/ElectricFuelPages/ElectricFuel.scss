@@ -371,3 +371,18 @@
   .gradient-orange {
     background: linear-gradient(45deg, #ff9a44, #fc6076);
   }
+  .notification-item {
+    display: flex;
+    align-items: flex-start;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .notification-avatar {
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+  }
+  
+ 
+  

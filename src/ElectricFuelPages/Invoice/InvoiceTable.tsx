@@ -53,18 +53,22 @@ const InvoiceTable = () => {
   const buttons = [
     {
       label: "Download",
-      type: "icon",
-      leftIcon: "fa fa-download",
-      classList: ["smart-efl-table-view-icon is-small"],
+      type: "button",
+      // leftIcon: "fa fa-download",
+      classList: ["button is-small is-info"],
       onClick: (data: any) => {
         downloadInvoice(data);
       },
     },
+    
+  ];
+  const ImportButtons = [
+   
     {
-      label: "",
-      type: "icon",
-      leftIcon: " fa fa-cloud-upload",
-      classList: ["smart-efl-table-edit-icon"],
+      label: "Import",
+      type: "button",
+      // leftIcon: " fa fa-cloud-upload",
+      classList: ["button is-small is-danger"],
       onClick: (data: any) => {
         openImportForm(data["ID"]);
       },
@@ -108,6 +112,13 @@ const InvoiceTable = () => {
       index: "action",
       type: "buttons",
       buttons: buttons,
+      width: "10",
+    },
+    {
+      title: "Import",
+      index: "action",
+      type: "buttons",
+      buttons: ImportButtons,
       width: "10",
     },
   ];

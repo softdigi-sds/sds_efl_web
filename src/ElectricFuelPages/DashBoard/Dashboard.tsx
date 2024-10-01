@@ -8,8 +8,8 @@ const Dashboard = () => {
     <>
     <div className=""><DashBoardCard/></div>
       <div className="columns">  
-      <div className="column is-6 has-text-centered"> <DashboardChart/></div>
-      <div className="column is-6"> <DashboardBarChart/></div>
+      {/* <div className="column is-6 "> <DashboardChart/></div> */}
+      <div className="column is-12 has-text-centered"> <DashboardBarChart/></div>
        
        </div>
 <div className=""><DashBoardTable/></div>

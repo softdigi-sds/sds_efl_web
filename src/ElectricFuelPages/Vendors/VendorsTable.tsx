@@ -30,8 +30,8 @@ const VendorsTable = () => {
       title: "Vendors Addition Form",
       content: <VendorsForm loadTableData={loadTableData} dataIn={data} />,
       width: 60,
-      closeBody:false,
       className: "sd-efl-modal",
+      closeBody: false,
     };
     openModal(options);
   };
@@ -123,6 +123,11 @@ const VendorsTable = () => {
       },
     },
   ];
+  const statusTags = [
+    { value: 5, label: "Active", class: "is-primary" },
+    { value: 0, label: "Inactive", class: "is-danger" },
+  
+  ]
   const columns: SmartTableNewInterface.SmartTableNewColumnConfig[] = [
     { title: "S.NO", index: "s_no", type: "sno" },
     {
@@ -141,7 +146,7 @@ const VendorsTable = () => {
       index: "vendor_name",
     },
     { title: "GST No", index: "gst_no" },
-    { title: "Status", index: "status" },
+    { title: "Status", index: "status" ,     type: "tags", tags: statusTags},
     {
       title: "Action",
       index: "action",

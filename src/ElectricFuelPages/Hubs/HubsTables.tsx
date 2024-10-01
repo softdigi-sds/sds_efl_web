@@ -1,8 +1,7 @@
 import { useEffect, useState } from 'react';
-import { SmartAlert, SmartFormInterFace, SmartLoaderInterface } from 'soft_digi';
+import { SmartAlert, SmartFormInterFace, SmartLoaderInterface, SmartTable, SmartTableNewInterface } from 'soft_digi';
 import { HUBS_URLS } from '../../api/UserUrls';
 import { useSiteContext } from '../../contexts/SiteProvider';
-import { SmartSoftTable, SmartTableNewInterface } from '../../core';
 import { showAlertAutoClose } from '../../services/notifyService';
 import { get, post } from '../../services/smartApiService';
 import HubsForms from './HubsForms';
@@ -235,8 +234,8 @@ const HubsTables = () => {
 
   return (
     <>
-    <div >
-      <SmartSoftTable
+    <div className="smart-elf-table">
+      <SmartTable
         columns={columns}
         data={data}
         filterFields={filterFields}
