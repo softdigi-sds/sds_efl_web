@@ -87,7 +87,8 @@ const RoleForm:React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
       element: {
         label: "Role Name",
         isRequired: true,
-        inputProps: { isFocussed: true },
+        // inputProps: { isFocussed: true },
+        inputType: "BORDER_LABEL",
         validations: loginFormValidations.RoleName,
       },
     },
@@ -101,6 +102,7 @@ const RoleForm:React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
       element: {
         label: "Users",
         isMulti: true,
+        inputType: "BORDER_LABEL",
         options: allUsers,
        
       },
@@ -108,9 +110,9 @@ const RoleForm:React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
   
   ];
   return (
-    <><div className="">
+    <><div className="sd-efl-input">
       {/* <SmartHeader title={"Role Form"} /> */}
-      </div>
+    
        <SmartSoftForm
         formData={formData}
         setFormData={handleInputChange}
@@ -136,6 +138,7 @@ const RoleForm:React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
           classList={["button ","mt-4", " smart-action-button"]}
           onClick={handleSubmit}
         />
+      </div>
       </div>
     </>
     )
