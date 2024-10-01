@@ -28,7 +28,7 @@ const HubsTables = () => {
 
   const openOfficesForm = (data: any) => {
     let options = {
-      title: "Hubs Addition Form",
+      title: <>{data.ID?"Hubs Update Form":"Hubs Addition Form"}</>,
       content: <HubsForms loadTableData={loadTableData} dataIn={data} />,
       width: 60,
       className: "sd-efl-modal",
