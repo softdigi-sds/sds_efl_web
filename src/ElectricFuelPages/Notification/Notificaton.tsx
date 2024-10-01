@@ -1,90 +1,91 @@
 import { useEffect, useRef, useState } from "react";
-import { useSiteContext } from "../../contexts/SiteProvider";
-import SmartAccordion from "../../components/site/SmartAccoding";
 import "../../EFSubLayout/EFSubLayout.scss";
+import { ADMIN_USER_LOGO } from "../../services/ImageService"; // Assuming this is a valid image import
+import { SmartSoftButton } from "soft_digi";
 
-const Notificaton = () => {
+const Notification = () => {
   const [active, setActive] = useState<boolean>(false);
   const ref = useRef<HTMLDivElement | null>(null);
-  const { setLoading, refreshUser, user } = useSiteContext();
 
-  const card_body = (index: string) => {
-    return (
-      <>{/* <SingleNotification type={index} setActive={setActive} /> */}</>
-    );
-  };
-
-  const AccountTitle = () => {
-    return (
-      <div>
-        <div className="position-relative">Account Notification</div>
-      </div>
-    );
-  };
-
-  const GeneralTitle = () => {
-    return (
-      <div>
-        <div className="position-relative">General Notification</div>
-      </div>
-    );
-  };
-
-  const PurchaseTitle = () => {
-    return (
-      <div>
-        <div className="position-relative">
-          Purchase & Redemption Notification
-        </div>
-      </div>
-    );
-  };
-
-  const RequestTitle = () => {
-    return (
-      <div>
-        <div className="position-relative">
-          Request & Complaint Notification
-        </div>
-      </div>
-    );
-  };
-
-  const data = [
+  const notifications = [
     {
-      title: <AccountTitle />,
-      bodyFunction: () => card_body("ACCOUNT"),
+      id: 1,
+      user: "Ray Arnold",
+      avatar: ADMIN_USER_LOGO, // Correctly using the ADMIN_USER_LOGO
+      action: "left 6 comments on Isla Nublar SOC2 compliance report",
+      time: "Last Wednesday at 9:42 am",
     },
     {
-      title: <GeneralTitle />,
-      bodyFunction: () => card_body("GENERAL"),
+      id: 2,
+      user: "Denise Nedry",
+      avatar: ADMIN_USER_LOGO,
+      message:
+        "Oh, I finished de-bugging the phones, but the system's compiling for eighteen minutes, or...",
+      time: "Last Wednesday at 9:42 am",
     },
     {
-      title: <PurchaseTitle />,
-      bodyFunction: () => card_body("PURCHASE"),
-    },
-    {
-      title: <RequestTitle />,
-      bodyFunction: () => card_body("REQUEST"),
+      id: 3,
+      user: "John Hammond",
+      avatar: ADMIN_USER_LOGO,
+      action: "attached a file to Isla Nublar SOC2 compliance report",
+      // file: { name: "EY_review.pdf", size: "2mb" },
+      time: "Last Wednesday at 9:42 am",
     },
   ];
+  const clear_btn = () =>{
+    console.log("data")
+  }
 
   const notificationCard = () => {
     return (
       <div className="card p-0">
         <header className="card-header">
           <p className="card-header-title">
-            <span className="">Notifications</span>{" "}
+            <span>Notifications</span>{" "}
           </p>
-          <button className="card-header-icon" aria-label="more options">
-            <span className="customer-notification-text">Mark all as read</span>
-          </button>
         </header>
         <div className="card-content p-0">
           <div className="content customer-notification-body">
-            <SmartAccordion data={data} />
+            {notifications.map((notification) => (
+              <div className="notification-item" key={notification.id}>
+                <div className="notification-header is-flex">
+                  {/* Notification avatar */}
+                  <img
+                    className="notification-avatar is-rounded"   
+                    src={notification.avatar}
+                    alt={`${notification.user}'s avatar`}
+                  />
+                  <div className="notification-info">
+                    <div className="is-flex  is-align-items-center">
+
+                    <strong>{notification.user}</strong>{" "}
+                    <div>{notification.action}</div>
+                    </div>
+                    <div className="notification-time">{notification.time}</div>
+                  </div>
+                </div>
+                {/* Notification message */}
+                {notification.message && (
+                  <div className="notification-message">
+                    <p>{`"${notification.message}"`}</p>
+                  </div>
+                )}
+              </div>
+            ))}
           </div>
         </div>
+        <footer className="card-footer">
+          <SmartSoftButton
+            label="View all"
+            classList={["button","card-footer-item", "mt-4 mr-4" ]}
+            onClick={clear_btn}
+          />
+          <SmartSoftButton
+            label=" Clear all"
+            classList={["button is-danger card-footer-item mt-4 mr-4"  ]}
+            onClick={clear_btn}
+          />
+        </footer>
       </div>
     );
   };
@@ -115,4 +116,4 @@ const Notificaton = () => {
   );
 };
 
-export default Notificaton;
+export default Notification;

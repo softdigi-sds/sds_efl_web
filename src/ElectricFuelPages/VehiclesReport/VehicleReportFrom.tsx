@@ -130,6 +130,7 @@ const VehicleReportFrom: React.FC<HeaderProps> = ({ loadTableData, date, hub_id 
                 />
                 <SmartSoftButton
                     label="Submit"
+                     rightIcon='fa fa-arrow-right'
                     classList={["button ","mt-4","smart-action-button"]}
                     onClick={handleSubmit}
                 />

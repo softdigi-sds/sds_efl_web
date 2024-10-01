@@ -198,6 +198,7 @@ const UsersForm:React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
         />
       <SmartSoftButton
           label="Submit"
+           rightIcon='fa fa-arrow-right'
           classList={["button ","mt-4", "smart-action-button"]}
           onClick={handleSubmit}
         />
