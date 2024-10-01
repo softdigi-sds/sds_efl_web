@@ -159,7 +159,7 @@ const UsersTable = () => {
         index: "active_status",
          width:"10",
          type: "tags", tags: statusTags
-      },
+      }, 
       {
         title: "Action",
         index: "action",
