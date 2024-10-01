@@ -235,7 +235,7 @@ const HubsTables = () => {
 
   return (
     <>
-    <div className="smart-elf-table">
+    <div >
       <SmartSoftTable
         columns={columns}
         data={data}
