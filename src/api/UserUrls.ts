@@ -1,3 +1,4 @@
+
 const OFFICE_URLS = {
     INSERT: "/efloffice/insert",
     GET_ALL: "/efloffice/get_all",
@@ -65,9 +66,14 @@ const VEHICLES_URL ={
 
 }
 
+const INVOICE_URLS ={
+    GENERATE:"/invoice/generate_invoice",
+    INSERT: "/efl_vehicles/insert",
+    GET_ALL_BILLS:"/bill/get_all"
+
+}
+
 export {
-    CONSUMPTION_URL, HUBS_URLS,
-    HUB_GROUPS_URLS, OFFICE_URLS, VEHICLES_URL, VENDERS_URLS,
-    VENDER_RATE_URLS
+    CONSUMPTION_URL, HUBS_URLS, HUB_GROUPS_URLS, INVOICE_URLS, OFFICE_URLS, VEHICLES_URL, VENDERS_URLS, VENDER_RATE_URLS
 };
 

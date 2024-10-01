@@ -163,6 +163,7 @@ const ImportVehiclesReport: React.FC<HeaderProps> = ({ loadTableData }) => {
 
       {ImportForm()}
       {data && data.length > 0 &&
+      <>
         <SmartTable
           columns={columns}
           data={data}
@@ -176,7 +177,7 @@ const ImportVehiclesReport: React.FC<HeaderProps> = ({ loadTableData }) => {
         //tableTop={tableTop}
 
         />
-      }
+      
       <div className="has-text-centered">
         <SmartSoftButton
           label="Cancel"
@@ -185,6 +186,8 @@ const ImportVehiclesReport: React.FC<HeaderProps> = ({ loadTableData }) => {
         />
 
       </div>
+      </>
+      }
     </>
   )
 }

@@ -1,31 +1,31 @@
-import React, { useEffect, useState } from 'react'
-import { get, post } from '../../services/smartApiService';
-import { useSiteContext } from '../../contexts/SiteProvider';
-import VendorsForm from './VendorsForm';
+import { useEffect, useState } from 'react';
 import { SmartAlert, SmartFormInterFace, SmartLoaderInterface, SmartTable, SmartTableNewInterface } from 'soft_digi';
 import { VENDERS_URLS } from '../../api/UserUrls';
+import { useSiteContext } from '../../contexts/SiteProvider';
 import { showAlertAutoClose } from '../../services/notifyService';
+import { get, post } from '../../services/smartApiService';
+import VendorsForm from './VendorsForm';
 
 const VendorsTable = () => {
   const [data, setData] = useState([]);
   const { openModal, closeModal } = useSiteContext();
 
 
-  const loadTableData = () => {   
-    let URL = VENDERS_URLS.GET_ALL; 
+  const loadTableData = () => {
+    let URL = VENDERS_URLS.GET_ALL;
     const subscription = get(URL).subscribe((response) => {
-      setData(response.data);    
+      setData(response.data);
     });
     return () => {
       subscription.unsubscribe();
     };
   };
 
-  useEffect(() => {   
+  useEffect(() => {
     loadTableData();
   }, []);
 
-  const openOfficesForm = (data:any) => {
+  const openOfficesForm = (data: any) => {
     let options = {
       title: <>{data.ID?"Vendors Update Form":"Vendors Addition Form"}</>,
       content: <VendorsForm loadTableData={loadTableData} dataIn={data}/>,
@@ -35,7 +35,7 @@ const VendorsTable = () => {
     };
     openModal(options);
   };
-  const viewEditForm = (id: any) => { 
+  const viewEditForm = (id: any) => {
     const subscription = post(
       VENDERS_URLS.GET_ONE,
       { id: id }
@@ -136,7 +136,7 @@ const VendorsTable = () => {
     },
     {
       title: "Code",
-      index: "vendor_code", 
+      index: "vendor_code",
 
 
     },
@@ -171,22 +171,22 @@ const VendorsTable = () => {
       widthClass: "is-2",
       align: "CENTER",
       buttons: [
-        {type:"FILTER"},
-        
+        { type: "FILTER" },
+
         {
-          label:"Add",
-          icon:"fa-plus",
-          type:"CUSTOM",
+          label: "Add",
+          icon: "fa-plus",
+          type: "CUSTOM",
           action: openOfficesForm,
         },
       ],
-      
+
     },
-   
-   
-    
+
+
+
   ]
-  const filterFields:SmartFormInterFace.SmartFormElementProps[] = [
+  const filterFields: SmartFormInterFace.SmartFormElementProps[] = [
     {
       type: "TEXT_BOX",
       width: "12",
@@ -204,31 +204,31 @@ const VendorsTable = () => {
       },
     },
 
-     
-    
+
+
   ]
 
 
   return (
     <>
-    <div className="smart-elf-table">
-      <SmartTable
-        columns={columns}
-        data={data}
-        tableTop={tableTop}
-        filterFields={filterFields}
-        tableProps={{
-          className: "is-hoverable is-bordered smart-efl-table",
-          isResponsive: true,
-          searchPlaceHolder: "Search",
-        }}
-        paginationProps={{
-          pageSize:10
-        }}
-      />
+      <div className="smart-elf-table">
+        <SmartTable
+          columns={columns}
+          data={data}
+          tableTop={tableTop}
+          filterFields={filterFields}
+          tableProps={{
+            className: "is-hoverable is-bordered smart-efl-table",
+            isResponsive: true,
+            searchPlaceHolder: "Search",
+          }}
+          paginationProps={{
+            pageSize: 10
+          }}
+        />
       </div>
-      </>
-      
+    </>
+
   )
 }
 

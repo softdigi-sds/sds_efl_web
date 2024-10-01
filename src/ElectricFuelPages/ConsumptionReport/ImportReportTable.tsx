@@ -170,28 +170,31 @@ const ImportReportTable: React.FC<HeaderProps> = ({ loadTableData }) => {
 
       {ImportForm()}
       {data && data.length > 0 &&
-        <SmartTable
-          columns={columns}
-          data={data}
-          paginationProps={{
-            pageSize: 10
-          }}
-          tableProps={{
-            className: " is-hoverable is-bordered is-striped smart-efl-table",
-            isResponsive: true,
-          }}
-        //tableTop={tableTop}
+        <>
+          <SmartTable
+            columns={columns}
+            data={data}
+            paginationProps={{
+              pageSize: 10
+            }}
+            tableProps={{
+              className: " is-hoverable is-bordered is-striped smart-efl-table",
+              isResponsive: true,
+            }}
+          //tableTop={tableTop}
 
-        />
+          />
+
+          <div className="has-text-centered">
+            <SmartSoftButton
+              label="Cancel"
+              classList={["button", "mt-4 mr-4", "smart-third-button"]}
+              onClick={closeModal}
+            />
+
+          </div>
+        </>
       }
-      <div className="has-text-centered">
-        <SmartSoftButton
-          label="Cancel"
-          classList={["button", "mt-4 mr-4", "smart-third-button"]}
-          onClick={closeModal}
-        />
-
-      </div>
     </>
   )
 }
