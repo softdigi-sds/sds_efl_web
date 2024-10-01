@@ -1,4 +1,4 @@
-
+@import '../../variables.scss';
 .smart-lnpr-login-container {
     display: flex;
     justify-content: center;
@@ -46,16 +46,22 @@
     margin-bottom: 15px;
     position: relative;
 }
-.smart-lnpr-login-card .smart-border-label-input .label {
-    color: #019ee3;
-}
-.smart-lnpr-login-card .smart-border-label-input .label {
-    color: #019ee3;
-}
-
-.smart-lnpr-login-card .smart-border-label-input .input {
-    border: 2px solid #019ee3;
-    border-radius: 8px;
+.smart-lnpr-login-card {
+    .input{
+        border-radius: 10px;
+        border:1px solid $primary-color;
+    }
+    .smart-select{
+        border:none;
+    }
+    .css-13cymwt-control{
+        border-radius: 10px;
+        border:1px solid $primary-color !important;
+    }
+    .label{
+        color:$primary-color ;
+        font-family: roboto;
+    }
 }
 
 .smart-forgot-text {

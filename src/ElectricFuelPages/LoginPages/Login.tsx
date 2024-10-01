@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import "./Login.css";
+import "./Login.scss";
 import { LOGIN_URLS } from '../../api/LoginUrls';
 import { useSiteContext } from '../../contexts/SiteProvider';
 import { SmartSoftButton, SmartSoftForm } from '../../core';

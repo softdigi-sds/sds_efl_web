@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { SmartFormElementProps } from '../../core/forms/SmartFormInterface';
 // import { SmartSoftButton, SmartSoftForm } from '../../core';
-import "./Login.css";
+import "./Login.scss";
 import { SmartSoftButton, SmartSoftForm } from '../../core';
 interface FormErrors {
     [key: string]: string | null;
