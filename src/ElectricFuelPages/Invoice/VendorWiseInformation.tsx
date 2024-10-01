@@ -5,6 +5,7 @@ import { useSiteContext } from '../../contexts/SiteProvider';
 import { showAlertAutoClose } from '../../services/notifyService';
 import { get, post } from '../../services/smartApiService';
 import VendorDetails from './VendorDetails';
+import VendorDetailsImport from './VendorDetailsImport';
 
 
 const VendorWiseInformation = () => {
@@ -116,10 +117,20 @@ const VendorWiseInformation = () => {
   const Export=()=>{
     console.log("export")
   }
+  const openImportForm =()=>{
+    let options = {
+      title: "Vendor Details",
+      content:<VendorDetailsImport/>,
+      width:50,
+      className:"sd-efl-modal",
+      closeBody:false,
+  }
+  openModal(options);
+  }
   const BillInformation =()=>{
     return(<>
   <div className='columns is-multiline'>
-    <div className='column is-10'><p className='is-size-4'>Bill Information:</p></div>
+    <div className='column is-10'><p className='is-size-4'>Import Form</p></div>
     <div className='column is-2'>
         <div className='is-flex'>
             <SmartSoftButton label='Export'
@@ -127,7 +138,7 @@ const VendorWiseInformation = () => {
             classList={["button mx-1 is-primary",]}
             />
              <SmartSoftButton label='Import'
-            onClick={()=>Export()}
+            onClick={()=>openImportForm()}
             classList={["button mx-1 is-primary",]}
             />
         </div>
