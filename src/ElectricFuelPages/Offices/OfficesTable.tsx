@@ -32,9 +32,9 @@ const OfficesTable = () => {
     loadTableData();
   }, []);
 
-  const openOfficesForm = (width: number) => {
+  const openOfficesForm = (data:any) => {
     let options = {
-      title: "Offices Addition Form",
+      title: <>{data.ID?"Offices Update Form":"Offices Addition Form"}</>,
       content: <OfficesForm loadTableData={loadTableData} dataIn={data} />,
       width: 60,
       className: "sd-efl-modal",
@@ -43,15 +43,14 @@ const OfficesTable = () => {
     openModal(options);
   };
   const deleteData = (id: any) => {
-    const subscription = post(
-      OFFICE_URLS.DELETE,
-      { id: id }
-    ).subscribe((response) => {
-      showAlertAutoClose("Deleted Successfully...", "success");
-      closeModal();
-      loadTableData();
-      // setLoading(false);
-    });
+    const subscription = post(OFFICE_URLS.DELETE, { id: id }).subscribe(
+      (response) => {
+        showAlertAutoClose("Deleted Successfully...", "success");
+        closeModal();
+        loadTableData();
+        // setLoading(false);
+      }
+    );
     return () => {
       subscription.unsubscribe();
     };
@@ -72,7 +71,8 @@ const OfficesTable = () => {
       },
       content: (
         <p>
-          Note: Do you wish to delete this Office? This action cannot be reverted
+          Note: Do you wish to delete this Office? This action cannot be
+          reverted
         </p>
       ),
       className: "custom-alert",
@@ -81,15 +81,12 @@ const OfficesTable = () => {
     SmartAlert.show(alertProps);
   };
 
-
-
-  const viewEditForm = (id: any) => { 
-    const subscription = post(
-      OFFICE_URLS.GET_ONE,
-      { id: id }
-    ).subscribe((response: any) => {
-      openOfficesForm(response.data);
-    });
+  const viewEditForm = (id: any) => {
+    const subscription = post(OFFICE_URLS.GET_ONE, { id: id }).subscribe(
+      (response: any) => {
+        openOfficesForm(response.data);
+      }
+    );
     return () => {
       subscription.unsubscribe();
     };
@@ -99,12 +96,12 @@ const OfficesTable = () => {
       title: "Office Details",
       content: <OfficeTableView office={office} />,
       width: 60,
-      className:"sd-efl-modal",
-      closeBody:false,
+      className: "sd-efl-modal",
+      closeBody: false,
     };
     openModal(options);
   };
-  
+
   const buttons = [
     {
       label: "",
@@ -138,10 +135,9 @@ const OfficesTable = () => {
   const statusTags = [
     { value: 5, label: "Active", class: "is-primary" },
     { value: 10, label: "Inactive", class: "is-danger" },
-  
-  ]
+  ];
   const columns: SmartTableNewInterface.SmartTableNewColumnConfig[] = [
-    { title: "S.NO", index: "s_no", type: "sno",width:"5" },
+    { title: "S.NO", index: "s_no", type: "sno", width: "5" },
     {
       title: "Office City",
       index: "office_city",
@@ -150,14 +146,12 @@ const OfficesTable = () => {
       title: "State",
       index: "state_name",
     },
-    { title: "Pin Code", index: "pin_code",width:"10" },
+    { title: "Pin Code", index: "pin_code", width: "10" },
     {
       title: "Address",
       index: "address_one",
     },
-    { title: "Status", index: "status",
-        type: "tags", tags: statusTags
-       },
+    { title: "Status", index: "status", type: "tags", tags: statusTags },
     {
       title: "Action",
       index: "action",
@@ -166,7 +160,7 @@ const OfficesTable = () => {
       width: "10",
     },
   ];
-  const filterFields:SmartFormInterFace.SmartFormElementProps[] = [
+  const filterFields: SmartFormInterFace.SmartFormElementProps[] = [
     {
       type: "TEXT_BOX",
       width: "12",
@@ -183,10 +177,7 @@ const OfficesTable = () => {
         label: "State",
       },
     },
-
-     
-    
-  ]
+  ];
 
   const tableTop: SmartTableNewInterface.SmartTableNewTopProps[] = [
     {
@@ -203,7 +194,7 @@ const OfficesTable = () => {
       type: "BUTTONS",
       widthClass: "is-2",
       align: "CENTER",
-      buttons: [ 
+      buttons: [
         {
           type: "FILTER",
         },
