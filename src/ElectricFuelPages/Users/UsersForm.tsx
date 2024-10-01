@@ -89,7 +89,7 @@ const UsersForm:React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
   const formElements:SmartFormInterFace.SmartFormElementProps[] = [
     {
       type: "TEXT_BOX",
-      width: "6",
+      width: "4",
       name: "emailid",
       element: {
         label: "Email ID",
@@ -100,7 +100,7 @@ const UsersForm:React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
     },
     {
       type: "TEXT_BOX",
-      width: "6",
+      width: "4",
       name: "mobile_no",
       element: {
         label: "Mobile No.",
@@ -112,7 +112,7 @@ const UsersForm:React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
     },
     {
       type: "TEXT_BOX",
-      width: "6",
+      width: "4",
       name: "ename",
       element: {
         label: "Name",
@@ -123,7 +123,7 @@ const UsersForm:React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
     },
     {
       type: 'PASSWORD',
-      width: '6',
+      width: '4',
       name: 'epassword',
       element: {
        label: 'Password',
@@ -139,7 +139,7 @@ const UsersForm:React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
   
     {
       type: "SELECT_BOX",
-      width: "6",
+      width: "4",
       name: "role",
       element: {
         label: "Role",
