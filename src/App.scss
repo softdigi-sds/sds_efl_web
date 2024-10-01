@@ -161,8 +161,9 @@
 /*** sd efl modal ***/
 .sd-efl-modal{
     .modal-card{
-        border:1px solid $primary-color;
-        border-radius: 5px;
+        border:2px solid $primary-color;
+        border-radius: 8px;
+      
     }
     .modal-card-title{
         color:$secondary-color
@@ -173,3 +174,20 @@
     border:1px solid #485fc7;
 }
 
+.sd-efl-input{
+    .input{
+        border-radius: 10px;
+        border:2px solid $primary-color;
+    }
+    .smart-select{
+        border:none;
+    }
+    .css-13cymwt-control{
+        border-radius: 10px;
+        border:2px solid $primary-color;
+    }
+    .textarea{
+        border-radius: 10px;
+        border:2px solid $primary-color;
+    }
+}

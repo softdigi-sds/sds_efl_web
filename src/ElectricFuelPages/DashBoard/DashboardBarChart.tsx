@@ -19,12 +19,12 @@ const DashboardBarChart: React.FC = () => {
       {
         label: 'Dataset 1',
         data: [800, 400, 600, 300, 900, 200, 100],
-        backgroundColor: 'rgba(255, 99, 132, 0.5)',
+        backgroundColor: '#2575fc',
       },
       {
         label: 'Dataset 2',
         data: [200, 700, 500, 600, 300, 500, 400],
-        backgroundColor: 'rgba(54, 162, 235, 0.5)',
+        backgroundColor: '#ff7eb3',
       },
     ],
   };
