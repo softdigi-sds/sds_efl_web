@@ -14,6 +14,7 @@ import {
   VehiclesReportTable,
   VendorRatesTable,
   VendorsTable,
+  VendorWiseInformation,
 } from "../../ElectricFuelPages";
 import Login from "../../ElectricFuelPages/LoginPages/Login";
 import { useSiteContext } from "../../contexts/SiteProvider";
@@ -50,6 +51,7 @@ const EFSiteRoute = () => {
               path="/consumption-report"
               element={<ConsumptionReportTable />}
             />
+             <Route path="/vendor-wish" element={<VendorWiseInformation />} />
             <Route path="/invoices" element={<InvoiceTable />} />
           </Routes>
 

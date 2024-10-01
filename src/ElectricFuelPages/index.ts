@@ -11,10 +11,12 @@ import VendorRatesTable from "./VendorRates/VendorRatesTable";
 import VendorsTable from "./Vendors/VendorsTable";
 import ConsumptionReportTable from "./ConsumptionReport/ConsumptionReportTable";
 import InvoiceTable from "./Invoice/InvoiceTable"
+import VendorWiseInformation from "./Invoice/VendorWiseInformation";
 export {
     Dashboard, HomePage, HubsTables, OfficesTable, RoleTable, UsersTable,
     VehiclesReportTable, VendorRatesTable, VendorsTable,
-    ConsumptionReportTable, InvoiceTable
+    ConsumptionReportTable, InvoiceTable,
+    VendorWiseInformation
 
 };
 
