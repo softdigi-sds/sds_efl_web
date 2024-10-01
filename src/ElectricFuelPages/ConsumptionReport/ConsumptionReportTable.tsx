@@ -61,6 +61,8 @@ const ConsumptionReportTable = () => {
           Hub: {hub?.label} Date : {date}
         </div>
       ),
+      className: "sd-efl-modal",
+      closeBody: false,
       content: (
         <ConsumptionReportForm
           loadTableData={loadCalenderData}
@@ -75,6 +77,8 @@ const ConsumptionReportTable = () => {
     let options = {
       title: "Importing Form",
       content: <ImportReportTable loadTableData={loadCalenderData} />,
+      className: "sd-efl-modal",
+      closeBody: false,
     };
     openModal(options);
   };

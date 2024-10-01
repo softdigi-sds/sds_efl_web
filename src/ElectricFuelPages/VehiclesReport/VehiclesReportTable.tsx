@@ -61,6 +61,8 @@ const VehiclesReportTable = () => {
           Hub: {hub?.label} <span className="has-text-black">Date : {date}
           </span>        </div>
       ),
+      className: "sd-efl-modal",
+      closeBody: false,
       content: (
         <VehicleReportFrom
           loadTableData={loadCalenderData}
@@ -68,7 +70,7 @@ const VehiclesReportTable = () => {
           hub_id={hub}
         />
       ),
-      className: "sd-efl-modal",
+    
     };
     openModal(options);
   };
@@ -114,6 +116,8 @@ const VehiclesReportTable = () => {
     let options = {
       title: "Importing Form",
       content: <ImportVehiclesReport loadTableData={loadCalenderData} />,
+      className: "sd-efl-modal",
+      closeBody: false,
     };
     openModal(options);
   };

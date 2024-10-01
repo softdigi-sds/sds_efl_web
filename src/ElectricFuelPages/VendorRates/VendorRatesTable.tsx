@@ -179,7 +179,7 @@ const VendorRatesTable = () => {
             isResponsive: true,
           }}
           paginationProps={{
-            pageSize: 5,
+            pageSize: 10,
           }}
         />
       </div>

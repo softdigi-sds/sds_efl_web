@@ -207,7 +207,7 @@ const UsersTable = () => {
           data={data}
           tableTop={tableTop}
           tableProps={{
-            className: "smart-efl-table is-hoverable is-bordered is-striped ",
+            className: "smart-efl-table is-hoverable is-bordered  ",
             isResponsive: true,
             searchPlaceHolder: "Search",
           }}

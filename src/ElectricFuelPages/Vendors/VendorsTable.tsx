@@ -221,7 +221,7 @@ const VendorsTable = () => {
 
   return (
     <>
-      <div className="smart-elf-table">
+      <div >
         <SmartTable
           columns={columns}
           data={data}
