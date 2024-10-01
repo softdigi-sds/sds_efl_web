@@ -9,7 +9,7 @@ const Dashboard = () => {
     <div className=""><DashBoardCard/></div>
       <div className="columns">  
       {/* <div className="column is-6 "> <DashboardChart/></div> */}
-      <div className="column is-12 has-text-centered"> <DashboardBarChart/></div>
+      <div className="column is-12 "> <DashboardBarChart/></div>
        
        </div>
 <div className=""><DashBoardTable/></div>
