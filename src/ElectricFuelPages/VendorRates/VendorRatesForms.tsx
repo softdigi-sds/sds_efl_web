@@ -211,6 +211,7 @@ const VendorRatesForms: React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
         label: "Hub ID",
         isRequired: true,
         options: allHubs,
+        inputType: "BORDER_LABEL",
         validations: vendorFormValidations.hub_id,
       },
     },
@@ -223,6 +224,7 @@ const VendorRatesForms: React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
         isRequired: true,
         validations: vendorFormValidations.company,
         options: allVendors,
+        inputType: "BORDER_LABEL",
         //options: options,
       },
     },
@@ -361,9 +363,9 @@ const VendorRatesForms: React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
 
   return (
     <>
-      <div className="">
+      <div className="sd-efl-input">
         {/* <SmartHeader title={"Vendor Rates Form"} /> */}
-      </div>
+
       <SmartSoftForm
         formData={formData}
         setFormData={handleInputChange}
@@ -400,6 +402,7 @@ const VendorRatesForms: React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
           classList={["button ", "mt-4", "smart-action-button"]}
           onClick={handleSubmit}
         />
+      </div>
       </div>
     </>
   );

@@ -161,7 +161,7 @@
 /*** sd efl modal ***/
 .sd-efl-modal{
     .modal-card{
-        border:2px solid $primary-color;
+        border:1px solid $primary-color;
         border-radius: 8px;
       
     }
@@ -170,24 +170,31 @@
     }
 }
 
-.smart-select{
-    border:1px solid #485fc7;
+// .smart-select{
+//     border:1px solid #485fc7;
+// }
+.css-13cymwt-control{
+    border:1px solid $secondary-color !important;
 }
 
 .sd-efl-input{
     .input{
         border-radius: 10px;
-        border:2px solid $primary-color;
+        border:1px solid $primary-color;
     }
     .smart-select{
         border:none;
     }
     .css-13cymwt-control{
         border-radius: 10px;
-        border:2px solid $primary-color;
+        border:1px solid $primary-color !important;
     }
     .textarea{
         border-radius: 10px;
-        border:2px solid $primary-color;
+        border:1px solid $primary-color;
+    }
+    .label{
+        color:$primary-color ;
+        font-family: roboto;
     }
 }

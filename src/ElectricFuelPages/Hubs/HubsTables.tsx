@@ -153,7 +153,7 @@ const HubsTables = () => {
     {
       title: "Hub Id",
       index: "hub_id",
-      width: "10",
+      width: "15",
     },
     {
       title: "City",
@@ -246,7 +246,7 @@ const HubsTables = () => {
           isResponsive: true,
         }}
         paginationProps={{
-          pageSize:5
+          pageSize:10
         }}
       />
       </div>
