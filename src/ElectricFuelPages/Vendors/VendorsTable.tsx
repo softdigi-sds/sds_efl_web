@@ -30,6 +30,8 @@ const VendorsTable = () => {
       title: "Vendors Addition Form",
       content: <VendorsForm loadTableData={loadTableData} dataIn={data}/>,
       width: 60,
+      className: "sd-efl-modal",
+      closeBody: false,
     };
     openModal(options);
   };
