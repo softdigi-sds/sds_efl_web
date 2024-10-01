@@ -58,8 +58,8 @@ const VehiclesReportTable = () => {
       title: (
         <div>
           {" "}
-          Hub: {hub?.label} Date : {date}
-        </div>
+          Hub: {hub?.label} <span className="has-text-black">Date : {date}
+          </span>        </div>
       ),
       content: (
         <VehicleReportFrom

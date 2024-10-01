@@ -214,9 +214,9 @@ const VendorsForm: React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
       name: "address_two",
       element: {
         label: "Address-2",
-        isRequired: true,
+        // isRequired: true,
         max: "255",
-        validations: vendorFormValidations.address,
+        // validations: vendorFormValidations.address,
         inputType: "BORDER_LABEL",
       },
     },
