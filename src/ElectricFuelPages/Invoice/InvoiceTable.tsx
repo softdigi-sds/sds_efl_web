@@ -239,11 +239,13 @@ const InvoiceTable = () => {
         </div>
       )}
 
-      {showInvoiceBottom && ( 
-        <div>
-          <InvoicebottomTable />
-        </div>
-      )}
+{showInvoiceBottom && ( 
+  <div>
+    <InvoicebottomTable setShowInvoiceBottom={setShowInvoiceBottom} />
+  </div>
+)}
+
+
 
       {showSignPad && (
         <div>

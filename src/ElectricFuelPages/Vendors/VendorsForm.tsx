@@ -86,7 +86,7 @@ const VendorsForm:React.FC<HeaderProps > = ({loadTableData,dataIn}) => {
   const formElements:SmartFormInterFace.SmartFormElementProps[] = [
     {
       type: "SELECT_BOX",
-      width: "6",
+      width: "4",
       name: "sd_hub_id",
       element: {
         label: "Hub ID",
@@ -97,7 +97,7 @@ const VendorsForm:React.FC<HeaderProps > = ({loadTableData,dataIn}) => {
     },
     {
       type: "TEXT_BOX",
-      width: "6",
+      width: "4",
       name: "vendor_code",
       element: {
         label: "Code",
@@ -108,7 +108,7 @@ const VendorsForm:React.FC<HeaderProps > = ({loadTableData,dataIn}) => {
     },
     {
       type: "TEXT_BOX",
-      width: "6",
+      width: "4",
       name: "vendor_company",
       element: {
         label: "Company",
@@ -119,7 +119,7 @@ const VendorsForm:React.FC<HeaderProps > = ({loadTableData,dataIn}) => {
     },
     {
       type: "TEXT_BOX",
-      width: "6",
+      width: "4",
       name: "vendor_name",
       element: {
         label: "Name",
@@ -130,7 +130,7 @@ const VendorsForm:React.FC<HeaderProps > = ({loadTableData,dataIn}) => {
     },
     {
       type: "TEXT_BOX",
-      width: "6",
+      width: "4",
       name: "gst_no",
       element: {
         label: "GST No.",
@@ -141,7 +141,7 @@ const VendorsForm:React.FC<HeaderProps > = ({loadTableData,dataIn}) => {
     },
     {
       type: "TEXT_BOX",
-      width: "6",
+      width: "4",
       name: "pan_no",
       element: {
         label: "PAN No.",
@@ -151,7 +151,7 @@ const VendorsForm:React.FC<HeaderProps > = ({loadTableData,dataIn}) => {
       },
     }, {
       type: "TEXT_BOX",
-      width: "6",
+      width: "4",
       name: "billing_to",
       element: {
         label: "Billing To",
@@ -160,31 +160,9 @@ const VendorsForm:React.FC<HeaderProps > = ({loadTableData,dataIn}) => {
         validations: vendorFormValidations.pan_no,
       },
     },
-    {
-      type: "TEXTAREA",
-      width: "12",
-      name: "address_one",
-      element: {
-        label: "Address-1",
-        isRequired:true,
-        max:"255",
-        validations: vendorFormValidations.address,
-      },
-    },
-    {
-      type: "TEXTAREA",
-      width: "12",
-      name: "address_two",
-      element: {
-        label: "Address-2",
-        isRequired:true,
-        max:"255",
-        validations: vendorFormValidations.address,
-      },
-    },
-    {
+   {
       type: "SELECT_BOX",
-      width: "6",
+      width: "4",
       name: "state_name",
       element: {
         label: "State",
@@ -195,7 +173,7 @@ const VendorsForm:React.FC<HeaderProps > = ({loadTableData,dataIn}) => {
     },
     {
       type: "TEXT_BOX",
-      width: "6",
+      width: "4",
       name: "pin_code",
       element: {
         label: "Pin Code",
@@ -204,7 +182,29 @@ const VendorsForm:React.FC<HeaderProps > = ({loadTableData,dataIn}) => {
         inputProps: { isFocussed: true },
         validations: vendorFormValidations.pin_code,
       },
+    }, {
+      type: "TEXTAREA",
+      width: "6",
+      name: "address_one",
+      element: {
+        label: "Address-1",
+        isRequired:true,
+        max:"255",
+        validations: vendorFormValidations.address,
+      },
     },
+    {
+      type: "TEXTAREA",
+      width: "6",
+      name: "address_two",
+      element: {
+        label: "Address-2",
+        isRequired:true,
+        max:"255",
+        validations: vendorFormValidations.address,
+      },
+    },
+    
   ];
   return (
     <><div className="">
@@ -220,12 +220,12 @@ const VendorsForm:React.FC<HeaderProps > = ({loadTableData,dataIn}) => {
       <div className="has-text-right">
       <SmartSoftButton
           label="Cancel"
-          classList={["button","mt-4 mr-4"]}
+          classList={["button","smart-third-button", "mt-4 mr-4" ]}
           onClick={closeModal}
         />
       <SmartSoftButton
           label="Submit"
-          classList={["button ","mt-4"]}
+          classList={["button ","mt-4", "smart-action-button"]}
           onClick={handleSubmit}
         />
       </div>
