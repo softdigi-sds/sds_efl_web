@@ -29,7 +29,7 @@ const RoleTable = () => {
 
   const openForm =(data:any)=>{
     let options = {
-      title: "Role Addition Form",
+      title: <>{data.ID?"Role Update Form":"Role Addition Form"}</>,
       content: <RoleForm loadTableData={loadTableData} dataIn={data}/>,
       width:40,
       className:"sd-efl-modal",
