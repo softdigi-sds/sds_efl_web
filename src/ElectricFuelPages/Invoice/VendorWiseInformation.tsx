@@ -7,6 +7,7 @@ import { post } from "../../services/smartApiService";
 import VendorDetails from "./VendorDetails";
 import VendorDetailsImport from "./VendorDetailsImport";
 import { downloadFile } from "../../services/core/FileService";
+import { changeDateTimeZoneFormat } from "../../services/core/CommonService";
 
 const VendorWiseInformation = () => {
   const { id } = useParams<{ id: string }>();
@@ -17,6 +18,7 @@ const VendorWiseInformation = () => {
     let URL = INVOICE_URLS.GET_ONE_BILL;
     const subscription = post(URL, { id: id }).subscribe((response) => {
       setData(response.data);
+      console.log("response data", response.data);
     });
     return () => {
       subscription.unsubscribe();
@@ -124,56 +126,64 @@ const VendorWiseInformation = () => {
     return (
       <>
         <div className="columns is-multiline">
-          <div className="column is-10">
+          <div className="column is-8">
             <p className="is-size-4">Bill Details</p>
           </div>
-          <div className="column is-2">
-            <div className="is-flex">
+          <div className="column is-4">
+            <div className="is-flex is-justify-content-flex-end">
               <SmartSoftButton
                 label="Export"
                 onClick={() => exportExcel()}
-                classList={["button mx-1 is-primary"]}
+                leftIcon="fa fa-cloud-upload"
+                classList={["smart-third-button mr-2"]}
               />
               <SmartSoftButton
                 label="Import"
                 onClick={() => openImportForm()}
-                classList={["button mx-1 is-primary"]}
+                leftIcon="fa fa-cloud-download"
+                classList={["smart-third-button"]}
               />
             </div>
           </div>
-        </div>
-        <div className="column is-12">
-          <div className="container">
-            <table className="table  ">
-              <tbody className="tbody">
-                {/* <tr>
-            <th>S.NO</th>
-            <td>{hubData.s_no}</td>
-          </tr> */}
-                <tr>
-                  <th>Start Date:</th>
-                  <td>{data?.bill_start_date}</td>
-                  <th>End Date:</th>
-                  <td>{data?.bill_start_date}</td>
-                  <th></th>
-                  <td></td>
-                </tr>
-                <tr>
-                  <th>Parking Amount (Rs):</th>
-                  <td>{data?.bill_start_date}</td>
-                  <th>Consumption Amount (Rs):</th>
-                  <td>{data?.bill_start_date}</td>
-                  <th>Others(Rs):</th>
-                  <td>{data?.bill_start_date}</td>
-                </tr>
-                <tr>
-                  <th>GST (Rs):</th>
-                  <td>{data?.bill_start_date}</td>
-                  <th>Total (Rs):</th>
-                  <td>{data?.bill_start_date}</td>
-                </tr>
-              </tbody>
-            </table>
+          <div className="column is-12">
+            <div className="container">
+              <table className="table  is-fullwidth">
+                <tbody className="tbody">
+                  <tr>
+                    <th>Start Date:</th>
+                    <td>
+                      {changeDateTimeZoneFormat(
+                        data?.bill_start_date,
+                        "DD-MM-YYYY"
+                      )}
+                    </td>
+                    <th>End Date:</th>
+                    <td>
+                      {changeDateTimeZoneFormat(
+                        data?.bill_end_date,
+                        "DD-MM-YYYY"
+                      )}
+                    </td>
+                    <th></th>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <th>Parking Amount (Rs):</th>
+                    <td>{data?.unit_amount}</td>
+                    <th>Consumption Amount (Rs):</th>
+                    <td>{data?.vehicle_amount}</td>
+                    <th>Others(Rs):</th>
+                    <td>{data?.others}</td>
+                  </tr>
+                  <tr>
+                    <th>GST (Rs):</th>
+                    <td>{data?.gst_amount}</td>
+                    <th>Total (Rs):</th>
+                    <td>{data?.total_amount}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
       </>

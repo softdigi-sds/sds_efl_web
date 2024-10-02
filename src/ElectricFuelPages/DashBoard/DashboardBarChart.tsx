@@ -73,7 +73,9 @@ const DashboardBarChart: React.FC = () => {
       // },
     },
   };
-  const option = [{ value: "1" }];
+  const option = [{ value: "1" ,label:"Month"},
+    { value: "2" ,label:"Year"}
+  ];
   return (
     <>
     <div className='columns'>
@@ -89,19 +91,17 @@ const DashboardBarChart: React.FC = () => {
             onChange={(value) => setHub(value)}
           />
          <div className="is-flex ml-2">
-            <span className="mr-3 has-text-weight-bold mt-2">Month</span>
+        
             <span className="mt-0 pt-0">
-              <SmartSoftCheckRadioSwitch
-                options={option}
-                switchMode={true}
-                isRight={true}
-                inputProps={{ isRounded: true }}
-                name="switchone"
+            <SmartSoftSelect
+            options={option}
+            placeHolder="Select"
                 value={category}
-                onChange={(value) => setCategory(value)}
-              />
+            onChange={(value) => setCategory(value)}
+          />
+            
             </span>
-            <span className="ml-4 has-text-weight-bold mt-2">Year</span>
+            
           </div>
        
         </div>

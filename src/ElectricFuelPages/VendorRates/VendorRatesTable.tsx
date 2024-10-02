@@ -164,7 +164,7 @@ const VendorRatesTable = () => {
         { 
           label: "Add",
           icon: "fa-plus",
-          type: "CUSTOM",
+          type: "CUSTOM",className: "smart-third-button",
           action: openOfficesForm,
         },
       ],

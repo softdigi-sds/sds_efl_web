@@ -8,6 +8,7 @@ import { hubs_get_all_select } from "../../services/site/SelectBoxServices";
 import { post } from "../../services/smartApiService";
 import ImportVehiclesReport from "./ImportVehiclesReport";
 import VehicleReportFrom from "./VehicleReportFrom";
+import { changeDateTimeZoneFormat } from "../../services/core/CommonService";
 const VehiclesReportTable = () => {
   const { openModal } = useSiteContext();
   const [currentMonth, setCurrentMonth] = useState<Moment>();
@@ -58,7 +59,7 @@ const VehiclesReportTable = () => {
       title: (
         <div>
           {" "}
-          Hub: {hub?.label} <span className="has-text-black">Date : {date}
+          Hub: {hub?.label} <span className="has-text-black ml-6">Date : {changeDateTimeZoneFormat(date,"DD-MM-YYYY")}
           </span>        </div>
       ),
       className: "sd-efl-modal",
@@ -125,14 +126,15 @@ const VehiclesReportTable = () => {
     return (
       <div className="is-flex is-justify-content-space-between	is-align-items-center">
         <div className="is-size-4 site-title has-text-weight-bold"> Vehicles Report</div>
-        <div>
+        <div className="is-flex ">
         <SmartSoftButton
             label="Import"
-            classList={["button", "ml-6  px-5 py-0 is-link is-normal"]}
+            classList={["button", " px-5 py-0 is-link is-normal"]}
+            leftIcon="fa fa-file-excel-o"
             onClick={() => openImportForm(data)}
           />
-        </div>
-        <div className="is-flex">
+      
+        <div className="is-flex ml-2">
         
           <SmartSoftSelect
             options={hubs}
@@ -141,6 +143,8 @@ const VehiclesReportTable = () => {
             onChange={(value) => setHub(value)}
           />
         </div>
+        </div>
+        <div></div>
       </div>
     );
   };

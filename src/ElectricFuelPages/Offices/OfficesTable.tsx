@@ -13,11 +13,12 @@ import { useSiteContext } from "../../contexts/SiteProvider";
 import { showAlertAutoClose } from "../../services/notifyService";
 import OfficesForm from "./OfficesForm";
 import OfficeTableView from "./OfficeTableView";
+import { admin_states_select } from "../../services/site/SelectBoxServices";
 
 const OfficesTable = () => {
   const [data, setData] = useState([]);
   const { openModal, closeModal, setLoading } = useSiteContext();
-
+  const [states, setStates] = useState([]);
   const loadTableData = () => {
     let URL = OFFICE_URLS.GET_ALL;
     const subscription = get(URL).subscribe((response) => {
@@ -159,10 +160,13 @@ const OfficesTable = () => {
       buttons: buttons,
       width: "10",
     },
-  ];
+  ];  useEffect(() => {
+    admin_states_select((data:any) => setStates(data));
+    //  loadData();
+  }, []);
   const filterFields: SmartFormInterFace.SmartFormElementProps[] = [
     {
-      type: "TEXT_BOX",
+      type: "SELECT_BOX",
       width: "12",
       name: "office_city",
       element: {
@@ -170,11 +174,11 @@ const OfficesTable = () => {
       },
     },
     {
-      type: "TEXT_BOX",
+      type: "SELECT_BOX",
       width: "12",
       name: "state_name",
       element: {
-        label: "State",
+        label: "State",   options: states,
       },
     },
   ];
@@ -202,7 +206,7 @@ const OfficesTable = () => {
           label: "Add",
           icon: "fa-plus",
           type: "CUSTOM",
-          // classList:"smart-efl-Primary-button",
+          className: "smart-third-button",
           action: openOfficesForm,
         },
       ],
