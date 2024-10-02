@@ -73,15 +73,15 @@ const Notification = () => {
             ))}
           </div>
         </div>
-        <footer className="card-footer">
+        <footer className="has-text-centered">
           <SmartSoftButton
             label="View all"
-            classList={["button","card-footer-item", "mt-4 mr-4" ]}
+            classList={["button","m-2" ]}
             onClick={clear_btn}
           />
           <SmartSoftButton
             label=" Clear all"
-            classList={["button is-danger card-footer-item mt-4 mr-4"  ]}
+            classList={["button is-danger m-2 "  ]}
             onClick={clear_btn}
           />
         </footer>

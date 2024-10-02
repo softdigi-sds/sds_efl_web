@@ -249,7 +249,7 @@ const OfficesForm:React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
         handleErrorChange={handleErrorChange}
       />
       <div className="has-text-right">
-      <SmartSoftButton
+      <SmartSoftButton 
           label="Cancel"
           classList={["button","smart-third-button", "mt-4 mr-4" ]}
           onClick={closeModal}
