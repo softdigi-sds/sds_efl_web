@@ -18,7 +18,7 @@ const VendorWiseInformation = () => {
     let URL = INVOICE_URLS.GET_ONE_BILL;
     const subscription = post(URL, { id: id }).subscribe((response) => {
       setData(response.data);
-      console.log("response data", response.data);
+      //console.log("response data", response.data);
     });
     return () => {
       subscription.unsubscribe();
@@ -41,7 +41,8 @@ const VendorWiseInformation = () => {
 
   useEffect(() => {
     loadData();
-  }, [IDBCursor]);
+  }, [id]);
+
   const openForm = (data: any) => {
     let options = {
       title: "Vendor Details",
@@ -76,6 +77,11 @@ const VendorWiseInformation = () => {
       width: "20",
     },
     {
+      title: "Invoice Number",
+      index: "invoice_number",
+      width: "15",
+    },
+    {
       title: "Vendor",
       index: "vendor_company",
       width: "20",
@@ -83,6 +89,11 @@ const VendorWiseInformation = () => {
     {
       title: "Total Amount",
       index: "total_amount",
+      width: "10",
+    },
+    {
+      title: "ACK No",
+      index: "ack_no",
       width: "10",
     },
     {
