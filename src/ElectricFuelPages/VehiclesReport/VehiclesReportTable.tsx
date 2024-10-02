@@ -124,13 +124,16 @@ const VehiclesReportTable = () => {
   const titleDisp = () => {
     return (
       <div className="is-flex is-justify-content-space-between	is-align-items-center">
-        <div className="is-size-4 site-title"> Vehicles Report</div>
-        <div className="is-flex">
-          <SmartSoftButton
+        <div className="is-size-4 site-title has-text-weight-bold"> Vehicles Report</div>
+        <div>
+        <SmartSoftButton
             label="Import"
-            classList={["button", " mr-4 mt-1 is-link is-normal"]}
+            classList={["button", "ml-6  px-5 py-0 is-link is-normal"]}
             onClick={() => openImportForm(data)}
           />
+        </div>
+        <div className="is-flex">
+        
           <SmartSoftSelect
             options={hubs}
             placeHolder="Select hub"
