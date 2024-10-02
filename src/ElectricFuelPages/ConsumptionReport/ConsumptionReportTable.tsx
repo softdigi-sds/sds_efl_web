@@ -3,11 +3,15 @@ import { useEffect, useState } from "react";
 import { SmartCalender, SmartSoftButton, SmartSoftSelect } from "soft_digi";
 import { CONSUMPTION_URL } from "../../api/UserUrls";
 import { useSiteContext } from "../../contexts/SiteProvider";
-import { isCurrentMonth, isDateWithinLastDays } from "../../services/site/DateService";
+import {
+  isCurrentMonth,
+  isDateWithinLastDays,
+} from "../../services/site/DateService";
 import { hubs_get_all_select } from "../../services/site/SelectBoxServices";
 import { post } from "../../services/smartApiService";
 import ConsumptionReportForm from "./ConsumptionReportForm";
 import ImportReportTable from "./ImportReportTable";
+import { roundNumber } from "../../services/core/CommonService";
 
 const ConsumptionReportTable = () => {
   const { openModal } = useSiteContext();
@@ -98,13 +102,15 @@ const ConsumptionReportTable = () => {
   // ** meeting display boss
   const content = (date: any) => {
     const count_check = data?.find((item) => item.date === date);
-    const last10Days = isDateWithinLastDays(date,30);
+    const last10Days = isDateWithinLastDays(date, 30);
     const this_month = isCurrentMonth(new Date(date));
     //console.log(" this month ", this_month, "  dt ", date);
     return (
       <div className="calender-div">
         {count_check && count_check.count > 0 ? (
-          <div onClick={() => openForm(date)}>{count_check.count}</div>
+          <div onClick={() => openForm(date)}>
+            {roundNumber(count_check.count)}
+          </div>
         ) : (
           <div>
             {last10Days && (

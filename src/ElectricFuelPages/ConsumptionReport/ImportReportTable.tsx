@@ -1,14 +1,19 @@
-import React, { useState } from 'react';
-import { SmartFormInterFace, SmartSoftButton, SmartSoftForm, SmartTable, SmartTableNewInterface } from 'soft_digi';
-import { CONSUMPTION_URL } from '../../api/UserUrls';
-import SmartFileDisplay from '../../components/site/SmartFileDisplay';
-import { useSiteContext } from '../../contexts/SiteProvider';
-import { post } from '../../services/smartApiService';
+import React, { useState } from "react";
+import {
+  SmartFormInterFace,
+  SmartSoftButton,
+  SmartSoftForm,
+  SmartTable,
+  SmartTableNewInterface,
+} from "soft_digi";
+import { CONSUMPTION_URL } from "../../api/UserUrls";
+import SmartFileDisplay from "../../components/site/SmartFileDisplay";
+import { useSiteContext } from "../../contexts/SiteProvider";
+import { post } from "../../services/smartApiService";
+import MSG from "../../services/MsgService";
 
 interface HeaderProps {
   loadTableData: () => void;
-
-
 }
 interface FormErrors {
   [key: string]: string | null;
@@ -21,24 +26,21 @@ const ImportReportTable: React.FC<HeaderProps> = ({ loadTableData }) => {
   const [data, setData] = useState<any[]>([]);
   const handleSubmit = () => {
     setFormSubmit(true);
-    let URL = CONSUMPTION_URL.IMPORT_EXCEL
-    const subscription = post(URL, formData).subscribe(
-      (response) => {
-        setData(response.data);
-        loadTableData()
-      }
-    );
+    let URL = CONSUMPTION_URL.IMPORT_EXCEL;
+    const subscription = post(URL, formData, {
+      loadingMsg: MSG.LOADING.IMPORT,
+    }).subscribe((response) => {
+      setData(response.data);
+      loadTableData();
+    });
     return () => {
       subscription.unsubscribe();
     };
   };
 
-
   const ImportForm = () => {
-
     const handleInputChange = (name: string, value: any) => {
       setFormData((prev: any) => ({ ...prev, [name]: value }));
-
     };
     const filePreviewFunctionDisplay = () => {
       return (
@@ -51,11 +53,10 @@ const ImportReportTable: React.FC<HeaderProps> = ({ loadTableData }) => {
       );
     };
 
-
     const handleErrorChange = (name: string | any, value: any) => {
       setFormErrors((prev) => {
         const updatedFormData = { ...prev };
-        if (value === null || value === '') {
+        if (value === null || value === "") {
           delete updatedFormData[name];
         } else {
           updatedFormData[name] = value;
@@ -71,7 +72,7 @@ const ImportReportTable: React.FC<HeaderProps> = ({ loadTableData }) => {
         element: {
           placeHolder: (
             <p>
-              Browser Excel  <span className="smart-error">*</span>
+              Browser Excel <span className="smart-error">*</span>
             </p>
           ),
           fileNameEnable: false,
@@ -101,11 +102,10 @@ const ImportReportTable: React.FC<HeaderProps> = ({ loadTableData }) => {
           label: "Upload",
           onClick: () => {
             handleSubmit();
-          }
-        }
-      }
-
-    ]
+          },
+        },
+      },
+    ];
     return (
       <>
         <SmartSoftForm
@@ -114,13 +114,11 @@ const ImportReportTable: React.FC<HeaderProps> = ({ loadTableData }) => {
           elements={formElements}
           formSubmit={formSubmit}
           handleErrorChange={handleErrorChange}
-          className='is-gapless'
+          className="is-gapless"
         />
       </>
-    )
-  }
-
-
+    );
+  };
 
   const columns: SmartTableNewInterface.SmartTableNewColumnConfig[] = [
     { title: "S.NO", index: "s_no", type: "sno", width: "5" },
@@ -161,28 +159,24 @@ const ImportReportTable: React.FC<HeaderProps> = ({ loadTableData }) => {
       widthClass: "is-12",
       custom: <>{ImportForm()}</>,
     },
-
-  ]
-
+  ];
 
   return (
     <>
-
       {ImportForm()}
-      {data && data.length > 0 &&
+      {data && data.length > 0 && (
         <>
           <SmartTable
             columns={columns}
             data={data}
             paginationProps={{
-              pageSize: 10
+              pageSize: 10,
             }}
             tableProps={{
               className: " is-hoverable is-bordered is-striped smart-efl-table",
               isResponsive: true,
             }}
-          //tableTop={tableTop}
-
+            //tableTop={tableTop}
           />
 
           <div className="has-text-centered">
@@ -191,13 +185,11 @@ const ImportReportTable: React.FC<HeaderProps> = ({ loadTableData }) => {
               classList={["button", "mt-4 mr-4", "smart-third-button"]}
               onClick={closeModal}
             />
-
           </div>
         </>
-      }
+      )}
     </>
-  )
-}
+  );
+};
 
-
-export default ImportReportTable
+export default ImportReportTable;
