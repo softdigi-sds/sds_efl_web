@@ -6,6 +6,7 @@ import { useSiteContext } from "../../contexts/SiteProvider";
 import { post } from "../../services/smartApiService";
 import VendorDetails from "./VendorDetails";
 import VendorDetailsImport from "./VendorDetailsImport";
+import { downloadFile } from "../../services/core/FileService";
 
 const VendorWiseInformation = () => {
   const { id } = useParams<{ id: string }>();
@@ -25,7 +26,10 @@ const VendorWiseInformation = () => {
   const exportExcel = () => {
     let URL = INVOICE_URLS.EXPORT_EXCEL;
     const subscription = post(URL, { id: id }).subscribe((response) => {
-      console.log(response);
+      if (response.data && response.data.content) {
+        downloadFile(response.data.content, "bill.xlsx");
+      }
+      //console.log(response);
       //setData(response.data);
     });
     return () => {
@@ -54,7 +58,7 @@ const VendorWiseInformation = () => {
     {
       label: "View",
       type: "icon",
-         leftIcon: "fa fa-eye",
+      leftIcon: "fa fa-eye",
       classList: ["smart-efl-table-view-icon", ""],
       onClick: (data: any) => {
         openForm(data);
@@ -137,90 +141,49 @@ const VendorWiseInformation = () => {
               />
             </div>
           </div>
-          <div className="column is-4">
-            <p>
-              Start Date: <span>{data?.bill_start_date}</span>
-            </p>
-          </div>
-          <div className="column is-4">
-            <p>
-              End Date:<span>{data?.bill_start_date}</span>
-            </p>
-          </div>
-          <div className="column is-4"></div>
-          <div className="column is-4">
-            <p>
-              Parking Amount (Rs):<span>{data?.bill_start_date}</span>
-            </p>
-          </div>
-          <div className="column is-4">
-            <p>
-              Consumption Amount (Rs):<span>{data?.bill_start_date}</span>
-            </p>
-          </div>
-          <div className="column is-4">
-            <p>
-              Others(Rs):<span>{data?.bill_start_date}</span>
-            </p>
-          </div>
-          <div className="column is-4">
-            <p>
-              GST (Rs):<span>{data?.bill_start_date}</span>
-            </p>
-          </div>
-          <div className="column is-4">
-            <p>
-              Total (Rs):<span>{data?.bill_start_date}</span>
-            </p>
-          </div>
-          <div className="column is-4"></div>
         </div>
-        <div className='column is-12'>
-        <div className="container">
-      <table className="table  ">
-        <tbody className='tbody'>
-          {/* <tr>
+        <div className="column is-12">
+          <div className="container">
+            <table className="table  ">
+              <tbody className="tbody">
+                {/* <tr>
             <th>S.NO</th>
             <td>{hubData.s_no}</td>
           </tr> */}
-          <tr>
-            <th>Start Date:</th>
-            <td>{data?.bill_start_date}</td>
-            <th>End Date:</th>
-            <td>{data?.bill_start_date}</td>
-            <th></th>
-            <td></td>
-          </tr>
-          <tr>
-            <th>Parking Amount (Rs):</th>
-            <td>{data?.bill_start_date}</td>
-            <th>Consumption Amount (Rs):</th>
-            <td>{data?.bill_start_date}</td>
-            <th>Others(Rs):</th>
-            <td>{data?.bill_start_date}</td>
-          </tr>
-          <tr>
-            <th>GST (Rs):</th>
-            <td>{data?.bill_start_date}</td>
-            <th>Total (Rs):</th>
-            <td>{data?.bill_start_date}</td>
-           
-          </tr>
-     
-        </tbody>
-      </table>
-    </div>
+                <tr>
+                  <th>Start Date:</th>
+                  <td>{data?.bill_start_date}</td>
+                  <th>End Date:</th>
+                  <td>{data?.bill_start_date}</td>
+                  <th></th>
+                  <td></td>
+                </tr>
+                <tr>
+                  <th>Parking Amount (Rs):</th>
+                  <td>{data?.bill_start_date}</td>
+                  <th>Consumption Amount (Rs):</th>
+                  <td>{data?.bill_start_date}</td>
+                  <th>Others(Rs):</th>
+                  <td>{data?.bill_start_date}</td>
+                </tr>
+                <tr>
+                  <th>GST (Rs):</th>
+                  <td>{data?.bill_start_date}</td>
+                  <th>Total (Rs):</th>
+                  <td>{data?.bill_start_date}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
-      
-      </div>
-    </>
-    )
-  }
+      </>
+    );
+  };
 
   return (
     <>
       {BillInformation()}
-      <div >
+      <div>
         <SmartTable
           columns={columns}
           data={data.invoice_data || []}
