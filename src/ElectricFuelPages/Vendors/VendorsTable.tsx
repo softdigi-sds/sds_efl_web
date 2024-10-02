@@ -96,7 +96,7 @@ const VendorsTable = () => {
   // };
   const openViewdetails = (data: any) => {
     let options = {
-      title: "Office Details",
+      title: "Vendors Details",
       content: <VendorsView office={data} />,
       width: 60,
       className: "sd-efl-modal",
