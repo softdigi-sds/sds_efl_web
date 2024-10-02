@@ -79,13 +79,13 @@ const EFSideNav: React.FC<childrenProps> = ({ isOpen }) => {
       link: "/e-fuel/roles-list",
 
     },
-    {
-      id: 8,
-      label: "Site Settings",
-      icon: "fa-cogs",
-      link: "/e-fuel/settings",
+    // {
+    //   id: 8,
+    //   label: "Site Settings",
+    //   icon: "fa-cogs",
+    //   link: "/e-fuel/settings",
 
-    },
+    // },
   ]
   const navigate = useNavigate();
   const location = useLocation();
@@ -106,7 +106,7 @@ const EFSideNav: React.FC<childrenProps> = ({ isOpen }) => {
         return (
           <a key={`nav_link_${index}`} href="#" onClick={()=>navigateLink(item.link)} 
           className={  location.pathname === item.link?"sidenav-active-link":"sidenav-link"}>
-            <i className={`icon fa ${item.icon}`}></i>
+            <i className={`icon fa ${item.icon} `}></i>
             <span className="link-text">{item.label}</span>
           </a>
         )

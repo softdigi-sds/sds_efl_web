@@ -8,6 +8,7 @@ import { hubs_get_all_select } from "../../services/site/SelectBoxServices";
 import { post } from "../../services/smartApiService";
 import ConsumptionReportForm from "./ConsumptionReportForm";
 import ImportReportTable from "./ImportReportTable";
+import { changeDateTimeZoneFormat } from "../../services/core/CommonService";
 
 const ConsumptionReportTable = () => {
   const { openModal } = useSiteContext();
@@ -58,7 +59,7 @@ const ConsumptionReportTable = () => {
     let options = {
       title: (
         <div>
-          Hub: {hub?.label} Date : {date}
+          Hub: {hub?.label}<span className="has-text-black ml-6"> Date : {changeDateTimeZoneFormat(date,"DD-MM-YYYY")}</span> 
         </div>
       ),
       className: "sd-efl-modal",
@@ -124,21 +125,26 @@ const ConsumptionReportTable = () => {
     return (
       <div className="is-flex is-justify-content-space-between	is-align-items-center">
         <div className="is-size-4 site-title has-text-weight-bold"> Consumption Report</div>
+        <div className="is-flex">
+
+      
         <SmartSoftButton
             label="Import"
-            classList={["button", "ml-6  px-5 py-0 is-link is-normal"]}
+            classList={["button", " mr-2 px-5 py-0 is-link is-normal"]}
             onClick={() => openImportForm(data)}
+            leftIcon="fa fa-file-excel-o"
           />
-        <div className="is-flex">
-       
-
+          <div className="mt-0">
           <SmartSoftSelect
             options={hubs}
             placeHolder="Select hub"
             value={hub}
             onChange={(value) => setHub(value)}
           />
-        </div>
+          </div>
+         
+         </div>
+         <div></div>
       </div>
     );
   };
