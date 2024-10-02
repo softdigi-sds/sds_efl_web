@@ -149,15 +149,19 @@ const VendorRatesTable = () => {
   const tableTop: SmartTableNewInterface.SmartTableNewTopProps[] = [
     {
       type: "CUSTOM",
-      widthClass: "is-10",
+      widthClass: "is-6",
       custom: <p className="is-size-4">Vendor Rates</p>,
+    },{
+      type: "SEARCH",
+      widthClass: "is-4",
+      align: "JUSTIFY",
     },
     {
       type: "BUTTONS",
       widthClass: "is-2",
       align: "RIGHT",
       buttons: [
-        {
+        { 
           label: "Add",
           icon: "fa-plus",
           type: "CUSTOM",
