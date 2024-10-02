@@ -65,6 +65,8 @@ const ConsumptionReportTable = () => {
           Hub: {hub?.label} Date : {date}
         </div>
       ),
+      className: "sd-efl-modal",
+      closeBody: false,
       content: (
         <ConsumptionReportForm
           loadTableData={loadCalenderData}
@@ -79,6 +81,8 @@ const ConsumptionReportTable = () => {
     let options = {
       title: "Importing Form",
       content: <ImportReportTable loadTableData={loadCalenderData} />,
+      className: "sd-efl-modal",
+      closeBody: false,
     };
     openModal(options);
   };
@@ -125,13 +129,14 @@ const ConsumptionReportTable = () => {
   const titleDisp = () => {
     return (
       <div className="is-flex is-justify-content-space-between	is-align-items-center">
-        <div className="is-size-4 site-title"> Consumption Report</div>
-        <div className="is-flex">
-          <SmartSoftButton
+        <div className="is-size-4 site-title has-text-weight-bold"> Consumption Report</div>
+        <SmartSoftButton
             label="Import"
-            classList={["button", " mr-4 mt-1 is-small is-primary"]}
+            classList={["button", "ml-6  px-5 py-0 is-link is-normal"]}
             onClick={() => openImportForm(data)}
           />
+        <div className="is-flex">
+       
 
           <SmartSoftSelect
             options={hubs}

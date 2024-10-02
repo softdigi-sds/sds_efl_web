@@ -61,6 +61,8 @@ const VehiclesReportTable = () => {
           Hub: {hub?.label} <span className="has-text-black">Date : {date}
           </span>        </div>
       ),
+      className: "sd-efl-modal",
+      closeBody: false,
       content: (
         <VehicleReportFrom
           loadTableData={loadCalenderData}
@@ -68,7 +70,7 @@ const VehiclesReportTable = () => {
           hub_id={hub}
         />
       ),
-      className: "sd-efl-modal",
+    
     };
     openModal(options);
   };
@@ -114,19 +116,24 @@ const VehiclesReportTable = () => {
     let options = {
       title: "Importing Form",
       content: <ImportVehiclesReport loadTableData={loadCalenderData} />,
+      className: "sd-efl-modal",
+      closeBody: false,
     };
     openModal(options);
   };
   const titleDisp = () => {
     return (
       <div className="is-flex is-justify-content-space-between	is-align-items-center">
-        <div className="is-size-4 site-title"> Vehicles Report</div>
-        <div className="is-flex">
-          <SmartSoftButton
+        <div className="is-size-4 site-title has-text-weight-bold"> Vehicles Report</div>
+        <div>
+        <SmartSoftButton
             label="Import"
-            classList={["button", " mr-4 mt-1 is-link is-normal"]}
+            classList={["button", "ml-6  px-5 py-0 is-link is-normal"]}
             onClick={() => openImportForm(data)}
           />
+        </div>
+        <div className="is-flex">
+        
           <SmartSoftSelect
             options={hubs}
             placeHolder="Select hub"

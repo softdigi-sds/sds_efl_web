@@ -171,7 +171,7 @@ const ImportVehiclesReport: React.FC<HeaderProps> = ({ loadTableData }) => {
             pageSize: 10
           }}
           tableProps={{
-            className: " is-hoverable is-bordered is-striped smart-efl-table",
+            className: " is-hoverable is-bordered is-striped ",
             isResponsive: true,
           }}
         //tableTop={tableTop}
