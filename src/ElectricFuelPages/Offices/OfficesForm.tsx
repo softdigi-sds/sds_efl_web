@@ -119,25 +119,25 @@ const OfficesForm:React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
     {
       type: "TEXT_BOX",
       width: "4",
-      name: "cgst",
+      name: "pin_code",
       element: {
-        label: "CGST (%)",
+        label: "Pin Code",
         // placeHolder: "City",
         isRequired: true,
         // inputProps: { isFocussed: true },
+        validations: loginFormValidations.pin_code,
+          pattern:  ALLOW_NUMERIC ,
+        max:6,
         inputType: "BORDER_LABEL",
-          // pattern:  ALLOW_ALPHABET_SPACE ,
-        validations: loginFormValidations.cgst_no,
-        pattern:  ALLOW_NUMERIC ,
-        max:3,
       },
     },
+  
     {
       type: "TEXT_BOX",
       width: "4",
       name: "gst_no",
       element: {
-        label: "GST (%)",
+        label: "GST No.",
         // placeHolder: "City",
         isRequired: true,
         // inputProps: { isFocussed: true },
@@ -193,7 +193,7 @@ const OfficesForm:React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
     {
       type: "TEXT_BOX",
       width: "4",
-      name: "sgst ",
+      name: "sgst",
       element: {
         label: "SGST (%)",
         // placeHolder: "City",
@@ -206,23 +206,25 @@ const OfficesForm:React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
         inputType: "BORDER_LABEL",
       },
     },
-  
-   
     {
       type: "TEXT_BOX",
       width: "4",
-      name: "pin_code",
+      name: "cgst",
       element: {
-        label: "Pin Code",
+        label: "CGST (%)",
         // placeHolder: "City",
         isRequired: true,
         // inputProps: { isFocussed: true },
-        validations: loginFormValidations.pin_code,
-          pattern:  ALLOW_NUMERIC ,
-        max:6,
         inputType: "BORDER_LABEL",
+          // pattern:  ALLOW_ALPHABET_SPACE ,
+        validations: loginFormValidations.cgst_no,
+        pattern:  ALLOW_NUMERIC ,
+        max:3,
       },
     },
+  
+   
+   
     {
       type: "TEXTAREA",
       width: "12",

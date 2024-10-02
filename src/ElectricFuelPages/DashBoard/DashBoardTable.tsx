@@ -46,11 +46,11 @@ const DashBoardTable = () => {
             data={data}
           //   tableTop={tableTop}
             tableProps={{
-              className: " is-hoverable is-bordered is-striped smart-efl-table",
+              className: " is-hoverable  is-striped ",
               isResponsive: true,
             }}
             paginationProps={{
-              pageSize: 5,
+              pageSize: 10,
             }}
           />
         </div>
