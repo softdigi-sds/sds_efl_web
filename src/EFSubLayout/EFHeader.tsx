@@ -93,7 +93,7 @@ const EFHeader: React.FC<HeaderProps> = ({ setIsOpen, isOpen }) => {
                       /> */}
 
             <div className="navbar-dropdown is-right">
-              <a className="navbar-item">
+              <a className="navbar-item" onClick={() => navigate("/e-fuel/profile")}>
                 <span className="icon mr-1">
                   <i className="fa fa-user-circle-o"></i>
                 </span>{" "}

@@ -9,6 +9,7 @@ import {
   HubsTables,
   InvoiceTable,
   OfficesTable,
+  Profile,
   RoleTable,
   UsersTable,
   VehiclesReportTable,
@@ -46,12 +47,19 @@ const EFSiteRoute = () => {
             <Route path="/vendors-rates-list" element={<VendorRatesTable />} />
             <Route path="/roles-list" element={<RoleTable />} />
             <Route path="/users" element={<UsersTable />} />
-            <Route path="/vehicles-report" element={<VehiclesReportTable />} />
+            <Route
+              path="/vehicles-report"
+              element={<VehiclesReportTable />}
+            />
+            <Route path="/profile" element={<Profile />} />
             <Route
               path="/consumption-report"
               element={<ConsumptionReportTable />}
             />
-             <Route path="/vendor-wish/:id" element={<VendorWiseInformation />} />
+            <Route
+              path="/vendor-wish/:id"
+              element={<VendorWiseInformation />}
+            />
             <Route path="/invoices" element={<InvoiceTable />} />
           </Routes>
 

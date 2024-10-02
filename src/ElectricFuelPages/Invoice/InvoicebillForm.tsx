@@ -13,10 +13,19 @@ const InvoicebillForm = () => {
   const [formSubmit, setFormSubmit] = useState<boolean>(false);
   const [formErrors, setFormErrors] = useState<FormErrors>({});
   const [states, setStates] = useState([]);
+  const { openModal, closeModal } = useSiteContext();
   const navigate = useNavigate();
-  const { closeModal } = useSiteContext();
+  const [minEndDate, setMinEndDate] = useState<Date | null>(null);
 
   const handleInputChange = (name: string, value: any) => {
+    if (name === "bill_start_date") {
+      // Parse the start date and add 1 day (or however many you want)
+      const startDate = new Date(value);
+      const minEndDate = new Date(startDate);
+      minEndDate.setDate(minEndDate.getDate() + 30); // Add 1 day
+      
+      setMinEndDate(minEndDate); // Set the minimum end date
+    }
     setFormData((prev: any) => ({ ...prev, [name]: value }));
   };
   const handleErrorChange = (name: string | any, value: any) => {
@@ -64,6 +73,7 @@ const InvoicebillForm = () => {
       element: {
         placeHolder: "End Date",
         isRequired: true,
+           minDate: minEndDate,
         // inputProps: { isFocussed: true },
       },
     },
@@ -80,8 +90,11 @@ const InvoicebillForm = () => {
   ];
   return (
     <>
-      <div className="sd-efl-input">
+      <div className='sd-efl-input'>
+
+
         <div className="m-6 has-text-right">
+
           <SmartSoftForm
             formData={formData}
             setFormData={handleInputChange}

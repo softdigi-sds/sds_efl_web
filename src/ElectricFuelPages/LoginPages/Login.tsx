@@ -5,12 +5,13 @@ import { LOGIN_URLS } from '../../api/LoginUrls';
 import { useSiteContext } from '../../contexts/SiteProvider';
 import { SmartSoftButton, SmartSoftForm } from '../../core';
 import { SmartFormElementProps } from '../../core/forms/SmartFormInterface';
-import { SmartValid, ValidateFormNew } from '../../core/services/smartValidationService';
+
 import { showAlertAutoClose } from '../../services/notifyService';
 import { post } from '../../services/smartApiService';
 import ForgotPassword from './ForgotPassword';
 import { LOGIN_PAGE_LOGO, LOGO, OUR_SERVICE_CARD_FOUR } from '../../services/ImageService';
 import { SmartSoftCheckRadioSwitch } from 'soft_digi';
+import { SmartValid, ValidateFormNew } from 'soft_digi/dist/services/smartValidationService';
 
 // Define the type for form data
 interface FormErrors {

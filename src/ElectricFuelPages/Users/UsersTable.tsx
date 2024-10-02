@@ -28,7 +28,10 @@ const UsersTable = () => {
     const openOfficesForm =(data:any)=>{
       let options = {
         title:<>{data.ID?"User Update Form":"User Addition Form"}</> ,
-        content: <UsersForm loadTableData={loadTableData} dataIn={data}/>
+        content: <UsersForm loadTableData={loadTableData} dataIn={data}/>,
+        className: "sd-efl-modal",
+        closeBody: false,
+        width: 60,
     }
     openModal(options);
     }
@@ -201,13 +204,13 @@ const UsersTable = () => {
   
     return (
       <>
-      <div className="">
+      <div >
         <SmartTable
           columns={columns}
           data={data}
           tableTop={tableTop}
           tableProps={{
-            className: "smart-efl-table is-hoverable is-bordered  ",
+            className: "is-hoverable is-bordered smart-efl-table ",
             isResponsive: true,
             searchPlaceHolder: "Search",
           }}

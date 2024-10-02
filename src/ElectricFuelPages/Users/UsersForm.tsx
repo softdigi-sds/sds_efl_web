@@ -2,11 +2,12 @@ import React, { useEffect, useState } from 'react';
 import { SmartFormInterFace, SmartSoftButton, SmartSoftForm, SmartValid } from "soft_digi";
 import { USER_URLS } from '../../api/AdminUrls';
 import { useSiteContext } from '../../contexts/SiteProvider';
-import { ValidateFormNew } from '../../core/services/smartValidationService';
+
 import { showAlertAutoClose } from '../../services/notifyService';
 import { ALLOW_NUMERIC } from '../../services/PatternSerivce';
 import { role_get_select } from '../../services/site/SelectBoxServices';
 import { post } from '../../services/smartApiService';
+import { ValidateFormNew } from 'soft_digi/dist/services/smartValidationService';
 
 interface FormErrors {
   [key: string]: string | null;
@@ -78,6 +79,8 @@ const UsersForm:React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
       
     ],
     password: [SmartValid.required("Password is Required")],
+    role: [SmartValid.required("Role is Required")],
+    
     
   };
 
@@ -109,7 +112,10 @@ const UsersForm:React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
         inputType: "BORDER_LABEL",
         // inputProps: { isFocussed: true },
         validations: loginFormValidations.MobileNumber,
-        allowPattern:ALLOW_NUMERIC
+        // allowPattern:ALLOW_NUMERIC,
+        pattern:"[0-9]+",
+        max:10,
+       
       },
     },
     {
@@ -150,6 +156,7 @@ const UsersForm:React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
         inputType: "BORDER_LABEL",
         options: allRole,
         isMulti: true,
+        validations: loginFormValidations.role,
        
       },
     },

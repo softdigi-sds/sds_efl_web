@@ -137,7 +137,9 @@ const VendorRatesTable = () => {
       title: "Unit Rate/ Extra Rate",
       index: "unit_rate",
     },
-    { title: "Effective Date", index: "effective_date" },
+    { title: "Effective Date", index: "effective_date", 
+      dateFormat:"DD-MM-YYYY",
+    },
     {
       title: "Action",
       index: "action",

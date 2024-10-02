@@ -28,6 +28,7 @@
         margin-left: 0;
         margin-right: 0;
         margin-top: 0;
+        margin-bottom: 20px;
         .column {
             margin: 0;
             padding: 0 !important;
@@ -45,6 +46,7 @@
     backdrop-filter: blur(10px) !important;
     /* Apply the frosted glass effect */
     border: 1px solid rgba(255, 255, 255, 0.2);
+    // margin-bottom: 20px;
 
     thead {
         background: var(--secondary-color);
@@ -139,7 +141,7 @@
 
 /*** buttons for this site : Planned to have three styles of buttons ***/
 .smart-third-button {   
-    padding: 15px 45px;
+    padding: 15px 30px;
     text-align: center;
     color:$primary-color;
     box-shadow: 0 0 20px #eee;
@@ -196,7 +198,15 @@
         font-family: roboto;
     }
 }
-.smart-efl-table_main_container p{
-    font-weight: bold !important;
-    font-family:roboto ;
+.smart-efl-table_main_container{
+   p{ font-weight: bold !important;
+    font-family:roboto ;}
+    .input{
+        border-radius: 10px;
+        border:1px solid $primary-color;
+    }
+}
+.pagination-link.is-current{
+        border:1px solid $primary-color;
+        background-color: $secondary-color !important;
 }
