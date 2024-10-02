@@ -9,7 +9,7 @@ import {
   Tooltip,
   Legend,
 } from 'chart.js';
-import { SmartSoftSelect } from 'soft_digi';
+import { SmartSoftCheckRadioSwitch, SmartSoftSelect } from 'soft_digi';
 import { hubs_get_all_select } from '../../services/site/SelectBoxServices';
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
@@ -18,6 +18,7 @@ const DashboardBarChart: React.FC = () => {
   const [hubs, setHubs] = useState<any>();
   const [hub, setHub] = useState<any>();
   const currentYear = new Date().getFullYear();
+  const [category, setCategory] = useState("2");
   const [selectedYear, setSelectedYear] = useState<number>(currentYear);
 
   // Generate an array of years (e.g., last 10 years + current year)
@@ -72,28 +73,35 @@ const DashboardBarChart: React.FC = () => {
       // },
     },
   };
-
+  const option = [{ value: "1" }];
   return (
     <>
     <div className='columns'>
       <div className='column is-8'>
         <p className='is-size-4 has-text-weight-bold '>Performance Details</p>
       </div>
-      <div className='column  is-4' >
-        <div className='is-flex is-right sd-efl-input'>
+      <div className='column  ' >
+        <div className='is-flex is-right sd-efl-input is-justify-content-flex-end'>
         <SmartSoftSelect
             options={hubs}
             placeHolder="Select hub"
             value={hub}
             onChange={(value) => setHub(value)}
           />
-          <div className='ml-2'>
-          <SmartSoftSelect
-            options={years}
-            placeHolder="Select Year"
-            value={selectedYear}
-            onChange={handleYearChange}
-          />
+         <div className="is-flex ml-2">
+            <span className="mr-3 has-text-weight-bold mt-2">Month</span>
+            <span className="mt-0 pt-0">
+              <SmartSoftCheckRadioSwitch
+                options={option}
+                switchMode={true}
+                isRight={true}
+                inputProps={{ isRounded: true }}
+                name="switchone"
+                value={category}
+                onChange={(value) => setCategory(value)}
+              />
+            </span>
+            <span className="ml-4 has-text-weight-bold mt-2">Year</span>
           </div>
        
         </div>
