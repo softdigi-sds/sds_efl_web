@@ -139,7 +139,7 @@
 
 /*** buttons for this site : Planned to have three styles of buttons ***/
 .smart-third-button {   
-    padding: 15px 45px;
+    padding: 15px 30px;
     text-align: center;
     color:$primary-color;
     box-shadow: 0 0 20px #eee;
@@ -196,7 +196,11 @@
         font-family: roboto;
     }
 }
-.smart-efl-table_main_container p{
-    font-weight: bold !important;
-    font-family:roboto ;
+.smart-efl-table_main_container{
+   p{ font-weight: bold !important;
+    font-family:roboto ;}
+    .input{
+        border-radius: 10px;
+        border:1px solid $primary-color;
+    }
 }

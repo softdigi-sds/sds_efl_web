@@ -243,6 +243,7 @@ const HubsTables = () => {
         tableProps={{
           className: " is-hoverable is-bordered is-striped smart-efl-table",
           isResponsive: true,
+          searchPlaceHolder: "Search",
         }}
         paginationProps={{
           pageSize:10
