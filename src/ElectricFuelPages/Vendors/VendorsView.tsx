@@ -12,18 +12,17 @@ interface OfficeData {
   address_one?: string;
   address_two?: string;
   pan_no?: string;
-  state_name?: string;
+  state_name?: string; 
 }
 
 const VendorsView = ({ office }: { office: OfficeData }) => {
   const nameFunction = (row: OfficeData) => {
     switch (row.status) {
       case 5:
-        return <span className="has-text-link">Active</span>;
+        return <span className="has-text-success">Active</span>;
       case 0:
-        return <span className="has-text-success">Inactive</span>;
-      default:
-        return <span className="has-text-danger">Unknown</span>;
+        return <span className="has-text-danger">Inactive</span>;
+  
     }
   };
 

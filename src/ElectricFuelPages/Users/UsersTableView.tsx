@@ -1,14 +1,20 @@
 import React from 'react';
 
 const UsersTableView = ({ userData }: { userData: any }) => {
+  const nameFunction = (row: any) => {
+    switch (row.active_status) {
+      case 5:
+        return <span className="has-text-success">Active</span>;
+      case 0:
+        return <span className="has-text-danger">Inactive</span>;
+  
+    }
+  };
+
   return (
     <div className="container">
       <table className="table is-bordered is-fullwidth">
         <tbody>
-          {/* <tr>
-            <th>S.NO</th>
-            <td>{userData?.s_no}</td>
-          </tr> */}
           <tr>
             <th>User ID</th>
             <td>{userData?.euserid}</td>
@@ -27,7 +33,7 @@ const UsersTableView = ({ userData }: { userData: any }) => {
           </tr>
           <tr>
             <th>Status</th>
-            <td>{userData?.active_status}</td>
+            <td>{nameFunction(userData)}</td>
           </tr>
         </tbody>
       </table>
