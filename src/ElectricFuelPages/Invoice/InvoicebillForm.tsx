@@ -1,7 +1,10 @@
-import { useState } from 'react';
-import { SmartFormInterFace, SmartSoftForm } from 'soft_digi';
-import { INVOICE_URLS } from '../../api/UserUrls';
-import { post } from '../../services/smartApiService';
+import { useState } from "react";
+import { SmartFormInterFace, SmartSoftForm } from "soft_digi";
+import { INVOICE_URLS } from "../../api/UserUrls";
+import { post } from "../../services/smartApiService";
+import { showAlertAutoClose } from "../../services/notifyService";
+import { useNavigate } from "react-router-dom";
+import { useSiteContext } from "../../contexts/SiteProvider";
 interface FormErrors {
   [key: string]: string | null;
 }
@@ -10,6 +13,8 @@ const InvoicebillForm = () => {
   const [formSubmit, setFormSubmit] = useState<boolean>(false);
   const [formErrors, setFormErrors] = useState<FormErrors>({});
   const [states, setStates] = useState([]);
+  const { openModal, closeModal } = useSiteContext();
+  const navigate = useNavigate();
   const [minEndDate, setMinEndDate] = useState<Date | null>(null);
 
   const handleInputChange = (name: string, value: any) => {
@@ -22,12 +27,11 @@ const InvoicebillForm = () => {
       setMinEndDate(minEndDate); // Set the minimum end date
     }
     setFormData((prev: any) => ({ ...prev, [name]: value }));
-
   };
   const handleErrorChange = (name: string | any, value: any) => {
     setFormErrors((prev) => {
       const updatedFormData = { ...prev };
-      if (value === null || value === '') {
+      if (value === null || value === "") {
         delete updatedFormData[name];
       } else {
         updatedFormData[name] = value;
@@ -38,13 +42,14 @@ const InvoicebillForm = () => {
 
   const handleSubmit = () => {
     setFormSubmit(true);
-    let URL = INVOICE_URLS.GENERATE
-    const subscription = post(URL, formData).subscribe(
-      (response) => {
-       // setData(response.data);
-       // loadTableData()
-      }
-    );
+    let URL = INVOICE_URLS.GENERATE;
+    const subscription = post(URL, formData).subscribe((response) => {
+      navigate("/e-fuel/vendor-wish/" + response.data);
+      closeModal();
+      //showAlertAutoClose("Bill Cre")
+      // setData(response.data);
+      // loadTableData()
+    });
     return () => {
       subscription.unsubscribe();
     };
@@ -79,16 +84,16 @@ const InvoicebillForm = () => {
       element: {
         label: "Create Bill",
         classList: ["smart-action-button mt-0 "],
-        onClick:handleSubmit
+        onClick: handleSubmit,
       },
     },
-  ]
+  ];
   return (
     <>
-      <div className='sd-efl-input p-6'>
+      <div className='sd-efl-input'>
 
 
-        <div className="m-6 has-text-right p-6">
+        <div className="m-6 has-text-right">
 
           <SmartSoftForm
             formData={formData}
@@ -101,9 +106,8 @@ const InvoicebillForm = () => {
         <div className="m-6"></div>
         <div className="m-6"></div>
       </div>
-
     </>
-  )
-}
+  );
+};
 
-export default InvoicebillForm
+export default InvoicebillForm;

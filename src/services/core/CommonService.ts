@@ -100,14 +100,11 @@ const maskMobileNumber = (number: string) => {
   return maskedPart;
 };
 
-
 const changeDateTimeZoneFormat = (
-  dateString:any,
+  dateString: any,
   format: string = "DD-MM-YYYY  HH:MM",
   timeZone: string = "Asia/Kolkata"
 ) => {
-
- 
   const userTimezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
   //console.log("timezone ", userTimezone);
   const selectedDateInUTC = moment_timzone.utc(dateString); // Assume the date is already in UTC
@@ -178,6 +175,10 @@ const getLocalTime = (time_input: string) => {
   }
 };
 
+const roundNumber = (input: any) => {
+  return Math.round(input * 100) / 100; // Output: 3.46
+};
+
 export {
   changeDateFormat,
   changeDateTimeFormat,
@@ -192,4 +193,5 @@ export {
   maskMobileNumber,
   monthNameDisplay,
   getLocalTime,
+  roundNumber,
 };

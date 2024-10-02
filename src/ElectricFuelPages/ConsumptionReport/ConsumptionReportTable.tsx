@@ -3,11 +3,15 @@ import { useEffect, useState } from "react";
 import { SmartCalender, SmartSoftButton, SmartSoftSelect } from "soft_digi";
 import { CONSUMPTION_URL } from "../../api/UserUrls";
 import { useSiteContext } from "../../contexts/SiteProvider";
-import { isCurrentMonth, isDateWithinLastDays } from "../../services/site/DateService";
+import {
+  isCurrentMonth,
+  isDateWithinLastDays,
+} from "../../services/site/DateService";
 import { hubs_get_all_select } from "../../services/site/SelectBoxServices";
 import { post } from "../../services/smartApiService";
 import ConsumptionReportForm from "./ConsumptionReportForm";
 import ImportReportTable from "./ImportReportTable";
+import { roundNumber } from "../../services/core/CommonService";
 import { changeDateTimeZoneFormat } from "../../services/core/CommonService";
 
 const ConsumptionReportTable = () => {
@@ -59,7 +63,11 @@ const ConsumptionReportTable = () => {
     let options = {
       title: (
         <div>
-          Hub: {hub?.label}<span className="has-text-black ml-6"> Date : {changeDateTimeZoneFormat(date,"DD-MM-YYYY")}</span> 
+          Hub: {hub?.label}
+          <span className="has-text-black ml-6">
+            {" "}
+            Date : {changeDateTimeZoneFormat(date, "DD-MM-YYYY")}
+          </span>
         </div>
       ),
       className: "sd-efl-modal",
@@ -103,13 +111,15 @@ const ConsumptionReportTable = () => {
   // ** meeting display boss
   const content = (date: any) => {
     const count_check = data?.find((item) => item.date === date);
-    const last10Days = isDateWithinLastDays(date,30);
+    const last10Days = isDateWithinLastDays(date, 30);
     const this_month = isCurrentMonth(new Date(date));
     //console.log(" this month ", this_month, "  dt ", date);
     return (
       <div className="calender-div">
         {count_check && count_check.count > 0 ? (
-          <div onClick={() => openForm(date)}>{count_check.count}</div>
+          <div onClick={() => openForm(date)}>
+            {roundNumber(count_check.count)}
+          </div>
         ) : (
           <div>
             {last10Days && (
@@ -124,27 +134,27 @@ const ConsumptionReportTable = () => {
   const titleDisp = () => {
     return (
       <div className="is-flex is-justify-content-space-between	is-align-items-center">
-        <div className="is-size-4 site-title has-text-weight-bold"> Consumption Report</div>
+        <div className="is-size-4 site-title has-text-weight-bold">
+          {" "}
+          Consumption Report
+        </div>
         <div className="is-flex">
-
-      
-        <SmartSoftButton
+          <SmartSoftButton
             label="Import"
             classList={["button", " mr-2 px-5 py-0 is-link is-normal"]}
             onClick={() => openImportForm(data)}
             leftIcon="fa fa-file-excel-o"
           />
           <div className="mt-0">
-          <SmartSoftSelect
-            options={hubs}
-            placeHolder="Select hub"
-            value={hub}
-            onChange={(value) => setHub(value)}
-          />
+            <SmartSoftSelect
+              options={hubs}
+              placeHolder="Select hub"
+              value={hub}
+              onChange={(value) => setHub(value)}
+            />
           </div>
-         
-         </div>
-         <div></div>
+        </div>
+        <div></div>
       </div>
     );
   };
