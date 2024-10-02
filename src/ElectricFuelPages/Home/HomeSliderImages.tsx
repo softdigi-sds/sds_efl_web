@@ -6,6 +6,7 @@ import {
   ELETRIC_HOME_IMAGE_4,
 } from "../../services/ImageService";
 import SmartImgSlider from "../../core/sliders/SmartImgSlider";
+// import SmartImgSlider from "../../core/sliders/SmartImgSlider";
 
 const HomeSliderImages: React.FC = () => {
   const imageSliderContent = [

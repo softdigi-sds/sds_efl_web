@@ -28,7 +28,10 @@ const UsersTable = () => {
     const openOfficesForm =(data:any)=>{
       let options = {
         title:<>{data.ID?"User Update Form":"User Addition Form"}</> ,
-        content: <UsersForm loadTableData={loadTableData} dataIn={data}/>
+        content: <UsersForm loadTableData={loadTableData} dataIn={data}/>,
+        className: "sd-efl-modal",
+        closeBody: false,
+        width: 60,
     }
     openModal(options);
     }

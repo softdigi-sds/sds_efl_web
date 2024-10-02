@@ -2,12 +2,13 @@ import React, { useEffect, useState } from 'react';
 import { SmartFormInterFace, SmartSoftButton, SmartSoftForm, SmartValid } from "soft_digi";
 import { OFFICE_URLS } from '../../api/UserUrls';
 import { useSiteContext } from '../../contexts/SiteProvider';
-import { ValidateFormNew } from '../../core/services/smartValidationService';
+
 import { showAlertAutoClose } from '../../services/notifyService';
 import { admin_states_select } from '../../services/site/SelectBoxServices';
 import { post } from '../../services/smartApiService';
 import { max } from 'date-fns';
 import { ALLOW_NUMERIC } from '../../services/PatternSerivce';
+import { ValidateFormNew } from 'soft_digi/dist/services/smartValidationService';
 
 
 interface FormErrors {

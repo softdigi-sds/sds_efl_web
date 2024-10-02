@@ -2,10 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { SmartFormInterFace, SmartSoftButton, SmartSoftForm } from "soft_digi";
 import { ROLE_URLS } from '../../api/AdminUrls';
 import { useSiteContext } from '../../contexts/SiteProvider';
-import { SmartValid, ValidateFormNew } from '../../core/services/smartValidationService';
 import { showAlertAutoClose } from '../../services/notifyService';
 import { user_get_select } from '../../services/site/SelectBoxServices';
 import { post } from '../../services/smartApiService';
+import { SmartValid, ValidateFormNew } from 'soft_digi/dist/services/smartValidationService';
 
 interface FormErrors {
   [key: string]: string | null;
@@ -70,6 +70,7 @@ const RoleForm:React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
 
   const loginFormValidations = {
     RoleName: [SmartValid.required("Role Name is Required")],
+    user: [SmartValid.required("Users is Required")],
    
     
   };
@@ -104,6 +105,7 @@ const RoleForm:React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
         isMulti: true,
         inputType: "BORDER_LABEL",
         options: allUsers,
+        validations: loginFormValidations.user,
        
       },
     },
