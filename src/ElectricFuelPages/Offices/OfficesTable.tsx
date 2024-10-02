@@ -133,6 +133,36 @@ const OfficesTable = () => {
     },
   ];
 
+
+  interface Item {
+    ID: string;
+    offer_status: number;
+  }
+  
+  // interface SwitchFormProps {
+  //   item: Item;
+  //   updateStatus: (item: Item, event: React.ChangeEvent<HTMLInputElement>) => void;
+  // }
+  
+  // const SwitchForm: React.FC<SwitchFormProps> = ({ item, updateStatus }) => {
+  //   return (
+  //     item.ID && (
+  //       <>
+  //         <div className="field">
+  //           <input
+  //             id={"switchRoundedDefault_" + item.ID}
+  //             type="checkbox"
+  //             className="switch is-rounded is-small"
+  //             checked={item.offer_status === 0}
+  //             onChange={(event) => updateStatus(item, event)}
+  //           />
+  //           <label htmlFor={"switchRoundedDefault_" + item.ID}></label>
+  //         </div>
+  //       </>
+  //     )
+  //   );
+  // };
+  
   const statusTags = [
     { value: 5, label: "Active", class: "is-primary" },
     { value: 10, label: "Inactive", class: "is-danger" },

@@ -13,6 +13,7 @@ const HUBS_URLS = {
   GET_ONE: "/hubs/get_one",
   DELETE: "/hubs/delete_one",
   GET_ALL_SELECT: "/hubs/get_all_select",
+ 
 };
 const HUB_GROUPS_URLS = {
   INSERT: "/hubgroups/insert",

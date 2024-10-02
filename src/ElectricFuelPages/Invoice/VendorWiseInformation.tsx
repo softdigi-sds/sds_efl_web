@@ -210,7 +210,7 @@ const VendorWiseInformation = () => {
           data={data.invoice_data || []}
           tableTop={tableTop}
           tableProps={{
-            className: " is-hoverable is-bordered is-striped smart-efl-table ",
+            className: " is-hoverable  is-striped ",
             isResponsive: true,
             searchPlaceHolder: "Search",
           }}

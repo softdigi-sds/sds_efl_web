@@ -6,10 +6,12 @@ import { showAlertAutoClose } from '../../services/notifyService';
 import { get, post } from '../../services/smartApiService';
 import HubsForms from './HubsForms';
 import HubsView from './HubsView';
+import { office_get_all_select } from '../../services/site/SelectBoxServices';
 
 const HubsTables = () => {
   const [data, setData] = useState([]);
   const { openModal, closeModal } = useSiteContext();
+  const [allOffice, setAllOffice] = useState([]);
 
   const loadTableData = () => {
     let URL = HUBS_URLS.GET_ALL;
@@ -24,6 +26,10 @@ const HubsTables = () => {
 
   useEffect(() => {
     loadTableData();
+  }, []);
+  useEffect(() => {
+
+    office_get_all_select((data: any) => setAllOffice(data));
   }, []);
 
   const openOfficesForm = (data: any) => {
@@ -180,20 +186,14 @@ const HubsTables = () => {
     },
   ];
   const filterFields:SmartFormInterFace.SmartFormElementProps[] = [
+ 
     {
-      type: "TEXT_BOX",
+      type: "SELECT_BOX",
       width: "12",
       name: "office_city",
       element: {
-        label: "Office City",
-      },
-    },
-    {
-      type: "TEXT_BOX",
-      width: "12",
-      name: "state_name",
-      element: {
-        label: "State",
+        label: "Office City", 
+        options: allOffice,
       },
     },
 
