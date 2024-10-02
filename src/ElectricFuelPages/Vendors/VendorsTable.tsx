@@ -1,16 +1,21 @@
-import { useEffect, useState } from 'react';
-import { SmartAlert, SmartFormInterFace, SmartLoaderInterface, SmartTable, SmartTableNewInterface } from 'soft_digi';
-import { VENDERS_URLS } from '../../api/UserUrls';
-import { useSiteContext } from '../../contexts/SiteProvider';
-import { showAlertAutoClose } from '../../services/notifyService';
-import { get, post } from '../../services/smartApiService';
-import VendorsForm from './VendorsForm';
-import VendorsView from './VendorsView';
+import { useEffect, useState } from "react";
+import {
+  SmartAlert,
+  SmartFormInterFace,
+  SmartLoaderInterface,
+  SmartTable,
+  SmartTableNewInterface,
+} from "soft_digi";
+import { VENDERS_URLS } from "../../api/UserUrls";
+import { useSiteContext } from "../../contexts/SiteProvider";
+import { showAlertAutoClose } from "../../services/notifyService";
+import { get, post } from "../../services/smartApiService";
+import VendorsForm from "./VendorsForm";
+import VendorsView from "./VendorsView";
 
 const VendorsTable = () => {
   const [data, setData] = useState([]);
   const { openModal, closeModal } = useSiteContext();
-
 
   const loadTableData = () => {
     let URL = VENDERS_URLS.GET_ALL;
@@ -28,8 +33,8 @@ const VendorsTable = () => {
 
   const openOfficesForm = (data: any) => {
     let options = {
-      title: <>{data.ID?"Vendors Update Form":"Vendors Addition Form"}</>,
-      content: <VendorsForm loadTableData={loadTableData} dataIn={data}/>,
+      title: <>{data.ID ? "Vendors Update Form" : "Vendors Addition Form"}</>,
+      content: <VendorsForm loadTableData={loadTableData} dataIn={data} />,
       width: 60,
       className: "sd-efl-modal",
       closeBody: false,
@@ -37,27 +42,25 @@ const VendorsTable = () => {
     openModal(options);
   };
   const viewEditForm = (id: any) => {
-    const subscription = post(
-      VENDERS_URLS.GET_ONE,
-      { id: id }
-    ).subscribe((response: any) => {  
-      openOfficesForm(response.data);
-    });
+    const subscription = post(VENDERS_URLS.GET_ONE, { id: id }).subscribe(
+      (response: any) => {
+        openOfficesForm(response.data);
+      }
+    );
     return () => {
       subscription.unsubscribe();
     };
   };
 
   const deleteData = (id: any) => {
-    const subscription = post(
-      VENDERS_URLS.DELETE,
-      { id: id }
-    ).subscribe((response) => {
-      showAlertAutoClose("Deleted Successfully...", "success");
-      closeModal();
-      loadTableData();
-      // setLoading(false);
-    });
+    const subscription = post(VENDERS_URLS.DELETE, { id: id }).subscribe(
+      (response) => {
+        showAlertAutoClose("Deleted Successfully...", "success");
+        closeModal();
+        loadTableData();
+        // setLoading(false);
+      }
+    );
     return () => {
       subscription.unsubscribe();
     };
@@ -78,7 +81,8 @@ const VendorsTable = () => {
       },
       content: (
         <p>
-          Note: Do you wish to delete this Vendors? This action cannot be reverted
+          Note: Do you wish to delete this Vendors? This action cannot be
+          reverted
         </p>
       ),
       className: "custom-alert",
@@ -136,8 +140,7 @@ const VendorsTable = () => {
   const statusTags = [
     { value: 5, label: "Active", class: "is-primary" },
     { value: 0, label: "Inactive", class: "is-danger" },
-  
-  ]
+  ];
   const columns: SmartTableNewInterface.SmartTableNewColumnConfig[] = [
     { title: "S.NO", index: "s_no", type: "sno" },
     {
@@ -147,8 +150,6 @@ const VendorsTable = () => {
     {
       title: "Code",
       index: "vendor_code",
-
-
     },
     { title: "Company", index: "vendor_company" },
     {
@@ -156,7 +157,7 @@ const VendorsTable = () => {
       index: "vendor_name",
     },
     { title: "GST No", index: "gst_no" },
-    { title: "Status", index: "status" ,     type: "tags", tags: statusTags},
+    { title: "Status", index: "status", type: "tags", tags: statusTags },
     {
       title: "Action",
       index: "action",
@@ -187,15 +188,12 @@ const VendorsTable = () => {
           label: "Add",
           icon: "fa-plus",
           type: "CUSTOM",
+          className: "smart-third-button",
           action: openOfficesForm,
         },
       ],
-
     },
-
-
-
-  ]
+  ];
   const filterFields: SmartFormInterFace.SmartFormElementProps[] = [
     {
       type: "TEXT_BOX",
@@ -213,15 +211,11 @@ const VendorsTable = () => {
         label: "Company",
       },
     },
-
-
-
-  ]
-
+  ];
 
   return (
     <>
-      <div >
+      <div>
         <SmartTable
           columns={columns}
           data={data}
@@ -233,13 +227,12 @@ const VendorsTable = () => {
             searchPlaceHolder: "Search",
           }}
           paginationProps={{
-            pageSize: 10
+            pageSize: 10,
           }}
         />
       </div>
     </>
+  );
+};
 
-  )
-}
-
-export default VendorsTable
+export default VendorsTable;

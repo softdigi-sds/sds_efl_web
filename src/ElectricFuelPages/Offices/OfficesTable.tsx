@@ -202,7 +202,7 @@ const OfficesTable = () => {
           label: "Add",
           icon: "fa-plus",
           type: "CUSTOM",
-          // classList:"smart-efl-Primary-button",
+          className: "smart-third-button",
           action: openOfficesForm,
         },
       ],
