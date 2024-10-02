@@ -138,7 +138,7 @@ const ImportReportTable: React.FC<HeaderProps> = ({ loadTableData }) => {
       width: "15",
     },
     {
-      title: "units",
+      title: "Units",
       index: "count",
       width: "15",
     },

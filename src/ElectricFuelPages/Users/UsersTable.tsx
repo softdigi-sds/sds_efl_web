@@ -201,13 +201,13 @@ const UsersTable = () => {
   
     return (
       <>
-      <div className="">
+      <div >
         <SmartTable
           columns={columns}
           data={data}
           tableTop={tableTop}
           tableProps={{
-            className: "smart-efl-table is-hoverable is-bordered  ",
+            className: "is-hoverable is-bordered smart-efl-table ",
             isResponsive: true,
             searchPlaceHolder: "Search",
           }}
