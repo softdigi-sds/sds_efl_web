@@ -68,7 +68,7 @@ const Login: React.FC = () => {
       (response) => {
         setFormSubmit(false);
         setUser(response.data);
-        showAlertAutoClose("Log In Successful", "success");
+        showAlertAutoClose("Logged In Successfully", "success");
         navigate("/e-fuel/dashboard");
       }
     );

@@ -165,14 +165,14 @@ const OfficesTable = () => {
     //  loadData();
   }, []);
   const filterFields: SmartFormInterFace.SmartFormElementProps[] = [
-    {
-      type: "SELECT_BOX",
-      width: "12",
-      name: "office_city",
-      element: {
-        label: "Office City",
-      },
-    },
+    // {
+    //   type: "SELECT_BOX",
+    //   width: "12",
+    //   name: "office_city",
+    //   element: {
+    //     label: "Office City",
+    //   },
+    // },
     {
       type: "SELECT_BOX",
       width: "12",
