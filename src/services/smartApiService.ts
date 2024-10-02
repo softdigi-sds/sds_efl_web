@@ -8,7 +8,7 @@ import { SmartLoader } from "../core";
 import { showAlertAutoClose } from "./notifyService";
 import { getCsrf, getToken } from "./sessionService";
 
-const _KEY = config.ENCRYPTION_KEY||"";
+const _KEY = config.ENCRYPTION_KEY || "";
 const ENCRYPTION = config.ENCRYPTION ?? false;
 
 interface CipherParams {
@@ -41,7 +41,7 @@ const CryptoJSAesJson = {
   },
 };
 
-const encryptPayload = (data:any) => {
+const encryptPayload = (data: any) => {
   let encrypted = CryptoJS.AES.encrypt(JSON.stringify(data), _KEY, {
     format: CryptoJSAesJson,
   }).toString();
@@ -49,7 +49,7 @@ const encryptPayload = (data:any) => {
   return btoa(encrypted);
 };
 
-const decrypt_data = (encrypted:string) => {
+const decrypt_data = (encrypted: string) => {
   var decrypted = JSON.parse(
     CryptoJS.AES.decrypt(encrypted, _KEY, {
       format: CryptoJSAesJson,
@@ -58,7 +58,7 @@ const decrypt_data = (encrypted:string) => {
   return decrypted;
 };
 
-const getPayLoad = (data_in:any) => {
+const getPayLoad = (data_in: any) => {
   //console.log("data in ", data_in);
   data_in["timestamp"] = Date.now();
   data_in["timeszone"] = Intl.DateTimeFormat().resolvedOptions().timeZone;
@@ -74,7 +74,7 @@ const API = axios.create({
   baseURL: config.REACT_APP_API_URL,
 });
 
-const getDecryptedResponse = (response:any) => {
+const getDecryptedResponse = (response: any) => {
   if (ENCRYPTION && response.data) {
     let decoded = CryptoJS.enc.Utf8.stringify(
       CryptoJS.enc.Base64.parse(response.data)
@@ -87,7 +87,7 @@ const getDecryptedResponse = (response:any) => {
   return response;
 };
 
-const processError = (error:any) => {
+const processError = (error: any) => {
   let msg = "Some Thing Went Wrong";
   // console.log("code " , error);
   if (error.code === "ERR_BAD_REQUEST") {
@@ -99,50 +99,46 @@ const processError = (error:any) => {
     msg = out.data && out.data.message ? out.data.message : "Invalid Request";
     return msg;
   }
-   //console.log("message " , msg);
+  //console.log("message " , msg);
   return msg;
 };
 
 // Default error handler
-const defaultErrorHandler = (errorMessage:string,error:any) => {
- // SmartLoader.hideLoader(); 
-  showAlertAutoClose(errorMessage,"error");
+const defaultErrorHandler = (errorMessage: string, error: any) => {
+  // SmartLoader.hideLoader();
+  showAlertAutoClose(errorMessage, "error");
   //console.error('API Request Error:', error);
   // alert(errorMessage);
   return EMPTY;
 };
 
-interface ApiOptions{
-  handleError?:(msg:string,obj:any)=>void
-  requiresAuthorization?:boolean|undefined,
-  customHeaders?:any,
-  showLoading?:boolean;
-  loadingMsg?:string
+interface ApiOptions {
+  handleError?: (msg: string, obj: any) => void;
+  requiresAuthorization?: boolean | undefined;
+  customHeaders?: any;
+  showLoading?: boolean;
+  loadingMsg?: string;
 }
 
-
-const get = (
-  url:string, 
-  options?:ApiOptions
-) => {
-  const {   
-    requiresAuthorization=true,
-    customHeaders={},
-    showLoading=true,
-    loadingMsg="Fetching... Please Wait",
-    handleError
+const get = (url: string, options?: ApiOptions) => {
+  const {
+    requiresAuthorization = true,
+    customHeaders = {},
+    showLoading = true,
+    loadingMsg = "Fetching... Please Wait",
+    handleError,
   } = options || {};
   // Check if authorization is Required and if a token is available
   if (requiresAuthorization) {
     customHeaders["Authorization"] = "Bearer " + getToken();
   }
-  if(showLoading){
-    SmartLoader.showLoader(loadingMsg); 
+  if (showLoading) {
+    SmartLoader.showLoader(loadingMsg);
   }
   return from(API.get(url, { headers: customHeaders })).pipe(
     catchError((error) => {
-      if(showLoading){
-        SmartLoader.hideLoader(); 
+      if (showLoading) {
+        SmartLoader.hideLoader();
       }
       let errorMessage = processError(error);
       const errorHandler = handleError ? handleError : defaultErrorHandler;
@@ -151,25 +147,21 @@ const get = (
     }),
     switchMap((response) => {
       response = getDecryptedResponse(response);
-      if(showLoading){
-        SmartLoader.hideLoader(); 
+      if (showLoading) {
+        SmartLoader.hideLoader();
       }
       return of(response); // For example, just returning the response as is
     })
   );
 };
 
-const post = (
-  url:string,
-  data:any,
-  options?:ApiOptions
-) => {
-  const {   
-    requiresAuthorization=true,
-    customHeaders={},
-    showLoading=true,
-    loadingMsg="Fetching... Please Wait",
-    handleError
+const post = (url: string, data: any, options?: ApiOptions) => {
+  const {
+    requiresAuthorization = true,
+    customHeaders = {},
+    showLoading = true,
+    loadingMsg = "Fetching... Please Wait",
+    handleError,
   } = options || {};
   // Check if authorization is Required and if a token is available
   if (requiresAuthorization) {
@@ -177,29 +169,32 @@ const post = (
     customHeaders["Authorization"] = "Bearer " + getToken();
   }
   customHeaders["X-CSRF-Token"] = getCsrf();
-  if(showLoading){
-    SmartLoader.showLoader(loadingMsg); 
+  if (showLoading) {
+    SmartLoader.showLoader(loadingMsg);
   }
   // console.log("headers " , customHeaders);
   return from(API.post(url, getPayLoad(data), { headers: customHeaders })).pipe(
     catchError((error) => {
-      if(showLoading){
-        SmartLoader.hideLoader(); 
+      if (showLoading) {
+        SmartLoader.hideLoader();
       }
-      let errorMessage = processError(error);     
+      let errorMessage = processError(error);
       const errorHandler = handleError ? handleError : defaultErrorHandler;
       errorHandler(errorMessage, error);
       return EMPTY;
     }),
     switchMap((response) => {
-      if(showLoading){
-        SmartLoader.hideLoader(); 
+      if (showLoading) {
+        SmartLoader.hideLoader();
       }
       response = getDecryptedResponse(response);
+      // check for msg
+      if (response && response.data && response.data.msg) {
+        showAlertAutoClose(response.data.msg, "success");
+      }
       return of(response); // For example, just returning the response as is
     })
   );
 };
 
 export { get, post };
-

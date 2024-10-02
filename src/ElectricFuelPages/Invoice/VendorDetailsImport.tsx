@@ -17,7 +17,11 @@ import { post } from "../../services/smartApiService";
 interface FormErrors {
   [key: string]: string | null;
 }
-const VendorDetailsImport = () => {
+interface componentProps {
+  loadData: () => void;
+  id: string | undefined;
+}
+const VendorDetailsImport: React.FC<componentProps> = ({ loadData, id }) => {
   const [formData, setFormData] = useState<any>({});
   const [formSubmit, setFormSubmit] = useState<boolean>(false);
   const { closeModal } = useSiteContext();
@@ -27,8 +31,12 @@ const VendorDetailsImport = () => {
   const handleSubmit = () => {
     setFormSubmit(true);
     let URL = INVOICE_URLS.IMPORT_ZIP;
-    const subscription = post(URL, formData).subscribe((response) => {
-      setData(response.data);
+    let _data = { ...formData };
+    _data["id"] = id;
+    const subscription = post(URL, _data).subscribe((response) => {
+      //setData(response.data);
+      loadData();
+      closeModal();
       // loadTableData()
     });
     return () => {
@@ -171,13 +179,13 @@ const VendorDetailsImport = () => {
           //tableTop={tableTop}
         />
       )}
-      <div className="has-text-centered">
+      {/* <div className="has-text-centered">
         <SmartSoftButton
           label="Cancel"
           classList={["button", "mt-4 mr-4", "smart-third-button"]}
           onClick={closeModal}
         />
-      </div>
+      </div> */}
     </>
   );
 };

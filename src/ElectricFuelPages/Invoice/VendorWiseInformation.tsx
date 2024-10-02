@@ -126,7 +126,7 @@ const VendorWiseInformation = () => {
   const openImportForm = () => {
     let options = {
       title: "Vendor Details",
-      content: <VendorDetailsImport />,
+      content: <VendorDetailsImport loadData={loadData} id={id} />,
       width: 50,
       className: "sd-efl-modal",
       closeBody: false,
