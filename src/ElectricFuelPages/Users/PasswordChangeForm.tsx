@@ -13,16 +13,16 @@ interface FormErrors {
   [key: string]: string | null;
 }
 interface HeaderProps {
-  loadTableData: () => void;  
+
   dataIn:any
   
 }
-const UsersForm:React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
+const PasswordChangeForm:React.FC<HeaderProps> = ({  dataIn }) => {
   const [formData, setFormData] = useState(dataIn ? dataIn : {});
   const [formSubmit, setFormSubmit] = useState<boolean>(false);
   const [formErrors, setFormErrors] = useState<FormErrors>({});
   const {setLoading,closeModal } = useSiteContext();
-  const [allRole, setAllRole] = useState([]);
+
 
   const handleInputChange = (name: string, value: any) => {
     setFormData((prev:any) => ({ ...prev, [name]: value }));
@@ -39,10 +39,7 @@ const UsersForm:React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
       return updatedFormData;
     });
   };
-  useEffect(() => {   
-   
-    role_get_select((data:any) => setAllRole(data));
-  }, []);
+
  
   const handleSubmit = () => {
     setFormSubmit(true);
@@ -50,16 +47,13 @@ const UsersForm:React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
       return false;
     }
     let url = USER_URLS.INSERT;
-    if (formData.ID !== undefined) {
-      formData["id"] = formData.ID;
-      url = USER_URLS.UPDATE;
-    }
+   
 
     const subscription = post(url, formData).subscribe(
       (response) => {
         //console.log("response form ", response.data);
-        loadTableData();
-        showAlertAutoClose("Data Saved Successfully", "success");
+     
+        showAlertAutoClose("Password Change Successfully", "success");
         closeModal();      
       }
     );
@@ -70,16 +64,9 @@ const UsersForm:React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
 
 
   const loginFormValidations = {
-    ename: [SmartValid.required("User Name is Required")],
-    userId: [SmartValid.required("User ID is Required")],
-    MobileNumber: [SmartValid.required("Mobile Number is Required")],
-    email: [
-      SmartValid.required("Email ID is Required"),
-      SmartValid.email("Please Enter a Valid Email Address"),
-      
-    ],
+ 
     password: [SmartValid.required("Password is Required")],
-    role: [SmartValid.required("Role is Required")],
+  
     
     
   };
@@ -90,44 +77,20 @@ const UsersForm:React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
     { value: "3", label: "test" },
   ];
   const formElements:SmartFormInterFace.SmartFormElementProps[] = [
+ 
     {
-      type: "TEXT_BOX",
-      width: "4",
-      name: "euserid",
+      type: 'PASSWORD',
+      width: '4',
+      name: 'epassword',
       element: {
-        label: "Email ID",
+       label: 'New Password',
         isRequired: true,
-        // inputProps: { isFocussed: true },
+        placeHolder: 'New Password',
         inputType: "BORDER_LABEL",
-        validations: loginFormValidations.email,
-      },
-    },
-    {
-      type: "TEXT_BOX",
-      width: "4",
-      name: "mobile_no",
-      element: {
-        label: "Mobile No.",
-        isRequired: true,
-        inputType: "BORDER_LABEL",
-        // inputProps: { isFocussed: true },
-        validations: loginFormValidations.MobileNumber,
-        // allowPattern:ALLOW_NUMERIC,
-        pattern:"[0-9]+",
-        max:10,
-       
-      },
-    },
-    {
-      type: "TEXT_BOX",
-      width: "4",
-      name: "ename",
-      element: {
-        label: "Name",
-        inputType: "BORDER_LABEL",
-        isRequired: true,
-        // inputProps: { isFocussed: true },
-        validations: loginFormValidations.ename,
+        // inputType: "BORDER_LABEL",
+        // leftIcon: "fa fa-envelope-square",
+        validations: loginFormValidations.password,
+        
       },
     },
     {
@@ -135,50 +98,20 @@ const UsersForm:React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
       width: '4',
       name: 'epassword',
       element: {
-       label: 'Password',
+       label: 'Confirm Password',
         isRequired: true,
-        placeHolder: 'Password',
+        placeHolder: 'Confirm Password',
         inputType: "BORDER_LABEL",
         // inputType: "BORDER_LABEL",
         // leftIcon: "fa fa-envelope-square",
         validations: loginFormValidations.password,
-        inputProps: {disabled:formData.ID&&formData.ID ? true:false}
+        
       },
     },
     
    
   
-    {
-      type: "SELECT_BOX",
-      width: "4",
-      name: "role",
-      element: {
-        label: "Role",
-        inputType: "BORDER_LABEL",
-        options: allRole,
-        isMulti: true,
-        validations: loginFormValidations.role,
-       
-      },
-    },
-    // {
-    //   type: "FILE",
-    //   width: "12",
-    //   name: "profile_img",
-    //   element: {
-    //     placeHolder: 
-    //     (
-    //       <p>
-    //        Upload Image <span className="smart-error">*</span>
-    //       </p>
-    //     ),
-    //     fileNameEnable: false,
-    //     leftIcon: "fa fa-cloud-upload",
-    //     isMulti: true,
-    //     isRequired: true,
-    //     filePreview: true,
-    //   },
-    // },
+   
   ];
   return (
     <><div className="sd-efl-input">
@@ -216,4 +149,7 @@ const UsersForm:React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
     )
 }
 
-export default UsersForm
+
+
+export default PasswordChangeForm
+
