@@ -22,11 +22,11 @@ interface FormErrors {
 }
 
 interface HeaderProps {
-  loadTableData: () => void;
+
   dataIn: any;
 }
 
-const VendorRatesForms: React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
+const VendorsRatesView: React.FC<HeaderProps> = ({  dataIn }) => {
   const [formData, setFormData] = useState<any>(dataIn ? dataIn : {});
   const [formSubmit, setFormSubmit] = useState<boolean>(false);
   const [allHubs, setAllHubs] = useState([]);
@@ -163,34 +163,34 @@ const VendorRatesForms: React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
       </>
     );
   };
-  const handleSubmit = () => {
-    setFormSubmit(true);
-    if (!ValidateFormNew(formData, formElements)) {
-      return false;
-    }
-    let url = VENDER_RATE_URLS.INSERT;
-    if (formData.ID !== undefined) {
-      formData["id"] = formData.ID;
-      url = VENDER_RATE_URLS.UPDATE;
-    }
-    let data_in = { ...formData };
-    // data_in["unit_rate_type"] = data_in["unit_rate_type"].value;
-    //data_in["parking_rate_type"] = data_in["parking_rate_type"].value;
+//   const handleSubmit = () => {
+//     setFormSubmit(true);
+//     if (!ValidateFormNew(formData, formElements)) {
+//       return false;
+//     }
+//     let url = VENDER_RATE_URLS.INSERT;
+//     if (formData.ID !== undefined) {
+//       formData["id"] = formData.ID;
+//       url = VENDER_RATE_URLS.UPDATE;
+//     }
+//     let data_in = { ...formData };
+//     // data_in["unit_rate_type"] = data_in["unit_rate_type"].value;
+//     //data_in["parking_rate_type"] = data_in["parking_rate_type"].value;
 
-    data_in["effective_date"] = changeDateTimeZoneFormat(
-      data_in.effective_date,
-      "YYYY-MM-DD"
-    );
-    const subscription = post(url, data_in).subscribe((response) => {
-      //console.log("response form ", response.data);
-      loadTableData();
-      showAlertAutoClose("Data Saved Successfully", "success");
-      closeModal();
-    });
-    return () => {
-      subscription.unsubscribe();
-    };
-  };
+//     data_in["effective_date"] = changeDateTimeZoneFormat(
+//       data_in.effective_date,
+//       "YYYY-MM-DD"
+//     );
+//     const subscription = post(url, data_in).subscribe((response) => {
+//       //console.log("response form ", response.data);
+//       loadTableData();
+//       showAlertAutoClose("Data Saved Successfully", "success");
+//       closeModal();
+//     });
+//     return () => {
+//       subscription.unsubscribe();
+//     };
+//   };
 
   const vendorFormValidations = {
     hub_id: [SmartValid.required("Hub Id is Required")],
@@ -240,142 +240,12 @@ const VendorRatesForms: React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
         placeHolder: "DD-MM-YYYY",
         isRequired: true,
         inputType: "BORDER_LABEL",
-        inputProps: { isFocussed: true },
+  
         validations: vendorFormValidations.dates,
+        inputProps: {disabled:formData.ID&&formData.ID ? true:false}
       },
     },
-    /*
-    {
-      type: "LABEL",
-      width: "12",
-      name: "label_one",
-      labelFunction: Interrogation,
-    },
-    {
-      type: "SELECT_BOX",
-      width: "6",
-      name: "unit_rate_type",
-      element: {
-        label: "Select Consumption Type",
-        validations: vendorFormValidations.comunication,
-        isRequired: true,
-        options: options,
-      },
-    },
-    {
-      type: "TEXT_BOX",
-      width: "6",
-      name: "min_units",
-      element: {
-        label: "Minimum Units",
-        isRequired: true,
-        inputProps: { isFocussed: true },
-        validations: vendorFormValidations.min_units,
-      },
-      hideFunction: () => {
-        return formData?.unit_rate_type?.value === "Minimum" ? false : true;
-      },
-    },
-    {
-      type: "TEXT_BOX",
-      width: "6",
-      name: "unit_rate",
-      element: {
-        label: "Rate Per Unit",
-        isRequired: true,
-        inputProps: { isFocussed: true },
-        validations: vendorFormValidations.rate_unit,
-      },
-      hideFunction: () => {
-        return formData?.unit_rate_type?.value === "Minimum" ? true : false;
-      },
-    },
-    {
-      type: "TEXT_BOX",
-      width: "6",
-      name: "extra_unit_rate",
-      element: {
-        label: "Rate Per Extra Unit",
-        isRequired: true,
-        inputProps: { isFocussed: true },
-        validations: vendorFormValidations.extra_unit,
-      },
-      hideFunction: () => {
-        return formData?.unit_rate_type?.value === "Minimum" ? false : true;
-      },
-    },
-    {
-      type: "LABEL",
-      width: "12",
-      name: "label_two",
-      labelFunction: Interrogation_two,
-    },
-    {
-      type: "SELECT_BOX",
-      width: "6",
-      name: "parking_rate_type",
-      element: {
-        label: "Select Parking Type",
-        isRequired: true,
-        validations: vendorFormValidations.comunication,
-        options: options_parking,
-      },
-    },
-    {
-      type: "TEXT_BOX",
-      width: "6",
-      name: "parking_min_count",
-      element: {
-        label: "Minimum Number",
-        isRequired: true,
-        inputProps: { isFocussed: true },
-        validations: vendorFormValidations.min_units,
-      },
-      hideFunction: () => {
-        return formData?.parking_rate_type?.value === "Minimum" ? false : true;
-      },
-    },
-    {
-      type: "TEXT_BOX",
-      width: "6",
-      name: "parking_rate_vehicle",
-      element: {
-        label: "Rate Per Unit",
-        isRequired: true,
-        inputProps: { isFocussed: true },
-        validations: vendorFormValidations.rate_unit,
-      },
-      hideFunction: () => {
-        return formData?.parking_rate_type?.value === "Minimum" ? true : false;
-      },
-    },
-    {
-      type: "TEXT_BOX",
-      width: "6",
-      name: "parking_extra_rate_vehicle",
-      element: {
-        label: "Rate Per Extra Unit",
-        isRequired: true,
-        inputProps: { isFocussed: true },
-        validations: vendorFormValidations.extra_unit,
-      },
-      hideFunction: () => {
-        return formData?.parking_rate_type?.value === "Minimum" ? false : true;
-      },
-    },
-    {
-      type: "DATE",
-      width: "6",
-      name: "effective_date",
-      element: {
-        label: "Select Effective Date",
-        placeHolder: "DD-MM-YYYY",
-        isRequired: true,
-        inputProps: { isFocussed: true },
-        validations: vendorFormValidations.dates,
-      },
-    },
-    */
+   
   ];
 
   return (
@@ -393,7 +263,7 @@ const VendorRatesForms: React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
         <div className="column is-6">
           <span className="is-size-5 has-text-weight-bold">Rates:</span>
         </div>
-        <div className="column is-6 has-text-right">
+        {/* <div className="column is-6 has-text-right">
           <SmartSoftButton
             label="Add"
             classList={["button", "mr-1", "is-small is-success"]}
@@ -405,7 +275,7 @@ const VendorRatesForms: React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
             classList={["button", "mr-1", "is-small is-danger"]}
             onClick={removeItemAndLast}
           />
-        </div>
+        </div> */}
       </div>
       {subFormDisplay()}
       <div className="has-text-right">
@@ -414,16 +284,19 @@ const VendorRatesForms: React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
           classList={["button", "mt-4 mr-4", "smart-third-button"]}
           onClick={closeModal}
         />
-        <SmartSoftButton
+        {/* <SmartSoftButton
           label="Submit"
            rightIcon='fa fa-arrow-right'
           classList={["button ", "mt-4", "smart-action-button"]}
           onClick={handleSubmit}
-        />
+        /> */}
       </div>
       </div>
     </>
   );
 };
 
-export default VendorRatesForms;
+
+
+
+export default VendorsRatesView
