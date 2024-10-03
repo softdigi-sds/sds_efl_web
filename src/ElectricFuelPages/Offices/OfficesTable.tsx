@@ -169,14 +169,15 @@ const OfficesTable = () => {
     return (
       item.ID && (
         <>
-          <div className="field">
+          <div className="sds-elf-switch switch">
             <input
               id={"switchRoundedDefault_" + item.ID}
               type="checkbox"
-              className="switch is-rounded is-small"
+              // className="switch is-rounded is-small"
               checked={item.status === 5}
               onChange={(event:any) => updateStatus(item, event)}
             />
+              <span className="slider round"></span>
             {/* <label htmlFor={"switchRoundedDefault_" + item.ID}></label> */}
           </div>
         </>

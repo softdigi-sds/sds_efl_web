@@ -24,272 +24,36 @@ interface FormErrors {
 
 interface HeaderProps {
 
-  dataIn: any;
+  dataIn: any|any[];
 }
 
 const VendorsRatesView: React.FC<HeaderProps> = ({  dataIn }) => {
-  const [formData, setFormData] = useState<any>(dataIn ? dataIn : {});
-  const [formSubmit, setFormSubmit] = useState<boolean>(false);
-  const [allHubs, setAllHubs] = useState([]);
-  const [allVendors, setAllVendors] = useState([]);
-  const { closeModal } = useSiteContext();
 
-  const handleInputChange = (name: string, value: any) => {
-    setFormData((prev: any) => ({ ...prev, [name]: value }));
-  };
-
-  const updateItemProperty = (
-    index: number,
-    dynamicKey: string,
-    newValue: any
-  ) => {
-    const _data = { ...formData };
-    // Create a copy of the items array
-    const updatedItems = _data?.rate_data ? [..._data?.rate_data] : [];
-    // Create a copy of the object at the specific index
-    const updatedItem = { ...updatedItems[index] };
-    // Update the dynamic property
-    updatedItem[dynamicKey] = newValue;
-    // Replace the object in the array with the updated object
-    updatedItems[index] = updatedItem;
-    //
-    _data.rate_data = updatedItems;
-    // Update the state with the new array
-    setFormData(_data);
-  };
-
-  const subFormDataObj = {
-    sd_hsn_id: "",
-    rate_type: "",
-    min_start: "",
-    min_end: "",
-    price: "",
-    extra_price: "",
-  };
-
-  const addItem = () => {
-    const _data = { ...formData };
-    const updatedItems = _data?.rate_data
-      ? [..._data?.rate_data, subFormDataObj]
-      : [subFormDataObj];
-    _data.rate_data = updatedItems;
-    // console.log("data added " , _data);
-    setFormData(_data);
-  };
-
-  const removeItemAndLast = () => {
-    const _data = { ...formData };
-    const updatedItems = _data?.rate_data ? [..._data?.rate_data] : [];
-    const finalItems =
-      updatedItems.length > 0
-        ? updatedItems.slice(0, updatedItems.length - 1)
-        : [];
-    _data.rate_data = finalItems;
-    setFormData(_data);
-  };
-
-  useEffect(() => {
-    hubs_get_all_select((data: any) => setAllHubs(data));
-  }, []);
-
-  useEffect(() => {
-    let hub_data = formData?.sd_hubs_id?.value;
-    company_get_all_select(hub_data, (data: any) => setAllVendors(data));
-    //hubs_get_all_select((data: any) => setAllHubs(data));
-  }, [formData?.sd_hubs_id]);
-
-  // useEffect(() => {
-  //   let hub_data =formData?.sd_hubs_id?.value
-  //   console.log("Hub data",hub_data)
-  //    company_get_all_select(hub_data,(data:any,) => setAllVendors(data));
-  // }, [formData]);
-  const options = [
-    { value: "Minimum", label: "Minimum" },
-    { value: "Per Unit", label: "Per Unit" },
-  ];
-  const options_parking = [
-    { value: "Minimum", label: "Minimum" },
-    { value: "Per Unit", label: "Per Unit" },
-  ];
-
-  const options_select = [
-    { value: "1", label: "Fixed" },
-    { value: "2", label: "Minimum" },
-    { value: "3", label: "Per Unit" },
-  ];
-
-  const subFormDisplay = () => {
-    const sub_data = formData.rate_data ? [...formData.rate_data] : [];
-    return (
-      <>
-      <div className="sub-forms">
-        {sub_data.map((item, index) => (
-          <VendorRatesSubFormTwo
-            key={`subform${index}`}
-            office={item}
-          />
-        ))}
-      </div>
-
-   
-  
-      </>
-    );
-  };
-
-  const Interrogation = () => {
-    return (
-      <>
-        <div className="">
-          <u>Consumption Rates :</u>
-        </div>
-      </>
-    );
-  };
-
-  const Interrogation_two = () => {
-    return (
-      <>
-        <div className="">
-          <u>Parking Rates :</u>
-        </div>
-      </>
-    );
-  };
-//   const handleSubmit = () => {
-//     setFormSubmit(true);
-//     if (!ValidateFormNew(formData, formElements)) {
-//       return false;
-//     }
-//     let url = VENDER_RATE_URLS.INSERT;
-//     if (formData.ID !== undefined) {
-//       formData["id"] = formData.ID;
-//       url = VENDER_RATE_URLS.UPDATE;
-//     }
-//     let data_in = { ...formData };
-//     // data_in["unit_rate_type"] = data_in["unit_rate_type"].value;
-//     //data_in["parking_rate_type"] = data_in["parking_rate_type"].value;
-
-//     data_in["effective_date"] = changeDateTimeZoneFormat(
-//       data_in.effective_date,
-//       "YYYY-MM-DD"
-//     );
-//     const subscription = post(url, data_in).subscribe((response) => {
-//       //console.log("response form ", response.data);
-//       loadTableData();
-//       showAlertAutoClose("Data Saved Successfully", "success");
-//       closeModal();
-//     });
-//     return () => {
-//       subscription.unsubscribe();
-//     };
-//   };
-
-  const vendorFormValidations = {
-    hub_id: [SmartValid.required("Hub Id is Required")],
-    company: [SmartValid.required("Company is Required")],
-    comunication: [SmartValid.required("Type is Required")],
-    min_units: [SmartValid.required("Minumum Unit is Required")],
-    rate_unit: [SmartValid.required("Rate Per Unit is Required")],
-    extra_unit: [SmartValid.required("Rate Per Extra Unit is Required")],
-    pin_code: [SmartValid.required("Pin Code is Required")],
-    dates: [SmartValid.required("Date is Required")],
-  };
-  const formElements: SmartFormInterFace.SmartFormElementProps[] = [
-    {
-      type: "SELECT_BOX",
-      width: "6",
-      name: "sd_hubs_id",
-      element: {
-        label: "Hub ID",
-        isRequired: true,
-        options: allHubs,
-        inputType: "BORDER_LABEL",
-        validations: vendorFormValidations.hub_id,
-        inputProps: {disabled:formData.ID&&formData.ID ? true:false}
-      },
-    },
-    {
-      type: "SELECT_BOX",
-      width: "6",
-      name: "sd_vendors_id",
-      element: {
-        label: "Company",
-        isRequired: true,
-        validations: vendorFormValidations.company,
-        options: allVendors,
-        inputType: "BORDER_LABEL",
-        inputProps: {disabled:formData.ID&&formData.ID ? true:false}
-        //options: options,
-      },
-      
-    },
-    {
-      type: "DATE",
-      width: "6",
-      name: "effective_date",
-      element: {
-        label: "Effective Date",
-        placeHolder: "DD-MM-YYYY",
-        isRequired: true,
-        inputType: "BORDER_LABEL",
-  
-        validations: vendorFormValidations.dates,
-        inputProps: {disabled:formData.ID&&formData.ID ? true:false}
-      },
-    },
-   
-  ];
-
-  return (
+    console.log("data in",dataIn)
+return(
     <>
-      <div className="sd-efl-input">
-        {/* <SmartHeader title={"Vendor Rates Form"} /> */}
-
-      <SmartSoftForm
-        formData={formData}
-        setFormData={handleInputChange}
-        elements={formElements}
-        formSubmit={formSubmit}
-      />
-      <div className="columns">
-        <div className="column is-6">
-          <span className="is-size-5 has-text-weight-bold">Rates:</span>
-        </div>
-        {/* <div className="column is-6 has-text-right">
-          <SmartSoftButton
-            label="Add"
-            classList={["button", "mr-1", "is-small is-success"]}
-            onClick={addItem}
-          />
-
-          <SmartSoftButton
-            label="Remove"
-            classList={["button", "mr-1", "is-small is-danger"]}
-            onClick={removeItemAndLast}
-          />
-        </div> */}
-      </div>
-      {subFormDisplay()}
-      <div className="has-text-right">
-        <SmartSoftButton
-          label="Cancel"
-          classList={["button", "mt-4 mr-4", "smart-third-button"]}
-          onClick={closeModal}
-        />
-        {/* <SmartSoftButton
-          label="Submit"
-           rightIcon='fa fa-arrow-right'
-          classList={["button ", "mt-4", "smart-action-button"]}
-          onClick={handleSubmit}
-        /> */}
-      </div>
-      </div>
+     <div className="container">
+      <table className="table is-bordered is-fullwidth">
+        <tbody>
+          {/* <tr>
+            <th>S.NO</th>
+            <td>{office.s_no}</td>
+          </tr> */}
+      <tr>
+            <th>Office City</th>
+            <td>{dataIn.office_city}</td>
+          </tr>
+              <tr>
+            <th>CGST(%)</th>
+            <td>{dataIn.cgst}</td>
+          </tr> 
+        
+        </tbody>
+      </table>
+    </div>
     </>
-  );
-};
-
-
-
+)
+ 
+}
 
 export default VendorsRatesView
