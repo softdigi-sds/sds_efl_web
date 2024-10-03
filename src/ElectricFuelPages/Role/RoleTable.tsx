@@ -160,7 +160,7 @@ const RoleTable = () => {
     {
       type: "CUSTOM",
       widthClass: "is-6",
-      custom: <p className="is-size-4">Role</p>,
+      custom: <p className="is-size-4 has-text-weight-bold">Role</p>,
     },
     {
       type: "SEARCH",
