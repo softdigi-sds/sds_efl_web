@@ -11,6 +11,7 @@ import { showAlertAutoClose } from "../../services/notifyService";
 import { get, post } from "../../services/smartApiService";
 import VendorRatesForms from "./VendorRatesForms";
 import VendorsRatesView from "./VendorsRatesView";
+import VendorRatesSubFormTwo from "./VendorRatesSubFormTwo";
 
 const VendorRatesTable = () => {
   const [data, setData] = useState([]);
@@ -41,11 +42,10 @@ const VendorRatesTable = () => {
     };
     openModal(options);
   };
-  const openVendersViewForm = (data: any) => {
-    //console.log("data ", data);
+  const openVendersViewForm = (officeData: any) => {
     let options = {
-      title:"Vendor Rates View",
-      content: <VendorsRatesView  dataIn={data} />,
+      title: "Vendor Rates View",
+      content: <VendorRatesSubFormTwo office={officeData} />,
       width: 60,
       className: "sd-efl-modal",
       closeBody: false,

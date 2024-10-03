@@ -2,12 +2,12 @@ import React from "react";
 
 interface OfficeData {
   s_no: number;
-  office_city: string;
-  state_name: string;
+  hub_id: string;
+  vendor_company: string;
   pin_code: string;
   address_one: string;
   status: number;  cgst: number; 
-  sgst: number;
+  effective_date: number;
   gst_no: string;
   pan_no: string;
 }
@@ -32,36 +32,15 @@ const VendorRatesSubFormTwo = ({ office }: { office: OfficeData }) => {
             <td>{office.s_no}</td>
           </tr> */}
       <tr>
-            <th>Office City</th>
-            <td>{office.office_city}</td>
+            <th>Hub ID</th>
+            <td>{office.hub_id}</td>
           </tr>
               <tr>
-            <th>CGST(%)</th>
-            <td>{office.cgst}</td>
+            <th>Company</th>
+            <td>{office.vendor_company}</td>
           </tr>  <tr>
-            <th>SGST(%)</th>
-            <td>{office.sgst}</td>
-          </tr>  <tr>
-            <th>GST No.</th>
-            <td>{office.gst_no}</td>
-          </tr>  
-            <th>PAN No.</th>
-            <td>{office.pan_no}</td>
-            <tr>
-            <th>State</th>
-            <td>{office.state_name}</td>
-          </tr>
-          <tr>
-            <th>Pin Code</th>
-            <td>{office.pin_code}</td>
-          </tr>
-          <tr>
-            <th>Address</th>
-            <td>{office.address_one}</td>
-          </tr>
-          <tr>
-            <th>Status</th>
-            <td>{nameFunction(office)}</td>
+            <th>Effective Date</th>
+            <td>{office.effective_date}</td>
           </tr>
         </tbody>
       </table>
