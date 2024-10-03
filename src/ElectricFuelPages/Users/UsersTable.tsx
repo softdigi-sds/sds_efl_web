@@ -127,6 +127,16 @@ const UsersTable = () => {
           
         },
       },
+      {
+        label: "",
+        type: "icon",
+        leftIcon: "fa fa-lock",
+        classList: ["is-info"],
+        onClick: (data:any) => {
+          openDeleteModal(data["ID"]);
+          
+        },
+      },
     ];
   const statusTags = [
     { value: 5, label: "Active", class: "is-primary" },
