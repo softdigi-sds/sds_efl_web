@@ -11,9 +11,9 @@ import {
 import { OFFICE_URLS } from "../../api/UserUrls";
 import { useSiteContext } from "../../contexts/SiteProvider";
 import { showAlertAutoClose, showYesOrNoAlert } from "../../services/notifyService";
+import { admin_states_select } from "../../services/site/SelectBoxServices";
 import OfficesForm from "./OfficesForm";
 import OfficeTableView from "./OfficeTableView";
-import { admin_states_select } from "../../services/site/SelectBoxServices";
 
 const OfficesTable = () => {
   const [data, setData] = useState([]);
@@ -185,8 +185,8 @@ const OfficesTable = () => {
   };
   
   const statusTags = [
-    { value: 5, label: "Active", class: "is-primary" },
-    { value: 10, label: "Inactive", class: "is-danger" },
+    { value: 5, label: "Active", class: "has-text-link" },
+    { value: 10, label: "Inactive", class: "has-text-danger" },
   ];
   const columns: SmartTableNewInterface.SmartTableNewColumnConfig[] = [
     { title: "S.NO", index: "s_no", type: "sno", width: "5" },
@@ -216,7 +216,8 @@ const OfficesTable = () => {
       buttons: buttons,
       width: "10",
     },
-  ];  useEffect(() => {
+  ];  
+  useEffect(() => {
     admin_states_select((data:any) => setStates(data));
     //  loadData();
   }, []);

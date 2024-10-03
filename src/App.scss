@@ -163,7 +163,10 @@
     .modal-card{
         border:1px solid $primary-color;
         border-radius: 8px;
-      
+        
+        .modal-card-body{
+            min-height: 300px;  
+        }
     }
     .modal-card-title{
         color:$secondary-color
@@ -209,4 +212,8 @@
 .pagination-link.is-current{
         border:1px solid $primary-color;
         background-color: $secondary-color !important;
+}
+
+.sd-cursor{
+    cursor: pointer;
 }
