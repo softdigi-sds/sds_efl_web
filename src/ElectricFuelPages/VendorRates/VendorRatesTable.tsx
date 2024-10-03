@@ -10,6 +10,7 @@ import {
 } from "soft_digi";
 import { VENDER_RATE_URLS, VENDERS_URLS } from "../../api/UserUrls";
 import { showAlertAutoClose } from "../../services/notifyService";
+import VendorRatesView from "./VendorRatesView";
 
 const VendorRatesTable = () => {
   const [data, setData] = useState([]);
@@ -93,14 +94,25 @@ const VendorRatesTable = () => {
 
     SmartAlert.show(alertProps);
   };
-
+  const openViewDetails = (userData: any) => {
+    let options = {
+      title: "Vendor Rates Details",
+      content: <VendorRatesView userData={userData} />,
+      width: 60,
+      className:"sd-efl-modal",
+      closeBody:false,
+    };
+    openModal(options);
+  };
   const buttons = [
     {
       label: "",
       type: "icon",
       leftIcon: "fa fa-eye",
       classList: ["smart-efl-table-view-icon"],
-      onClick: handleDelete,
+      onClick: (data: any) => {
+        openViewDetails(data);
+      },
     },
     {
       label: "",

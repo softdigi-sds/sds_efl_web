@@ -93,7 +93,10 @@ const Profile = () => {
   };
 
   return (
+    <>
+    <div className="is-size-4 has-text-wight-bold">Profile</div>
     <div className="sd-efl-input mt-6 p-3">
+      
       <div className="columns is-multiline">
         {/* Profile Image Column */}
         <div className="column is-4 is-flex is-justify-content-center is-align-items-center">
@@ -119,7 +122,7 @@ const Profile = () => {
           </div>
         </div>
 
-        <div className="column is-4">
+        <div className="column is-4 pl-0 is-justify-content-center is-align-items-center">
           
         <div className="">Name :{" "} ADMIN</div>
         <div className="">Email : {" " } Admin@gmail.com</div>
@@ -145,6 +148,7 @@ const Profile = () => {
         </div>
       </div>
     </div>
+    </>
   );
 };
 
