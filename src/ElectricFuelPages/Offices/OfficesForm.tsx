@@ -7,7 +7,7 @@ import { showAlertAutoClose } from '../../services/notifyService';
 import { admin_states_select } from '../../services/site/SelectBoxServices';
 import { post } from '../../services/smartApiService';
 import { max } from 'date-fns';
-import { ALLOW_NUMERIC } from '../../services/PatternSerivce';
+import { ALLOW_NUMERIC, GST } from '../../services/PatternSerivce';
 import { ValidateFormNew } from 'soft_digi/dist/services/smartValidationService';
 
 
@@ -26,7 +26,9 @@ const OfficesForm:React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
   const {setLoading,closeModal } = useSiteContext();
   const [states, setStates] = useState([]);
 
+  const gstPattern = /^[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z]{1}[1-9A-Z]{1}[Z]{1}[0-9A-Z]{1}$/;
   const handleInputChange = (name: string, value: any) => {
+  
     setFormData((prev:any) => ({ ...prev, [name]: value }));
     
   };
@@ -144,8 +146,9 @@ const OfficesForm:React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
         inputType: "BORDER_LABEL",
           // pattern:  ALLOW_ALPHABET_SPACE ,
         validations: loginFormValidations.gst_no,
-        pattern:  ALLOW_NUMERIC ,
-        max:3,
+        //  pattern: GST ,
+        
+        max:15,
       },
     },
     {

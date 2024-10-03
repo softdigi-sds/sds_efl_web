@@ -18,15 +18,24 @@ const InvoicebillForm = () => {
 
   const handleInputChange = (name: string, value: any) => {
     if (name === "bill_start_date") {
-      // Parse the start date and add 1 day (or however many you want)
+     
       const startDate = new Date(value);
-      const minEndDate = new Date(startDate);
-      minEndDate.setDate(minEndDate.getDate() + 30); // Add 1 day
-
-      setMinEndDate(minEndDate); // Set the minimum end date
+      const newMinEndDate = new Date(startDate);
+      newMinEndDate.setDate(newMinEndDate.getDate() + 30); 
+      
+      setMinEndDate(newMinEndDate); 
+      
+     
+      setFormData((prev: any) => ({
+        ...prev,
+        [name]: value,
+        bill_end_date: newMinEndDate, 
+      }));
+    } else {
+      setFormData((prev: any) => ({ ...prev, [name]: value }));
     }
-    setFormData((prev: any) => ({ ...prev, [name]: value }));
   };
+  
   const handleErrorChange = (name: string | any, value: any) => {
     setFormErrors((prev) => {
       const updatedFormData = { ...prev };
@@ -72,8 +81,8 @@ const InvoicebillForm = () => {
       element: {
         placeHolder: "End Date",
         isRequired: true,
-        minDate: minEndDate,
-        // inputProps: { isFocussed: true },
+           minDate: minEndDate,
+         inputProps: { disabled: true},
       },
     },
     {

@@ -65,7 +65,8 @@ const INVOICE_URLS = {
   GET_ONE_BILL: "bill/get_one",
   EXPORT_EXCEL: "bill/export_excel",
   IMPORT_ZIP: "bill/import_zip",
-  DOWNLOAD_INVOICE:"invoice/download_invoice"
+  DOWNLOAD_INVOICE:"invoice/download_invoice",
+  DELETE:"bill/delete_one"
 };
 
 export {

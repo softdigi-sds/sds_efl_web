@@ -6,6 +6,7 @@ import { showAlertAutoClose } from '../../services/notifyService';
 import { get, post } from '../../services/smartApiService';
 import UsersForm from './UsersForm';
 import UsersTableView from './UsersTableView';
+import PasswordChangeForm from './PasswordChangeForm';
 
 const UsersTable = () => {
     const [data, setData] = useState([]);
@@ -29,6 +30,16 @@ const UsersTable = () => {
       let options = {
         title:<>{data.ID?"User Update Form":"User Addition Form"}</> ,
         content: <UsersForm loadTableData={loadTableData} dataIn={data}/>,
+        className: "sd-efl-modal",
+        closeBody: false,
+        width: 60,
+    }
+    openModal(options);
+    }
+    const openPasswordChangeForm =(data:any)=>{
+      let options = {
+        title:"Password Change Form", 
+        content: <PasswordChangeForm dataIn={data}/>,
         className: "sd-efl-modal",
         closeBody: false,
         width: 60,
@@ -124,6 +135,16 @@ const UsersTable = () => {
         classList: ["smart-efl-table-delete-icon"],
         onClick: (data:any) => {
           openDeleteModal(data["ID"]);
+          
+        },
+      },
+      {
+        label: "",
+        type: "icon",
+        leftIcon: "fa fa-lock",
+        classList: ["is-info"],
+        onClick: (data:any) => {
+          openPasswordChangeForm(data["ID"]);
           
         },
       },
