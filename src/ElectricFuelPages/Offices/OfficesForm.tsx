@@ -7,7 +7,7 @@ import { showAlertAutoClose } from '../../services/notifyService';
 import { admin_states_select } from '../../services/site/SelectBoxServices';
 import { post } from '../../services/smartApiService';
 import { max } from 'date-fns';
-import { ALLOW_NUMERIC, GST } from '../../services/PatternSerivce';
+import { ALLOW_NUMERIC, ALPHA_NUMERIC_CAPITAL, GST } from '../../services/PatternSerivce';
 import { ValidateFormNew } from 'soft_digi/dist/services/smartValidationService';
 
 
@@ -144,7 +144,7 @@ const OfficesForm:React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
         isRequired: true,
         // inputProps: { isFocussed: true },
         inputType: "BORDER_LABEL",
-          // pattern:  ALLOW_ALPHABET_SPACE ,
+          
         validations: loginFormValidations.gst_no,
         //  pattern: GST ,
         
@@ -179,20 +179,7 @@ const OfficesForm:React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
       },
     },
    
-    {
-      type: "TEXT_BOX",
-      width: "4",
-      name: "igst",
-      element: {
-        label: "IGST No.",
-        // placeHolder: "City",
-        isRequired: true,
-        // inputProps: { isFocussed: true },
-          // pattern:  ALLOW_ALPHABET_SPACE ,
-        validations: loginFormValidations.igst_no,
-        inputType: "BORDER_LABEL",
-      },
-    },
+
     {
       type: "TEXT_BOX",
       width: "4",
@@ -223,6 +210,20 @@ const OfficesForm:React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
         validations: loginFormValidations.cgst_no,
         pattern:  ALLOW_NUMERIC ,
         max:3,
+      },
+    },
+    {
+      type: "TEXT_BOX",
+      width: "4",
+      name: "igst",
+      element: {
+        label: "IGST (%)",
+        // placeHolder: "City",
+        isRequired: true,
+        // inputProps: { isFocussed: true },
+          // pattern:  ALLOW_ALPHABET_SPACE ,
+        validations: loginFormValidations.igst_no,
+        inputType: "BORDER_LABEL",
       },
     },
   
