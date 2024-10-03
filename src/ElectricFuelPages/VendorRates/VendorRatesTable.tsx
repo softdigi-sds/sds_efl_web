@@ -10,6 +10,7 @@ import {
 } from "soft_digi";
 import { VENDER_RATE_URLS, VENDERS_URLS } from "../../api/UserUrls";
 import { showAlertAutoClose } from "../../services/notifyService";
+import VendorsRatesView from "./VendorsRatesView";
 
 const VendorRatesTable = () => {
   const [data, setData] = useState([]);
@@ -40,14 +41,35 @@ const VendorRatesTable = () => {
     };
     openModal(options);
   };
-  const handleDelete = (rowData: any) => {
-    console.log("Delete action for row:", rowData);
+  const openVendersViewForm = (data: any) => {
+    //console.log("data ", data);
+    let options = {
+      title:"Vendor Rates View",
+      content: <VendorsRatesView  dataIn={data} />,
+      width: 60,
+      className: "sd-efl-modal",
+      closeBody: false,
+    };
+    openModal(options);
   };
+
+
   const viewEditForm = (id: any) => {
     const subscription = post(VENDER_RATE_URLS.GET_ONE, { id: id }).subscribe(
       (response: any) => {
         let data_out = { ...response.data };
         openOfficesForm(data_out);
+      }
+    );
+    return () => {
+      subscription.unsubscribe();
+    };
+  };
+  const viewForm = (id: any) => {
+    const subscription = post(VENDER_RATE_URLS.GET_ONE, { id: id }).subscribe(
+      (response: any) => {
+        let data_out = { ...response.data };
+        openVendersViewForm (data_out);
       }
     );
     return () => {
@@ -100,7 +122,9 @@ const VendorRatesTable = () => {
       type: "icon",
       leftIcon: "fa fa-eye",
       classList: ["smart-efl-table-view-icon"],
-      onClick: handleDelete,
+      onClick: (data: any) => {
+        viewForm(data["ID"]);
+      },
     },
     {
       label: "",
