@@ -104,7 +104,7 @@ const Notification = () => {
           aria-hidden="true"
           aria-controls="dropdown-menu"
         ></i>
-        <span className="user-badge">1</span>
+      <span className="user-badge">{notifications.length}</span>
       </span>
       {active && (
         <div className="dropdown-menu" id="dropdown-menu" role="menu">

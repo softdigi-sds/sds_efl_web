@@ -13,11 +13,12 @@ import ConsumptionReportTable from "./ConsumptionReport/ConsumptionReportTable";
 import InvoiceTable from "./Invoice/InvoiceTable"
 import VendorWiseInformation from "./Invoice/VendorWiseInformation";
 import Profile from "./Profile/Profile";
+import Notification from "./Notification/Notificaton";
 export {
     Dashboard, HomePage, HubsTables, OfficesTable, RoleTable, UsersTable,
     VehiclesReportTable, VendorRatesTable, VendorsTable,
     ConsumptionReportTable, InvoiceTable,
-    VendorWiseInformation, Profile
+    VendorWiseInformation, Profile, Notification
 
 };
 
