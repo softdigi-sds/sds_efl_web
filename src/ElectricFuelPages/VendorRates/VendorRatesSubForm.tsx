@@ -30,7 +30,9 @@ const VendorRatesSubForm: React.FC<HeaderProps> = ({
       width: "2",
       name: "sd_hsn_id",
       element: {
-        options: options_hsn,
+        options: options_hsn,inputProps: {
+          disabled: true,
+        },
       },
     },
     {
@@ -38,7 +40,9 @@ const VendorRatesSubForm: React.FC<HeaderProps> = ({
       width: "2",
       name: "rate_type",
       element: {
-        options: options_select,
+        options: options_select,inputProps: {
+          disabled: true,
+        },
       },
     },
     {
@@ -47,12 +51,7 @@ const VendorRatesSubForm: React.FC<HeaderProps> = ({
       name: "min_start",
       element: {
         inputProps: {
-          disabled:
-            formData.rate_type &&
-            formData.rate_type.value &&
-            formData.rate_type.value == "2"
-              ? false
-              : true,
+          disabled: true,
         },
       },
     },
@@ -62,12 +61,7 @@ const VendorRatesSubForm: React.FC<HeaderProps> = ({
       name: "min_end",
       element: {
         inputProps: {
-          disabled:
-            formData.rate_type &&
-            formData.rate_type.value &&
-            formData.rate_type.value == "2"
-              ? false
-              : true,
+          disabled: true,
         },
       },
     },
@@ -82,12 +76,7 @@ const VendorRatesSubForm: React.FC<HeaderProps> = ({
       name: "extra_price",
       element: {
         inputProps: {
-          disabled:
-            formData.rate_type &&
-            formData.rate_type.value &&
-            formData.rate_type.value == "2"
-              ? false
-              : true,
+          disabled: true,
         },
       },
     },
