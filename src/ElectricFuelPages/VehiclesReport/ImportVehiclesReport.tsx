@@ -118,7 +118,10 @@ const ImportVehiclesReport: React.FC<HeaderProps> = ({ loadTableData }) => {
     )
   }
 
-
+  const statusTags = [
+    { value: 5, label: "Success", class: "is-success" },
+    { value: 10, label: "Error", class: "is-danger" },
+  ];
 
   const columns: SmartTableNewInterface.SmartTableNewColumnConfig[] = [
     { title: "S.NO", index: "s_no", type: "sno", width: "5" },
@@ -140,6 +143,9 @@ const ImportVehiclesReport: React.FC<HeaderProps> = ({ loadTableData }) => {
     {
       title: "Status",
       index: "status",
+      type:"tags",
+      tags:statusTags
+      ,
       width: "15",
     },
     {
@@ -148,15 +154,41 @@ const ImportVehiclesReport: React.FC<HeaderProps> = ({ loadTableData }) => {
       width: "15",
     },
   ];
+ 
   const tableTop: SmartTableNewInterface.SmartTableNewTopProps[] = [
     {
       type: "CUSTOM",
-      widthClass: "is-12",
-      custom: <>{ImportForm()}</>,
+      widthClass: "is-10",
+      custom: <p className="is-size-4"></p>,
     },
-
+   
+    {
+      type: "BUTTONS",
+      widthClass: "is-2",
+      align: "CENTER",
+      buttons: [
+        {
+          type: "FILTER",
+        },
+       
+      ],
+    },
+  ];
+  const filterFields:SmartFormInterFace.SmartFormElementProps[] = [
+   
+    {
+      type: "SELECT_BOX",
+      width: "12",
+      name: "status",
+      element: {
+        label: "Status",
+        options: [
+          { value: "5", label: "Success" },
+          { value: "10", label: "Error" },
+        ],
+      },
+    },
   ]
-
 
   return (
     <>
@@ -167,6 +199,8 @@ const ImportVehiclesReport: React.FC<HeaderProps> = ({ loadTableData }) => {
         <SmartTable
           columns={columns}
           data={data}
+          tableTop={tableTop}
+          filterFields={filterFields}
           paginationProps={{
             pageSize: 10
           }}
