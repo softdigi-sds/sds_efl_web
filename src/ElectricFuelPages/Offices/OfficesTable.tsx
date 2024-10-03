@@ -10,7 +10,7 @@ import {
 } from "soft_digi";
 import { OFFICE_URLS } from "../../api/UserUrls";
 import { useSiteContext } from "../../contexts/SiteProvider";
-import { showAlertAutoClose } from "../../services/notifyService";
+import { showAlertAutoClose, showYesOrNoAlert } from "../../services/notifyService";
 import OfficesForm from "./OfficesForm";
 import OfficeTableView from "./OfficeTableView";
 import { admin_states_select } from "../../services/site/SelectBoxServices";
@@ -134,34 +134,55 @@ const OfficesTable = () => {
   ];
 
 
-  interface Item {
-    ID: string;
-    offer_status: number;
-  }
+
   
-  // interface SwitchFormProps {
-  //   item: Item;
-  //   updateStatus: (item: Item, event: React.ChangeEvent<HTMLInputElement>) => void;
-  // }
+  const updateStatus = (itemIn:any, check_value: boolean) => {
+ 
   
-  // const SwitchForm: React.FC<SwitchFormProps> = ({ item, updateStatus }) => {
-  //   return (
-  //     item.ID && (
-  //       <>
-  //         <div className="field">
-  //           <input
-  //             id={"switchRoundedDefault_" + item.ID}
-  //             type="checkbox"
-  //             className="switch is-rounded is-small"
-  //             checked={item.offer_status === 0}
-  //             onChange={(event) => updateStatus(item, event)}
-  //           />
-  //           <label htmlFor={"switchRoundedDefault_" + item.ID}></label>
-  //         </div>
-  //       </>
-  //     )
-  //   );
-  // };
+   
+    let new_status: number = itemIn.status === 5 ? 1 : 0;
+    let msg: string =
+      new_status === 0
+        ? "Do you wish to reactivate your office?"
+        : "Do you wish to inactivate your office?";
+  
+    // Trigger alert for confirmation
+    showYesOrNoAlert(
+      msg,
+      (selection: Selection) => updateStatusFinal(selection, itemIn, new_status),
+      "info"
+    );
+  };
+  
+  const updateStatusFinal = (selection:any, itemIn:any, new_status: number) => {
+    if (selection === "yes") {
+      // Post data to the backend
+      // deleteData(itemIn.ID, new_status);
+    }
+  };
+
+ 
+  
+
+  
+  const SwitchForm = ( item:any ) => {
+    return (
+      item.ID && (
+        <>
+          <div className="field">
+            <input
+              id={"switchRoundedDefault_" + item.ID}
+              type="checkbox"
+              className="switch is-rounded is-small"
+              checked={item.status === 5}
+              onChange={(event:any) => updateStatus(item, event)}
+            />
+            {/* <label htmlFor={"switchRoundedDefault_" + item.ID}></label> */}
+          </div>
+        </>
+      )
+    );
+  };
   
   const statusTags = [
     { value: 5, label: "Active", class: "is-primary" },
@@ -182,7 +203,12 @@ const OfficesTable = () => {
       title: "Address",
       index: "address_one",
     },
-    { title: "Status", index: "status", type: "tags", tags: statusTags },
+    {
+      title: "Status",
+      index: "status",
+      valueFunction:SwitchForm
+    },
+    // { title: "Status", index: "status", type: "tags", tags: statusTags },
     {
       title: "Action",
       index: "action",
