@@ -121,36 +121,42 @@ const InvoiceTable = () => {
 
   ];
   const columns: SmartTableNewInterface.SmartTableNewColumnConfig[] = [
-    { title: "S.NO", index: "s_no", type: "sno" },
+    { title: "S.NO", index: "s_no", type: "sno",width:"5" },
     {
       title: "Start Date",
       index: "bill_start_date",
       type: "date",
       dateFormat: "DD-MM-YYYY",
+      width:"10"
     },
     {
       title: "End  Date",
       type: "date",
        dateFormat: "DD-MM-YYYY",
       index: "bill_end_date",
+        width:"10"
     },
-    { title: "Total Invoices", index: "total_invoices" },
-    { title: "Parking Amount(Rs) ", index: "vehicle_amount" },
+    { title: "Total Invoices", index: "total_invoices"  , width:"15"},
+    { title: "Parking Amount(Rs) ", index: "vehicle_amount" ,  width:"15"},
     {
       title: "Units Amount (Rs)",
       index: "unit_amount",
+        width:"10"
     },
     {
       title: "Others (Rs)",
       index: "others",
+        width:"10"
     },
     {
       title: "GST(Rs)",
       index: "gst_amount",
+        width:"5"
     },
     {
       title: "Total (Rs)",
       index: "total_amount",
+        width:"10"
     },
     // {
     //   title: "",
