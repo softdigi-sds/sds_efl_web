@@ -16,6 +16,7 @@ import {
 } from "../../services/site/SelectBoxServices";
 import { post } from "../../services/smartApiService";
 import VendorRatesSubForm from "./VendorRatesSubForm";
+import VendorRatesSubFormTwo from "./VendorRatesSubFormTwo";
 
 interface FormErrors {
   [key: string]: string | null;
@@ -121,25 +122,17 @@ const VendorsRatesView: React.FC<HeaderProps> = ({  dataIn }) => {
     const sub_data = formData.rate_data ? [...formData.rate_data] : [];
     return (
       <>
-        <div className="columns">
-          <div className="column is-2">HSN CODE</div>
-          <div className="column is-2">Rate Type</div>
-          <div className="column is-2">Range Start</div>
-          <div className="column is-2">Range End</div>
-          <div className="column is-2">Price(Rs)</div>
-          <div className="column is-2">Extra Price(Rs)</div>
-        </div>
-        {sub_data.map((item, index) => {
-          return (
-            <VendorRatesSubForm
-              key={`subform${index}`}
-              formData={item}
-              setFormData={(name, value) =>
-                updateItemProperty(index, name, value)
-              }
-            />
-          );
-        })}
+      <div className="sub-forms">
+        {sub_data.map((item, index) => (
+          <VendorRatesSubFormTwo
+            key={`subform${index}`}
+            office={item}
+          />
+        ))}
+      </div>
+
+   
+  
       </>
     );
   };
