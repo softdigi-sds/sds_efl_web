@@ -1,28 +1,24 @@
-import React, { useState } from 'react';
-import { SmartFormInterFace, SmartSofFile, SmartSoftButton, SmartSoftForm, SmartValid } from "soft_digi";
-import { useSiteContext } from '../../contexts/SiteProvider';
-import { getImageContent } from '../../services/core/FileService';
-import { ALLOW_NUMERIC } from '../../services/PatternSerivce';
+import { useState } from "react";
+import { useSiteContext } from "../../contexts/SiteProvider";
+import {
+  SmartFormInterFace,
+  SmartSofFile,
+  SmartSoftButton,
+  SmartSoftForm,
+  SmartValid,
+} from "soft_digi";
+import { ALLOW_NUMERIC } from "../../services/PatternSerivce";
+import { getImageContent } from "../../services/core/FileService";
 
-// Define the FileObject type (adjust according to your actual structure)
-interface FileObject {
-  name: string;
-  size: number;
-  type: string;
-  lastModified: number;
-  // Include any other necessary properties
+interface FormData {
+  ename?: string;
+  age?: string;
+  gender?: string;
+  profile_image?: any;
 }
 
 interface FormErrors {
   [key: string]: string | null;
-}
-
-// Define an interface for form data
-interface FormData {
-  profile_image?: FileObject; // No need for null since it can be undefined
-  ename?: string;
-  age?: string;
-  gender?: string;
 }
 
 const Profile = () => {
@@ -33,12 +29,15 @@ const Profile = () => {
 
   const handleInputChange = (name: string, value: any) => {
     setFormData((prev) => ({ ...prev, [name]: value }));
+    if (name === "profile_image" && value) {
+
+    }
   };
 
   const handleErrorChange = (name: string | any, value: any) => {
-    setFormErrors((prev) => {
+    setFormErrors((prev: any) => {
       const updatedFormData = { ...prev };
-      if (value === null || value === '') {
+      if (value === null || value === "") {
         delete updatedFormData[name];
       } else {
         updatedFormData[name] = value;
@@ -50,90 +49,100 @@ const Profile = () => {
   const loginFormValidations = {
     ename: [SmartValid.required("User Name is Required")],
     age: [SmartValid.required("Age is Required")],
-    email: [SmartValid.required("Email ID is Required"), SmartValid.email("Please Enter a Valid Email Address")],
+    email: [
+      SmartValid.required("Email ID is Required"),
+      SmartValid.email("Please Enter a Valid Email Address"),
+    ],
     password: [SmartValid.required("Password is Required")],
   };
 
   const formElements: SmartFormInterFace.SmartFormElementProps[] = [
     {
-      type: "TEXT_BOX",
-      width: "4",
+      type: "PASSWORD", 
+      width: "12",
       name: "ename",
       element: {
-        label: "Name",
+        label: "New Password",
         inputType: "BORDER_LABEL",
         isRequired: true,
-        validations: loginFormValidations.ename,
+        validations: loginFormValidations.password,
       },
     },
     {
-      type: "TEXT_BOX",
-      width: "4",
+      type: "PASSWORD", 
+      width: "12",
       name: "age",
       element: {
-        label: "Age",
+        label: "Confirm Password",
         inputType: "BORDER_LABEL",
         isRequired: true,
-        validations: loginFormValidations.age,
+        validations: loginFormValidations.password,
         allowPattern: ALLOW_NUMERIC,
-      },
-    },
-    {
-      type: "SELECT_BOX",
-      width: "4",
-      name: "gender",
-      element: {
-        label: "Gender",
-        inputType: "BORDER_LABEL",
-        options: [
-          { value: "Male", label: "Male" },
-          { value: "Female", label: "Female" },
-          { value: "Other", label: "Other" },
-        ],
-        isRequired: true,
       },
     },
   ];
 
+  const handleSubmit = () => {
+    setFormSubmit(true);
+    if (Object.keys(formErrors).length === 0) {
+      // Submit the form data if no errors
+      console.log("Form submitted", formData);
+    } else {
+      console.log("Form contains errors", formErrors);
+    }
+  };
+
   return (
-    <div className="sd-efl-input">
-      <div className="profile-header has-text-centered">
-        <div className="profile-avatar">
-          {/* <img
-            className="is-rounded"
-            src={formData.profile_image ? getImageContent(formData.profile_image) : ''} 
-            alt="Profile"
-            style={{ width: '150px', height: '150px', objectFit: 'cover' }}
-          /> */}
+    <div className="sd-efl-input mt-6 p-3">
+      <div className="columns is-multiline">
+        {/* Profile Image Column */}
+        <div className="column is-4 is-flex is-justify-content-center is-align-items-center">
+          <div className="profile-header">
+            <div className=" is-flex is-justify-content-center is-align-items-center">
+              <img
+                src={getImageContent(formData?.profile_image)}
+                alt="Profile"
+                className="image is-128x128"
+              />
+            </div>
+            <div className="mt-4">
+            <SmartSofFile
+              placeHolder="Upload Profile Image"
+              value={formData?.profile_image}
+              onChange={(value) => handleInputChange("profile_image", value)}
+              errorEnable={formSubmit}
+              fileNameEnable={false}
+              isMulti={false} 
+              isRequired={true}
+            />
+            </div>
+          </div>
         </div>
-      </div>
-      {/* <SmartSofFile
-        placeHolder="Upload Image"
-        value={formData.profile_image ? formData.profile_image.name : ''} // Use name or empty string
-        onChange={(value) => handleInputChange("profile_image", value as FileObject)} // Ensure the value is cast to FileObject
-        errorEnable={formSubmit}
-        fileNameEnable={false}
-        errorUpdate={(value) => handleErrorChange("profile_image", value)}
-      /> */}
-      <SmartSoftForm
-        formData={formData}
-        setFormData={handleInputChange}
-        elements={formElements}
-        formSubmit={formSubmit}
-        handleErrorChange={handleErrorChange}
-      />
-      <div className="has-text-right">
-        <SmartSoftButton
-          label="Cancel"
-          classList={["button", "mt-4 mr-4", "smart-third-button"]}
-          onClick={closeModal}
-        />
-        <SmartSoftButton
-          label="Submit"
-          rightIcon="fa fa-arrow-right"
-          classList={["button", "mt-4", "smart-action-button"]}
-          onClick={closeModal}
-        />
+
+        <div className="column is-4">
+          
+        <div className="">Name :{" "} ADMIN</div>
+        <div className="">Email : {" " } Admin@gmail.com</div>
+        </div>
+
+     
+        <div className="column is-4">
+          <SmartSoftForm
+            formData={formData}
+            setFormData={handleInputChange}
+            elements={formElements}
+            formSubmit={formSubmit}
+            handleErrorChange={handleErrorChange}
+          />
+          <div className="mt-4 has-text-right">
+            <SmartSoftButton
+              label="Change Password"
+              rightIcon="fa fa-arrow-right"
+              classList={["button", "smart-action-button"]}
+              onClick={handleSubmit} 
+            />
+          </div>
+        </div>
       </div>
     </div>
   );
