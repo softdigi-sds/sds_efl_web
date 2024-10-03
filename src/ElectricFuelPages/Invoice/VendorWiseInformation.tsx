@@ -3,11 +3,11 @@ import { useParams } from "react-router-dom";
 import { SmartSoftButton, SmartTable, SmartTableNewInterface } from "soft_digi";
 import { INVOICE_URLS } from "../../api/UserUrls";
 import { useSiteContext } from "../../contexts/SiteProvider";
+import { changeDateTimeZoneFormat } from "../../services/core/CommonService";
+import { downloadFile } from "../../services/core/FileService";
 import { post } from "../../services/smartApiService";
 import VendorDetails from "./VendorDetails";
 import VendorDetailsImport from "./VendorDetailsImport";
-import { downloadFile } from "../../services/core/FileService";
-import { changeDateTimeZoneFormat } from "../../services/core/CommonService";
 
 const VendorWiseInformation = () => {
   const { id } = useParams<{ id: string }>();
@@ -30,6 +30,20 @@ const VendorWiseInformation = () => {
     const subscription = post(URL, { id: id }).subscribe((response) => {
       if (response.data && response.data.content) {
         downloadFile(response.data.content, "bill.xlsx");
+      }
+      //console.log(response);
+      //setData(response.data);
+    });
+    return () => {
+      subscription.unsubscribe();
+    };
+  };
+
+  const downloadInvoice = (invoice_id:number) => {
+    let URL = INVOICE_URLS.DOWNLOAD_INVOICE;
+    const subscription = post(URL, { id: invoice_id }).subscribe((response) => {
+      if (response.data && response.data.content) {
+        downloadFile(response.data.content, "invoice.pdf");
       }
       //console.log(response);
       //setData(response.data);
@@ -95,13 +109,15 @@ const VendorWiseInformation = () => {
       title: "ACK No",
       index: "ack_no",
       width: "10",
+      valueFunction:(data)=>{
+        return data["status"]==10 ? <span className="has-text-link sd-cursor" onClick={()=>{downloadInvoice(data["ID"])}}>{data["ack_no"]}</span> : null;
+      }
     },
     {
       title: "Status",
       index: "status",
       width: "10",
     },
-
     {
       title: "Details",
       index: "action",

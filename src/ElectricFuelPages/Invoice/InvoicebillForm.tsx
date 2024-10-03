@@ -1,10 +1,9 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { SmartFormInterFace, SmartSoftForm } from "soft_digi";
 import { INVOICE_URLS } from "../../api/UserUrls";
-import { post } from "../../services/smartApiService";
-import { showAlertAutoClose } from "../../services/notifyService";
-import { useNavigate } from "react-router-dom";
 import { useSiteContext } from "../../contexts/SiteProvider";
+import { post } from "../../services/smartApiService";
 interface FormErrors {
   [key: string]: string | null;
 }
@@ -23,7 +22,7 @@ const InvoicebillForm = () => {
       const startDate = new Date(value);
       const minEndDate = new Date(startDate);
       minEndDate.setDate(minEndDate.getDate() + 30); // Add 1 day
-      
+
       setMinEndDate(minEndDate); // Set the minimum end date
     }
     setFormData((prev: any) => ({ ...prev, [name]: value }));
@@ -73,7 +72,7 @@ const InvoicebillForm = () => {
       element: {
         placeHolder: "End Date",
         isRequired: true,
-           minDate: minEndDate,
+        minDate: minEndDate,
         // inputProps: { isFocussed: true },
       },
     },
@@ -91,10 +90,7 @@ const InvoicebillForm = () => {
   return (
     <>
       <div className='sd-efl-input'>
-
-
-        <div className="m-6 has-text-right">
-
+        <div className="has-text-right">
           <SmartSoftForm
             formData={formData}
             setFormData={handleInputChange}
@@ -103,8 +99,8 @@ const InvoicebillForm = () => {
             handleErrorChange={handleErrorChange}
           />
         </div>
-        <div className="m-6"></div>
-        <div className="m-6"></div>
+       
+
       </div>
     </>
   );
