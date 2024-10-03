@@ -229,6 +229,20 @@ const VendorRatesForms: React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
         inputProps: {disabled:formData.ID&&formData.ID ? true:false}
         //options: options,
       },
+      
+    },
+    {
+      type: "DATE",
+      width: "6",
+      name: "effective_date",
+      element: {
+        label: "Effective Date",
+        placeHolder: "DD-MM-YYYY",
+        isRequired: true,
+        inputType: "BORDER_LABEL",
+        inputProps: { isFocussed: true },
+        validations: vendorFormValidations.dates,
+      },
     },
     /*
     {
@@ -360,7 +374,8 @@ const VendorRatesForms: React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
         inputProps: { isFocussed: true },
         validations: vendorFormValidations.dates,
       },
-    },*/
+    },
+    */
   ];
 
   return (
@@ -376,7 +391,7 @@ const VendorRatesForms: React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
       />
       <div className="columns">
         <div className="column is-6">
-          <span>Rates:</span>
+          <span className="is-size-5 has-text-weight-bold">Rates:</span>
         </div>
         <div className="column is-6 has-text-right">
           <SmartSoftButton
