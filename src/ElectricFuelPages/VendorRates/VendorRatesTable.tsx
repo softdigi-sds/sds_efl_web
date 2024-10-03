@@ -115,7 +115,16 @@ const VendorRatesTable = () => {
 
     SmartAlert.show(alertProps);
   };
-
+  const openViewDetails = (userData: any) => {
+    let options = {
+      title: "Vendor Rates Details",
+      content: <VendorsRatesView userData={userData} />,
+      width: 60,
+      className:"sd-efl-modal",
+      closeBody:false,
+    };
+    openModal(options);
+  };
   const buttons = [
     {
       label: "",
