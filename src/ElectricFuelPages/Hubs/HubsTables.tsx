@@ -3,10 +3,10 @@ import { SmartAlert, SmartFormInterFace, SmartLoaderInterface, SmartTable, Smart
 import { HUBS_URLS } from '../../api/UserUrls';
 import { useSiteContext } from '../../contexts/SiteProvider';
 import { showAlertAutoClose } from '../../services/notifyService';
+import { office_get_all_select } from '../../services/site/SelectBoxServices';
 import { get, post } from '../../services/smartApiService';
 import HubsForms from './HubsForms';
 import HubsView from './HubsView';
-import { office_get_all_select } from '../../services/site/SelectBoxServices';
 
 const HubsTables = () => {
   const [data, setData] = useState([]);
@@ -188,7 +188,7 @@ const HubsTables = () => {
   const filterFields:SmartFormInterFace.SmartFormElementProps[] = [
  
     {
-      type: "SELECT_BOX",
+      type: "TEXT_BOX",
       width: "12",
       name: "office_city",
       element: {

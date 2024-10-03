@@ -1,15 +1,15 @@
-import React, { useEffect, useState } from "react";
-import { get, post } from "../../services/smartApiService";
-import { useSiteContext } from "../../contexts/SiteProvider";
-import VendorRatesForms from "./VendorRatesForms";
+import { useEffect, useState } from "react";
 import {
   SmartAlert,
   SmartLoaderInterface,
   SmartTable,
   SmartTableNewInterface,
 } from "soft_digi";
-import { VENDER_RATE_URLS, VENDERS_URLS } from "../../api/UserUrls";
+import { VENDER_RATE_URLS } from "../../api/UserUrls";
+import { useSiteContext } from "../../contexts/SiteProvider";
 import { showAlertAutoClose } from "../../services/notifyService";
+import { get, post } from "../../services/smartApiService";
+import VendorRatesForms from "./VendorRatesForms";
 import VendorsRatesView from "./VendorsRatesView";
 
 const VendorRatesTable = () => {
@@ -161,7 +161,7 @@ const VendorRatesTable = () => {
       title: "Unit Rate/ Extra Rate",
       index: "unit_rate",
     },
-    { title: "Effective Date", index: "effective_date", 
+    { title: "Effective Date", index: "effective_date", type:"date",
       dateFormat:"DD-MM-YYYY",
     },
     {
