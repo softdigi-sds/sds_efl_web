@@ -14,6 +14,7 @@ import {
   admin_states_select,
   hubs_get_all_select,
 } from "../../services/site/SelectBoxServices";
+import { ALLOW_ALPHABET_SPACE } from "../../services/PatternSerivce";
 
 interface FormErrors {
   [key: string]: string | null;
@@ -97,6 +98,7 @@ const VendorsForm: React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
         validations: vendorFormValidations.hub_id,
         options: allHubs,
         inputType: "BORDER_LABEL",
+        inputProps: {disabled:formData.ID && formData.ID ? true:false}
       },
     },
     {
@@ -109,6 +111,7 @@ const VendorsForm: React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
         // inputProps: { isFocussed: true },
         validations: vendorFormValidations.code,
         inputType: "BORDER_LABEL",
+        inputProps: {disabled:formData.ID && formData.ID ? true:false}
       },
     },
     {
@@ -121,6 +124,7 @@ const VendorsForm: React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
         // inputProps: { isFocussed: true },
         validations: vendorFormValidations.company,
         inputType: "BORDER_LABEL",
+        inputProps: {disabled:formData.ID && formData.ID ? true:false}
       },
     },
     {
@@ -133,6 +137,7 @@ const VendorsForm: React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
         isRequired: true,
         // inputProps: { isFocussed: true },
         inputType: "BORDER_LABEL",
+        allowPattern:ALLOW_ALPHABET_SPACE
       },
     },
     {
@@ -145,6 +150,7 @@ const VendorsForm: React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
         // inputProps: { isFocussed: true },
         validations: vendorFormValidations.gst_no,
         inputType: "BORDER_LABEL",
+        max:15
       },
     },
     {
@@ -157,6 +163,7 @@ const VendorsForm: React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
         // inputProps: { isFocussed: true },
         validations: vendorFormValidations.pan_no,
         inputType: "BORDER_LABEL",
+        max:10
       },
     },
     {

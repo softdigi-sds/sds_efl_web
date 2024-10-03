@@ -196,7 +196,7 @@ const UsersTable = () => {
       {
         type: "CUSTOM",
         widthClass: "is-6",
-        custom: <p className="is-size-4">Users</p>,
+        custom: <p className="is-size-4 has-text-weight-bold">Users</p>,
       },
       {
         type: "SEARCH",
