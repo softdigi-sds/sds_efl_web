@@ -176,7 +176,7 @@ const HubsTables = () => {
       index: "role",
       valueFunction: GroupDisplay,
     },
-    { title: "State", index: "status", type: "tags", tags: statusTags },
+    // { title: "State", index: "status", type: "tags", tags: statusTags },
     {
       title: "Action",
       index: "action",

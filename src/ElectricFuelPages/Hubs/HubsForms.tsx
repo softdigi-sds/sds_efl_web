@@ -137,18 +137,18 @@ const HubsForms: React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
         validations: hubFormValidations.hub_name,
       },
     },
-    {
-      type: "TEXTAREA",
-      width: "12",
-      name: "hub_location",
-      element: {
-        label: "Location",
-        isRequired: true,
-        max: "255",
-        inputType: "BORDER_LABEL",
-        validations: hubFormValidations.locations,
-      },
-    },
+    // {
+    //   type: "TEXTAREA",
+    //   width: "12",
+    //   name: "hub_location",
+    //   element: {
+    //     label: "Location",
+    //     isRequired: true,
+    //     max: "255",
+    //     inputType: "BORDER_LABEL",
+    //     validations: hubFormValidations.locations,
+    //   },
+    // },
   ];
   return (
     <>
