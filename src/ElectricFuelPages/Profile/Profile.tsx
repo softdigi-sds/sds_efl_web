@@ -122,11 +122,11 @@ const Profile = () => {
           </div>
         </div>
 
-        <div className="column is-4 pl-0 is-justify-content-center is-align-items-center">
-          
-        <div className="">Name :{" "} ADMIN</div>
-        <div className="">Email : {" " } Admin@gmail.com</div>
-        </div>
+        <div className="user-info column is-4 pl-0 is-justify-content-center is-align-items-center">
+  <div className="user-detail">Name: <span>ADMIN</span></div>
+  <div className="user-detail">Email: <span>Admin@gmail.com</span></div>
+</div>
+
 
      
         <div className="column is-4">
