@@ -1,17 +1,25 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./Login.scss";
-import { LOGIN_URLS } from '../../api/LoginUrls';
-import { useSiteContext } from '../../contexts/SiteProvider';
-import { SmartSoftButton, SmartSoftForm } from '../../core';
-import { SmartFormElementProps } from '../../core/forms/SmartFormInterface';
+import { LOGIN_URLS } from "../../api/LoginUrls";
+import { useSiteContext } from "../../contexts/SiteProvider";
+import { SmartSoftButton, SmartSoftForm } from "../../core";
+import { SmartFormElementProps } from "../../core/forms/SmartFormInterface";
 
-import { showAlertAutoClose } from '../../services/notifyService';
-import { post } from '../../services/smartApiService';
-import ForgotPassword from './ForgotPassword';
-import { LOGIN_PAGE_LOGO, LOGO, OUR_SERVICE_CARD_FOUR } from '../../services/ImageService';
-import { SmartSoftCheckRadioSwitch } from 'soft_digi';
-import { SmartValid, ValidateFormNew } from 'soft_digi/dist/services/smartValidationService';
+import { showAlertAutoClose } from "../../services/notifyService";
+import { post } from "../../services/smartApiService";
+import ForgotPassword from "./ForgotPassword";
+import {
+  LOGIN_PAGE_LOGO,
+  LOGO,
+  OUR_SERVICE_CARD_FOUR,
+} from "../../services/ImageService";
+import { SmartSoftCheckRadioSwitch } from "soft_digi";
+import {
+  SmartValid,
+  ValidateFormNew,
+} from "soft_digi/dist/services/smartValidationService";
+import { checkInterSection } from "../../services/core/FilterService";
 
 // Define the type for form data
 interface FormErrors {
@@ -43,7 +51,7 @@ const Login: React.FC = () => {
   const handleErrorChange = (name: string | any, value: any) => {
     setFormErrors((prev) => {
       const updatedFormData = { ...prev };
-      if (value === null || value === '') {
+      if (value === null || value === "") {
         delete updatedFormData[name];
       } else {
         updatedFormData[name] = value;
@@ -62,17 +70,25 @@ const Login: React.FC = () => {
       showAlertAutoClose(errorMessage, "error");
       handleInputChange("epassword", "");
     };
-    
+
     let url = LOGIN_URLS.LOGIN;
-    const subscription = post(url, formData, { requiresAuthorization: false, handleError: handleError }).subscribe(
-      (response) => {
-        setFormSubmit(false);
-        setUser(response.data);
-        showAlertAutoClose("Logged In Successfully", "success");
+    const subscription = post(url, formData, {
+      requiresAuthorization: false,
+      handleError: handleError,
+    }).subscribe((response) => {
+      setFormSubmit(false);
+      setUser(response.data);
+      //showAlertAutoClose("Logged In Successfully", "success");
+      if (checkInterSection(response.data.roles || [], ["ADMIN"])) {
         navigate("/e-fuel/dashboard");
       }
-    );
-    
+      if (checkInterSection(response.data.roles || [], ["ACCOUNTS"])) {
+        navigate("/e-fuel/invoices");
+      } else {
+        navigate("e-fuel/vehicles-report");
+      }
+    });
+
     return () => {
       subscription.unsubscribe();
     };
@@ -90,7 +106,7 @@ const Login: React.FC = () => {
     return (
       <div className="is-flex is-justify-content-space-between mb-4 has-text-weight-medium">
         <span className="">
-        {/* <SmartSoftCheckRadioSwitch
+          {/* <SmartSoftCheckRadioSwitch
           options={options_remember_me}
           name="checkbox_remember_me"
 
@@ -105,13 +121,13 @@ const Login: React.FC = () => {
 
   const formElements: SmartFormElementProps[] = [
     {
-      type: 'TEXT_BOX',
-      width: '12',
-      name: 'emailid',
+      type: "TEXT_BOX",
+      width: "12",
+      name: "emailid",
       element: {
         label: "Email",
         isRequired: true,
-        placeHolder: 'Email ',
+        placeHolder: "Email ",
         max: 255,
         // inputType: "BORDER_LABEL",
         leftIcon: "fa fa-envelope-square",
@@ -119,13 +135,13 @@ const Login: React.FC = () => {
       },
     },
     {
-      type: 'PASSWORD',
-      width: '12',
-      name: 'epassword',
+      type: "PASSWORD",
+      width: "12",
+      name: "epassword",
       element: {
-        label: "Password", 
+        label: "Password",
         isRequired: true,
-        placeHolder: 'Password',
+        placeHolder: "Password",
         // inputType: "BORDER_LABEL",
         leftIcon: "fa fa-envelope-square",
         validations: loginFormValidations.password,
@@ -140,45 +156,52 @@ const Login: React.FC = () => {
   ];
 
   return (
-    <div className='smart-lnpr-login-container'>
-    <div className='smart-lnpr-login-sub-container columns is-vcentered is-centered'>
-
+    <div className="smart-lnpr-login-container">
+      <div className="smart-lnpr-login-sub-container columns is-vcentered is-centered">
         <div className="column is-6 has-text-centered smart-lnpr-login-card is-vcentered is-centered p-0 m-0">
-        <div className="smart-lnpr-image-content-mobile">
-            <img src={LOGIN_PAGE_LOGO} alt="Login" /></div>
-            </div>
-        <div className='smart-lnpr-login-card column is-6'>
-            <div className={isOpen ? "smart-lnpr-login-card-inner-active" : 'smart-lnpr-login-card-inner'}>
-              <div className="mb-6">
-                <img src={LOGO} alt="" />
-              </div>
-                <div className="flip-card-front">
-                    <p className='smart-lnpr-text mb-3'>Welcome</p>
-                    <SmartSoftForm
-                        formData={formData}
-                        setFormData={handleInputChange}
-                        elements={formElements}
-                        formSubmit={formSubmit}
-                        handleErrorChange={handleErrorChange}
-                    />
-             
-                    <div className='has-text-centered'>
-                        <SmartSoftButton
-                            label="Login"
-                            classList={["smart-lnpr-login-button"]}
-                            onClick={handleLogin}
-                        />
-                    </div>
-                    <span className='smart-forgot-text' onClick={toggleCardFlip}>Forgot Password?</span>
-                </div>
-                <div className="flip-card-back">
-                    <ForgotPassword toggleSidebar={toggleCardFlip} />
-                </div>
-            </div>
+          <div className="smart-lnpr-image-content-mobile">
+            <img src={LOGIN_PAGE_LOGO} alt="Login" />
+          </div>
         </div>
-    </div>
-</div>
+        <div className="smart-lnpr-login-card column is-6">
+          <div
+            className={
+              isOpen
+                ? "smart-lnpr-login-card-inner-active"
+                : "smart-lnpr-login-card-inner"
+            }
+          >
+            <div className="mb-6">
+              <img src={LOGO} alt="" />
+            </div>
+            <div className="flip-card-front">
+              <p className="smart-lnpr-text mb-3">Welcome</p>
+              <SmartSoftForm
+                formData={formData}
+                setFormData={handleInputChange}
+                elements={formElements}
+                formSubmit={formSubmit}
+                handleErrorChange={handleErrorChange}
+              />
 
+              <div className="has-text-centered">
+                <SmartSoftButton
+                  label="Login"
+                  classList={["smart-lnpr-login-button"]}
+                  onClick={handleLogin}
+                />
+              </div>
+              <span className="smart-forgot-text" onClick={toggleCardFlip}>
+                Forgot Password?
+              </span>
+            </div>
+            <div className="flip-card-back">
+              <ForgotPassword toggleSidebar={toggleCardFlip} />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 };
 

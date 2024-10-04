@@ -1,18 +1,19 @@
-import React from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
-import { LOGO } from '../services/ImageService';
+import React from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+import { LOGO } from "../services/ImageService";
+import { useSiteContext } from "../contexts/SiteProvider";
+import { checkInterSection } from "../services/core/FilterService";
 interface childrenProps {
-  isOpen: boolean
+  isOpen: boolean;
 }
 const EFSideNav: React.FC<childrenProps> = ({ isOpen }) => {
-
   const listItems = [
     {
       id: 1,
       label: "Dashboard",
       icon: "fa-tachometer",
       link: "/e-fuel/dashboard",
-
+      roles: ["ADMIN"],
     },
 
     {
@@ -20,49 +21,49 @@ const EFSideNav: React.FC<childrenProps> = ({ isOpen }) => {
       label: "Offices",
       icon: " fa-building",
       link: "/e-fuel/offices-list",
-
+      roles: ["ADMIN"],
     },
     {
       id: 3,
       label: "Hubs",
       icon: "fa-battery-full",
       link: "/e-fuel/hubs-list",
-
+      roles: ["ADMIN"],
     },
     {
       id: 4,
       label: "Vendors",
       icon: "fa-sticky-note-o",
       link: "/e-fuel/vendors-list",
-
+      roles: ["ADMIN"],
     },
     {
       id: 5,
       label: "Vendor Rates",
       icon: "fa fa-flag",
       link: "/e-fuel/vendors-rates-list",
-
+      roles: ["ADMIN", "ACCOUNTS"],
     },
     {
       id: 5,
       label: "Vehicles Report",
       icon: "fa-car",
       link: "/e-fuel/vehicles-report",
-
+      roles: ["ADMIN", "HUB", "ACCOUNTS"],
     },
     {
       id: 6,
       label: "Consumption  Report",
       icon: "fa-calendar-check-o",
       link: "/e-fuel/consumption-report",
-
+      roles: ["ADMIN", "HUB", "ACCOUNTS"],
     },
     {
       id: 7,
       label: "Invoices",
       icon: "fa-inr",
       link: "/e-fuel/invoices",
-
+      roles: ["ADMIN", "HUB", "ACCOUNTS"],
     },
 
     {
@@ -70,14 +71,14 @@ const EFSideNav: React.FC<childrenProps> = ({ isOpen }) => {
       label: "Users",
       icon: "fa-user",
       link: "/e-fuel/users",
-
+      roles: ["ADMIN"],
     },
     {
       id: 8,
       label: "Roles",
       icon: " fa-users",
       link: "/e-fuel/roles-list",
-
+      roles: ["ADMIN"],
     },
     // {
     //   id: 8,
@@ -86,32 +87,41 @@ const EFSideNav: React.FC<childrenProps> = ({ isOpen }) => {
     //   link: "/e-fuel/settings",
 
     // },
-  ]
+  ];
   const navigate = useNavigate();
   const location = useLocation();
-  const navigateLink = (index: any) => {   
+  const { user } = useSiteContext();
+  console.log("logged in user ", user);
+  const navigateLink = (index: any) => {
     navigate(index);
   };
 
-
   return (
-    <div
-      className={`smart-sidenav ${isOpen ? "expanded" : ""}`}
-    >
+    <div className={`smart-sidenav ${isOpen ? "expanded" : ""}`}>
       {/* Brand Logo */}
       <div className="brand-logo">
         <img src={LOGO} alt="Brand Logo" />
       </div>
       {listItems.map((item, index) => {
         return (
-          <a key={`nav_link_${index}`} href="#" onClick={()=>navigateLink(item.link)} 
-          className={  location.pathname === item.link?"sidenav-active-link":"sidenav-link"}>
-            <i className={`icon fa ${item.icon} `}></i>
-            <span className="link-text">{item.label}</span>
-          </a>
-        )
+          checkInterSection(user.roles || [], item.roles) && (
+            <a
+              key={`nav_link_${index}`}
+              href="#"
+              onClick={() => navigateLink(item.link)}
+              className={
+                location.pathname === item.link
+                  ? "sidenav-active-link"
+                  : "sidenav-link"
+              }
+            >
+              <i className={`icon fa ${item.icon} `}></i>
+              <span className="link-text">{item.label}</span>
+            </a>
+          )
+        );
       })}
     </div>
   );
-}
-export default EFSideNav
+};
+export default EFSideNav;

@@ -142,9 +142,15 @@ const sumOfArrayObjectsWithIndex = (items: any[], index: string) => {
   }, 0);
 };
 
+const checkInterSection = (arr1: any[], arr2: any[]) => {
+  const hasCommonElement = arr1.some((item) => arr2.includes(item));
+  return hasCommonElement;
+};
+
 export {
   filterArrayOfObject,
   filterDate,
   filterIncludes,
   sumOfArrayObjectsWithIndex,
+  checkInterSection,
 };
