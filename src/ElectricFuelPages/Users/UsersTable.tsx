@@ -225,7 +225,7 @@ const UsersTable = () => {
   
     return (
       <>
-      <div >
+      <div className='sd-efl-input'>
         <SmartTable
           columns={columns}
           data={data}

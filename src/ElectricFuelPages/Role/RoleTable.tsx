@@ -166,6 +166,7 @@ const RoleTable = () => {
       type: "SEARCH",
       widthClass: "is-4",
       align: "JUSTIFY",
+      
     },
     {
       type: "BUTTONS",
@@ -189,7 +190,7 @@ const RoleTable = () => {
 
   return (
     <>
-    <div className="smart-elf-table">
+    <div className="sd-efl-input">
       <SmartTable
         columns={columns}
         data={data}
