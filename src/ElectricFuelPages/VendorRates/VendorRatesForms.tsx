@@ -124,10 +124,11 @@ const VendorRatesForms: React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
         <div className="columns">
           <div className="column is-2">HSN CODE</div>
           <div className="column is-2">Rate Type</div>
-          <div className="column is-2">Range Start</div>
-          <div className="column is-2">Range End</div>
+          <div className="column is-1">Range Start</div>
+          <div className="column is-1">Range End</div>
           <div className="column is-2">Price(Rs)</div>
           <div className="column is-2">Extra Price(Rs)</div>
+          <div className="column is-2">Min Count</div>
         </div>
         {sub_data.map((item, index) => {
           return (
@@ -213,7 +214,7 @@ const VendorRatesForms: React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
         options: allHubs,
         inputType: "BORDER_LABEL",
         validations: vendorFormValidations.hub_id,
-        inputProps: {disabled:formData.ID&&formData.ID ? true:false}
+        inputProps: { disabled: formData.ID && formData.ID ? true : false },
       },
     },
     {
@@ -226,10 +227,9 @@ const VendorRatesForms: React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
         validations: vendorFormValidations.company,
         options: allVendors,
         inputType: "BORDER_LABEL",
-        inputProps: {disabled:formData.ID&&formData.ID ? true:false}
+        inputProps: { disabled: formData.ID && formData.ID ? true : false },
         //options: options,
       },
-      
     },
     {
       type: "DATE",
@@ -383,44 +383,44 @@ const VendorRatesForms: React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
       <div className="sd-efl-input">
         {/* <SmartHeader title={"Vendor Rates Form"} /> */}
 
-      <SmartSoftForm
-        formData={formData}
-        setFormData={handleInputChange}
-        elements={formElements}
-        formSubmit={formSubmit}
-      />
-      <div className="columns">
-        <div className="column is-6">
-          <span className="is-size-5 has-text-weight-bold">Rates:</span>
-        </div>
-        <div className="column is-6 has-text-right">
-          <SmartSoftButton
-            label="Add"
-            classList={["button", "mr-1", "is-small is-success"]}
-            onClick={addItem}
-          />
+        <SmartSoftForm
+          formData={formData}
+          setFormData={handleInputChange}
+          elements={formElements}
+          formSubmit={formSubmit}
+        />
+        <div className="columns">
+          <div className="column is-6">
+            <span className="is-size-5 has-text-weight-bold">Rates:</span>
+          </div>
+          <div className="column is-6 has-text-right">
+            <SmartSoftButton
+              label="Add"
+              classList={["button", "mr-1", "is-small is-success"]}
+              onClick={addItem}
+            />
 
+            <SmartSoftButton
+              label="Remove"
+              classList={["button", "mr-1", "is-small is-danger"]}
+              onClick={removeItemAndLast}
+            />
+          </div>
+        </div>
+        {subFormDisplay()}
+        <div className="has-text-right">
           <SmartSoftButton
-            label="Remove"
-            classList={["button", "mr-1", "is-small is-danger"]}
-            onClick={removeItemAndLast}
+            label="Cancel"
+            classList={["button", "mt-4 mr-4", "smart-third-button"]}
+            onClick={closeModal}
+          />
+          <SmartSoftButton
+            label="Submit"
+            rightIcon="fa fa-arrow-right"
+            classList={["button ", "mt-4", "smart-action-button"]}
+            onClick={handleSubmit}
           />
         </div>
-      </div>
-      {subFormDisplay()}
-      <div className="has-text-right">
-        <SmartSoftButton
-          label="Cancel"
-          classList={["button", "mt-4 mr-4", "smart-third-button"]}
-          onClick={closeModal}
-        />
-        <SmartSoftButton
-          label="Submit"
-           rightIcon='fa fa-arrow-right'
-          classList={["button ", "mt-4", "smart-action-button"]}
-          onClick={handleSubmit}
-        />
-      </div>
       </div>
     </>
   );

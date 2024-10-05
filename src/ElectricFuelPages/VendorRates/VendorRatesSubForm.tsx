@@ -20,8 +20,10 @@ const VendorRatesSubForm: React.FC<HeaderProps> = ({
     { value: "3", label: "Per Unit" },
   ];
   const options_hsn = [
-    { value: "96485", label: "Electricity charge" },
-    { value: "96325", label: "Parking Charges" },
+    { value: "1", label: "Parking & Charging" },
+    { value: "2", label: "Parking" },
+    { value: "3", label: "Charging" },
+    { value: "4", label: "Rent" },
   ];
 
   const formElements: SmartFormInterFace.SmartFormElementProps[] = [
@@ -43,7 +45,7 @@ const VendorRatesSubForm: React.FC<HeaderProps> = ({
     },
     {
       type: "TEXT_BOX",
-      width: "2",
+      width: "1",
       name: "min_start",
       element: {
         inputProps: {
@@ -58,7 +60,7 @@ const VendorRatesSubForm: React.FC<HeaderProps> = ({
     },
     {
       type: "TEXT_BOX",
-      width: "2",
+      width: "1",
       name: "min_end",
       element: {
         inputProps: {
@@ -80,6 +82,21 @@ const VendorRatesSubForm: React.FC<HeaderProps> = ({
       type: "TEXT_BOX",
       width: "2",
       name: "extra_price",
+      element: {
+        inputProps: {
+          disabled:
+            formData.rate_type &&
+            formData.rate_type.value &&
+            formData.rate_type.value == "2"
+              ? false
+              : true,
+        },
+      },
+    },
+    {
+      type: "TEXT_BOX",
+      width: "2",
+      name: "min_units_vehicle",
       element: {
         inputProps: {
           disabled:
