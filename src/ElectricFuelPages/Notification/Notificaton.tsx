@@ -1,5 +1,4 @@
 import { useEffect, useRef, useState } from "react";
-import "../../EFSubLayout/EFSubLayout.scss";
 import { ADMIN_USER_LOGO } from "../../services/ImageService"; // Assuming this is a valid image import
 import { SmartSoftButton } from "soft_digi";
 
@@ -31,9 +30,10 @@ const Notification = () => {
       time: "Last Wednesday at 9:42 am",
     },
   ];
-  const clear_btn = () =>{
-    console.log("data")
-  }
+
+  const clear_btn = () => {
+    console.log("data");
+  };
 
   const notificationCard = () => {
     return (
@@ -50,18 +50,19 @@ const Notification = () => {
                 <div className="notification-header is-flex">
                   {/* Notification avatar */}
                   <img
-                    className="notification-avatar is-rounded"   
+                    className="notification-avatar is-rounded"
                     src={notification.avatar}
                     alt={`${notification.user}'s avatar`}
                   />
                   <div className="notification-info">
-  <div className=" is-align-items-center">
-    <div className="mr-2">{notification.user}</div> 
-    <div className="is-size-7">{notification.action}</div>
-  </div>
-  <div className="is-size-7 has-text-grey">{notification.time}</div>
-</div>
-
+                    <div className="is-align-items-center">
+                      <div className="mr-2">{notification.user}</div>
+                      <div className="is-size-7">{notification.action}</div>
+                    </div>
+                    <div className="is-size-7 has-text-grey">
+                      {notification.time}
+                    </div>
+                  </div>
                 </div>
                 {/* Notification message */}
                 {notification.message && (
@@ -76,18 +77,31 @@ const Notification = () => {
         <footer className="has-text-centered">
           <SmartSoftButton
             label="View all"
-            classList={["button","m-2" ]}
+            classList={["button", "m-2"]}
             onClick={clear_btn}
           />
           <SmartSoftButton
-            label=" Clear all"
-            classList={["button is-danger m-2 "  ]}
+            label="Clear all"
+            classList={["button is-danger m-2"]}
             onClick={clear_btn}
           />
         </footer>
       </div>
     );
   };
+
+  const handleClickOutside = (event: MouseEvent) => {
+    if (ref.current && !ref.current.contains(event.target as Node)) {
+      setActive(false); // Close the dropdown when clicking outside
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("click", handleClickOutside);
+    return () => {
+      document.removeEventListener("click", handleClickOutside);
+    };
+  }, []);
 
   return (
     <div
@@ -104,7 +118,7 @@ const Notification = () => {
           aria-hidden="true"
           aria-controls="dropdown-menu"
         ></i>
-      <span className="user-badge ">{notifications.length}</span>
+        <p className="user-badge">{notifications.length}</p>
       </span>
       {active && (
         <div className="dropdown-menu" id="dropdown-menu" role="menu">
