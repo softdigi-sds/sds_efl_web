@@ -145,6 +145,40 @@ const VendorRatesTable = () => {
       },
     },
   ];
+
+
+    const RatesDisplay=(items:any)=>{
+return(
+  <>
+  <table className="table is-bordered is-fullwidth">
+   
+   {items?.rates?.map((item:any)=>(
+    <>
+       <tr>
+      <td>Type</td>
+      <td>Rate Type</td>
+      <td>Start</td>
+      <td>End</td>
+      <td>Price</td>
+      <td>Extra Price</td>
+      <td>Min Count</td>
+    </tr>
+    <tr>
+      <td>{item?.sd_hsn_id?.label}</td>
+      <td>{item?.rate_type?.label}</td>
+      <td>{item?.min_start }</td>
+      <td>{item?.min_end}</td>
+      <td>{item?.price}</td>
+      <td>{item?.extra_price}</td>
+      <td>{item?.min_units_vehicle}</td>
+    </tr>
+    </>
+   ))} 
+
+  </table>
+  </>
+)
+    }
   const columns: SmartTableNewInterface.SmartTableNewColumnConfig[] = [
     { title: "S.NO", index: "s_no", type: "sno" },
     {
@@ -155,11 +189,11 @@ const VendorRatesTable = () => {
       title: "Company",
       index: "vendor_company",
     },
-    { title: "Consumption Type", index: "unit_rate_type" },
-    { title: "Parking Type", index: "parking_rate_type" },
+
     {
-      title: "Unit Rate/ Extra Rate",
+      title: "Rates",
       index: "unit_rate",
+      valueFunction:RatesDisplay
     },
     { title: "Effective Date", index: "effective_date", type:"date",
       dateFormat:"DD-MM-YYYY",
