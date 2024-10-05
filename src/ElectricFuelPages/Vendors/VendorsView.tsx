@@ -30,10 +30,10 @@ const VendorsView = ({ office }: { office: OfficeData }) => {
     <div className="container">
       <table className="table is-bordered is-fullwidth">
         <tbody>
-          <tr>
+          {/* <tr>
             <th>Hub ID</th>
             <td>{office.hub_name}</td>
-          </tr>
+          </tr> */}
           <tr>
             <th>Name</th>
             <td>{office.vendor_name}</td>
