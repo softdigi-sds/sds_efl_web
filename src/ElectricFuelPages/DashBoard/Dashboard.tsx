@@ -13,7 +13,7 @@ const Dashboard = () => {
       <div className="column is-12 "> <DashboardBarChart/></div>
        
        </div>
-<div className=""><DashBoardTable/></div>
+{/* <div className=""><DashBoardTable/></div> */}
     </>
   )
 }
