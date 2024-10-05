@@ -18,8 +18,7 @@ const Notification = () => {
       id: 2,
       user: "Denise Nedry",
       avatar: ADMIN_USER_LOGO,
-      message:
-        "Oh, I finished de-bugging the phones, but the system's compiling for eighteen minutes, or...",
+      action: "left 6 comments on Isla Nublar SOC2 compliance report",
       time: "Last Wednesday at 9:42 am",
     },
     {
@@ -65,11 +64,11 @@ const Notification = () => {
                   </div>
                 </div>
                 {/* Notification message */}
-                {notification.message && (
+                {/* {notification.message && (
                   <div className="notification-message">
                     <p>{`"${notification.message}"`}</p>
                   </div>
-                )}
+                )} */}
               </div>
             ))}
           </div>
