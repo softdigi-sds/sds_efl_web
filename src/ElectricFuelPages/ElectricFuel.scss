@@ -391,7 +391,19 @@
     color: #4a4a4a;
     border: 1px solid black;
 }
+.customer-header-icon{
 
-
+  position: relative;
+}
+.customer-header-icon p{
+color: red;
+  position: absolute;
+  top: -15px;
+  left: 18px;
+  border-radius: 50%;
+  padding: 2px;
+margin: 1px;
+font-weight: bold;
+}
  
   
