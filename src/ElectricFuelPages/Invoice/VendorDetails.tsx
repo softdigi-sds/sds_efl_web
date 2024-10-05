@@ -1,10 +1,10 @@
-import React from 'react'
-import { changeDateTimeZoneFormat } from '../../services/core/CommonService';
+import React from "react";
+import { changeDateTimeZoneFormat } from "../../services/core/CommonService";
 interface DataProps {
-  data:any[]|any;
-  }
-const VendorDetails:React.FC<DataProps> =(props) => {
- const{data} = props
+  data: any[] | any;
+}
+const VendorDetails: React.FC<DataProps> = (props) => {
+  const { data } = props;
   return (
     <div className="container">
       <table className="table is-bordered is-fullwidth">
@@ -15,23 +15,31 @@ const VendorDetails:React.FC<DataProps> =(props) => {
           </tr> */}
           <tr>
             <th>Bill Start Date</th>
-            <td>{changeDateTimeZoneFormat(data?.bill_start_date,"DD-MM-YYYY")}</td>
+            <td>
+              {changeDateTimeZoneFormat(data?.bill_start_date, "DD-MM-YYYY")}
+            </td>
           </tr>
           <tr>
             <th>Bill End Date</th>
-            <td>{changeDateTimeZoneFormat(data?.bill_end_date,"DD-MM-YYYY")}</td>
+            <td>
+              {changeDateTimeZoneFormat(data?.bill_end_date, "DD-MM-YYYY")}
+            </td>
           </tr>
           <tr>
             <th>Number Of Vehicles</th>
-            <td>{data?.total_vehicles            }</td>
+            <td>{data?.total_vehicles}</td>
           </tr>
           <tr>
-            <th>Parking Amount</th>
+            <th>Total Units</th>
             <td>{data?.total_units}</td>
           </tr>
           <tr>
             <th>Vehicle Amount</th>
             <td>{data?.vehicle_amount}</td>
+          </tr>
+          <tr>
+            <th>Charging Amount</th>
+            <td>{data?.unit_amount}</td>
           </tr>
           <tr>
             <th>Rent Amount</th>
@@ -43,7 +51,7 @@ const VendorDetails:React.FC<DataProps> =(props) => {
           </tr>
           <tr>
             <th>Taxable Amount</th>
-            <td>{data?.total_taxable            }</td>
+            <td>{data?.total_taxable}</td>
           </tr>
           <tr>
             <th>GST (%)</th>
@@ -51,7 +59,7 @@ const VendorDetails:React.FC<DataProps> =(props) => {
           </tr>
           <tr>
             <th>GST Amount</th>
-            <td>{data?.gst_amount   }</td>
+            <td>{data?.gst_amount}</td>
           </tr>
           <tr>
             <th>Total Bill Amount</th>
@@ -60,7 +68,7 @@ const VendorDetails:React.FC<DataProps> =(props) => {
         </tbody>
       </table>
     </div>
-  )
-}
+  );
+};
 
-export default VendorDetails
+export default VendorDetails;
