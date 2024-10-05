@@ -135,6 +135,31 @@ const OfficesTable = () => {
 
 
 
+  const StatusUpdate = (id:number, status:any) => {
+ 
+    const subscription = post(
+      OFFICE_URLS.DELETE,
+      { id: id, status: status },
+     
+    ).subscribe((response) => {
+      setLoading(false);
+      setData((prevItems:any) =>
+        prevItems.map((item:any) =>
+          item.ID === id
+            ? { ...item, offer_status: status } 
+            : item
+        )
+      );
+      if(status == 0)
+        showAlertAutoClose("office Reopen", "success");
+      else
+      showAlertAutoClose("office Shutdown", "success");
+    });
+    return () => {
+      subscription.unsubscribe();
+    };
+  };
+
   
   const updateStatus = (itemIn:any, check_value: boolean) => {
  
@@ -143,8 +168,8 @@ const OfficesTable = () => {
     let new_status: number = itemIn.status === 5 ? 1 : 0;
     let msg: string =
       new_status === 0
-        ? "Do you wish to reactivate your office?"
-        : "Do you wish to inactivate your office?";
+        ? "Do you wish to mark office is reopen?"
+        : "Do you wish to mark office is shutdown?";
   
     // Trigger alert for confirmation
     showYesOrNoAlert(
@@ -157,7 +182,7 @@ const OfficesTable = () => {
   const updateStatusFinal = (selection:any, itemIn:any, new_status: number) => {
     if (selection === "yes") {
       // Post data to the backend
-      // deleteData(itemIn.ID, new_status);
+      StatusUpdate(itemIn.ID, new_status);
     }
   };
 
@@ -173,7 +198,7 @@ const OfficesTable = () => {
             <input
               id={"switchRoundedDefault_" + item.ID}
               type="checkbox"
-              // className="switch is-rounded is-small"
+               className="switch is-rounded is-small"
               checked={item.status === 5}
               onChange={(event:any) => updateStatus(item, event)}
             />
