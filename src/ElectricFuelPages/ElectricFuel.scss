@@ -383,15 +383,23 @@
     height: 40px;
     margin-right: 10px;
   }
-  .user-detail {
-    font-size: 16px;
-    font-weight: bold;
-    margin: 5px 0;
-    padding: 5px;
-    color: #4a4a4a;
-    border: 1px solid black;
+.customer-header-icon{
+
+  position: relative;
 }
-
-
+.customer-header-icon p{
+color: red;
+  position: absolute;
+  top: -15px;
+  left: 18px;
+  border-radius: 50%;
+  padding: 2px;
+margin: 1px;
+font-weight: bold;
+}
  
-  
+  .user-info table {
+    width: 50%;
+    margin: 0 auto; /* Align the table to the center */
+    border-collapse: collapse; /* Remove the spacing between table cells */
+  }

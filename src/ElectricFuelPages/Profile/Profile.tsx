@@ -9,6 +9,7 @@ import {
 } from "soft_digi";
 import { ALLOW_NUMERIC } from "../../services/PatternSerivce";
 import { getImageContent } from "../../services/core/FileService";
+import { ADMIN_USER_LOGO } from "../../services/ImageService";
 
 interface FormData {
   ename?: string;
@@ -102,11 +103,11 @@ const Profile = () => {
         <div className="column is-4 is-flex is-justify-content-center is-align-items-center">
           <div className="profile-header">
             <div className=" is-flex is-justify-content-center is-align-items-center">
-              <img
-                src={getImageContent(formData?.profile_image)}
-                alt="Profile"
-                className="image is-128x128"
-              />
+            <img
+    src={formData?.profile_image ? getImageContent(formData?.profile_image) : ADMIN_USER_LOGO}
+    alt="Profile"
+    className="image is-128x128"
+  />
             </div>
             <div className="mt-4">
             <SmartSofFile
@@ -123,8 +124,17 @@ const Profile = () => {
         </div>
 
         <div className="user-info column is-4 ">
-  <div>Name: <span className="user-detail">ADMIN</span></div>
-  <div className="mt-3">Email: <span className="user-detail">Admin@gmail.com</span></div>
+        <table  className="table ">
+
+    <tr>
+      <td>Name:</td>
+      <td>ADMIN</td>
+    </tr>
+    <tr>
+      <td>Email:</td>
+      <td>Admin@gmail.com</td>
+    </tr>
+  </table>
 </div>
 
 

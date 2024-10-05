@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { SmartAlert, SmartFormInterFace, SmartLoaderInterface, SmartTable, SmartTableNewInterface } from 'soft_digi';
 import { HUBS_URLS } from '../../api/UserUrls';
 import { useSiteContext } from '../../contexts/SiteProvider';
-import { showAlertAutoClose } from '../../services/notifyService';
+import { showAlertAutoClose, showYesOrNoAlert } from '../../services/notifyService';
 import { office_get_all_select } from '../../services/site/SelectBoxServices';
 import { get, post } from '../../services/smartApiService';
 import HubsForms from './HubsForms';
@@ -149,6 +149,81 @@ const HubsTables = () => {
       </>
     );
   };
+  const StatusUpdate = (id:number, status:any) => {
+ 
+    const subscription = post(
+      HUBS_URLS.DELETE,
+      { id: id, status: status },
+     
+    ).subscribe((response) => {
+     
+      setData((prevItems:any) =>
+        prevItems.map((item:any) =>
+          item.ID === id
+            ? { ...item, offer_status: status } 
+            : item
+        )
+      );
+      if(status == 0)
+        showAlertAutoClose("Hubs Reopen", "success");
+      else
+      showAlertAutoClose("Hubs Shutdown", "success");
+    });
+    return () => {
+      subscription.unsubscribe();
+    };
+  };
+
+  
+  const updateStatus = (itemIn:any, check_value: boolean) => {
+ 
+  
+   
+    let new_status: number = itemIn.status === 5 ? 1 : 0;
+    let msg: string =
+      new_status === 0
+        ? "Do you wish to mark office is reopen?"
+        : "Do you wish to mark office is shutdown?";
+  
+    // Trigger alert for confirmation
+    showYesOrNoAlert(
+      msg,
+      (selection: Selection) => updateStatusFinal(selection, itemIn, new_status),
+      "info"
+    );
+  };
+  
+  const updateStatusFinal = (selection:any, itemIn:any, new_status: number) => {
+    if (selection === "yes") {
+      // Post data to the backend
+      StatusUpdate(itemIn.ID, new_status);
+    }
+  };
+
+ 
+  
+
+  
+  const SwitchForm = ( item:any ) => {
+    return (
+      item.ID && (
+        <>
+          <div className="sds-elf-switch switch">
+            <input
+              id={"switchRoundedDefault_" + item.ID}
+              type="checkbox"
+               className="switch is-rounded is-small"
+              checked={item.status === 5}
+              onChange={(event:any) => updateStatus(item, event)}
+            />
+              <span className="slider round"></span>
+            {/* <label htmlFor={"switchRoundedDefault_" + item.ID}></label> */}
+          </div>
+        </>
+      )
+    );
+  };
+  
   const statusTags = [
     { value: 5, Label: "Active", class: "is-primary" },
     { value: 10, Label: "Inactive", class: "is-danger" },
@@ -176,7 +251,7 @@ const HubsTables = () => {
       index: "role",
       valueFunction: GroupDisplay,
     },
-    // { title: "State", index: "status", type: "tags", tags: statusTags },
+    { title: "Status", index: "status", valueFunction:SwitchForm },
     {
       title: "Action",
       index: "action",
