@@ -79,13 +79,13 @@ const Login: React.FC = () => {
       setFormSubmit(false);
       setUser(response.data);
       //showAlertAutoClose("Logged In Successfully", "success");
+      console.log("response.data ", response.data.roles);
       if (checkInterSection(response.data.roles || [], ["ADMIN"])) {
         navigate("/e-fuel/dashboard");
-      }
-      if (checkInterSection(response.data.roles || [], ["ACCOUNTS"])) {
+      } else if (checkInterSection(response.data.roles || [], ["ACCOUNTS"])) {
         navigate("/e-fuel/invoices");
       } else {
-        navigate("e-fuel/vehicles-report");
+        navigate("/e-fuel/vehicles-report");
       }
     });
 
