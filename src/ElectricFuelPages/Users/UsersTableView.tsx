@@ -15,10 +15,10 @@ const UsersTableView = ({ userData }: { userData: any }) => {
     <div className="container">
       <table className="table is-bordered is-fullwidth">
         <tbody>
-          <tr>
+          {/* <tr>
             <th>User ID</th>
             <td>{userData?.euserid}</td>
-          </tr>
+          </tr> */}
           <tr>
             <th>Name</th>
             <td>{userData?.ename}</td>
