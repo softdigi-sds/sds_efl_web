@@ -229,11 +229,11 @@ const OfficesTable = () => {
       title: "Address",
       index: "address_one",
     },
-    {
-      title: "Status",
-      index: "status",
-      valueFunction:SwitchForm
-    },
+    // {
+    //   title: "Status",
+    //   index: "status",
+    //   valueFunction:SwitchForm
+    // },
     // { title: "Status", index: "status", type: "tags", tags: statusTags },
     {
       title: "Action",
