@@ -114,38 +114,39 @@ const VendorsTable = () => {
   };
 
   const StatusUpdate = (id: number, status: any) => {
-    const subscription = post(VENDERS_URLS.DELETE, {
+    const subscription = post(VENDERS_URLS.STATUS_UPDATE, {
       id: id,
       status: status,
     }).subscribe((response) => {
-      setData((prevItems: any) =>
-        prevItems.map((item: any) =>
-          item.ID === id ? { ...item, offer_status: status } : item
-        )
-      );
-      if (status == 0) showAlertAutoClose("Vendor active", "success");
-      else showAlertAutoClose("Vendor inactive", "success");
+      loadTableData();
+      // setData((prevItems: any) =>
+      //   prevItems.map((item: any) =>
+      //     item.ID === id ? { ...item, offer_status: status } : item
+      //   )
+      // );
+      // if (status == 5) showAlertAutoClose("Vendor active", "success");
+      // else showAlertAutoClose("Vendor inactive", "success");
     });
     return () => {
       subscription.unsubscribe();
     };
   };
 
-  const updateStatus = (itemIn: any, check_value: any) => {
-    let new_status: number = itemIn.status === 5 ? 1 : 0;
+  const updateStatus = (itemIn: any) => {
+    let new_status: number = itemIn.status === 5 ? 10 : 5;
     let msg: string =
       new_status === 0
         ? "Do you wish to mark vendor is active?"
         : "Do you wish to mark office is inactive?";
-    console.log("check in value ", check_value);
+    //console.log("check in value ", check_value);
 
     // Trigger alert for confirmation
-    // showYesOrNoAlert(
-    //   msg,
-    //   (selection: Selection) =>
-    //     updateStatusFinal(selection, itemIn, new_status),
-    //   "info"
-    // );
+    showYesOrNoAlert(
+      msg,
+      (selection: Selection) =>
+        updateStatusFinal(selection, itemIn, new_status),
+      "info"
+    );
   };
 
   const updateStatusFinal = (
@@ -159,24 +160,25 @@ const VendorsTable = () => {
     }
   };
 
-  const handleInputChange = (event: any) => {
-    console.log("check in value ", event);
+  const handleInputChange = (event: any, item: any) => {
+    let in_value = event.target.checked ? event.target.value : "";
+    // console.log("in value " , in_value)
   };
 
   const SwitchForm = (item: any) => {
     return (
       item.ID && (
         <>
-          <div className="field" onClick={handleInputChange}>
+          <div className="field">
             <input
               id={`switchExample_${item.ID}`}
               type="checkbox"
               name={`switchExample_${item.ID}`}
               className="switch is-small"
               checked={item.status == 5 ? true : false}
-              onChange={handleInputChange}
+              onChange={() => updateStatus(item)}
             />
-            <label>--</label>
+            <label htmlFor={`switchExample_${item.ID}`}></label>
           </div>
         </>
       )

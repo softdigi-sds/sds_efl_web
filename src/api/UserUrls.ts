@@ -13,7 +13,6 @@ const HUBS_URLS = {
   GET_ONE: "/hubs/get_one",
   DELETE: "/hubs/delete_one",
   GET_ALL_SELECT: "/hubs/get_all_select",
- 
 };
 const HUB_GROUPS_URLS = {
   INSERT: "/hubgroups/insert",
@@ -29,6 +28,7 @@ const VENDERS_URLS = {
   GET_ONE: "/vendors/get_one",
   DELETE: "/vendors/delete_one",
   GET_ALL_SELECT: "/vendors/get_all_select",
+  STATUS_UPDATE: "vendors/status_update",
 };
 const VENDER_RATE_URLS = {
   INSERT: "/vendor_rate/insert",
@@ -65,8 +65,8 @@ const INVOICE_URLS = {
   GET_ONE_BILL: "bill/get_one",
   EXPORT_EXCEL: "bill/export_excel",
   IMPORT_ZIP: "bill/import_zip",
-  DOWNLOAD_INVOICE:"invoice/download_invoice",
-  DELETE:"bill/delete_one"
+  DOWNLOAD_INVOICE: "invoice/download_invoice",
+  DELETE: "bill/delete_one",
 };
 
 export {
@@ -77,6 +77,5 @@ export {
   OFFICE_URLS,
   VEHICLES_URL,
   VENDERS_URLS,
-  VENDER_RATE_URLS
+  VENDER_RATE_URLS,
 };
-
