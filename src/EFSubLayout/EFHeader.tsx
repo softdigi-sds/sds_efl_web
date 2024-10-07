@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSiteContext } from "../contexts/SiteProvider";
 import { ADMIN_USER_LOGO } from "../services/ImageService";
@@ -12,6 +12,7 @@ const EFHeader: React.FC<HeaderProps> = ({ setIsOpen, isOpen }) => {
   const navigate = useNavigate();
   const basenav = "/";
   const { user, setUser, logout, setLoading } = useSiteContext();
+  const [mobileScreen, setMobileScreen] = useState<boolean>(window.innerWidth <= 768); 
   //console.log("user ", user);
   const navigateLink = (index: any) => {
     // navigate(basenav + "/" + index);
@@ -21,6 +22,18 @@ const EFHeader: React.FC<HeaderProps> = ({ setIsOpen, isOpen }) => {
     logout();
     navigateLink("");
   };
+  useEffect(() => {
+    const handleResize = () => {
+      setMobileScreen(window.innerWidth <= 768); 
+    };
+    
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+   
+  }, []);
+
+
 
   // return (
   //   <div>
@@ -43,6 +56,9 @@ const EFHeader: React.FC<HeaderProps> = ({ setIsOpen, isOpen }) => {
   //   </div>
   // )
 
+  const MobileSideOpen = () => {
+   setIsOpen(!isOpen)
+  };
   return (
     <nav
       className="navbar is-transparent efl-main-nav"
@@ -52,13 +68,13 @@ const EFHeader: React.FC<HeaderProps> = ({ setIsOpen, isOpen }) => {
       <div className="navbar-brand">
         <a
           role="button"
-          className="navbar-burger"
+          className="navbar-burger mr-5"
           aria-label="menu"
           aria-expanded="false"
           data-target="navbarBasicExample"
-          onClick={() => setIsOpen(!isOpen)} 
+          onClick={() => MobileSideOpen()} 
         >
-          <span aria-hidden="true">test</span>
+          <span aria-hidden="true"></span>
           <span aria-hidden="true"></span>
           <span aria-hidden="true"></span>
           <span aria-hidden="true"></span>

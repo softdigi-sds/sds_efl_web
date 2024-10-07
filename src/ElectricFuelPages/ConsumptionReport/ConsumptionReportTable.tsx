@@ -133,6 +133,10 @@ const ConsumptionReportTable = () => {
 
   const titleDisp = () => {
     return (
+      <div className="columns is-mobile">
+        <div className="column  ">
+
+   
       <div className="is-flex is-justify-content-space-between	is-align-items-center">
         <div className="is-size-4 site-title has-text-weight-bold">
           {" "}
@@ -155,6 +159,8 @@ const ConsumptionReportTable = () => {
           </div>
         </div>
         <div></div>
+      </div>
+      </div>
       </div>
     );
   };

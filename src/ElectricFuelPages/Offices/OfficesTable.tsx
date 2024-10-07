@@ -269,7 +269,7 @@ const OfficesTable = () => {
   const tableTop: SmartTableNewInterface.SmartTableNewTopProps[] = [
     {
       type: "CUSTOM",
-      widthClass: "is-6",
+      widthClass: "is-6 ",
       custom: <p className="is-size-4">Offices & Location</p>,
     },
     {
