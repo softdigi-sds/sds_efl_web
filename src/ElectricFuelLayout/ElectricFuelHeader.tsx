@@ -85,12 +85,12 @@ const ElectricFuelHeader: React.FC = () => {
           <div className="container">
             <div className="row">
               <div className="columns is-vcentered is-flex-mobile">
-                <div className="column is-5-mobile is-3-desktop ">
+                <div className="column is-5-mobile is-6-desktop ">
                   <div className="logo pt-1 pb-1 m-1-mobile">
-                    <img src={LOGO} alt="Logo" className="img-responsive is-fullwidth" />
+                    <img src={LOGO} alt="Logo" className="img-responsive " />
                   </div>
                 </div>
-                <div className="column is-7-mobile is-9-desktop">
+                <div className="column is-7-mobile is-6-desktop">
                   <HeaderNavBar />
                 </div>
               </div>
