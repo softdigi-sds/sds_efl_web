@@ -7,7 +7,7 @@ const ElectricVichele = () => {
       <div className="container">
         <div className="columns is-vcentered is-multiline is-mobile">
           <div className="column is-12">
-            <div className="smart-electric-fuel-vichele-con is-size-6-mobile is-size-5-tablet is-size-4-desktop">
+            <div className="smart-electric-fuel-vichele-con is-size-6-mobile is-size-5-tablet is-size-2-desktop">
               Merits of using an
               <div className="">
                 <span className="eletric-home-page-words">

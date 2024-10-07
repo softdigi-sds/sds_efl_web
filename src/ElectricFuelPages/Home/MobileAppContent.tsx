@@ -12,7 +12,7 @@ const MobileAppContent = () => {
         <div className="columns is-vcentered is-multiline is-mobile">
     
           <div className="column is-12-mobile is-6-tablet is-4-desktop">
-            <div className="is-size-3-mobile is-size-1-desktop">
+            <div className="is-size-3-mobile is-size-2-desktop">
               <span className="eletric-home-page-words">
                 Locate the
                 <div>charging hubs on</div>
@@ -40,7 +40,7 @@ const MobileAppContent = () => {
           
        
           <div className="column is-12-mobile is-6-tablet is-4-desktop">
-            <div className="is-size-3-mobile is-size-1-desktop">
+            <div className="is-size-3-mobile is-size-2-desktop">
               <span className="eletric-home-page-words">
                 Features of
                 <div>Mobile App</div>
