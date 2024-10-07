@@ -80,13 +80,20 @@ const EFSideNav: React.FC<childrenProps> = ({ isOpen }) => {
       link: "/e-fuel/roles-list",
       roles: ["ADMIN"],
     },
-    // {
-    //   id: 8,
-    //   label: "Site Settings",
-    //   icon: "fa-cogs",
-    //   link: "/e-fuel/settings",
-
-    // },
+    {
+      id: 8,
+      label: "Meter Reading",
+      icon: "fa-cogs",
+      link: "/e-fuel/meter-reading",
+      roles: ["ADMIN"],
+    },
+    {
+      id: 8,
+      label: "MIS Reports",
+      icon: "fa-inr",
+      link: "/e-fuel/msi-reports",
+      roles: ["ADMIN"],
+    },
   ];
   const navigate = useNavigate();
   const location = useLocation();
