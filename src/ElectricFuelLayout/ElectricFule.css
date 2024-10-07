@@ -117,3 +117,22 @@
     color: red;
     font-size: 2rem;
 }
+/* Adjustments for mobile screens */
+@media (max-width: 1024px) {
+    .navbar-burger {
+      display: block;
+    }
+  
+    .navbar-menu.is-active {
+      display: block;
+    }
+  
+    .navbar-dropdown {
+      background-color: #f5f5f5;
+    }
+  
+    .navbar-item {
+      padding: 10px;
+    }
+  }
+  
