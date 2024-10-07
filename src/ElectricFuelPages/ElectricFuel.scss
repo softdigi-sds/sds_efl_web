@@ -117,7 +117,7 @@
   background-color: #fff;
   padding: 1.2rem;
   cursor: pointer;
-  min-height: 420px;
+  // min-height: 420px;
 
 }
 
@@ -426,7 +426,7 @@ font-weight: bold;
     padding: 30px 0px 80px 0px;
   }
 
-  /* Adjust styles for tablet screens */
+
 }
 
 /* For mobile devices (between 576px and 767px) */
@@ -441,14 +441,23 @@ font-weight: bold;
   }
 
   .smart-customer-home-page-details {
-    top: 70%;
-    left: 10px;
+    position: absolute;
+    top: 50%;
+    left: 50px;
+    transform: translateY(-50%);
+    z-index: 2;
   }
-
-  /* Other adjustments for mobile devices */
+  .slider-content {
+    font-size: 14px;
+    position: absolute;
+    top: 50%;
+    /* left: 50px; */
+    transform: translateY(-50%);
+    z-index: 2;
 }
 
-/* For small mobile devices (below 576px) */
+}
+
 @media only screen and (max-width: 575px) {
   .smart-electric-vaichele-cont {
     padding: 20px 0px 60px 0px;
@@ -459,14 +468,16 @@ font-weight: bold;
     text-align: center;
   }
 
-  .smart-customer-home-page-details {
-    top: 70%;
-    left: 5px;
-  }
-
+  .slider-content {
+    font-size: 14px;
+    position: absolute;
+    top: 50%;
+    /* left: 50px; */
+    transform: translateY(-50%);
+    z-index: 2;
+}
   .smart-elecric-vichele-card h2 {
     font-size: 14px;
   }
 
-  /* Adjust for very small screens */
 }

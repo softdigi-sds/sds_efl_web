@@ -12,17 +12,17 @@ const MobileAppContent = () => {
         <div className="columns is-vcentered is-multiline is-mobile">
     
           <div className="column is-12-mobile is-6-tablet is-4-desktop">
-            <div className="is-size-3-mobile is-size-2-desktop">
+            <div className="is-size-5-mobile is-size-2-desktop">
               <span className="eletric-home-page-words">
-                Locate the
-                <div>charging hubs on</div>
-                <div>Mobile App</div>
+                Locate the {" "}
+                <span>charging hubs on</span> {" "}
+                <span>Mobile App</span>
               </span>
             </div>
-            <div className="has-text-success is-size-4-mobile is-size-2-desktop">
-              <h2>Mobile App</h2>
+            <div className="has-text-success is-size-5-mobile is-size-2-desktop">
+              <span>Mobile App</span>
             </div>
-            <p className="smart-electric-app-para is-size-6-mobile is-size-5-tablet">
+            <p className="smart-electric-app-para is-size-7-mobile ">
               Plan your highway travel on an Electric vehicle while getting
               acquainted with the charging hubs along your route. EFL also
               provides a host of amenities and conveniences available at
@@ -40,13 +40,13 @@ const MobileAppContent = () => {
           
        
           <div className="column is-12-mobile is-6-tablet is-4-desktop">
-            <div className="is-size-3-mobile is-size-2-desktop">
+            <div className="is-size-5-mobile is-size-2-desktop">
               <span className="eletric-home-page-words">
                 Features of
                 <div>Mobile App</div>
               </span>
             </div>
-            <div className="is-size-6-mobile is-size-5-tablet smart-electric-app-para-two">
+            <div className="is-size-7-mobile smart-electric-app-para-two">
               <ul>
                 <li>Easy to locate our charging hubs & services on Google Map</li>
                 <li>Facilitate services for Retail & Corporate Customers</li>
