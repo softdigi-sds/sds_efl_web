@@ -3,7 +3,7 @@ import { ELETRIC_HOME_ADVANTAGE } from "../../services/ImageService";
 
 const ElectricVichele = () => {
   return (
-    <div className="smart-electric-vaichele-cont">
+    <div className="smart-electric-vaichele-cont p-3">
       <div className="container">
         <div className="columns is-vcentered is-multiline is-mobile">
           <div className="column is-12">
