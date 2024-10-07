@@ -39,7 +39,7 @@ const VendorWiseInformation = () => {
     };
   };
 
-  const downloadInvoice = (invoice_id:number) => {
+  const downloadInvoice = (invoice_id: number) => {
     let URL = INVOICE_URLS.DOWNLOAD_INVOICE;
     const subscription = post(URL, { id: invoice_id }).subscribe((response) => {
       if (response.data && response.data.content) {
@@ -83,6 +83,11 @@ const VendorWiseInformation = () => {
     },
   ];
 
+  const statusTags = [
+    { value: 5, label: "Active", class: "has-text-link" },
+    { value: 10, label: "Active", class: "has-text-link" },
+  ];
+
   const columns: SmartTableNewInterface.SmartTableNewColumnConfig[] = [
     { title: "S.NO", index: "s_no", type: "sno", width: "5" },
     {
@@ -109,14 +114,25 @@ const VendorWiseInformation = () => {
       title: "ACK No",
       index: "ack_no",
       width: "10",
-      valueFunction:(data)=>{
-        return data["status"]==10 ? <span className="has-text-link sd-cursor" onClick={()=>{downloadInvoice(data["ID"])}}>{data["ack_no"]}</span> : null;
-      }
+      valueFunction: (data) => {
+        return data["status"] == 10 ? (
+          <span
+            className="has-text-link sd-cursor"
+            onClick={() => {
+              downloadInvoice(data["ID"]);
+            }}
+          >
+            {data["ack_no"]}
+          </span>
+        ) : null;
+      },
     },
     {
       title: "Status",
       index: "status",
       width: "10",
+      type: "tags",
+      tags: statusTags,
     },
     {
       title: "Details",
