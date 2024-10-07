@@ -9,7 +9,7 @@ import {
   Tooltip,
   Legend,
 } from 'chart.js';
-import { SmartSoftCheckRadioSwitch, SmartSoftSelect } from 'soft_digi';
+import { SmartSoftSelect } from 'soft_digi';
 import { hubs_get_all_select } from '../../services/site/SelectBoxServices';
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
@@ -21,32 +21,30 @@ const DashboardBarChart: React.FC = () => {
   const [category, setCategory] = useState("2");
   const [selectedYear, setSelectedYear] = useState<number>(currentYear);
 
-  // Generate an array of years (e.g., last 10 years + current year)
   const years = Array.from(new Array(10), (_, index) => ({
-    label: `${currentYear - index}`, // Displayed text in the dropdown
-    value: currentYear - index, // Value for each option
+    label: `${currentYear - index}`,
+    value: currentYear - index,
   }));
 
-  // Handle the change when a user selects a year
   const handleYearChange = (selectedValue: number | null) => {
-    setSelectedYear(selectedValue || currentYear); // Fallback to current year if null
+    setSelectedYear(selectedValue || currentYear);
   };
+
   useEffect(() => {
     hubs_get_all_select(setHubs);
   }, []);
 
   useEffect(() => {
-    // update the first when the ubs are loaded
     if (hubs && hubs.length > 0) {
       setHub(hubs[0]);
     }
- 
-
   }, [hubs]);
-  const data = {
-    
-    labels :['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
 
+  const data = {
+    labels: [
+      'January', 'February', 'March', 'April', 'May', 'June', 
+      'July', 'August', 'September', 'October', 'November', 'December'
+    ],
     datasets: [
       {
         label: 'Vehicle Report',
@@ -55,7 +53,7 @@ const DashboardBarChart: React.FC = () => {
       },
       {
         label: 'Consumption Report',
-        data: [200, 700, 500, 600, 300, 500, 400,600],
+        data: [200, 700, 500, 600, 300, 500, 400, 600],
         backgroundColor: '#ff7eb3',
       },
     ],
@@ -63,53 +61,46 @@ const DashboardBarChart: React.FC = () => {
 
   const options = {
     responsive: true,
+    maintainAspectRatio: false,
     plugins: {
       legend: {
         position: 'top' as const,
       },
-      // title: {
-      //   display: true,
-      //   text: 'Bar Chart',
-      // },
     },
   };
-  const option = [{ value: "1" ,label:"Month"},
-    { value: "2" ,label:"Year"}
+
+  const categoryOptions = [
+    { value: "1", label: "Month" },
+    { value: "2", label: "Year" }
   ];
+
   return (
     <>
-    <div className='columns'>
-      <div className='column is-8'>
-        <p className='is-size-4 has-text-weight-bold '>Performance Details</p>
-      </div>
-      <div className='column  ' >
-        <div className='is-flex is-right sd-efl-input is-justify-content-flex-end'>
-        <SmartSoftSelect
-            options={hubs}
-            placeHolder="Select hub"
-            value={hub}
-            onChange={(value) => setHub(value)}
-          />
-         <div className="is-flex ml-2">
-        
-            <span className="mt-0 pt-0">
-            <SmartSoftSelect
-            options={option}
-            placeHolder="Select"
-                value={category}
-            onChange={(value) => setCategory(value)}
-          />
-            
-            </span>
-            
-          </div>
-       
+      <div className="columns is-multiline is-vcentered">
+        <div className="column is-12-tablet is-8-desktop">
+          <p className="is-size-4 has-text-weight-bold">Performance Details</p>
         </div>
-     
+        <div className="column is-12-tablet is-4-desktop">
+          <div className="is-flex is-justify-content-flex-end">
+            <SmartSoftSelect
+              options={hubs}
+              placeHolder="Select hub"
+              value={hub}
+              onChange={(value) => setHub(value)}
+            />
+            <div className="ml-2">
+              <SmartSoftSelect
+                options={categoryOptions}
+                placeHolder="Select"
+                value={category}
+                onChange={(value) => setCategory(value)}
+              />
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
-      <div className="">
-        <Bar data={data} options={options} height={100}/>
+      <div className="chart-container">
+        <Bar data={data} options={options} height={400} />
       </div>
     </>
   );
