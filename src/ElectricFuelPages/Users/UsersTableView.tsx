@@ -32,6 +32,15 @@ const UsersTableView = ({ userData }: { userData: any }) => {
             <td>{userData?.mobile_no}</td>
           </tr>
           <tr>
+            <th>Role</th>
+            <td>{userData?.roles?.map((data:any)=>(
+              
+              <>
+              {data.label}, 
+              </>
+            ))}</td>
+          </tr>
+          <tr>
             <th>Status</th>
             <td>{nameFunction(userData)}</td>
           </tr>
