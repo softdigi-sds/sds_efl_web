@@ -157,6 +157,18 @@ const UsersTable = () => {
     { value: 5, label: "Active", class: "is-primary" },
     { value: 10, label: "Inactive", class: "is-danger" },
   ];
+  const RolesList = (data: any) => {
+    return (
+      <div className="tags ">
+        {data?.roles?.map((user: any) => (
+          <div key={user.value} className="tag is-success mx-1">
+            {user.label}
+          </div>
+        ))}
+      </div>
+    );
+  };
+
 
   const columns: SmartTableNewInterface.SmartTableNewColumnConfig[] = [
     { title: "S.NO", index: "s_no", type: "sno", width: "5" },
@@ -168,7 +180,7 @@ const UsersTable = () => {
     {
       title: "Name",
       index: "ename",
-      width: "15",
+      width: "10",
     },
     {
       title: "Email",
@@ -178,7 +190,13 @@ const UsersTable = () => {
     {
       title: "Mobile Number",
       index: "mobile_no",
-      width: "15",
+      width: "10",
+    },
+    {
+      title: "Role",
+      index: "roles",
+      width: "20",
+      valueFunction:RolesList
     },
 
     // {

@@ -8,6 +8,8 @@ import {
   HomePage,
   HubsTables,
   InvoiceTable,
+  MeterReading,
+  Msireports,
   OfficesTable,
   Profile,
   RoleTable,
@@ -47,6 +49,8 @@ const EFSiteRoute = () => {
             <Route path="/vendors-rates-list" element={<VendorRatesTable />} />
             <Route path="/roles-list" element={<RoleTable />} />
             <Route path="/users" element={<UsersTable />} />
+            <Route path="/meter-reading" element={<MeterReading />} />
+            <Route path="/msi-reports" element={<Msireports />} />
             <Route
               path="/vehicles-report"
               element={<VehiclesReportTable />}

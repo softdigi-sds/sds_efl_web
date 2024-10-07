@@ -20,7 +20,7 @@ const VendorsView = ({ office }: { office: OfficeData }) => {
     switch (row.status) {
       case 5:
         return <span className="has-text-success">Active</span>;
-      case 0:
+      case 10:
         return <span className="has-text-danger">Inactive</span>;
   
     }

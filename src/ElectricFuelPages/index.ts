@@ -14,11 +14,13 @@ import InvoiceTable from "./Invoice/InvoiceTable"
 import VendorWiseInformation from "./Invoice/VendorWiseInformation";
 import Profile from "./Profile/Profile";
 import Notification from "./Notification/Notificaton";
+import MeterReading from "./MeterReading/MeterReading"
+import Msireports from "./MSIReports/MsiReports"
 export {
     Dashboard, HomePage, HubsTables, OfficesTable, RoleTable, UsersTable,
     VehiclesReportTable, VendorRatesTable, VendorsTable,
     ConsumptionReportTable, InvoiceTable,
-    VendorWiseInformation, Profile, Notification
+    VendorWiseInformation, Profile, Notification, MeterReading, Msireports
 
 };
 

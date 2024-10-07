@@ -117,7 +117,7 @@
   background-color: #fff;
   padding: 1.2rem;
   cursor: pointer;
-  min-height: 420px;
+  // min-height: 420px;
 
 }
 
@@ -141,18 +141,12 @@
 }
 
 .eletric-home-page-slider {
-  min-height: 39.5rem;
   background-image: url('../assets/images/Eletric/services-bg.png');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
 }
 
-.smart-customer-home-page-details {
-  padding-left: 135px;
-  padding-top: 180px;
-
-}
 
 .eletric-home-page-words {
   color: #ad1c53;
@@ -161,7 +155,7 @@
 .smart-customer-home-page-details-one {
   float: none;
   list-style: none;
-  width: 1349px;
+  // width: 1349px;
   z-index: 0;
   display: none;
 }
@@ -215,7 +209,7 @@
 }
 
 .smart-electric-vaichele-cont {
-  padding: 60px 0px 100px 0px;
+  padding: 40px 0px 100px 0px;
   margin: 0px;
   overflow: hidden;
   background-color: #eaefe8;
@@ -227,13 +221,13 @@
   color: #333;
   position: relative;
   text-align: center;
-  padding: 10px 0px 10px 0px;
-  margin-bottom: 40px;
-  line-height: 1.2;
+  // padding: 10px 0px 10px 0px;
+  // margin-bottom: 40px;
+  // line-height: 1.2;
 }
 
 .smart-elecric-vichele-card {
-  padding: 60px 0px 0px 0px;
+  padding: 40px 0px 0px 0px;
   margin: 0px;
 }
 
@@ -257,13 +251,13 @@
   margin: 0px;
 }
 
-.smart-customer-home-page-details {
-  position: absolute;
-  top: 40%;
-  left: 20px;
-  transform: translateY(-50%);
-  z-index: 2;
-}
+// .smart-customer-home-page-details {
+//   position: absolute;
+//   top: 70%;
+//   left: 20px;
+//   transform: translateY(-50%);
+//   z-index: 2;
+// }
 
 .customer-home-side-images {
   position: relative;
@@ -279,13 +273,10 @@
   position: relative;
 }
 
-.is-size-2 h2 {
-  font-size: 2rem;
-}
 
 .eletric-home-page-words {
   font-weight: bold;
-  font-size: 2rem;
+  // font-size: 2rem;
 }
 
 .smart-home-slider {
@@ -400,6 +391,93 @@ font-weight: bold;
  
   .user-info table {
     width: 50%;
-    margin: 0 auto; /* Align the table to the center */
-    border-collapse: collapse; /* Remove the spacing between table cells */
+    margin: 0 auto; 
+    border-collapse: collapse; 
   }
+
+@media only screen and (min-width: 1200px) {
+  .smart-customer-home-page-details {
+    position: absolute;
+    top: 60%;
+    left: 50px;
+    transform: translateY(-50%);
+    z-index: 2;
+  }
+
+  .smart-electric-app-para {
+    color: #777;
+    line-height: 1.6;
+    padding: 10px 0px 0px 18px;
+  }
+  
+
+}
+
+
+
+
+/* For tablets (between 768px and 991px) */
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+  .smart-electric-our-mission {
+    padding: 20px 0px 0px 0px;
+  }
+
+  .smart-electric-vaichele-cont {
+    padding: 30px 0px 80px 0px;
+  }
+
+
+}
+
+/* For mobile devices (between 576px and 767px) */
+@media only screen and (min-width: 576px) and (max-width: 767px) {
+  .smart-electric-fuel-vichele-con {
+    font-size: 28px;
+    text-align: center;
+  }
+
+  .smart-elecric-vichele-card h2 {
+    font-size: 16px;
+  }
+
+  .smart-customer-home-page-details {
+    position: absolute;
+    top: 50%;
+    left: 50px;
+    transform: translateY(-50%);
+    z-index: 2;
+  }
+  .slider-content {
+    font-size: 14px;
+    position: absolute;
+    top: 50%;
+    /* left: 50px; */
+    transform: translateY(-50%);
+    z-index: 2;
+}
+
+}
+
+@media only screen and (max-width: 575px) {
+  .smart-electric-vaichele-cont {
+    padding: 20px 0px 60px 0px;
+  }
+
+  .smart-electric-fuel-vichele-con {
+    font-size: 24px;
+    text-align: center;
+  }
+
+  .slider-content {
+    font-size: 14px;
+    position: absolute;
+    top: 50%;
+    /* left: 50px; */
+    transform: translateY(-50%);
+    z-index: 2;
+}
+  .smart-elecric-vichele-card h2 {
+    font-size: 14px;
+  }
+
+}

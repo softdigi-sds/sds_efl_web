@@ -14,7 +14,7 @@ const HomeSliderImages: React.FC = () => {
       image: ELETRIC_HOME_IMAGE_1,
       content: (
         <div className="smart-customer-home-page-details">
-          <div className="is-size-2">
+          <div className="is-size-2 is-size-7-mobile">
             <h2>
               <span className="eletric-home-page-words">WE EMPOWER</span>
               <div>
@@ -31,7 +31,7 @@ const HomeSliderImages: React.FC = () => {
       image: ELETRIC_HOME_IMAGE_2,
       content: (
         <div className="smart-customer-home-page-details">
-          {/* <div className="is-size-2">
+          <div className="is-size-2 is-size-7-mobile">
             <h2>
               <span className="eletric-home-page-words">WE ELECTRIFY</span>
               <div>
@@ -40,7 +40,7 @@ const HomeSliderImages: React.FC = () => {
                 WITH ELECTRIC FUEL
               </div>
             </h2>
-          </div> */}
+          </div>
         </div>
       ),
     },
@@ -48,7 +48,7 @@ const HomeSliderImages: React.FC = () => {
       image: ELETRIC_HOME_IMAGE_3,
       content: (
         <div className="smart-customer-home-page-details">
-          {/* <div className="is-size-2">
+          <div className="is-size-2 is-size-7-mobile">
             <h2>
               <span className="eletric-home-page-words">WE ENERGIZE</span>
               <div>
@@ -57,7 +57,7 @@ const HomeSliderImages: React.FC = () => {
                 SUPERIOR CHARGERS
               </div>
             </h2>
-          </div> */}
+          </div>
         </div>
       ),
     },
@@ -65,12 +65,12 @@ const HomeSliderImages: React.FC = () => {
       image: ELETRIC_HOME_IMAGE_4,
       content: (
         <div className="smart-customer-home-page-details">
-          {/* <div className="is-size-2">
+          <div className="is-size-2 is-size-7-mobile">
             <h2>
               <span className="eletric-home-page-words">WE BOOST</span>
               <div>YOUR EV EXPERIENCE</div>
             </h2>
-          </div> */}
+          </div>
         </div>
       ),
     },
@@ -86,7 +86,9 @@ const HomeSliderImages: React.FC = () => {
         }))}
         showCount={1}
         auto={true}
-        scrollButton={true}
+        scrollButton={false}
+        scrollTime = {2000}
+        hideDots = {true}
       />
     </div>
   );
