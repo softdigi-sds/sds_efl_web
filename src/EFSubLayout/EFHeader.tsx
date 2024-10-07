@@ -56,8 +56,9 @@ const EFHeader: React.FC<HeaderProps> = ({ setIsOpen, isOpen }) => {
           aria-label="menu"
           aria-expanded="false"
           data-target="navbarBasicExample"
+          onClick={() => setIsOpen(!isOpen)} 
         >
-          <span aria-hidden="true"></span>
+          <span aria-hidden="true">test</span>
           <span aria-hidden="true"></span>
           <span aria-hidden="true"></span>
           <span aria-hidden="true"></span>
