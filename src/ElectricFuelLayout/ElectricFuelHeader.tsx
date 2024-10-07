@@ -35,7 +35,7 @@ const ElectricFuelHeader: React.FC = () => {
   
              
                     <div className="column is-12-mobile is-6-tablet is-6-desktop is-flex is-justify-content-flex-end">
-                      <div className="mb-3-mobile">
+                      <div className="">
                         <button
                           className="smart-login-button is-size-7-mobile is-size-6-tablet"
                           onClick={() => handleLogin("/login")}
