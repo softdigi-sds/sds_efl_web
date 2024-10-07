@@ -12,7 +12,9 @@ const EFHeader: React.FC<HeaderProps> = ({ setIsOpen, isOpen }) => {
   const navigate = useNavigate();
   const basenav = "/";
   const { user, setUser, logout, setLoading } = useSiteContext();
-  const [mobileScreen, setMobileScreen] = useState<boolean>(window.innerWidth <= 768); 
+  const [mobileScreen, setMobileScreen] = useState<boolean>(
+    window.innerWidth <= 768
+  );
   //console.log("user ", user);
   const navigateLink = (index: any) => {
     // navigate(basenav + "/" + index);
@@ -24,16 +26,12 @@ const EFHeader: React.FC<HeaderProps> = ({ setIsOpen, isOpen }) => {
   };
   useEffect(() => {
     const handleResize = () => {
-      setMobileScreen(window.innerWidth <= 768); 
+      setMobileScreen(window.innerWidth <= 768);
     };
-    
 
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-   
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
-
-
 
   // return (
   //   <div>
@@ -57,7 +55,7 @@ const EFHeader: React.FC<HeaderProps> = ({ setIsOpen, isOpen }) => {
   // )
 
   const MobileSideOpen = () => {
-   setIsOpen(!isOpen)
+    setIsOpen(!isOpen);
   };
   return (
     <nav
@@ -68,11 +66,11 @@ const EFHeader: React.FC<HeaderProps> = ({ setIsOpen, isOpen }) => {
       <div className="navbar-brand">
         <a
           role="button"
-          className="navbar-burger mr-5"
+          className="navbar-burger"
           aria-label="menu"
           aria-expanded="false"
           data-target="navbarBasicExample"
-          onClick={() => MobileSideOpen()} 
+          onClick={() => MobileSideOpen()}
         >
           <span aria-hidden="true"></span>
           <span aria-hidden="true"></span>
@@ -110,7 +108,10 @@ const EFHeader: React.FC<HeaderProps> = ({ setIsOpen, isOpen }) => {
                       /> */}
 
             <div className="navbar-dropdown is-right">
-              <a className="navbar-item" onClick={() => navigate("/e-fuel/profile")}>
+              <a
+                className="navbar-item"
+                onClick={() => navigate("/e-fuel/profile")}
+              >
                 <span className="icon mr-1">
                   <i className="fa fa-user-circle-o"></i>
                 </span>{" "}

@@ -1,12 +1,12 @@
-import React, { useState } from 'react';
-import EFHeader from './EFHeader';
-import EFSideNav from './EFSideNav';
-import './EFSubLayout.scss';
+import React, { useState } from "react";
+import EFHeader from "./EFHeader";
+import EFSideNav from "./EFSideNav";
+import "./EFSubLayout.scss";
 interface childrenProps {
-  children: any
+  children: any;
 }
 const EFSubLayout: React.FC<childrenProps> = (props) => {
-  const { children } = props
+  const { children } = props;
   const [isOpen, setIsOpen] = useState<boolean>(true);
 
   const toggleSidebar = () => {
@@ -27,21 +27,18 @@ const EFSubLayout: React.FC<childrenProps> = (props) => {
   //   </div>
   // )
   return (
-    <div className='container is-fluid'>
-      <div className='efl-main-sidenav'>
+    <div className="container is-fluid">
+      <div className="efl-main-sidenav">
         <EFSideNav isOpen={isOpen} />
       </div>
       <div className={`efl-main-header ${isOpen ? "expanded" : ""}`}>
-        <EFHeader setIsOpen={(value)=>setIsOpen(value)} isOpen={isOpen} />
+        <EFHeader setIsOpen={(value) => setIsOpen(value)} isOpen={isOpen} />
       </div>
-      <div className={`efl-main-div ${isOpen ? "expanded" : ""}`} >        
-          {children}      
+      <div className={`efl-main-div ${isOpen ? "expanded" : ""}`}>
+        {children}
       </div>
     </div>
-  )
+  );
+};
 
-
-
-}
-
-export default EFSubLayout
+export default EFSubLayout;

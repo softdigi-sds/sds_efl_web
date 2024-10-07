@@ -118,7 +118,7 @@ const EFSideNav: React.FC<childrenProps> = ({ isOpen }) => {
               onClick={() => navigateLink(item.link)}
               className={
                 location.pathname === item.link
-                  ? "sidenav-active-link"
+                  ? "sidenav-link active-link"
                   : "sidenav-link"
               }
             >

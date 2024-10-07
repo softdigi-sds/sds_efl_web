@@ -1,180 +1,187 @@
 .efl-main-sidenav {
-    position: fixed;
-    width: 200px;
-    left: 0;
-    top: 0;
 }
 
 .efl-main-header {
-    left: 60px;
-    height: 60px;
-    position: fixed;
-    top: 0;
-    width: calc(100% - 40px);
-    transition: left 0.3s ease;
- 
-    z-index:956;
-    &.expanded {
-        width: calc(100% - 220px);
-        left:200px;
+  left: 60px;
+  height: 60px;
+  position: fixed;
+  top: 0;
+  width: calc(100% - 40px);
+  transition: left 0.3s ease;
+
+  z-index: 956;
+  &.expanded {
+    width: calc(100% - 220px);
+    left: 200px;
+    @media screen and (max-width: 768px) {
+      left: 0;
+      width: 100%;
     }
-    .navbar{
-        border-bottom: 1px solid #91076d;
+
+    // Extra small devices (e.g. phones)
+    @media screen and (max-width: 480px) {
+      left: 0;
+      width: 100%;
     }
+  }
+  .navbar {
+    border-bottom: 1px solid #91076d;
+    height: 100%;
+  }
+  @media screen and (max-width: 768px) {
+    left: 0;
+    width: 100%;
+  }
+
+  // Extra small devices (e.g. phones)
+  @media screen and (max-width: 480px) {
+    left: 0;
+    width: 100%;
+  }
 }
 
 .efl-main-div {
-    margin-left: 40px;
-    margin-top: 60px;
-    padding: 10px;
-    transition: margin-left 0.3s ease;
-    &.expanded {
-        margin-left: 180px;
-       // width: 200px; // Expanded width on hover
-    }
+  margin-left: 40px;
+  margin-top: 60px;
+  padding: 10px;
+  transition: margin-left 0.3s ease;
+  &.expanded {
+    margin-left: 180px;
+    // width: 200px; // Expanded width on hover
+  }
+  @media screen and (max-width: 768px) {
+    margin-left: 0 !important;
+    width: 100%;
+    padding: 5px;
+  }
+  // Extra small devices (e.g. phones)
+  @media screen and (max-width: 480px) {
+    margin-left: 0 !important;
+    width: 100%;
+    padding: 5px;
+  }
 }
 
 .efl-main-nav {
-    .navbar-item {
-        font-size: 1.2em;
-    }
+  .navbar-item {
+    font-size: 1.2em;
+  }
 }
-         
-
- 
 
 /*** side nav styles ***/
 // Base sidenav styles
 .smart-sidenav {
-    width: 60px; // Shrinked width
-    height: 100vh;
-     background-color: #91076d;
-    // background: #ab1e54;
-    // background-image: linear-gradient(to right, #DA22FF 0%, #9733EE  51%, #DA22FF  100%);
-    position: fixed;
-    top: 0;
-    left: 0;
-    transition: width 0.3s ease;
+  width: 60px; // Shrinked width
+  height: 100vh;
+  background-color: #91076d;
+  position: fixed;
+  top: 0;
+  left: 0;
+  transition: width 0.3s ease;
+  transition: display 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  &.expanded {
+    width: 200px; // Expanded width on hover
+    @media screen and (max-width: 768px) {
+      position: fixed;
+      top: 0;
+      width: 200px;
+      display: flex;
+      z-index: 1001;
+    }
+    // Extra small devices (e.g. phones)
+    @media screen and (max-width: 480px) {
+      position: fixed;
+      top: 0;
+      width: 200px;
+      display: flex;
+      z-index: 1001;
+    }
+  }
+  .brand-logo {
+    // height:60px;
+    margin-bottom: 10px;
+    padding: 10px;
+    background-color: #ffffff;
+    height: 60px;
+    img {
+      height: 100%;
+      display: block;
+      object-fit: fill !important;
+    }
+  }
+  &.expanded .brand-logo img {
+    max-width: 100%;
+  }
+  .sidenav-link {
+    width: 100%;
+    padding: 10px;
+    text-decoration: none;
+    color: white;
     display: flex;
-    flex-direction: column;
     align-items: center;
-   // padding-top: 10px;
-
-
-
-    &.expanded {
-        width: 200px; // Expanded width on hover
+    transition: all 0.5s;
+    &:hover {
+      background-color: #ffffff;
+      color: #91076d;
+      border-top: 1px solid #91076d;
+      border-bottom-right-radius: 10px;
+      border-top-right-radius: 10px;
+      border-radius: 10px;
     }
-
-    // Brand Logo styles
-    // .brand-logo {
-    
-    //     width: 100px;
-    //     height: 40px;
-    //     display: flex;
-    //     justify-content: center;
-    //     align-items: center;
-    //     margin-bottom: 10px;
-
-    //     img {
-    //         max-height: 100%;
-    //         max-width: 100%;
-    //         transition: max-width 0.3s ease;
-    //     }
-    // }
-
-    .brand-logo{
-        // height:60px;
-        margin-bottom: 10px;
-        padding: 10px;
-        background-color: #ffffff;
+    .icon {
+      font-size: 24px;
+      margin-right: 16px;
     }
-    // Expand the logo slightly when sidenav is expanded
-
-
-    &.expanded .brand-logo img {
-        max-width: 100%;
-        // transform: scale(1.5);
+    .link-text {
+      display: none; // Initially hidden
     }
-
-    // Individual link styles
-    .sidenav-link {
-        width: 100%;
-        padding: 10px;
-        text-decoration: none;
-        color: white;
-        display: flex;
-        align-items: center;
-        transition: background-color 0.3s;
-
-        &:hover {
-            background-color: #ffffff;
-            color:#91076d;
-        }
-
-        .icon {
-            font-size: 24px;
-            margin-right: 16px;
-        }
-
-        .link-text {
-            display: none; // Initially hidden
-        }
+    &.active-link {
+      background-color: #ffffff;
+      color: #91076d;
+      border-radius: 10px;
     }
-    .sidenav-active-link{
-        background-color: #ffffff;
-        color:#91076d;
-        width: 100%;
-        padding: 10px;
-        text-decoration: none;
-    //    transform: scale(1.1);
-        display: flex;
-        align-items: center;
-        transition: background-color 0.3s;
-        
-        &:hover {
-            background-color: #ffffff;
-            color:#91076d;
-        }
+  }
+  // Show the text when sidenav is expanded
+  &.expanded .link-text {
+    display: inline-block;
+  }
 
-        .icon {
-            font-size: 24px;
-            margin-right: 16px;
-        }
+  // Mobile view styles
+  @media screen and (max-width: 768px) {
+    display: none;
+  }
 
-        .link-text {
-            display: none; // Initially hidden
-        }
-    }
-
-    // Show the text when sidenav is expanded
-    &.expanded .link-text {
-        display: inline-block;
-    }
+  // Extra small devices (e.g. phones)
+  @media screen and (max-width: 480px) {
+    display: none;
+  }
 }
 .smart-elf-notification .dropdown-content {
-    border: 1px solid #1c04f0;
-    font-size: 14px;
-    padding: 0 !important;
-    width: 360px !important;
+  border: 1px solid #1c04f0;
+  font-size: 14px;
+  padding: 0 !important;
+  width: 360px !important;
 }
-.navbar-item, .navbar-link {
-    position: relative !important;
-  
-    .smart-elf-notification {
-      span {
-        .user-bade {
-          background-color: #f427c0 !important;
-          border-radius: 50% !important;
-          color: #fff;
-          font-size: 12px;
-          padding: 0 5px;
+.navbar-item,
+.navbar-link {
+  position: relative !important;
+
+  .smart-elf-notification {
+    span {
+      .user-bade {
+        background-color: #f427c0 !important;
+        border-radius: 50% !important;
+        color: #fff;
+        font-size: 12px;
+        padding: 0 5px;
         //   position: absolute;
         //   right: -5px;
         //   top: -15px;
-          z-index: 10;
-        }
+        z-index: 10;
       }
     }
   }
-  
+}
