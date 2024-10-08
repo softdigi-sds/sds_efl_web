@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { LOGO } from "../services/ImageService";
 import { useSiteContext } from "../contexts/SiteProvider";
@@ -7,6 +7,7 @@ interface childrenProps {
   isOpen: boolean;
 }
 const EFSideNav: React.FC<childrenProps> = ({ isOpen }) => {
+  const ref = useRef<HTMLDivElement | null>(null);
   const listItems = [
     {
       id: 1,
@@ -102,6 +103,19 @@ const EFSideNav: React.FC<childrenProps> = ({ isOpen }) => {
   const navigateLink = (index: any) => {
     navigate(index);
   };
+
+  const handleClickOutside = (event: MouseEvent) => {
+    if (ref.current && !ref.current.contains(event.target as Node)) {
+      //setActive(false); // Close the dropdown when clicking outside
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("click", handleClickOutside);
+    return () => {
+      document.removeEventListener("click", handleClickOutside);
+    };
+  }, []);
 
   return (
     <div className={`smart-sidenav ${isOpen ? "expanded" : ""}`}>
