@@ -481,6 +481,30 @@ font-weight: bold;
   }
 
 }
+
+.scrollable-table {
+  overflow-x: auto; /* Enables horizontal scrolling */
+  white-space: nowrap; /* Prevents table contents from wrapping */
+}
+
+
+
+
+::-webkit-scrollbar {
+  width: 3px; /* width of the scrollbar */
+}
+
+/* Scrollbar Handle */
+::-webkit-scrollbar-thumb {
+  background-color: #b90449; /* color of the scrollbar handle */
+  border-radius: 5px; /* roundness of the scrollbar handle */
+  width:1px;
+}
+
+/* Scrollbar Track when hovering */
+::-webkit-scrollbar-track:hover {
+  background-color: #f0f0f0; /* color of the scrollbar track when hovering */
+}
 .market-calendar .react-calendar{
   min-width: 100%;
   border: none;
