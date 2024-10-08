@@ -9,8 +9,8 @@ const Dashboard = () => {
     <p className='is-size-4 has-text-weight-bold mb-1'>Dashboard</p>
     <div className=""><DashBoardCard/></div>
       <div className="columns">  
-      {/* <div className="column is-6 "> <DashboardChart/></div> */}
-      <div className="column is-12 "> <DashboardBarChart/></div>
+      <div className="column is-6 "> <DashboardChart/></div>
+      <div className="column is-6 "> <DashboardBarChart/></div>
        
        </div>
 {/* <div className=""><DashBoardTable/></div> */}
