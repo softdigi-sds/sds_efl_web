@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import Calendar from "react-calendar";
-
+import "react-calendar/dist/Calendar.css";
 interface SectorOption {
   value: string;
   label: string;
@@ -45,7 +45,7 @@ const MarketSlots: React.FC = () => {
       const formattedDate = date.toISOString().split("T")[0];
 
       if (date.getMonth() !== activeStartDate.getMonth()) {
-        return <div className="title-content date-disabled"></div>;
+        return <div className="title-content date-disabled m-3"></div>;
       }
 
       const dateContent =
@@ -54,8 +54,7 @@ const MarketSlots: React.FC = () => {
           : "";
 
       return (
-        <div className={`title-content ${dateContent}`}>
-          <span>{date.getDate()}</span>
+        <div className={`title-content ${dateContent} m-3`}>
         </div>
       );
     }
@@ -71,10 +70,7 @@ const MarketSlots: React.FC = () => {
   const topDisplay = () => (
     <div className="columns mt-5 is-multiline">
       <div className="column is-6">
-        {" "}
-        <div className="is-size-4 has-text-weight-bold">
-          Vehicles Report
-        </div>{" "}
+        <div className="is-size-4 has-text-weight-bold"> Vehicles Report </div>
       </div>
       <div className="column is-size-3 is-6 has-text-right admin-market-offer-table">
         <i
@@ -108,23 +104,25 @@ const MarketSlots: React.FC = () => {
 
   return (
     <>
-      {topDisplay()}
-      {tabData && (
-        <div className="market-calendar">
-          <Calendar
-            onChange={(value) => {
-              if (Array.isArray(value)) {
-                // console.log("Selected range: ", value);
-              } else {
-                setDate(value);
-              }
-            }}
-            value={dated}
-            tileContent={tileContent}
-            showNavigation={false}
-          />
-        </div>
-      )}
+      <div className="container">
+        {topDisplay()}
+        {tabData && (
+          <div className="market-calendar">
+            <Calendar
+              onChange={(value) => {
+                if (Array.isArray(value)) {
+                  // console.log("Selected range: ", value);
+                } else {
+                  setDate(value);
+                }
+              }}
+              value={dated}
+              tileContent={tileContent}
+              showNavigation={false}
+            />
+          </div>
+        )}
+      </div>
     </>
   );
 };

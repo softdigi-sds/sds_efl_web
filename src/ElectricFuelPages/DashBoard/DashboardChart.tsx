@@ -25,7 +25,7 @@ const DashboardChart: React.FC = () => {
   return (
     <div className='canvas'>
       <div className='is-size-4 has-text-weight-bold'>Revenue Overview</div>  
-      <div className="m-3" style={{ height: '450px' }}> 
+      <div className="m-3" style={{ height: '400px' }}> 
         <Pie data={data} options={options} />
       </div>
     </div>
