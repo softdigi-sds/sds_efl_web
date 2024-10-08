@@ -46,26 +46,28 @@ const MeterReadingForm = () => {
       };
       const formElements: SmartFormInterFace.SmartFormElementProps[] = [
         {
-          type: "SELECT_BOX",
+          type: "TEXT_BOX",
           width: "12",
           name: "sd_efl_hub_id",
           element: {
             label: "Hub Name",
             isRequired: true,
-            options: allHubs,
+            // options: allHubs,
             // isHorizontal: true,
+            inputProps: {disabled: true},
             inputType: "BORDER_LABEL",
             validations: hubFormValidations.city,
           },
         },
         {
-          type: "DATE",
+          type: "TEXT_BOX",
           width: "12",
           name: "hub_id",
           element: {
             label: "Select Year / Month",
             isRequired: true,
             // inputProps: { isFocussed: true },
+            inputProps: {disabled: true},
             // isHorizontal: true,
             inputType: "BORDER_LABEL",
             validations: hubFormValidations.hub_id,
@@ -89,7 +91,7 @@ const MeterReadingForm = () => {
           width: "12",
           name: "hub_name",
           element: {
-            label: "Meter End Reading",
+            label: "Meter Start Reading",
             isRequired: true,
             // inputProps: { isFocussed: true },
             // isHorizontal: true,
@@ -102,7 +104,7 @@ const MeterReadingForm = () => {
             width: "12",
             name: "numberof_unit",
             element: {
-              label: "Number of Units",
+              label: "Number of Meter",
               isRequired: true,
               // inputProps: { isFocussed: true },
             //   isHorizontal: true,

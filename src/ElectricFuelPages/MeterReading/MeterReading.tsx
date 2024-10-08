@@ -67,7 +67,7 @@ const MeterReading = () => {
         <SmartSoftButton
           label="Add"
           onClick={() => openMeterForm({})}
-          classList={["button", "mt-4", "smart-third-button"]}
+          classList={["button", "mt-4", "smart-third-button is-small"]}
         />
         </div>
       );
