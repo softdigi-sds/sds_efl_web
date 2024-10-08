@@ -17,10 +17,17 @@ const DashboardChart: React.FC = () => {
     ]
   };
 
+  const options = {
+    responsive: true,
+    maintainAspectRatio: false, 
+  };
+
   return (
     <div className='canvas'>
       <div className='is-size-4 has-text-weight-bold'>Revenue Overview</div>  
-      <Pie data={data} />
+      <div className="m-3" style={{ height: '450px' }}> 
+        <Pie data={data} options={options} />
+      </div>
     </div>
   );
 };
