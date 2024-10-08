@@ -5,6 +5,16 @@ import { useSiteContext } from "../../contexts/SiteProvider";
 
 const MeterReading = () => {
   const { openModal } = useSiteContext();
+  const [currentDate, setCurrentDate] = useState(new Date());
+
+  const changeMonth = (months: number) => {
+    const newDate = new Date(currentDate.setMonth(currentDate.getMonth() + months));
+    setCurrentDate(new Date(newDate));
+  };
+
+  const formatDate = (date: Date) => {
+    return date.toLocaleDateString("en-US", { year: "numeric", month: "long" });
+  };
 
   const data = [
     {
@@ -64,11 +74,11 @@ const MeterReading = () => {
     if (row.address_one === "0") {
       return (
         <div className="has-text-centered">
-        <SmartSoftButton
-          label="Add"
-          onClick={() => openMeterForm({})}
-          classList={["button", "mt-4", "smart-third-button is-small"]}
-        />
+          <SmartSoftButton
+            label="Add"
+            onClick={() => openMeterForm({})}
+            classList={["button", "mt-4", "smart-third-button is-small"]}
+          />
         </div>
       );
     } else if (parseInt(row.address_one) > 0) {
@@ -86,16 +96,35 @@ const MeterReading = () => {
     { title: "Deviation", index: "status" },
   ];
 
+
   const tableTop: SmartTableNewInterface.SmartTableNewTopProps[] = [
     {
       type: "CUSTOM",
-      widthClass: "is-8",
+      widthClass: "is-5",
       custom: <p className="is-size-4">Meter Reading</p>,
     },
     {
       type: "SEARCH",
       widthClass: "is-4",
       align: "RIGHT",
+    },
+    {
+      type: "CUSTOM",
+      widthClass: "is-3",
+      align: "RIGHT",
+      custom: (
+        <div className="date-navigation">
+          <span onClick={() => changeMonth(-1)} className="icon is-clickable">
+            <i className="fa fa-arrow-left"></i>
+          </span>
+          <span className="mx-2">
+            {formatDate(currentDate)} <i className="fa fa-calendar"></i>
+          </span>
+          <span onClick={() => changeMonth(1)} className="icon is-clickable">
+            <i className="fa fa-arrow-right"></i>
+          </span>
+        </div>
+      ),
     },
   ];
 
