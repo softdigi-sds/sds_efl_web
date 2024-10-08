@@ -496,7 +496,7 @@ font-weight: bold;
 
 /* Scrollbar Handle */
 ::-webkit-scrollbar-thumb {
-  background-color: #ad1c53; /* color of the scrollbar handle */
+  background-color: #b90449; /* color of the scrollbar handle */
   border-radius: 5px; /* roundness of the scrollbar handle */
   width:1px;
 }
@@ -504,4 +504,7 @@ font-weight: bold;
 /* Scrollbar Track when hovering */
 ::-webkit-scrollbar-track:hover {
   background-color: #f0f0f0; /* color of the scrollbar track when hovering */
+}
+.market-calendar .react-calendar{
+  min-width: 100%;
 }
