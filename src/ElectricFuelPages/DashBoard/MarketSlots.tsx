@@ -69,23 +69,20 @@ const MarketSlots: React.FC = () => {
 
   const topDisplay = () => (
     <div className="columns is-multiline">
-      <div className="column is-6">
+      <div className="column is-5">
         <div className="is-size-4 has-text-weight-bold"> Vehicles Report </div>
       </div>
-      <div className="column is-size-3 is-6 has-text-right admin-market-offer-table">
+      <div className="column  is-7 has-text-right admin-market-offer-table is-size-5">
         <i
           className="fa fa-arrow-circle-o-left mr-3 pointer"
           aria-hidden="true"
           onClick={prevMonth}
-        ></i>
+        >    <span className="market-slot-text ml-3 mr-3">{getMonthYearDisplay()}</span></i>
         <i
           className="fa fa-arrow-circle-o-right ml-3 pointer"
           aria-hidden="true"
           onClick={nextMonth}
         ></i>
-      </div>
-      <div className="column is-12 has-text-centered p-0">
-        <span className="market-slot-text">{getMonthYearDisplay()}</span>
       </div>
     </div>
   );
