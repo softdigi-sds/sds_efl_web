@@ -1,5 +1,5 @@
 import React, { useCallback, useRef } from 'react';
-import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
+import { GoogleMap, LoadScript, Marker, MarkerF,  } from '@react-google-maps/api';
 
 const HubsMapView = () => {
   const mapStyles = {        
@@ -84,14 +84,15 @@ const HubsMapView = () => {
       googleMapsApiKey="AIzaSyCA5bzDqci1RcEHa17XN7R09bzh3-nOVm0"> {/* Replace with your API key */}
       <GoogleMap
         mapContainerStyle={mapStyles}
-        zoom={8}
+        zoom={9}
         //  center={defaultCenter}
         onLoad={onLoad}
+       
       >
            {locations?.map((location, index) => (
-          <Marker 
+          <MarkerF
             key={index} 
-            position={{ lat: location.lat, lng: location.lng }} 
+            position={{ lat:location.lat, lng:location.lng }} 
             title={location.name}  // Optional: shows the name on hover
             icon={`http://maps.google.com/mapfiles/ms/icons/red-dot.png`}
           />
