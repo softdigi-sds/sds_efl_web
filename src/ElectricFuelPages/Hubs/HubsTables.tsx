@@ -7,6 +7,7 @@ import { office_get_all_select } from '../../services/site/SelectBoxServices';
 import { get, post } from '../../services/smartApiService';
 import HubsForms from './HubsForms';
 import HubsView from './HubsView';
+import HubsMapView from './HubsMapView';
 
 const HubsTables = () => {
   const [data, setData] = useState([]);
@@ -99,6 +100,14 @@ const HubsTables = () => {
     };
     openModal(options);
   };
+  const openMapView = (hubsdetail: any) => {
+    let options = {
+      title: "Hub Location",
+      content: <HubsMapView  />,
+      width: 80,
+    };
+    openModal(options);
+  };
 
   const buttons = [
     {
@@ -126,6 +135,15 @@ const HubsTables = () => {
       classList: ["smart-efl-table-delete-icon"],
       onClick: (data: any) => {
         openDeleteModal(data["ID"]);
+      },
+    },
+    {
+      label: "",
+      type: "icon",
+      leftIcon: "fa fa-map-o",
+      classList: ["has-text-warning-dark"],
+      onClick: (data: any) => {
+        openMapView(data["ID"]);
       },
     },
   ];
@@ -257,7 +275,7 @@ const HubsTables = () => {
       index: "action",
       type: "buttons",
       buttons: buttons,
-      width: "10",
+      width: "15",
     },
   ];
   const filterFields:SmartFormInterFace.SmartFormElementProps[] = [
