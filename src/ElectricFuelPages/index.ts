@@ -16,11 +16,12 @@ import Profile from "./Profile/Profile";
 import Notification from "./Notification/Notificaton";
 import MeterReading from "./MeterReading/MeterReading"
 import Msireports from "./MSIReports/MsiReports"
+import ConsumptionAdminReport from "./ConsumptionReport/ConsumptionAdminReport";
 export {
     Dashboard, HomePage, HubsTables, OfficesTable, RoleTable, UsersTable,
     VehiclesReportTable, VendorRatesTable, VendorsTable,
     ConsumptionReportTable, InvoiceTable,
-    VendorWiseInformation, Profile, Notification, MeterReading, Msireports
+    VendorWiseInformation, Profile, Notification, MeterReading, Msireports,ConsumptionAdminReport
 
 };
 

@@ -3,6 +3,7 @@ import { ToastContainer } from "react-toastify";
 import EFSubLayout from "../../EFSubLayout/EFSubLayout";
 import ElectricFuelMainLayout from "../../ElectricFuelLayout/ElectricFuelMainLayout";
 import {
+  ConsumptionAdminReport,
   ConsumptionReportTable,
   Dashboard,
   HomePage,
@@ -59,6 +60,10 @@ const EFSiteRoute = () => {
             <Route
               path="/consumption-report"
               element={<ConsumptionReportTable />}
+            />
+                <Route
+              path="/consumption-admin-report"
+              element={<ConsumptionAdminReport />}
             />
             <Route
               path="/vendor-wish/:id"
