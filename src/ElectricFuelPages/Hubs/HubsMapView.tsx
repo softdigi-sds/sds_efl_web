@@ -94,7 +94,7 @@ const HubsMapView = () => {
             key={index} 
             position={{ lat:location.lat, lng:location.lng }} 
             title={location.name}  // Optional: shows the name on hover
-            icon={`http://maps.google.com/mapfiles/ms/icons/red-dot.png`}
+            // icon={`http://maps.google.com/mapfiles/ms/icons/red-dot.png`}
           />
         ))}
       </GoogleMap>
