@@ -117,7 +117,7 @@
   }
   .sidenav-link {
     width: 100%;
-    padding: 10px;
+    padding: 9px;
     text-decoration: none;
     color: white;
     display: flex;
@@ -134,6 +134,7 @@
     .icon {
       font-size: 24px;
       margin-right: 16px;
+      // margin-top: 5px;
     }
     .link-text {
       display: none; // Initially hidden

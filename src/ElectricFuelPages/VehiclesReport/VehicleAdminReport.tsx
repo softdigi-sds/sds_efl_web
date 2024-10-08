@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { SmartSoftButton } from 'soft_digi'
 
-const ConsumptionAdminReport = () => {
+const VehicleAdminReport = () => {
   const [numberArray, setNumberArray] = useState<number[]>([]);
 
   useEffect(() => {
@@ -30,7 +30,7 @@ const ConsumptionAdminReport = () => {
     <div>
       <div className='columns is-multiline'>
         <div className='column is-6'>
-          <h2 className=' mt-1 is-size-4 site-title has-text-weight-bold '>Consumption Report</h2>
+          <h2 className=' mt-1 is-size-4 site-title has-text-weight-bold '>Vehicle Report</h2>
         
   </div>
   <div className='column is-4'>
@@ -65,7 +65,7 @@ const ConsumptionAdminReport = () => {
        <tr>
           <td >{hub.hub_name}</td>
          {hub&&hub?.hubs_data?.map((data:any)=>(
-          <td >{data!==0 &&(<span className='is-size-7'>{data}</span>)} {data===0 &&(<span className='has-text-danger is-size-4'>+</span>)}</td>
+          <td >{data!==0 &&(<span className='is-size-7'>{data}</span>)} {data===0 &&(<span className='has-text-danger'>+</span>)}</td>
          ))}
         </tr>
          ))}
@@ -79,4 +79,7 @@ const ConsumptionAdminReport = () => {
   )
 }
 
-export default ConsumptionAdminReport
+
+
+
+export default VehicleAdminReport

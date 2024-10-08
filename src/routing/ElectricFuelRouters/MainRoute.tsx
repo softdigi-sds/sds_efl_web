@@ -15,6 +15,7 @@ import {
   Profile,
   RoleTable,
   UsersTable,
+  VehicleAdminReport,
   VehiclesReportTable,
   VendorRatesTable,
   VendorsTable,
@@ -55,6 +56,10 @@ const EFSiteRoute = () => {
             <Route
               path="/vehicles-report"
               element={<VehiclesReportTable />}
+            />
+              <Route
+              path="/vehicles-admin-report"
+              element={<VehicleAdminReport />}
             />
             <Route path="/profile" element={<Profile />} />
             <Route
