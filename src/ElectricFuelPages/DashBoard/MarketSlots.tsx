@@ -68,7 +68,7 @@ const MarketSlots: React.FC = () => {
   };
 
   const topDisplay = () => (
-    <div className="columns mt-5 is-multiline">
+    <div className="columns is-multiline">
       <div className="column is-6">
         <div className="is-size-4 has-text-weight-bold"> Vehicles Report </div>
       </div>
