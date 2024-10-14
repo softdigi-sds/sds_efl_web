@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 
+
 interface NavbarLink {
   label: string;
   href?: string;
@@ -44,11 +45,7 @@ const HeaderNavBar: React.FC = () => {
   };
 
   return (
-    <nav
-      className="navbar is-white"
-      role="navigation"
-      aria-label="main navigation"
-    >
+    <nav className="navbar is-white" role="navigation" aria-label="main navigation">
       <div className="container">
         {/* Mobile burger toggle */}
         <div className="navbar-brand">
@@ -66,16 +63,11 @@ const HeaderNavBar: React.FC = () => {
           </a>
         </div>
 
-        <div
-          id="navbarMenu"
-          className={`navbar-menu ${isActive ? "is-active" : ""}`}
-        >
+        {/* Navbar Menu */}
+        <div id="navbarMenu" className={`navbar-menu ${isActive ? "is-active" : ""}`}>
           <div className="navbar-start">
             {navbarLinks.map((link, index) => (
-              <div
-                key={index}
-                className={`navbar-item ${link.dropdown ? "is-hoverable" : ""}`}
-              >
+              <div key={index} className={`navbar-item ${link.dropdown ? "is-hoverable" : ""}`}>
                 <a className="navbar-hover-green" href={link.href || "#"}>
                   {link.label}
                   {link.dropdown && (
@@ -89,11 +81,7 @@ const HeaderNavBar: React.FC = () => {
                 {link.dropdown && (
                   <div className="navbar-dropdown has-text-centered">
                     {link.dropdown.map((dropdownLink, idx) => (
-                      <a
-                        key={idx}
-                        href={dropdownLink.href}
-                        className={`navbar-item ${dropdownLink.className || ""}`}
-                      >
+                      <a key={idx} href={dropdownLink.href} className="navbar-item">
                         {dropdownLink.label}
                       </a>
                     ))}
@@ -107,5 +95,4 @@ const HeaderNavBar: React.FC = () => {
     </nav>
   );
 };
-
 export default HeaderNavBar;
