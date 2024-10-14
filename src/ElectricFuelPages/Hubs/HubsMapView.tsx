@@ -1,5 +1,6 @@
 import React, { useCallback, useRef } from 'react';
 import { GoogleMap, LoadScript, Marker, MarkerF,  } from '@react-google-maps/api';
+import ReactMapView from '../../components/site/ReactMapView';
 
 const HubsMapView = () => {
   const mapStyles = {        
@@ -77,28 +78,31 @@ const HubsMapView = () => {
         locations.forEach(({ lat, lng }) => bounds.extend({ lat, lng }));
         map.fitBounds(bounds);
       }, [locations]);
-    
+  //    apikey=e021fd4c5dd04e28ac879598fc576af6
 
   return (
-    <LoadScript
-      googleMapsApiKey="AIzaSyCA5bzDqci1RcEHa17XN7R09bzh3-nOVm0"> {/* Replace with your API key */}
-      <GoogleMap
-        mapContainerStyle={mapStyles}
-        zoom={9}
-        //  center={defaultCenter}
-        onLoad={onLoad}
+    // <LoadScript
+    //   googleMapsApiKey="AIzaSyCA5bzDqci1RcEHa17XN7R09bzh3-nOVm0"> 
+    //   <GoogleMap
+    //     mapContainerStyle={mapStyles}
+    //     zoom={9}
+   
+    //     onLoad={onLoad}
        
-      >
-           {locations?.map((location, index) => (
-          <MarkerF
-            key={index} 
-            position={{ lat:location.lat, lng:location.lng }} 
-            title={location.name}  // Optional: shows the name on hover
-            // icon={`http://maps.google.com/mapfiles/ms/icons/red-dot.png`}
-          />
-        ))}
-      </GoogleMap>
-    </LoadScript>
+    //   >
+    //        {locations?.map((location, index) => (
+    //       <MarkerF
+    //         key={index} 
+    //         position={{ lat:location.lat, lng:location.lng }} 
+    //         title={location.name}  
+          
+    //       />
+    //     ))}
+    //   </GoogleMap>
+    // </LoadScript>
+    <>
+    <ReactMapView  />
+    </>
   )
 }
 
