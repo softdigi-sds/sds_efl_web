@@ -2,7 +2,7 @@ import default_config from "./default";
 import dev_config from "./developement";
 import prod_config from "./production";
 const env = process.env.REACT_APP_ENV || "default";
-
+console.log("environement ", env);
 let config: siteConfig;
 if (env.trim() == "development") {
   config = dev_config;
@@ -11,4 +11,5 @@ if (env.trim() == "development") {
 } else {
   config = default_config;
 }
+console.log("live config ", config);
 export default config;
