@@ -45,4 +45,4 @@ jobs:
           ls -l
           # Replace remote-user and remote-host with your SSH credentials
           #ssh root@134.209.232.225 'mkdir -p /var/www/igcdoc'
-          scp -r /home/runner/work/crop_customer/sds_efl_web/build/* github@195.35.23.133:/opt/efl/public
+          scp -r /home/runner/work/sds_efl_web/sds_efl_web/build/* github@195.35.23.133:/opt/efl/public
