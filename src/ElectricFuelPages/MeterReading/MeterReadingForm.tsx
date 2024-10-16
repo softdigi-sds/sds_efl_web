@@ -2,13 +2,23 @@ import React, { useEffect, useState } from 'react'
 import { useSiteContext } from '../../contexts/SiteProvider';
 import { SmartFormInterFace, SmartSoftButton, SmartSoftForm, SmartValid } from 'soft_digi';
 import { hubs_get_all_select } from '../../services/site/SelectBoxServices';
+import { ValidateFormNew } from 'soft_digi/dist/services/smartValidationService';
+import { METER_READINGS_URLS } from '../../api/UserUrls';
+import { post } from '../../services/smartApiService';
+import { showAlertAutoClose } from '../../services/notifyService';
 
 
 interface FormErrors {
     [key: string]: string | null;
   }
-const MeterReadingForm = () => {
-    const [formData, setFormData] = useState( {});
+
+  interface HeaderProps {
+    loadTableData: () => void;
+    dataIn: any;
+    currentDate:any
+  }
+const MeterReadingForm:React.FC<HeaderProps> = ({dataIn,loadTableData,currentDate}) => {
+  const [formData, setFormData] = useState(dataIn ? dataIn : {});
     const [formSubmit, setFormSubmit] = useState<boolean>(false);
     const [formErrors, setFormErrors] = useState<FormErrors>({});
     const { closeModal } = useSiteContext();
@@ -30,8 +40,23 @@ const MeterReadingForm = () => {
         return updatedFormData;
       });
     };
-    const handleLogin = () => {
-      console.log("data");
+    const handleSubmit = () => {
+      setFormSubmit(true);
+      if (!ValidateFormNew(formData, formElements)) {
+        return false;
+      }
+      let url = METER_READINGS_URLS.INSERT;
+  
+  
+      const subscription = post(url, formData).subscribe((response) => {
+        //console.log("response form ", response.data);
+         loadTableData();
+        showAlertAutoClose("Data Saved Successfully", "success");
+        closeModal();
+      });
+      return () => {
+        subscription.unsubscribe();
+      };
     };
     useEffect(() => {
         hubs_get_all_select((data: any) => setAllHubs(data));
@@ -48,7 +73,7 @@ const MeterReadingForm = () => {
         {
           type: "TEXT_BOX",
           width: "12",
-          name: "sd_efl_hub_id",
+          name: "sd_hub_id",
           element: {
             label: "Hub Name",
             isRequired: true,
@@ -62,9 +87,9 @@ const MeterReadingForm = () => {
         {
           type: "TEXT_BOX",
           width: "12",
-          name: "hub_id",
+          name: "meter_year",
           element: {
-            label: "Select Year / Month",
+            label: " Month/Year",
             isRequired: true,
             // inputProps: { isFocussed: true },
             inputProps: {disabled: true},
@@ -77,7 +102,7 @@ const MeterReadingForm = () => {
         {
           type: "TEXT_BOX",
           width: "12",
-          name: "role",
+          name: "meter_start",
           element: {
             label: "Meter Start Reading",
             isRequired: true,
@@ -89,9 +114,9 @@ const MeterReadingForm = () => {
         {
           type: "TEXT_BOX",
           width: "12",
-          name: "hub_name",
+          name: "meter_end",
           element: {
-            label: "Meter Start Reading",
+            label: "Meter End Reading",
             isRequired: true,
             // inputProps: { isFocussed: true },
             // isHorizontal: true,
@@ -104,12 +129,12 @@ const MeterReadingForm = () => {
             width: "12",
             name: "numberof_unit",
             element: {
-              label: "Number of Meter",
-              isRequired: true,
+              label: "Number of Units",
+              // isRequired: true,
               // inputProps: { isFocussed: true },
             //   isHorizontal: true,
               inputType: "BORDER_LABEL",
-              validations: hubFormValidations.hub_name,
+              // validations: hubFormValidations.hub_name,
               inputProps: {disabled: true}
             },
           },
@@ -134,7 +159,7 @@ const MeterReadingForm = () => {
           label="Submit"
            rightIcon='fa fa-arrow-right'
           classList={["button ", "mt-4", "smart-action-button"]}
-          onClick={handleLogin}
+          onClick={handleSubmit}
         />
       </div>
       </div>

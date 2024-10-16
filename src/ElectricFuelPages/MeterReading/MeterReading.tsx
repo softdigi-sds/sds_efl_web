@@ -20,7 +20,7 @@ const MeterReading = () => {
     return date.toLocaleDateString("en-US", { year: "numeric", month: "long" });
   };
 
-  const loadCalenderData = () => {
+  const loadTableData = () => {
     let _data = {
     
       year: currentDate.getFullYear(),
@@ -39,7 +39,7 @@ const MeterReading = () => {
   };
   useEffect(() => {
    
-      loadCalenderData();
+    loadTableData();
     
   }, [currentDate]);
 
@@ -47,7 +47,7 @@ const MeterReading = () => {
     {
       s_no: 1,
       office_city: "New York",
-      state_name: "NY Hub",
+      sd_hub_id: "NY Hub",
       pin_code: "10001",
       address_one: "0",
       status: "5%",
@@ -55,7 +55,7 @@ const MeterReading = () => {
     {
       s_no: 2,
       office_city: "Los Angeles",
-      state_name: "LA Hub",
+      sd_hub_id: "LA Hub",
       pin_code: "90001",
       address_one: "0",
       status: "2%",
@@ -63,7 +63,7 @@ const MeterReading = () => {
     {
       s_no: 3,
       office_city: "Chicago",
-      state_name: "Chicago Hub",
+      sd_hub_id: "Chicago Hub",
       pin_code: "60601",
       address_one: "0",
       status: "3%",
@@ -71,7 +71,7 @@ const MeterReading = () => {
     {
       s_no: 4,
       office_city: "Houston",
-      state_name: "Houston Hub",
+      sd_hub_id: "Houston Hub",
       pin_code: "77001",
       address_one: "1",
       status: "1%",
@@ -79,7 +79,7 @@ const MeterReading = () => {
     {
       s_no: 5,
       office_city: "San Francisco",
-      state_name: "SF Hub",
+      sd_hub_id: "SF Hub",
       pin_code: "94101",
       address_one: "1",
       status: "4%",
@@ -89,7 +89,7 @@ const MeterReading = () => {
   const openMeterForm = (data: any) => {
     let options = {
       title: "Meter Addition Form",
-      content: <MeterReadingForm />,
+      content: <MeterReadingForm  dataIn={data} loadTableData={loadTableData} currentDate={currentDate}/>,
       width: 40,
       className: "sd-efl-modal",
       closeBody: false,
@@ -103,7 +103,7 @@ const MeterReading = () => {
         <div className="has-text-centered">
           <SmartSoftButton
             label="Add"
-            onClick={() => openMeterForm({})}
+            onClick={() => openMeterForm(row)}
             classList={["button is-small is-primary is-light"]}
           />
         </div>
@@ -167,7 +167,7 @@ const MeterReading = () => {
       <div className="smart-elf-table">
         <SmartTable
           columns={columns}
-          data={data}
+          data={dummy_data}
           tableTop={tableTop}
           tableProps={{
             className: "is-hoverable is-bordered is-striped smart-efl-table",
