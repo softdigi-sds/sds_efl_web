@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { SmartSoftInput, SmartTable, SmartTableNewInterface } from "soft_digi";
 import { useSiteContext } from "../../contexts/SiteProvider";
 import { SmartSoftButton } from "../../core";
-import { sumOfArrayObjectsWithIndex } from "../../services/core/FilterService";
+import { sumOfMultiArrayObjectsWithIndex } from "../../services/core/FilterService";
 import { showAlertAutoClose } from "../../services/notifyService";
 import { post } from "../../services/smartApiService";
 
@@ -20,6 +20,7 @@ const VehicleReportFrom: React.FC<HeaderProps> = ({
   hub_id,
 }) => {
   const [formData, setFormData] = useState<any[]>([]);
+  const [types, setTypes] = useState<any[]>([]);
   const [formSubmit, setFormSubmit] = useState<boolean>(false);
   const { closeModal } = useSiteContext();
 
@@ -32,7 +33,8 @@ const VehicleReportFrom: React.FC<HeaderProps> = ({
       "/efl_vehicles/get_one_parking_data",
       _data
     ).subscribe((response) => {
-      setFormData(response.data);
+      setFormData(response.data.data||[]);
+      setTypes(response.data.types||[])
     });
     return () => {
       subscription.unsubscribe();
@@ -116,10 +118,10 @@ const VehicleReportFrom: React.FC<HeaderProps> = ({
           <tr>
             {sub_data.map((obj: any, key: number) => {
               return (
-                <td>
+                <td className="smart-table-column-width-20">
                   <SmartSoftInput
-                    label={obj.vehicle_type}
-                    inputType="BORDER_LABEL"
+                   // label={obj.vehicle_type}
+                   // inputType="BORDER_LABEL"
                     classList={["is-small"]}
                     value={obj?.count}
                     onChange={(value) =>
@@ -135,6 +137,43 @@ const VehicleReportFrom: React.FC<HeaderProps> = ({
     );
   };
 
+  const headerLabel=()=>{
+    return (
+      <table className="smart-table-column-width-100">
+        <tbody>
+          <tr>
+            {types.map((obj: any, key: number) => {
+              return (
+                <td className="smart-table-column-width-20 has-text-centered">
+                  {obj.vehicle_type}
+                 </td>
+              );
+            })}
+          </tr>
+        </tbody>
+      </table>
+    )
+  }
+
+  const footerCount=()=>{
+    return (
+      <table className="smart-table-column-width-100">
+        <tbody>
+          <tr>
+            {types.map((obj: any, key: number) => {
+              let _total_count = sumOfMultiArrayObjectsWithIndex(formData,"sub_data","ID",obj.ID);
+              return (
+                <td key={`foot_count_${key}`} className="smart-table-column-width-20 has-text-centered">
+                  {_total_count}
+                 </td>
+              );
+            })}
+          </tr>
+        </tbody>
+      </table>
+    )
+  }
+
   const columns: SmartTableNewInterface.SmartTableNewColumnConfig[] = [
     { title: "S.NO", index: "s_no", type: "sno", width: "5" },
     {
@@ -143,34 +182,26 @@ const VehicleReportFrom: React.FC<HeaderProps> = ({
       width: "60",
     },
     {
-      title: "Vehicles Count",
+      title:headerLabel(),
       index: "vehicle_count",
       width: "35",
       valueFunction: (item) => {
         let _sub_data = item["sub_data"];
-        return countReport(_sub_data, item["sd_vendors_id"]);
-        return (
-          <SmartSoftInput
-            value={item?.vehicle_count}
-            onChange={(value) => updateVehicleCount(item.ID, value)}
-          />
-        );
+        return countReport(_sub_data, item["sd_vendors_id"]);       
       },
     },
   ];
 
-  const footerComponent = (sortdata: any[]) => {
-    let total_foot_count = sumOfArrayObjectsWithIndex(
-      formData,
-      "vehicle_count"
-    );
+  const footerComponent = (sortdata: any[]) => {   
     return (
       <tfoot>
         <tr>
           <td colSpan={2} className="has-text-right">
             Total Count
           </td>
-          <td>{total_foot_count}</td>
+          <td>
+              {footerCount()}
+            </td>     
         </tr>
       </tfoot>
     );

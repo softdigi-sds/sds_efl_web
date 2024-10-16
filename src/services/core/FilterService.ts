@@ -141,6 +141,31 @@ const sumOfArrayObjectsWithIndex = (items: any[], index: string) => {
     return total;
   }, 0);
 };
+/**
+ *  function calculates some of property mentioned in array of objects... inside object it is array again 
+ * 
+ * 
+ * @param items 
+ * @param index 
+ * @param subIndex 
+ * @returns 
+ */
+const sumOfMultiArrayObjectsWithIndex = (items: any[], propertyName: string, idIndexName: string,idValue: number) => {
+  if (!Array.isArray(items)) return 0;
+  if (items && items.length < 1) return 0;
+  return items.reduce((total, item) => {
+    const nestedArray = item[propertyName];    
+    // Check if the nestedArray exists and is an array
+    if (Array.isArray(nestedArray)) {
+      const countSum = nestedArray
+        .filter((nestedItem) => nestedItem[idIndexName] === idValue)
+        .reduce((sum, nestedItem) => sum + parseFloat(nestedItem.count || 0), 0);
+      return total + countSum;
+    }
+    return total;
+  }, 0); 
+};
+
 
 const checkInterSection = (arr1: any[], arr2: any[]) => {
   const hasCommonElement = arr1.some((item) => arr2.includes(item));
@@ -148,9 +173,10 @@ const checkInterSection = (arr1: any[], arr2: any[]) => {
 };
 
 export {
-  filterArrayOfObject,
+  checkInterSection, filterArrayOfObject,
   filterDate,
   filterIncludes,
   sumOfArrayObjectsWithIndex,
-  checkInterSection,
+  sumOfMultiArrayObjectsWithIndex
 };
+
