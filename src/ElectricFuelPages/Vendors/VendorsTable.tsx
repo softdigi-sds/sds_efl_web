@@ -233,7 +233,8 @@ const VendorsTable = () => {
       title: "Name",
       index: "vendor_name",
     },
-    { title: "GST No", index: "gst_no" },
+    { title: "GST No.", index: "gst_no" },
+    { title: "Pan No.", index: "pan_no" },
     {
       title: "Status",
       index: "status",

@@ -167,75 +167,63 @@ const HubsTables = () => {
       </>
     );
   };
-  const StatusUpdate = (id:number, status:any) => {
- 
-    const subscription = post(
-      HUBS_URLS.DELETE,
-      { id: id, status: status },
-     
-    ).subscribe((response) => {
-     
-      setData((prevItems:any) =>
-        prevItems.map((item:any) =>
-          item.ID === id
-            ? { ...item, offer_status: status } 
-            : item
-        )
-      );
-      if(status == 0)
-        showAlertAutoClose("Hubs Reopen", "success");
-      else
-      showAlertAutoClose("Hubs Shutdown", "success");
+
+  const StatusUpdate = (id: number, status: any) => {
+    const subscription = post(HUBS_URLS.STATUS_UPDATE, {
+      id: id,
+      status: status,
+    }).subscribe((response) => {
+      loadTableData();
     });
     return () => {
       subscription.unsubscribe();
     };
   };
 
-  
-  const updateStatus = (itemIn:any, check_value: boolean) => {
- 
-  
-   
-    let new_status: number = itemIn.status === 5 ? 1 : 0;
+  const updateStatus = (itemIn: any) => {
+    let new_status: number = itemIn.status === 5 ? 10 : 5;
     let msg: string =
       new_status === 0
-        ? "Do you wish to mark office is reopen?"
-        : "Do you wish to mark office is shutdown?";
-  
+        ? "Do you wish to mark hubs is reopen?"
+        : "Do you wish to mark hubs is shutdown?";
+    //console.log("check in value ", check_value);
+
     // Trigger alert for confirmation
     showYesOrNoAlert(
       msg,
-      (selection: Selection) => updateStatusFinal(selection, itemIn, new_status),
+      (selection: Selection) =>
+        updateStatusFinal(selection, itemIn, new_status),
       "info"
     );
   };
-  
-  const updateStatusFinal = (selection:any, itemIn:any, new_status: number) => {
+
+  const updateStatusFinal = (
+    selection: any,
+    itemIn: any,
+    new_status: number
+  ) => {
     if (selection === "yes") {
       // Post data to the backend
       StatusUpdate(itemIn.ID, new_status);
     }
   };
-
- 
   
 
-  
-  const SwitchForm = ( item:any ) => {
+
+  const SwitchForm = (item: any) => {
     return (
       item.ID && (
         <>
-          <div className="sds-elf-switch switch">
+          <div className="field">
             <input
-              id={"switchRoundedDefault_" + item.ID}
+              id={`switchExample_${item.ID}`}
               type="checkbox"
-               className="switch is-rounded is-small"
-              checked={item.status === 5}
-              onChange={(event:any) => updateStatus(item, event)}
+              name={`switchExample_${item.ID}`}
+              className="switch is-small"
+              checked={item.status == 5 ? true : false}
+              onChange={() => updateStatus(item)}
             />
-              <span className="slider round"></span>
-            {/* <label htmlFor={"switchRoundedDefault_" + item.ID}></label> */}
+            <label htmlFor={`switchExample_${item.ID}`}></label>
           </div>
         </>
       )
@@ -251,21 +239,21 @@ const HubsTables = () => {
     {
       title: "Hub Id",
       index: "hub_id",
-      width: "15",
+      width: "20",
     },
     {
       title: "City",
       index: "office_city",
-      width: "10",
+      width: "15",
     },
-    {
-      title: "Location",
-      index: "hub_location",
-      valueFunction: LocationDisplay,
-    },
+    // {
+    //   title: "Location",
+    //   index: "hub_location",
+    //   valueFunction: LocationDisplay,
+    // },
 
     {
-      title: "Access Group",
+      title: "Hub Supervisors",
       index: "role",
       valueFunction: GroupDisplay,
     },

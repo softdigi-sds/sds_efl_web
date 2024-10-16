@@ -13,6 +13,7 @@ const HUBS_URLS = {
   GET_ONE: "/hubs/get_one",
   DELETE: "/hubs/delete_one",
   GET_ALL_SELECT: "/hubs/get_all_select",
+  STATUS_UPDATE: "hubs/status_update",
 };
 const HUB_GROUPS_URLS = {
   INSERT: "/hubgroups/insert",
@@ -68,6 +69,11 @@ const INVOICE_URLS = {
   DOWNLOAD_INVOICE: "invoice/download_invoice",
   DELETE: "bill/delete_one",
 };
+const METER_READINGS_URLS = {
+  INSERT: "/meter_readings/insert",
+  GET_ALL:"/meter_readings/get_all"
+
+};
 
 export {
   CONSUMPTION_URL,
@@ -78,4 +84,5 @@ export {
   VEHICLES_URL,
   VENDERS_URLS,
   VENDER_RATE_URLS,
+  METER_READINGS_URLS
 };

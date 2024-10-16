@@ -1,22 +1,49 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { SmartSoftButton, SmartTable, SmartTableNewInterface } from "soft_digi";
 import MeterReadingForm from "./MeterReadingForm";
 import { useSiteContext } from "../../contexts/SiteProvider";
+import { post } from "../../services/smartApiService";
+import { CONSUMPTION_URL, METER_READINGS_URLS } from "../../api/UserUrls";
 
 const MeterReading = () => {
   const { openModal } = useSiteContext();
   const [currentDate, setCurrentDate] = useState(new Date());
+  const [data, setData] = useState([]);
 
   const changeMonth = (months: number) => {
     const newDate = new Date(currentDate.setMonth(currentDate.getMonth() + months));
     setCurrentDate(new Date(newDate));
+    console.log("New date: " ,newDate)
   };
 
   const formatDate = (date: Date) => {
     return date.toLocaleDateString("en-US", { year: "numeric", month: "long" });
   };
 
-  const data = [
+  const loadCalenderData = () => {
+    let _data = {
+    
+      year: currentDate.getFullYear(),
+      
+      month: currentDate.getMonth() + 1
+    };
+    console.log("year:",_data.year)
+    console.log("month:",_data.month)
+    let URL = METER_READINGS_URLS.GET_ALL;
+    const subscription = post(URL, _data).subscribe((response) => {
+      setData(response.data);
+    });
+    return () => {
+      subscription.unsubscribe();
+    };
+  };
+  useEffect(() => {
+   
+      loadCalenderData();
+    
+  }, [currentDate]);
+
+  const dummy_data = [
     {
       s_no: 1,
       office_city: "New York",
@@ -77,12 +104,19 @@ const MeterReading = () => {
           <SmartSoftButton
             label="Add"
             onClick={() => openMeterForm({})}
-            classList={["button", "mt-4", "smart-third-button is-small"]}
+            classList={["button is-small is-primary is-light"]}
           />
         </div>
       );
     } else if (parseInt(row.address_one) > 0) {
-      return row.address_one;
+      return(
+        <>
+        <div className="has-text-centered" >
+          <span >{row.address_one}</span>
+        </div>
+        </>
+      )
+      
     }
     return null;
   };
@@ -92,7 +126,7 @@ const MeterReading = () => {
     { title: "Office City", index: "office_city" },
     { title: "Hub", index: "state_name" },
     { title: "CMS Reading", index: "pin_code" },
-    { title: "Meter Reading", index: "address_one", valueFunction: meterReading },
+    { title: "Meter Reading", index: "address_one", valueFunction: meterReading,width:"15" },
     { title: "Deviation", index: "status" },
   ];
 
