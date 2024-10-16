@@ -6,6 +6,7 @@ import { ValidateFormNew } from 'soft_digi/dist/services/smartValidationService'
 import { METER_READINGS_URLS } from '../../api/UserUrls';
 import { post } from '../../services/smartApiService';
 import { showAlertAutoClose } from '../../services/notifyService';
+import { ALLOW_ALPHABET_SPACE, ALLOW_FLOAT, ALLOW_FLOAT_DYNAMIC, ALLOW_NUMERIC } from '../../services/PatternSerivce';
 
 
 interface FormErrors {
@@ -82,12 +83,11 @@ const MeterReadingForm:React.FC<HeaderProps> = ({dataIn,loadTableData,currentDat
         hubs_get_all_select((data: any) => setAllHubs(data));
       }, []);
     const hubFormValidations = {
-        city: [SmartValid.required("City is Required")],
-        hub_id: [SmartValid.required("Hub Id is Required")],
-        role: [SmartValid.required("Role is Required")],
-        hub_name: [SmartValid.required("Hub Name is Required")],
-        locations: [SmartValid.required("Location is Required")],
-        pin_code: [SmartValid.required("Pin Code is Required")],
+        
+        hub_id: [SmartValid.required("Hub Name is Required")],
+      start: [SmartValid.required("Meter Start Reading is Required")],
+      end: [SmartValid.required("Meter End Reading is Required")],
+   
       };
 
 
@@ -98,7 +98,7 @@ const MeterReadingForm:React.FC<HeaderProps> = ({dataIn,loadTableData,currentDat
           let diffInDays = meterEnd - meterStart;
           
          
-          return diffInDays;
+          return !isNaN(diffInDays)?diffInDays:0;
         } else{
           return 0;
         }
@@ -117,7 +117,7 @@ const MeterReadingForm:React.FC<HeaderProps> = ({dataIn,loadTableData,currentDat
             // isHorizontal: true,
             inputProps: {disabled: true},
             inputType: "BORDER_LABEL",
-            validations: hubFormValidations.city,
+            validations: hubFormValidations.hub_id,
           },
         },
         {
@@ -142,9 +142,10 @@ const MeterReadingForm:React.FC<HeaderProps> = ({dataIn,loadTableData,currentDat
           element: {
             label: "Meter Start Reading",
             isRequired: true,
-            validations: hubFormValidations.role,
+            validations: hubFormValidations.start,
             // isHorizontal: true,
             inputType: "BORDER_LABEL",
+            pattern:ALLOW_NUMERIC
           },
         },
         {
@@ -157,7 +158,8 @@ const MeterReadingForm:React.FC<HeaderProps> = ({dataIn,loadTableData,currentDat
             // inputProps: { isFocussed: true },
             // isHorizontal: true,
             inputType: "BORDER_LABEL",
-            validations: hubFormValidations.hub_name,
+            validations: hubFormValidations.end,
+            pattern:ALLOW_NUMERIC
           },
         },
         {
