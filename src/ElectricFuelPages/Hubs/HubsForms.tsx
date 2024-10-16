@@ -117,7 +117,7 @@ const HubsForms: React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
       width: "6",
       name: "role",
       element: {
-        label: "Access Role",
+        label: "Hub Supervisors",
         isRequired: true,
         options: allRole,
         isMulti: true,
