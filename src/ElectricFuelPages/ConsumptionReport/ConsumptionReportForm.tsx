@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { SmartSoftButton, SmartSoftInput, SmartTable, SmartTableNewInterface } from "soft_digi";
+import { CONSUMPTION_URL } from "../../api/UserUrls";
 import { useSiteContext } from "../../contexts/SiteProvider";
+import { sumOfMultiArrayObjectsWithIndex } from "../../services/core/FilterService";
 import { showAlertAutoClose } from "../../services/notifyService";
 import { post } from "../../services/smartApiService";
-import { CONSUMPTION_URL } from "../../api/UserUrls";
-import { sumOfArrayObjectsWithIndex } from "../../services/core/FilterService";
 
 interface FormErrors {
   [key: string]: string | null;
@@ -20,6 +20,7 @@ const ConsumptionReportForm: React.FC<HeaderProps> = ({
   hub_id,
 }) => {
   const [formData, setFormData] = useState<any[]>([]);
+  const [types, setTypes] = useState<any[]>([]);
   const [formSubmit, setFormSubmit] = useState<boolean>(false);
   const { closeModal } = useSiteContext();
   const loadData = () => {
@@ -29,8 +30,8 @@ const ConsumptionReportForm: React.FC<HeaderProps> = ({
     };
     let URL = CONSUMPTION_URL.GET_ALL_CALENDER_GET_ONE;
     const subscription = post(URL, _data).subscribe((response) => {
-      setFormData(response.data);
-      console.log("response", response.data);
+      setFormData(response.data.data||[]);
+      setTypes(response.data.types||[])
     });
     return () => {
       subscription.unsubscribe();
@@ -78,14 +79,88 @@ const ConsumptionReportForm: React.FC<HeaderProps> = ({
     };
   };
 
-  const updateVehicleCount = (id: number, count: any) => {
-    //console.log("id " , id , " count " , count);
-    const updatedItems = formData.map((item) =>
-      item.ID === id ? { ...item, unit_count: parseFloat(count) } : item
+
+  const updateCountNested = (
+    mainId: number,
+    subId: number,
+    count: any
+  ) => {
+    setFormData((prevData) =>
+      prevData.map((mainItem) =>
+        mainItem.sd_vendors_id === mainId
+          ? {
+              ...mainItem,
+              sub_data: mainItem.sub_data.map((subItem: any) =>
+                subItem.ID === subId ? { ...subItem, count: count } : subItem
+              ),
+            }
+          : mainItem
+      )
     );
-    // console.log(" updated items ", updatedItems);
-    setFormData(updatedItems);
   };
+
+  const countReport = (sub_data: any, id: number) => {
+    return (
+      <table>
+        <tbody>
+          <tr>
+            {sub_data.map((obj: any, key: number) => {
+              return (
+                <td className="smart-table-column-width-20">
+                  <SmartSoftInput
+                   // label={obj.vehicle_type}
+                   // inputType="BORDER_LABEL"
+                    classList={["is-small"]}
+                    value={obj?.count}
+                    onChange={(value) =>
+                      updateCountNested(id, obj.ID, value)
+                    }
+                  />
+                </td>
+              );
+            })}
+          </tr>
+        </tbody>
+      </table>
+    );
+  };
+
+  const headerLabel=()=>{
+    return (
+      <table className="smart-table-column-width-100">
+        <tbody>
+          <tr>
+            {types.map((obj: any, key: number) => {
+              return (
+                <td className="smart-table-column-width-20 has-text-centered">
+                  {obj.type}
+                 </td>
+              );
+            })}
+          </tr>
+        </tbody>
+      </table>
+    )
+  }
+
+  const footerCount=()=>{
+    return (
+      <table className="smart-table-column-width-100">
+        <tbody>
+          <tr>
+            {types.map((obj: any, key: number) => {
+              let _total_count = sumOfMultiArrayObjectsWithIndex(formData,"sub_data","ID",obj.ID);
+              return (
+                <td key={`foot_count_${key}`} className="smart-table-column-width-20 has-text-centered">
+                  {_total_count}
+                 </td>
+              );
+            })}
+          </tr>
+        </tbody>
+      </table>
+    )
+  }
 
   const columns: SmartTableNewInterface.SmartTableNewColumnConfig[] = [
     { title: "S.NO", index: "s_no", type: "sno", width: "5" },
@@ -95,29 +170,26 @@ const ConsumptionReportForm: React.FC<HeaderProps> = ({
       width: "70",
     },
     {
-      title: "Unit Count",
+      title:headerLabel(),
       index: "unit_count",
       width: "25",
       valueFunction: (item) => {
-        return (
-          <SmartSoftInput
-            value={item.unit_count}
-            onChange={(value) => updateVehicleCount(item.ID, value)}
-          />
-        );
+        let _sub_data = item["sub_data"];
+        return countReport(_sub_data, item["sd_vendors_id"]);       
       },
     },
   ];
 
-  const footerComponent = (sortdata: any[]) => {
-    let total_foot_count = sumOfArrayObjectsWithIndex(formData, "unit_count");
+  const footerComponent = (sortdata: any[]) => {   
     return (
       <tfoot>
         <tr>
           <td colSpan={2} className="has-text-right">
             Total Count
           </td>
-          <td>{total_foot_count}</td>
+          <td>
+              {footerCount()}
+            </td>     
         </tr>
       </tfoot>
     );
@@ -137,12 +209,12 @@ const ConsumptionReportForm: React.FC<HeaderProps> = ({
       <div className="has-text-right">
         <SmartSoftButton
           label="Cancel"
-          classList={["button", "mt-4 mr-4"]}
+          classList={["button", "mt-4 mr-4", "smart-third-button"]}
           onClick={closeModal}
         />
         <SmartSoftButton
           label="Submit"
-          classList={["button ", "mt-4"]}
+          classList={["button ", "mt-4", "smart-action-button"]}
           onClick={handleSubmit}
         />
       </div>
