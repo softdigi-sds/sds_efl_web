@@ -138,18 +138,31 @@ const HubsForms: React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
         validations: hubFormValidations.hub_name,
       },
     },
-    // {
-    //   type: "TEXTAREA",
-    //   width: "12",
-    //   name: "hub_location",
-    //   element: {
-    //     label: "Location",
-    //     isRequired: true,
-    //     max: "255",
-    //     inputType: "BORDER_LABEL",
-    //     validations: hubFormValidations.locations,
-    //   },
-    // },
+    {
+      type: "TEXT_BOX",
+      width: "6",
+      name: "longitude",
+      element: {
+        label: "Longitude",
+        isRequired: true,
+        // inputProps: { isFocussed: true },
+        inputType: "BORDER_LABEL",
+        validations: hubFormValidations.hub_id,
+      },
+    },
+    {
+      type: "TEXT_BOX",
+      width: "6",
+      name: "latitude",
+      element: {
+        label: "Latitude",
+        isRequired: true,
+        // inputProps: { isFocussed: true },
+        inputType: "BORDER_LABEL",
+        validations: hubFormValidations.hub_id,
+      },
+    },
+  
   ];
   return (
     <>
