@@ -28,6 +28,16 @@ const MeterReadingForm:React.FC<HeaderProps> = ({dataIn,loadTableData,currentDat
       setFormData((prev: any) => ({ ...prev, [name]: value }));
     };
   
+
+    useEffect(() => {
+   
+      setFormData({
+        meter_year: `${currentDate.getMonth() + 1}-${currentDate.getFullYear()}`,
+       
+        sd_hub_id: dataIn?.sd_hub_id || ""     
+      });
+      
+    }, [dataIn]);
   
     const handleErrorChange = (name: string | any, value: any) => {
       setFormErrors((prev : any) => {
@@ -45,10 +55,20 @@ const MeterReadingForm:React.FC<HeaderProps> = ({dataIn,loadTableData,currentDat
       if (!ValidateFormNew(formData, formElements)) {
         return false;
       }
+
+
       let url = METER_READINGS_URLS.INSERT;
   
+  let _data={
+    meter_month:currentDate.getMonth() + 1,
+    meter_year:currentDate.getFullYear(),
+    sd_hub_id: formData.sd_hub_id,
+    meter_start: formData.meter_start,
+    meter_end:formData.meter_end,
   
-      const subscription = post(url, formData).subscribe((response) => {
+  
+  }
+      const subscription = post(url,_data).subscribe((response) => {
         //console.log("response form ", response.data);
          loadTableData();
         showAlertAutoClose("Data Saved Successfully", "success");
@@ -69,6 +89,22 @@ const MeterReadingForm:React.FC<HeaderProps> = ({dataIn,loadTableData,currentDat
         locations: [SmartValid.required("Location is Required")],
         pin_code: [SmartValid.required("Pin Code is Required")],
       };
+
+
+      const totalPrice = () => {
+        if (formData.meter_end) {
+          let  meterEnd = formData.meter_end
+          let  meterStart = formData.meter_start
+          let diffInDays = meterEnd - meterStart;
+          
+         
+          return diffInDays;
+        } else{
+          return 0;
+        }
+      }
+      ;
+      
       const formElements: SmartFormInterFace.SmartFormElementProps[] = [
         {
           type: "TEXT_BOX",
@@ -134,6 +170,9 @@ const MeterReadingForm:React.FC<HeaderProps> = ({dataIn,loadTableData,currentDat
               // inputProps: { isFocussed: true },
             //   isHorizontal: true,
               inputType: "BORDER_LABEL",
+              valueFunction: () => {
+                return "" + totalPrice();
+              },
               // validations: hubFormValidations.hub_name,
               inputProps: {disabled: true}
             },
