@@ -174,7 +174,8 @@ const VehicleAdminReport = () => {
                     <td >{hub.hub_name}</td>
                     {numberArray.map((item: any) => {
                       let _count = getDayCount(item, hub.sub_data);
-                      return _count > 0  ? <span>{_count}</span> : <span></span>
+                    //  return <td><span>{_count}</span></td>
+                      return _count > 0  ? <td><span>{_count}</span></td> : <td><span>+</span></td>
                     })}
                   </tr>
                 ))}

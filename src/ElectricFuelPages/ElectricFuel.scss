@@ -485,6 +485,7 @@ font-weight: bold;
 .scrollable-table {
   overflow-x: auto; /* Enables horizontal scrolling */
   white-space: nowrap; /* Prevents table contents from wrapping */
+  height:400px;
 }
 
 
