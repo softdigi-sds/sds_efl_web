@@ -1,11 +1,28 @@
 import { useEffect, useState } from 'react';
 import { VEHICLES_URL } from '../../api/UserUrls';
 import { post } from '../../services/smartApiService';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { SmartSoftSelect } from 'soft_digi';
 
 const VehicleAdminReport = () => {
   const [numberArray, setNumberArray] = useState<number[]>([]);
   const [currentDate, setCurrentDate] = useState(new Date());
   const [data, setData] = useState([]);
+  const [category, setCategory] = useState<any>("1");
+  const navigate = useNavigate();
+  const location = useLocation();
+  const categoryOptions=[
+    {label:"Admin Report",value:"1"},
+    {label:"Hub Report",value:"2"}
+  ]
+  useEffect(() => {
+
+    if (category.value == 1 && location.pathname !== "/e-fuel/vehicles-admin-report") {
+      navigate("/e-fuel/vehicles-admin-report");
+    } else if (category.value == 2 && location.pathname !== "/e-fuel/vehicles-report") {
+      navigate("/e-fuel/vehicles-report");
+    }
+  }, [category, location.pathname, navigate]);
   useEffect(() => {
     const tempArray: number[] = [];
     for (let i = 1; i <= 30; i++) {
@@ -76,14 +93,27 @@ const VehicleAdminReport = () => {
   return (
     <div>
       <div className='columns is-multiline'>
-        <div className='column is-6'>
+        <div className='column is-4 is-flex'>
           <h2 className=' mt-1 is-size-4 site-title has-text-weight-bold '>Vehicle Report</h2>
-
+      
         </div>
-        <div className='column is-4'>
+        <div className='column is-6'>
+          <div className='is-flex'>
           <div className='search-box sd-efl-input'>
             <input className='input' type='text' placeholder='Search' />
           </div>
+          <div>   
+             <SmartSoftSelect
+              options={categoryOptions}
+              // placeHolder="Select hub"
+              value={category}
+              onChange={(value) => setCategory(value)}
+            />
+
+          </div>
+      
+          </div>
+    
 
         </div>
         <div className='column is-2'>

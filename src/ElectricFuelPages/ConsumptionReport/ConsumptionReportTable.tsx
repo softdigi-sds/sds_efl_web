@@ -13,6 +13,7 @@ import ConsumptionReportForm from "./ConsumptionReportForm";
 import ImportReportTable from "./ImportReportTable";
 import { roundNumber } from "../../services/core/CommonService";
 import { changeDateTimeZoneFormat } from "../../services/core/CommonService";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const ConsumptionReportTable = () => {
   const { openModal } = useSiteContext();
@@ -20,13 +21,26 @@ const ConsumptionReportTable = () => {
   const [hubs, setHubs] = useState<any>();
   const [hub, setHub] = useState<any>();
   const [data, setData] = useState<any[]>();
+   const [category, setCategory] = useState<any>(1);
+   const location = useLocation();
+  const navigate = useNavigate();
+
+
   // console.log("hub dat",hubs)
 
   /**
    *  loads the calander data for month change or hub chnage
    *
    * @returns
+   * 
+   * 
    */
+
+  const categoryOptions=[
+    {label:"Admin Report",value:"1"},
+    {label:"Hub Report",value:"2"}
+  ]
+
   const loadCalenderData = () => {
     let _data = {
       hub_id: hub,
@@ -58,6 +72,15 @@ const ConsumptionReportTable = () => {
       loadCalenderData();
     }
   }, [currentMonth, hub]);
+
+  useEffect(() => {
+
+    if (category.value == 1 && location.pathname !== "/e-fuel/consumption-admin-report") {
+      navigate("/e-fuel/consumption-admin-report");
+    } else if (category.value == 2 && location.pathname !== "/e-fuel/consumption-report") {
+      navigate("/e-fuel/consumption-report");
+    }
+  }, [category, location.pathname, navigate]);
 
   const openForm = (date: any) => {
     let options = {
@@ -155,6 +178,14 @@ const ConsumptionReportTable = () => {
               placeHolder="Select hub"
               value={hub}
               onChange={(value) => setHub(value)}
+            />
+          </div>
+          <div className="mt-0">
+            <SmartSoftSelect
+              options={categoryOptions}
+              // placeHolder="Select hub"
+              value={category}
+              onChange={(value) => setCategory(value)}
             />
           </div>
         </div>

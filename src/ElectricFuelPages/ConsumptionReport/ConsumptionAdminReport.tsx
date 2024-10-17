@@ -1,8 +1,25 @@
 import React, { useEffect, useState } from 'react'
-import { SmartSoftButton } from 'soft_digi'
+import { useLocation, useNavigate } from 'react-router-dom';
+import { SmartSoftButton, SmartSoftSelect } from 'soft_digi'
 
 const ConsumptionAdminReport = () => {
   const [numberArray, setNumberArray] = useState<number[]>([]);
+  const [category, setCategory] = useState<any>("1");
+  const navigate = useNavigate();
+  const location = useLocation();
+  const categoryOptions=[
+    {label:"Admin Report",value:"1"},
+    {label:"Hub Report",value:"2"}
+  ]
+  useEffect(() => {
+
+    if (category.value == 1 && location.pathname !== "/e-fuel/consumption-admin-report") {
+      navigate("/e-fuel/consumption-admin-report");
+    } else if (category.value == 2 && location.pathname !== "/e-fuel/consumption-report") {
+      navigate("/e-fuel/consumption-report");
+    }
+  }, [category, location.pathname, navigate]);
+
 
   useEffect(() => {
 
@@ -40,10 +57,12 @@ const ConsumptionAdminReport = () => {
         
   </div>
   <div className='column is-2'>
-     {/* <div className='is-flex mt-2'></div>
-     <i className="fa fa-arrow-left" aria-hidden="true"></i>
-     <span className='mx-2'>OCT-2024</span>
-     <i className="fa fa-arrow-right" aria-hidden="true"></i> */}
+           <SmartSoftSelect
+              options={categoryOptions}
+              // placeHolder="Select hub"
+              value={category}
+              onChange={(value) => setCategory(value)}
+            />
   </div>
   <div className='column is-12'>
     <div className='scrollable-table'>

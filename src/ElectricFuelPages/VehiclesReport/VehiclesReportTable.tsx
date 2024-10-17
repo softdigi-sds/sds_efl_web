@@ -3,18 +3,43 @@ import { useEffect, useState } from "react";
 import { SmartCalender, SmartSoftButton, SmartSoftSelect } from "soft_digi";
 import { VEHICLES_URL } from "../../api/UserUrls";
 import { useSiteContext } from "../../contexts/SiteProvider";
-import { isCurrentMonth, isDateWithinLastDays } from "../../services/site/DateService";
+import {
+  isCurrentMonth,
+  isDateWithinLastDays,
+} from "../../services/site/DateService";
 import { hubs_get_all_select } from "../../services/site/SelectBoxServices";
 import { post } from "../../services/smartApiService";
 import ImportVehiclesReport from "./ImportVehiclesReport";
 import VehicleReportFrom from "./VehicleReportFrom";
 import { changeDateTimeZoneFormat } from "../../services/core/CommonService";
+import { useLocation, useNavigate } from "react-router-dom";
 const VehiclesReportTable = () => {
   const { openModal } = useSiteContext();
   const [currentMonth, setCurrentMonth] = useState<Moment>();
   const [hubs, setHubs] = useState<any>();
   const [hub, setHub] = useState<any>();
   const [data, setData] = useState<any[]>();
+
+  const [category, setCategory] = useState<any>("1");
+  const navigate = useNavigate();
+  const location = useLocation();
+  const categoryOptions = [
+    { label: "Admin Report", value: "1" },
+    { label: "Hub Report", value: "2" },
+  ];
+  useEffect(() => {
+    if (
+      category.value == 1 &&
+      location.pathname !== "/e-fuel/vehicles-admin-report"
+    ) {
+      navigate("/e-fuel/vehicles-admin-report");
+    } else if (
+      category.value == 2 &&
+      location.pathname !== "/e-fuel/vehicles-report"
+    ) {
+      navigate("/e-fuel/vehicles-report");
+    }
+  }, [category, location.pathname, navigate]);
 
   /**
    *  loads the calander data for month change or hub chnage
@@ -59,8 +84,11 @@ const VehiclesReportTable = () => {
       title: (
         <div>
           {" "}
-          Hub: {hub?.label} <span className="has-text-black ml-6">Date : {changeDateTimeZoneFormat(date,"DD-MM-YYYY")}
-          </span>        </div>
+          Hub: {hub?.label}{" "}
+          <span className="has-text-black ml-6">
+            Date : {changeDateTimeZoneFormat(date, "DD-MM-YYYY")}
+          </span>{" "}
+        </div>
       ),
       className: "sd-efl-modal",
       closeBody: false,
@@ -71,7 +99,6 @@ const VehiclesReportTable = () => {
           hub_id={hub}
         />
       ),
-    
     };
     openModal(options);
   };
@@ -94,7 +121,7 @@ const VehiclesReportTable = () => {
 
   // ** meeting display boss
   const content = (date: any) => {
-    const count_check = data?.find((item) => item.date === date);    
+    const count_check = data?.find((item) => item.date === date);
     const last10Days = isDateWithinLastDays(date);
     const this_month = isCurrentMonth(new Date(date));
     //console.log(" this month ", this_month, "  dt ", date);
@@ -125,24 +152,35 @@ const VehiclesReportTable = () => {
   const titleDisp = () => {
     return (
       <div className="is-flex is-justify-content-space-between	is-align-items-center">
-        <div className="is-size-4 site-title has-text-weight-bold"> Vehicles Report</div>
+        <div className="is-size-4 site-title has-text-weight-bold">
+          {" "}
+          Vehicles Report
+        </div>
         <div className="is-flex ">
-        <SmartSoftButton
+          <SmartSoftButton
             label="Import"
             classList={["button", " px-5 py-0 is-link is-normal"]}
             leftIcon="fa fa-file-excel-o"
             onClick={() => openImportForm(data)}
           />
-      
-        <div className="is-flex ml-2">
-        
-          <SmartSoftSelect
-            options={hubs}
-            placeHolder="Select hub"
-            value={hub}
-            onChange={(value) => setHub(value)}
-          />
-        </div>
+
+          <div className="is-flex ml-2">
+            <SmartSoftSelect
+              options={hubs}
+              placeHolder="Select hub"
+              value={hub}
+              onChange={(value) => setHub(value)}
+            />
+            <div className="ml-2">
+              {" "}
+              <SmartSoftSelect
+                options={categoryOptions}
+                // placeHolder="Select hub"
+                value={category}
+                onChange={(value) => setCategory(value)}
+              />
+            </div>
+          </div>
         </div>
         <div></div>
       </div>
