@@ -17,7 +17,7 @@ const HubsMapView:React.FC<headerProps> = ({data}) => {
   return (
    
     <>
-    <ReactMapView locations={hubData} zoom={10} />
+    <ReactMapView locations={hubData} zoom={5} />
     </>
   )
 }
