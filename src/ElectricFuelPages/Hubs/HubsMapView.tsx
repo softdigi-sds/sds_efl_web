@@ -14,12 +14,12 @@ const HubsMapView = () => {
 
     // Array of multiple locations
     const locations = [
-        { lat: 28.6139, lng: 77.2090, name: "New Delhi (Delhi)", color: "red" },
-        { lat: 12.9716, lng: 77.5946, name: "Bengaluru (Karnataka)", color: "blue" },
-        { lat: 13.0827, lng: 80.2707, name: "Chennai (Tamil Nadu)", color: "green" },
-        { lat: 19.0760, lng: 72.8777, name: "Mumbai (Maharashtra)", color: "yellow" },
-        { lat: 22.5726, lng: 88.3639, name: "Kolkata (West Bengal)", color: "purple" },
-        { lat: 17.3850, lng: 78.4867, name: "Hyderabad (Telangana)", color: "red" },
+        { latitude: 28.6139, longitude: 77.2090, name: "New Delhi (Delhi)", color: "red" },
+        { latitude: 12.9716,longitude: 77.5946, name: "Bengaluru (Karnataka)", color: "blue" },
+        { latitude: 13.0827, longitude: 80.2707, name: "Chennai (Tamil Nadu)", color: "green" },
+        { latitude: 19.0760, longitude: 72.8777, name: "Mumbai (Maharashtra)", color: "yellow" },
+        { latitude: 22.5726, longitude: 88.3639, name: "Kolkata (West Bengal)", color: "purple" },
+        { latitude: 17.3850, longitude: 78.4867, name: "Hyderabad (Telangana)", color: "red" },
         { lat: 26.9124, lng: 75.7873, name: "Jaipur (Rajasthan)", color: "blue" },
         { lat: 23.2599, lng: 77.4126, name: "Bhopal (Madhya Pradesh)", color: "green" },
         { lat: 15.3173, lng: 75.7139, name: "Vijayawada (Andhra Pradesh)", color: "yellow" },
@@ -72,12 +72,7 @@ const HubsMapView = () => {
       
       const mapRef = useRef(null);
   
-      const onLoad = useCallback((map:any) => {
-        mapRef.current = map;
-        const bounds = new window.google.maps.LatLngBounds();
-        locations.forEach(({ lat, lng }) => bounds.extend({ lat, lng }));
-        map.fitBounds(bounds);
-      }, [locations]);
+   
   //    apikey=e021fd4c5dd04e28ac879598fc576af6
 
   return (
@@ -101,7 +96,7 @@ const HubsMapView = () => {
     //   </GoogleMap>
     // </LoadScript>
     <>
-    <ReactMapView  />
+    <ReactMapView locations={locations} />
     </>
   )
 }

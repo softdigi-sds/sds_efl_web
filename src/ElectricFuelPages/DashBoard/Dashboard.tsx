@@ -1,7 +1,8 @@
-import ReactMapView from '../../components/site/ReactMapView'
+
 import DashboardBarChart from './DashboardBarChart'
 import DashBoardCard from './DashBoardCard'
 import DashboardChart from './DashboardChart'
+import DashboardMapView from './DashboardMapView'
 import DashBoardTable from './DashBoardTable'
 import MarketSlots from './MarketSlots'
 
@@ -15,7 +16,7 @@ const Dashboard = () => {
       {/* <div className="column is-6 "> <DashboardBarChart/></div> */}
       <div className="column is-6 "> <MarketSlots/></div>
        <div className='column is-12'>
-       <ReactMapView  />
+      < DashboardMapView />
        </div>
        </div>
 {/* <div className=""><DashBoardTable/></div> */}
