@@ -103,7 +103,7 @@ const HubsTables = () => {
   const openMapView = (hubsdetail: any) => {
     let options = {
       title: "Hub Location",
-      content: <HubsMapView  />,
+      content: <HubsMapView data={hubsdetail} />,
       width: 80,
     };
     openModal(options);
@@ -143,7 +143,7 @@ const HubsTables = () => {
       leftIcon: "fa fa-map-o",
       classList: ["has-text-warning-dark"],
       onClick: (data: any) => {
-        openMapView(data["ID"]);
+        openMapView(data);
       },
     },
   ];
@@ -246,11 +246,11 @@ const HubsTables = () => {
       index: "office_city",
       width: "15",
     },
-    // {
-    //   title: "Location",
-    //   index: "hub_location",
-    //   valueFunction: LocationDisplay,
-    // },
+    {
+      title: "Number of Vendors",
+      index: "hub_location",
+      // valueFunction: LocationDisplay,
+    },
 
     {
       title: "Hub Supervisors",

@@ -80,6 +80,7 @@ const ConsumptionReportTable = () => {
     } else if (category.value == 2 && location.pathname !== "/e-fuel/consumption-report") {
       navigate("/e-fuel/consumption-report");
     }
+    setCategory( {label:"Hub Report",value:"2"})
   }, [category, location.pathname, navigate]);
 
   const openForm = (date: any) => {
@@ -168,11 +169,11 @@ const ConsumptionReportTable = () => {
         <div className="is-flex">
           <SmartSoftButton
             label="Import"
-            classList={["button", " mr-2 px-5 py-0 is-link is-normal"]}
+            classList={["button", " mr-2 py-0 is-link is-normal"]}
             onClick={() => openImportForm(data)}
             leftIcon="fa fa-file-excel-o"
           />
-          <div className="mt-0">
+          <div className="mt-0 ">
             <SmartSoftSelect
               options={hubs}
               placeHolder="Select hub"
@@ -180,7 +181,7 @@ const ConsumptionReportTable = () => {
               onChange={(value) => setHub(value)}
             />
           </div>
-          <div className="mt-0">
+          <div className="mt-0 ml-2">
             <SmartSoftSelect
               options={categoryOptions}
               // placeHolder="Select hub"

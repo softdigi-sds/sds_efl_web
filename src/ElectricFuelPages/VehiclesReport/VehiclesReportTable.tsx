@@ -39,6 +39,7 @@ const VehiclesReportTable = () => {
     ) {
       navigate("/e-fuel/vehicles-report");
     }
+    setCategory( {label:"Hub Report",value:"2"})
   }, [category, location.pathname, navigate]);
 
   /**

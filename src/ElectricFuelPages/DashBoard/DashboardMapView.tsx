@@ -21,7 +21,11 @@ const DashboardMapView = () => {
       }, []);
   return (
     <div>
-        <ReactMapView locations={data} />
+             <p className="is-size-4 has-text-weight-bold">Hubs Details</p>
+             <div className='mt-5 card p-1'>
+             <ReactMapView locations={data} zoom={4} height={400}/>
+             </div>
+     
     </div>
   )
 }

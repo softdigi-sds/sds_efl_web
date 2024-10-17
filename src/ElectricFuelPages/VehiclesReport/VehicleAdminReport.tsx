@@ -22,6 +22,7 @@ const VehicleAdminReport = () => {
     } else if (category.value == 2 && location.pathname !== "/e-fuel/vehicles-report") {
       navigate("/e-fuel/vehicles-report");
     }
+    setCategory( {label:"Admin Report",value:"1"})
   }, [category, location.pathname, navigate]);
   useEffect(() => {
     const tempArray: number[] = [];
@@ -97,12 +98,19 @@ const VehicleAdminReport = () => {
           <h2 className=' mt-1 is-size-4 site-title has-text-weight-bold '>Vehicle Report</h2>
       
         </div>
-        <div className='column is-6'>
-          <div className='is-flex'>
+        <div className='column is-3'>
+          <div className=''>
           <div className='search-box sd-efl-input'>
             <input className='input' type='text' placeholder='Search' />
           </div>
-          <div>   
+        
+      
+          </div>
+    
+
+        </div>
+        <div className='column is-5 is-flex'>
+        <div>   
              <SmartSoftSelect
               options={categoryOptions}
               // placeHolder="Select hub"
@@ -111,13 +119,8 @@ const VehicleAdminReport = () => {
             />
 
           </div>
-      
-          </div>
-    
-
-        </div>
-        <div className='column is-2'>
-          {monthYear()}
+          <div className='mt-2'>  {monthYear()}</div>
+        
         </div>
         <div className='column is-12'>
           <div className='scrollable-table'>

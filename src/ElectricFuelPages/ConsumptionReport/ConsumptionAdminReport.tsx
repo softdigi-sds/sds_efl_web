@@ -5,6 +5,7 @@ import { SmartSoftButton, SmartSoftSelect } from 'soft_digi'
 const ConsumptionAdminReport = () => {
   const [numberArray, setNumberArray] = useState<number[]>([]);
   const [category, setCategory] = useState<any>("1");
+  const [currentDate, setCurrentDate] = useState(new Date());
   const navigate = useNavigate();
   const location = useLocation();
   const categoryOptions=[
@@ -29,6 +30,7 @@ const ConsumptionAdminReport = () => {
     }
  
     setNumberArray(tempArray);
+    setCategory( {label:"Admin Report",value:"1"})
   }, []);
   const hubs = [
     { hubs_data: [1, 0, 3, 0, 5, 6, 7, 0, 9, 10, 0, 12, 13, 0, 15, 16, 0, 18, 19, 0, 21, 0, 23, 24, 0, 26, 27, 0, 29, 30], hub_name: "Chennai" },
@@ -42,27 +44,57 @@ const ConsumptionAdminReport = () => {
     { hubs_data: [1, 0, 3, 4, 0, 6, 7, 0, 9, 10, 0, 12, 13, 0, 15, 16, 0, 18, 19, 0, 21, 0, 23, 24, 25, 0, 27, 28, 0, 30], hub_name: "Jaipur" },
     { hubs_data: [0, 2, 3, 0, 5, 6, 7, 8, 0, 10, 11, 0, 13, 14, 0, 16, 17, 0, 19, 20, 0, 22, 23, 24, 0, 26, 27, 28, 0, 30], hub_name: "Lucknow" }
   ];
+
+  
+  const changeMonth = (months: number) => {
+    const newDate = new Date(currentDate.setMonth(currentDate.getMonth() + months));
+    setCurrentDate(new Date(newDate));
+    console.log("New date: ", newDate)
+  };
+
+
+  const formatDate = (date: Date) => {
+    return date.toLocaleDateString("en-US", { year: "numeric", month: "long" });
+  };
+
+  const monthYear = () => {
+    return <div className="date-navigation">
+      <span onClick={() => changeMonth(-1)} className="icon is-clickable">
+        <i className="fa fa-arrow-left"></i>
+      </span>
+      <span className="mx-2">
+        {formatDate(currentDate)} <i className="fa fa-calendar"></i>
+      </span>
+      <span onClick={() => changeMonth(1)} className="icon is-clickable">
+        <i className="fa fa-arrow-right"></i>
+      </span>
+    </div>
+  }
   
   return (
     <div>
       <div className='columns is-multiline'>
-        <div className='column is-6'>
+        <div className='column is-4'>
           <h2 className=' mt-1 is-size-4 site-title has-text-weight-bold '>Consumption Report</h2>
         
   </div>
-  <div className='column is-4'>
+  <div className='column is-3'>
        <div className='search-box sd-efl-input'>
         <input className='input' type='text'  placeholder='Search'/>
        </div>
         
   </div>
-  <div className='column is-2'>
+  <div className='column is-5 is-flex'>
            <SmartSoftSelect
               options={categoryOptions}
               // placeHolder="Select hub"
               value={category}
               onChange={(value) => setCategory(value)}
             />
+            <div className='mt-2'>
+            {monthYear()}
+            </div>
+           
   </div>
   <div className='column is-12'>
     <div className='scrollable-table'>

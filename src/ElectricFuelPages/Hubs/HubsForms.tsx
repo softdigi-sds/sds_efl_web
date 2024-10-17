@@ -140,18 +140,7 @@ const HubsForms: React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
         validations: hubFormValidations.hub_name,
       },
     },
-    {
-      type: "TEXT_BOX",
-      width: "6",
-      name: "longitude",
-      element: {
-        label: "Longitude",
-        isRequired: true,
-        // inputProps: { isFocussed: true },
-        inputType: "BORDER_LABEL",
-        validations: hubFormValidations.lon,
-      },
-    },
+  
     {
       type: "TEXT_BOX",
       width: "6",
@@ -162,6 +151,18 @@ const HubsForms: React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
         // inputProps: { isFocussed: true },
         inputType: "BORDER_LABEL",
         validations: hubFormValidations.lat,
+      },
+    },
+    {
+      type: "TEXT_BOX",
+      width: "6",
+      name: "longitude",
+      element: {
+        label: "Longitude",
+        isRequired: true,
+        // inputProps: { isFocussed: true },
+        inputType: "BORDER_LABEL",
+        validations: hubFormValidations.lon,
       },
     },
   
