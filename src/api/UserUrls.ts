@@ -55,6 +55,7 @@ const VEHICLES_URL = {
   GET_ONE: "/efl_vehicles/get_one",
   DELETE: "/efl_vehicles/delete_one",
   GET_ALL_CALENDER: "/efl_vehicles/get_all_parking_data",
+  GET_ALL_WITH_HUB:"/efl_vehicles/get_all_parking_data_hub",
   GET_ALL_CALENDER_GET_ONE: "/efl_vehicles/get_one_parking_data",
   IMPORT_EXCEL: "/efl_vehicles/import_excel",
 };
@@ -79,10 +80,9 @@ export {
   CONSUMPTION_URL,
   HUBS_URLS,
   HUB_GROUPS_URLS,
-  INVOICE_URLS,
-  OFFICE_URLS,
+  INVOICE_URLS, METER_READINGS_URLS, OFFICE_URLS,
   VEHICLES_URL,
   VENDERS_URLS,
-  VENDER_RATE_URLS,
-  METER_READINGS_URLS
+  VENDER_RATE_URLS
 };
+

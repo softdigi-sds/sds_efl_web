@@ -6,8 +6,8 @@ import { showAlertAutoClose, showYesOrNoAlert } from '../../services/notifyServi
 import { office_get_all_select } from '../../services/site/SelectBoxServices';
 import { get, post } from '../../services/smartApiService';
 import HubsForms from './HubsForms';
-import HubsView from './HubsView';
 import HubsMapView from './HubsMapView';
+import HubsView from './HubsView';
 
 const HubsTables = () => {
   const [data, setData] = useState([]);
@@ -259,8 +259,8 @@ const HubsTables = () => {
     },
     {
       title: "Number of Vendors",
-      index: "vendor_number",
-       valueFunction: vendorsDisplay,
+      index: "vendor_count",
+      // valueFunction: LocationDisplay,
     },
 
     {

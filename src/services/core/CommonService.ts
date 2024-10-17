@@ -37,11 +37,13 @@ const displayFiftyDots = (title: string, lengthDisplay: number = 40) => {
 
 const changeDateTimeZone = (
   dateString: string,
+  format: string = "DD/MM/YYYY",
   timeZone: string = "Asia/Kolkata"
 ) => {
+  const userTimezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
   const selectedDateInUTC = moment_timzone.utc(dateString); // Assume the date is already in UTC
-  const selectedDateInTimeZone = selectedDateInUTC.tz(timeZone);
-  const dateAlone = selectedDateInTimeZone.format("YYYY-MM-DD");
+  const selectedDateInTimeZone = selectedDateInUTC.tz(userTimezone);
+  const dateAlone = selectedDateInTimeZone.format(format);
   return dateAlone;
 };
 
@@ -109,30 +111,11 @@ const changeDateTimeZoneFormat = (
   //console.log("timezone ", userTimezone);
   const selectedDateInUTC = moment_timzone.utc(dateString); // Assume the date is already in UTC
   const selectedDateInTimeZone = selectedDateInUTC.tz("Asia/Kolkata");
-  const dateAlone = selectedDateInTimeZone.format(format);
-  console.log(
-    "date alone",
-    dateString,
-    "  ouput ",
-    dateAlone,
-    "utc ",
-    selectedDateInUTC,
-    " selected one ",
-    selectedDateInTimeZone
-  );
+  const dateAlone = selectedDateInTimeZone.format(format);  
   return dateAlone;
 };
-const changeDateFormat = (
-  dateString: string,
-  format: string = "DD/MM/YYYY",
-  timeZone: string = "Asia/Kolkata"
-) => {
-  const userTimezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
-  const selectedDateInUTC = moment_timzone.utc(dateString); // Assume the date is already in UTC
-  const selectedDateInTimeZone = selectedDateInUTC.tz(userTimezone);
-  const dateAlone = selectedDateInTimeZone.format(format);
-  return dateAlone;
-};
+
+
 
 const appendCurrentDate = (timeString: string) => {
   // Get the current date
@@ -180,18 +163,15 @@ const roundNumber = (input: any) => {
 };
 
 export {
-  changeDateFormat,
   changeDateTimeFormat,
   changeDateTimeZone,
   changeDateTimeZoneFormat,
   displayDots,
   displayFiftyDots,
-  formatDate,
-  getTimeAgo,
+  formatDate, getLocalTime, getTimeAgo,
   isEmptyObject,
   maskEmail,
   maskMobileNumber,
-  monthNameDisplay,
-  getLocalTime,
-  roundNumber,
+  monthNameDisplay, roundNumber
 };
+

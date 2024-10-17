@@ -1,56 +1,70 @@
+import moment, { Moment } from 'moment';
 import { useEffect, useState } from 'react';
-import { VEHICLES_URL } from '../../api/UserUrls';
-import { post } from '../../services/smartApiService';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { SmartSoftSelect } from 'soft_digi';
+import { VEHICLES_URL } from '../../api/UserUrls';
+import { changeDateTimeZone } from '../../services/core/CommonService';
+import { post } from '../../services/smartApiService';
 
 const VehicleAdminReport = () => {
-  const [numberArray, setNumberArray] = useState<number[]>([]);
+  const [numberArray, setNumberArray] = useState<any[]>([]);
   const [currentDate, setCurrentDate] = useState(new Date());
-  const [data, setData] = useState([]);
+  const [data, setData] = useState<any[]>([]);
   const [category, setCategory] = useState<any>("1");
+  // Initialize state for start and end date
+  const [startDate, setStartDate] = useState(moment().date(20).startOf('day'));
+  const [endDate, setEndDate] = useState(moment().add(1, 'month').date(19).endOf('day'));
+
+  const changeMonthNew = (direction: number) => {
+    const newStartDate = moment(startDate).add(direction, 'months').date(20);
+    const newEndDate = moment(newStartDate).add(1, 'month').date(19).endOf('day');
+    setStartDate(newStartDate);
+    setEndDate(newEndDate);
+  };
+
+  // Format the date
+  const formatDateNew = (date: Moment): string => date.format('DD-MM-YYYY');
+
   const navigate = useNavigate();
   const location = useLocation();
-  const categoryOptions=[
-    {label:"Admin Report",value:"1"},
-    {label:"Hub Report",value:"2"}
+  const categoryOptions = [
+    { label: "Admin Report", value: "1" },
+    { label: "Hub Report", value: "2" }
   ]
-  useEffect(() => {
 
-    if (category.value == 1 && location.pathname !== "/e-fuel/vehicles-admin-report") {
-      navigate("/e-fuel/vehicles-admin-report");
-    } else if (category.value == 2 && location.pathname !== "/e-fuel/vehicles-report") {
-      navigate("/e-fuel/vehicles-report");
-    }
-    setCategory( {label:"Admin Report",value:"1"})
-  }, [category, location.pathname, navigate]);
-  useEffect(() => {
-    const tempArray: number[] = [];
-    for (let i = 1; i <= 30; i++) {
-      tempArray.push(i);
-    }
-    setNumberArray(tempArray);
-  }, []);
+
 
   const loadData = () => {
-    //console.log("year", currentMonth?.month());
+    //console.log("year", currentMonth?.month());  
     let _data = {
-      year: currentDate?.getFullYear(),
-      month: currentDate?.getMonth() + 1,
+      start_date: changeDateTimeZone(startDate.toISOString(), "YYYY-MM-DD"),
+      end_date: changeDateTimeZone(endDate.toISOString(), "YYYY-MM-DD"),
     };
-    let URL = VEHICLES_URL.GET_ALL_CALENDER;
+    let URL = VEHICLES_URL.GET_ALL_WITH_HUB;
     const subscription = post(URL, _data).subscribe((response) => {
-      setData(response.data);
+      setData(response.data.data);
+      setNumberArray(response.data.dates);
+      //updateNumberOfDays();
     });
     return () => {
       subscription.unsubscribe();
     };
   };
 
+  /*
+  useEffect(() => {
+    if (category.value == 1 && location.pathname !== "/e-fuel/vehicles-admin-report") {
+      navigate("/e-fuel/vehicles-admin-report");
+    } else if (category.value == 2 && location.pathname !== "/e-fuel/vehicles-report") {
+      navigate("/e-fuel/vehicles-report");
+    }
+    setCategory({ label: "Admin Report", value: "1" })
+  }, [category]);
+*/
 
   useEffect(() => {
     loadData();
-  }, [currentDate]);
+  }, [startDate]);
 
 
   const hubs = [
@@ -69,7 +83,6 @@ const VehicleAdminReport = () => {
   const changeMonth = (months: number) => {
     const newDate = new Date(currentDate.setMonth(currentDate.getMonth() + months));
     setCurrentDate(new Date(newDate));
-    console.log("New date: ", newDate)
   };
 
 
@@ -91,37 +104,57 @@ const VehicleAdminReport = () => {
     </div>
   }
 
+  const dateRange = () => {
+    return (
+      <div className="date-navigation">
+        <span onClick={() => changeMonthNew(-1)} className="icon is-clickable">
+          <i className="fa fa-arrow-left"></i>
+        </span>
+        <span className="mx-2">
+          {`${formatDateNew(startDate)} to ${formatDateNew(endDate)}`} <i className="fa fa-calendar"></i>
+        </span>
+        <span onClick={() => changeMonthNew(1)} className="icon is-clickable">
+          <i className="fa fa-arrow-right"></i>
+        </span>
+      </div>
+    )
+  }
+
+  const getDayCount = (date: string, subData: any[]) => {
+    if (subData && subData.length > 0) {
+      let _date_obj: any = subData.find((obj) => obj.date == date);    
+      return _date_obj && _date_obj?.count ? _date_obj.count : 0;   
+    }
+    return 0;
+
+  }
+
+
   return (
     <div>
       <div className='columns is-multiline'>
         <div className='column is-4 is-flex'>
           <h2 className=' mt-1 is-size-4 site-title has-text-weight-bold '>Vehicle Report</h2>
-      
         </div>
         <div className='column is-3'>
           <div className=''>
-          <div className='search-box sd-efl-input'>
-            <input className='input' type='text' placeholder='Search' />
+            <div className='search-box sd-efl-input'>
+              <input className='input' type='text' placeholder='Search' />
+            </div>
           </div>
-        
-      
-          </div>
-    
-
         </div>
         <div className='column is-5 is-flex'>
-        <div>   
-             <SmartSoftSelect
+          <div>
+            <SmartSoftSelect
               options={categoryOptions}
               // placeHolder="Select hub"
               value={category}
               onChange={(value) => setCategory(value)}
             />
-
           </div>
-          <div className='mt-2'>  {monthYear()}</div>
-        
+          <div className='mt-2'> {dateRange()}</div>
         </div>
+
         <div className='column is-12'>
           <div className='scrollable-table'>
             <table className='table is-bordered is-fullwidth smart-report-table'>
@@ -130,23 +163,21 @@ const VehicleAdminReport = () => {
                   <th>Hub Name</th>
                   {numberArray.map((item: any) => (
                     <>
-                      <th>{item}</th>
+                      <th>{changeDateTimeZone(item, "DD")}</th>
                     </>
                   ))}
-
                 </tr>
               </thead>
               <tbody>
-                {hubs && hubs.map((hub) => (
-
+                {data && data.map((hub) => (
                   <tr>
                     <td >{hub.hub_name}</td>
-                    {hub && hub?.hubs_data?.map((data: any) => (
-                      <td >{data !== 0 && (<span className='is-size-7'>{data}</span>)} {data === 0 && (<span className='has-text-danger'>+</span>)}</td>
-                    ))}
+                    {numberArray.map((item: any) => {
+                      let _count = getDayCount(item, hub.sub_data);
+                      return _count > 0  ? <span>{_count}</span> : <span></span>
+                    })}
                   </tr>
                 ))}
-
               </tbody>
             </table>
           </div>
