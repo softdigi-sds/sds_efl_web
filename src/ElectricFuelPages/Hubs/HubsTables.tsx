@@ -234,6 +234,17 @@ const HubsTables = () => {
     { value: 5, Label: "Active", class: "is-primary" },
     { value: 10, Label: "Inactive", class: "is-danger" },
   ];
+
+  const vendorsDisplay =(data:any)=>{
+    if(data.vendor_number > 0){
+      return<><p>open popup</p></>
+    }else{
+      return<><p>No Vendor</p></>
+    }
+        
+    }
+    
+  
   const columns: SmartTableNewInterface.SmartTableNewColumnConfig[] = [
     { title: "S.NO", index: "s_no", type: "sno", width: "5" },
     {
@@ -248,8 +259,8 @@ const HubsTables = () => {
     },
     {
       title: "Number of Vendors",
-      index: "hub_location",
-      // valueFunction: LocationDisplay,
+      index: "vendor_number",
+       valueFunction: vendorsDisplay,
     },
 
     {
