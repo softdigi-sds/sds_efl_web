@@ -17,8 +17,12 @@ const Msireports = () => {
   const [formErrors, setFormErrors] = useState<FormErrors>({});
   const [minEndDate, setMinEndDate] = useState<Date | null>(null);
   const categoryOptions = [
-    { label: "Vendors Report", value: "1" },
-    { label: "Vehichle", value: "2" },
+    { label: "vendor (vs) vehicles", value: "1" },
+    { label: "vendor (vs) CMS", value: "2" },
+  ];
+  const categoryOptionsTwo = [
+    { label: "Vendor", value: "1" },
+    { label: "CMS data", value: "2" },
   ];
   const handleInputChange = (name: string, value: any) => {
     setFormData((prev: any) => ({ ...prev, [name]: value }));
@@ -48,6 +52,18 @@ const Msireports = () => {
           inputType: "BORDER_LABEL",
         },
       },
+      // {
+      //   type: "SELECT_BOX",
+      //   width: "3",
+      //   name: "state_two",
+      //   element: {
+      //     label: "Select",
+      //     // isRequired:true,
+      //     options: categoryOptionsTwo,
+      //     inputProps: { isFocussed: true },
+      //     inputType: "BORDER_LABEL",
+      //   },
+      // },
       {
         type: "DATE",
         width: "4",
@@ -81,7 +97,7 @@ const Msireports = () => {
             {" "}
             MSI Report
           </div>
-          <div className="is-flex  column is-8">
+          <div className="is-flex  column is-9">
             {/* <div className="mt-0 ml-2 column is-4">
               <SmartSoftSelect
                 // width =""
@@ -166,7 +182,7 @@ const Msireports = () => {
       title: "Vendor",
       index: "vendor_code",
     },
-    { title: "Count", index: "vendor_company" },
+    { title: "Units", index: "vendor_company" },
   ];
   const tableTop: SmartTableNewInterface.SmartTableNewTopProps[] = [
     {
