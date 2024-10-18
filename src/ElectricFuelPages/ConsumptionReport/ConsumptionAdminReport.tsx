@@ -22,6 +22,7 @@ const ConsumptionAdminReport:React.FC<VehicleReportProps> = ({stage,setStage}) =
   const [endDate, setEndDate] = useState(
     moment().add(1, "month").date(19).endOf("day")
   );
+  const [searchTerm, setSearchTerm] = useState<string>('')
   const handelStage =()=>{
     setStage("HUB");
   }
@@ -147,6 +148,13 @@ const ConsumptionAdminReport:React.FC<VehicleReportProps> = ({stage,setStage}) =
   const formatDate = (date: Date) => {
     return date.toLocaleDateString("en-US", { year: "numeric", month: "long" });
   };
+  const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchTerm(event.target.value);
+  };
+  const filteredData = data.filter(item =>
+    item.hub_name.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
 
   const monthYear = () => {
     return (
@@ -243,7 +251,10 @@ const ConsumptionAdminReport:React.FC<VehicleReportProps> = ({stage,setStage}) =
 <p className="has-text-danger mt-2 is-clickable mr-2"   onClick={() => openImportForm(data)}>  <i className="fa fa-cloud-download is-size-3" aria-hidden="true"></i></p>
 </div>
             <div className="search-box sd-efl-input">
-              <input className="input" type="text" placeholder="Search" />
+              <input className="input" type="text" placeholder="Search"
+                 value={searchTerm} 
+                 onChange={handleSearch}
+               />
             </div>
             <SmartSoftButton
              label="Hub Report"
@@ -275,8 +286,8 @@ const ConsumptionAdminReport:React.FC<VehicleReportProps> = ({stage,setStage}) =
                 </tr>
               </thead>
               <tbody>
-                {data &&
-                  data.map((hub) => (
+                {filteredData &&
+                  filteredData.map((hub) => (
                     <tr>
                       <td>{hub.hub_name} ({hub.vendor_count})</td>
                       {numberArray.map((item: any) => {

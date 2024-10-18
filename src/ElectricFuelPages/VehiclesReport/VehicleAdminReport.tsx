@@ -22,9 +22,11 @@ const VehicleAdminReport:React.FC<VehicleReportProps> = ({stage,setStage}) => {
   const [endDate, setEndDate] = useState(
     moment().add(1, "month").date(19).endOf("day")
   );
+  const [searchTerm, setSearchTerm] = useState<string>('')
   const handelStage =()=>{
     setStage("HUB");
   }
+
 
   const changeMonthNew = (direction: number) => {
     const newStartDate = moment(startDate).add(direction, "months").date(20);
@@ -57,85 +59,91 @@ const VehicleAdminReport:React.FC<VehicleReportProps> = ({stage,setStage}) => {
     };
   };
 
+  const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchTerm(event.target.value);
+  };
+  const filteredData = data.filter(item =>
+    item.hub_name.toLowerCase().includes(searchTerm.toLowerCase())
+  );
 
 
 
   useEffect(() => {
     loadData();
-  }, [startDate]);
+  }, [startDate, ]);
 
-  const hubs = [
-    {
-      hubs_data: [
-        1, 0, 3, 0, 5, 6, 7, 0, 9, 10, 0, 12, 13, 0, 15, 16, 0, 18, 19, 0, 21,
-        0, 23, 24, 0, 26, 27, 0, 29, 30,
-      ],
-      hub_name: "Chennai",
-    },
-    {
-      hubs_data: [
-        0, 2, 0, 4, 5, 6, 0, 8, 9, 10, 0, 12, 13, 0, 15, 16, 17, 0, 19, 0, 21,
-        22, 0, 24, 25, 0, 27, 28, 29, 0,
-      ],
-      hub_name: "Mumbai",
-    },
-    {
-      hubs_data: [
-        1, 0, 3, 4, 0, 6, 7, 8, 0, 10, 11, 0, 13, 14, 0, 16, 0, 18, 19, 0, 21,
-        22, 0, 24, 25, 26, 0, 28, 0, 30,
-      ],
-      hub_name: "Bengaluru",
-    },
-    {
-      hubs_data: [
-        1, 2, 3, 0, 5, 6, 0, 8, 9, 0, 11, 12, 0, 14, 15, 0, 17, 18, 19, 0, 21,
-        0, 23, 24, 25, 0, 27, 28, 0, 30,
-      ],
-      hub_name: "Delhi",
-    },
-    {
-      hubs_data: [
-        1, 0, 3, 4, 0, 6, 7, 8, 9, 0, 11, 12, 13, 0, 15, 16, 17, 0, 19, 20, 0,
-        22, 23, 0, 25, 26, 0, 28, 29, 0,
-      ],
-      hub_name: "Kolkata",
-    },
-    {
-      hubs_data: [
-        0, 2, 3, 4, 5, 0, 7, 8, 0, 10, 11, 0, 13, 14, 0, 16, 17, 18, 0, 20, 0,
-        22, 23, 24, 0, 26, 27, 28, 0, 30,
-      ],
-      hub_name: "Hyderabad",
-    },
-    {
-      hubs_data: [
-        1, 0, 3, 4, 0, 6, 7, 8, 0, 10, 11, 0, 13, 14, 15, 0, 17, 18, 0, 20, 0,
-        22, 23, 0, 25, 26, 0, 28, 29, 30,
-      ],
-      hub_name: "Ahmedabad",
-    },
-    {
-      hubs_data: [
-        0, 2, 3, 0, 5, 6, 7, 8, 0, 10, 11, 0, 13, 14, 15, 16, 0, 18, 19, 0, 21,
-        22, 0, 24, 25, 26, 0, 28, 29, 0,
-      ],
-      hub_name: "Pune",
-    },
-    {
-      hubs_data: [
-        1, 0, 3, 4, 0, 6, 7, 0, 9, 10, 0, 12, 13, 0, 15, 16, 0, 18, 19, 0, 21,
-        0, 23, 24, 25, 0, 27, 28, 0, 30,
-      ],
-      hub_name: "Jaipur",
-    },
-    {
-      hubs_data: [
-        0, 2, 3, 0, 5, 6, 7, 8, 0, 10, 11, 0, 13, 14, 0, 16, 17, 0, 19, 20, 0,
-        22, 23, 24, 0, 26, 27, 28, 0, 30,
-      ],
-      hub_name: "Lucknow",
-    },
-  ];
+  // const hubs = [
+  //   {
+  //     hubs_data: [
+  //       1, 0, 3, 0, 5, 6, 7, 0, 9, 10, 0, 12, 13, 0, 15, 16, 0, 18, 19, 0, 21,
+  //       0, 23, 24, 0, 26, 27, 0, 29, 30,
+  //     ],
+  //     hub_name: "Chennai",
+  //   },
+  //   {
+  //     hubs_data: [
+  //       0, 2, 0, 4, 5, 6, 0, 8, 9, 10, 0, 12, 13, 0, 15, 16, 17, 0, 19, 0, 21,
+  //       22, 0, 24, 25, 0, 27, 28, 29, 0,
+  //     ],
+  //     hub_name: "Mumbai",
+  //   },
+  //   {
+  //     hubs_data: [
+  //       1, 0, 3, 4, 0, 6, 7, 8, 0, 10, 11, 0, 13, 14, 0, 16, 0, 18, 19, 0, 21,
+  //       22, 0, 24, 25, 26, 0, 28, 0, 30,
+  //     ],
+  //     hub_name: "Bengaluru",
+  //   },
+  //   {
+  //     hubs_data: [
+  //       1, 2, 3, 0, 5, 6, 0, 8, 9, 0, 11, 12, 0, 14, 15, 0, 17, 18, 19, 0, 21,
+  //       0, 23, 24, 25, 0, 27, 28, 0, 30,
+  //     ],
+  //     hub_name: "Delhi",
+  //   },
+  //   {
+  //     hubs_data: [
+  //       1, 0, 3, 4, 0, 6, 7, 8, 9, 0, 11, 12, 13, 0, 15, 16, 17, 0, 19, 20, 0,
+  //       22, 23, 0, 25, 26, 0, 28, 29, 0,
+  //     ],
+  //     hub_name: "Kolkata",
+  //   },
+  //   {
+  //     hubs_data: [
+  //       0, 2, 3, 4, 5, 0, 7, 8, 0, 10, 11, 0, 13, 14, 0, 16, 17, 18, 0, 20, 0,
+  //       22, 23, 24, 0, 26, 27, 28, 0, 30,
+  //     ],
+  //     hub_name: "Hyderabad",
+  //   },
+  //   {
+  //     hubs_data: [
+  //       1, 0, 3, 4, 0, 6, 7, 8, 0, 10, 11, 0, 13, 14, 15, 0, 17, 18, 0, 20, 0,
+  //       22, 23, 0, 25, 26, 0, 28, 29, 30,
+  //     ],
+  //     hub_name: "Ahmedabad",
+  //   },
+  //   {
+  //     hubs_data: [
+  //       0, 2, 3, 0, 5, 6, 7, 8, 0, 10, 11, 0, 13, 14, 15, 16, 0, 18, 19, 0, 21,
+  //       22, 0, 24, 25, 26, 0, 28, 29, 0,
+  //     ],
+  //     hub_name: "Pune",
+  //   },
+  //   {
+  //     hubs_data: [
+  //       1, 0, 3, 4, 0, 6, 7, 0, 9, 10, 0, 12, 13, 0, 15, 16, 0, 18, 19, 0, 21,
+  //       0, 23, 24, 25, 0, 27, 28, 0, 30,
+  //     ],
+  //     hub_name: "Jaipur",
+  //   },
+  //   {
+  //     hubs_data: [
+  //       0, 2, 3, 0, 5, 6, 7, 8, 0, 10, 11, 0, 13, 14, 0, 16, 17, 0, 19, 20, 0,
+  //       22, 23, 24, 0, 26, 27, 28, 0, 30,
+  //     ],
+  //     hub_name: "Lucknow",
+  //   },
+  // ];
 
   const changeMonth = (months: number) => {
     const newDate = new Date(
@@ -244,7 +252,10 @@ const VehicleAdminReport:React.FC<VehicleReportProps> = ({stage,setStage}) => {
 <p className="has-text-danger mt-2 is-clickable mr-3"   onClick={() => openImportForm(data)}>  <i className="fa fa-cloud-download is-size-3" aria-hidden="true"></i></p>
 </div>
             <div className="search-box sd-efl-input">
-              <input className="input" type="text" placeholder="Search" />
+              <input className="input" type="text" placeholder="Search"
+               value={searchTerm} 
+               onChange={handleSearch}
+               />
             </div>
             <SmartSoftButton
              label="Hub Report"
@@ -276,8 +287,8 @@ const VehicleAdminReport:React.FC<VehicleReportProps> = ({stage,setStage}) => {
                 </tr>
               </thead>
               <tbody>
-                {data &&
-                  data.map((hub) => (
+                {filteredData  &&
+                  filteredData.map((hub) => (
                     <tr>
                       <td>{hub.hub_name} ({hub.vendor_count})</td>
                       {numberArray.map((item: any) => {
