@@ -214,7 +214,7 @@ const VendorsTable = () => {
       },
     },
   ];
-  const statusTags = [
+  const statusTags = [ 
     { value: 5, label: "Active", class: "is-primary" },
     { value: 0, label: "Inactive", class: "is-danger" },
   ];
