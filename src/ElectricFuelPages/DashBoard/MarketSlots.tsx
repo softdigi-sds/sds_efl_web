@@ -101,10 +101,10 @@ const MarketSlots: React.FC = () => {
 
   return (
     <>
-      <div className="container">
+      <div className="container ">
         {topDisplay()}
         {tabData && (
-          <div className="market-calendar">
+          <div className="market-calendar card p-1 pb-2">
             <Calendar
               onChange={(value) => {
                 if (Array.isArray(value)) {
