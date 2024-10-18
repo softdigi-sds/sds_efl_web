@@ -84,11 +84,7 @@ const OfficesForm:React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
     pin_code: [SmartValid.required("Pin Code is Required")],
   };
 
-  const options = [
-    { value: "1", label: "Test" },
-    { value: "2", label: "Test" },
-    { value: "3", label: "test" },
-  ];
+
   const formElements:SmartFormInterFace.SmartFormElementProps[]= [
     {
       type: "SELECT_BOX",

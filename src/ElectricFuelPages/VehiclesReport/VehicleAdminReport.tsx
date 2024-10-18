@@ -1,25 +1,29 @@
 import moment, { Moment } from "moment";
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { SmartSoftSelect } from "soft_digi";
+import { SmartSoftButton, SmartSoftSelect } from "soft_digi";
 import { VEHICLES_URL } from "../../api/UserUrls";
 import { useSiteContext } from "../../contexts/SiteProvider";
 import { changeDateTimeZone } from "../../services/core/CommonService";
 import { isDateWithinDays } from "../../services/site/DateService";
 import { post } from "../../services/smartApiService";
 import VehicleReportFrom from "./VehicleReportFrom";
-
-const VehicleAdminReport = () => {
+interface VehicleReportProps {
+  stage:any,
+  setStage:any
+  }
+const VehicleAdminReport:React.FC<VehicleReportProps> = ({stage,setStage}) => {
   const { openModal } = useSiteContext();
   const [numberArray, setNumberArray] = useState<any[]>([]);
   const [currentDate, setCurrentDate] = useState(new Date());
   const [data, setData] = useState<any[]>([]);
-  const [category, setCategory] = useState<any>("1");
-  // Initialize state for start and end date
   const [startDate, setStartDate] = useState(moment().date(20).startOf("day"));
   const [endDate, setEndDate] = useState(
     moment().add(1, "month").date(19).endOf("day")
   );
+  const handelStage =()=>{
+    setStage("HUB");
+  }
 
   const changeMonthNew = (direction: number) => {
     const newStartDate = moment(startDate).add(direction, "months").date(20);
@@ -34,12 +38,6 @@ const VehicleAdminReport = () => {
   // Format the date
   const formatDateNew = (date: Moment): string => date.format("DD-MM-YYYY");
 
-  const navigate = useNavigate();
-  const location = useLocation();
-  const categoryOptions = [
-    { label: "Admin Report", value: "1" },
-    { label: "Hub Report", value: "2" },
-  ];
 
   const loadData = () => {
     //console.log("year", currentMonth?.month());
@@ -58,16 +56,8 @@ const VehicleAdminReport = () => {
     };
   };
 
-  /*
-  useEffect(() => {
-    if (category.value == 1 && location.pathname !== "/e-fuel/vehicles-admin-report") {
-      navigate("/e-fuel/vehicles-admin-report");
-    } else if (category.value == 2 && location.pathname !== "/e-fuel/vehicles-report") {
-      navigate("/e-fuel/vehicles-report");
-    }
-    setCategory({ label: "Admin Report", value: "1" })
-  }, [category]);
-*/
+
+
 
   useEffect(() => {
     loadData();
@@ -223,11 +213,11 @@ const VehicleAdminReport = () => {
   };
 
   return (
-    <div>
+    <div className="p-2 card">
       <div className="columns is-multiline">
         <div className="column is-4 is-flex">
           <h2 className=" mt-1 is-size-4 site-title has-text-weight-bold ">
-            Vehicle Report
+            Vehicle Report (Admin)
           </h2>
         </div>
         <div className="column is-3">
@@ -239,14 +229,14 @@ const VehicleAdminReport = () => {
         </div>
         <div className="column is-5 is-flex">
           <div>
-            <SmartSoftSelect
-              options={categoryOptions}
-              // placeHolder="Select hub"
-              value={category}
-              onChange={(value) => setCategory(value)}
-            />
+          <SmartSoftButton
+             label="Hub Report"
+            classList={["button", " px-5 py-0 is-link is-normal"]}
+            // leftIcon="fa fa-file-excel-o"
+            onClick={() => handelStage()}
+          />
           </div>
-          <div className="mt-2"> {dateRange()}</div>
+          <div className="mt-2 is-size-6"> {dateRange()}</div>
         </div>
 
         <div className="column is-12">
