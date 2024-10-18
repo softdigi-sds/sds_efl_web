@@ -140,7 +140,7 @@ const HubsForms: React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
         validations: hubFormValidations.hub_name,
       },
     },
-  
+
     {
       type: "TEXT_BOX",
       width: "6",
@@ -150,7 +150,7 @@ const HubsForms: React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
         isRequired: true,
         // inputProps: { isFocussed: true },
         inputType: "BORDER_LABEL",
-        validations: hubFormValidations.lat,
+        // validations: hubFormValidations.lat,
       },
     },
     {
@@ -162,34 +162,33 @@ const HubsForms: React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
         isRequired: true,
         // inputProps: { isFocussed: true },
         inputType: "BORDER_LABEL",
-        validations: hubFormValidations.lon,
+        //  validations: hubFormValidations.lon,
       },
     },
-  
   ];
   return (
     <>
       <div className="sd-efl-input">
-      <SmartSoftForm
-        formData={formData}
-        setFormData={handleInputChange}
-        elements={formElements}
-        formSubmit={formSubmit}
-        handleErrorChange={handleErrorChange}
-      />
-      <div className="has-text-right">
-        <SmartSoftButton
-          label="Cancel"
-          classList={["button", "mt-4 mr-4", "smart-third-button"]}
-          onClick={closeModal}
+        <SmartSoftForm
+          formData={formData}
+          setFormData={handleInputChange}
+          elements={formElements}
+          formSubmit={formSubmit}
+          handleErrorChange={handleErrorChange}
         />
-        <SmartSoftButton
-          label="Submit"
-           rightIcon='fa fa-arrow-right'
-          classList={["button ", "mt-4", "smart-action-button"]}
-          onClick={handleSubmit}
-        />
-      </div>
+        <div className="has-text-right">
+          <SmartSoftButton
+            label="Cancel"
+            classList={["button", "mt-4 mr-4", "smart-third-button"]}
+            onClick={closeModal}
+          />
+          <SmartSoftButton
+            label="Submit"
+            rightIcon="fa fa-arrow-right"
+            classList={["button ", "mt-4", "smart-action-button"]}
+            onClick={handleSubmit}
+          />
+        </div>
       </div>
     </>
   );
