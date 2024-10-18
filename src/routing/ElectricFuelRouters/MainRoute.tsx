@@ -59,16 +59,16 @@ const EFSiteRoute = () => {
             />
               <Route
               path="/vehicles-admin-report"
-              element={<VehicleAdminReport />}
+              element={<VehicleAdminReport setStage={""} stage={""} />}
             />
             <Route path="/profile" element={<Profile />} />
             <Route
               path="/consumption-report"
-              element={<ConsumptionReportTable />}
+              element={<ConsumptionReportTable/>}
             />
                 <Route
               path="/consumption-admin-report"
-              element={<ConsumptionAdminReport />}
+              element={<ConsumptionAdminReport setStage={""} stage={""}/>}
             />
             <Route
               path="/vendor-wish/:id"
