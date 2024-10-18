@@ -250,7 +250,7 @@ const HubsTables = () => {
       return<>
       <div className='is-flex is-justify-content-center'>
        
-        <p className='tag is-primary is-clickable ' onClick={()=>openVendorsView(data["ID"])}> View</p>
+        <p className='tag is-primary is-clickable ' onClick={()=>openVendorsView(data["ID"])}> {data?.vendor_count}</p>
         {/* <div className='has-text-centered'>{data?.vendor_count}</div> */}
       </div>
      </>
