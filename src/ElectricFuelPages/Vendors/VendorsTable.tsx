@@ -218,7 +218,7 @@ const VendorsTable:React.FC<headerProps> = ({hubId}) => {
       },
     },
   ];
-  const statusTags = [
+  const statusTags = [ 
     { value: 5, label: "Active", class: "is-primary" },
     { value: 0, label: "Inactive", class: "is-danger" },
   ];
