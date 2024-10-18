@@ -27,6 +27,7 @@ const VendorsTable:React.FC<headerProps> = ({hubId}) => {
 
   const loadTableData = () => {
     let URL = VENDERS_URLS.GET_ALL;
+    // let hub_id= hubId?hubId:"";
     const subscription = get(URL).subscribe((response) => {
       setData(response.data);
     });

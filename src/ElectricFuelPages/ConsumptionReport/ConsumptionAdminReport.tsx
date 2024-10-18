@@ -8,6 +8,7 @@ import { changeDateTimeZone } from "../../services/core/CommonService";
 import { isDateWithinDays } from "../../services/site/DateService";
 import { post } from "../../services/smartApiService";
 import ConsumptionReportForm from "./ConsumptionReportForm";
+import ImportReportTable from "./ImportReportTable";
 interface VehicleReportProps {
   stage:any,
   setStage:any
@@ -211,32 +212,52 @@ const ConsumptionAdminReport:React.FC<VehicleReportProps> = ({stage,setStage}) =
     };
     openModal(options);
   };
+  const openImportForm = (date: any) => {
+    let options = {
+      title: "Importing Form",
+      content: <ImportReportTable loadTableData={loadData} />,
+      className: "sd-efl-modal",
+      closeBody: false,
+    };
+    openModal(options);
+  };
 
   return (
     <div className="p-2 card">
       <div className="columns is-multiline">
-        <div className="column is-4 is-flex">
+      <div className="column is-4 ">
+          <div className="is-flex is-justify-content-space-between	is-align-items-center">
+
+       
           <h2 className=" mt-1 is-size-4 site-title has-text-weight-bold ">
           Consumption Report
           </h2>
+          <div className="is-flex">
+
+        
+          <p className="has-text-link mr-2 mt-2 is-clickable"   onClick={() => openImportForm(data)}>  <i className="fa fa-cloud-upload is-size-3" aria-hidden="true"></i></p>
+          <p className="has-text-danger mt-2 is-clickable"   onClick={() => openImportForm(data)}>  <i className="fa fa-cloud-download is-size-3" aria-hidden="true"></i></p>
+          </div>
+          </div>
         </div>
-        <div className="column is-3">
-          <div className="">
+        <div className="column is-4">
+          <div className="is-flex">
             <div className="search-box sd-efl-input">
               <input className="input" type="text" placeholder="Search" />
             </div>
-          </div>
-        </div>
-        <div className="column is-5 is-flex">
-          <div>
-          <SmartSoftButton
+            <SmartSoftButton
              label="Hub Report"
-            classList={["button", " px-5 py-0 is-link is-normal"]}
+            classList={["button", " px-5 py-0 is-link is-normal ml-2"]}
             // leftIcon="fa fa-file-excel-o"
             onClick={() => handelStage()}
           />
           </div>
-          <div className="mt-2 is-size-6"> {dateRange()}</div>
+        </div>
+        <div className="column is-4 ">
+          <div className="is-flex is-justify-content-flex-end">
+          <div className="mt-2 is-size-6 is-pulled-right"> {dateRange()}</div>
+          </div>
+        
         </div>
 
         <div className="column is-12">
