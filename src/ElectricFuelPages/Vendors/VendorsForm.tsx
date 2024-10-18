@@ -98,7 +98,7 @@ const VendorsForm: React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
         validations: vendorFormValidations.hub_id,
         options: allHubs,
         inputType: "BORDER_LABEL",
-        inputProps: {disabled:formData.ID && formData.ID ? true:false}
+        inputProps: { disabled: formData.ID && formData.ID ? true : false },
       },
     },
     {
@@ -111,7 +111,7 @@ const VendorsForm: React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
         // inputProps: { isFocussed: true },
         validations: vendorFormValidations.code,
         inputType: "BORDER_LABEL",
-        inputProps: {disabled:formData.ID && formData.ID ? true:false}
+        inputProps: { disabled: formData.ID && formData.ID ? true : false },
       },
     },
     {
@@ -124,7 +124,7 @@ const VendorsForm: React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
         // inputProps: { isFocussed: true },
         validations: vendorFormValidations.company,
         inputType: "BORDER_LABEL",
-        inputProps: {disabled:formData.ID && formData.ID ? true:false}
+        // inputProps: {disabled:formData.ID && formData.ID ? true:false}
       },
     },
     {
@@ -137,7 +137,7 @@ const VendorsForm: React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
         isRequired: true,
         // inputProps: { isFocussed: true },
         inputType: "BORDER_LABEL",
-        allowPattern:ALLOW_ALPHABET_SPACE
+        allowPattern: ALLOW_ALPHABET_SPACE,
       },
     },
     {
@@ -150,7 +150,7 @@ const VendorsForm: React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
         // inputProps: { isFocussed: true },
         validations: vendorFormValidations.gst_no,
         inputType: "BORDER_LABEL",
-        max:15
+        max: 15,
       },
     },
     {
@@ -163,7 +163,7 @@ const VendorsForm: React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
         // inputProps: { isFocussed: true },
         validations: vendorFormValidations.pan_no,
         inputType: "BORDER_LABEL",
-        max:10
+        max: 10,
       },
     },
     {
@@ -246,7 +246,7 @@ const VendorsForm: React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
           />
           <SmartSoftButton
             label="Submit"
-             rightIcon='fa fa-arrow-right'
+            rightIcon="fa fa-arrow-right"
             classList={["button ", "mt-4", "smart-action-button"]}
             onClick={handleSubmit}
           />
