@@ -122,7 +122,7 @@ const VendorRatesForms: React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
     return (
       <>
         <div className="columns">
-          <div className="column is-2">HSN CODE</div>
+          <div className="column is-2">Type</div>
           <div className="column is-2">Rate Type</div>
           <div className="column is-1">Range Start</div>
           <div className="column is-1">Range End</div>

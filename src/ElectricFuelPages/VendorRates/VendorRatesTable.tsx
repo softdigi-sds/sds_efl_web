@@ -10,7 +10,6 @@ import { useSiteContext } from "../../contexts/SiteProvider";
 import { showAlertAutoClose } from "../../services/notifyService";
 import { get, post } from "../../services/smartApiService";
 import VendorRatesForms from "./VendorRatesForms";
-import VendorsRatesView from "./VendorsRatesView";
 import VendorRatesSubFormTwo from "./VendorRatesSubFormTwo";
 
 const VendorRatesTable = () => {
@@ -34,7 +33,7 @@ const VendorRatesTable = () => {
   const openOfficesForm = (data: any) => {
     //console.log("data ", data);
     let options = {
-      title: <>{data.ID?"Vendor Rates Update Form":"Vendor Rates Addition Form"}</>,
+      title: <>{data.ID ? "Vendor Rates Update Form" : "Vendor Rates Addition Form"}</>,
       content: <VendorRatesForms loadTableData={loadTableData} dataIn={data} />,
       width: 60,
       className: "sd-efl-modal",
@@ -69,7 +68,7 @@ const VendorRatesTable = () => {
     const subscription = post(VENDER_RATE_URLS.GET_ONE, { id: id }).subscribe(
       (response: any) => {
         let data_out = { ...response.data };
-        openVendersViewForm (data_out);
+        openVendersViewForm(data_out);
       }
     );
     return () => {
@@ -115,7 +114,7 @@ const VendorRatesTable = () => {
 
     SmartAlert.show(alertProps);
   };
- 
+
   const buttons = [
     {
       label: "",
@@ -146,39 +145,57 @@ const VendorRatesTable = () => {
     },
   ];
 
+  const tableHeader = () => {
+    return (
+      <div>
+        <p className="has-text-centered">Rates</p>
+        <table className="table is-fullwidth">
+          <tr>
+            <td className="smart-table-column-width-20">Type</td>
+            <td className="smart-table-column-width-20">Rate Type</td>
+            <td className="smart-table-column-width-10">Start</td>
+            <td className="smart-table-column-width-10">End</td>
+            <td className="smart-table-column-width-20">Price</td>
+            <td className="smart-table-column-width-10">Extra Price</td>
+            <td className="smart-table-column-width-10">Min Count</td>
+          </tr>
+        </table>
+      </div>
+    )
+  }
 
-    const RatesDisplay=(items:any)=>{
-return(
-  <>
-  <table className="table is-bordered is-fullwidth">
-   
-   {items?.rates?.map((item:any)=>(
-    <>
-       <tr>
-      <td>Type</td>
-      <td>Rate Type</td>
-      <td>Start</td>
-      <td>End</td>
-      <td>Price</td>
-      <td>Extra Price</td>
-      <td>Min Count</td>
-    </tr>
-    <tr>
-      <td>{item?.sd_hsn_id?.label}</td>
-      <td>{item?.rate_type?.label}</td>
-      <td>{item?.min_start }</td>
-      <td>{item?.min_end}</td>
-      <td>{item?.price}</td>
-      <td>{item?.extra_price}</td>
-      <td>{item?.min_units_vehicle}</td>
-    </tr>
-    </>
-   ))} 
 
-  </table>
-  </>
-)
-    }
+  const RatesDisplay = (items: any) => {
+    return (
+      <>
+        <table className="table is-bordered is-fullwidth">
+          {/* <tr>
+            <td>Type</td>
+            <td>Rate Type</td>
+            <td>Start</td>
+            <td>End</td>
+            <td>Price</td>
+            <td>Extra Price</td>
+            <td>Min Count</td>
+          </tr> */}
+          {items?.rates?.map((item: any) => (
+            <>
+              <tr>
+                <td className="smart-table-column-width-20">{item?.sd_hsn_id?.label}</td>
+                <td className="smart-table-column-width-20">{item?.rate_type?.label}</td>
+                <td className="smart-table-column-width-10">{item?.min_start}</td>
+                <td className="smart-table-column-width-10">{item?.min_end}</td>
+                <td className="smart-table-column-width-20">{item?.price}</td>
+                <td className="smart-table-column-width-10">{item?.extra_price}</td>
+                <td className="smart-table-column-width-10">{item?.min_units_vehicle}</td>
+              </tr>
+            </>
+          ))}
+
+        </table>
+      </>
+    )
+  }
   const columns: SmartTableNewInterface.SmartTableNewColumnConfig[] = [
     { title: "S.NO", index: "s_no", type: "sno" },
     {
@@ -191,12 +208,13 @@ return(
     },
 
     {
-      title: "Rates",
+      title: tableHeader(),
       index: "unit_rate",
-      valueFunction:RatesDisplay
+      valueFunction: RatesDisplay
     },
-    { title: "Effective Date", index: "effective_date", type:"date",
-      dateFormat:"DD-MM-YYYY",
+    {
+      title: "Effective Date", index: "effective_date", type: "date",
+      dateFormat: "DD-MM-YYYY",
     },
     {
       title: "Action",
@@ -211,7 +229,7 @@ return(
       type: "CUSTOM",
       widthClass: "is-6",
       custom: <p className="is-size-4">Vendor Rates</p>,
-    },{
+    }, {
       type: "SEARCH",
       widthClass: "is-4",
       align: "JUSTIFY",
@@ -221,10 +239,10 @@ return(
       widthClass: "is-2",
       align: "RIGHT",
       buttons: [
-        { 
+        {
           label: "Add",
           icon: "fa-plus",
-          type: "CUSTOM",className: "smart-third-button",
+          type: "CUSTOM", className: "smart-third-button",
           action: openOfficesForm,
         },
       ],

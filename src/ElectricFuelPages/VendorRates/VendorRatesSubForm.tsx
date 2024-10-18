@@ -22,7 +22,8 @@ const VendorRatesSubForm: React.FC<HeaderProps> = ({
   const options_hsn = [
     { value: "1", label: "Parking & Charging" },
     { value: "2", label: "Parking" },
-    { value: "3", label: "Charging" },
+    { value: "3", label: "Charging (AC)" },
+    { value: "5", label: "Charging (DC)" },
     { value: "4", label: "Rent" },
   ];
 
