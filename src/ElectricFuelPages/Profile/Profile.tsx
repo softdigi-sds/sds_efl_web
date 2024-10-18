@@ -95,7 +95,7 @@ const Profile = () => {
 
   return (
     <>
-    <div className="is-size-4 has-text-wight-bold">Profile</div>
+    <div className="is-size-4 smart-efl-table_main_container"> <p>Profile</p></div>
     <div className="sd-efl-input mt-6 p-3">
       
       <div className="columns is-multiline">

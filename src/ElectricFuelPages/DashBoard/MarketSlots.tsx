@@ -72,7 +72,7 @@ const MarketSlots: React.FC = () => {
       <div className="column is-5">
         <div className="is-size-4 has-text-weight-bold"> Vehicles Report </div>
       </div>
-      <div className="column  is-7 has-text-right admin-market-offer-table is-size-5">
+      <div className="column  is-7 has-text-right admin-market-offer-table is-size-5 mt-2">
         <i
           className="fa fa-arrow-circle-o-left mr-3 pointer"
           aria-hidden="true"
