@@ -3,10 +3,11 @@ import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { SmartSoftSelect } from "soft_digi";
 import { VEHICLES_URL } from "../../api/UserUrls";
+import { useSiteContext } from "../../contexts/SiteProvider";
 import { changeDateTimeZone } from "../../services/core/CommonService";
+import { isDateWithinDays } from "../../services/site/DateService";
 import { post } from "../../services/smartApiService";
 import VehicleReportFrom from "./VehicleReportFrom";
-import { useSiteContext } from "../../contexts/SiteProvider";
 
 const VehicleAdminReport = () => {
   const { openModal } = useSiteContext();
@@ -259,15 +260,18 @@ const VehicleAdminReport = () => {
                       <th>{changeDateTimeZone(item, "DD")}</th>
                     </>
                   ))}
+                   <th>Total Average</th>
                 </tr>
               </thead>
               <tbody>
                 {data &&
                   data.map((hub) => (
                     <tr>
-                      <td>{hub.hub_name}</td>
+                      <td>{hub.hub_name} ({hub.vendor_count})</td>
                       {numberArray.map((item: any) => {
                         let _count = getDayCount(item, hub.sub_data);
+                        const isNotGreaterThanToday = isDateWithinDays(item,0);
+                        //console.log("DATe " , item , " f " , isNotGreaterThanToday);
                         //  return <td><span>{_count}</span></td>
                         return _count > 0 ? (
                           <td>
@@ -277,10 +281,11 @@ const VehicleAdminReport = () => {
                           </td>
                         ) : (
                           <td>
-                            <span onClick={() => openForm(item, hub)}>+</span>
+                            {isNotGreaterThanToday && <span onClick={() => openForm(item, hub)}>+</span> }
                           </td>
                         );
                       })}
+                      <td>{hub.average}</td>
                     </tr>
                   ))}
               </tbody>
