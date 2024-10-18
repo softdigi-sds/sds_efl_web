@@ -109,10 +109,10 @@ const HubsTables = () => {
     };
     openModal(options);
   };
-  const openVendorsView = (hubsdetail: any) => {
+  const openVendorsView = (data: any) => {
     let options = {
       title: "Vendors Details",
-      content: <VendorsTable  />,
+      content: <VendorsTable hubId={data} />,
       width: 80,
     };
     openModal(options);
@@ -247,7 +247,7 @@ const HubsTables = () => {
 
   const vendorsDisplay =(data:any)=>{
     if(data?.vendor_count > 0){
-      return<><p className='tag is-primary is-clickable' onClick={openVendorsView}>View</p></>
+      return<><p className='tag is-primary is-clickable' onClick={()=>openVendorsView(data["ID"])}>View</p></>
     }else{
       return<><p>No Vendor</p></>
     }
