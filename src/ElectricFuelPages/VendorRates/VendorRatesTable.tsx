@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import {
   SmartAlert,
+  SmartFormInterFace,
   SmartLoaderInterface,
   SmartTable,
   SmartTableNewInterface,
@@ -231,15 +232,15 @@ const VendorRatesTable = () => {
       custom: <p className="is-size-4">Vendor Rates</p>,
     }, {
       type: "SEARCH",
-      widthClass: "is-4",
+      widthClass: "is-3",
       align: "JUSTIFY",
     },
     {
       type: "BUTTONS",
-      widthClass: "is-2",
-      align: "RIGHT",
-      buttons: [
-        {
+      widthClass: "is-3",
+      align: "CENTER",
+      buttons: [ { type: "FILTER" },
+        { 
           label: "Add",
           icon: "fa-plus",
           type: "CUSTOM", className: "smart-third-button",
@@ -248,14 +249,23 @@ const VendorRatesTable = () => {
       ],
     },
   ];
-
+  const filterFields: SmartFormInterFace.SmartFormElementProps[] = [
+    {
+      type: "TEXT_BOX",
+      width: "12",
+      name: "hub_id",
+      element: {
+        label: "Hub Id",
+      },
+    },
+  ];
   return (
     <>
       <div className="smart-elf-table">
         <SmartTable
           columns={columns}
           data={data}
-          tableTop={tableTop}
+          tableTop={tableTop} filterFields={filterFields}
           tableProps={{
             className: " is-hoverable is-bordered is-striped smart-efl-table",
             isResponsive: true,
