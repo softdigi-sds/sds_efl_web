@@ -37,24 +37,40 @@ const Msireports = () => {
   const titleDisp = () => {
     const filterFields: SmartFormInterFace.SmartFormElementProps[] = [
       {
-        type: "DATE",
-        width: "6",
-        name: "bill_start_date",
+        type: "SELECT_BOX",
+        width: "4",
+        name: "state",
         element: {
-          placeHolder: "Start Date",
-          isRequired: true,
-          // inputProps: { isFocussed: true },
+          label: "Select",
+          // isRequired:true,
+          options: categoryOptions,
+          inputProps: { isFocussed: true },
+          inputType: "BORDER_LABEL",
         },
       },
       {
         type: "DATE",
-        width: "6",
+        width: "4",
+        name: "bill_start_date",
+        element: {
+          label: "Start Date",
+          // placeHolder: "Start Date",
+          // isRequired: true,
+          // inputProps: { isFocussed: true },
+          inputType: "BORDER_LABEL",
+        },
+      },
+      {
+        type: "DATE",
+        width: "4",
         name: "bill_end_date",
         element: {
-          placeHolder: "End Date",
-          isRequired: true,
+          label: "End Date",
+          // placeHolder: "End Date",
+          // isRequired: true,
           minDate: minEndDate,
           //  inputProps: { disabled: true},
+          inputType: "BORDER_LABEL",
         },
       },
     ];
@@ -66,7 +82,7 @@ const Msireports = () => {
             MSI Report
           </div>
           <div className="is-flex  column is-8">
-            <div className="mt-0 ml-2 column is-4">
+            {/* <div className="mt-0 ml-2 column is-4">
               <SmartSoftSelect
                 // width =""
                 options={categoryOptions}
@@ -74,8 +90,8 @@ const Msireports = () => {
                 value={category}
                 onChange={(value) => setCategory(value)}
               />
-            </div>
-            <div className="column is-8">
+            </div> */}
+            <div className="column is-12">
               <SmartSoftForm
                 formData={formData}
                 setFormData={handleInputChange}
