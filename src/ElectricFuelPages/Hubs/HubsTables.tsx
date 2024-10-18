@@ -247,9 +247,15 @@ const HubsTables = () => {
 
   const vendorsDisplay =(data:any)=>{
     if(data?.vendor_count > 0){
-      return<><p className='tag is-primary is-clickable' onClick={()=>openVendorsView(data["ID"])}>View</p></>
+      return<>
+      <div className='is-flex is-justify-content-center'>
+       
+        <p className='tag is-primary is-clickable ' onClick={()=>openVendorsView(data["ID"])}> View</p>
+        {/* <div className='has-text-centered'>{data?.vendor_count}</div> */}
+      </div>
+     </>
     }else{
-      return<><p>No Vendor</p></>
+      return<><div className='has-text-centered'>{data?.vendor_count}</div></>
     }
         
     }
