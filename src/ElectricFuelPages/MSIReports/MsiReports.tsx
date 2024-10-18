@@ -96,7 +96,7 @@ const Msireports = () => {
             <p>MSI Report</p>
           </div>
           <div className="column is-8">
-            <div className="is-flex is-justify-content-flex-end is-align-content-flex-end">
+            <div className="mt-1">
               <SmartSoftForm
                 formData={formData}
                 setFormData={handleInputChange}
