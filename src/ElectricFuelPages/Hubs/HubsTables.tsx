@@ -8,6 +8,7 @@ import { get, post } from '../../services/smartApiService';
 import HubsForms from './HubsForms';
 import HubsMapView from './HubsMapView';
 import HubsView from './HubsView';
+import VendorsTable from '../Vendors/VendorsTable';
 
 const HubsTables = () => {
   const [data, setData] = useState([]);
@@ -108,6 +109,15 @@ const HubsTables = () => {
     };
     openModal(options);
   };
+  const openVendorsView = (hubsdetail: any) => {
+    let options = {
+      title: "Vendors Details",
+      content: <VendorsTable  />,
+      width: 80,
+    };
+    openModal(options);
+  };
+
 
   const buttons = [
     {
@@ -236,8 +246,8 @@ const HubsTables = () => {
   ];
 
   const vendorsDisplay =(data:any)=>{
-    if(data.vendor_number > 0){
-      return<><p>open popup</p></>
+    if(data?.vendor_count > 0){
+      return<><p className='tag is-primary is-clickable' onClick={openVendorsView}>View</p></>
     }else{
       return<><p>No Vendor</p></>
     }
@@ -260,7 +270,7 @@ const HubsTables = () => {
     {
       title: "Number of Vendors",
       index: "vendor_count",
-      // valueFunction: LocationDisplay,
+       valueFunction: vendorsDisplay,
     },
 
     {
