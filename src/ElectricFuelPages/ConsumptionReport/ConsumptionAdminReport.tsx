@@ -223,25 +223,25 @@ const ConsumptionAdminReport:React.FC<VehicleReportProps> = ({stage,setStage}) =
   };
 
   return (
-    <div className="p-2 card">
-      <div className="columns is-multiline">
-      <div className="column is-4 ">
+    <div className="p-2 card pt-4">
+      <div className="columns is-multiline is-vcentered">
+      <div className="column is-3 ">
           <div className="is-flex is-justify-content-space-between	is-align-items-center">
 
        
           <h2 className=" mt-1 is-size-4 site-title has-text-weight-bold ">
           Consumption Report
           </h2>
-          <div className="is-flex">
-
-        
-          <p className="has-text-link mr-2 mt-2 is-clickable"   onClick={() => openImportForm(data)}>  <i className="fa fa-cloud-upload is-size-3" aria-hidden="true"></i></p>
-          <p className="has-text-danger mt-2 is-clickable"   onClick={() => openImportForm(data)}>  <i className="fa fa-cloud-download is-size-3" aria-hidden="true"></i></p>
-          </div>
+         
           </div>
         </div>
-        <div className="column is-4">
+        <div className="column is-5">
           <div className="is-flex">
+          <div className="is-flex">
+        
+<p className="has-text-link mr-2 mt-2 is-clickable"   onClick={() => openImportForm(data)}>  <i className="fa fa-cloud-upload is-size-3" aria-hidden="true"></i></p>
+<p className="has-text-danger mt-2 is-clickable mr-2"   onClick={() => openImportForm(data)}>  <i className="fa fa-cloud-download is-size-3" aria-hidden="true"></i></p>
+</div>
             <div className="search-box sd-efl-input">
               <input className="input" type="text" placeholder="Search" />
             </div>
