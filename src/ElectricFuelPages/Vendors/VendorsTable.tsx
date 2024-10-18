@@ -16,8 +16,12 @@ import { get, post } from "../../services/smartApiService";
 import VendorsForm from "./VendorsForm";
 import VendorsView from "./VendorsView";
 import { SmartSoftCheckRadioSwitch } from "soft_digi";
+interface headerProps{
+  hubId?:string
+}
 
-const VendorsTable = () => {
+const VendorsTable:React.FC<headerProps> = ({hubId}) => {
+
   const [data, setData] = useState([]);
   const { openModal, closeModal } = useSiteContext();
 
@@ -214,7 +218,7 @@ const VendorsTable = () => {
       },
     },
   ];
-  const statusTags = [
+  const statusTags = [ 
     { value: 5, label: "Active", class: "is-primary" },
     { value: 0, label: "Inactive", class: "is-danger" },
   ];
@@ -295,6 +299,7 @@ const VendorsTable = () => {
       },
     },
   ];
+  const emptyArray:any[]=[]
 
   return (
     <>
@@ -302,7 +307,7 @@ const VendorsTable = () => {
         <SmartTable
           columns={columns}
           data={data}
-          tableTop={tableTop}
+          tableTop={hubId? emptyArray:tableTop}
           filterFields={filterFields}
           tableProps={{
             className: "is-hoverable is-bordered smart-efl-table",

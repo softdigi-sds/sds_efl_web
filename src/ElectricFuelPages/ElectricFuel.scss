@@ -493,6 +493,7 @@ font-weight: bold;
 
 ::-webkit-scrollbar {
   width: 3px; /* width of the scrollbar */
+  height: 3px;
 }
 
 /* Scrollbar Handle */
@@ -509,6 +510,7 @@ font-weight: bold;
 .market-calendar .react-calendar{
   min-width: 100%;
   border: none;
+  line-height:2.9em;
 }
 .react-calendar__tile{
   padding: 4px !important;
