@@ -12,10 +12,9 @@ import {
   showAlertAutoClose,
   showYesOrNoAlert,
 } from "../../services/notifyService";
-import { get, post } from "../../services/smartApiService";
+import { post } from "../../services/smartApiService";
 import VendorsForm from "./VendorsForm";
 import VendorsView from "./VendorsView";
-import { SmartSoftCheckRadioSwitch } from "soft_digi";
 interface headerProps{
   hubId?:string
 }
@@ -28,7 +27,7 @@ const VendorsTable:React.FC<headerProps> = ({hubId}) => {
   const loadTableData = () => {
     let URL = VENDERS_URLS.GET_ALL;
     // let hub_id= hubId?hubId:"";
-    const subscription = get(URL).subscribe((response) => {
+    const subscription = post(URL,{hub_id:hubId}).subscribe((response) => {
       setData(response.data);
     });
     return () => {
