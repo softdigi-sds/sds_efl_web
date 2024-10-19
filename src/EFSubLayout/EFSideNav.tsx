@@ -5,8 +5,9 @@ import { useSiteContext } from "../contexts/SiteProvider";
 import { checkInterSection } from "../services/core/FilterService";
 interface childrenProps {
   isOpen: boolean;
+  setIsOpen: (open: boolean) => void;
 }
-const EFSideNav: React.FC<childrenProps> = ({ isOpen }) => {
+const EFSideNav: React.FC<childrenProps> = ({ isOpen ,setIsOpen}) => {
   const ref = useRef<HTMLDivElement | null>(null);
   const listItems = [
     {
@@ -102,6 +103,10 @@ const EFSideNav: React.FC<childrenProps> = ({ isOpen }) => {
   console.log("logged in user ", user);
   const navigateLink = (index: any) => {
     navigate(index);
+    if(window.innerWidth <= 768){
+      setIsOpen(false)
+    }
+ 
   };
 
   const handleClickOutside = (event: MouseEvent) => {
