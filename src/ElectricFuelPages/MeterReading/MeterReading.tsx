@@ -1,5 +1,10 @@
 import { useEffect, useState } from "react";
-import { SmartSoftButton, SmartTable, SmartTableNewInterface } from "soft_digi";
+import {
+  SmartFormInterFace,
+  SmartSoftButton,
+  SmartTable,
+  SmartTableNewInterface,
+} from "soft_digi";
 import { METER_READINGS_URLS } from "../../api/UserUrls";
 import { useSiteContext } from "../../contexts/SiteProvider";
 import { post } from "../../services/smartApiService";
@@ -11,9 +16,11 @@ const MeterReading = () => {
   const [data, setData] = useState([]);
 
   const changeMonth = (months: number) => {
-    const newDate = new Date(currentDate.setMonth(currentDate.getMonth() + months));
+    const newDate = new Date(
+      currentDate.setMonth(currentDate.getMonth() + months)
+    );
     setCurrentDate(new Date(newDate));
-    console.log("New date: ", newDate)
+    console.log("New date: ", newDate);
   };
 
   const formatDate = (date: Date) => {
@@ -22,10 +29,9 @@ const MeterReading = () => {
 
   const loadTableData = () => {
     let _data = {
-
       year: currentDate.getFullYear(),
 
-      month: currentDate.getMonth() + 1
+      month: currentDate.getMonth() + 1,
     };
     // console.log("year:",_data.year)
     //console.log("month:",_data.month)
@@ -38,9 +44,7 @@ const MeterReading = () => {
     };
   };
   useEffect(() => {
-
     loadTableData();
-
   }, [currentDate]);
 
   const dummy_data = [
@@ -89,7 +93,13 @@ const MeterReading = () => {
   const openMeterForm = (data: any) => {
     let options = {
       title: "Meter Addition Form",
-      content: <MeterReadingForm dataIn={data} loadTableData={loadTableData} currentDate={currentDate} />,
+      content: (
+        <MeterReadingForm
+          dataIn={data}
+          loadTableData={loadTableData}
+          currentDate={currentDate}
+        />
+      ),
       width: 40,
       className: "sd-efl-modal",
       closeBody: false,
@@ -98,44 +108,53 @@ const MeterReading = () => {
   };
 
   const meterReading = (row: any) => {
-   
-      return row.meter_start && row.meter_start > 0 ? (
-        <>
-          <div className="has-text-centered" >
-            <span >{row.meter_reading}</span>
-          </div>
-        </>
-      ) :(
+    return row.meter_start && row.meter_start > 0 ? (
+      <>
+        <div className="has-text-centered">
+          <span>{row.meter_reading}</span>
+        </div>
+      </>
+    ) : (
       <div className="has-text-centered">
         <SmartSoftButton
           label="Add"
           onClick={() => openMeterForm(row)}
           classList={["button is-small is-primary is-light"]}
         />
-      </div>)  
-  
-}
+      </div>
+    );
+  };
 
   const columns: SmartTableNewInterface.SmartTableNewColumnConfig[] = [
     { title: "S.NO", index: "s_no", type: "sno" },
     // { title: "Office City", index: "office_city" },
     { title: "Hub", index: "hub_id" },
     { title: "CMS Reading", index: "cms_reading" },
-    { title: "Meter Reading", index: "address_one", valueFunction: meterReading, width: "15" },
+    {
+      title: "Meter Reading",
+      index: "address_one",
+      valueFunction: meterReading,
+      width: "15",
+    },
     { title: "Deviation", index: "deviation" },
   ];
-
 
   const tableTop: SmartTableNewInterface.SmartTableNewTopProps[] = [
     {
       type: "CUSTOM",
-      widthClass: "is-5",
+      widthClass: "is-4",
       custom: <p className="is-size-4">Meter Reading</p>,
     },
     {
       type: "SEARCH",
       widthClass: "is-4",
       align: "RIGHT",
+    },
+    {
+      type: "BUTTONS",
+      widthClass: "is-1",
+      align: "RIGHT",
+      buttons: [{ type: "FILTER" }],
     },
     {
       type: "CUSTOM",
@@ -156,7 +175,24 @@ const MeterReading = () => {
       ),
     },
   ];
-
+  const filterFields: SmartFormInterFace.SmartFormElementProps[] = [
+    {
+      type: "TEXT_BOX",
+      width: "12",
+      name: "hub_id",
+      element: {
+        label: "Hub Id",
+      },
+    },
+    {
+      type: "TEXT_BOX",
+      width: "12",
+      name: "vendor_company",
+      element: {
+        label: "Meter Reading",
+      },
+    },
+  ];
   return (
     <>
       <div className="smart-elf-table">
@@ -164,6 +200,7 @@ const MeterReading = () => {
           columns={columns}
           data={data}
           tableTop={tableTop}
+          filterFields={filterFields}
           tableProps={{
             className: "is-hoverable is-bordered is-striped smart-efl-table",
             isResponsive: true,

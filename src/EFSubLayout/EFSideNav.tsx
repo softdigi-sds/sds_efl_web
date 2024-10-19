@@ -67,20 +67,7 @@ const EFSideNav: React.FC<childrenProps> = ({ isOpen }) => {
       roles: ["ADMIN", "HUB", "ACCOUNTS"],
     },
 
-    {
-      id: 8,
-      label: "Users",
-      icon: "fa-user",
-      link: "/e-fuel/users",
-      roles: ["ADMIN"],
-    },
-    {
-      id: 8,
-      label: "Roles",
-      icon: " fa-users",
-      link: "/e-fuel/roles-list",
-      roles: ["ADMIN"],
-    },
+ 
     {
       id: 8,
       label: "Meter Reading",
@@ -89,10 +76,23 @@ const EFSideNav: React.FC<childrenProps> = ({ isOpen }) => {
       roles: ["ADMIN"],
     },
     {
-      id: 8,
+      id: 9,
       label: "MIS Reports",
       icon: "fa-inr",
       link: "/e-fuel/msi-reports",
+      roles: ["ADMIN"],
+    },   {
+      id: 10,
+      label: "Users",
+      icon: "fa-user",
+      link: "/e-fuel/users",
+      roles: ["ADMIN"],
+    },
+    {
+      id: 11,
+      label: "Roles",
+      icon: " fa-users",
+      link: "/e-fuel/roles-list",
       roles: ["ADMIN"],
     },
   ];

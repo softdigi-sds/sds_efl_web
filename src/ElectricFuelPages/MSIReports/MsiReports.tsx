@@ -82,7 +82,7 @@ const Msireports = () => {
         width: "3",
         name: "Generate",
         element: {
-          label: "Submit",classList:["has-text-right  mr-2", "smart-third-button"],
+          label: "Submit",classList:["has-text-right  mr-2", "smart-action-button"],
             onClick: handleSubmit, 
          
         },
