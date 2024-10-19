@@ -120,7 +120,7 @@ const HubsForms: React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
       width: "6",
       name: "role",
       element: {
-        label: "Hub Supervisors",
+        label: "City In-charge",
         isRequired: true,
         options: allRole,
         isMulti: true,
@@ -147,7 +147,7 @@ const HubsForms: React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
       name: "latitude",
       element: {
         label: "Latitude",
-        isRequired: true,
+        // isRequired: true,
         // inputProps: { isFocussed: true },
         inputType: "BORDER_LABEL",
         // validations: hubFormValidations.lat,
@@ -159,7 +159,7 @@ const HubsForms: React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
       name: "longitude",
       element: {
         label: "Longitude",
-        isRequired: true,
+        //isRequired: true,
         // inputProps: { isFocussed: true },
         inputType: "BORDER_LABEL",
         //  validations: hubFormValidations.lon,

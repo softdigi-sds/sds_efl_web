@@ -1,14 +1,23 @@
-import { useEffect, useState } from 'react';
-import { SmartAlert, SmartFormInterFace, SmartLoaderInterface, SmartTable, SmartTableNewInterface } from 'soft_digi';
-import { HUBS_URLS } from '../../api/UserUrls';
-import { useSiteContext } from '../../contexts/SiteProvider';
-import { showAlertAutoClose, showYesOrNoAlert } from '../../services/notifyService';
-import { office_get_all_select } from '../../services/site/SelectBoxServices';
-import { get, post } from '../../services/smartApiService';
-import HubsForms from './HubsForms';
-import HubsMapView from './HubsMapView';
-import HubsView from './HubsView';
-import VendorsTable from '../Vendors/VendorsTable';
+import { useEffect, useState } from "react";
+import {
+  SmartAlert,
+  SmartFormInterFace,
+  SmartLoaderInterface,
+  SmartTable,
+  SmartTableNewInterface,
+} from "soft_digi";
+import { HUBS_URLS } from "../../api/UserUrls";
+import { useSiteContext } from "../../contexts/SiteProvider";
+import {
+  showAlertAutoClose,
+  showYesOrNoAlert,
+} from "../../services/notifyService";
+import { office_get_all_select } from "../../services/site/SelectBoxServices";
+import { get, post } from "../../services/smartApiService";
+import HubsForms from "./HubsForms";
+import HubsMapView from "./HubsMapView";
+import HubsView from "./HubsView";
+import VendorsTable from "../Vendors/VendorsTable";
 
 const HubsTables = () => {
   const [data, setData] = useState([]);
@@ -24,19 +33,17 @@ const HubsTables = () => {
       subscription.unsubscribe();
     };
   };
-  
 
   useEffect(() => {
     loadTableData();
   }, []);
   useEffect(() => {
-
     office_get_all_select((data: any) => setAllOffice(data));
   }, []);
 
   const openOfficesForm = (data: any) => {
     let options = {
-      title: <>{data.ID?"Hubs Update Form":"Hubs Addition Form"}</>,
+      title: <>{data.ID ? "Hubs Update Form" : "Hubs Addition Form"}</>,
       content: <HubsForms loadTableData={loadTableData} dataIn={data} />,
       width: 60,
       className: "sd-efl-modal",
@@ -117,7 +124,6 @@ const HubsTables = () => {
     };
     openModal(options);
   };
-
 
   const buttons = [
     {
@@ -217,8 +223,6 @@ const HubsTables = () => {
       StatusUpdate(itemIn.ID, new_status);
     }
   };
-  
-
 
   const SwitchForm = (item: any) => {
     return (
@@ -239,28 +243,37 @@ const HubsTables = () => {
       )
     );
   };
-  
+
   const statusTags = [
     { value: 5, Label: "Active", class: "is-primary" },
     { value: 10, Label: "Inactive", class: "is-danger" },
   ];
 
-  const vendorsDisplay =(data:any)=>{
-    if(data?.vendor_count > 0){
-      return<>
-      <div className='is-flex is-justify-content-center'>
-       
-        <p className='tag is-primary is-clickable ' onClick={()=>openVendorsView(data["ID"])}> View</p>
-        {/* <div className='has-text-centered'>{data?.vendor_count}</div> */}
-      </div>
-     </>
-    }else{
-      return<><div className='has-text-centered'>{data?.vendor_count}</div></>
+  const vendorsDisplay = (data: any) => {
+    if (data?.vendor_count > 0) {
+      return (
+        <>
+          <div className="is-flex is-justify-content-center">
+            <p
+              className="tag is-primary is-clickable "
+              onClick={() => openVendorsView(data["ID"])}
+            >
+              {" "}
+              View
+            </p>
+            {/* <div className='has-text-centered'>{data?.vendor_count}</div> */}
+          </div>
+        </>
+      );
+    } else {
+      return (
+        <>
+          <div className="has-text-centered">{data?.vendor_count}</div>
+        </>
+      );
     }
-        
-    }
-    
-  
+  };
+
   const columns: SmartTableNewInterface.SmartTableNewColumnConfig[] = [
     { title: "S.NO", index: "s_no", type: "sno", width: "5" },
     {
@@ -276,15 +289,15 @@ const HubsTables = () => {
     {
       title: "Number of Vendors",
       index: "vendor_count",
-       valueFunction: vendorsDisplay,
+      valueFunction: vendorsDisplay,
     },
 
     {
-      title: "Hub Supervisors",
+      title: "City In-Charge",
       index: "role",
       valueFunction: GroupDisplay,
     },
-    { title: "Status", index: "status", valueFunction:SwitchForm },
+    { title: "Status", index: "status", valueFunction: SwitchForm },
     {
       title: "Action",
       index: "action",
@@ -293,21 +306,17 @@ const HubsTables = () => {
       width: "15",
     },
   ];
-  const filterFields:SmartFormInterFace.SmartFormElementProps[] = [
- 
+  const filterFields: SmartFormInterFace.SmartFormElementProps[] = [
     {
       type: "TEXT_BOX",
       width: "12",
       name: "office_city",
       element: {
-        label: "Office City", 
+        label: "Office City",
         options: allOffice,
       },
     },
-
-     
-    
-  ]
+  ];
   const tableTop: SmartTableNewInterface.SmartTableNewTopProps[] = [
     {
       type: "CUSTOM",
@@ -323,40 +332,38 @@ const HubsTables = () => {
       type: "BUTTONS",
       widthClass: "is-2",
       align: "CENTER",
-      buttons: [        
+      buttons: [
         {
           type: "FILTER",
         },
         {
           label: "Add",
           icon: "fa-plus",
-          type: "CUSTOM",className: "smart-third-button",
+          type: "CUSTOM",
+          className: "smart-third-button",
           action: () => openOfficesForm({}),
         },
       ],
     },
-   
-   
-    
-  ]
+  ];
 
   return (
     <>
-    <div className="smart-elf-table">
-      <SmartTable
-        columns={columns}
-        data={data}
-        filterFields={filterFields}
-        tableTop={tableTop}
-        tableProps={{
-          className: " is-hoverable is-bordered is-striped smart-efl-table",
-          isResponsive: true,
-          searchPlaceHolder: "Search",
-        }}
-        paginationProps={{
-          pageSize:10
-        }}
-      />
+      <div className="smart-elf-table">
+        <SmartTable
+          columns={columns}
+          data={data}
+          filterFields={filterFields}
+          tableTop={tableTop}
+          tableProps={{
+            className: " is-hoverable is-bordered is-striped smart-efl-table",
+            isResponsive: true,
+            searchPlaceHolder: "Search",
+          }}
+          paginationProps={{
+            pageSize: 10,
+          }}
+        />
       </div>
     </>
   );
