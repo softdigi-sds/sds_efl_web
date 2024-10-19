@@ -259,7 +259,7 @@ const HubsTables = () => {
               onClick={() => openVendorsView(data["ID"])}
             >
               {" "}
-              View
+              {data?.vendor_count}
             </p>
             {/* <div className='has-text-centered'>{data?.vendor_count}</div> */}
           </div>
