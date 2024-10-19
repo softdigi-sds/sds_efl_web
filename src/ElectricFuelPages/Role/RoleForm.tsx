@@ -136,7 +136,7 @@ const RoleForm:React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
           onClick={closeModal}
         />
       <SmartSoftButton
-          label="Submit"
+           label={formData.ID ? "Update":"Submit"}
            rightIcon='fa fa-arrow-right'
           classList={["button ","mt-4", " smart-action-button"]}
           onClick={handleSubmit}

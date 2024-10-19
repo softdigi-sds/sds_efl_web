@@ -197,7 +197,7 @@ const MeterReadingForm:React.FC<HeaderProps> = ({dataIn,loadTableData,currentDat
           onClick={closeModal}
         />
         <SmartSoftButton
-          label="Submit"
+        label={formData.ID ? "Update":"Submit"}
            rightIcon='fa fa-arrow-right'
           classList={["button ", "mt-4", "smart-action-button"]}
           onClick={handleSubmit}
