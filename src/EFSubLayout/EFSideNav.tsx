@@ -51,21 +51,21 @@ const EFSideNav: React.FC<childrenProps> = ({ isOpen ,setIsOpen}) => {
       label: "Vehicles Report",
       icon: "fa-car",
       link: "/e-fuel/vehicles-report",
-      roles: ["ADMIN", "HUB", "ACCOUNTS"],
+      roles: ["ADMIN", "HUB SUPERVISOR", "ACCOUNTS"],
     },
     {
       id: 6,
       label: "Consumption  Report",
       icon: "fa-calendar-check-o",
       link: "/e-fuel/consumption-report",
-      roles: ["ADMIN", "HUB", "ACCOUNTS"],
+      roles: ["ADMIN", "HUB SUPERVISOR", "ACCOUNTS"],
     },
     {
       id: 7,
       label: "Invoices",
       icon: "fa-inr",
       link: "/e-fuel/invoices",
-      roles: ["ADMIN", "HUB", "ACCOUNTS"],
+      roles: ["ADMIN", "HUB SUPERVISOR", "ACCOUNTS"],
     },
 
  
