@@ -1,5 +1,6 @@
 
 import DashboardBarChart from './DashboardBarChart'
+import DashBoardCalender from './DashBoardCalender'
 import DashBoardCard from './DashBoardCard'
 import DashboardChart from './DashboardChart'
 import DashboardMapView from './DashboardMapView'
@@ -14,7 +15,7 @@ const Dashboard = () => {
       <div className="columns is-multiline">  
       <div className="column is-6 "> < DashboardMapView /></div>
       {/* <div className="column is-6 "> <DashboardBarChart/></div> */}
-      <div className="column is-6 "> <MarketSlots/></div>
+      <div className="column is-6 "> <DashBoardCalender/></div>
        {/* <div className='column is-12'>
        <DashboardChart/>
        </div> */}
