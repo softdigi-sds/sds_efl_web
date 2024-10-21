@@ -34,14 +34,14 @@ const EFSideNav: React.FC<childrenProps> = ({ isOpen ,setIsOpen}) => {
     },
     {
       id: 4,
-      label: "Vendors",
+      label: "Customer",
       icon: "fa-sticky-note-o",
       link: "/e-fuel/vendors-list",
       roles: ["ADMIN"],
     },
     {
       id: 5,
-      label: "Vendor Rates",
+      label: "Customer Rates",
       icon: "fa fa-flag",
       link: "/e-fuel/vendors-rates-list",
       roles: ["ADMIN", "ACCOUNTS"],

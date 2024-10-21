@@ -34,7 +34,7 @@ const VendorRatesTable = () => {
   const openOfficesForm = (data: any) => {
     //console.log("data ", data);
     let options = {
-      title: <>{data.ID ? "Vendor Rates Update Form" : "Vendor Rates Addition Form"}</>,
+      title: <>{data.ID ? "Customer Rates Update Form" : "Customer Rates Addition Form"}</>,
       content: <VendorRatesForms loadTableData={loadTableData} dataIn={data} />,
       width: 60,
       className: "sd-efl-modal",
@@ -44,7 +44,7 @@ const VendorRatesTable = () => {
   };
   const openVendersViewForm = (officeData: any) => {
     let options = {
-      title: "Vendor Rates View",
+      title: "Customer Rates View",
       content: <VendorRatesSubFormTwo office={officeData} />,
       width: 60,
       className: "sd-efl-modal",
@@ -229,7 +229,7 @@ const VendorRatesTable = () => {
     {
       type: "CUSTOM",
       widthClass: "is-6",
-      custom: <p className="is-size-4">Vendor Rates</p>,
+      custom: <p className="is-size-4">Customer Rates</p>,
     }, {
       type: "SEARCH",
       widthClass: "is-3",
