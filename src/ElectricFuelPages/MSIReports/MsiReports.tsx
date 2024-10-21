@@ -95,7 +95,7 @@ const Msireports = () => {
       <>
         <div className="columns">
           <div className="column is-4 smart-efl-table_main_container is-size-4">
-            <p>MSI Report</p>
+            <p>MIS Report</p>
           </div>
           <div className="column is-8">
             <div className="mt-1">
