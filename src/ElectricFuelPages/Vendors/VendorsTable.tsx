@@ -20,6 +20,7 @@ interface headerProps{
 }
 
 const VendorsTable:React.FC<headerProps> = ({hubId}) => {
+  console.log("hub id", hubId);
 
   const [data, setData] = useState([]);
   const { openModal, closeModal } = useSiteContext();

@@ -9,6 +9,7 @@ import { isDateWithinDays } from "../../services/site/DateService";
 import { post } from "../../services/smartApiService";
 import VehicleReportFrom from "./VehicleReportFrom";
 import ImportVehiclesReport from "./ImportVehiclesReport";
+import VendorsTable from "../Vendors/VendorsTable";
 interface VehicleReportProps {
   stage:any,
   setStage:any
@@ -51,6 +52,7 @@ const VehicleAdminReport:React.FC<VehicleReportProps> = ({stage,setStage}) => {
     let URL = VEHICLES_URL.GET_ALL_WITH_HUB;
     const subscription = post(URL, _data).subscribe((response) => {
       setData(response.data.data);
+      console.table(response.data)
       setNumberArray(response.data.dates);
       //updateNumberOfDays();
     });
@@ -230,6 +232,23 @@ const VehicleAdminReport:React.FC<VehicleReportProps> = ({stage,setStage}) => {
     openModal(options);
   };
 
+  const openVendorsView = (data: any) => {
+    let options = {
+      title: "Vendors Details",
+      content: <VendorsTable hubId={data} />,
+      width: 80,
+    };
+    openModal(options);
+  };
+
+  const hubCountDisplay = (data: any) => {
+    return(
+      <>
+      </>
+    )
+  }
+
+
   return (
     <div className="p-2 card">
       <div className="columns is-multiline">
@@ -290,7 +309,16 @@ const VehicleAdminReport:React.FC<VehicleReportProps> = ({stage,setStage}) => {
                 {filteredData  &&
                   filteredData.map((hub) => (
                     <tr>
-                      <td>{hub.hub_name} ({hub.vendor_count})</td>
+                      <td>
+                        <div className="is-flex ">
+                       <p>{hub.hub_name} </p> 
+                       <div className="ml-2">
+                       {hub.vendor_count !==0 ?<p className="is-clickable" onClick={()=>openVendorsView(hub.ID)}>{hub.vendor_count}</p>:<span>{hub.vendor_count}</span>}
+                       </div>
+                    
+                        </div>
+                      
+                      </td>
                       {numberArray.map((item: any) => {
                         let _count = getDayCount(item, hub.sub_data);
                         const isNotGreaterThanToday = isDateWithinDays(item,0);

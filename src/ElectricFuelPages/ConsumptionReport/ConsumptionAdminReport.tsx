@@ -9,6 +9,7 @@ import { isDateWithinDays } from "../../services/site/DateService";
 import { post } from "../../services/smartApiService";
 import ConsumptionReportForm from "./ConsumptionReportForm";
 import ImportReportTable from "./ImportReportTable";
+import VendorsTable from "../Vendors/VendorsTable";
 interface VehicleReportProps {
   stage:any,
   setStage:any
@@ -229,6 +230,14 @@ const ConsumptionAdminReport:React.FC<VehicleReportProps> = ({stage,setStage}) =
     };
     openModal(options);
   };
+  const openVendorsView = (data: any) => {
+    let options = {
+      title: "Vendors Details",
+      content: <VendorsTable hubId={data} />,
+      width: 80,
+    };
+    openModal(options);
+  };
 
   return (
     <div className="p-2 card pt-4">
@@ -289,7 +298,15 @@ const ConsumptionAdminReport:React.FC<VehicleReportProps> = ({stage,setStage}) =
                 {filteredData &&
                   filteredData.map((hub) => (
                     <tr>
-                      <td>{hub.hub_name} ({hub.vendor_count})</td>
+                      <td>
+                      <div className="is-flex ">
+                       <p>{hub.hub_name} </p> 
+                       <div className="ml-2">
+                       {hub.vendor_count !==0 ?<p className="is-clickable" onClick={()=>openVendorsView(hub.ID)}>{hub.vendor_count}</p>:<span>{hub.vendor_count}</span>}
+                       </div>
+                    
+                        </div>
+                      </td>
                       {numberArray.map((item: any) => {
                         let _count = getDayCount(item, hub.sub_data);
                         const isNotGreaterThanToday = isDateWithinDays(item,0);
