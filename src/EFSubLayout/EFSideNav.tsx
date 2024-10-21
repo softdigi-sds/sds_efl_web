@@ -100,7 +100,7 @@ const EFSideNav: React.FC<childrenProps> = ({ isOpen ,setIsOpen}) => {
   const navigate = useNavigate();
   const location = useLocation();
   const { user } = useSiteContext();
-  console.log("logged in user ", user);
+  // console.log("logged in user ", user);
   const navigateLink = (index: any) => {
     navigate(index);
     if(window.innerWidth <= 768){
