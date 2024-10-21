@@ -302,7 +302,7 @@ const ConsumptionAdminReport:React.FC<VehicleReportProps> = ({stage,setStage}) =
                       <div className="is-flex ">
                        <p>{hub.hub_name} </p> 
                        <div className="ml-2">
-                       {hub.vendor_count !==0 ?<p className="is-clickable" onClick={()=>openVendorsView(hub.ID)}>{hub.vendor_count}</p>:<span>{hub.vendor_count}</span>}
+                       {hub.vendor_count !==0 ?<p className="is-clickable has-text-link" onClick={()=>openVendorsView(hub.ID)}>{hub.vendor_count}</p>:<span>{hub.vendor_count}</span>}
                        </div>
                     
                         </div>
