@@ -18,24 +18,22 @@ const InvoicebillForm = () => {
 
   const handleInputChange = (name: string, value: any) => {
     if (name === "bill_start_date") {
-     
       const startDate = new Date(value);
       const newMinEndDate = new Date(startDate);
-      newMinEndDate.setDate(newMinEndDate.getDate() + 30); 
-      
-      setMinEndDate(newMinEndDate); 
-      
-     
+      newMinEndDate.setDate(newMinEndDate.getDate() + 30);
+
+      setMinEndDate(newMinEndDate);
+
       setFormData((prev: any) => ({
         ...prev,
         [name]: value,
-        bill_end_date: newMinEndDate, 
+        bill_end_date: newMinEndDate,
       }));
     } else {
       setFormData((prev: any) => ({ ...prev, [name]: value }));
     }
   };
-  
+
   const handleErrorChange = (name: string | any, value: any) => {
     setFormErrors((prev) => {
       const updatedFormData = { ...prev };
@@ -69,8 +67,10 @@ const InvoicebillForm = () => {
       width: "4",
       name: "bill_start_date",
       element: {
-        placeHolder: "Start Date",
+        label: "Start Date",
+        placeHolder: "DD-MM-YYYY",
         isRequired: true,
+        inputType: "BORDER_LABEL",
         // inputProps: { isFocussed: true },
       },
     },
@@ -79,10 +79,12 @@ const InvoicebillForm = () => {
       width: "4",
       name: "bill_end_date",
       element: {
-        placeHolder: "End Date",
+        label: "End Date",
+        placeHolder: "DD-MM-YYYY",
         isRequired: true,
-           minDate: minEndDate,
-         inputProps: { disabled: true},
+        minDate: minEndDate,
+        inputProps: { disabled: true },
+        inputType: "BORDER_LABEL",
       },
     },
     {
@@ -98,7 +100,7 @@ const InvoicebillForm = () => {
   ];
   return (
     <>
-      <div className='sd-efl-input'>
+      <div className="sd-efl-input">
         <div className="has-text-right">
           <SmartSoftForm
             formData={formData}
@@ -108,8 +110,6 @@ const InvoicebillForm = () => {
             handleErrorChange={handleErrorChange}
           />
         </div>
-       
-
       </div>
     </>
   );

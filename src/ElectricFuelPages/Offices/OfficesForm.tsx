@@ -158,6 +158,7 @@ const OfficesForm:React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
         validations: loginFormValidations.pan_no,
         inputType: "BORDER_LABEL",
         // pattern: "[A-Z]{5}[0-9]{4}[A-Z]{1}",
+         max:15,
       },
     },
     {
@@ -219,7 +220,7 @@ const OfficesForm:React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
         // inputProps: { isFocussed: true },
           // pattern:  ALLOW_ALPHABET_SPACE ,
         validations: loginFormValidations.igst_no,
-        inputType: "BORDER_LABEL",
+        inputType: "BORDER_LABEL",    max:3,
       },
     },
   
