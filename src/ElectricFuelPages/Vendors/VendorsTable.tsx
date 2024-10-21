@@ -225,7 +225,7 @@ const VendorsTable:React.FC<headerProps> = ({hubId}) => {
   const columns: SmartTableNewInterface.SmartTableNewColumnConfig[] = [
     { title: "S.NO", index: "s_no", type: "sno" },
     {
-      title: "Hun Id",
+      title: "Hub Id",
       index: "hub_id",
     },
     {

@@ -120,7 +120,7 @@ const HubsForms: React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
       width: "6",
       name: "role",
       element: {
-        label: "City In-charge",
+        label: "City Incharge",
         isRequired: true,
         options: allRole,
         isMulti: true,
