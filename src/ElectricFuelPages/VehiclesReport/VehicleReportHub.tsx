@@ -1,6 +1,5 @@
 import { Moment } from "moment";
 import { useEffect, useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
 import { SmartCalender, SmartSoftButton, SmartSoftSelect } from "soft_digi";
 import { VEHICLES_URL } from "../../api/UserUrls";
 import { useSiteContext } from "../../contexts/SiteProvider";
@@ -112,7 +111,7 @@ const VehicleReportHub:React.FC<VehicleReportProps> = ({stage,setStage}) => {
   // ** meeting display boss
   const content = (date: any) => {
     const count_check = data?.find((item) => item.date === date);
-    const last10Days = isDateWithinLastDays(date);
+    const last10Days = isDateWithinLastDays(date,3);
     const this_month = isCurrentMonth(new Date(date));
     //console.log(" this month ", this_month, "  dt ", date);
     return (

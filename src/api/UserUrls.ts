@@ -58,6 +58,8 @@ const VEHICLES_URL = {
   GET_ALL_WITH_HUB:"/efl_vehicles/get_all_parking_data_hub",
   GET_ALL_CALENDER_GET_ONE: "/efl_vehicles/get_one_parking_data",
   IMPORT_EXCEL: "/efl_vehicles/import_excel",
+  GET_ALL_DASH:"/efl_vehicles/get_report_dashboard",
+  GET_ALL_DATE:"/efl_vehicles/get_report_date"
 };
 
 const INVOICE_URLS = {
