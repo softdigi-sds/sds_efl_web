@@ -159,8 +159,8 @@ const VehicleReportHub:React.FC<VehicleReportProps> = ({stage,setStage}) => {
             onClick={() => openImportForm(data)}
            
           /> */}
-          <p className="has-text-link mr-2 mt-2 is-clickable"   onClick={() => openImportForm(data)}>  <i className="fa fa-upload is-size-3" aria-hidden="true"></i></p>
-          {/* <p className="has-text-danger mt-2 is-clickable"   onClick={() => openImportForm(data)}>  <i className="fa fa-download is-size-3" aria-hidden="true"></i></p> */}
+          <p className="has-text-link mr-2 mt-2 is-clickable"   onClick={() => openImportForm(data)}>  <i className="fa fa-download is-size-3" aria-hidden="true"></i></p>
+          <p className="has-text-danger mt-2 is-clickable"   onClick={() => openImportForm(data)}>  <i className="fa fa-upload is-size-3" aria-hidden="true"></i></p>
          
 
           <div className="is-flex ml-2 ">
