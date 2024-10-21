@@ -1,6 +1,5 @@
 import { Moment } from "moment";
 import { useEffect, useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
 import { SmartCalender, SmartSoftButton, SmartSoftSelect } from "soft_digi";
 import { VEHICLES_URL } from "../../api/UserUrls";
 import { useSiteContext } from "../../contexts/SiteProvider";
@@ -112,7 +111,7 @@ const VehicleReportHub:React.FC<VehicleReportProps> = ({stage,setStage}) => {
   // ** meeting display boss
   const content = (date: any) => {
     const count_check = data?.find((item) => item.date === date);
-    const last10Days = isDateWithinLastDays(date);
+    const last10Days = isDateWithinLastDays(date,3);
     const this_month = isCurrentMonth(new Date(date));
     //console.log(" this month ", this_month, "  dt ", date);
     return (
@@ -160,8 +159,8 @@ const VehicleReportHub:React.FC<VehicleReportProps> = ({stage,setStage}) => {
             onClick={() => openImportForm(data)}
            
           /> */}
-          <p className="has-text-link mr-2 mt-2 is-clickable"   onClick={() => openImportForm(data)}>  <i className="fa fa-upload is-size-3" aria-hidden="true"></i></p>
-          {/* <p className="has-text-danger mt-2 is-clickable"   onClick={() => openImportForm(data)}>  <i className="fa fa-download is-size-3" aria-hidden="true"></i></p> */}
+          <p className="has-text-link mr-2 mt-2 is-clickable"   onClick={() => openImportForm(data)}>  <i className="fa fa-download is-size-3" aria-hidden="true"></i></p>
+          <p className="has-text-danger mt-2 is-clickable"   onClick={() => openImportForm(data)}>  <i className="fa fa-upload is-size-3" aria-hidden="true"></i></p>
          
 
           <div className="is-flex ml-2 ">

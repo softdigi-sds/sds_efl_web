@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
+import { VEHICLES_URL } from "../../api/UserUrls";
+import { getMonthStartAndEnd } from "../../services/site/DateService";
+import { post } from "../../services/smartApiService";
 interface SectorOption {
   value: string;
   label: string;
@@ -17,9 +20,19 @@ const MarketSlots: React.FC = () => {
     number | undefined
   > | null>(null);
   const [dated, setDate] = useState<Date | null>(new Date());
-  const [sector, setSector] = useState<SectorOption>(options[0]);
 
-  const loadTableData = (mode: SectorOption) => {
+
+  const loadTableData = () => {
+    let URL = VEHICLES_URL.GET_ALL_DASH;
+    let _dates = getMonthStartAndEnd(dated ? dated?.toISOString() : "");
+    let _data = {start_date:_dates.start,end_date:_dates.end};
+    const subscription = post(URL,_data).subscribe((response) => {
+      setTabData(response.data);
+    });
+    return () => {
+      subscription.unsubscribe();
+    };
+
     const simulatedData: Record<string, number> = {
       "2024-10-01": 1,
       "2024-10-02": 2,
@@ -29,8 +42,10 @@ const MarketSlots: React.FC = () => {
   };
 
   useEffect(() => {
-    loadTableData(sector);
-  }, [dated, sector]);
+    if(dated){
+    loadTableData();
+    }
+  }, [dated]);
 
   const tileContent = ({
     date,
@@ -62,9 +77,8 @@ const MarketSlots: React.FC = () => {
   };
 
   const getMonthYearDisplay = () => {
-    return `${
-      dated ? dated.toLocaleString("default", { month: "long" }) : "Month"
-    } - ${dated?.getFullYear()}`;
+    return `${dated ? dated.toLocaleString("default", { month: "long" }) : "Month"
+      } - ${dated?.getFullYear()}`;
   };
 
   const topDisplay = () => (
