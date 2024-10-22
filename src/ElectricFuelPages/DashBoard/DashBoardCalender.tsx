@@ -46,24 +46,37 @@ const DashBoardCalender = () => {
   // const content = (date: any) => {
   //   return <div className="calender-div"></div>;
   // };
+
+ 
   const content = (date: any) => {
     const count_check = data?.find((item) => item.date === date);
     // const last10Days = isDateWithinLastDays(date, 30);
     // const this_month = isCurrentMonth(new Date(date));
     //console.log(" this month ", this_month, "  dt ", date);
+
     return (
       <div className="calender-div">
-        {count_check && count_check.count > 0 ? (
-          <div >
-            {roundNumber(count_check.count)}
-          </div>
-        ) : (
-          <div className="has-background-danger">
-           
-              <i className="fa fa-plus"></i>
-          
-          </div>
-        )}
+        {count_check && count_check.count ==1 &&(
+          <>
+          <div className="has-background-primary">1</div>
+          </>
+        )
+         
+        }
+           {count_check && count_check.count ==2 &&(
+          <>
+          <div className="has-background-waring">1</div>
+          </>
+        )
+         
+        }
+           {count_check && count_check.count ==3 &&(
+          <>
+          <div className="has-background-danger">1</div>
+          </>
+        )
+         
+        }
       </div>
     );
   };
