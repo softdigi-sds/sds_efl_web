@@ -10,28 +10,31 @@ import VendorsTable from "../Vendors/VendorsTable";
 import ConsumptionReportForm from "./ConsumptionReportForm";
 import ImportReportTable from "./ImportReportTable";
 interface VehicleReportProps {
-  stage:any,
-  setStage:any
-  }
-const ConsumptionAdminReport:React.FC<VehicleReportProps> = ({stage,setStage}) => {
+  stage: any;
+  setStage: any;
+}
+const ConsumptionAdminReport: React.FC<VehicleReportProps> = ({
+  stage,
+  setStage,
+}) => {
   const { openModal } = useSiteContext();
   const [numberArray, setNumberArray] = useState<any[]>([]);
   const [currentDate, setCurrentDate] = useState(new Date());
   const [data, setData] = useState<any[]>([]);
-  const [startDate, setStartDate] = useState(moment().date(20).startOf("day"));
+  const [startDate, setStartDate] = useState(moment().date(21).startOf("day"));
   const [endDate, setEndDate] = useState(
-    moment().add(1, "month").date(19).endOf("day")
+    moment().add(1, "month").date(20).endOf("day")
   );
-  const [searchTerm, setSearchTerm] = useState<string>('')
-  const handelStage =()=>{
+  const [searchTerm, setSearchTerm] = useState<string>("");
+  const handelStage = () => {
     setStage("HUB");
-  }
+  };
 
   const changeMonthNew = (direction: number) => {
-    const newStartDate = moment(startDate).add(direction, "months").date(20);
+    const newStartDate = moment(startDate).add(direction, "months").date(21);
     const newEndDate = moment(newStartDate)
       .add(1, "month")
-      .date(19)
+      .date(20)
       .endOf("day");
     setStartDate(newStartDate);
     setEndDate(newEndDate);
@@ -39,7 +42,6 @@ const ConsumptionAdminReport:React.FC<VehicleReportProps> = ({stage,setStage}) =
 
   // Format the date
   const formatDateNew = (date: Moment): string => date.format("DD-MM-YYYY");
-
 
   const loadData = () => {
     //console.log("year", currentMonth?.month());
@@ -58,13 +60,9 @@ const ConsumptionAdminReport:React.FC<VehicleReportProps> = ({stage,setStage}) =
     };
   };
 
-
-
-
   useEffect(() => {
     loadData();
   }, [startDate]);
-
 
   const changeMonth = (months: number) => {
     const newDate = new Date(
@@ -79,11 +77,9 @@ const ConsumptionAdminReport:React.FC<VehicleReportProps> = ({stage,setStage}) =
   const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(event.target.value);
   };
-  const filteredData = data.filter(item =>
+  const filteredData = data.filter((item) =>
     item.hub_name.toLowerCase().includes(searchTerm.toLowerCase())
   );
-
-
 
   const dateRange = () => {
     return (
@@ -154,42 +150,58 @@ const ConsumptionAdminReport:React.FC<VehicleReportProps> = ({stage,setStage}) =
   return (
     <div className="p-2 card pt-4">
       <div className="columns is-multiline is-vcentered">
-      <div className="column is-3 ">
+        <div className="column is-3 ">
           <div className="is-flex is-justify-content-space-between	is-align-items-center">
-
-       
-          <h2 className=" mt-1 is-size-4 site-title has-text-weight-bold ">
-          Consumption Report
-          </h2>
-         
+            <h2 className=" mt-1 is-size-4 site-title has-text-weight-bold ">
+              Consumption Report
+            </h2>
           </div>
         </div>
         <div className="column is-5">
           <div className="is-flex">
-          <div className="is-flex">
-        
-<p className="has-text-link mr-2 mt-2 is-clickable"   onClick={() => openImportForm(data)}>  <i className="fa fa-cloud-upload is-size-3" aria-hidden="true"></i></p>
-<p className="has-text-danger mt-2 is-clickable mr-2"   onClick={() => openImportForm(data)}>  <i className="fa fa-cloud-download is-size-3" aria-hidden="true"></i></p>
-</div>
+            <div className="is-flex">
+              <p
+                className="has-text-link mr-2 mt-2 is-clickable"
+                onClick={() => openImportForm(data)}
+              >
+                {" "}
+                <i
+                  className="fa fa-cloud-upload is-size-3"
+                  aria-hidden="true"
+                ></i>
+              </p>
+              <p
+                className="has-text-danger mt-2 is-clickable mr-2"
+                onClick={() => openImportForm(data)}
+              >
+                {" "}
+                <i
+                  className="fa fa-cloud-download is-size-3"
+                  aria-hidden="true"
+                ></i>
+              </p>
+            </div>
             <div className="search-box sd-efl-input">
-              <input className="input" type="text" placeholder="Search"
-                 value={searchTerm} 
-                 onChange={handleSearch}
-               />
+              <input
+                className="input"
+                type="text"
+                placeholder="Search"
+                value={searchTerm}
+                onChange={handleSearch}
+              />
             </div>
             <SmartSoftButton
-             label="Hub Report"
-            classList={["button", " px-5 py-0 is-link is-normal ml-2"]}
-            // leftIcon="fa fa-file-excel-o"
-            onClick={() => handelStage()}
-          />
+              label="Hub Report"
+              classList={["button", " px-5 py-0 is-link is-normal ml-2"]}
+              // leftIcon="fa fa-file-excel-o"
+              onClick={() => handelStage()}
+            />
           </div>
         </div>
         <div className="column is-4 ">
           <div className="is-flex is-justify-content-flex-end">
-          <div className="mt-2 is-size-6 is-pulled-right"> {dateRange()}</div>
+            <div className="mt-2 is-size-6 is-pulled-right"> {dateRange()}</div>
           </div>
-        
         </div>
 
         <div className="column is-12">
@@ -203,7 +215,7 @@ const ConsumptionAdminReport:React.FC<VehicleReportProps> = ({stage,setStage}) =
                       <th>{changeDateTimeZone(item, "DD")}</th>
                     </>
                   ))}
-                   <th>Total Average</th>
+                  <th>Total Average</th>
                 </tr>
               </thead>
               <tbody>
@@ -211,28 +223,46 @@ const ConsumptionAdminReport:React.FC<VehicleReportProps> = ({stage,setStage}) =
                   filteredData.map((hub) => (
                     <tr>
                       <td>
-                      <div className="is-flex ">
-                       <p>{hub.hub_name} </p> 
-                       <div className="ml-2">
-                       {hub.vendor_count !==0 ?<p className="is-clickable has-text-link sd-cursor" onClick={()=>openVendorsView(hub.ID)}>{hub.vendor_count}</p>:<span>{hub.vendor_count}</span>}
-                       </div>
-                    
+                        <div className="is-flex ">
+                          <p>{hub.hub_name} </p>
+                          <div className="ml-2">
+                            {hub.vendor_count !== 0 ? (
+                              <p
+                                className="is-clickable has-text-link sd-cursor"
+                                onClick={() => openVendorsView(hub.ID)}
+                              >
+                                {hub.vendor_count}
+                              </p>
+                            ) : (
+                              <span>{hub.vendor_count}</span>
+                            )}
+                          </div>
                         </div>
                       </td>
                       {numberArray.map((item: any) => {
                         let _count = getDayCount(item, hub.sub_data);
-                        const isNotGreaterThanToday = isDateWithinDays(item,0);
+                        const isNotGreaterThanToday = isDateWithinDays(item, 0);
                         //console.log("DATe " , item , " f " , isNotGreaterThanToday);
                         //  return <td><span>{_count}</span></td>
                         return _count > 0 ? (
                           <td>
-                            <span className="sd-cursor has-text-danger" onClick={() => openForm(item, hub)}>
+                            <span
+                              className="sd-cursor has-text-danger"
+                              onClick={() => openForm(item, hub)}
+                            >
                               {_count}
                             </span>
                           </td>
                         ) : (
                           <td>
-                            {isNotGreaterThanToday && <span className="sd-cursor has-text-link is-size-5" onClick={() => openForm(item, hub)}>+</span> }
+                            {isNotGreaterThanToday && (
+                              <span
+                                className="sd-cursor has-text-link is-size-5"
+                                onClick={() => openForm(item, hub)}
+                              >
+                                +
+                              </span>
+                            )}
                           </td>
                         );
                       })}
@@ -248,6 +278,4 @@ const ConsumptionAdminReport:React.FC<VehicleReportProps> = ({stage,setStage}) =
   );
 };
 
-
-
-export default ConsumptionAdminReport
+export default ConsumptionAdminReport;
