@@ -262,7 +262,7 @@ const VehicleAdminReport: React.FC<VehicleReportProps> = ({
               >
                 {" "}
                 <i
-                  className="fa fa-cloud-upload is-size-3"
+                  className="fa fa-download is-size-3"
                   aria-hidden="true"
                 ></i>
               </p>
@@ -272,7 +272,7 @@ const VehicleAdminReport: React.FC<VehicleReportProps> = ({
               >
                 {" "}
                 <i
-                  className="fa fa-cloud-download is-size-3"
+                  className="fa fa-upload is-size-3"
                   aria-hidden="true"
                 ></i>
               </p>

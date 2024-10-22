@@ -166,7 +166,7 @@ const ConsumptionAdminReport: React.FC<VehicleReportProps> = ({
               >
                 {" "}
                 <i
-                  className="fa fa-cloud-upload is-size-3"
+                  className="fa fa-download is-size-3"
                   aria-hidden="true"
                 ></i>
               </p>
@@ -175,10 +175,10 @@ const ConsumptionAdminReport: React.FC<VehicleReportProps> = ({
                 onClick={() => openImportForm(data)}
               >
                 {" "}
-                <i
-                  className="fa fa-cloud-download is-size-3"
+                {/* <i
+                  className="fa fa-upload is-size-3"
                   aria-hidden="true"
-                ></i>
+                ></i> */}
               </p>
             </div>
             <div className="search-box sd-efl-input">
