@@ -3,12 +3,13 @@ import { useNavigate } from "react-router-dom";
 import { SmartFormInterFace, SmartSoftForm } from "soft_digi";
 import { INVOICE_URLS } from "../../api/UserUrls";
 import { useSiteContext } from "../../contexts/SiteProvider";
+import { changeDateTimeZoneFormat } from "../../services/core/CommonService";
 import { post } from "../../services/smartApiService";
 interface FormErrors {
   [key: string]: string | null;
 }
 const InvoicebillForm = () => {
-  const [formData, setFormData] = useState({});
+  const [formData, setFormData] = useState<any>({});
   const [formSubmit, setFormSubmit] = useState<boolean>(false);
   const [formErrors, setFormErrors] = useState<FormErrors>({});
   const [states, setStates] = useState([]);
@@ -49,7 +50,11 @@ const InvoicebillForm = () => {
   const handleSubmit = () => {
     setFormSubmit(true);
     let URL = INVOICE_URLS.GENERATE;
-    const subscription = post(URL, formData).subscribe((response) => {
+    let _data = {
+      bill_start_date:changeDateTimeZoneFormat(formData.bill_start_date||"","YYYY-MM-DD"),
+      bill_end_date:changeDateTimeZoneFormat(formData.bill_end_date||"","YYYY-MM-DD"),
+    }
+    const subscription = post(URL, _data).subscribe((response) => {
       navigate("/e-fuel/vendor-wish/" + response.data);
       closeModal();
       //showAlertAutoClose("Bill Cre")
