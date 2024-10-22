@@ -166,8 +166,8 @@ const ConsumptionHubReport:React.FC<VehicleReportProps> = ({stage,setStage}) => 
             onClick={() => openImportForm(data)}
             leftIcon="fa fa-file-excel-o"
           /> */}
-            <p className="has-text-link mr-2 mt-2 is-clickable"   onClick={() => openImportForm(data)}>  <i className="fa fa-cloud-upload is-size-3" aria-hidden="true"></i></p>
-            <p className="has-text-danger mt-2 is-clickable"   onClick={() => openImportForm(data)}>  <i className="fa fa-cloud-download is-size-3" aria-hidden="true"></i></p>
+            <p className="has-text-link mr-2 mt-2 is-clickable"   onClick={() => openImportForm(data)}>  <i className="fa fa-download is-size-3" aria-hidden="true"></i></p>
+            {/* <p className="has-text-danger mt-2 is-clickable"   onClick={() => openImportForm(data)}>  <i className="fa fa-cloud-download is-size-3" aria-hidden="true"></i></p> */}
           <div className="mt-0 ml-2">
             <SmartSoftSelect
               options={hubs}
