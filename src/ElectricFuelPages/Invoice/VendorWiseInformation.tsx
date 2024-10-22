@@ -25,6 +25,18 @@ const VendorWiseInformation = () => {
     };
   };
 
+  const refresh=()=>{
+    let URL = INVOICE_URLS.REFRESH;
+    const subscription = post(URL, { id: id }).subscribe((response) => {
+      //setData(response.data);
+      loadData();
+      //console.log("response data", response.data);
+    });
+    return () => {
+      subscription.unsubscribe();
+    };
+  }
+
   const exportExcel = () => {
     let URL = INVOICE_URLS.EXPORT_EXCEL;
     const subscription = post(URL, { id: id }).subscribe((response) => {
@@ -174,6 +186,12 @@ const VendorWiseInformation = () => {
           </div>
           <div className="column is-4">
             <div className="is-flex is-justify-content-flex-end">
+            <SmartSoftButton
+                label="Refresh"
+                onClick={() => refresh()}
+                leftIcon="fa fa-cloud-upload"
+                classList={["smart-third-button mr-2"]}
+              />
               <SmartSoftButton
                 label="Export"
                 onClick={() => exportExcel()}
@@ -212,9 +230,9 @@ const VendorWiseInformation = () => {
                   </tr>
                   <tr>
                     <th>Parking Amount (Rs):</th>
-                    <td>{data?.unit_amount}</td>
-                    <th>Consumption Amount (Rs):</th>
                     <td>{data?.vehicle_amount}</td>
+                    <th>Consumption Amount (Rs):</th>
+                    <td>{data?.unit_amount}</td>
                     <th>Others(Rs):</th>
                     <td>{data?.others}</td>
                   </tr>

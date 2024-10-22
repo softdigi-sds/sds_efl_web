@@ -29,7 +29,7 @@ const EFSubLayout: React.FC<childrenProps> = (props) => {
   return (
     <div className="container is-fluid">
       <div className="efl-main-sidenav">
-        <EFSideNav isOpen={isOpen} />
+        <EFSideNav isOpen={isOpen} setIsOpen={setIsOpen} />
       </div>
       <div className={`efl-main-header ${isOpen ? "expanded" : ""}`}>
         <EFHeader setIsOpen={(value) => setIsOpen(value)} isOpen={isOpen} />

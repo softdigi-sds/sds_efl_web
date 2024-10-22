@@ -1,14 +1,14 @@
 import moment, { Moment } from "moment";
 import { useEffect, useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
-import { SmartSoftButton, SmartSoftSelect } from "soft_digi";
+import { SmartSoftButton } from "soft_digi";
 import { VEHICLES_URL } from "../../api/UserUrls";
 import { useSiteContext } from "../../contexts/SiteProvider";
 import { changeDateTimeZone } from "../../services/core/CommonService";
 import { isDateWithinDays } from "../../services/site/DateService";
 import { post } from "../../services/smartApiService";
-import VehicleReportFrom from "./VehicleReportFrom";
+import VendorsTable from "../Vendors/VendorsTable";
 import ImportVehiclesReport from "./ImportVehiclesReport";
+import VehicleReportFrom from "./VehicleReportFrom";
 interface VehicleReportProps {
   stage:any,
   setStage:any
@@ -51,6 +51,7 @@ const VehicleAdminReport:React.FC<VehicleReportProps> = ({stage,setStage}) => {
     let URL = VEHICLES_URL.GET_ALL_WITH_HUB;
     const subscription = post(URL, _data).subscribe((response) => {
       setData(response.data.data);
+      console.table(response.data)
       setNumberArray(response.data.dates);
       //updateNumberOfDays();
     });
@@ -230,6 +231,23 @@ const VehicleAdminReport:React.FC<VehicleReportProps> = ({stage,setStage}) => {
     openModal(options);
   };
 
+  const openVendorsView = (data: any) => {
+    let options = {
+      title: "Vendors Details",
+      content: <VendorsTable hubId={data} />,
+      width: 80,
+    };
+    openModal(options);
+  };
+
+  const hubCountDisplay = (data: any) => {
+    return(
+      <>
+      </>
+    )
+  }
+
+
   return (
     <div className="p-2 card">
       <div className="columns is-multiline">
@@ -278,19 +296,30 @@ const VehicleAdminReport:React.FC<VehicleReportProps> = ({stage,setStage}) => {
               <thead>
                 <tr>
                   <th>Hub Name</th>
+                  <th>Total</th>
                   {numberArray.map((item: any) => (
                     <>
                       <th>{changeDateTimeZone(item, "DD")}</th>
                     </>
                   ))}
-                   <th>Total Average</th>
+                  
                 </tr>
               </thead>
               <tbody>
                 {filteredData  &&
                   filteredData.map((hub) => (
                     <tr>
-                      <td>{hub.hub_name} ({hub.vendor_count})</td>
+                      <td>
+                        <div className="is-flex ">
+                       <p>{hub.hub_name} </p> 
+                       <div className="ml-2">
+                       {hub.vendor_count !==0 ?<p className="is-clickable has-text-link" onClick={()=>openVendorsView(hub.ID)}>{hub.vendor_count}</p>:<span>{hub.vendor_count}</span>}
+                       </div>
+                    
+                        </div>
+                      
+                      </td>
+                      <td>{hub.average}</td>
                       {numberArray.map((item: any) => {
                         let _count = getDayCount(item, hub.sub_data);
                         const isNotGreaterThanToday = isDateWithinDays(item,0);
@@ -298,17 +327,17 @@ const VehicleAdminReport:React.FC<VehicleReportProps> = ({stage,setStage}) => {
                         //  return <td><span>{_count}</span></td>
                         return _count > 0 ? (
                           <td>
-                            <span onClick={() => openForm(item, hub)}>
+                            <span className="sd-cursor has-text-danger" onClick={() => openForm(item, hub)}>
                               {_count}
                             </span>
                           </td>
                         ) : (
-                          <td>
-                            {isNotGreaterThanToday && <span onClick={() => openForm(item, hub)}>+</span> }
+                          <td className={ isNotGreaterThanToday ? "has-background-danger" : ""}>
+                            {isNotGreaterThanToday && <span className="sd-cursor has-text-white" onClick={() => openForm(item, hub)}>+</span> }
                           </td>
                         );
                       })}
-                      <td>{hub.average}</td>
+                     
                     </tr>
                   ))}
               </tbody>

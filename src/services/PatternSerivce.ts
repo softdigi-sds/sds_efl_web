@@ -16,6 +16,8 @@ const ALLOW_NUMBERS_EXCEPT_ZERO = "^[1-9][0-9]*$";
 const NAME_PATTERN = "^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$";
 const ALPHA_NUMERIC_CAPITAL = "^[A-Z0-9]+$";
 const GST = "^[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z]{1}[1-9A-Z]{1}[Z]{1}[0-9A-Z]{1}$";
+// const GST_PATTERN = "^[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z]{1}[1-9A-Z]{1}Z[0-9A-Z]{1}$";
+const GST_PATTERN = /^[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z]{1}[1-9A-Z]{1}Z[0-9A-Z]{1}$/;
 const ALLOW_FLOAT_DYNAMIC = (lastDigit:number) => {
   return "-?*.?{0,2}";
 };
@@ -26,6 +28,6 @@ export {
   ALLOW_FLOAT_DYNAMIC,
   // allow patters
   ALLOW_NUMBERS_EXCEPT_ZERO, ALLOW_NUMERIC, ALPHA_NUMERIC_CAPITAL, NAME_PATTERN, VALID_EMAIL_ADDRESS,
-  VALID_EMAIL_DOMAIN, VALID_PASSWORD, VALID_PASSWORD_GENERAL, VALID_USER_NAME,GST
+  VALID_EMAIL_DOMAIN, VALID_PASSWORD, VALID_PASSWORD_GENERAL, VALID_USER_NAME,GST, GST_PATTERN
 };
 

@@ -126,6 +126,11 @@ const ImportVehiclesReport: React.FC<HeaderProps> = ({ loadTableData }) => {
   const columns: SmartTableNewInterface.SmartTableNewColumnConfig[] = [
     { title: "S.NO", index: "s_no", type: "sno", width: "5" },
     {
+      title: "Hub",
+      index: "hub_name",
+      width: "15",
+    },
+    {
       title: "Vendors",
       index: "vendor",
       width: "15",
@@ -134,12 +139,7 @@ const ImportVehiclesReport: React.FC<HeaderProps> = ({ loadTableData }) => {
       title: "Date",
       index: "date",
       width: "15",
-    },
-    {
-      title: "Vehicle Count",
-      index: "count",
-      width: "15",
-    },
+    },   
     {
       title: "Status",
       index: "status",
@@ -147,12 +147,7 @@ const ImportVehiclesReport: React.FC<HeaderProps> = ({ loadTableData }) => {
       tags:statusTags
       ,
       width: "15",
-    },
-    {
-      title: "Remarks",
-      index: "msg",
-      width: "15",
-    },
+    },   
   ];
  
   const tableTop: SmartTableNewInterface.SmartTableNewTopProps[] = [

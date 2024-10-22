@@ -485,7 +485,7 @@ font-weight: bold;
 .scrollable-table {
   overflow-x: auto; /* Enables horizontal scrolling */
   white-space: nowrap; /* Prevents table contents from wrapping */
-  height:400px;
+  height:70vh;
 }
 
 
@@ -520,4 +520,12 @@ font-weight: bold;
   .calendar-header{
     padding-top: 2px !important;
   }
+}
+
+.smart-table-filter-form .dropdown-content{
+  background-color: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(10px);
+}
+.smart-elf-dashboard .calendar-day{
+  min-height: 80px !important;
 }

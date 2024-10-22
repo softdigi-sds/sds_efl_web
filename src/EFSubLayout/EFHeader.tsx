@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSiteContext } from "../contexts/SiteProvider";
-import { ADMIN_USER_LOGO } from "../services/ImageService";
+import { ADMIN_USER_LOGO, LOGO } from "../services/ImageService";
 import Notificaton from "../ElectricFuelPages/Notification/Notificaton";
 
 interface HeaderProps {
@@ -27,11 +27,19 @@ const EFHeader: React.FC<HeaderProps> = ({ setIsOpen, isOpen }) => {
   useEffect(() => {
     const handleResize = () => {
       setMobileScreen(window.innerWidth <= 768);
+     
     };
 
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
+    
   }, []);
+  useEffect(() =>{
+    if(window.innerWidth <= 768){
+      setIsOpen(false);
+      // console.log("Mobile Screen")
+    }
+  },[mobileScreen])
 
   // return (
   //   <div>
@@ -64,6 +72,9 @@ const EFHeader: React.FC<HeaderProps> = ({ setIsOpen, isOpen }) => {
       aria-label="main navigation"
     >
       <div className="navbar-brand">
+      <div className="header-brand-logo is-hidden-desktop">
+        <img src={LOGO} alt="Brand Logo" />
+      </div>
         <a
           role="button"
           className="navbar-burger"

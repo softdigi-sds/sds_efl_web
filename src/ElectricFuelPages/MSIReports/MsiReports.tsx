@@ -16,7 +16,7 @@ const Msireports = () => {
   const [formSubmit, setFormSubmit] = useState<boolean>(false);
   const [formErrors, setFormErrors] = useState<FormErrors>({});
   const [minEndDate, setMinEndDate] = useState<Date | null>(null);
-  const [showTable, setShowTable] = useState<boolean>(false); 
+  const [showTable, setShowTable] = useState<boolean>(false);
 
   const categoryOptions = [
     { label: "vendor (vs) vehicles", value: "1" },
@@ -64,6 +64,7 @@ const Msireports = () => {
         name: "bill_start_date_one",
         element: {
           label: "Start Date",
+          placeHolder: "DD-MM-YYYY",
           inputType: "BORDER_LABEL",
         },
       },
@@ -73,6 +74,7 @@ const Msireports = () => {
         name: "bill_end_date_one",
         element: {
           label: "End Date",
+          placeHolder: "DD-MM-YYYY",
           minDate: minEndDate,
           inputType: "BORDER_LABEL",
         },
@@ -82,9 +84,9 @@ const Msireports = () => {
         width: "3",
         name: "Generate",
         element: {
-          label: "Submit",classList:["has-text-right  mr-2", "smart-third-button"],
-            onClick: handleSubmit, 
-         
+          label: "Submit",
+          classList: ["has-text-right  mr-2", "smart-action-button"],
+          onClick: handleSubmit,
         },
       },
     ];
@@ -93,7 +95,7 @@ const Msireports = () => {
       <>
         <div className="columns">
           <div className="column is-4 smart-efl-table_main_container is-size-4">
-            <p>MSI Report</p>
+            <p>MIS Report</p>
           </div>
           <div className="column is-8">
             <div className="mt-1">
@@ -112,11 +114,41 @@ const Msireports = () => {
   };
 
   let data = [
-    { s_no: 1, vendor_name: "City1", hub_id: "HUB001", vendor_code: "V001", vendor_company: "" },
-    { s_no: 2, vendor_name: "City2", hub_id: "HUB002", vendor_code: "V002", vendor_company: "" },
-    { s_no: 3, vendor_name: "City3", hub_id: "HUB003", vendor_code: "V003", vendor_company: "" },
-    { s_no: 4, vendor_name: "City4", hub_id: "HUB004", vendor_code: "V004", vendor_company: "" },
-    { s_no: 5, vendor_name: "City5", hub_id: "HUB005", vendor_code: "V005", vendor_company: "" },
+    {
+      s_no: 1,
+      vendor_name: "City1",
+      hub_id: "HUB001",
+      vendor_code: "V001",
+      vendor_company: "",
+    },
+    {
+      s_no: 2,
+      vendor_name: "City2",
+      hub_id: "HUB002",
+      vendor_code: "V002",
+      vendor_company: "",
+    },
+    {
+      s_no: 3,
+      vendor_name: "City3",
+      hub_id: "HUB003",
+      vendor_code: "V003",
+      vendor_company: "",
+    },
+    {
+      s_no: 4,
+      vendor_name: "City4",
+      hub_id: "HUB004",
+      vendor_code: "V004",
+      vendor_company: "",
+    },
+    {
+      s_no: 5,
+      vendor_name: "City5",
+      hub_id: "HUB005",
+      vendor_code: "V005",
+      vendor_company: "",
+    },
   ];
 
   const columns: SmartTableNewInterface.SmartTableNewColumnConfig[] = [
@@ -128,15 +160,30 @@ const Msireports = () => {
   ];
 
   const filterFields: SmartFormInterFace.SmartFormElementProps[] = [
-    { type: "TEXT_BOX", width: "12", name: "hub_id", element: { label: "Hub" } },
-    { type: "TEXT_BOX", width: "12", name: "vendor_company", element: { label: "City" } },
-    { type: "TEXT_BOX", width: "12", name: "vendor_company", element: { label: "Vendor" } },
+    {
+      type: "TEXT_BOX",
+      width: "12",
+      name: "hub_id",
+      element: { label: "Hub" },
+    },
+    {
+      type: "TEXT_BOX",
+      width: "12",
+      name: "vendor_company",
+      element: { label: "City" },
+    },
+    {
+      type: "TEXT_BOX",
+      width: "12",
+      name: "vendor_company",
+      element: { label: "Vendor" },
+    },
   ];
 
   return (
     <div>
       {titleDisTwo()}
-      {showTable && ( 
+      {showTable && (
         <>
           <SmartTable
             columns={columns}

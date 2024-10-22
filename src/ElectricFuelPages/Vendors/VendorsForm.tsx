@@ -14,7 +14,7 @@ import {
   admin_states_select,
   hubs_get_all_select,
 } from "../../services/site/SelectBoxServices";
-import { ALLOW_ALPHABET_SPACE } from "../../services/PatternSerivce";
+import { ALLOW_ALPHABET_SPACE, ALLOW_NUMERIC } from "../../services/PatternSerivce";
 
 interface FormErrors {
   [key: string]: string | null;
@@ -200,7 +200,7 @@ const VendorsForm: React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
         isRequired: true,
         // inputProps: { isFocussed: true },
         validations: vendorFormValidations.pin_code,
-        inputType: "BORDER_LABEL",
+        inputType: "BORDER_LABEL",  pattern:  ALLOW_NUMERIC , max: "6",
       },
     },
     {
@@ -245,7 +245,7 @@ const VendorsForm: React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
             onClick={closeModal}
           />
           <SmartSoftButton
-            label="Submit"
+           label={formData.ID ? "Update":"Submit"}
             rightIcon="fa fa-arrow-right"
             classList={["button ", "mt-4", "smart-action-button"]}
             onClick={handleSubmit}

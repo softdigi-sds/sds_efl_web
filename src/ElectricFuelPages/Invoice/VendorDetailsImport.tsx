@@ -1,12 +1,11 @@
 import React, { useState } from "react";
 import {
   SmartFormInterFace,
-  SmartSoftButton,
   SmartSoftForm,
   SmartTable,
-  SmartTableNewInterface,
+  SmartTableNewInterface
 } from "soft_digi";
-import { INVOICE_URLS, VEHICLES_URL } from "../../api/UserUrls";
+import { INVOICE_URLS } from "../../api/UserUrls";
 import { useSiteContext } from "../../contexts/SiteProvider";
 
 import SmartFileDisplay from "../../components/site/SmartFileDisplay";
@@ -170,7 +169,7 @@ const VendorDetailsImport: React.FC<componentProps> = ({ loadData, id }) => {
           columns={columns}
           data={data}
           paginationProps={{
-            pageSize: 10,
+            pageSize: 0,
           }}
           tableProps={{
             className: " is-hoverable is-bordered is-striped ",

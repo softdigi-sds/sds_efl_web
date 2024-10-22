@@ -7,7 +7,7 @@ import { showAlertAutoClose } from '../../services/notifyService';
 import { admin_states_select } from '../../services/site/SelectBoxServices';
 import { post } from '../../services/smartApiService';
 import { max } from 'date-fns';
-import { ALLOW_NUMERIC, ALPHA_NUMERIC_CAPITAL, GST } from '../../services/PatternSerivce';
+import { ALLOW_NUMERIC, ALPHA_NUMERIC_CAPITAL, GST, GST_PATTERN } from '../../services/PatternSerivce';
 import { ValidateFormNew } from 'soft_digi/dist/services/smartValidationService';
 
 
@@ -142,7 +142,7 @@ const OfficesForm:React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
         inputType: "BORDER_LABEL",
           
         validations: loginFormValidations.gst_no,
-        //  pattern: GST ,
+         pattern: "[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z]{1}[1-9A-Z]{1}Z[0-9A-Z]{1}$",
         
         max:15,
       },
@@ -158,6 +158,7 @@ const OfficesForm:React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
         validations: loginFormValidations.pan_no,
         inputType: "BORDER_LABEL",
         // pattern: "[A-Z]{5}[0-9]{4}[A-Z]{1}",
+         max:15,
       },
     },
     {
@@ -219,7 +220,7 @@ const OfficesForm:React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
         // inputProps: { isFocussed: true },
           // pattern:  ALLOW_ALPHABET_SPACE ,
         validations: loginFormValidations.igst_no,
-        inputType: "BORDER_LABEL",
+        inputType: "BORDER_LABEL",    max:3,
       },
     },
   
@@ -258,7 +259,7 @@ const OfficesForm:React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
           onClick={closeModal}
         />
       <SmartSoftButton
-          label="Submit"
+          label={formData.ID ? "Update":"Submit"}
           rightIcon='fa fa-arrow-right'
           classList={["button ","mt-4", "smart-action-button"]}
           onClick={handleSubmit}

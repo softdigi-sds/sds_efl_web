@@ -67,6 +67,18 @@
     font-size: 1.2em;
   }
 }
+.header-brand-logo{
+
+  margin-bottom: 10px;
+  padding: 10px;
+  background-color: #ffffff;
+  height: 50px;
+  img {
+    height: 100%;
+    display: block;
+    object-fit: fill !important;
+  }
+}
 
 /*** side nav styles ***/
 // Base sidenav styles
@@ -95,7 +107,7 @@
     @media screen and (max-width: 480px) {
       position: fixed;
       top: 0;
-      width: 200px;
+      width: 250px;
       display: flex;
       z-index: 1001;
     }

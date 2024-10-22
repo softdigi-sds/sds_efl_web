@@ -23,7 +23,20 @@ const isDateWithinDays=(dateToCheck:any,checkDays:number=10)=> {
 }
 
 
+const getMonthStartAndEnd=(date:string)=> {
+  // Create a new date instance based on the provided date
+  const givenDate = new Date(date);
+  // Get the start date of the month
+  const startDate = new Date(givenDate.getFullYear(), givenDate.getMonth(), 1);
+  // Get the end date of the month
+  const endDate = new Date(givenDate.getFullYear(), givenDate.getMonth() + 1, 0);
+  // Format the dates as strings (e.g., YYYY-MM-DD)
+  const start = startDate.toISOString().split('T')[0];
+  const end = endDate.toISOString().split('T')[0];
+  return { start, end };
+}
 
 
-export { isCurrentMonth, isDateWithinDays, isDateWithinLastDays };
+
+export { getMonthStartAndEnd, isCurrentMonth, isDateWithinDays, isDateWithinLastDays };
 

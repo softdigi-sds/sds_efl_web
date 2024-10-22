@@ -5,8 +5,9 @@ import { useSiteContext } from "../contexts/SiteProvider";
 import { checkInterSection } from "../services/core/FilterService";
 interface childrenProps {
   isOpen: boolean;
+  setIsOpen: (open: boolean) => void;
 }
-const EFSideNav: React.FC<childrenProps> = ({ isOpen }) => {
+const EFSideNav: React.FC<childrenProps> = ({ isOpen ,setIsOpen}) => {
   const ref = useRef<HTMLDivElement | null>(null);
   const listItems = [
     {
@@ -33,14 +34,14 @@ const EFSideNav: React.FC<childrenProps> = ({ isOpen }) => {
     },
     {
       id: 4,
-      label: "Vendors",
+      label: "Customer",
       icon: "fa-sticky-note-o",
       link: "/e-fuel/vendors-list",
       roles: ["ADMIN"],
     },
     {
       id: 5,
-      label: "Vendor Rates",
+      label: "Customer Rates",
       icon: "fa fa-flag",
       link: "/e-fuel/vendors-rates-list",
       roles: ["ADMIN", "ACCOUNTS"],
@@ -50,37 +51,24 @@ const EFSideNav: React.FC<childrenProps> = ({ isOpen }) => {
       label: "Vehicles Report",
       icon: "fa-car",
       link: "/e-fuel/vehicles-report",
-      roles: ["ADMIN", "HUB", "ACCOUNTS"],
+      roles: ["ADMIN", "HUB SUPERVISOR", "ACCOUNTS"],
     },
     {
       id: 6,
       label: "Consumption  Report",
       icon: "fa-calendar-check-o",
       link: "/e-fuel/consumption-report",
-      roles: ["ADMIN", "HUB", "ACCOUNTS"],
+      roles: ["ADMIN", "HUB SUPERVISOR", "ACCOUNTS"],
     },
     {
       id: 7,
       label: "Invoices",
       icon: "fa-inr",
       link: "/e-fuel/invoices",
-      roles: ["ADMIN", "HUB", "ACCOUNTS"],
+      roles: ["ADMIN", "HUB SUPERVISOR", "ACCOUNTS"],
     },
 
-    {
-      id: 8,
-      label: "Users",
-      icon: "fa-user",
-      link: "/e-fuel/users",
-      roles: ["ADMIN"],
-    },
-    {
-      id: 8,
-      label: "Roles",
-      icon: " fa-users",
-      link: "/e-fuel/roles-list",
-      roles: ["ADMIN"],
-    },
+ 
     {
       id: 8,
       label: "Meter Reading",
@@ -89,10 +77,30 @@ const EFSideNav: React.FC<childrenProps> = ({ isOpen }) => {
       roles: ["ADMIN"],
     },
     {
-      id: 8,
+      id: 12,
+      label: "Meter Reading Report",
+      icon: "fa-tachometer",
+      link: "/e-fuel/meter-reading-report",
+      roles: ["ADMIN"],
+    },
+    {
+      id: 9,
       label: "MIS Reports",
       icon: "fa-inr",
       link: "/e-fuel/msi-reports",
+      roles: ["ADMIN"],
+    },   {
+      id: 10,
+      label: "Users",
+      icon: "fa-user",
+      link: "/e-fuel/users",
+      roles: ["ADMIN"],
+    },
+    {
+      id: 11,
+      label: "Roles",
+      icon: " fa-users",
+      link: "/e-fuel/roles-list",
       roles: ["ADMIN"],
     },
   ];
@@ -102,6 +110,10 @@ const EFSideNav: React.FC<childrenProps> = ({ isOpen }) => {
   // console.log("logged in user ", user);
   const navigateLink = (index: any) => {
     navigate(index);
+    if(window.innerWidth <= 768){
+      setIsOpen(false)
+    }
+ 
   };
 
   const handleClickOutside = (event: MouseEvent) => {

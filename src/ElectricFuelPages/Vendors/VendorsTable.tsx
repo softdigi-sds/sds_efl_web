@@ -20,6 +20,7 @@ interface headerProps{
 }
 
 const VendorsTable:React.FC<headerProps> = ({hubId}) => {
+  console.log("hub id", hubId);
 
   const [data, setData] = useState([]);
   const { openModal, closeModal } = useSiteContext();
@@ -41,7 +42,7 @@ const VendorsTable:React.FC<headerProps> = ({hubId}) => {
 
   const openOfficesForm = (data: any) => {
     let options = {
-      title: <>{data.ID ? "Vendors Update Form" : "Vendors Addition Form"}</>,
+      title: <>{data.ID ? "Customers Update Form" : "Customers Addition Form"}</>,
       content: <VendorsForm loadTableData={loadTableData} dataIn={data} />,
       width: 60,
       className: "sd-efl-modal",
@@ -108,7 +109,7 @@ const VendorsTable:React.FC<headerProps> = ({hubId}) => {
   // };
   const openViewdetails = (data: any) => {
     let options = {
-      title: "Vendors Details",
+      title: "Customer Details",
       content: <VendorsView office={data} />,
       width: 60,
       className: "sd-efl-modal",
@@ -225,7 +226,7 @@ const VendorsTable:React.FC<headerProps> = ({hubId}) => {
   const columns: SmartTableNewInterface.SmartTableNewColumnConfig[] = [
     { title: "S.NO", index: "s_no", type: "sno" },
     {
-      title: "Hun Id",
+      title: "Hub Id",
       index: "hub_id",
     },
     {
@@ -257,7 +258,7 @@ const VendorsTable:React.FC<headerProps> = ({hubId}) => {
     {
       type: "CUSTOM",
       widthClass: "is-6",
-      custom: <p className="is-size-4">Vendors</p>,
+      custom: <p className="is-size-4">Customers</p>,
     },
     {
       type: "SEARCH",

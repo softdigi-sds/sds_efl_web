@@ -1,27 +1,14 @@
 import React from "react";
 
-interface OfficeData {
-  s_no: number;
-  office_city: string;
-  state_name: string;
-  pin_code: string;
-  address_one: string;
-  status: number;  cgst: number; 
-  sgst: number;
-  gst_no: string;
-  pan_no: string;
-}
-
-const OfficeTableView = ({ office }: { office: OfficeData }) => { 
-  const nameFunction = (row: OfficeData) => {
-  switch (row.status) {
-    case 5:
-      return <span className="has-text-success">Active</span>;
-    case 0:
-      return <span className="has-text-danger">Inactive</span>;
-
-  }
-};
+const OfficeTableView = ({ office }: { office: any }) => {
+  const nameFunction = (row: any) => {
+    switch (row.status) {
+      case 5:
+        return <span className="has-text-success">Active</span>;
+      case 0:
+        return <span className="has-text-danger">Inactive</span>;
+    }
+  };
 
   return (
     <div className="container">
@@ -31,23 +18,29 @@ const OfficeTableView = ({ office }: { office: OfficeData }) => {
             <th>S.NO</th>
             <td>{office.s_no}</td>
           </tr> */}
-      <tr>
+          <tr>
             <th>Office City</th>
             <td>{office.office_city}</td>
           </tr>
-              <tr>
+          <tr>
             <th>CGST(%)</th>
             <td>{office.cgst}</td>
-          </tr>  <tr>
+          </tr>{" "}
+          <tr>
             <th>SGST(%)</th>
             <td>{office.sgst}</td>
-          </tr>  <tr>
+          </tr>{" "}
+          <tr>
+            <th>IGST(%)</th>
+            <td>{office.igst}</td>
+          </tr>{" "}
+          <tr>
             <th>GST No.</th>
             <td>{office.gst_no}</td>
-          </tr>  
-            <th>PAN No.</th>
-            <td>{office.pan_no}</td>
-            <tr>
+          </tr>
+          <th>PAN No.</th>
+          <td>{office.pan_no}</td>
+          <tr>
             <th>State</th>
             <td>{office.state_name}</td>
           </tr>
