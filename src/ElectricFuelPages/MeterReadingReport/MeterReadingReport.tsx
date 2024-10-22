@@ -12,19 +12,28 @@ const MeterReadingReport = () => {
   const [numberArray, setNumberArray] = useState<any[]>([]);
   const [currentDate, setCurrentDate] = useState(new Date());
   const [data, setData] = useState<any[]>([]);
-  const [startDate, setStartDate] = useState(moment().date(20).startOf("day"));
+  // const [startDate, setStartDate] = useState(moment().date(20).startOf("day"));
+  const [startYear, setStartYear] = useState(moment().year()); // Initialize with the current year
+
+
   const [endDate, setEndDate] = useState(
     moment().add(1, "month").date(19).endOf("day")
   );
   const [searchTerm, setSearchTerm] = useState<string>("");
 
- 
+  const handlePreviousYear = () => {
+    setStartYear((prevYear) => prevYear - 1); // Decrease the year by 1
+  };
+
+  const handleNextYear = () => {
+    setStartYear((prevYear) => prevYear + 1); // Increase the year by 1
+  };
 
 
   const loadData = () => {
     let _data = {
-      start_date: changeDateTimeZone(startDate.toISOString(), "YYYY-MM-DD"),
-      end_date: changeDateTimeZone(endDate.toISOString(), "YYYY-MM-DD"),
+      start_date: startYear,
+      // end_date: changeDateTimeZone(endDate.toISOString(), "YYYY-MM-DD"),
     };
     let URL = VEHICLES_URL.GET_ALL_WITH_HUB;
     const subscription = post(URL, _data).subscribe((response) => {
@@ -47,18 +56,18 @@ const MeterReadingReport = () => {
 
   useEffect(() => {
     loadData();
-  }, [startDate]);
+  }, [startYear]);
 
   const dateRange = () => {
     return (
       <div className="date-navigation">
-        <span  className="icon is-clickable">
+        <span  className="icon is-clickable" onClick={handlePreviousYear}>
           <i className="fa fa-arrow-left"></i>
         </span>
-        <span className="mx-2">
+        <span className="mx-2">{startYear}
           <i className="fa fa-calendar"></i>
         </span>
-        <span  className="icon is-clickable">
+        <span  className="icon is-clickable" onClick={handleNextYear}>
           <i className="fa fa-arrow-right"></i>
         </span>
       </div>
