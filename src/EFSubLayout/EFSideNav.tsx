@@ -99,7 +99,7 @@ const EFSideNav: React.FC<childrenProps> = ({ isOpen }) => {
   const navigate = useNavigate();
   const location = useLocation();
   const { user } = useSiteContext();
-  console.log("logged in user ", user);
+  // console.log("logged in user ", user);
   const navigateLink = (index: any) => {
     navigate(index);
   };
@@ -125,7 +125,7 @@ const EFSideNav: React.FC<childrenProps> = ({ isOpen }) => {
       </div>
       {listItems.map((item, index) => {
         return (
-          checkInterSection(user.roles || [], item.roles) && (
+          checkInterSection(user?.roles || [], item.roles) && (
             <a
               key={`nav_link_${index}`}
               href="#"
