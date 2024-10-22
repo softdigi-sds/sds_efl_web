@@ -1,15 +1,14 @@
 import moment, { Moment } from "moment";
 import { useEffect, useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
-import { SmartSoftButton, SmartSoftSelect } from "soft_digi";
-import { VEHICLES_URL } from "../../api/UserUrls";
+import { SmartSoftButton } from "soft_digi";
+import { CONSUMPTION_URL } from "../../api/UserUrls";
 import { useSiteContext } from "../../contexts/SiteProvider";
 import { changeDateTimeZone } from "../../services/core/CommonService";
 import { isDateWithinDays } from "../../services/site/DateService";
 import { post } from "../../services/smartApiService";
+import VendorsTable from "../Vendors/VendorsTable";
 import ConsumptionReportForm from "./ConsumptionReportForm";
 import ImportReportTable from "./ImportReportTable";
-import VendorsTable from "../Vendors/VendorsTable";
 interface VehicleReportProps {
   stage:any,
   setStage:any
@@ -48,7 +47,7 @@ const ConsumptionAdminReport:React.FC<VehicleReportProps> = ({stage,setStage}) =
       start_date: changeDateTimeZone(startDate.toISOString(), "YYYY-MM-DD"),
       end_date: changeDateTimeZone(endDate.toISOString(), "YYYY-MM-DD"),
     };
-    let URL = VEHICLES_URL.GET_ALL_WITH_HUB;
+    let URL = CONSUMPTION_URL.GET_ALL_WITH_HUB;
     const subscription = post(URL, _data).subscribe((response) => {
       setData(response.data.data);
       setNumberArray(response.data.dates);
@@ -66,78 +65,6 @@ const ConsumptionAdminReport:React.FC<VehicleReportProps> = ({stage,setStage}) =
     loadData();
   }, [startDate]);
 
-  const hubs = [
-    {
-      hubs_data: [
-        1, 0, 3, 0, 5, 6, 7, 0, 9, 10, 0, 12, 13, 0, 15, 16, 0, 18, 19, 0, 21,
-        0, 23, 24, 0, 26, 27, 0, 29, 30,
-      ],
-      hub_name: "Chennai",
-    },
-    {
-      hubs_data: [
-        0, 2, 0, 4, 5, 6, 0, 8, 9, 10, 0, 12, 13, 0, 15, 16, 17, 0, 19, 0, 21,
-        22, 0, 24, 25, 0, 27, 28, 29, 0,
-      ],
-      hub_name: "Mumbai",
-    },
-    {
-      hubs_data: [
-        1, 0, 3, 4, 0, 6, 7, 8, 0, 10, 11, 0, 13, 14, 0, 16, 0, 18, 19, 0, 21,
-        22, 0, 24, 25, 26, 0, 28, 0, 30,
-      ],
-      hub_name: "Bengaluru",
-    },
-    {
-      hubs_data: [
-        1, 2, 3, 0, 5, 6, 0, 8, 9, 0, 11, 12, 0, 14, 15, 0, 17, 18, 19, 0, 21,
-        0, 23, 24, 25, 0, 27, 28, 0, 30,
-      ],
-      hub_name: "Delhi",
-    },
-    {
-      hubs_data: [
-        1, 0, 3, 4, 0, 6, 7, 8, 9, 0, 11, 12, 13, 0, 15, 16, 17, 0, 19, 20, 0,
-        22, 23, 0, 25, 26, 0, 28, 29, 0,
-      ],
-      hub_name: "Kolkata",
-    },
-    {
-      hubs_data: [
-        0, 2, 3, 4, 5, 0, 7, 8, 0, 10, 11, 0, 13, 14, 0, 16, 17, 18, 0, 20, 0,
-        22, 23, 24, 0, 26, 27, 28, 0, 30,
-      ],
-      hub_name: "Hyderabad",
-    },
-    {
-      hubs_data: [
-        1, 0, 3, 4, 0, 6, 7, 8, 0, 10, 11, 0, 13, 14, 15, 0, 17, 18, 0, 20, 0,
-        22, 23, 0, 25, 26, 0, 28, 29, 30,
-      ],
-      hub_name: "Ahmedabad",
-    },
-    {
-      hubs_data: [
-        0, 2, 3, 0, 5, 6, 7, 8, 0, 10, 11, 0, 13, 14, 15, 16, 0, 18, 19, 0, 21,
-        22, 0, 24, 25, 26, 0, 28, 29, 0,
-      ],
-      hub_name: "Pune",
-    },
-    {
-      hubs_data: [
-        1, 0, 3, 4, 0, 6, 7, 0, 9, 10, 0, 12, 13, 0, 15, 16, 0, 18, 19, 0, 21,
-        0, 23, 24, 25, 0, 27, 28, 0, 30,
-      ],
-      hub_name: "Jaipur",
-    },
-    {
-      hubs_data: [
-        0, 2, 3, 0, 5, 6, 7, 8, 0, 10, 11, 0, 13, 14, 0, 16, 17, 0, 19, 20, 0,
-        22, 23, 24, 0, 26, 27, 28, 0, 30,
-      ],
-      hub_name: "Lucknow",
-    },
-  ];
 
   const changeMonth = (months: number) => {
     const newDate = new Date(
@@ -157,21 +84,6 @@ const ConsumptionAdminReport:React.FC<VehicleReportProps> = ({stage,setStage}) =
   );
 
 
-  const monthYear = () => {
-    return (
-      <div className="date-navigation">
-        <span onClick={() => changeMonth(-1)} className="icon is-clickable">
-          <i className="fa fa-arrow-left"></i>
-        </span>
-        <span className="mx-2">
-          {formatDate(currentDate)} <i className="fa fa-calendar"></i>
-        </span>
-        <span onClick={() => changeMonth(1)} className="icon is-clickable">
-          <i className="fa fa-arrow-right"></i>
-        </span>
-      </div>
-    );
-  };
 
   const dateRange = () => {
     return (
@@ -302,7 +214,7 @@ const ConsumptionAdminReport:React.FC<VehicleReportProps> = ({stage,setStage}) =
                       <div className="is-flex ">
                        <p>{hub.hub_name} </p> 
                        <div className="ml-2">
-                       {hub.vendor_count !==0 ?<p className="is-clickable has-text-link" onClick={()=>openVendorsView(hub.ID)}>{hub.vendor_count}</p>:<span>{hub.vendor_count}</span>}
+                       {hub.vendor_count !==0 ?<p className="is-clickable has-text-link sd-cursor" onClick={()=>openVendorsView(hub.ID)}>{hub.vendor_count}</p>:<span>{hub.vendor_count}</span>}
                        </div>
                     
                         </div>
@@ -314,13 +226,13 @@ const ConsumptionAdminReport:React.FC<VehicleReportProps> = ({stage,setStage}) =
                         //  return <td><span>{_count}</span></td>
                         return _count > 0 ? (
                           <td>
-                            <span onClick={() => openForm(item, hub)}>
+                            <span className="sd-cursor has-text-danger" onClick={() => openForm(item, hub)}>
                               {_count}
                             </span>
                           </td>
                         ) : (
                           <td>
-                            {isNotGreaterThanToday && <span onClick={() => openForm(item, hub)}>+</span> }
+                            {isNotGreaterThanToday && <span className="sd-cursor has-text-link is-size-5" onClick={() => openForm(item, hub)}>+</span> }
                           </td>
                         );
                       })}

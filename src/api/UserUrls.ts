@@ -45,6 +45,7 @@ const CONSUMPTION_URL = {
   GET_ONE: "/efl_consumption/get_one",
   DELETE: "/efl_consumption/delete_one",
   GET_ALL_CALENDER: "/efl_consumption/get_all_consumption_data",
+  GET_ALL_WITH_HUB:"/efl_consumption/get_all_consumption_data_hub",
   GET_ALL_CALENDER_GET_ONE: "/efl_consumption/get_one_consumption_data",
   IMPORT_EXCEL: "/efl_consumption/import_excel",
 };
