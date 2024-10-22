@@ -266,16 +266,16 @@ const VehicleAdminReport: React.FC<VehicleReportProps> = ({
                   aria-hidden="true"
                 ></i>
               </p>
-              <p
+              {/* <p
                 className="has-text-danger mt-2 is-clickable mr-3"
                 onClick={() => openImportForm(data)}
               >
                 {" "}
                 <i
-                  className="fa fa-upload is-size-3"
+                  className="fa fa-download is-size-3"
                   aria-hidden="true"
                 ></i>
-              </p>
+              </p> */}
             </div>
             <div className="search-box sd-efl-input">
               <input
