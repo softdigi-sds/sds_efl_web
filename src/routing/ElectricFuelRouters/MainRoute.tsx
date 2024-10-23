@@ -1,12 +1,10 @@
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import EFSubLayout from "../../EFSubLayout/EFSubLayout";
-import ElectricFuelMainLayout from "../../ElectricFuelLayout/ElectricFuelMainLayout";
 import {
   ConsumptionAdminReport,
   ConsumptionReportTable,
   Dashboard,
-  HomePage,
   HubsTables,
   InvoiceTable,
   MeterReading,
@@ -20,7 +18,7 @@ import {
   VehiclesReportTable,
   VendorRatesTable,
   VendorsTable,
-  VendorWiseInformation,
+  VendorWiseInformation
 } from "../../ElectricFuelPages";
 import Login from "../../ElectricFuelPages/LoginPages/Login";
 import { useSiteContext } from "../../contexts/SiteProvider";
@@ -30,13 +28,13 @@ const EFSiteRoute = () => {
   const protected_routes = () => {
     return (
       <>
-        <ElectricFuelMainLayout>
+      
           <Routes>
-            <Route path="/" element={<HomePage />} />
+            <Route path="/" element={<Login />} />
           </Routes>
 
           <ToastContainer />
-        </ElectricFuelMainLayout>
+       
       </>
     );
   };

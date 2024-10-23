@@ -1,5 +1,4 @@
 import React from "react";
-import { changeDateTimeZoneFormat } from "../../services/core/CommonService";
 interface DataProps {
   data: any[] | any;
 }
@@ -13,7 +12,7 @@ const VendorDetails: React.FC<DataProps> = (props) => {
             <th>S.NO</th>
             <td>{hubData.s_no}</td>
           </tr> */}
-          <tr>
+          {/* <tr>
             <th>Bill Start Date</th>
             <td>
               {changeDateTimeZoneFormat(data?.bill_start_date, "DD-MM-YYYY")}
@@ -24,7 +23,7 @@ const VendorDetails: React.FC<DataProps> = (props) => {
             <td>
               {changeDateTimeZoneFormat(data?.bill_end_date, "DD-MM-YYYY")}
             </td>
-          </tr>
+          </tr> */}
           <tr>
             <th>Number Of Vehicles</th>
             <td>{data?.total_vehicles}</td>
@@ -72,3 +71,4 @@ const VendorDetails: React.FC<DataProps> = (props) => {
 };
 
 export default VendorDetails;
+

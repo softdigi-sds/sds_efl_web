@@ -1,4 +1,5 @@
-import { useState } from "react";
+import moment from "moment";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { SmartFormInterFace, SmartSoftForm } from "soft_digi";
 import { INVOICE_URLS } from "../../api/UserUrls";
@@ -18,22 +19,38 @@ const InvoicebillForm = () => {
   const [minEndDate, setMinEndDate] = useState<Date | null>(null);
 
   const handleInputChange = (name: string, value: any) => {
-    if (name === "bill_start_date") {
-      const startDate = new Date(value);
-      const newMinEndDate = new Date(startDate);
-      newMinEndDate.setDate(newMinEndDate.getDate() + 30);
-
-      setMinEndDate(newMinEndDate);
-
-      setFormData((prev: any) => ({
-        ...prev,
-        [name]: value,
-        bill_end_date: newMinEndDate,
-      }));
-    } else {
-      setFormData((prev: any) => ({ ...prev, [name]: value }));
-    }
+    // if (name === "bill_start_date") {
+    //   const startDate = new Date(value);
+    //  // const newMinEndDate = new Date(startDate);
+    //   const newEndDate = moment(startDate)
+    //   .add(1, "month")
+    //   .date(20)
+    //   .endOf("day");
+    //   setMinEndDate(newEndDate.toDate());
+    //   setFormData((prev: any) => ({
+    //     ...prev,
+    //     [name]: value,
+    //     bill_end_date: newEndDate,
+    //   }));
+    // } else {
+      
+    // }
+    setFormData((prev: any) => ({ ...prev, [name]: value }));
   };
+
+
+  useEffect(() => {
+    if(formData.bill_start_date && formData.bill_start_date!=null){
+    const startDate = new Date(formData.bill_start_date);
+    const newEndDate = moment(startDate)
+    .add(1, "month")
+    .date(20)
+    .endOf("day");
+    setMinEndDate(newEndDate.toDate());
+    handleInputChange("bill_end_date",newEndDate.toDate())
+    }
+  }, [formData.bill_start_date]);
+
 
   const handleErrorChange = (name: string | any, value: any) => {
     setFormErrors((prev) => {
