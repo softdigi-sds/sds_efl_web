@@ -258,7 +258,7 @@ const VendorsTable:React.FC<headerProps> = ({hubId}) => {
     {
       type: "CUSTOM",
       widthClass: "is-6",
-      custom: <p className="is-size-4">Customers</p>,
+      custom: <p className="is-size-4">Customer</p>,
     },
     {
       type: "SEARCH",
