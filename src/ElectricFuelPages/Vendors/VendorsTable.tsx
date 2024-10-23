@@ -42,7 +42,7 @@ const VendorsTable:React.FC<headerProps> = ({hubId}) => {
 
   const openOfficesForm = (data: any) => {
     let options = {
-      title: <>{data.ID ? "Customers Update Form" : "Customers Addition Form"}</>,
+      title: <>{data.ID ? "Customer Update Form" : "Customer Addition Form"}</>,
       content: <VendorsForm loadTableData={loadTableData} dataIn={data} />,
       width: 60,
       className: "sd-efl-modal",
