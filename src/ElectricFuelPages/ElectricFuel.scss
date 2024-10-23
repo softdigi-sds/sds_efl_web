@@ -545,5 +545,11 @@ font-weight: bold;
   padding:18px 27px !important;
   color: black !important;
 }
+.calendar-header{
+  background-color: white;
+  .button.is-link.is-outlined{
+    display: none;
+  }
+}
 
 }
