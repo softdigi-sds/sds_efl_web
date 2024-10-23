@@ -1,20 +1,31 @@
-import React from 'react';
-import './BillingTable.scss';
-
+import React from "react";
+import "./BillingTable.scss";
 
 const BillingTable: React.FC = () => {
   const data: any = {
     vendor_name: "SAPE",
     sub_data: [
-      { date: "22-Aug-2024", count: 18, charge_month: 2200, charge_per_day: 22, total: 100 },
-      { date: "23-Aug-2024", count: 18, charge_month: 2200, charge_per_day: 22, total: 100 }
+      {
+        date: "22-Aug-2024",
+        count: 18,
+        charge_month: 2200,
+        charge_per_day: 22,
+        total: 100,
+      },
+      {
+        date: "23-Aug-2024",
+        count: 18,
+        charge_month: 2200,
+        charge_per_day: 22,
+        total: 100,
+      },
     ],
     total_vehicles: 5456,
     avg_vehicles: 34,
     total_units: 44,
     min_units_vehicle: 34,
     units_allowed: 45,
-    extra_units: 45
+    extra_units: 45,
   };
 
   return (
@@ -25,15 +36,21 @@ const BillingTable: React.FC = () => {
             <th>BILLING FOR EV CHARGING</th>
             <th>{data.vendor_name}</th>
             <th colSpan={3}>
-              1) Parking Fee per vehicle: 2200/- &nbsp;&nbsp; | &nbsp;&nbsp; 2) Unit rate: 14/- &nbsp;&nbsp; | &nbsp;&nbsp; 3) Min Units billing: 50 per vehicle
+              1) Parking Fee per vehicle: 2200/- &nbsp;&nbsp; | &nbsp;&nbsp; 2)
+              Unit rate: 14/- &nbsp;&nbsp; | &nbsp;&nbsp; 3) Min Units billing:
+              50 per vehicle
             </th>
           </tr>
           <tr>
-            <td>Month</td>
-            <td>Vendor</td>
-            <td>Charges Per Vehicle Per Month Rate</td>
-            <td>Charges Per Vehicle Per Day</td>
-            <td>Total Charges Per Day</td>
+            <td>Aug-24</td>
+            <td>SAPE</td>
+            <td rowSpan={2}>Charges Per Vehicle Per Month Rate</td>
+            <td rowSpan={2}>Charges Per Vehicle Per Day</td>
+            <td rowSpan={2}>Total Charges Per Day</td>
+          </tr>{" "}
+          <tr className="table-data">
+            <td>Date</td>
+            <td>Total Count</td>
           </tr>
         </thead>
         <tbody>
@@ -51,7 +68,12 @@ const BillingTable: React.FC = () => {
             <td>{data.total_vehicles}</td>
             <td></td>
             <td></td>
-            <td>{data.sub_data.reduce((acc: number, curr: any) => acc + curr.total, 0)}</td>
+            <td>
+              {data.sub_data.reduce(
+                (acc: number, curr: any) => acc + curr.total,
+                0
+              )}
+            </td>
           </tr>
           <tr className="table-data">
             <td>Max units allowed per Vehicle</td>
