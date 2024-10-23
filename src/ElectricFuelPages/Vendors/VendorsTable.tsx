@@ -15,11 +15,11 @@ import {
 import { post } from "../../services/smartApiService";
 import VendorsForm from "./VendorsForm";
 import VendorsView from "./VendorsView";
-interface headerProps{
-  hubId?:string
+interface headerProps {
+  hubId?: string;
 }
 
-const VendorsTable:React.FC<headerProps> = ({hubId}) => {
+const VendorsTable: React.FC<headerProps> = ({ hubId }) => {
   console.log("hub id", hubId);
 
   const [data, setData] = useState([]);
@@ -28,7 +28,7 @@ const VendorsTable:React.FC<headerProps> = ({hubId}) => {
   const loadTableData = () => {
     let URL = VENDERS_URLS.GET_ALL;
     // let hub_id= hubId?hubId:"";
-    const subscription = post(URL,{hub_id:hubId}).subscribe((response) => {
+    const subscription = post(URL, { hub_id: hubId }).subscribe((response) => {
       setData(response.data);
     });
     return () => {
@@ -219,7 +219,7 @@ const VendorsTable:React.FC<headerProps> = ({hubId}) => {
       },
     },
   ];
-  const statusTags = [ 
+  const statusTags = [
     { value: 5, label: "Active", class: "is-primary" },
     { value: 0, label: "Inactive", class: "is-danger" },
   ];
@@ -299,8 +299,20 @@ const VendorsTable:React.FC<headerProps> = ({hubId}) => {
         label: "Company",
       },
     },
+    {
+      type: "SELECT_BOX",
+      width: "12",
+      name: "status",
+      element: {
+        label: "Status",
+        options: [
+          { value: "1", label: "Active" },
+          { value: "2", label: "InActive" },
+        ],
+      },
+    },
   ];
-  const emptyArray:any[]=[]
+  const emptyArray: any[] = [];
 
   return (
     <>
@@ -308,7 +320,7 @@ const VendorsTable:React.FC<headerProps> = ({hubId}) => {
         <SmartTable
           columns={columns}
           data={data}
-          tableTop={hubId? emptyArray:tableTop}
+          tableTop={hubId ? emptyArray : tableTop}
           filterFields={filterFields}
           tableProps={{
             className: "is-hoverable is-bordered smart-efl-table",
