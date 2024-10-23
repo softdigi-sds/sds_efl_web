@@ -164,6 +164,10 @@
   &:focus {
     color: $primary-color;
   }
+  &:hover .label{
+    // background-color: darken($primary-color, 10%);
+    color: white;
+  }
 }
 
 /*** sd efl modal ***/
