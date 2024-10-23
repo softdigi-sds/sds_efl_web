@@ -8,12 +8,8 @@ import { getMonthStartAndEnd } from "../../services/site/DateService";
 
 const DashBoardCalender = () => {
   const [currentMonth, setCurrentMonth] = useState<Moment>();
-  const [dated, setDate] = useState<Date | null>(new Date());
-  const [data, setData] = useState<any[]>();
-  const [tabData, setTabData] = useState<Record<
-  string,
-  number | undefined
-> | null>(null);
+  const [dated, setDate] = useState<Date >(new Date());
+  const [tabData, setTabData] = useState<any[]>();
   const titleDisp = () => (
     <div className="columns is-multiline">
       <div className="column is-12">
@@ -23,10 +19,12 @@ const DashBoardCalender = () => {
     </div>
   );
 
+  // console.log("currentMonth",currentMonth)
 
   const loadTableData = () => {
     let URL = VEHICLES_URL.GET_ALL_DASH;
     let _dates = getMonthStartAndEnd(dated ? dated?.toISOString() : "");
+    // console.log(_dates)
     let _data = {start_date:_dates.start,end_date:_dates.end};
     const subscription = post(URL,_data).subscribe((response) => {
       setTabData(response.data);
@@ -49,30 +47,31 @@ const DashBoardCalender = () => {
 
  
   const content = (date: any) => {
-    const count_check = data?.find((item) => item.date === date);
+    const count_check = tabData?.find((item) => item.date === date);
     // const last10Days = isDateWithinLastDays(date, 30);
     // const this_month = isCurrentMonth(new Date(date));
     //console.log(" this month ", this_month, "  dt ", date);
+  
 
     return (
       <div className="calender-div">
-        {count_check && count_check.count ==1 &&(
+        {count_check && count_check.status ===1 &&(
           <>
           <div className="has-background-primary">1</div>
           </>
         )
          
         }
-           {count_check && count_check.count ==2 &&(
+           {count_check && count_check.status ===2 &&(
           <>
-          <div className="has-background-waring">1</div>
+          <div className="has-background-warning">2</div>
           </>
         )
          
         }
-           {count_check && count_check.count ==3 &&(
+           {count_check && count_check.status ===3 &&(
           <>
-          <div className="has-background-danger">1</div>
+          <div className="has-background-danger">3</div>
           </>
         )
          
