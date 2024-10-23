@@ -118,7 +118,7 @@ const HubsTables = () => {
   };
   const openVendorsView = (data: any) => {
     let options = {
-      title: "Vendors Details",
+      title: "Customer Details",
       content: <VendorsTable hubId={data} />,
       width: 80,
     };

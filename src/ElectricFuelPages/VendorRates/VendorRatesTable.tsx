@@ -36,7 +36,7 @@ const VendorRatesTable = () => {
     let options = {
       title: <>{data.ID ? "Customer Rates Update Form" : "Customer Rates Addition Form"}</>,
       content: <VendorRatesForms loadTableData={loadTableData} dataIn={data} />,
-      width: 60,
+      width: 80,
       className: "sd-efl-modal",
       closeBody: false,
     };
