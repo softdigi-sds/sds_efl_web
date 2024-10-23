@@ -5,11 +5,16 @@ import { CONSUMPTION_URL, VEHICLES_URL } from "../../api/UserUrls";
 import { post } from "../../services/smartApiService";
 import { roundNumber } from "../../services/core/CommonService";
 import { getMonthStartAndEnd } from "../../services/site/DateService";
+import VendorsTable from "../Vendors/VendorsTable";
+import { useSiteContext } from "../../contexts/SiteProvider";
+import HubDetails from "./HubDetails";
 
 const DashBoardCalender = () => {
   const [currentMonth, setCurrentMonth] = useState<Moment>();
   const [dated, setDate] = useState<Date >(new Date());
   const [tabData, setTabData] = useState<any[]>();
+  const { openModal, closeModal } = useSiteContext();
+
   const titleDisp = () => (
     <div className="columns is-multiline">
       <div className="column is-12">
@@ -23,7 +28,7 @@ const DashBoardCalender = () => {
 
   const loadTableData = () => {
     let URL = VEHICLES_URL.GET_ALL_DASH;
-    let _dates = getMonthStartAndEnd(dated ? dated?.toISOString() : "");
+    let _dates = getMonthStartAndEnd(currentMonth ? currentMonth?.toISOString() : "");
     // console.log(_dates)
     let _data = {start_date:_dates.start,end_date:_dates.end};
     const subscription = post(URL,_data).subscribe((response) => {
@@ -36,15 +41,25 @@ const DashBoardCalender = () => {
   }
 
   useEffect(() => {
-    if(dated){
+    if(currentMonth){
     loadTableData();
     }
-  }, [dated]);
+  }, [currentMonth]);
 
   // const content = (date: any) => {
   //   return <div className="calender-div"></div>;
   // };
 
+  const openForm = (data: any) => {
+    let options = {
+      title:"Hub Details",
+      content: <HubDetails startDate={data}  />,
+      width: 30,
+      className: "sd-efl-modal",
+      closeBody: false,
+    };
+    openModal(options);
+  };
  
   const content = (date: any) => {
     const count_check = tabData?.find((item) => item.date === date);
@@ -57,21 +72,21 @@ const DashBoardCalender = () => {
       <div className="calender-div">
         {count_check && count_check.status ===1 &&(
           <>
-          <div className="has-background-primary">1</div>
+          <div className="has-background-primary"></div>
           </>
         )
          
         }
            {count_check && count_check.status ===2 &&(
           <>
-          <div className="has-background-warning">2</div>
+          <div className="has-background-warning" onClick={()=>openForm(count_check.date)}></div>
           </>
         )
          
         }
            {count_check && count_check.status ===3 &&(
           <>
-          <div className="has-background-danger">3</div>
+          <div className="has-background-danger"></div>
           </>
         )
          
