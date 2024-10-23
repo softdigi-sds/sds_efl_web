@@ -532,17 +532,17 @@ font-weight: bold;
 .smart-elf-dashboard{
   .has-background-warning{
     background-color: #ffcc00!important;
-    padding:18px 27px !important;
+    padding:38px 34px !important;
     color: black !important;
   }
 .has-background-danger{
   background-color: #ff0000!important;
-  padding:18px 27px !important;
+  padding:38px 34px !important;
   color: black !important;
 }
 .has-background-primary{
   background-color: #43e97b!important;
-  padding:18px 27px !important;
+  padding:38px 34px !important;
   color: black !important;
 }
 .calendar-header{
@@ -552,4 +552,7 @@ font-weight: bold;
   }
 }
 
+}
+.leaflet-container{
+  z-index: 1;
 }

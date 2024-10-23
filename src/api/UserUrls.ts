@@ -14,6 +14,7 @@ const HUBS_URLS = {
   DELETE: "/hubs/delete_one",
   GET_ALL_SELECT: "/hubs/get_all_select",
   STATUS_UPDATE: "hubs/status_update",
+  GET_ALL_DATE:"/efl_vehicles/get_report_date"
 };
 const HUB_GROUPS_URLS = {
   INSERT: "/hubgroups/insert",
