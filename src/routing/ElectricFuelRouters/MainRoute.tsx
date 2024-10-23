@@ -4,6 +4,7 @@ import EFSubLayout from "../../EFSubLayout/EFSubLayout";
 import {
   ConsumptionAdminReport,
   ConsumptionReportTable,
+  CustomersTables,
   Dashboard,
   HubsTables,
   InvoiceTable,
@@ -75,6 +76,7 @@ const EFSiteRoute = () => {
               element={<VendorWiseInformation />}
             />
             <Route path="/invoices" element={<InvoiceTable />} />
+            <Route path="/customers" element={<CustomersTables />} />
           </Routes>
 
           <ToastContainer />
