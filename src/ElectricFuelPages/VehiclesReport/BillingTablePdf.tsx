@@ -1,73 +1,78 @@
 import React from 'react';
 import './BillingTable.scss';
 
-const BillingTablePdf: React.FC = () => {
+
+const BillingTable: React.FC = () => {
+  const data: any = {
+    vendor_name: "SAPE",
+    sub_data: [
+      { date: "22-Aug-2024", count: 18, charge_month: 2200, charge_per_day: 22, total: 100 },
+      { date: "23-Aug-2024", count: 18, charge_month: 2200, charge_per_day: 22, total: 100 }
+    ],
+    total_vehicles: 5456,
+    avg_vehicles: 34,
+    total_units: 44,
+    min_units_vehicle: 34,
+    units_allowed: 45,
+    extra_units: 45
+  };
+
   return (
     <div className="billing-container">
       <table>
         <thead>
           <tr className="header-2">
             <th>BILLING FOR EV CHARGING</th>
-            <th>AMPLUS-3W</th>
+            <th>{data.vendor_name}</th>
             <th colSpan={3}>
               1) Parking Fee per vehicle: 2200/- &nbsp;&nbsp; | &nbsp;&nbsp; 2) Unit rate: 14/- &nbsp;&nbsp; | &nbsp;&nbsp; 3) Min Units billing: 50 per vehicle
             </th>
           </tr>
           <tr>
-            <td>Aug-24</td>
-            <td>SAPE</td>
-            <td rowSpan={2}>Charges Per Vehicle Per Month Rate</td>
-            <td rowSpan={2}>Charges Per Vehicle Per Day</td>
-            <td rowSpan={2}>Total Charges Per Day</td>
-          </tr>
-          <tr className="table-data">
-            <td>Date</td>
-            <td>Total Count</td>
+            <td>Month</td>
+            <td>Vendor</td>
+            <td>Charges Per Vehicle Per Month Rate</td>
+            <td>Charges Per Vehicle Per Day</td>
+            <td>Total Charges Per Day</td>
           </tr>
         </thead>
         <tbody>
-          <tr className="table-data">
-            <td>22-Aug-2024</td>
-            <td>12</td>
-            <td>2200</td>
-            <td>70.97</td>
-            <td>851.61</td>
-          </tr>
-          <tr className="table-data">
-            <td>23-Aug-2024</td>
-            <td>12</td>
-            <td>2200</td>
-            <td>70.97</td>
-            <td>851.61</td>
-          </tr>
-          {/* Repeat for other rows */}
+          {data.sub_data.map((item: any, index: number) => (
+            <tr className="table-data" key={index}>
+              <td>{item.date}</td>
+              <td>{item.count}</td>
+              <td>{item.charge_month}</td>
+              <td>{item.charge_per_day}</td>
+              <td>{item.total}</td>
+            </tr>
+          ))}
           <tr className="table-data-bottom">
-            <td>Total</td>
-            <td>5362</td>
+            <td>Total Vehicles</td>
+            <td>{data.total_vehicles}</td>
             <td></td>
             <td></td>
-            <td>26,851.61</td>
+            <td>{data.sub_data.reduce((acc: number, curr: any) => acc + curr.total, 0)}</td>
           </tr>
           <tr className="table-data">
             <td>Max units allowed per Vehicle</td>
-            <td>0</td>
+            <td>{data.min_units_vehicle}</td>
             <td></td>
             <td>Total units consumed</td>
-            <td className="table-data-bottom"></td>
+            <td className="table-data-bottom">{data.total_units}</td>
           </tr>
           <tr className="table-data">
             <td>Avg. no. of vehicles</td>
-            <td>12.03</td>
+            <td>{data.avg_vehicles}</td>
             <td>Total units allowed</td>
             <td></td>
-            <td>26</td>
+            <td>{data.units_allowed}</td>
           </tr>
           <tr className="table-data">
             <td></td>
             <td></td>
             <td className="table-data-bottom">Extra Units consumed</td>
             <td className="table-data-bottom"></td>
-            <td className="table-data-bottom"></td>
+            <td className="table-data-bottom">{data.extra_units}</td>
           </tr>
         </tbody>
       </table>
@@ -75,4 +80,4 @@ const BillingTablePdf: React.FC = () => {
   );
 };
 
-export default BillingTablePdf;
+export default BillingTable;
