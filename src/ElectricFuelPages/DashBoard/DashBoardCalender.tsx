@@ -54,7 +54,7 @@ const DashBoardCalender = () => {
     let options = {
       title:"Hub Details",
       content: <HubDetails startDate={data}  />,
-      width: 20,
+      width: 30,
       className: "sd-efl-modal",
       closeBody: false,
     };

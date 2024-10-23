@@ -26,11 +26,14 @@ const HubDetails:React.FC<headerProps> = ({startDate}) => {
 
   return <> 
   <div className="table is-bordered is-fullwidth">
-<tr><th>Hub Name:</th></tr>
+<tr>
+    <th>S.No.</th>
+    <th>Hub Name</th></tr>
 {data &&  data.map((data:any,index:number)=>{
     return (
     <tr >
-    <td>{index+1}.{data.hub_id}</td>
+        <td>{index+1}</td>
+    <td>{data.hub_id}</td>
     </tr>
     )
 })}
