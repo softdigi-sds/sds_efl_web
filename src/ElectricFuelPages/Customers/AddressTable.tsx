@@ -226,21 +226,16 @@ const AddressTable: React.FC<headerProps> = ({ dataIn }) => {
   ];
   const columns: SmartTableNewInterface.SmartTableNewColumnConfig[] = [
     { title: "S.NO", index: "s_no", type: "sno" },
-    {
-      title: "Hub Id",
-      index: "hub_id",
-    },
+ 
     {
       title: "Code",
       index: "vendor_code",
     },
-    { title: "Company", index: "vendor_company" },
-    {
-      title: "Name",
-      index: "vendor_name",
-    },
+ 
+
     { title: "GST No.", index: "gst_no" },
-    { title: "Pan No.", index: "pan_no" },
+    { title: "Address", index: "address" },
+  
     {
       title: "Status",
       index: "status",
