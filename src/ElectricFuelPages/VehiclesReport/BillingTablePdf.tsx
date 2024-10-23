@@ -1,8 +1,11 @@
 import React from "react";
 import "./BillingTable.scss";
 
-const BillingTable: React.FC = () => {
-  const data: any = {
+interface inputProps {
+ data:any
+  }
+const BillingTablePdf: React.FC<inputProps> = ({data}) => {
+  const data_old: any = {
     vendor_name: "SAPE",
     sub_data: [
       {
@@ -34,7 +37,7 @@ const BillingTable: React.FC = () => {
         <thead>
           <tr className="header-2">
             <th>BILLING FOR EV CHARGING</th>
-            <th>{data.vendor_name}</th>
+            <th>{data?.vendor_name}</th>
             <th colSpan={3}>
               1) Parking Fee per vehicle: 2200/- &nbsp;&nbsp; | &nbsp;&nbsp; 2)
               Unit rate: 14/- &nbsp;&nbsp; | &nbsp;&nbsp; 3) Min Units billing:
@@ -54,7 +57,7 @@ const BillingTable: React.FC = () => {
           </tr>
         </thead>
         <tbody>
-          {data.sub_data.map((item: any, index: number) => (
+          {data.sub_data && data.sub_data.map((item: any, index: number) => (
             <tr className="table-data" key={index}>
               <td>{item.date}</td>
               <td>{item.count}</td>
@@ -65,7 +68,10 @@ const BillingTable: React.FC = () => {
           ))}
           <tr className="table-data-bottom">
             <td>Total Vehicles</td>
-            <td>{data.total_vehicles}</td>
+            <td> {data.sub_data.reduce(
+                (acc: number, curr: any) => acc + parseFloat(curr.count),
+                0
+              )}</td>
             <td></td>
             <td></td>
             <td>
@@ -102,4 +108,4 @@ const BillingTable: React.FC = () => {
   );
 };
 
-export default BillingTable;
+export default BillingTablePdf ;

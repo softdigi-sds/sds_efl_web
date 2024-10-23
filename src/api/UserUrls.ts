@@ -66,6 +66,7 @@ const VEHICLES_URL = {
 const INVOICE_URLS = {
   GENERATE: "/invoice/generate_invoice",
   REFRESH: "/invoice/update_invoice",
+  GET_ONE_DETAILS: "/invoice/get_one_details",
   INSERT: "/efl_vehicles/insert",
   GET_ALL_BILLS: "/bill/get_all",
   GET_ONE_BILL: "bill/get_one",

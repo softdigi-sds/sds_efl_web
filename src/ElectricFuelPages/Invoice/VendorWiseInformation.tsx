@@ -6,7 +6,7 @@ import { useSiteContext } from "../../contexts/SiteProvider";
 import { changeDateTimeZoneFormat } from "../../services/core/CommonService";
 import { downloadFile } from "../../services/core/FileService";
 import { post } from "../../services/smartApiService";
-import VendorDetails from "./VendorDetails";
+import BillingTablePdf from "../VehiclesReport/BillingTablePdf";
 import VendorDetailsImport from "./VendorDetailsImport";
 
 const VendorWiseInformation = () => {
@@ -70,14 +70,22 @@ const VendorWiseInformation = () => {
   }, [id]);
 
   const openForm = (data: any) => {
-    let options = {
-      title: "Vendor Details",
-      content: <VendorDetails data={data} />,
-      width: 50,
-      className: "sd-efl-modal",
-      closeBody: false,
+    let URL = INVOICE_URLS.GET_ONE_DETAILS;
+    const subscription = post(URL, { id: data["ID"] }).subscribe((response) => {
+      let options = {
+        title: "Vendor Details",
+        content: <BillingTablePdf data={response.data} />,
+        width: 50,
+        className: "sd-efl-modal",
+        closeBody: false,
+      };
+      openModal(options);
+    });
+    return () => {
+      subscription.unsubscribe();
     };
-    openModal(options);
+
+    
   };
   const handleDelete = (rowData: any) => {
     console.log("Delete action for row:", rowData);
