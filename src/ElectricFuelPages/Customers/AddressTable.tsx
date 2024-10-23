@@ -254,7 +254,7 @@ const AddressTable: React.FC<headerProps> = ({ dataIn }) => {
     {
       type: "CUSTOM",
       widthClass: "is-6",
-      custom: <p className="is-size-4">Customer</p>,
+      custom: <p className="is-size-4">Customer Details</p>,
     },
     {
       type: "SEARCH",

@@ -281,7 +281,7 @@ const CustomersTables: React.FC<headerProps> = ({ hubId }) => {
     {
       type: "CUSTOM",
       widthClass: "is-6",
-      custom: <p className="is-size-4">Customer</p>,
+      custom: <p className="is-size-4">Customers</p>,
     },
     {
       type: "SEARCH",
