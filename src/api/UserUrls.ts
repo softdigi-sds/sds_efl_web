@@ -14,7 +14,7 @@ const HUBS_URLS = {
   DELETE: "/hubs/delete_one",
   GET_ALL_SELECT: "/hubs/get_all_select",
   STATUS_UPDATE: "hubs/status_update",
-  GET_ALL_DATE:"/efl_vehicles/get_report_date"
+  GET_ALL_DATE: "/efl_vehicles/get_report_date",
 };
 const HUB_GROUPS_URLS = {
   INSERT: "/hubgroups/insert",
@@ -46,7 +46,7 @@ const CONSUMPTION_URL = {
   GET_ONE: "/efl_consumption/get_one",
   DELETE: "/efl_consumption/delete_one",
   GET_ALL_CALENDER: "/efl_consumption/get_all_consumption_data",
-  GET_ALL_WITH_HUB:"/efl_consumption/get_all_consumption_data_hub",
+  GET_ALL_WITH_HUB: "/efl_consumption/get_all_consumption_data_hub",
   GET_ALL_CALENDER_GET_ONE: "/efl_consumption/get_one_consumption_data",
   IMPORT_EXCEL: "/efl_consumption/import_excel",
 };
@@ -57,11 +57,11 @@ const VEHICLES_URL = {
   GET_ONE: "/efl_vehicles/get_one",
   DELETE: "/efl_vehicles/delete_one",
   GET_ALL_CALENDER: "/efl_vehicles/get_all_parking_data",
-  GET_ALL_WITH_HUB:"/efl_vehicles/get_all_parking_data_hub",
+  GET_ALL_WITH_HUB: "/efl_vehicles/get_all_parking_data_hub",
   GET_ALL_CALENDER_GET_ONE: "/efl_vehicles/get_one_parking_data",
   IMPORT_EXCEL: "/efl_vehicles/import_excel",
-  GET_ALL_DASH:"/efl_vehicles/get_report_dashboard",
-  GET_ALL_DATE:"/efl_vehicles/get_report_date"
+  GET_ALL_DASH: "/efl_vehicles/get_report_dashboard",
+  GET_ALL_DATE: "/efl_vehicles/get_report_date",
 };
 
 const INVOICE_URLS = {
@@ -78,17 +78,36 @@ const INVOICE_URLS = {
 };
 const METER_READINGS_URLS = {
   INSERT: "/meter_readings/insert",
-  GET_ALL:"/meter_readings/get_all"
+  GET_ALL: "/meter_readings/get_all",
+};
 
+const CUSTOMER_URLS = {
+  INSERT: "/customer/insert",
+  GET_ALL: "/customer/get_all",
+  UPDATE: "/customer/update",
+  GET_ONE: "/customer/get_one",
+  DELETE: "/customer/delete_one",
+  GET_ALL_SELECT: "/customer/get_all_select",
+  STATUS_UPDATE: "customer/status_update",
+
+  INSERT_ADDRESS: "/customer/insert_address",
+  GET_ALL_ADDRESS: "/customer/get_all_address",
+  UPDATE_ADDRESS: "/customer/update_address",
+  GET_ONE_ADDRESS: "/customer/get_one_address",
+  DELETE_ADDRESS: "/customer/delete_one_address",
+  GET_ALL_SELECT_ADDRESS: "/customer/get_all_select_address",
+  STATUS_UPDATE_ADDRESS: "customer/status_update_address",
 };
 
 export {
   CONSUMPTION_URL,
   HUBS_URLS,
   HUB_GROUPS_URLS,
-  INVOICE_URLS, METER_READINGS_URLS, OFFICE_URLS,
+  INVOICE_URLS,
+  METER_READINGS_URLS,
+  OFFICE_URLS,
   VEHICLES_URL,
   VENDERS_URLS,
-  VENDER_RATE_URLS
+  VENDER_RATE_URLS,
+  CUSTOMER_URLS,
 };
-
