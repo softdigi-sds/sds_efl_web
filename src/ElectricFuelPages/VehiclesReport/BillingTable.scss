@@ -1,0 +1,52 @@
+.billing-container {
+    padding: 30px;
+  
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+  
+    th,
+    td {
+      border: 1px solid black;
+      text-align: center;
+      padding: 8px;
+    }
+  
+    th {
+      background-color: limegreen;
+      color: white;
+    }
+  
+    .header-1 {
+      background-color: #b3c7e6;
+      font-weight: bold;
+    }
+  
+    .header-2 {
+      background-color: limegreen;
+      font-weight: bold;
+    }
+  
+    .description {
+      background-color: lightblue;
+      text-align: left;
+      font-weight: bold;
+    }
+  
+    .table-data {
+      background-color: white;
+    }
+  
+    .info-header {
+      text-align: left;
+      background-color: lightblue;
+      font-weight: bold;
+      padding: 10px;
+    }
+  
+    .table-data-bottom {
+      background-color: yellow;
+    }
+  }
+  
