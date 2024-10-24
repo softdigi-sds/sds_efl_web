@@ -37,8 +37,8 @@ const VendorRatesTable = () => {
       title: (
         <>
           {data.ID
-            ? "Customers Rates Update Form"
-            : "Customers Rates Addition Form"}
+            ? "Hub (vs) Customers Rates Update Form"
+            : "Hub (vs) Customers Rates Addition Form"}
         </>
       ),
       content: <VendorRatesForms loadTableData={loadTableData} dataIn={data} />,

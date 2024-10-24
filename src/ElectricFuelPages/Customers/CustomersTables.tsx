@@ -112,7 +112,7 @@ const CustomersTables: React.FC<headerProps> = ({ hubId }) => {
   const openViewdetails = (data: any) => {
     let options = {
       title: "Customer Details",
-      content: <ViewDetails  />,
+      content: <ViewDetails customerData={data} />,
       width: 60,
       className: "sd-efl-modal",
       closeBody: false,

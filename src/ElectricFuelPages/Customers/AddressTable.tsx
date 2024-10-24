@@ -226,10 +226,10 @@ const AddressTable: React.FC<headerProps> = ({ dataIn }) => {
   const columns: SmartTableNewInterface.SmartTableNewColumnConfig[] = [
     { title: "S.NO", index: "s_no", type: "sno" },
  
-    {
-      title: "Code",
-      index: "vendor_code",
-    },
+    // {
+    //   title: "Code",
+    //   index: "vendor_code",
+    // },
  
 
     { title: "GST No.", index: "gst_no" },
@@ -327,3 +327,4 @@ const AddressTable: React.FC<headerProps> = ({ dataIn }) => {
 
 
 export default AddressTable
+
