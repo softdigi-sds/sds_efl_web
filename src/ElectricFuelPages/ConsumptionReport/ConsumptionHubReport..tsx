@@ -182,7 +182,13 @@ const ConsumptionHubReport:React.FC<VehicleReportProps> = ({stage,setStage}) => 
             classList={["button", " px-5 py-0 is-link is-normal"]}
             // leftIcon="fa fa-file-excel-o"
             onClick={() => handelStage()}
-          />
+          />   <span
+          className="is-size-4 mt-1 ml-6 smart-refresh-icon"
+          onClick={() => loadCalenderData()}
+        >
+         
+          <i className="fa fa-refresh"></i>
+        </span>
           </div>
         </div>
         <div></div>
