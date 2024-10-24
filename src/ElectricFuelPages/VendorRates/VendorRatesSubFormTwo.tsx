@@ -1,4 +1,3 @@
-import React from "react";
 
 const VendorRatesSubFormTwo = ({ office }: { office: any }) => { 
   const nameFunction = (row: any) => {
@@ -18,6 +17,7 @@ const VendorRatesSubFormTwo = ({ office }: { office: any }) => {
         {rate_data?.map((item: any, index: any) => (
           <tr key={index}>
             <td>{item?.sd_hsn_id?.label || "N/A"}</td>
+            <td>{item?.vehicle_type || "N/A"}</td>
             <td>{item?.rate_type?.label || "N/A"}</td>
             <td>{item?.min_start || "N/A"}</td>
             <td>{item?.min_end || "N/A"}</td>
@@ -54,6 +54,7 @@ const VendorRatesSubFormTwo = ({ office }: { office: any }) => {
         <thead>
           <tr>
             <th>Type</th>
+            <th>VH Type</th>
             <th>Rate Type</th>
             <th>Range Start</th>
             <th>Range End</th>

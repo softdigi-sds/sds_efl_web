@@ -112,7 +112,7 @@ const CustomersTables: React.FC<headerProps> = ({ hubId }) => {
   const openViewdetails = (dataIn: any) => {
     let options = {
       title: "Customer Details",
-      content: <ViewDetails />,
+      content: <ViewDetails customerData={data} />,
       width: 60,
       className: "sd-efl-modal",
       closeBody: false,
@@ -284,14 +284,18 @@ const CustomersTables: React.FC<headerProps> = ({ hubId }) => {
     },
     {
       type: "SEARCH",
-      widthClass: "is-4",
+      widthClass: "is-3",
       align: "JUSTIFY",
     },
     {
       type: "BUTTONS",
-      widthClass: "is-2",
+      widthClass: "is-3",
       align: "CENTER",
       buttons: [
+        {
+          type: "REFRESH",
+          action: loadTableData,
+        },
         { type: "FILTER" },
 
         {

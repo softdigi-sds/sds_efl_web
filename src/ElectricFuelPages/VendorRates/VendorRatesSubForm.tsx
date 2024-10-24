@@ -25,12 +25,16 @@ const VendorRatesSubForm: React.FC<HeaderProps> = ({
     { value: "3", label: "Charging (AC)" },
     { value: "5", label: "Charging (DC)" },
     { value: "4", label: "Rent" },
+    { value: "6", label: "Infra Sharing" },
+    { value: "7", label: "Charging(Office)" },
+
   ];
 
   const options_vehicle = [
     { value: "1", label: "2WL" },
     { value: "2", label: "3 WL" },
     { value: "3", label: "4 WL" },
+    { value: "4", label: "ZEN" },
     { value: "5", label: "TATA_ACE" },
   ];
 
@@ -49,6 +53,15 @@ const VendorRatesSubForm: React.FC<HeaderProps> = ({
       name: "sd_vehicle_types_id",
       element: {
         options: options_vehicle,
+        inputProps: {
+          disabled:
+            formData.sd_hsn_id &&
+            formData.sd_hsn_id.value &&(
+            formData.sd_hsn_id.value == "1"|| 
+             formData.sd_hsn_id.value == "2")
+              ? false
+              : true,
+        },
       },
     },
     {

@@ -41,7 +41,7 @@ const EFSideNav: React.FC<childrenProps> = ({ isOpen ,setIsOpen}) => {
     },
     {
       id: 5,
-      label: "Customer Rates",
+      label: "Hub (vs) Customers",
       icon: "fa fa-flag",
       link: "/e-fuel/vendors-rates-list",
       roles: ["ADMIN", "ACCOUNTS"],

@@ -6,15 +6,14 @@ import {
   SmartValid,
 } from "soft_digi";
 import { ValidateFormNew } from "soft_digi/dist/services/smartValidationService";
-import { CUSTOMER_URLS, VENDERS_URLS } from "../../api/UserUrls";
-import { post } from "../../services/smartApiService";
-import { showAlertAutoClose } from "../../services/notifyService";
+import { CUSTOMER_URLS } from "../../api/UserUrls";
 import { useSiteContext } from "../../contexts/SiteProvider";
+import { showAlertAutoClose } from "../../services/notifyService";
 import {
   admin_states_select,
   hubs_get_all_select,
 } from "../../services/site/SelectBoxServices";
-import { ALLOW_ALPHABET_SPACE, ALLOW_NUMERIC } from "../../services/PatternSerivce";
+import { post } from "../../services/smartApiService";
 
 interface FormErrors {
   [key: string]: string | null;
@@ -22,8 +21,13 @@ interface FormErrors {
 interface HeaderProps {
   loadTableData: () => void;
   dataIn: any;
+  customer_id: string;
 }
-const AddressForm: React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
+const AddressForm: React.FC<HeaderProps> = ({
+  loadTableData,
+  dataIn,
+  customer_id,
+}) => {
   const [formData, setFormData] = useState(dataIn ? dataIn : {});
   const [formSubmit, setFormSubmit] = useState<boolean>(false);
   const [formErrors, setFormErrors] = useState<FormErrors>({});
@@ -60,7 +64,8 @@ const AddressForm: React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
       formData["id"] = formData.ID;
       url = CUSTOMER_URLS.UPDATE_ADDRESS;
     }
-
+    let _data = { ...formData };
+    _data["sd_customers_id"] = customer_id;
     const subscription = post(url, formData).subscribe((response) => {
       //console.log("response form ", response.data);
       loadTableData();
@@ -88,21 +93,19 @@ const AddressForm: React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
     statee: [SmartValid.required("State is Required")],
   };
   const formElements: SmartFormInterFace.SmartFormElementProps[] = [
-  
-    {
-      type: "TEXT_BOX",
-      width: "4",
-      name: "vendor_code",
-      element: {
-        label: "Code",
-        isRequired: true,
-        // inputProps: { isFocussed: true },
-        validations: vendorFormValidations.code,
-        inputType: "BORDER_LABEL",
-        inputProps: { disabled: formData.ID && formData.ID ? true : false },
-      },
-    },
- 
+    // {
+    //   type: "TEXT_BOX",
+    //   width: "4",
+    //   name: "vendor_code",
+    //   element: {
+    //     label: "Code",
+    //     isRequired: true,
+    //     // inputProps: { isFocussed: true },
+    //     validations: vendorFormValidations.code,
+    //     inputType: "BORDER_LABEL",
+    //     inputProps: { disabled: formData.ID && formData.ID ? true : false },
+    //   },
+    // },
 
     {
       type: "TEXT_BOX",
@@ -117,7 +120,7 @@ const AddressForm: React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
         max: 15,
       },
     },
-   
+
     {
       type: "TEXT_BOX",
       width: "4",
@@ -142,6 +145,7 @@ const AddressForm: React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
         inputType: "BORDER_LABEL",
       },
     },
+    
     {
       type: "TEXT_BOX",
       width: "4",
@@ -152,12 +156,14 @@ const AddressForm: React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
         isRequired: true,
         // inputProps: { isFocussed: true },
         validations: vendorFormValidations.pin_code,
-        inputType: "BORDER_LABEL",  pattern:  ALLOW_NUMERIC , max: "6",
+        inputType: "BORDER_LABEL",
+       // pattern: ALLOW_NUMERIC,
+        max: "6",
       },
     },
     {
       type: "TEXTAREA",
-      width: "6",
+      width: "4",
       name: "address_one",
       element: {
         label: "Address-1",
@@ -165,11 +171,12 @@ const AddressForm: React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
         max: "255",
         validations: vendorFormValidations.address,
         inputType: "BORDER_LABEL",
+        rows: 3,
       },
     },
     {
       type: "TEXTAREA",
-      width: "6",
+      width: "4",
       name: "address_two",
       element: {
         label: "Address-2",
@@ -177,6 +184,7 @@ const AddressForm: React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
         max: "255",
         // validations: vendorFormValidations.address,
         inputType: "BORDER_LABEL",
+        rows: 3,
       },
     },
   ];
@@ -197,7 +205,7 @@ const AddressForm: React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
             onClick={closeModal}
           />
           <SmartSoftButton
-           label={formData.ID ? "Update":"Submit"}
+            label={formData.ID ? "Update" : "Submit"}
             rightIcon="fa fa-arrow-right"
             classList={["button ", "mt-4", "smart-action-button"]}
             onClick={handleSubmit}
@@ -208,7 +216,4 @@ const AddressForm: React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
   );
 };
 
-
-
-
-export default AddressForm
+export default AddressForm;

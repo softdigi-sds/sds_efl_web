@@ -167,8 +167,12 @@ const RoleTable = () => {
     {
       type: "BUTTONS",
       widthClass: "is-2",
-      align: "RIGHT",
+      align: "CENTER",
       buttons: [
+        {
+          type: "REFRESH",
+          action: loadTableData,
+        },
         {
           label: "Add",
           icon: "fa-plus",

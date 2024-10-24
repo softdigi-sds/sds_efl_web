@@ -12,9 +12,8 @@ import { changeDateTimeZoneFormat } from "../../services/core/CommonService";
 import { showAlertAutoClose } from "../../services/notifyService";
 import {
   company_address_all_select,
-  company_get_all_select,
   hubs_get_all_select,
-  vendors_get_all_select,
+  vendors_get_all_select
 } from "../../services/site/SelectBoxServices";
 import { post } from "../../services/smartApiService";
 import VendorRatesSubForm from "./VendorRatesSubForm";
@@ -36,8 +35,12 @@ const VendorRatesForms: React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
   const [custAddress, setCustAddress] = useState([]);
   const { closeModal } = useSiteContext();
 
+  //  console.log("Formdata",formData)
+
   const handleInputChange = (name: string, value: any) => {
+    console.log("Name",name,"Value", value);
     setFormData((prev: any) => ({ ...prev, [name]: value }));
+    //  console.log("formData updated", value);
   };
 
   const updateItemProperty = (
@@ -97,12 +100,35 @@ const VendorRatesForms: React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
 
   useEffect(() => {
     let customer_id = formData?.sd_customer_id?.value;
-    if (customer_id && customer_id > 0)
+    if (customer_id && customer_id > 0){
       company_address_all_select(customer_id, (data: any) =>
         setCustAddress(data)
       );
-    //hubs_get_all_select((data: any) => setAllHubs(data));
+      if(!formData.cms_name || formData.cms_name.length < 1){
+        handleInputChange("cms_name", formData?.sd_customer_id?.label);
+      }
+    }
+ 
+      
+   
   }, [formData?.sd_customer_id]);
+
+  useEffect(() => {
+    const sdHsnIdValue = formData?.rate_data?.sd_hsn_id?.value ?? ""; 
+  
+    if (sdHsnIdValue === "1" || sdHsnIdValue === "2") {
+      setFormData((prev: any) => ({ ...prev }));
+    } else {
+      setFormData((prev: any) => ({
+        ...prev,
+        sd_vehicle_types_id: {
+          ...prev.sd_vehicle_types_id,
+          value: "" 
+        }
+      }));
+    }
+  }, [formData]);
+  
 
   // useEffect(() => {
   //   let hub_data =formData?.sd_hubs_id?.value
@@ -271,7 +297,7 @@ const VendorRatesForms: React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
       width: "6",
       name: "vendor_code",
       element: {
-        label: "Vendor_code",
+        label: "Customer Code",
         isRequired: true,
         inputType: "BORDER_LABEL",
         inputProps: { isFocussed: true },

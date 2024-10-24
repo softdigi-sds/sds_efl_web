@@ -9,17 +9,19 @@ import {
 import { VENDER_RATE_URLS } from "../../api/UserUrls";
 import { useSiteContext } from "../../contexts/SiteProvider";
 import { showAlertAutoClose } from "../../services/notifyService";
-import { get, post } from "../../services/smartApiService";
+import { post } from "../../services/smartApiService";
 import VendorRatesForms from "./VendorRatesForms";
 import VendorRatesSubFormTwo from "./VendorRatesSubFormTwo";
-
-const VendorRatesTable = () => {
+interface headerProps {
+  hubId?: string;
+}
+const VendorRatesTable:React.FC<headerProps> = ({ hubId }) => {
   const [data, setData] = useState([]);
   const { openModal, closeModal } = useSiteContext();
 
   const loadTableData = () => {
     let URL = VENDER_RATE_URLS.GET_ALL;
-    const subscription = get(URL).subscribe((response) => {
+    const subscription = post(URL,{hub_id:hubId}).subscribe((response) => {
       setData(response.data);
     });
     return () => {
@@ -33,15 +35,16 @@ const VendorRatesTable = () => {
 
   const openOfficesForm = (data: any) => {
     //console.log("data ", data);
+    const _id = data && data!=null ? data.ID : 0;
     let options = {
       title: (
         <>
-          {data.ID
-            ? "Customer Rates Update Form"
-            : "Customer Rates Addition Form"}
+          {_id 
+            ? "Hub (vs) Customers Rates Update Form"
+            : "Hub (vs) Customers Rates Addition Form"}
         </>
       ),
-      content: <VendorRatesForms loadTableData={loadTableData} dataIn={data} />,
+      content: <VendorRatesForms loadTableData={loadTableData} dataIn={_id  ? data : {}} />,
       width: 90,
       className: "sd-efl-modal",
       closeBody: false,
@@ -158,10 +161,11 @@ const VendorRatesTable = () => {
         <table className="table is-fullwidth">
           <tr>
             <td className="smart-table-column-width-20">Type</td>
-            <td className="smart-table-column-width-20">Rate Type</td>
+            <td className="smart-table-column-width-20">VH Type</td>
+            <td className="smart-table-column-width-10">Rate Type</td>
             <td className="smart-table-column-width-10">Start</td>
             <td className="smart-table-column-width-10">End</td>
-            <td className="smart-table-column-width-20">Price</td>
+            <td className="smart-table-column-width-10">Price</td>
             <td className="smart-table-column-width-10">Extra Price</td>
             <td className="smart-table-column-width-10">Min Count</td>
           </tr>
@@ -190,13 +194,16 @@ const VendorRatesTable = () => {
                   {item?.sd_hsn_id?.label}
                 </td>
                 <td className="smart-table-column-width-20">
+                  {item?.vehicle_type}
+                </td>
+                <td className="smart-table-column-width-10">
                   {item?.rate_type?.label}
                 </td>
                 <td className="smart-table-column-width-10">
                   {item?.min_start}
                 </td>
                 <td className="smart-table-column-width-10">{item?.min_end}</td>
-                <td className="smart-table-column-width-20">{item?.price}</td>
+                <td className="smart-table-column-width-10">{item?.price}</td>
                 <td className="smart-table-column-width-10">
                   {item?.extra_price}
                 </td>
@@ -244,7 +251,7 @@ const VendorRatesTable = () => {
     {
       type: "CUSTOM",
       widthClass: "is-6",
-      custom: <p className="is-size-4">Customer Rates</p>,
+      custom: <p className="is-size-4"> Hub (vs) Customers Rates</p>,
     },
     {
       type: "SEARCH",
@@ -255,14 +262,17 @@ const VendorRatesTable = () => {
       type: "BUTTONS",
       widthClass: "is-3",
       align: "CENTER",
-      buttons: [
+      buttons: [   {
+        type: "REFRESH",
+        action: loadTableData,
+      },
         { type: "FILTER" },
         {
           label: "Add",
           icon: "fa-plus",
           type: "CUSTOM",
           className: "smart-third-button",
-          action: openOfficesForm,
+          action: ()=>openOfficesForm( null),
         },
       ],
     },

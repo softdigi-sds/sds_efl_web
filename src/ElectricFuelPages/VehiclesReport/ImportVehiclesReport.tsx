@@ -147,7 +147,14 @@ const ImportVehiclesReport: React.FC<HeaderProps> = ({ loadTableData }) => {
       tags:statusTags
       ,
       width: "15",
-    },   
+    }, 
+    {
+      title: "Msg",
+      index: "msg",     
+      width: "15",
+    }, 
+    
+    
   ];
  
   const tableTop: SmartTableNewInterface.SmartTableNewTopProps[] = [

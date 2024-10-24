@@ -16,31 +16,31 @@ import { changeDateTimeZoneFormat } from "../../services/core/CommonService";
 import { useLocation, useNavigate } from "react-router-dom";
 
 interface VehicleReportProps {
-  stage:String,
-  setStage:any
-  }
-const ConsumptionHubReport:React.FC<VehicleReportProps> = ({stage,setStage}) => {
+  stage: String;
+  setStage: any;
+}
+const ConsumptionHubReport: React.FC<VehicleReportProps> = ({
+  stage,
+  setStage,
+}) => {
   const { openModal } = useSiteContext();
   const [currentMonth, setCurrentMonth] = useState<Moment>();
   const [hubs, setHubs] = useState<any>();
   const [hub, setHub] = useState<any>();
   const [data, setData] = useState<any[]>();
 
-
-  const handelStage =()=>{
+  const handelStage = () => {
     setStage("ADMIN");
-  }
+  };
   // console.log("hub dat",hubs)
 
   /**
    *  loads the calander data for month change or hub chnage
    *
    * @returns
-   * 
-   * 
+   *
+   *
    */
-
-
 
   const loadCalenderData = () => {
     let _data = {
@@ -73,8 +73,6 @@ const ConsumptionHubReport:React.FC<VehicleReportProps> = ({stage,setStage}) => 
       loadCalenderData();
     }
   }, [currentMonth, hub]);
-
-
 
   const openForm = (date: any) => {
     let options = {
@@ -152,56 +150,64 @@ const ConsumptionHubReport:React.FC<VehicleReportProps> = ({stage,setStage}) => 
     return (
       <div className="columns is-mobile">
         <div className="column  ">
-
-   
-      <div className="is-flex is-justify-content-space-between	is-align-items-center">
-        <div className="is-size-4 site-title has-text-weight-bold">
-          {" "}
-          Consumption Report
-        </div>
-        <div className="is-flex">
-          {/* <SmartSoftButton
+          <div className="is-flex is-justify-content-space-between	is-align-items-center">
+            <div className="is-size-4 site-title has-text-weight-bold">
+              {" "}
+              Consumption Report
+            </div>
+            <div className="is-flex">
+              {/* <SmartSoftButton
             label="Import"
             classList={["button", " mr-2 py-0 is-link is-normal"]}
             onClick={() => openImportForm(data)}
             leftIcon="fa fa-file-excel-o"
           /> */}
-            <p className="has-text-link mr-2 mt-2 is-clickable"   onClick={() => openImportForm(data)}>  <i className="fa fa-download is-size-3" aria-hidden="true"></i></p>
-            {/* <p className="has-text-danger mt-2 is-clickable"   onClick={() => openImportForm(data)}>  <i className="fa fa-cloud-download is-size-3" aria-hidden="true"></i></p> */}
-          <div className="mt-0 ml-2">
-            <SmartSoftSelect
-              options={hubs}
-              placeHolder="Select hub"
-              value={hub}
-              onChange={(value) => setHub(value)}
-            />
-          </div>
-          <div className="mt-0 ml-2">
-          <SmartSoftButton
-             label="Admin Report"
-            classList={["button", " px-5 py-0 is-link is-normal"]}
-            // leftIcon="fa fa-file-excel-o"
-            onClick={() => handelStage()}
-          />
+              <p
+                className="has-text-link mr-2 mt-2 is-clickable"
+                onClick={() => openImportForm(data)}
+              >
+                {" "}
+                <i className="fa fa-download is-size-3" aria-hidden="true"></i>
+              </p>
+              {/* <p className="has-text-danger mt-2 is-clickable"   onClick={() => openImportForm(data)}>  <i className="fa fa-cloud-download is-size-3" aria-hidden="true"></i></p> */}
+              <div className="mt-0 ml-2">
+                <SmartSoftSelect
+                  options={hubs}
+                  placeHolder="Select hub"
+                  value={hub}
+                  onChange={(value) => setHub(value)}
+                />
+              </div>
+              <div className="mt-0 ml-2">
+                <SmartSoftButton
+                  label="Admin Report"
+                  classList={["button", " px-5 py-0 is-link is-normal"]}
+                  // leftIcon="fa fa-file-excel-o"
+                  onClick={() => handelStage()}
+                />
+                <span
+                  className="is-size-4 ml-6 smart-refresh-icon is-clickable"
+                  onClick={() => loadCalenderData()}
+                >
+                  <i className="fa fa-refresh"></i>
+                </span>
+              </div>
+            </div>
+            <div></div>
           </div>
         </div>
-        <div></div>
-      </div>
-      </div>
       </div>
     );
   };
 
   return (
- <>
- 
+    <>
       <SmartCalender
         content={content}
         title={titleDisp()}
         setMonth={setCurrentMonth}
         className="sd_efl-calender"
       />
-    
     </>
   );
 };

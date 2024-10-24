@@ -169,7 +169,6 @@ const UsersTable = () => {
     );
   };
 
-
   const columns: SmartTableNewInterface.SmartTableNewColumnConfig[] = [
     { title: "S.NO", index: "s_no", type: "sno", width: "5" },
     // {
@@ -196,7 +195,7 @@ const UsersTable = () => {
       title: "Role",
       index: "roles",
       width: "20",
-      valueFunction:RolesList
+      valueFunction: RolesList,
     },
 
     // {
@@ -228,8 +227,12 @@ const UsersTable = () => {
     {
       type: "BUTTONS",
       widthClass: "is-2",
-      align: "RIGHT",
+      align: "CENTER",
       buttons: [
+        {
+          type: "REFRESH",
+          action: loadTableData,
+        },
         {
           label: "Add",
           icon: "fa-plus",
