@@ -171,6 +171,7 @@ const AddressForm: React.FC<HeaderProps> = ({
         max: "255",
         validations: vendorFormValidations.address,
         inputType: "BORDER_LABEL",
+        rows: 3,
       },
     },
     {
@@ -183,6 +184,7 @@ const AddressForm: React.FC<HeaderProps> = ({
         max: "255",
         // validations: vendorFormValidations.address,
         inputType: "BORDER_LABEL",
+        rows: 3,
       },
     },
   ];
