@@ -34,6 +34,7 @@ const VendorRatesSubForm: React.FC<HeaderProps> = ({
     { value: "1", label: "2WL" },
     { value: "2", label: "3 WL" },
     { value: "3", label: "4 WL" },
+    { value: "4", label: "ZEN" },
     { value: "5", label: "TATA_ACE" },
   ];
 
