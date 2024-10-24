@@ -37,8 +37,8 @@ const VendorRatesTable = () => {
       title: (
         <>
           {data.ID
-            ? "Customer Rates Update Form"
-            : "Customer Rates Addition Form"}
+            ? "Customers Rates Update Form"
+            : "Customers Rates Addition Form"}
         </>
       ),
       content: <VendorRatesForms loadTableData={loadTableData} dataIn={data} />,
@@ -248,7 +248,7 @@ const VendorRatesTable = () => {
     {
       type: "CUSTOM",
       widthClass: "is-6",
-      custom: <p className="is-size-4">Customer Rates</p>,
+      custom: <p className="is-size-4">Customers Rates</p>,
     },
     {
       type: "SEARCH",

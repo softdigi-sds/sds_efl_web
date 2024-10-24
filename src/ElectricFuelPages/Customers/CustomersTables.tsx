@@ -44,7 +44,7 @@ const CustomersTables: React.FC<headerProps> = ({ hubId }) => {
 
   const openOfficesForm = (data: any) => {
     let options = {
-      title: <>{data.ID ? "Customer Update Form" : "Customer Addition Form"}</>,
+      title: <>{data.ID ? "Customers Update Form" : "Customers Addition Form"}</>,
       content: <CustomersForm loadTableData={loadTableData} dataIn={data} />,
       width: 60,
       className: "sd-efl-modal",
