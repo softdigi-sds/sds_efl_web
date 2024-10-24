@@ -4,7 +4,7 @@ import {
   SmartFormInterFace,
   SmartLoaderInterface,
   SmartTable,
-  SmartTableNewInterface
+  SmartTableNewInterface,
 } from "soft_digi";
 import { CUSTOMER_URLS } from "../../api/UserUrls";
 import { useSiteContext } from "../../contexts/SiteProvider";
@@ -20,17 +20,17 @@ interface headerProps {
 }
 
 const AddressTable: React.FC<headerProps> = ({ dataIn }) => {
-
-
   const [data, setData] = useState([]);
   const { openModal, closeModal } = useSiteContext();
 
   const loadTableData = () => {
     let URL = CUSTOMER_URLS.GET_ALL_ADDRESS;
     // let hub_id= hubId?hubId:"";
-    const subscription = post(URL, { customer_id: dataIn }).subscribe((response) => {
-      setData(response.data);
-    });
+    const subscription = post(URL, { customer_id: dataIn }).subscribe(
+      (response) => {
+        setData(response.data);
+      }
+    );
     return () => {
       subscription.unsubscribe();
     };
@@ -42,8 +42,20 @@ const AddressTable: React.FC<headerProps> = ({ dataIn }) => {
 
   const openOfficesForm = (data: any) => {
     let options = {
-      title: <>{data.ID ? "Customer Details Update Form" : "Customer Details Addition Form"}</>,
-      content: <AddressForm customer_id={dataIn||""} loadTableData={loadTableData} dataIn={data} />,
+      title: (
+        <>
+          {data.ID
+            ? "Customer Details Update Form"
+            : "Customer Details Addition Form"}
+        </>
+      ),
+      content: (
+        <AddressForm
+          customer_id={dataIn || ""}
+          loadTableData={loadTableData}
+          dataIn={data}
+        />
+      ),
       width: 60,
       className: "sd-efl-modal",
       closeBody: false,
@@ -51,25 +63,25 @@ const AddressTable: React.FC<headerProps> = ({ dataIn }) => {
     openModal(options);
   };
   const viewEditForm = (id: any) => {
-    const subscription = post(CUSTOMER_URLS.GET_ONE_ADDRESS, { id: id }).subscribe(
-      (response: any) => {
-        openOfficesForm(response.data);
-      }
-    );
+    const subscription = post(CUSTOMER_URLS.GET_ONE_ADDRESS, {
+      id: id,
+    }).subscribe((response: any) => {
+      openOfficesForm(response.data);
+    });
     return () => {
       subscription.unsubscribe();
     };
   };
 
   const deleteData = (id: any) => {
-    const subscription = post(CUSTOMER_URLS.DELETE_ADDRESS, { id: id }).subscribe(
-      (response) => {
-        showAlertAutoClose("Deleted Successfully...", "success");
-        closeModal();
-        loadTableData();
-        // setLoading(false);
-      }
-    );
+    const subscription = post(CUSTOMER_URLS.DELETE_ADDRESS, {
+      id: id,
+    }).subscribe((response) => {
+      showAlertAutoClose("Deleted Successfully...", "success");
+      closeModal();
+      loadTableData();
+      // setLoading(false);
+    });
     return () => {
       subscription.unsubscribe();
     };
@@ -90,8 +102,8 @@ const AddressTable: React.FC<headerProps> = ({ dataIn }) => {
       },
       content: (
         <p>
-          Note: Do you wish to delete this Customer Details? This action cannot be
-          reverted
+          Note: Do you wish to delete this Customer Details? This action cannot
+          be reverted
         </p>
       ),
       className: "custom-alert",
@@ -107,16 +119,16 @@ const AddressTable: React.FC<headerProps> = ({ dataIn }) => {
   //   };
   //   openModal(options);
   // };
-//   const openViewdetails = (data: any) => {
-//     let options = {
-//       title: "Customer Details",
-//       content: <VendorsView office={data} />,
-//       width: 60,
-//       className: "sd-efl-modal",
-//       closeBody: false,
-//     };
-//     openModal(options);
-//   };
+  //   const openViewdetails = (data: any) => {
+  //     let options = {
+  //       title: "Customer Details",
+  //       content: <VendorsView office={data} />,
+  //       width: 60,
+  //       className: "sd-efl-modal",
+  //       closeBody: false,
+  //     };
+  //     openModal(options);
+  //   };
 
   const StatusUpdate = (id: number, status: any) => {
     const subscription = post(CUSTOMER_URLS.STATUS_UPDATE_ADDRESS, {
@@ -225,16 +237,16 @@ const AddressTable: React.FC<headerProps> = ({ dataIn }) => {
   ];
   const columns: SmartTableNewInterface.SmartTableNewColumnConfig[] = [
     { title: "S.NO", index: "s_no", type: "sno" },
- 
+
     // {
     //   title: "Code",
     //   index: "vendor_code",
     // },
- 
 
     { title: "GST No.", index: "gst_no" },
-    { title: "Address", index: "address" },
-  
+    { title: "Address", index: "address_one" },
+    { title: "State", index: "stateName" },
+    { title: "Pin code", index: "pin_code" },
     {
       title: "Status",
       index: "status",
@@ -253,7 +265,7 @@ const AddressTable: React.FC<headerProps> = ({ dataIn }) => {
     {
       type: "CUSTOM",
       widthClass: "is-6",
-      custom: <p className="is-size-4">Customer Details</p>,
+      custom: <p className="is-size-4"></p>,
     },
     {
       type: "SEARCH",
@@ -278,7 +290,6 @@ const AddressTable: React.FC<headerProps> = ({ dataIn }) => {
     },
   ];
   const filterFields: SmartFormInterFace.SmartFormElementProps[] = [
-
     {
       type: "TEXT_BOX",
       width: "12",
@@ -308,7 +319,7 @@ const AddressTable: React.FC<headerProps> = ({ dataIn }) => {
         <SmartTable
           columns={columns}
           data={data}
-          tableTop={ tableTop}
+          tableTop={tableTop}
           filterFields={filterFields}
           tableProps={{
             className: "is-hoverable is-bordered smart-efl-table",
@@ -324,7 +335,4 @@ const AddressTable: React.FC<headerProps> = ({ dataIn }) => {
   );
 };
 
-
-
-export default AddressTable
-
+export default AddressTable;
