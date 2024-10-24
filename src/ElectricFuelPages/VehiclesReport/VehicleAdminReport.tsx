@@ -294,7 +294,7 @@ const VehicleAdminReport: React.FC<VehicleReportProps> = ({
         <div className="column is-4 is-flex">
       
           <span
-            className="is-size-4 mt-1 smart-refresh-icon"
+            className="is-size-4 smart-refresh-icon is-clickable"
             onClick={() => loadData()}
           >
            

@@ -163,7 +163,7 @@ const AddressForm: React.FC<HeaderProps> = ({
     },
     {
       type: "TEXTAREA",
-      width: "6",
+      width: "4",
       name: "address_one",
       element: {
         label: "Address-1",
@@ -175,7 +175,7 @@ const AddressForm: React.FC<HeaderProps> = ({
     },
     {
       type: "TEXTAREA",
-      width: "6",
+      width: "4",
       name: "address_two",
       element: {
         label: "Address-2",

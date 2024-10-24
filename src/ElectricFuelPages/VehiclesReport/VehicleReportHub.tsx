@@ -181,7 +181,7 @@ const VehicleReportHub:React.FC<VehicleReportProps> = ({stage,setStage}) => {
             onClick={() => handelStage()}
           />
             <span
-            className="is-size-4 mt-1 ml-6 smart-refresh-icon"
+            className="is-size-4 mt-1 ml-6 smart-refresh-icon is-clickable"
             onClick={() => loadCalenderData()}
           >
            

@@ -269,12 +269,12 @@ const AddressTable: React.FC<headerProps> = ({ dataIn }) => {
     },
     {
       type: "SEARCH",
-      widthClass: "is-4",
+      widthClass: "is-3",
       align: "JUSTIFY",
     },
     {
       type: "BUTTONS",
-      widthClass: "is-2",
+      widthClass: "is-3",
       align: "CENTER",
       buttons: [
         {
