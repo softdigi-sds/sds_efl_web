@@ -22,9 +22,13 @@ interface FormErrors {
 interface HeaderProps {
   loadTableData: () => void;
   dataIn: any;
-  customer_id:string
+  customer_id: string;
 }
-const AddressForm: React.FC<HeaderProps> = ({ loadTableData, dataIn,customer_id }) => {
+const AddressForm: React.FC<HeaderProps> = ({
+  loadTableData,
+  dataIn,
+  customer_id,
+}) => {
   const [formData, setFormData] = useState(dataIn ? dataIn : {});
   const [formSubmit, setFormSubmit] = useState<boolean>(false);
   const [formErrors, setFormErrors] = useState<FormErrors>({});
@@ -61,7 +65,7 @@ const AddressForm: React.FC<HeaderProps> = ({ loadTableData, dataIn,customer_id 
       formData["id"] = formData.ID;
       url = CUSTOMER_URLS.UPDATE_ADDRESS;
     }
-    let _data = {...formData}
+    let _data = { ...formData };
     _data["sd_customers_id"] = customer_id;
     const subscription = post(url, formData).subscribe((response) => {
       //console.log("response form ", response.data);
@@ -90,21 +94,19 @@ const AddressForm: React.FC<HeaderProps> = ({ loadTableData, dataIn,customer_id 
     statee: [SmartValid.required("State is Required")],
   };
   const formElements: SmartFormInterFace.SmartFormElementProps[] = [
-  
-    {
-      type: "TEXT_BOX",
-      width: "4",
-      name: "vendor_code",
-      element: {
-        label: "Code",
-        isRequired: true,
-        // inputProps: { isFocussed: true },
-        validations: vendorFormValidations.code,
-        inputType: "BORDER_LABEL",
-        inputProps: { disabled: formData.ID && formData.ID ? true : false },
-      },
-    },
- 
+    // {
+    //   type: "TEXT_BOX",
+    //   width: "4",
+    //   name: "vendor_code",
+    //   element: {
+    //     label: "Code",
+    //     isRequired: true,
+    //     // inputProps: { isFocussed: true },
+    //     validations: vendorFormValidations.code,
+    //     inputType: "BORDER_LABEL",
+    //     inputProps: { disabled: formData.ID && formData.ID ? true : false },
+    //   },
+    // },
 
     {
       type: "TEXT_BOX",
@@ -119,7 +121,7 @@ const AddressForm: React.FC<HeaderProps> = ({ loadTableData, dataIn,customer_id 
         max: 15,
       },
     },
-   
+
     {
       type: "TEXT_BOX",
       width: "4",
@@ -154,7 +156,9 @@ const AddressForm: React.FC<HeaderProps> = ({ loadTableData, dataIn,customer_id 
         isRequired: true,
         // inputProps: { isFocussed: true },
         validations: vendorFormValidations.pin_code,
-        inputType: "BORDER_LABEL",  pattern:  ALLOW_NUMERIC , max: "6",
+        inputType: "BORDER_LABEL",
+        pattern: ALLOW_NUMERIC,
+        max: "6",
       },
     },
     {
@@ -199,7 +203,7 @@ const AddressForm: React.FC<HeaderProps> = ({ loadTableData, dataIn,customer_id 
             onClick={closeModal}
           />
           <SmartSoftButton
-           label={formData.ID ? "Update":"Submit"}
+            label={formData.ID ? "Update" : "Submit"}
             rightIcon="fa fa-arrow-right"
             classList={["button ", "mt-4", "smart-action-button"]}
             onClick={handleSubmit}
@@ -210,7 +214,4 @@ const AddressForm: React.FC<HeaderProps> = ({ loadTableData, dataIn,customer_id 
   );
 };
 
-
-
-
-export default AddressForm
+export default AddressForm;
