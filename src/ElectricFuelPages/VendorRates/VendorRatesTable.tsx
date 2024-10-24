@@ -248,7 +248,7 @@ const VendorRatesTable = () => {
     {
       type: "CUSTOM",
       widthClass: "is-6",
-      custom: <p className="is-size-4">Customers Rates</p>,
+      custom: <p className="is-size-4"> Hub (vs) Customers Rates</p>,
     },
     {
       type: "SEARCH",
