@@ -99,7 +99,7 @@ const VehicleReportFrom: React.FC<HeaderProps> = ({
   ) => {
     setFormData((prevData) =>
       prevData.map((mainItem) =>
-        mainItem.sd_vendors_id === mainId
+        mainItem.sd_customer_id === mainId
           ? {
               ...mainItem,
               sub_data: mainItem.sub_data.map((subItem: any) =>
@@ -177,7 +177,7 @@ const VehicleReportFrom: React.FC<HeaderProps> = ({
   const columns: SmartTableNewInterface.SmartTableNewColumnConfig[] = [
     { title: "S.NO", index: "s_no", type: "sno", width: "5" },
     {
-      title: "Vendor Company Name",
+      title: "Company Name",
       index: "vendor_company",
       width: "60",
     },
@@ -187,7 +187,7 @@ const VehicleReportFrom: React.FC<HeaderProps> = ({
       width: "35",
       valueFunction: (item) => {
         let _sub_data = item["sub_data"];
-        return countReport(_sub_data, item["sd_vendors_id"]);       
+        return countReport(_sub_data, item["sd_customer_id"]);       
       },
     },
   ];
