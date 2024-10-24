@@ -35,15 +35,16 @@ const VendorRatesTable:React.FC<headerProps> = ({ hubId }) => {
 
   const openOfficesForm = (data: any) => {
     //console.log("data ", data);
+    const _id = data && data!=null ? data.ID : 0;
     let options = {
       title: (
         <>
-          {data.ID
+          {_id 
             ? "Hub (vs) Customers Rates Update Form"
             : "Hub (vs) Customers Rates Addition Form"}
         </>
       ),
-      content: <VendorRatesForms loadTableData={loadTableData} dataIn={data} />,
+      content: <VendorRatesForms loadTableData={loadTableData} dataIn={_id  ? data : {}} />,
       width: 90,
       className: "sd-efl-modal",
       closeBody: false,
@@ -268,7 +269,7 @@ const VendorRatesTable:React.FC<headerProps> = ({ hubId }) => {
           icon: "fa-plus",
           type: "CUSTOM",
           className: "smart-third-button",
-          action: openOfficesForm,
+          action: ()=>openOfficesForm( null),
         },
       ],
     },
