@@ -3,11 +3,10 @@ import {
   SmartAlert,
   SmartFormInterFace,
   SmartLoaderInterface,
-  SmartSoftButton,
   SmartTable,
-  SmartTableNewInterface,
+  SmartTableNewInterface
 } from "soft_digi";
-import { CUSTOMER_URLS, VENDERS_URLS } from "../../api/UserUrls";
+import { CUSTOMER_URLS } from "../../api/UserUrls";
 import { useSiteContext } from "../../contexts/SiteProvider";
 import {
   showAlertAutoClose,
@@ -29,7 +28,7 @@ const AddressTable: React.FC<headerProps> = ({ dataIn }) => {
   const loadTableData = () => {
     let URL = CUSTOMER_URLS.GET_ALL_ADDRESS;
     // let hub_id= hubId?hubId:"";
-    const subscription = post(URL, { hub_id: dataIn }).subscribe((response) => {
+    const subscription = post(URL, { customer_id: dataIn }).subscribe((response) => {
       setData(response.data);
     });
     return () => {
@@ -44,7 +43,7 @@ const AddressTable: React.FC<headerProps> = ({ dataIn }) => {
   const openOfficesForm = (data: any) => {
     let options = {
       title: <>{data.ID ? "Customer Details Update Form" : "Customer Details Addition Form"}</>,
-      content: <AddressForm loadTableData={loadTableData} dataIn={data} />,
+      content: <AddressForm customer_id={dataIn||""} loadTableData={loadTableData} dataIn={data} />,
       width: 60,
       className: "sd-efl-modal",
       closeBody: false,

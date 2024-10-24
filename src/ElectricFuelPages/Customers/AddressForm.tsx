@@ -6,15 +6,15 @@ import {
   SmartValid,
 } from "soft_digi";
 import { ValidateFormNew } from "soft_digi/dist/services/smartValidationService";
-import { CUSTOMER_URLS, VENDERS_URLS } from "../../api/UserUrls";
-import { post } from "../../services/smartApiService";
-import { showAlertAutoClose } from "../../services/notifyService";
+import { CUSTOMER_URLS } from "../../api/UserUrls";
 import { useSiteContext } from "../../contexts/SiteProvider";
+import { showAlertAutoClose } from "../../services/notifyService";
+import { ALLOW_NUMERIC } from "../../services/PatternSerivce";
 import {
   admin_states_select,
   hubs_get_all_select,
 } from "../../services/site/SelectBoxServices";
-import { ALLOW_ALPHABET_SPACE, ALLOW_NUMERIC } from "../../services/PatternSerivce";
+import { post } from "../../services/smartApiService";
 
 interface FormErrors {
   [key: string]: string | null;
@@ -22,8 +22,9 @@ interface FormErrors {
 interface HeaderProps {
   loadTableData: () => void;
   dataIn: any;
+  customer_id:string
 }
-const AddressForm: React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
+const AddressForm: React.FC<HeaderProps> = ({ loadTableData, dataIn,customer_id }) => {
   const [formData, setFormData] = useState(dataIn ? dataIn : {});
   const [formSubmit, setFormSubmit] = useState<boolean>(false);
   const [formErrors, setFormErrors] = useState<FormErrors>({});
@@ -60,7 +61,8 @@ const AddressForm: React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
       formData["id"] = formData.ID;
       url = CUSTOMER_URLS.UPDATE_ADDRESS;
     }
-
+    let _data = {...formData}
+    _data["sd_customers_id"] = customer_id;
     const subscription = post(url, formData).subscribe((response) => {
       //console.log("response form ", response.data);
       loadTableData();
