@@ -6,7 +6,7 @@ import { useSiteContext } from "../../contexts/SiteProvider";
 import { changeDateTimeZone } from "../../services/core/CommonService";
 import { isDateWithinDays } from "../../services/site/DateService";
 import { post } from "../../services/smartApiService";
-import VendorsTable from "../Vendors/VendorsTable";
+import VendorRatesTable from "../VendorRates/VendorRatesTable";
 import ImportVehiclesReport from "./ImportVehiclesReport";
 import VehicleReportFrom from "./VehicleReportFrom";
 interface VehicleReportProps {
@@ -233,7 +233,7 @@ const VehicleAdminReport: React.FC<VehicleReportProps> = ({
   const openVendorsView = (data: any) => {
     let options = {
       title: "Vendors Details",
-      content: <VendorsTable hubId={data} />,
+      content: <VendorRatesTable hubId={data} />,
       width: 80,
     };
     openModal(options);
