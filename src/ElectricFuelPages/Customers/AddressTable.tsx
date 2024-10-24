@@ -277,6 +277,10 @@ const AddressTable: React.FC<headerProps> = ({ dataIn }) => {
       widthClass: "is-2",
       align: "CENTER",
       buttons: [
+        {
+          type: "REFRESH",
+          action: loadTableData,
+        },
         { type: "FILTER" },
 
         {

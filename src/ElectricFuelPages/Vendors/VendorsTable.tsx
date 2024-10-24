@@ -262,14 +262,17 @@ const VendorsTable: React.FC<headerProps> = ({ hubId }) => {
     },
     {
       type: "SEARCH",
-      widthClass: "is-4",
+      widthClass: "is-3",
       align: "JUSTIFY",
     },
     {
       type: "BUTTONS",
-      widthClass: "is-2",
+      widthClass: "is-3",
       align: "CENTER",
-      buttons: [
+      buttons: [   {
+        type: "REFRESH",
+        action: loadTableData,
+      },
         { type: "FILTER" },
 
         {

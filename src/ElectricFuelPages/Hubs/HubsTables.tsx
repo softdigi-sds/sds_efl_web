@@ -124,7 +124,6 @@ const HubsTables = () => {
     };
     openModal(options);
   };
-  
 
   const buttons = [
     {
@@ -326,14 +325,18 @@ const HubsTables = () => {
     },
     {
       type: "SEARCH",
-      widthClass: "is-4",
+      widthClass: "is-3",
       align: "JUSTIFY",
     },
     {
       type: "BUTTONS",
-      widthClass: "is-2",
+      widthClass: "is-3",
       align: "CENTER",
       buttons: [
+        {
+          type: "REFRESH",
+          action: loadTableData,
+        },
         {
           type: "FILTER",
         },

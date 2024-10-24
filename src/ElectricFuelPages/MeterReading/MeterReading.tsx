@@ -152,13 +152,19 @@ const MeterReading = () => {
     },
     {
       type: "BUTTONS",
-      widthClass: "is-1",
-      align: "RIGHT",
-      buttons: [{ type: "FILTER" }],
+      widthClass: "is-2",
+      align: "CENTER",
+      buttons: [
+        {
+          type: "REFRESH",
+          action: loadTableData,
+        },
+        { type: "FILTER" },
+      ],
     },
     {
       type: "CUSTOM",
-      widthClass: "is-3",
+      widthClass: "is-2",
       align: "RIGHT",
       custom: (
         <div className="date-navigation">
