@@ -9,7 +9,6 @@ import { ValidateFormNew } from "soft_digi/dist/services/smartValidationService"
 import { CUSTOMER_URLS } from "../../api/UserUrls";
 import { useSiteContext } from "../../contexts/SiteProvider";
 import { showAlertAutoClose } from "../../services/notifyService";
-import { ALLOW_NUMERIC } from "../../services/PatternSerivce";
 import {
   admin_states_select,
   hubs_get_all_select,
@@ -146,6 +145,7 @@ const AddressForm: React.FC<HeaderProps> = ({
         inputType: "BORDER_LABEL",
       },
     },
+    
     {
       type: "TEXT_BOX",
       width: "4",
@@ -157,13 +157,13 @@ const AddressForm: React.FC<HeaderProps> = ({
         // inputProps: { isFocussed: true },
         validations: vendorFormValidations.pin_code,
         inputType: "BORDER_LABEL",
-        pattern: ALLOW_NUMERIC,
+       // pattern: ALLOW_NUMERIC,
         max: "6",
       },
     },
     {
       type: "TEXTAREA",
-      width: "6",
+      width: "4",
       name: "address_one",
       element: {
         label: "Address-1",
@@ -171,11 +171,12 @@ const AddressForm: React.FC<HeaderProps> = ({
         max: "255",
         validations: vendorFormValidations.address,
         inputType: "BORDER_LABEL",
+        rows: 3,
       },
     },
     {
       type: "TEXTAREA",
-      width: "6",
+      width: "4",
       name: "address_two",
       element: {
         label: "Address-2",
@@ -183,6 +184,7 @@ const AddressForm: React.FC<HeaderProps> = ({
         max: "255",
         // validations: vendorFormValidations.address,
         inputType: "BORDER_LABEL",
+        rows: 3,
       },
     },
   ];

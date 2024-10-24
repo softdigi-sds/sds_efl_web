@@ -261,10 +261,7 @@ const VehicleAdminReport: React.FC<VehicleReportProps> = ({
                 onClick={() => openImportForm(data)}
               >
                 {" "}
-                <i
-                  className="fa fa-download is-size-3"
-                  aria-hidden="true"
-                ></i>
+                <i className="fa fa-download is-size-3" aria-hidden="true"></i>
               </p>
               {/* <p
                 className="has-text-danger mt-2 is-clickable mr-3"
@@ -294,8 +291,16 @@ const VehicleAdminReport: React.FC<VehicleReportProps> = ({
             />
           </div>
         </div>
-        <div className="column is-4 ">
-          <div className="is-flex is-justify-content-flex-end">
+        <div className="column is-4 is-flex">
+      
+          <span
+            className="is-size-4 smart-refresh-icon is-clickable"
+            onClick={() => loadData()}
+          >
+           
+            <i className="fa fa-refresh"></i>
+          </span>
+          <div className="is-flex is-justify-content-flex-end ml-4">
             <div className="mt-2 is-size-6 is-pulled-right"> {dateRange()}</div>
           </div>
         </div>
