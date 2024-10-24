@@ -158,10 +158,11 @@ const VendorRatesTable = () => {
         <table className="table is-fullwidth">
           <tr>
             <td className="smart-table-column-width-20">Type</td>
-            <td className="smart-table-column-width-20">Rate Type</td>
+            <td className="smart-table-column-width-20">VH Type</td>
+            <td className="smart-table-column-width-10">Rate Type</td>
             <td className="smart-table-column-width-10">Start</td>
             <td className="smart-table-column-width-10">End</td>
-            <td className="smart-table-column-width-20">Price</td>
+            <td className="smart-table-column-width-10">Price</td>
             <td className="smart-table-column-width-10">Extra Price</td>
             <td className="smart-table-column-width-10">Min Count</td>
           </tr>
@@ -190,13 +191,16 @@ const VendorRatesTable = () => {
                   {item?.sd_hsn_id?.label}
                 </td>
                 <td className="smart-table-column-width-20">
+                  {item?.vehicle_type}
+                </td>
+                <td className="smart-table-column-width-10">
                   {item?.rate_type?.label}
                 </td>
                 <td className="smart-table-column-width-10">
                   {item?.min_start}
                 </td>
                 <td className="smart-table-column-width-10">{item?.min_end}</td>
-                <td className="smart-table-column-width-20">{item?.price}</td>
+                <td className="smart-table-column-width-10">{item?.price}</td>
                 <td className="smart-table-column-width-10">
                   {item?.extra_price}
                 </td>

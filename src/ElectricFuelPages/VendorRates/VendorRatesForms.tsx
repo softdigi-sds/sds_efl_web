@@ -12,9 +12,8 @@ import { changeDateTimeZoneFormat } from "../../services/core/CommonService";
 import { showAlertAutoClose } from "../../services/notifyService";
 import {
   company_address_all_select,
-  company_get_all_select,
   hubs_get_all_select,
-  vendors_get_all_select,
+  vendors_get_all_select
 } from "../../services/site/SelectBoxServices";
 import { post } from "../../services/smartApiService";
 import VendorRatesSubForm from "./VendorRatesSubForm";
@@ -97,10 +96,15 @@ const VendorRatesForms: React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
 
   useEffect(() => {
     let customer_id = formData?.sd_customer_id?.value;
-    if (customer_id && customer_id > 0)
+    if (customer_id && customer_id > 0){
       company_address_all_select(customer_id, (data: any) =>
         setCustAddress(data)
       );
+      if(!formData.cms_name || formData.cms_name.length < 1){
+        handleInputChange("cms_name", formData?.sd_customer_id?.label);
+      }
+    }
+      
     //hubs_get_all_select((data: any) => setAllHubs(data));
   }, [formData?.sd_customer_id]);
 
