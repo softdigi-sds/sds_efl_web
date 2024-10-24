@@ -145,6 +145,7 @@ const AddressForm: React.FC<HeaderProps> = ({
         inputType: "BORDER_LABEL",
       },
     },
+    
     {
       type: "TEXT_BOX",
       width: "4",
