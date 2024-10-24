@@ -16,13 +16,13 @@ interface headerProps {
   hubId?: string;
 }
 const VendorRatesTable:React.FC<headerProps> = ({ hubId }) => {
-  const [data, setData] = useState([]);
+  const [tabData, setTabData] = useState([]);
   const { openModal, closeModal } = useSiteContext();
 
   const loadTableData = () => {
     let URL = VENDER_RATE_URLS.GET_ALL;
     const subscription = post(URL,{hub_id:hubId}).subscribe((response) => {
-      setData(response.data);
+      setTabData(response.data);
     });
     return () => {
       subscription.unsubscribe();
@@ -292,7 +292,7 @@ const VendorRatesTable:React.FC<headerProps> = ({ hubId }) => {
       <div className="smart-elf-table">
         <SmartTable
           columns={columns}
-          data={data}
+          data={tabData}
           tableTop={tableTop}
           filterFields={filterFields}
           tableProps={{

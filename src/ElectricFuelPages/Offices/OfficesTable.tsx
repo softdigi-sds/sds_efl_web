@@ -19,13 +19,13 @@ import OfficesForm from "./OfficesForm";
 import OfficeTableView from "./OfficeTableView";
 
 const OfficesTable = () => {
-  const [data, setData] = useState([]);
+  const [tabData, setTabData] = useState([]);
   const { openModal, closeModal, setLoading } = useSiteContext();
   const [states, setStates] = useState([]);
   const loadTableData = () => {
     let URL = OFFICE_URLS.GET_ALL;
     const subscription = get(URL).subscribe((response) => {
-      setData(response.data);
+      setTabData(response.data);
     });
     return () => {
       subscription.unsubscribe();
@@ -142,7 +142,7 @@ const OfficesTable = () => {
       status: status,
     }).subscribe((response) => {
       setLoading(false);
-      setData((prevItems: any) =>
+      setTabData((prevItems: any) =>
         prevItems.map((item: any) =>
           item.ID === id ? { ...item, offer_status: status } : item
         )
@@ -298,7 +298,7 @@ const OfficesTable = () => {
       <div className="smart-elf-table">
         <SmartTable
           columns={columns}
-          data={data}
+          data={tabData}
           tableTop={tableTop}
           filterFields={filterFields}
           tableProps={{

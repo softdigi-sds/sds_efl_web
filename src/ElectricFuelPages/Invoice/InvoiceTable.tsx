@@ -11,7 +11,7 @@ import InvoicebottomTable from "./InvoicebottomTable";
 import { showAlertAutoClose } from "../../services/notifyService";
 
 const InvoiceTable = () => {
-  const [data, setData] = useState([]);
+  const [tabData, setTabData] = useState([]);
   const [showInvoiceBottom, setShowInvoiceBottom] = useState(false);
   const [showSignPad, setShowSignPad] = useState(false);
   const { openModal, closeModal } = useSiteContext();
@@ -23,7 +23,7 @@ const InvoiceTable = () => {
   // https://dummyjson.com/
   const LoadTableData = () => {
     const subscription = get(INVOICE_URLS.GET_ALL_BILLS).subscribe((response) => {
-      setData(response.data);
+      setTabData(response.data);
       //console.log("data", response.data.users)
     });
     return () => {
@@ -231,7 +231,7 @@ const InvoiceTable = () => {
 
           <SmartTable
             columns={columns}
-            data={data}
+            data={tabData}
             tableTop={tableTop}
             tableProps={{
               className: "is-hoverable is-bordered is-striped smart-efl-table",

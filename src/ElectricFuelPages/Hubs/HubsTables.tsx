@@ -20,14 +20,14 @@ import HubsMapView from "./HubsMapView";
 import HubsView from "./HubsView";
 
 const HubsTables = () => {
-  const [data, setData] = useState([]);
+  const [tabData, setTabData] = useState([]);
   const { openModal, closeModal } = useSiteContext();
   const [allOffice, setAllOffice] = useState([]);
 
   const loadTableData = () => {
     let URL = HUBS_URLS.GET_ALL;
     const subscription = get(URL).subscribe((response) => {
-      setData(response.data);
+      setTabData(response.data);
     });
     return () => {
       subscription.unsubscribe();
@@ -356,7 +356,7 @@ const HubsTables = () => {
       <div className="smart-elf-table">
         <SmartTable
           columns={columns}
-          data={data}
+          data={tabData}
           filterFields={filterFields}
           tableTop={tableTop}
           tableProps={{

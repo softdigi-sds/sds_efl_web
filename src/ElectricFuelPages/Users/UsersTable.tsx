@@ -14,13 +14,13 @@ import UsersTableView from "./UsersTableView";
 import PasswordChangeForm from "./PasswordChangeForm";
 
 const UsersTable = () => {
-  const [data, setData] = useState([]);
+  const [tabData, setTabData] = useState([]);
   const { openModal, closeModal, setLoading } = useSiteContext();
 
   const loadTableData = () => {
     let URL = USER_URLS.GET_ALL;
     const subscription = get(URL).subscribe((response) => {
-      setData(response.data);
+      setTabData(response.data);
     });
     return () => {
       subscription.unsubscribe();
@@ -249,7 +249,7 @@ const UsersTable = () => {
       <div className="sd-efl-input">
         <SmartTable
           columns={columns}
-          data={data}
+          data={tabData}
           tableTop={tableTop}
           tableProps={{
             className: "is-hoverable is-bordered smart-efl-table",

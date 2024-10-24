@@ -12,14 +12,14 @@ import { get, post } from "../../services/smartApiService";
 import RoleForm from "./RoleForm";
 
 const RoleTable = () => {
-  const [data, setData] = useState([]);
+  const [tabData, setTabData] = useState([]);
 
   const { openModal, closeModal, setLoading } = useSiteContext();
 
   const loadTableData = () => {
     let URL = ROLE_URLS.GET_ALL;
     const subscription = get(URL).subscribe((response) => {
-      setData(response.data);
+      setTabData(response.data);
     });
     return () => {
       subscription.unsubscribe();
@@ -189,7 +189,7 @@ const RoleTable = () => {
       <div className="sd-efl-input">
         <SmartTable
           columns={columns}
-          data={data}
+          data={tabData}
           tableTop={tableTop}
           tableProps={{
             className: " is-hoverable is-bordered is-striped smart-efl-table",
