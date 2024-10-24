@@ -52,6 +52,15 @@ const VendorRatesSubForm: React.FC<HeaderProps> = ({
       name: "sd_vehicle_types_id",
       element: {
         options: options_vehicle,
+        inputProps: {
+          disabled:
+            formData.sd_hsn_id &&
+            formData.sd_hsn_id.value &&(
+            formData.sd_hsn_id.value == "1"|| 
+             formData.sd_hsn_id.value == "2")
+              ? false
+              : true,
+        },
       },
     },
     {

@@ -198,8 +198,14 @@ const ConsumptionAdminReport: React.FC<VehicleReportProps> = ({
             />
           </div>
         </div>
-        <div className="column is-4 ">
-          <div className="is-flex is-justify-content-flex-end">
+        <div className="column is-4 is-flex">   <span
+            className="is-size-4 mt-1  smart-refresh-icon"
+            onClick={() => loadData()}
+          >
+           
+            <i className="fa fa-refresh"></i>
+          </span>
+          <div className="is-flex is-justify-content-flex-end ml-5">
             <div className="mt-2 is-size-6 is-pulled-right"> {dateRange()}</div>
           </div>
         </div>

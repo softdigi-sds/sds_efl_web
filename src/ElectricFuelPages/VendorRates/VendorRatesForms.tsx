@@ -35,8 +35,12 @@ const VendorRatesForms: React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
   const [custAddress, setCustAddress] = useState([]);
   const { closeModal } = useSiteContext();
 
+  //  console.log("Formdata",formData)
+
   const handleInputChange = (name: string, value: any) => {
+    console.log("Name",name,"Value", value);
     setFormData((prev: any) => ({ ...prev, [name]: value }));
+    //  console.log("formData updated", value);
   };
 
   const updateItemProperty = (
@@ -104,9 +108,27 @@ const VendorRatesForms: React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
         handleInputChange("cms_name", formData?.sd_customer_id?.label);
       }
     }
+ 
       
-    //hubs_get_all_select((data: any) => setAllHubs(data));
+   
   }, [formData?.sd_customer_id]);
+
+  useEffect(() => {
+    const sdHsnIdValue = formData?.rate_data?.sd_hsn_id?.value ?? ""; 
+  
+    if (sdHsnIdValue === "1" || sdHsnIdValue === "2") {
+      setFormData((prev: any) => ({ ...prev }));
+    } else {
+      setFormData((prev: any) => ({
+        ...prev,
+        sd_vehicle_types_id: {
+          ...prev.sd_vehicle_types_id,
+          value: "" 
+        }
+      }));
+    }
+  }, [formData]);
+  
 
   // useEffect(() => {
   //   let hub_data =formData?.sd_hubs_id?.value

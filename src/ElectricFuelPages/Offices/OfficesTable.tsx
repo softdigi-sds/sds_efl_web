@@ -10,7 +10,10 @@ import {
 } from "soft_digi";
 import { OFFICE_URLS } from "../../api/UserUrls";
 import { useSiteContext } from "../../contexts/SiteProvider";
-import { showAlertAutoClose, showYesOrNoAlert } from "../../services/notifyService";
+import {
+  showAlertAutoClose,
+  showYesOrNoAlert,
+} from "../../services/notifyService";
 import { admin_states_select } from "../../services/site/SelectBoxServices";
 import OfficesForm from "./OfficesForm";
 import OfficeTableView from "./OfficeTableView";
@@ -33,9 +36,9 @@ const OfficesTable = () => {
     loadTableData();
   }, []);
 
-  const openOfficesForm = (data:any) => {
+  const openOfficesForm = (data: any) => {
     let options = {
-      title: <>{data.ID?"Offices Update Form":"Offices Addition Form"}</>,
+      title: <>{data.ID ? "Offices Update Form" : "Offices Addition Form"}</>,
       content: <OfficesForm loadTableData={loadTableData} dataIn={data} />,
       width: 60,
       className: "sd-efl-modal",
@@ -133,64 +136,53 @@ const OfficesTable = () => {
     },
   ];
 
-
-
-  const StatusUpdate = (id:number, status:any) => {
- 
-    const subscription = post(
-      OFFICE_URLS.DELETE,
-      { id: id, status: status },
-     
-    ).subscribe((response) => {
+  const StatusUpdate = (id: number, status: any) => {
+    const subscription = post(OFFICE_URLS.DELETE, {
+      id: id,
+      status: status,
+    }).subscribe((response) => {
       setLoading(false);
-      setData((prevItems:any) =>
-        prevItems.map((item:any) =>
-          item.ID === id
-            ? { ...item, offer_status: status } 
-            : item
+      setData((prevItems: any) =>
+        prevItems.map((item: any) =>
+          item.ID === id ? { ...item, offer_status: status } : item
         )
       );
-      if(status == 0)
-        showAlertAutoClose("office Reopen", "success");
-      else
-      showAlertAutoClose("office Shutdown", "success");
+      if (status == 0) showAlertAutoClose("office Reopen", "success");
+      else showAlertAutoClose("office Shutdown", "success");
     });
     return () => {
       subscription.unsubscribe();
     };
   };
 
-  
-  const updateStatus = (itemIn:any, check_value: boolean) => {
- 
-  
-   
+  const updateStatus = (itemIn: any, check_value: boolean) => {
     let new_status: number = itemIn.status === 5 ? 1 : 0;
     let msg: string =
       new_status === 0
         ? "Do you wish to mark office is reopen?"
         : "Do you wish to mark office is shutdown?";
-  
+
     // Trigger alert for confirmation
     showYesOrNoAlert(
       msg,
-      (selection: Selection) => updateStatusFinal(selection, itemIn, new_status),
+      (selection: Selection) =>
+        updateStatusFinal(selection, itemIn, new_status),
       "info"
     );
   };
-  
-  const updateStatusFinal = (selection:any, itemIn:any, new_status: number) => {
+
+  const updateStatusFinal = (
+    selection: any,
+    itemIn: any,
+    new_status: number
+  ) => {
     if (selection === "yes") {
       // Post data to the backend
       StatusUpdate(itemIn.ID, new_status);
     }
   };
 
- 
-  
-
-  
-  const SwitchForm = ( item:any ) => {
+  const SwitchForm = (item: any) => {
     return (
       item.ID && (
         <>
@@ -198,18 +190,18 @@ const OfficesTable = () => {
             <input
               id={"switchRoundedDefault_" + item.ID}
               type="checkbox"
-               className="switch is-rounded is-small"
+              className="switch is-rounded is-small"
               checked={item.status === 5}
-              onChange={(event:any) => updateStatus(item, event)}
+              onChange={(event: any) => updateStatus(item, event)}
             />
-              <span className="slider round"></span>
+            <span className="slider round"></span>
             {/* <label htmlFor={"switchRoundedDefault_" + item.ID}></label> */}
           </div>
         </>
       )
     );
   };
-  
+
   const statusTags = [
     { value: 5, label: "Active", class: "has-text-link" },
     { value: 10, label: "Inactive", class: "has-text-danger" },
@@ -242,9 +234,9 @@ const OfficesTable = () => {
       buttons: buttons,
       width: "10",
     },
-  ];  
+  ];
   useEffect(() => {
-    admin_states_select((data:any) => setStates(data));
+    admin_states_select((data: any) => setStates(data));
     //  loadData();
   }, []);
   const filterFields: SmartFormInterFace.SmartFormElementProps[] = [
@@ -261,7 +253,8 @@ const OfficesTable = () => {
       width: "12",
       name: "state_name",
       element: {
-        label: "State",   options: states,
+        label: "State",
+        options: states,
       },
     },
   ];
@@ -274,14 +267,18 @@ const OfficesTable = () => {
     },
     {
       type: "SEARCH",
-      widthClass: "is-4",
+      widthClass: "is-3",
       align: "JUSTIFY",
     },
     {
       type: "BUTTONS",
-      widthClass: "is-2",
+      widthClass: "is-3",
       align: "CENTER",
       buttons: [
+        {
+          type: "REFRESH",
+          action: loadTableData,
+        },
         {
           type: "FILTER",
         },

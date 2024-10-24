@@ -262,7 +262,10 @@ const VendorRatesTable:React.FC<headerProps> = ({ hubId }) => {
       type: "BUTTONS",
       widthClass: "is-3",
       align: "CENTER",
-      buttons: [
+      buttons: [   {
+        type: "REFRESH",
+        action: loadTableData,
+      },
         { type: "FILTER" },
         {
           label: "Add",

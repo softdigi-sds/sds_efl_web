@@ -180,8 +180,14 @@ const VehicleReportHub:React.FC<VehicleReportProps> = ({stage,setStage}) => {
             // leftIcon="fa fa-file-excel-o"
             onClick={() => handelStage()}
           />
-          
-            </div>
+            <span
+            className="is-size-4 mt-1 ml-6 smart-refresh-icon"
+            onClick={() => loadCalenderData()}
+          >
+           
+            <i className="fa fa-refresh"></i>
+          </span>
+            </div> 
           </div>
         </div>
         <div></div>
