@@ -11,8 +11,10 @@ import { useSiteContext } from "../../contexts/SiteProvider";
 import { changeDateTimeZoneFormat } from "../../services/core/CommonService";
 import { showAlertAutoClose } from "../../services/notifyService";
 import {
+  company_address_all_select,
   company_get_all_select,
   hubs_get_all_select,
+  vendors_get_all_select,
 } from "../../services/site/SelectBoxServices";
 import { post } from "../../services/smartApiService";
 import VendorRatesSubForm from "./VendorRatesSubForm";
@@ -31,6 +33,7 @@ const VendorRatesForms: React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
   const [formSubmit, setFormSubmit] = useState<boolean>(false);
   const [allHubs, setAllHubs] = useState([]);
   const [allVendors, setAllVendors] = useState([]);
+  const [custAddress, setCustAddress] = useState([]);
   const { closeModal } = useSiteContext();
 
   const handleInputChange = (name: string, value: any) => {
@@ -89,13 +92,17 @@ const VendorRatesForms: React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
 
   useEffect(() => {
     hubs_get_all_select((data: any) => setAllHubs(data));
+    vendors_get_all_select((data: any) => setAllVendors(data));
   }, []);
 
   useEffect(() => {
-    let hub_data = formData?.sd_hubs_id?.value;
-    company_get_all_select(hub_data, (data: any) => setAllVendors(data));
+    let customer_id = formData?.sd_customer_id?.value;
+    if (customer_id && customer_id > 0)
+      company_address_all_select(customer_id, (data: any) =>
+        setCustAddress(data)
+      );
     //hubs_get_all_select((data: any) => setAllHubs(data));
-  }, [formData?.sd_hubs_id]);
+  }, [formData?.sd_customer_id]);
 
   // useEffect(() => {
   //   let hub_data =formData?.sd_hubs_id?.value
@@ -123,12 +130,13 @@ const VendorRatesForms: React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
       <>
         <div className="columns">
           <div className="column is-2">Type</div>
+          <div className="column is-2">Vehicle Type</div>
           <div className="column is-2">Rate Type</div>
           <div className="column is-1">Range Start</div>
           <div className="column is-1">Range End</div>
           <div className="column is-2">Price(Rs)</div>
-          <div className="column is-2">Extra Price(Rs)</div>
-          <div className="column is-2">Min Count</div>
+          <div className="column is-1">Extra Price(Rs)</div>
+          <div className="column is-1">Min Count</div>
         </div>
         {sub_data.map((item, index) => {
           return (
@@ -220,12 +228,26 @@ const VendorRatesForms: React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
     {
       type: "SELECT_BOX",
       width: "6",
-      name: "sd_vendors_id",
+      name: "sd_customer_id",
       element: {
         label: "Company",
         isRequired: true,
         validations: vendorFormValidations.company,
         options: allVendors,
+        inputType: "BORDER_LABEL",
+        inputProps: { disabled: formData.ID && formData.ID ? true : false },
+        //options: options,
+      },
+    },
+    {
+      type: "SELECT_BOX",
+      width: "6",
+      name: "sd_customer_address_id",
+      element: {
+        label: "Billing Address",
+        isRequired: true,
+        validations: vendorFormValidations.company,
+        options: custAddress,
         inputType: "BORDER_LABEL",
         inputProps: { disabled: formData.ID && formData.ID ? true : false },
         //options: options,
@@ -242,6 +264,28 @@ const VendorRatesForms: React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
         inputType: "BORDER_LABEL",
         inputProps: { isFocussed: true },
         validations: vendorFormValidations.dates,
+      },
+    },
+    {
+      type: "TEXT_BOX",
+      width: "6",
+      name: "vendor_code",
+      element: {
+        label: "Vendor_code",
+        isRequired: true,
+        inputType: "BORDER_LABEL",
+        inputProps: { isFocussed: true },
+      },
+    },
+    {
+      type: "TEXT_BOX",
+      width: "6",
+      name: "cms_name",
+      element: {
+        label: "CMS Name",
+        isRequired: true,
+        inputType: "BORDER_LABEL",
+        inputProps: { isFocussed: true },
       },
     },
     /*
@@ -415,7 +459,7 @@ const VendorRatesForms: React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
             onClick={closeModal}
           />
           <SmartSoftButton
-          label={formData.ID ? "Update":"Submit"}
+            label={formData.ID ? "Update" : "Submit"}
             rightIcon="fa fa-arrow-right"
             classList={["button ", "mt-4", "smart-action-button"]}
             onClick={handleSubmit}

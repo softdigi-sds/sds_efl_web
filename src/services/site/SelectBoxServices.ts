@@ -1,5 +1,10 @@
 import { ROLE_URLS, STATE_URLS, USER_URLS } from "../../api/AdminUrls";
-import { HUBS_URLS, OFFICE_URLS, VENDERS_URLS } from "../../api/UserUrls";
+import {
+  CUSTOMER_URLS,
+  HUBS_URLS,
+  OFFICE_URLS,
+  VENDERS_URLS,
+} from "../../api/UserUrls";
 import { get, post } from "../smartApiService";
 
 /**
@@ -56,12 +61,16 @@ const office_get_all_select = (call_back: any) => {
   admin_generic_select(url, call_back);
 };
 const vendors_get_all_select = (call_back: any) => {
-  let url = VENDERS_URLS.GET_ALL_SELECT;
+  let url = CUSTOMER_URLS.GET_ALL_SELECT;
   admin_generic_select(url, call_back);
 };
 const company_get_all_select = (hub_id: any, call_back: any) => {
   let url = VENDERS_URLS.GET_ALL_SELECT;
   admin_generic_select_post(url, { hub_id: hub_id }, call_back);
+};
+const company_address_all_select = (customer_id: any, call_back: any) => {
+  let url = CUSTOMER_URLS.GET_ALL_SELECT_ADDRESS;
+  admin_generic_select_post(url, { customer_id: customer_id }, call_back);
 };
 
 export {
@@ -72,4 +81,5 @@ export {
   office_get_all_select,
   vendors_get_all_select,
   company_get_all_select,
+  company_address_all_select,
 };

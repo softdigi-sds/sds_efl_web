@@ -34,9 +34,15 @@ const VendorRatesTable = () => {
   const openOfficesForm = (data: any) => {
     //console.log("data ", data);
     let options = {
-      title: <>{data.ID ? "Customer Rates Update Form" : "Customer Rates Addition Form"}</>,
+      title: (
+        <>
+          {data.ID
+            ? "Customer Rates Update Form"
+            : "Customer Rates Addition Form"}
+        </>
+      ),
       content: <VendorRatesForms loadTableData={loadTableData} dataIn={data} />,
-      width: 80,
+      width: 90,
       className: "sd-efl-modal",
       closeBody: false,
     };
@@ -52,7 +58,6 @@ const VendorRatesTable = () => {
     };
     openModal(options);
   };
-
 
   const viewEditForm = (id: any) => {
     const subscription = post(VENDER_RATE_URLS.GET_ONE, { id: id }).subscribe(
@@ -162,9 +167,8 @@ const VendorRatesTable = () => {
           </tr>
         </table>
       </div>
-    )
-  }
-
+    );
+  };
 
   const RatesDisplay = (items: any) => {
     return (
@@ -182,21 +186,30 @@ const VendorRatesTable = () => {
           {items?.rates?.map((item: any) => (
             <>
               <tr>
-                <td className="smart-table-column-width-20">{item?.sd_hsn_id?.label}</td>
-                <td className="smart-table-column-width-20">{item?.rate_type?.label}</td>
-                <td className="smart-table-column-width-10">{item?.min_start}</td>
+                <td className="smart-table-column-width-20">
+                  {item?.sd_hsn_id?.label}
+                </td>
+                <td className="smart-table-column-width-20">
+                  {item?.rate_type?.label}
+                </td>
+                <td className="smart-table-column-width-10">
+                  {item?.min_start}
+                </td>
                 <td className="smart-table-column-width-10">{item?.min_end}</td>
                 <td className="smart-table-column-width-20">{item?.price}</td>
-                <td className="smart-table-column-width-10">{item?.extra_price}</td>
-                <td className="smart-table-column-width-10">{item?.min_units_vehicle}</td>
+                <td className="smart-table-column-width-10">
+                  {item?.extra_price}
+                </td>
+                <td className="smart-table-column-width-10">
+                  {item?.min_units_vehicle}
+                </td>
               </tr>
             </>
           ))}
-
         </table>
       </>
-    )
-  }
+    );
+  };
   const columns: SmartTableNewInterface.SmartTableNewColumnConfig[] = [
     { title: "S.NO", index: "s_no", type: "sno" },
     {
@@ -211,10 +224,12 @@ const VendorRatesTable = () => {
     {
       title: tableHeader(),
       index: "unit_rate",
-      valueFunction: RatesDisplay
+      valueFunction: RatesDisplay,
     },
     {
-      title: "Effective Date", index: "effective_date", type: "date",
+      title: "Effective Date",
+      index: "effective_date",
+      type: "date",
       dateFormat: "DD-MM-YYYY",
     },
     {
@@ -230,7 +245,8 @@ const VendorRatesTable = () => {
       type: "CUSTOM",
       widthClass: "is-6",
       custom: <p className="is-size-4">Customer Rates</p>,
-    }, {
+    },
+    {
       type: "SEARCH",
       widthClass: "is-3",
       align: "JUSTIFY",
@@ -239,11 +255,13 @@ const VendorRatesTable = () => {
       type: "BUTTONS",
       widthClass: "is-3",
       align: "CENTER",
-      buttons: [ { type: "FILTER" },
-        { 
+      buttons: [
+        { type: "FILTER" },
+        {
           label: "Add",
           icon: "fa-plus",
-          type: "CUSTOM", className: "smart-third-button",
+          type: "CUSTOM",
+          className: "smart-third-button",
           action: openOfficesForm,
         },
       ],
@@ -265,7 +283,8 @@ const VendorRatesTable = () => {
         <SmartTable
           columns={columns}
           data={data}
-          tableTop={tableTop} filterFields={filterFields}
+          tableTop={tableTop}
+          filterFields={filterFields}
           tableProps={{
             className: " is-hoverable is-bordered is-striped smart-efl-table",
             isResponsive: true,
