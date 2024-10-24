@@ -275,7 +275,7 @@ const VendorRatesForms: React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
       width: "6",
       name: "vendor_code",
       element: {
-        label: "Vendor_code",
+        label: "Customer Code",
         isRequired: true,
         inputType: "BORDER_LABEL",
         inputProps: { isFocussed: true },
