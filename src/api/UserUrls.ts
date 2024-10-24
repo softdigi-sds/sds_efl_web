@@ -88,7 +88,7 @@ const CUSTOMER_URLS = {
   GET_ONE: "/customer/get_one",
   DELETE: "/customer/delete_one",
   GET_ALL_SELECT: "/customer/get_all_select",
-  STATUS_UPDATE: "customer/status_update",
+  STATUS_UPDATE: "/customer/update_status",
 
   INSERT_ADDRESS: "/customer/insert_address",
   GET_ALL_ADDRESS: "/customer/get_all_address",
@@ -96,7 +96,7 @@ const CUSTOMER_URLS = {
   GET_ONE_ADDRESS: "/customer/get_one_address",
   DELETE_ADDRESS: "/customer/delete_one_address",
   GET_ALL_SELECT_ADDRESS: "/customer/get_all_select_address",
-  STATUS_UPDATE_ADDRESS: "customer/status_update_address",
+  STATUS_UPDATE_ADDRESS: "/customer/update_status_address",
 };
 
 export {

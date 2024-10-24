@@ -121,7 +121,7 @@ const CustomersTables: React.FC<headerProps> = ({ hubId }) => {
   };
   const openDetailsTable = (data: any) => {
     let options = {
-      title: "Customer Details",
+      title: "Address Details",
       content: <AddressTable dataIn={data.ID} />,
       width: 80,
       className: "sd-efl-modal",
@@ -133,7 +133,7 @@ const CustomersTables: React.FC<headerProps> = ({ hubId }) => {
     return (
       <div className="has-text-centered">
         <SmartSoftButton
-          label="Add"
+          label={data?.address_count?data.address_count:"0"}
           onClick={() => openDetailsTable(data)}
           classList={["button is-small is-primary is-light"]}
         />
@@ -257,7 +257,7 @@ const CustomersTables: React.FC<headerProps> = ({ hubId }) => {
 
     { title: "Pan No.", index: "pan_no" },
     {
-      title: "Details",
+      title: "Address",
       index: "status",
       // type: "tags", tags: statusTags
       valueFunction: openDetailsList,

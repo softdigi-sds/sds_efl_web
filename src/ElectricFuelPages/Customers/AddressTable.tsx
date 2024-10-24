@@ -297,9 +297,9 @@ const AddressTable: React.FC<headerProps> = ({ dataIn }) => {
     {
       type: "TEXT_BOX",
       width: "12",
-      name: "vendor_company",
+      name: "stateName",
       element: {
-        label: "Company",
+        label: "State",
       },
     },
     {
