@@ -14,10 +14,10 @@ import {
 } from "../../services/notifyService";
 import { office_get_all_select } from "../../services/site/SelectBoxServices";
 import { get, post } from "../../services/smartApiService";
+import VendorRatesTable from "../VendorRates/VendorRatesTable";
 import HubsForms from "./HubsForms";
 import HubsMapView from "./HubsMapView";
 import HubsView from "./HubsView";
-import VendorsTable from "../Vendors/VendorsTable";
 
 const HubsTables = () => {
   const [data, setData] = useState([]);
@@ -118,8 +118,8 @@ const HubsTables = () => {
   };
   const openVendorsView = (data: any) => {
     let options = {
-      title: "Customer Details",
-      content: <VendorsTable hubId={data} />,
+      //title: "Customer Details",
+      content: <VendorRatesTable hubId={data} />,
       width: 80,
     };
     openModal(options);

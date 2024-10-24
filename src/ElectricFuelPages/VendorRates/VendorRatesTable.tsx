@@ -9,17 +9,19 @@ import {
 import { VENDER_RATE_URLS } from "../../api/UserUrls";
 import { useSiteContext } from "../../contexts/SiteProvider";
 import { showAlertAutoClose } from "../../services/notifyService";
-import { get, post } from "../../services/smartApiService";
+import { post } from "../../services/smartApiService";
 import VendorRatesForms from "./VendorRatesForms";
 import VendorRatesSubFormTwo from "./VendorRatesSubFormTwo";
-
-const VendorRatesTable = () => {
+interface headerProps {
+  hubId?: string;
+}
+const VendorRatesTable:React.FC<headerProps> = ({ hubId }) => {
   const [data, setData] = useState([]);
   const { openModal, closeModal } = useSiteContext();
 
   const loadTableData = () => {
     let URL = VENDER_RATE_URLS.GET_ALL;
-    const subscription = get(URL).subscribe((response) => {
+    const subscription = post(URL,{hub_id:hubId}).subscribe((response) => {
       setData(response.data);
     });
     return () => {
