@@ -7,7 +7,7 @@ import {
   SmartTable,
   SmartTableNewInterface,
 } from "soft_digi";
-import { CUSTOMER_URLS} from "../../api/UserUrls";
+import { CUSTOMER_URLS } from "../../api/UserUrls";
 import { useSiteContext } from "../../contexts/SiteProvider";
 import {
   showAlertAutoClose,
@@ -22,8 +22,6 @@ interface headerProps {
 }
 
 const CustomersTables: React.FC<headerProps> = ({ hubId }) => {
-
-
   const [data, setData] = useState([]);
   const { openModal, closeModal } = useSiteContext();
 
@@ -44,7 +42,9 @@ const CustomersTables: React.FC<headerProps> = ({ hubId }) => {
 
   const openOfficesForm = (data: any) => {
     let options = {
-      title: <>{data.ID ? "Customers Update Form" : "Customers Addition Form"}</>,
+      title: (
+        <>{data.ID ? "Customers Update Form" : "Customers Addition Form"}</>
+      ),
       content: <CustomersForm loadTableData={loadTableData} dataIn={data} />,
       width: 60,
       className: "sd-efl-modal",
@@ -122,25 +122,24 @@ const CustomersTables: React.FC<headerProps> = ({ hubId }) => {
   const openDetailsTable = (data: any) => {
     let options = {
       title: "Customer Details",
-      content: <AddressTable dataIn={data.ID}/>,
+      content: <AddressTable dataIn={data.ID} />,
       width: 80,
       className: "sd-efl-modal",
       closeBody: false,
     };
     openModal(options);
   };
-  const  openDetailsList=(data:any)=>{
-    return(
-        <div className="has-text-centered">
+  const openDetailsList = (data: any) => {
+    return (
+      <div className="has-text-centered">
         <SmartSoftButton
           label="Add"
           onClick={() => openDetailsTable(data)}
           classList={["button is-small is-primary is-light"]}
         />
       </div>
-    )
-  }
-
+    );
+  };
 
   const StatusUpdate = (id: number, status: any) => {
     const subscription = post(CUSTOMER_URLS.STATUS_UPDATE, {
@@ -255,14 +254,14 @@ const CustomersTables: React.FC<headerProps> = ({ hubId }) => {
       title: "Name",
       index: "vendor_name",
     },
- 
+
     { title: "Pan No.", index: "pan_no" },
     {
-        title: "Details",
-        index: "status",
-        // type: "tags", tags: statusTags
-        valueFunction: openDetailsList,
-      },
+      title: "Details",
+      index: "status",
+      // type: "tags", tags: statusTags
+      valueFunction: openDetailsList,
+    },
     {
       title: "Status",
       index: "status",
@@ -285,14 +284,18 @@ const CustomersTables: React.FC<headerProps> = ({ hubId }) => {
     },
     {
       type: "SEARCH",
-      widthClass: "is-4",
+      widthClass: "is-3",
       align: "JUSTIFY",
     },
     {
       type: "BUTTONS",
-      widthClass: "is-2",
+      widthClass: "is-3",
       align: "CENTER",
       buttons: [
+        {
+          type: "REFRESH",
+          action: loadTableData,
+        },
         { type: "FILTER" },
 
         {
@@ -359,7 +362,4 @@ const CustomersTables: React.FC<headerProps> = ({ hubId }) => {
   );
 };
 
-
-
-
-export default CustomersTables
+export default CustomersTables;
