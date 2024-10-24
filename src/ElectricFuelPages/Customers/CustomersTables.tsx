@@ -7,7 +7,7 @@ import {
   SmartTable,
   SmartTableNewInterface,
 } from "soft_digi";
-import { CUSTOMER_URLS} from "../../api/UserUrls";
+import { CUSTOMER_URLS } from "../../api/UserUrls";
 import { useSiteContext } from "../../contexts/SiteProvider";
 import {
   showAlertAutoClose,
@@ -22,8 +22,6 @@ interface headerProps {
 }
 
 const CustomersTables: React.FC<headerProps> = ({ hubId }) => {
-
-
   const [data, setData] = useState([]);
   const { openModal, closeModal } = useSiteContext();
 
@@ -42,10 +40,12 @@ const CustomersTables: React.FC<headerProps> = ({ hubId }) => {
     loadTableData();
   }, []);
 
-  const openOfficesForm = (data: any) => {
+  const openOfficesForm = (dataIn: any) => {
     let options = {
-      title: <>{data.ID ? "Customer Update Form" : "Customer Addition Form"}</>,
-      content: <CustomersForm loadTableData={loadTableData} dataIn={data} />,
+      title: (
+        <>{dataIn.ID ? "Customer Update Form" : "Customer Addition Form"}</>
+      ),
+      content: <CustomersForm loadTableData={loadTableData} dataIn={dataIn} />,
       width: 60,
       className: "sd-efl-modal",
       closeBody: false,
@@ -109,38 +109,37 @@ const CustomersTables: React.FC<headerProps> = ({ hubId }) => {
   //   };
   //   openModal(options);
   // };
-  const openViewdetails = (data: any) => {
+  const openViewdetails = (dataIn: any) => {
     let options = {
       title: "Customer Details",
-      content: <ViewDetails  />,
+      content: <ViewDetails />,
       width: 60,
       className: "sd-efl-modal",
       closeBody: false,
     };
     openModal(options);
   };
-  const openDetailsTable = (data: any) => {
+  const openDetailsTable = (dataIn: any) => {
     let options = {
       title: "Customer Details",
-      content: <AddressTable dataIn={data.ID}/>,
+      content: <AddressTable dataIn={dataIn.ID} />,
       width: 80,
       className: "sd-efl-modal",
       closeBody: false,
     };
     openModal(options);
   };
-  const  openDetailsList=(data:any)=>{
-    return(
-        <div className="has-text-centered">
+  const openDetailsList = (dataIn: any) => {
+    return (
+      <div className="has-text-centered">
         <SmartSoftButton
           label="Add"
-          onClick={() => openDetailsTable(data)}
+          onClick={() => openDetailsTable(dataIn)}
           classList={["button is-small is-primary is-light"]}
         />
       </div>
-    )
-  }
-
+    );
+  };
 
   const StatusUpdate = (id: number, status: any) => {
     const subscription = post(CUSTOMER_URLS.STATUS_UPDATE, {
@@ -220,8 +219,8 @@ const CustomersTables: React.FC<headerProps> = ({ hubId }) => {
       type: "icon",
       leftIcon: "fa fa-eye",
       classList: ["smart-efl-table-view-icon"],
-      onClick: (data: any) => {
-        openViewdetails(data);
+      onClick: (dataIn: any) => {
+        openViewdetails(dataIn);
       },
     },
     {
@@ -229,8 +228,8 @@ const CustomersTables: React.FC<headerProps> = ({ hubId }) => {
       type: "icon",
       leftIcon: " fa-pencil-square-o",
       classList: ["smart-efl-table-edit-icon"],
-      onClick: (data: any) => {
-        viewEditForm(data["ID"]);
+      onClick: (dataIn: any) => {
+        viewEditForm(dataIn["ID"]);
       },
     },
     {
@@ -238,8 +237,8 @@ const CustomersTables: React.FC<headerProps> = ({ hubId }) => {
       type: "icon",
       leftIcon: "fa fa-trash",
       classList: ["smart-efl-table-delete-icon"],
-      onClick: (data: any) => {
-        openDeleteModal(data["ID"]);
+      onClick: (dataIn: any) => {
+        openDeleteModal(dataIn["ID"]);
       },
     },
   ];
@@ -255,14 +254,14 @@ const CustomersTables: React.FC<headerProps> = ({ hubId }) => {
       title: "Name",
       index: "vendor_name",
     },
- 
+
     { title: "Pan No.", index: "pan_no" },
     {
-        title: "Details",
-        index: "status",
-        // type: "tags", tags: statusTags
-        valueFunction: openDetailsList,
-      },
+      title: "Details",
+      index: "status",
+      // type: "tags", tags: statusTags
+      valueFunction: openDetailsList,
+    },
     {
       title: "Status",
       index: "status",
@@ -359,7 +358,4 @@ const CustomersTables: React.FC<headerProps> = ({ hubId }) => {
   );
 };
 
-
-
-
-export default CustomersTables
+export default CustomersTables;
