@@ -157,13 +157,10 @@ const Login: React.FC = () => {
 
   return (
     <div className="smart-lnpr-login-container">
-      <div className="columns is-vcentered is-centered">
-        <div className="column is-8 has-text-centered smart-lnpr-login-card is-vcentered is-centered p-0 m-0">
-          {/* <div className="smart-lnpr-image-content-mobile">
-            <img src={LOGIN_PAGE_LOGO} alt="Login" />
-          </div> */}
-        </div>
-        <div className="smart-lnpr-login-card column is-4 p-6 m-5"> <div className="p-3">
+     
+      
+        <div className="smart-lnpr-login-card   ">
+           <div className="">
           <div
             className={
               isOpen
@@ -200,7 +197,8 @@ const Login: React.FC = () => {
             </div> */} <div className="mt-6"></div>
           </div> </div>
         </div>
-      </div>
+      
+    
     </div>
   );
 };
