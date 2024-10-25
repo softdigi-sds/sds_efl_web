@@ -133,7 +133,7 @@ const CustomersTables: React.FC<headerProps> = ({ hubId }) => {
     return (
       <div className="has-text-centered">
         <SmartSoftButton
-          label="Add"
+          label={dataIn?dataIn?.address_count:"0"}
           onClick={() => openDetailsTable(dataIn)}
           classList={["button is-small is-primary is-light"]}
         />

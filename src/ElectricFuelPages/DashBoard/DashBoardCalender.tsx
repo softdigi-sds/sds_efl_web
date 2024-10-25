@@ -50,10 +50,10 @@ const DashBoardCalender = () => {
   //   return <div className="calender-div"></div>;
   // };
 
-  const openForm = (data: any) => {
+  const openForm = (dataIn: any) => {
     let options = {
       title:"Hub Details",
-      content: <HubDetails startDate={data}  />,
+      content: <HubDetails startDate={dataIn}  />,
       width: 30,
       className: "sd-efl-modal",
       closeBody: false,

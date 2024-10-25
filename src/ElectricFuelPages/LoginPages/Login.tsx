@@ -106,14 +106,14 @@ const Login: React.FC = () => {
     return (
       <div className="is-flex is-justify-content-space-between mb-4 has-text-weight-medium">
         <span className="">
-          {/* <SmartSoftCheckRadioSwitch
+          <SmartSoftCheckRadioSwitch
           options={options_remember_me}
           name="checkbox_remember_me"
 
-          value={formData?.checkbox_remember_me === "true" ? "1" : "0"}
+          value={formData?.checkbox_remember_me === true ? "1" : "0"}
           onChange={(value) => handleInputChange("checkbox_remember_me", value)}
           isRight={false}
-        /> */}
+        />
         </span>
       </div>
     );
@@ -127,9 +127,9 @@ const Login: React.FC = () => {
       element: {
         label: "Email",
         isRequired: true,
-        placeHolder: "Email ",
+        // placeHolder: "Email ",
         max: 255,
-        // inputType: "BORDER_LABEL",
+        inputType: "BORDER_LABEL_FOCUS",
         leftIcon: "fa fa-envelope-square",
         validations: loginFormValidations.email,
       },
@@ -141,29 +141,26 @@ const Login: React.FC = () => {
       element: {
         label: "Password",
         isRequired: true,
-        placeHolder: "Password",
-        // inputType: "BORDER_LABEL",
+        // placeHolder: "Password",
+        inputType: "BORDER_LABEL_FOCUS",
         leftIcon: "fa fa-envelope-square",
         validations: loginFormValidations.password,
       },
     },
-    // {
-    //   type: "LABEL",
-    //   name: "remember_me",
-    //   width: "12",
-    //   labelFunction: passWordPin,
-    // },
+    {
+      type: "LABEL",
+      name: "remember_me",
+      width: "12",
+      labelFunction: passWordPin,
+    },
   ];
 
   return (
     <div className="smart-lnpr-login-container">
-      <div className="smart-lnpr-login-sub-container columns is-vcentered is-centered">
-        <div className="column is-6 has-text-centered smart-lnpr-login-card is-vcentered is-centered p-0 m-0">
-          <div className="smart-lnpr-image-content-mobile">
-            <img src={LOGIN_PAGE_LOGO} alt="Login" />
-          </div>
-        </div>
-        <div className="smart-lnpr-login-card column is-6">
+     
+      
+        <div className="smart-lnpr-login-card   ">
+           <div className="">
           <div
             className={
               isOpen
@@ -171,11 +168,11 @@ const Login: React.FC = () => {
                 : "smart-lnpr-login-card-inner"
             }
           >
-            <div className="mb-6">
-              <img src={LOGO} alt="" />
+            <div className="mb-3 m-3  has-text-centered "> <div className="smart-elf-login-image">
+              <img src={LOGO} alt="" /> </div>
             </div>
             <div className="flip-card-front">
-              <p className="smart-lnpr-text mb-3">Welcome</p>
+              <p className="smart-lnpr-text mb-3 m-3">Welcome</p> <div className="smart-elf-login-input mt-6">
               <SmartSoftForm
                 formData={formData}
                 setFormData={handleInputChange}
@@ -183,7 +180,7 @@ const Login: React.FC = () => {
                 formSubmit={formSubmit}
                 handleErrorChange={handleErrorChange}
               />
-
+</div>
               <div className="has-text-centered">
                 <SmartSoftButton
                   label="Login"
@@ -197,10 +194,11 @@ const Login: React.FC = () => {
             </div>
             {/* <div className="flip-card-back">
               <ForgotPassword toggleSidebar={toggleCardFlip} />
-            </div> */}
-          </div>
+            </div> */} <div className="mt-6"></div>
+          </div> </div>
         </div>
-      </div>
+      
+    
     </div>
   );
 };

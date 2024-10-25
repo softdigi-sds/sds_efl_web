@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import { SmartSoftButton, SmartTable, SmartTableNewInterface } from "soft_digi";
 import { INVOICE_URLS } from "../../api/UserUrls";
 import { useSiteContext } from "../../contexts/SiteProvider";
-import { changeDateTimeZoneFormat } from "../../services/core/CommonService";
+import { changeDateTimeZoneFormat, formatCurrency } from "../../services/core/CommonService";
 import { downloadFile } from "../../services/core/FileService";
 import { post } from "../../services/smartApiService";
 import BillingTablePdf from "../VehiclesReport/BillingTablePdf";
@@ -73,7 +73,7 @@ const VendorWiseInformation = () => {
     let URL = INVOICE_URLS.GET_ONE_DETAILS;
     const subscription = post(URL, { id: data["ID"] }).subscribe((response) => {
       let options = {
-        title: "Vendor Details",
+        title: "Bill Details",
         content: <BillingTablePdf data={response.data} />,
         width: 50,
         className: "sd-efl-modal",
@@ -108,27 +108,39 @@ const VendorWiseInformation = () => {
     { value: 10, label: "Active", class: "has-text-link" },
   ];
 
+  const amountDisplay =(row:any)=>{
+    return(
+      <>
+      <div>
+        {formatCurrency(row?.total_amount)}
+      </div>
+      </>
+    )
+  }
+
   const columns: SmartTableNewInterface.SmartTableNewColumnConfig[] = [
     { title: "S.NO", index: "s_no", type: "sno", width: "5" },
-    {
-      title: "Hub",
-      index: "hub_id",
-      width: "20",
-    },
     {
       title: "Invoice Number",
       index: "invoice_number",
       width: "15",
     },
     {
-      title: "Vendor",
-      index: "vendor_company",
+      title: "Hub",
+      index: "hub_id",
       width: "20",
+    },
+  
+    {
+      title: "Customer",
+      index: "vendor_company",
+      width: "15",
     },
     {
       title: "Total Amount",
       index: "total_amount",
-      width: "10",
+      width: "15",
+      valueFunction:amountDisplay
     },
     {
       title: "ACK No",
@@ -166,7 +178,7 @@ const VendorWiseInformation = () => {
     {
       type: "CUSTOM",
       widthClass: "is-8",
-      custom: <p className="is-size-4">Vendor Wise Information</p>,
+      custom: <p className="is-size-4 is-italic has-text-link">Vendor Wise Information</p>,
     },
     {
       type: "SEARCH",
@@ -190,7 +202,7 @@ const VendorWiseInformation = () => {
       <>
         <div className="columns is-multiline">
           <div className="column is-8">
-            <p className="is-size-4">Bill Details</p>
+            <p className="is-size-4 is-italic has-text-link">Bill Details</p>
           </div>
           <div className="column is-4">
             <div className="is-flex is-justify-content-flex-end">
@@ -236,19 +248,19 @@ const VendorWiseInformation = () => {
                     <th></th>
                     <td></td>
                   </tr>
-                  <tr>
+                  {/* <tr>
                     <th>Parking Amount (Rs):</th>
                     <td>{data?.vehicle_amount}</td>
                     <th>Consumption Amount (Rs):</th>
                     <td>{data?.unit_amount}</td>
                     <th>Others(Rs):</th>
                     <td>{data?.others}</td>
-                  </tr>
+                  </tr> */}
                   <tr>
                     <th>GST (Rs):</th>
-                    <td>{data?.gst_amount}</td>
+                    <td>{formatCurrency(data?.gst_amount)}</td>
                     <th>Total (Rs):</th>
-                    <td>{data?.total_amount}</td>
+                    <td>{formatCurrency(data?.total_amount)}</td>
                   </tr>
                 </tbody>
               </table>
