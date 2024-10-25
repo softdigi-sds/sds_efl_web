@@ -175,7 +175,23 @@ font-weight: bold;
 
   .smart-lnpr-login-card {
     width: 100%;
+    margin: 0;
+    padding: 0;
+    padding-top: 3em;
+   
   }
+  .smart-lnpr-login-card-inner{
+    padding-bottom: 6em;
+    padding-top: 3em;
+  }
+  .smart-lnpr-login-container{
+    min-height: 90vh;
+    display: block;
+    background-size:cover;
+    background-image: url(../../assets/images/Background/1714484218197.png);
+  }
+
+ 
 }
 
 .smart-elf-login-image {
