@@ -191,13 +191,13 @@ const Login: React.FC = () => {
                   onClick={handleLogin}
                 />
               </div>
-              <span className="smart-forgot-text" onClick={toggleCardFlip}>
+              {/* <span className="smart-forgot-text" onClick={toggleCardFlip}>
                 Forgot Password?
-              </span>
+              </span> */}
             </div>
-            <div className="flip-card-back">
+            {/* <div className="flip-card-back">
               <ForgotPassword toggleSidebar={toggleCardFlip} />
-            </div>
+            </div> */}
           </div>
         </div>
       </div>
