@@ -66,7 +66,7 @@ const AddressForm: React.FC<HeaderProps> = ({
     }
     let _data = { ...formData };
     _data["sd_customers_id"] = customer_id;
-    const subscription = post(url, formData).subscribe((response) => {
+    const subscription = post(url, _data).subscribe((response) => {
       //console.log("response form ", response.data);
       loadTableData();
       showAlertAutoClose("Data Saved Successfully", "success");
@@ -145,7 +145,7 @@ const AddressForm: React.FC<HeaderProps> = ({
         inputType: "BORDER_LABEL",
       },
     },
-    
+
     {
       type: "TEXT_BOX",
       width: "4",
@@ -157,7 +157,7 @@ const AddressForm: React.FC<HeaderProps> = ({
         // inputProps: { isFocussed: true },
         validations: vendorFormValidations.pin_code,
         inputType: "BORDER_LABEL",
-       // pattern: ALLOW_NUMERIC,
+        // pattern: ALLOW_NUMERIC,
         max: "6",
       },
     },

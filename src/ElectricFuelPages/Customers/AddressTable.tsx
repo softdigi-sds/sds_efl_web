@@ -20,7 +20,7 @@ interface headerProps {
 }
 
 const AddressTable: React.FC<headerProps> = ({ dataIn }) => {
-  const [data, setData] = useState([]);
+  const [tabdata, setData] = useState([]);
   const { openModal, closeModal } = useSiteContext();
 
   const loadTableData = () => {
@@ -322,7 +322,7 @@ const AddressTable: React.FC<headerProps> = ({ dataIn }) => {
       <div>
         <SmartTable
           columns={columns}
-          data={data}
+          data={tabdata}
           tableTop={tableTop}
           filterFields={filterFields}
           tableProps={{
