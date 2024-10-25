@@ -147,12 +147,12 @@ const Login: React.FC = () => {
         validations: loginFormValidations.password,
       },
     },
-    // {
-    //   type: "LABEL",
-    //   name: "remember_me",
-    //   width: "12",
-    //   labelFunction: passWordPin,
-    // },
+    {
+      type: "LABEL",
+      name: "remember_me",
+      width: "12",
+      labelFunction: passWordPin,
+    },
   ];
 
   return (
