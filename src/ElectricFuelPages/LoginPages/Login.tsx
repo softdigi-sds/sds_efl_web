@@ -172,7 +172,8 @@ const Login: React.FC = () => {
               <img src={LOGO} alt="" /> </div>
             </div>
             <div className="flip-card-front">
-              <p className="smart-lnpr-text mb-3 m-3">Welcome</p> <div className="smart-elf-login-input mt-6">
+              <p className="smart-lnpr-text ">Welcome</p>
+               <div className="smart-elf-login-input mt-3">
               <SmartSoftForm
                 formData={formData}
                 setFormData={handleInputChange}

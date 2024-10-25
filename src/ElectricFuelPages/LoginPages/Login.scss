@@ -46,7 +46,7 @@ font-weight: bold;
   .is-danger.input:focus{
     box-shadow: none;
   }
-  
+
   input:active {
     box-shadow: none; border: none !important;
   }
@@ -147,9 +147,10 @@ font-weight: bold;
 .smart-lnpr-text {
   color: black;
   font-size: 2rem;
-  font-family: "Fredoka", sans-serif;
+  font-family: Baumans;
   font-weight: 800;
-  margin-bottom: 3rem;
+  margin-bottom: 1.5rem;
+  text-align: center;
 }
 
 .smart-lnpr-image-content-mobile {
