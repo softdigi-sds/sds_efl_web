@@ -285,7 +285,7 @@ const VendorWiseInformation = () => {
             searchPlaceHolder: "Search",
           }}
           paginationProps={{
-            pageSize: 10,
+            pageSize: 1,
           }}
         />
       </div>
