@@ -161,6 +161,14 @@ const getLocalTime = (time_input: string) => {
 const roundNumber = (input: any) => {
   return Math.round(input * 100) / 100; // Output: 3.46
 };
+const formatCurrency = (value: number): string => {
+  return new Intl.NumberFormat('en-IN', {
+    style: 'currency',
+    currency: 'INR',
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+  }).format(value);
+};
 
 export {
   changeDateTimeFormat,
@@ -172,6 +180,7 @@ export {
   isEmptyObject,
   maskEmail,
   maskMobileNumber,
-  monthNameDisplay, roundNumber
+  monthNameDisplay, roundNumber,
+  formatCurrency
 };
 

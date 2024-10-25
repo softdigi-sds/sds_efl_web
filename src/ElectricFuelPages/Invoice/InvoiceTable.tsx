@@ -9,6 +9,7 @@ import ImportInvoice from "./ImportInvoice";
 import InvoicebillForm from "./InvoicebillForm";
 import InvoicebottomTable from "./InvoicebottomTable";
 import { showAlertAutoClose } from "../../services/notifyService";
+import { formatCurrency } from "../../services/core/CommonService";
 
 const InvoiceTable = () => {
   const [tabData, setTabData] = useState([]);
@@ -120,6 +121,24 @@ const InvoiceTable = () => {
     },
 
   ];
+  const amountDisplay =(row:any)=>{
+    return(
+      <>
+      <div>
+        {formatCurrency(row?.total_amount)}
+      </div>
+      </>
+    )
+  }
+  const GstDisplay =(row:any)=>{
+    return(
+      <>
+      <div>
+        {formatCurrency(row?.gst_amount)}
+      </div>
+      </>
+    )
+  }
   const columns: SmartTableNewInterface.SmartTableNewColumnConfig[] = [
     { title: "S.NO", index: "s_no", type: "sno",width:"5" },
     {
@@ -151,12 +170,14 @@ const InvoiceTable = () => {
     {
       title: "GST(Rs)",
       index: "gst_amount",
-        width:"5"
+        width:"5",
+        valueFunction:GstDisplay
     },
     {
       title: "Total (Rs)",
       index: "total_amount",
-        width:"10"
+        width:"10",
+        valueFunction:amountDisplay
     },
     // {
     //   title: "",
