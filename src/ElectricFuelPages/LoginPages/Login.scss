@@ -28,22 +28,37 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 355px;
+  width: 380px;
   padding: 2rem;
 
   .input {
     border: none;
-    border-bottom: 2px solid $primary-color !important;
+    border-bottom: 2px solid white !important;
     border-radius: 0;
     padding-left: 10px;
-
+color: black;
+font-weight: bold;
     background: none;
   }
+  .is-success.input:focus{
+    box-shadow: none;
+  }
+  .is-danger.input:focus{
+    box-shadow: none;
+  }
   input:active {
-    box-shadow: none; border: none;
+    box-shadow: none; border: none !important;
+  }
+  input:focus {
+   box-shadow: none;
+  }
+  .control.has-icons-left .icon, .control.has-icons-right .icon{
+    color: black;
   }
   .smart-border-label-focus-input div label {
     background: none;
+    color: black;
+    font-weight: bold;
   }
   .smart-border-label-focus-input div input:focus + .label {
     background: none;

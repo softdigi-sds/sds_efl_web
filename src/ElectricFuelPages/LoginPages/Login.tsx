@@ -143,7 +143,7 @@ const Login: React.FC = () => {
         isRequired: true,
         // placeHolder: "Password",
         inputType: "BORDER_LABEL_FOCUS",
-        leftIcon: "fa fa-envelope-square",
+        leftIcon: "fa fa-lock",
         validations: loginFormValidations.password,
       },
     },
