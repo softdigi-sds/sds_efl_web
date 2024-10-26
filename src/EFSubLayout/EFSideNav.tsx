@@ -69,16 +69,16 @@ const EFSideNav: React.FC<childrenProps> = ({ isOpen ,setIsOpen}) => {
     },
 
  
-    {
-      id: 8,
-      label: "Meter Reading",
-      icon: "fa-cogs",
-      link: "/e-fuel/meter-reading",
-      roles: ["ADMIN"],
-    },
+    // {
+    //   id: 8,
+    //   label: "Meter Reading",
+    //   icon: "fa-cogs",
+    //   link: "/e-fuel/meter-reading",
+    //   roles: ["ADMIN"],
+    // },
     {
       id: 12,
-      label: "Meter Reading Report",
+      label: "Meter Reading",
       icon: "fa-tachometer",
       link: "/e-fuel/meter-reading-report",
       roles: ["ADMIN"],
