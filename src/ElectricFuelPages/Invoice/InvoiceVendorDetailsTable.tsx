@@ -7,10 +7,10 @@ interface InputProps {
 }
 
 const InvoiceVendorDetailsTable: React.FC<InputProps> = ({ dataIn }) => {
-  const [dataArray, setDataArray] = useState<any[]>([dataIn]);
+  // const [dataArray, setDataArray] = useState<any[]>([dataIn]);
 
 
-  console.log("Data list",dataArray)
+  //console.log("Data list",dataArray)
 
 
 
@@ -91,13 +91,13 @@ const InvoiceVendorDetailsTable: React.FC<InputProps> = ({ dataIn }) => {
     { title: "S.NO", index: "s_no", type: "sno", width: "5" },
     // { title: "Invoice Number", index: "invoice_number" },
     // { title: "ACK No.", index: "ack_no", width: "20" },
-    { title: "Type", index: "type", valueFunction:typeDisplay},
-    { title: "Month Avrage", index: "month_avg", valueFunction:monthDisplay },
-    { title: "Count", index: "count", valueFunction:countDisplay }, 
-    { title: "Min Units", index: "min_units", valueFunction:minDisplay }, 
-    { title: "Price", index: "price", valueFunction:priceDataDisplay },
+    { title: "Type", index: "type", },
+    { title: "Month Avrage", index: "month_avg",  },
+    { title: "Count", index: "count",  }, 
+    { title: "Min Units", index: "min_units",  }, 
+    { title: "Price", index: "price",  },
   
-    { title: "Total", index: "total", valueFunction:priceDisplay },
+    { title: "Total", index: "total",  },
  
   ];
 
@@ -125,7 +125,7 @@ const InvoiceVendorDetailsTable: React.FC<InputProps> = ({ dataIn }) => {
       <div className="smart-elf-table">
         <SmartTable
           columns={columns}
-          data={dataArray}
+          data={dataIn?.sub_data ||[]}
           tableTop={tableTop}
           tableProps={{
             className: "is-hoverable is-striped is-fullwidth",
