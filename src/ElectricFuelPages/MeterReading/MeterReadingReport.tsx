@@ -38,7 +38,22 @@ const MeterReadingReport = () => {
     const subscription = post(URL, _data).subscribe((response) => {
       setData(response.data.data);
       //console.table(response.data);
-      setNumberArray(response.data.dates);
+      let months = [
+        "January",
+        "February",
+        "March",
+        "April",
+        "May",
+        "June",
+        "July",
+        "August",
+        "September",
+        "October",
+        "November",
+        "December",
+      ];
+      setNumberArray(months);
+      // setNumberArray(response.data.dates);
     });
     return () => {
       subscription.unsubscribe();
@@ -125,16 +140,16 @@ const MeterReadingReport = () => {
         <div className="column is-3">
           <div className="is-flex is-justify-content-flex-end">
             <div className="has-text-centered">
-           
-            <div className="mt-2 is-size-6 is-pulled-right">{dateRange()}</div>
-           
+              <div className="mt-2 is-size-6 is-pulled-right">
+                {dateRange()}
+              </div>
             </div>
             <SmartSoftButton
-                label="Add"
-                onClick={() => openMeterForm()}
-                leftIcon="fa fa-plus"
-                classList={["smart-third-button"]}
-              />
+              label="Add"
+              onClick={() => openMeterForm()}
+              leftIcon="fa fa-plus"
+              classList={["smart-third-button"]}
+            />
           </div>
         </div>
 
@@ -161,7 +176,7 @@ const MeterReadingReport = () => {
                           <p>{hub.hub_name}</p>
                         </div>
                       </td>
-                      
+
                       {numberArray.map((item: any) => {
                         let _count = getDayobj(item, hub.meter_data);
                         return _count && _count.meter_reading ? (
