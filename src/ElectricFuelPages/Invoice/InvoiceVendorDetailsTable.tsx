@@ -15,12 +15,27 @@ const InvoiceVendorDetailsTable: React.FC<InputProps> = ({ dataIn }) => {
 
 
 
+ const typeDisplay =(row:any)=>{
+  console.log("sub data",row.sub_data)
+  return(
+   <>
+   {row.sub_data && row.sub_data.map((subDetails:any)=>{
+    return(
+     <div key={subDetails.id}>{subDetails.type_desc}</div>
+    )
+   })}
+   </>
+  )
+ }
+
+
 
   const columns: SmartTableNewInterface.SmartTableNewColumnConfig[] = [
     { title: "S.NO", index: "s_no", type: "sno", width: "5" },
     { title: "Invoice Number", index: "invoice_number" },
     { title: "ACK No.", index: "ack_no", width: "20" },
     { title: "Start Date", index: "bill_start_date", },
+    { title: "Type", index: "type", valueFunction:typeDisplay},
     { title: "End Date", index: "bill_end_date", width: "20" },
   ];
 
