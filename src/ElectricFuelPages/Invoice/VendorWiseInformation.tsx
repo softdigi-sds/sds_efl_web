@@ -8,6 +8,7 @@ import { downloadFile } from "../../services/core/FileService";
 import { post } from "../../services/smartApiService";
 import BillingTablePdf from "../VehiclesReport/BillingTablePdf";
 import VendorDetailsImport from "./VendorDetailsImport";
+import InvoiceVendorDetailsTable from "./InvoiceVendorDetailsTable";
 
 const VendorWiseInformation = () => {
   const { id } = useParams<{ id: string }>();
@@ -74,8 +75,8 @@ const VendorWiseInformation = () => {
     const subscription = post(URL, { id: data["ID"] }).subscribe((response) => {
       let options = {
         title: "Bill Details",
-        content: <BillingTablePdf data={response.data} />,
-        width: 50,
+        content: <InvoiceVendorDetailsTable dataIn={response.data} />,
+        width: 60,
         className: "sd-efl-modal",
         closeBody: false,
       };
