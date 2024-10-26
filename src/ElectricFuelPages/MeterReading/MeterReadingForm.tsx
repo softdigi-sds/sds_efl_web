@@ -99,7 +99,9 @@ const MeterReadingForm: React.FC<HeaderProps> = ({
   }, []);
   const hubFormValidations = {
     hub_id: [SmartValid.required("Hub Name is Required")],
-    start: [SmartValid.required("Meter Start Reading is Required")],
+    start: [SmartValid.required("Meter Start Reading is Required")], 
+    start_date: [SmartValid.required("Date is Required")],
+    end_date: [SmartValid.required("Date is Required")],
     end: [
       SmartValid.required("Meter End Reading is Required"),
       SmartValid.custom((value:any) => {
@@ -107,7 +109,7 @@ const MeterReadingForm: React.FC<HeaderProps> = ({
           ? "End Reading cannot be less than Start Reading"
           : "";
       }),
-    ],
+    ], 
   };
 
   const totalPrice = () => {
@@ -145,7 +147,7 @@ const MeterReadingForm: React.FC<HeaderProps> = ({
         isRequired: true,
         // isHorizontal: true,
         inputType: "BORDER_LABEL",
-        validations: hubFormValidations.hub_id,
+        validations: hubFormValidations.start_date,
       },
     },
     {
@@ -157,7 +159,7 @@ const MeterReadingForm: React.FC<HeaderProps> = ({
         isRequired: true,
         inputType: "BORDER_LABEL",
         minDate: minEndDate,
-        validations: hubFormValidations.hub_id,
+        validations: hubFormValidations.end_date,
       },
     },
 
