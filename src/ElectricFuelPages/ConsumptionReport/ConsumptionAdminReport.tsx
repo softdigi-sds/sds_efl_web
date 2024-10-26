@@ -192,16 +192,16 @@ const ConsumptionAdminReport: React.FC<VehicleReportProps> = ({
               classList={["button", " px-5 py-0 is-link is-normal ml-2"]}
               // leftIcon="fa fa-file-excel-o"
               onClick={() => handelStage()}
-            />  <span
-            className="is-size-4 ml-6 smart-refresh-icon is-clickable"
-            onClick={() => loadData()}
-          >
-            <i className="fa fa-refresh"></i>
-          </span>
+            />{" "}
+            <span
+              className="is-size-4 ml-6 smart-refresh-icon is-clickable"
+              onClick={() => loadData()}
+            >
+              <i className="fa fa-refresh"></i>
+            </span>
           </div>
         </div>
         <div className="column is-4 ">
-         
           <div className="is-flex is-justify-content-flex-end ml-5">
             <div className="mt-2 is-size-6 is-pulled-right"> {dateRange()}</div>
           </div>
@@ -213,12 +213,12 @@ const ConsumptionAdminReport: React.FC<VehicleReportProps> = ({
               <thead>
                 <tr>
                   <th>Hub Name</th>
+                  <th>Total</th>
                   {numberArray.map((item: any) => (
                     <>
                       <th>{changeDateTimeZone(item, "DD")}</th>
                     </>
                   ))}
-                  <th>Total Average</th>
                 </tr>
               </thead>
               <tbody>
@@ -242,6 +242,7 @@ const ConsumptionAdminReport: React.FC<VehicleReportProps> = ({
                           </div>
                         </div>
                       </td>
+                      <td>{hub.total}</td>
                       {numberArray.map((item: any) => {
                         let _count = getDayCount(item, hub.sub_data);
                         const isNotGreaterThanToday = isDateWithinDays(item, 0);
@@ -269,7 +270,6 @@ const ConsumptionAdminReport: React.FC<VehicleReportProps> = ({
                           </td>
                         );
                       })}
-                      <td>{hub.average}</td>
                     </tr>
                   ))}
               </tbody>
