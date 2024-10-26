@@ -18,7 +18,7 @@ import MeterReading from "./MeterReading/MeterReading";
 import Msireports from "./MSIReports/MsiReports";
 import ConsumptionAdminReport from "./ConsumptionReport/ConsumptionAdminReport";
 import VehicleAdminReport from "./VehiclesReport/VehicleAdminReport";
-import MeterReadingReport from "./MeterReadingReport/MeterReadingReport";
+import MeterReadingReport from "./MeterReading/MeterReadingReport";
 import CustomersTables from "./Customers/CustomersTables";
 export {
   Dashboard,
@@ -40,5 +40,5 @@ export {
   ConsumptionAdminReport,
   VehicleAdminReport,
   MeterReadingReport,
-  CustomersTables
+  CustomersTables,
 };
