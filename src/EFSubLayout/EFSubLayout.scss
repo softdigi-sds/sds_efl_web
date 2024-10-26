@@ -67,8 +67,7 @@
     font-size: 1.2em;
   }
 }
-.header-brand-logo{
-
+.header-brand-logo {
   margin-bottom: 10px;
   padding: 10px;
   background-color: #ffffff;
@@ -195,6 +194,20 @@
         //   top: -15px;
         z-index: 10;
       }
+    }
+  }
+}
+
+.smart-efl-container {
+  // Mobile view styles
+  @media screen and (max-width: 768px) {
+    padding: 0 !important;
+  }
+}
+.sd-efl-modal {
+  .modal-card {
+    @media screen and (max-width: 768px) {
+      width: 100% !important;
     }
   }
 }
