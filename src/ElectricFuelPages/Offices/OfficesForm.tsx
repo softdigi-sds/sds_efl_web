@@ -80,7 +80,7 @@ const OfficesForm:React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
     sgst_no: [SmartValid.required("SGST No is Required")],
     igst_no: [SmartValid.required("IGST No is Required")],
     pan_no: [SmartValid.required("Pan No is Required")],
-    cin_no: [SmartValid.required("CIN No is Required")],
+    cin_no: [SmartValid.required("CRN No is Required")],
     pin_code: [SmartValid.required("Pin Code is Required")],
   };
 
