@@ -74,7 +74,7 @@ const VendorWiseInformation = () => {
     let URL = INVOICE_URLS.GET_ONE_DETAILS;
     const subscription = post(URL, { id: data["ID"] }).subscribe((response) => {
       let options = {
-        title: "Bill Details",
+        title:  ` ${data.hub_id} - ${data.invoice_number}  `,
         content: <InvoiceVendorDetailsTable dataIn={response.data} />,
         width: 60,
         className: "sd-efl-modal",
@@ -82,11 +82,7 @@ const VendorWiseInformation = () => {
       };
       openModal(options);
     });
-    return () => {
-      subscription.unsubscribe();
-    };
-
-    
+    return () => subscription.unsubscribe();
   };
   const handleDelete = (rowData: any) => {
     console.log("Delete action for row:", rowData);
