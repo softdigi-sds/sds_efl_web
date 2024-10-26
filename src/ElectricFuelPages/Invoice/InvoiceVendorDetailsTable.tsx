@@ -16,7 +16,7 @@ const InvoiceVendorDetailsTable: React.FC<InputProps> = ({ dataIn }) => {
 
 
  const typeDisplay =(row:any)=>{
-  console.log("sub data",row.sub_data)
+
   return(
    <>
    {row.sub_data && row.sub_data.map((subDetails:any)=>{
@@ -27,16 +27,78 @@ const InvoiceVendorDetailsTable: React.FC<InputProps> = ({ dataIn }) => {
    </>
   )
  }
+ const priceDisplay =(row:any)=>{
 
+    return(
+     <>
+     {row.sub_data && row.sub_data.map((subDetails:any)=>{
+      return(
+       <div key={subDetails.id}>{subDetails.total}</div>
+      )
+     })}
+     </>
+    )
+   }
+   const countDisplay =(row:any)=>{
 
+    return(
+     <>
+     {row.sub_data && row.sub_data.map((subDetails:any)=>{
+      return(
+       <div key={subDetails.id}>{subDetails.count}</div>
+      )
+     })}
+     </>
+    )
+   }
+   const minDisplay =(row:any)=>{
 
+    return(
+     <>
+     {row.sub_data && row.sub_data.map((subDetails:any)=>{
+      return(
+       <div key={subDetails.id}>{subDetails.min_units}</div>
+      )
+     })}
+     </>
+    )
+   }
+   const priceDataDisplay =(row:any)=>{
+
+    return(
+     <>
+     {row.sub_data && row.sub_data.map((subDetails:any)=>{
+      return(
+       <div key={subDetails.id}>{subDetails.price}</div>
+      )
+     })}
+     </>
+    )
+   }
+   const monthDisplay =(row:any)=>{
+
+    return(
+     <>
+     {row.sub_data && row.sub_data.map((subDetails:any)=>{
+      return(
+       <div key={subDetails.id}>{subDetails.price}</div>
+      )
+     })}
+     </>
+    )
+   }
   const columns: SmartTableNewInterface.SmartTableNewColumnConfig[] = [
     { title: "S.NO", index: "s_no", type: "sno", width: "5" },
     { title: "Invoice Number", index: "invoice_number" },
-    { title: "ACK No.", index: "ack_no", width: "20" },
-    { title: "Start Date", index: "bill_start_date", },
+    // { title: "ACK No.", index: "ack_no", width: "20" },
     { title: "Type", index: "type", valueFunction:typeDisplay},
-    { title: "End Date", index: "bill_end_date", width: "20" },
+    { title: "Month Avrage", index: "month_avg", valueFunction:monthDisplay },
+    { title: "Count", index: "count", valueFunction:countDisplay }, 
+    { title: "Min Units", index: "min_units", valueFunction:minDisplay }, 
+    { title: "Price", index: "price", valueFunction:priceDataDisplay },
+  
+    { title: "Total", index: "total", valueFunction:priceDisplay },
+ 
   ];
 
   const tableTop: SmartTableNewInterface.SmartTableNewTopProps[] = [
@@ -71,7 +133,7 @@ const InvoiceVendorDetailsTable: React.FC<InputProps> = ({ dataIn }) => {
             searchPlaceHolder: "Search",
           }}
           paginationProps={{
-            pageSize: 10,
+            pageSize: 1,
           }}
         />
       </div>
