@@ -89,7 +89,7 @@ const InvoiceVendorDetailsTable: React.FC<InputProps> = ({ dataIn }) => {
    }
   const columns: SmartTableNewInterface.SmartTableNewColumnConfig[] = [
     { title: "S.NO", index: "s_no", type: "sno", width: "5" },
-    { title: "Invoice Number", index: "invoice_number" },
+    // { title: "Invoice Number", index: "invoice_number" },
     // { title: "ACK No.", index: "ack_no", width: "20" },
     { title: "Type", index: "type", valueFunction:typeDisplay},
     { title: "Month Avrage", index: "month_avg", valueFunction:monthDisplay },
