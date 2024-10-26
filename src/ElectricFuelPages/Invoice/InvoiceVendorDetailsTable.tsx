@@ -91,7 +91,7 @@ const InvoiceVendorDetailsTable: React.FC<InputProps> = ({ dataIn }) => {
     { title: "S.NO", index: "s_no", type: "sno", width: "5" },
     // { title: "Invoice Number", index: "invoice_number" },
     // { title: "ACK No.", index: "ack_no", width: "20" },
-    { title: "Type", index: "type", },
+    { title: "Type", index: "type_desc", },
     { title: "Month Avrage", index: "month_avg",  },
     { title: "Count", index: "count",  }, 
     { title: "Min Units", index: "min_units",  }, 
@@ -114,10 +114,11 @@ const InvoiceVendorDetailsTable: React.FC<InputProps> = ({ dataIn }) => {
   return (
     <>
       <div className="columns">
+      <div className="column is-2">Total Tax:</div>
+      <div className="column is-2">{ formatCurrency(dataIn?.total_taxable)}</div>
         <div className="column is-2">GST Amount:</div>
         <div className="column is-2"> { formatCurrency(dataIn?.gst_amount)}</div>
-        <div className="column is-2">Total Tax:</div>
-        <div className="column is-2">{ formatCurrency(dataIn?.total_taxable)}</div>
+       
         <div className="column is-2">Total Amount:</div>
         <div className="column is-2">{ formatCurrency(dataIn?.total_amount)}</div>
       </div>
