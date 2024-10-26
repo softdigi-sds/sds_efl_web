@@ -27,7 +27,7 @@ const EFSubLayout: React.FC<childrenProps> = (props) => {
   //   </div>
   // )
   return (
-    <div className="container is-fluid">
+    <div className="container is-fluid smart-efl-container">
       <div className="efl-main-sidenav">
         <EFSideNav isOpen={isOpen} setIsOpen={setIsOpen} />
       </div>
