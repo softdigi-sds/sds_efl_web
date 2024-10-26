@@ -38,9 +38,15 @@ const MeterReadingForm: React.FC<HeaderProps> = ({
   const [formErrors, setFormErrors] = useState<FormErrors>({});
   const { closeModal } = useSiteContext();
   const [allHubs, setAllHubs] = useState([]);
+  const [minEndDate, setMinEndDate] = useState();
+
+  
 
   const handleInputChange = (name: string, value: any) => {
     setFormData((prev: any) => ({ ...prev, [name]: value }));
+    if (name === "meter_start_date") {
+      setMinEndDate(value);
+    }
   };
 
   useEffect(() => {
@@ -94,7 +100,14 @@ const MeterReadingForm: React.FC<HeaderProps> = ({
   const hubFormValidations = {
     hub_id: [SmartValid.required("Hub Name is Required")],
     start: [SmartValid.required("Meter Start Reading is Required")],
-    end: [SmartValid.required("Meter End Reading is Required")],
+    end: [
+      SmartValid.required("Meter End Reading is Required"),
+      SmartValid.custom((value:any) => {
+        return parseFloat(formData.meter_start) > parseFloat(value)
+          ? "End Reading cannot be less than Start Reading"
+          : "";
+      }),
+    ],
   };
 
   const totalPrice = () => {
@@ -143,6 +156,7 @@ const MeterReadingForm: React.FC<HeaderProps> = ({
         label: "End Date",
         isRequired: true,
         inputType: "BORDER_LABEL",
+        minDate: minEndDate,
         validations: hubFormValidations.hub_id,
       },
     },
@@ -172,6 +186,7 @@ const MeterReadingForm: React.FC<HeaderProps> = ({
         inputType: "BORDER_LABEL",
         validations: hubFormValidations.end,
         pattern: ALLOW_NUMERIC,
+        
       },
     },
     {

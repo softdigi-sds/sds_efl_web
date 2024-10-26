@@ -82,7 +82,7 @@ const MeterReadingReport = () => {
         </span>
         <span className="mx-2">
           {startYear}
-          <i className="fa fa-calendar"></i>
+          {/* <i className="fa fa-calendar"></i> */}
         </span>
         <span className="icon is-clickable" onClick={handleNextYear}>
           <i className="fa fa-arrow-right"></i>
@@ -125,13 +125,16 @@ const MeterReadingReport = () => {
         <div className="column is-3">
           <div className="is-flex is-justify-content-flex-end">
             <div className="has-text-centered">
-              <SmartSoftButton
+           
+            <div className="mt-2 is-size-6 is-pulled-right">{dateRange()}</div>
+           
+            </div>
+            <SmartSoftButton
                 label="Add"
                 onClick={() => openMeterForm()}
-                classList={["button is-small is-primary is-light"]}
+                leftIcon="fa fa-plus"
+                classList={["smart-third-button"]}
               />
-            </div>
-            <div className="mt-2 is-size-6 is-pulled-right">{dateRange()}</div>
           </div>
         </div>
 
@@ -158,7 +161,7 @@ const MeterReadingReport = () => {
                           <p>{hub.hub_name}</p>
                         </div>
                       </td>
-                      <td>{hub.average}</td>
+                      
                       {numberArray.map((item: any) => {
                         let _count = getDayobj(item, hub.meter_data);
                         return _count && _count.meter_reading ? (
