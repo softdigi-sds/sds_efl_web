@@ -196,6 +196,10 @@ const Login: React.FC = () => {
             {/* <div className="flip-card-back">
               <ForgotPassword toggleSidebar={toggleCardFlip} />
             </div> */} <div className="mt-6"></div>
+            <span className="top"></span>
+  <span className="right"></span>
+  <span className="bottom"></span>
+  <span className="left"></span>
           </div> </div>
         </div>
       

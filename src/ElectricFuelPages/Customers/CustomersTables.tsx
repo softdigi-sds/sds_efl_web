@@ -257,7 +257,7 @@ const CustomersTables: React.FC<headerProps> = ({ hubId }) => {
 
     { title: "Pan No.", index: "pan_no" },
     {
-      title: "Details",
+      title: "Address",
       index: "status",
       // type: "tags", tags: statusTags
       valueFunction: openDetailsList,

@@ -14,6 +14,9 @@ const VendorRatesSubForm: React.FC<HeaderProps> = ({
   formData,
   setFormData,
 }) => {
+
+
+  
   const options_select = [
     { value: "1", label: "Fixed" },
     { value: "2", label: "Minimum" },
