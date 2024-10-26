@@ -82,7 +82,7 @@ const HubsForms: React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
   const hubFormValidations = {
     city: [SmartValid.required("City is Required")],
     hub_id: [SmartValid.required("Hub Id is Required")],
-    role: [SmartValid.required("Hub Supervisors is Required")],
+    role: [SmartValid.required("City In-charge is Required")],
     hub_name: [SmartValid.required("Hub Name is Required")],
     locations: [SmartValid.required("Location is Required")],
     pin_code: [SmartValid.required("Pin Code is Required")],
