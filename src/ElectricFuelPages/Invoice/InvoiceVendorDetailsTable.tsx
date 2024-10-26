@@ -114,7 +114,7 @@ const InvoiceVendorDetailsTable: React.FC<InputProps> = ({ dataIn }) => {
   return (
     <>
       <div className="columns">
-      <div className="column is-2">Total Tax:</div>
+      <div className="column is-2">Total Taxable:</div>
       <div className="column is-2">{ formatCurrency(dataIn?.total_taxable)}</div>
         <div className="column is-2">GST Amount:</div>
         <div className="column is-2"> { formatCurrency(dataIn?.gst_amount)}</div>
