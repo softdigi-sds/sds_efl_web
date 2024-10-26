@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { SmartTable, SmartTableNewInterface } from "soft_digi";
 import { formatCurrency } from "../../services/core/CommonService";
 
@@ -7,6 +7,15 @@ interface InputProps {
 }
 
 const InvoiceVendorDetailsTable: React.FC<InputProps> = ({ dataIn }) => {
+  const [dataArray, setDataArray] = useState<any[]>([dataIn]);
+
+
+  console.log("Data list",dataArray)
+
+
+
+
+
   const columns: SmartTableNewInterface.SmartTableNewColumnConfig[] = [
     { title: "S.NO", index: "s_no", type: "sno", width: "5" },
     { title: "Invoice Number", index: "invoice_number", width: "15" },
@@ -21,6 +30,8 @@ const InvoiceVendorDetailsTable: React.FC<InputProps> = ({ dataIn }) => {
     },
   ];
 
+  
+ 
   return (
     <>
       <div className="columns">
@@ -35,10 +46,10 @@ const InvoiceVendorDetailsTable: React.FC<InputProps> = ({ dataIn }) => {
       <div className="smart-elf-table">
         <SmartTable
           columns={columns}
-          data={dataIn}
+          data={dataArray}
           tableTop={tableTop}
           tableProps={{
-            className: "is-hoverable is-bordered is-striped",
+            className: "is-hoverable is-striped is-fullwidth",
             isResponsive: true,
             searchPlaceHolder: "Search",
           }}
