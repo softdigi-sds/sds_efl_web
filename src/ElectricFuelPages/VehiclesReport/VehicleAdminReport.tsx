@@ -197,7 +197,7 @@ const VehicleAdminReport: React.FC<VehicleReportProps> = ({
     return 0;
   };
 
-  const openForm = (date: any, hub: any) => {
+  const openForm = (date: any, hub: any,end_date?:string) => {
     let options = {
       title: (
         <div>
@@ -214,6 +214,7 @@ const VehicleAdminReport: React.FC<VehicleReportProps> = ({
         <VehicleReportFrom
           loadTableData={loadData}
           date={date}
+          endDate={end_date}
           hub_id={{ value: hub.ID }}
         />
       ),
@@ -340,7 +341,7 @@ const VehicleAdminReport: React.FC<VehicleReportProps> = ({
                           </div>
                         </div>
                       </td>
-                      <td>{hub.average}</td>
+                      <td  onClick={() => openForm(changeDateTimeZone(startDate.toISOString(), "YYYY-MM-DD"), hub,changeDateTimeZone(endDate.toISOString(), "YYYY-MM-DD"))}>{hub.average}</td>
                       {numberArray.map((item: any) => {
                         let _count = getDayCount(item, hub.sub_data);
                         const isNotGreaterThanToday = isDateWithinDays(item, 0);

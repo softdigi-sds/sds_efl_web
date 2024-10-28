@@ -48,6 +48,7 @@ const CONSUMPTION_URL = {
   GET_ALL_CALENDER: "/efl_consumption/get_all_consumption_data",
   GET_ALL_WITH_HUB: "/efl_consumption/get_all_consumption_data_hub",
   GET_ALL_CALENDER_GET_ONE: "/efl_consumption/get_one_consumption_data",
+  GET_ALL_CALENDER_GET_ONE_HUB: "/efl_consumption/get_one_consumption_data_hub",
   IMPORT_EXCEL: "/efl_consumption/import_excel",
 };
 const VEHICLES_URL = {
@@ -100,14 +101,13 @@ const CUSTOMER_URLS = {
 };
 
 export {
-  CONSUMPTION_URL,
-  HUBS_URLS,
+  CONSUMPTION_URL, CUSTOMER_URLS, HUBS_URLS,
   HUB_GROUPS_URLS,
   INVOICE_URLS,
   METER_READINGS_URLS,
   OFFICE_URLS,
   VEHICLES_URL,
   VENDERS_URLS,
-  VENDER_RATE_URLS,
-  CUSTOMER_URLS,
+  VENDER_RATE_URLS
 };
+

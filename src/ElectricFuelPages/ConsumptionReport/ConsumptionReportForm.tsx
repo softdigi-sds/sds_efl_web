@@ -13,11 +13,13 @@ interface HeaderProps {
   loadTableData: () => void;
   date: any;
   hub_id: any;
+  endDate?:any
 }
 const ConsumptionReportForm: React.FC<HeaderProps> = ({
   loadTableData,
   date,
   hub_id,
+  endDate
 }) => {
   const [formData, setFormData] = useState<any[]>([]);
   const [types, setTypes] = useState<any[]>([]);
@@ -27,8 +29,9 @@ const ConsumptionReportForm: React.FC<HeaderProps> = ({
     let _data = {
       hub_id: hub_id,
       date: date,
+      end_date:endDate
     };
-    let URL = CONSUMPTION_URL.GET_ALL_CALENDER_GET_ONE;
+    let URL = endDate ?  CONSUMPTION_URL.GET_ALL_CALENDER_GET_ONE_HUB :  CONSUMPTION_URL.GET_ALL_CALENDER_GET_ONE ;
     const subscription = post(URL, _data).subscribe((response) => {
       setFormData(response.data.data||[]);
       setTypes(response.data.types||[])

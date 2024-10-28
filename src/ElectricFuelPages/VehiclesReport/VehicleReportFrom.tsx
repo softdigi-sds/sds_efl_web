@@ -12,11 +12,13 @@ interface FormErrors {
 interface HeaderProps {
   loadTableData: () => void;
   date: any;
+  endDate?:string;
   hub_id: any;
 }
 const VehicleReportFrom: React.FC<HeaderProps> = ({
   loadTableData,
   date,
+  endDate,
   hub_id,
 }) => {
   const [formData, setFormData] = useState<any[]>([]);
@@ -28,9 +30,11 @@ const VehicleReportFrom: React.FC<HeaderProps> = ({
     let _data = {
       hub_id: hub_id,
       date: date,
+      end_date:endDate
     };
+    let url = endDate ? "/efl_vehicles/get_one_parking_data_hub" : "/efl_vehicles/get_one_parking_data";
     const subscription = post(
-      "/efl_vehicles/get_one_parking_data",
+      url,
       _data
     ).subscribe((response) => {
       setFormData(response.data.data||[]);
