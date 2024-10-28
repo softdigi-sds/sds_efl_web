@@ -156,17 +156,17 @@ const InvoiceTable = () => {
         width:"10"
     },
     { title: "Total Invoices", index: "total_invoices"  , width:"15"},
-    { title: "Parking Amount(Rs) ", index: "vehicle_amount" ,  width:"15"},
-    {
-      title: "Units Amount (Rs)",
-      index: "unit_amount",
-        width:"10"
-    },
-    {
-      title: "Others (Rs)",
-      index: "others",
-        width:"10"
-    },
+    // { title: "Parking Amount(Rs) ", index: "vehicle_amount" ,  width:"15"},
+    // {
+    //   title: "Units Amount (Rs)",
+    //   index: "unit_amount",
+    //     width:"10"
+    // },
+    // {
+    //   title: "Others (Rs)",
+    //   index: "others",
+    //     width:"10"
+    // },
     {
       title: "GST(Rs)",
       index: "gst_amount",
@@ -212,15 +212,18 @@ const InvoiceTable = () => {
     },
     {
       type: "SEARCH",
-      widthClass: "is-4",
+      widthClass: "is-3",
       align: "JUSTIFY",
     },
 
     {
       type: "BUTTONS",
-      widthClass: "is-2",
-      align: "RIGHT",
-      buttons: [
+      widthClass: "is-3",
+      align: "CENTER",
+      buttons: [   {
+        type: "REFRESH",
+        action: LoadTableData,
+      },
         {
           label: "Create Bill",
           icon: "fa-plus",

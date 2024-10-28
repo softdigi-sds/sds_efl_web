@@ -1,11 +1,12 @@
 import moment, { Moment } from "moment";
 import { useEffect, useState } from "react";
 import { SmartSoftButton } from "soft_digi";
-import { VEHICLES_URL } from "../../api/UserUrls";
+import { METER_READINGS_URLS, VEHICLES_URL } from "../../api/UserUrls";
 import { useSiteContext } from "../../contexts/SiteProvider";
 import { changeDateTimeZone } from "../../services/core/CommonService";
 import { isDateWithinDays } from "../../services/site/DateService";
 import { post } from "../../services/smartApiService";
+import MeterReadingForm from "./MeterReadingForm";
 
 const MeterReadingReport = () => {
   const { openModal } = useSiteContext();
@@ -14,7 +15,6 @@ const MeterReadingReport = () => {
   const [data, setData] = useState<any[]>([]);
   // const [startDate, setStartDate] = useState(moment().date(20).startOf("day"));
   const [startYear, setStartYear] = useState(moment().year()); // Initialize with the current year
-
 
   const [endDate, setEndDate] = useState(
     moment().add(1, "month").date(19).endOf("day")
@@ -29,17 +29,31 @@ const MeterReadingReport = () => {
     setStartYear((prevYear) => prevYear + 1); // Increase the year by 1
   };
 
-
   const loadData = () => {
     let _data = {
-      start_date: startYear,
+      year: startYear,
       // end_date: changeDateTimeZone(endDate.toISOString(), "YYYY-MM-DD"),
     };
-    let URL = VEHICLES_URL.GET_ALL_WITH_HUB;
+    let URL = METER_READINGS_URLS.GET_ALL;
     const subscription = post(URL, _data).subscribe((response) => {
       setData(response.data.data);
-      console.table(response.data);
-      setNumberArray(response.data.dates);
+      //console.table(response.data);
+      let months = [
+        "January",
+        "February",
+        "March",
+        "April",
+        "May",
+        "June",
+        "July",
+        "August",
+        "September",
+        "October",
+        "November",
+        "December",
+      ];
+      setNumberArray(months);
+      // setNumberArray(response.data.dates);
     });
     return () => {
       subscription.unsubscribe();
@@ -58,26 +72,44 @@ const MeterReadingReport = () => {
     loadData();
   }, [startYear]);
 
+  const openMeterForm = () => {
+    let options = {
+      title: "Meter Addition Form",
+      content: (
+        <MeterReadingForm
+          dataIn={{}}
+          loadTableData={loadData}
+          currentDate={currentDate}
+        />
+      ),
+      width: 40,
+      className: "sd-efl-modal",
+      closeBody: false,
+    };
+    openModal(options);
+  };
+
   const dateRange = () => {
     return (
       <div className="date-navigation">
-        <span  className="icon is-clickable" onClick={handlePreviousYear}>
+        <span className="icon is-clickable" onClick={handlePreviousYear}>
           <i className="fa fa-arrow-left"></i>
         </span>
-        <span className="mx-2">{startYear}
-          <i className="fa fa-calendar"></i>
+        <span className="mx-2">
+          {startYear}
+          {/* <i className="fa fa-calendar"></i> */}
         </span>
-        <span  className="icon is-clickable" onClick={handleNextYear}>
+        <span className="icon is-clickable" onClick={handleNextYear}>
           <i className="fa fa-arrow-right"></i>
         </span>
       </div>
     );
   };
 
-  const getDayCount = (date: string, subData: any[]) => {
+  const getDayobj = (date: string, subData: any[]) => {
     if (subData && subData.length > 0) {
-      let _date_obj: any = subData.find((obj) => obj.date == date);
-      return _date_obj && _date_obj?.count ? _date_obj.count : 0;
+      let _date_obj: any = subData.find((obj) => obj.month == date);
+      return _date_obj;
     }
     return 0;
   };
@@ -105,9 +137,19 @@ const MeterReadingReport = () => {
             </div>
           </div>
         </div>
-        <div className="column is-3 ">
+        <div className="column is-3">
           <div className="is-flex is-justify-content-flex-end">
-            <div className="mt-2 is-size-6 is-pulled-right">{dateRange()}</div>
+            <div className="has-text-centered">
+              <div className="mt-2 is-size-6 is-pulled-right">
+                {dateRange()}
+              </div>
+            </div>
+            <SmartSoftButton
+              label="Add"
+              onClick={() => openMeterForm()}
+              leftIcon="fa fa-plus"
+              classList={["smart-third-button"]}
+            />
           </div>
         </div>
 
@@ -117,10 +159,10 @@ const MeterReadingReport = () => {
               <thead>
                 <tr>
                   <th>Hub Name</th>
-                  
+
                   {numberArray.map((item: any) => (
                     <>
-                      <th>{moment(item).format("MMMM")}</th>
+                      <th>{item}</th>
                     </>
                   ))}
                 </tr>
@@ -132,25 +174,20 @@ const MeterReadingReport = () => {
                       <td>
                         <div className="is-flex ">
                           <p>{hub.hub_name}</p>
-                         
                         </div>
                       </td>
-                      <td>{hub.average}</td>
-                      {numberArray.map((item: any) => {
-                        let _count = getDayCount(item, hub.sub_data);
-                        const isNotGreaterThanToday = isDateWithinDays(item, 0);
 
-                        return _count > 0 ? (
+                      {numberArray.map((item: any) => {
+                        let _count = getDayobj(item, hub.meter_data);
+                        return _count && _count.meter_reading ? (
                           <td>
                             <span className="sd-cursor has-text-danger">
-                              {_count}
+                              {_count.meter_reading}
                             </span>
                           </td>
                         ) : (
-                          <td className={isNotGreaterThanToday ? "" : ""}>
-                            {isNotGreaterThanToday && (
-                              <span className="sd-cursor has-text-white">+</span>
-                            )}
+                          <td>
+                            <span className="sd-cursor has-text-white">+</span>
                           </td>
                         );
                       })}

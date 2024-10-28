@@ -6,6 +6,8 @@ import { INVOICE_URLS } from "../../api/UserUrls";
 import { useSiteContext } from "../../contexts/SiteProvider";
 import { changeDateTimeZoneFormat } from "../../services/core/CommonService";
 import { post } from "../../services/smartApiService";
+import { ValidateFormNew } from "soft_digi/dist/services/smartValidationService";
+import { SmartValid } from "../../core";
 interface FormErrors {
   [key: string]: string | null;
 }
@@ -33,24 +35,22 @@ const InvoicebillForm = () => {
     //     bill_end_date: newEndDate,
     //   }));
     // } else {
-      
+
     // }
     setFormData((prev: any) => ({ ...prev, [name]: value }));
   };
 
-
   useEffect(() => {
-    if(formData.bill_start_date && formData.bill_start_date!=null){
-    const startDate = new Date(formData.bill_start_date);
-    const newEndDate = moment(startDate)
-    .add(1, "month")
-    .date(20)
-    .endOf("day");
-    setMinEndDate(newEndDate.toDate());
-    handleInputChange("bill_end_date",newEndDate.toDate())
+    if (formData.bill_start_date && formData.bill_start_date != null) {
+      const startDate = new Date(formData.bill_start_date);
+      const newEndDate = moment(startDate)
+        .add(1, "month")
+        .date(20)
+        .endOf("day");
+      setMinEndDate(newEndDate.toDate());
+      handleInputChange("bill_end_date", newEndDate.toDate());
     }
   }, [formData.bill_start_date]);
-
 
   const handleErrorChange = (name: string | any, value: any) => {
     setFormErrors((prev) => {
@@ -66,11 +66,20 @@ const InvoicebillForm = () => {
 
   const handleSubmit = () => {
     setFormSubmit(true);
+    if (!ValidateFormNew(formData, filterFields)) {
+      return false;
+    }
     let URL = INVOICE_URLS.GENERATE;
     let _data = {
-      bill_start_date:changeDateTimeZoneFormat(formData.bill_start_date||"","YYYY-MM-DD"),
-      bill_end_date:changeDateTimeZoneFormat(formData.bill_end_date||"","YYYY-MM-DD"),
-    }
+      bill_start_date: changeDateTimeZoneFormat(
+        formData.bill_start_date || "",
+        "YYYY-MM-DD"
+      ),
+      bill_end_date: changeDateTimeZoneFormat(
+        formData.bill_end_date || "",
+        "YYYY-MM-DD"
+      ),
+    };
     const subscription = post(URL, _data).subscribe((response) => {
       navigate("/e-fuel/vendor-wish/" + response.data);
       closeModal();
@@ -82,7 +91,10 @@ const InvoicebillForm = () => {
       subscription.unsubscribe();
     };
   };
-
+  const hubFormValidations = {
+    start: [SmartValid.required("Date is Required")],
+    end: [SmartValid.required("Date is Required")],
+  };
   const filterFields: SmartFormInterFace.SmartFormElementProps[] = [
     {
       type: "DATE",
@@ -93,6 +105,7 @@ const InvoicebillForm = () => {
         placeHolder: "DD-MM-YYYY",
         isRequired: true,
         inputType: "BORDER_LABEL",
+        validations: hubFormValidations.start,
         // inputProps: { isFocussed: true },
       },
     },
@@ -107,6 +120,7 @@ const InvoicebillForm = () => {
         minDate: minEndDate,
         inputProps: { disabled: true },
         inputType: "BORDER_LABEL",
+        // validations: hubFormValidations.end,
       },
     },
     {
