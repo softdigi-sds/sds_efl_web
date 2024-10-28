@@ -52,7 +52,7 @@ const VehicleAdminReport: React.FC<VehicleReportProps> = ({
     let URL = VEHICLES_URL.GET_ALL_WITH_HUB;
     const subscription = post(URL, _data).subscribe((response) => {
       setData(response.data.data);
-      console.table(response.data);
+      // console.table(response.data);
       setNumberArray(response.data.dates);
       //updateNumberOfDays();
     });
@@ -232,7 +232,7 @@ const VehicleAdminReport: React.FC<VehicleReportProps> = ({
 
   const openVendorsView = (data: any) => {
     let options = {
-      title: "Vendors Details",
+      title: " ",
       content: <VendorRatesTable hubId={data} />,
       width: 80,
     };
