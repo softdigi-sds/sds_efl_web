@@ -52,6 +52,7 @@ const MeterReadingReport = () => {
         "November",
         "December",
       ];
+
       setNumberArray(months);
       // setNumberArray(response.data.dates);
     });
