@@ -1,9 +1,12 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { SmartSoftButton, SmartTable, SmartTableNewInterface } from "soft_digi";
 import { INVOICE_URLS } from "../../api/UserUrls";
 import { useSiteContext } from "../../contexts/SiteProvider";
-import { changeDateTimeZoneFormat, formatCurrency } from "../../services/core/CommonService";
+import {
+  changeDateTimeZoneFormat,
+  formatCurrency,
+} from "../../services/core/CommonService";
 import { downloadFile } from "../../services/core/FileService";
 import { post } from "../../services/smartApiService";
 import BillingTablePdf from "../VehiclesReport/BillingTablePdf";
@@ -14,7 +17,7 @@ const VendorWiseInformation = () => {
   const { id } = useParams<{ id: string }>();
   const [data, setData] = useState<any>({});
   const { openModal } = useSiteContext();
-
+  const navigate = useNavigate();
   const loadData = () => {
     let URL = INVOICE_URLS.GET_ONE_BILL;
     const subscription = post(URL, { id: id }).subscribe((response) => {
@@ -26,7 +29,7 @@ const VendorWiseInformation = () => {
     };
   };
 
-  const refresh=()=>{
+  const refresh = () => {
     let URL = INVOICE_URLS.REFRESH;
     const subscription = post(URL, { id: id }).subscribe((response) => {
       //setData(response.data);
@@ -36,7 +39,7 @@ const VendorWiseInformation = () => {
     return () => {
       subscription.unsubscribe();
     };
-  }
+  };
 
   const exportExcel = () => {
     let URL = INVOICE_URLS.EXPORT_EXCEL;
@@ -74,7 +77,7 @@ const VendorWiseInformation = () => {
     let URL = INVOICE_URLS.GET_ONE_DETAILS;
     const subscription = post(URL, { id: data["ID"] }).subscribe((response) => {
       let options = {
-        title:  ` ${data.hub_id} - ${data.invoice_number}  `,
+        title: ` ${data.hub_id} - ${data.invoice_number}  `,
         content: <InvoiceVendorDetailsTable dataIn={response.data} />,
         width: 60,
         className: "sd-efl-modal",
@@ -105,15 +108,13 @@ const VendorWiseInformation = () => {
     { value: 10, label: "Active", class: "has-text-link" },
   ];
 
-  const amountDisplay =(row:any)=>{
-    return(
+  const amountDisplay = (row: any) => {
+    return (
       <>
-      <div>
-        {formatCurrency(row?.total_amount)}
-      </div>
+        <div>{formatCurrency(row?.total_amount)}</div>
       </>
-    )
-  }
+    );
+  };
 
   const columns: SmartTableNewInterface.SmartTableNewColumnConfig[] = [
     { title: "S.NO", index: "s_no", type: "sno", width: "5" },
@@ -127,7 +128,7 @@ const VendorWiseInformation = () => {
       index: "hub_id",
       width: "20",
     },
-  
+
     {
       title: "Customer",
       index: "vendor_company",
@@ -137,7 +138,7 @@ const VendorWiseInformation = () => {
       title: "Total Amount",
       index: "total_amount",
       width: "15",
-      valueFunction:amountDisplay
+      valueFunction: amountDisplay,
     },
     {
       title: "ACK No",
@@ -175,7 +176,11 @@ const VendorWiseInformation = () => {
     {
       type: "CUSTOM",
       widthClass: "is-8",
-      custom: <p className="is-size-4 is-italic has-text-link">Vendor Wise Information</p>,
+      custom: (
+        <p className="is-size-4 is-italic has-text-link">
+          Vendor Wise Information
+        </p>
+      ),
     },
     {
       type: "SEARCH",
@@ -194,16 +199,26 @@ const VendorWiseInformation = () => {
     };
     openModal(options);
   };
+  const navigateBack = () => {
+    navigate(-1);
+  };
   const BillInformation = () => {
     return (
       <>
         <div className="columns is-multiline">
-          <div className="column is-8">
-            <p className="is-size-4 is-italic has-text-link">Bill Details</p>
+          <div className="column is-8 is-flex">  <div
+              className=" mt-1 has-text-link is-clickable is-size-5 "
+              onClick={navigateBack}
+            >
+              <i className="fa fa-arrow-left" aria-hidden="true"></i>
+            </div>
+            <p className="is-size-4 is-italic has-text-link ml-4">Bill Details</p>
+           
           </div>
+
           <div className="column is-4">
             <div className="is-flex is-justify-content-flex-end">
-            <SmartSoftButton
+              <SmartSoftButton
                 label="Refresh"
                 onClick={() => refresh()}
                 leftIcon="fa fa-cloud-upload"
