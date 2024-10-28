@@ -14,9 +14,9 @@ import {
   showYesOrNoAlert,
 } from "../../services/notifyService";
 import { post } from "../../services/smartApiService";
+import AddressTable from "./AddressTable";
 import CustomersForm from "./CustomersForm";
 import ViewDetails from "./ViewDetails";
-import AddressTable from "./AddressTable";
 interface headerProps {
   hubId?: string;
 }
@@ -297,7 +297,6 @@ const CustomersTables: React.FC<headerProps> = ({ hubId }) => {
           action: loadTableData,
         },
         { type: "FILTER" },
-
         {
           label: "Add",
           icon: "fa-plus",

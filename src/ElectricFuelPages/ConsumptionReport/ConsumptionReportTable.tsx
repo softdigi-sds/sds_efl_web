@@ -5,7 +5,6 @@ import ConsumptionHubReport from "./ConsumptionHubReport.";
 
 const ConsumptionReportTable = () => {
   const [stage, setStage] = useState<String>("ADMIN");
-
   return (
     <>
       {stage === "HUB" && (
