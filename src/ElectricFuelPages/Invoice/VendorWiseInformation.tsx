@@ -206,14 +206,14 @@ const VendorWiseInformation = () => {
     return (
       <>
         <div className="columns is-multiline">
-          <div className="column is-8 is-flex">
-            <p className="is-size-4 is-italic has-text-link">Bill Details</p>
-            <div
-              className="ml-4 mt-2 has-text-link is-clickable is-size-5 "
+          <div className="column is-8 is-flex">  <div
+              className=" mt-1 has-text-link is-clickable is-size-5 "
               onClick={navigateBack}
             >
               <i className="fa fa-arrow-left" aria-hidden="true"></i>
             </div>
+            <p className="is-size-4 is-italic has-text-link ml-4">Bill Details</p>
+           
           </div>
 
           <div className="column is-4">
