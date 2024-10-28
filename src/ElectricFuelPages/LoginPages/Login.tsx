@@ -144,7 +144,7 @@ const Login: React.FC = () => {
           options={options_remember_me}
           name="checkbox_remember_me"
 
-          value={formData?.checkbox_remember_me === true ? "1" : "0"}
+          value={formData?.checkbox_remember_me ? "1" : "0"}
           onChange={(value) => handleInputChange("checkbox_remember_me", value)}
           isRight={false}
         />
