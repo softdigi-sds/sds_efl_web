@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Login.scss";
 import { LOGIN_URLS } from "../../api/LoginUrls";
@@ -20,6 +20,7 @@ import {
   ValidateFormNew,
 } from "soft_digi/dist/services/smartValidationService";
 import { checkInterSection } from "../../services/core/FilterService";
+import { getRemeberMe, removeRemeberMe, setRemeberMe } from "../../services/sessionService";
 
 // Define the type for form data
 interface FormErrors {
@@ -41,9 +42,9 @@ const Login: React.FC = () => {
 
   // Handle input change with proper typing
   const handleInputChange = (name: string, value: any) => {
-    if (name === "checkbox_remember_me") {
-      value = value ? "true" : "false";
-    }
+    // if (name === "checkbox_remember_me") {
+    //   value = value ? "true" : "false";
+    // }
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
@@ -59,6 +60,38 @@ const Login: React.FC = () => {
       return updatedFormData;
     });
   };
+
+  const handleRemeberMe = () => {
+    let checkbox_remember_me =
+      formData.checkbox_remember_me !== undefined
+        ? formData.checkbox_remember_me
+        : "0";
+    // console.log("check box rmeber me " , checkbox_remember_me, formData);
+    if (checkbox_remember_me === "1") {
+      setRemeberMe(formData);
+    } else {
+      removeRemeberMe();
+    }
+  };
+
+  const handleRemeberMeLoad = () => {
+    // let remember_data = getRemeberMe();
+    let remember_data_original = getRemeberMe();
+    const remember_data = { ...remember_data_original };
+    delete remember_data.epassword;
+    if (remember_data) {
+      let checkbox_remember_me =
+        remember_data.checkbox_remember_me !== undefined
+          ? remember_data.checkbox_remember_me
+          : "0";
+      if (checkbox_remember_me === "1") {
+        setFormData(remember_data);
+      }
+    }
+  };
+  useEffect(() => {
+    handleRemeberMeLoad();
+  }, []);
 
   const handleLogin = () => {
     setFormSubmit(true);
@@ -78,6 +111,7 @@ const Login: React.FC = () => {
     }).subscribe((response) => {
       setFormSubmit(false);
       setUser(response.data);
+      handleRemeberMe();
       //showAlertAutoClose("Logged In Successfully", "success");
       console.log("response.data ", response.data.roles);
       if (checkInterSection(response.data.roles || [], ["ADMIN"])) {
