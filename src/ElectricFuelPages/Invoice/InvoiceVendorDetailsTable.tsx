@@ -13,80 +13,15 @@ const InvoiceVendorDetailsTable: React.FC<InputProps> = ({ dataIn }) => {
   //console.log("Data list",dataArray)
 
 
+  const priceDisplay=(row:any)=>{
+    return formatCurrency(row?.price);
+  }
+  const totalDisplay=(row:any)=>{
+    return formatCurrency(row?.total);
+  }
 
 
- const typeDisplay =(row:any)=>{
 
-  return(
-   <>
-   {row.sub_data && row.sub_data.map((subDetails:any)=>{
-    return(
-     <div key={subDetails.id}>{subDetails.type_desc}</div>
-    )
-   })}
-   </>
-  )
- }
- const priceDisplay =(row:any)=>{
-
-    return(
-     <>
-     {row.sub_data && row.sub_data.map((subDetails:any)=>{
-      return(
-       <div key={subDetails.id}>{subDetails.total}</div>
-      )
-     })}
-     </>
-    )
-   }
-   const countDisplay =(row:any)=>{
-
-    return(
-     <>
-     {row.sub_data && row.sub_data.map((subDetails:any)=>{
-      return(
-       <div key={subDetails.id}>{subDetails.count}</div>
-      )
-     })}
-     </>
-    )
-   }
-   const minDisplay =(row:any)=>{
-
-    return(
-     <>
-     {row.sub_data && row.sub_data.map((subDetails:any)=>{
-      return(
-       <div key={subDetails.id}>{subDetails.min_units}</div>
-      )
-     })}
-     </>
-    )
-   }
-   const priceDataDisplay =(row:any)=>{
-
-    return(
-     <>
-     {row.sub_data && row.sub_data.map((subDetails:any)=>{
-      return(
-       <div key={subDetails.id}>{subDetails.price}</div>
-      )
-     })}
-     </>
-    )
-   }
-   const monthDisplay =(row:any)=>{
-
-    return(
-     <>
-     {row.sub_data && row.sub_data.map((subDetails:any)=>{
-      return(
-       <div key={subDetails.id}>{subDetails.price}</div>
-      )
-     })}
-     </>
-    )
-   }
   const columns: SmartTableNewInterface.SmartTableNewColumnConfig[] = [
     { title: "S.NO", index: "s_no", type: "sno", width: "5" },
     // { title: "Invoice Number", index: "invoice_number" },
@@ -95,9 +30,9 @@ const InvoiceVendorDetailsTable: React.FC<InputProps> = ({ dataIn }) => {
     { title: "Month Avrage", index: "month_avg",  },
     { title: "Count", index: "count",  }, 
     { title: "Min Units", index: "min_units",  }, 
-    { title: "Price", index: "price",  },
+    { title: "Price", index: "price",valueFunction:priceDisplay  },
   
-    { title: "Total", index: "total",  },
+    { title: "Total", index: "total", valueFunction:totalDisplay },
  
   ];
 

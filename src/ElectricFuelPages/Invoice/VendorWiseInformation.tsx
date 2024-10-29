@@ -177,8 +177,8 @@ const VendorWiseInformation = () => {
       type: "CUSTOM",
       widthClass: "is-8",
       custom: (
-        <p className="is-size-4 is-italic has-text-link">
-          Vendor Wise Information
+        <p className="is-size-4 is-italic has-text-link is-underlined">
+          Customer Invoices
         </p>
       ),
     },
