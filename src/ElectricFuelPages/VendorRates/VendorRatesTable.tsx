@@ -265,17 +265,17 @@ const VendorRatesTable: React.FC<headerProps> = ({ hubId }) => {
   const tableTop: SmartTableNewInterface.SmartTableNewTopProps[] = [
     {
       type: "CUSTOM",
-      widthClass: "is-6",
+      widthClass: "is-4",
       custom: <p className="is-size-4"> Hub (vs) Customers Rates</p>,
     },
     {
       type: "SEARCH",
-      widthClass: "is-3",
+      widthClass: "is-4",
       align: "JUSTIFY",
     },
     {
       type: "BUTTONS",
-      widthClass: "is-3",
+      widthClass: "is-4",
       align: "CENTER",
       buttons: [{
         type: "REFRESH",

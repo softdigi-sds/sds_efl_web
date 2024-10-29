@@ -86,7 +86,7 @@ font-weight: bold;
   justify-content: center;
   align-items: center;
   background: rgba(255, 255, 255, 0.3);
-  backdrop-filter: blur(1px);
+  backdrop-filter: blur(5px);
   border-radius: 10px;
   position: relative;
   width: 100%;
@@ -110,6 +110,10 @@ font-weight: bold;
       display: block;
     }
   }
+  .help.is-danger {
+    color: #c50128 !important;
+    font-weight: bold;
+}
   .smart-check-radio label
 {
   color: black;
