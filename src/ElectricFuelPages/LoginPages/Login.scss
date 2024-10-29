@@ -39,6 +39,7 @@
 color: green;
 font-weight: bold;
     background: none;
+    
   }
   .is-success.input:focus{
     box-shadow: none;
@@ -113,6 +114,7 @@ font-weight: bold;
   .help.is-danger {
     color: #c50128 !important;
     font-weight: bold;
+    font-family: roboto;
 }
   .smart-check-radio label
 {
