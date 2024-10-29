@@ -38,6 +38,7 @@ const VENDER_RATE_URLS = {
   UPDATE: "/vendor_rate/update",
   GET_ONE: "/vendor_rate/get_one",
   DELETE: "/vendor_rate/delete_one",
+  EXPORT_EXCEL:"/vendor_rate/export_excel"
 };
 const CONSUMPTION_URL = {
   INSERT: "/efl_consumption/insert",

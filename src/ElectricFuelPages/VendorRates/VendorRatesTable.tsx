@@ -8,6 +8,7 @@ import {
 } from "soft_digi";
 import { VENDER_RATE_URLS } from "../../api/UserUrls";
 import { useSiteContext } from "../../contexts/SiteProvider";
+import { downloadFile } from "../../services/core/FileService";
 import { showAlertAutoClose } from "../../services/notifyService";
 import { post } from "../../services/smartApiService";
 import VendorRatesForms from "./VendorRatesForms";
@@ -15,13 +16,13 @@ import VendorRatesSubFormTwo from "./VendorRatesSubFormTwo";
 interface headerProps {
   hubId?: string;
 }
-const VendorRatesTable:React.FC<headerProps> = ({ hubId }) => {
+const VendorRatesTable: React.FC<headerProps> = ({ hubId }) => {
   const [tabData, setTabData] = useState([]);
   const { openModal, closeModal } = useSiteContext();
 
   const loadTableData = () => {
     let URL = VENDER_RATE_URLS.GET_ALL;
-    const subscription = post(URL,{hub_id:hubId}).subscribe((response) => {
+    const subscription = post(URL, { hub_id: hubId }).subscribe((response) => {
       setTabData(response.data);
     });
     return () => {
@@ -33,18 +34,32 @@ const VendorRatesTable:React.FC<headerProps> = ({ hubId }) => {
     loadTableData();
   }, []);
 
+  const exportExcel = () => {
+    let URL = VENDER_RATE_URLS.EXPORT_EXCEL;
+    const subscription = post(URL, {}).subscribe((response) => {
+      if (response.data && response.data.content) {
+        downloadFile(response.data.content, "rates.xlsx");
+      }
+      //console.log(response);
+      //setData(response.data);
+    });
+    return () => {
+      subscription.unsubscribe();
+    };
+  };
+
   const openOfficesForm = (data: any) => {
     //console.log("data ", data);
-    const _id = data && data!=null ? data.ID : 0;
+    const _id = data && data != null ? data.ID : 0;
     let options = {
       title: (
         <>
-          {_id 
+          {_id
             ? "Hub (vs) Customers Rates Update Form"
             : "Hub (vs) Customers Rates Addition Form"}
         </>
       ),
-      content: <VendorRatesForms loadTableData={loadTableData} dataIn={_id  ? data : {}} />,
+      content: <VendorRatesForms loadTableData={loadTableData} dataIn={_id ? data : {}} />,
       width: 90,
       className: "sd-efl-modal",
       closeBody: false,
@@ -262,18 +277,25 @@ const VendorRatesTable:React.FC<headerProps> = ({ hubId }) => {
       type: "BUTTONS",
       widthClass: "is-3",
       align: "CENTER",
-      buttons: [   {
+      buttons: [{
         type: "REFRESH",
         action: loadTableData,
       },
-        { type: "FILTER" },
-        {
-          label: "Add",
-          icon: "fa-plus",
-          type: "CUSTOM",
-          className: "smart-third-button",
-          action: ()=>openOfficesForm( null),
-        },
+      { type: "FILTER" },
+      {
+        label: "Add",
+        icon: "fa-plus",
+        type: "CUSTOM",
+        className: "smart-third-button",
+        action: () => openOfficesForm(null),
+      },
+      {
+        label: "Export",
+        icon: "fa-plus",
+        type: "CUSTOM",
+        className: "smart-third-button",
+        action: () => exportExcel(),
+      },
       ],
     },
   ];
