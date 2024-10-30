@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { SmartSoftButton } from "soft_digi";
 import { CONSUMPTION_URL } from "../../api/UserUrls";
 import { useSiteContext } from "../../contexts/SiteProvider";
-import { changeDateTimeZone } from "../../services/core/CommonService";
+import { changeDateTimeZone, roundNumber } from "../../services/core/CommonService";
 import { isDateWithinDays } from "../../services/site/DateService";
 import { post } from "../../services/smartApiService";
 import VendorRatesTable from "../VendorRates/VendorRatesTable";
@@ -228,7 +228,9 @@ const ConsumptionAdminReport: React.FC<VehicleReportProps> = ({
                     <tr>
                       <td>
                         <div className="is-flex ">
-                          <p>{hub.hub_name} </p>
+                          <p>{hub.hub_name} 
+                          
+                          </p>
                           <div className="ml-2">
                             {hub.vendor_count !== 0 ? (
                               <p
@@ -242,6 +244,8 @@ const ConsumptionAdminReport: React.FC<VehicleReportProps> = ({
                             )}
                           </div>
                         </div>
+                        <label className="is-7">({hub.office_city})
+                        </label>
                       </td>
                       <td 
                       onClick={() => openForm(changeDateTimeZone(startDate.toISOString(), "YYYY-MM-DD"), hub,changeDateTimeZone(endDate.toISOString(), "YYYY-MM-DD"))}
@@ -257,7 +261,7 @@ const ConsumptionAdminReport: React.FC<VehicleReportProps> = ({
                               className="sd-cursor has-text-danger"
                               onClick={() => openForm(item, hub)}
                             >
-                              {_count}
+                              {roundNumber(_count)}
                             </span>
                           </td>
                         ) : (
