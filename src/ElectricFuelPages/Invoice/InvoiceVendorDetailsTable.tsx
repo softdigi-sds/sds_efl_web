@@ -27,7 +27,7 @@ const InvoiceVendorDetailsTable: React.FC<InputProps> = ({ dataIn }) => {
     // { title: "Invoice Number", index: "invoice_number" },
     // { title: "ACK No.", index: "ack_no", width: "20" },
     { title: "Type", index: "type_desc", },
-    { title: "Month Avrage", index: "month_avg",  },
+    { title: "Month Average", index: "month_avg",  },
     { title: "Count", index: "count",  }, 
     { title: "Min Units", index: "min_units",  }, 
     { title: "Price", index: "price",valueFunction:priceDisplay  },
