@@ -112,11 +112,11 @@ const ImportInvoice: React.FC<HeaderProps> = ({ LoadTableData}) => {
         { title: "S.NO", index: "s_no", type: "sno", width: "5" },
         {
             title: "Hub",
-            index: "hub",
+            index: "hub_name",
             width: "15"
         },
         {
-            title: "Vendors",
+            title: "Customers",
             index: "vendors",
             width: "15", 
         },   
