@@ -129,11 +129,11 @@ const ImportReportTable: React.FC<HeaderProps> = ({ loadTableData }) => {
     { title: "S.NO", index: "s_no", type: "sno", width: "5" },
     {
       title: "Hub",
-      index: "hub_id",
+      index: "hub_name",
       width: "15",
     },
     {
-      title: "Vendors",
+      title: "Customer",
       index: "vendor",
       width: "15",
     },
