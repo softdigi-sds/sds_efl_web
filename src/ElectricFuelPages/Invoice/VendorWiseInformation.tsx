@@ -9,9 +9,8 @@ import {
 } from "../../services/core/CommonService";
 import { downloadFile } from "../../services/core/FileService";
 import { post } from "../../services/smartApiService";
-import BillingTablePdf from "../VehiclesReport/BillingTablePdf";
-import VendorDetailsImport from "./VendorDetailsImport";
 import InvoiceVendorDetailsTable from "./InvoiceVendorDetailsTable";
+import VendorDetailsImport from "./VendorDetailsImport";
 
 const VendorWiseInformation = () => {
   const { id } = useParams<{ id: string }>();
@@ -99,6 +98,15 @@ const VendorWiseInformation = () => {
       classList: ["smart-efl-table-view-icon", ""],
       onClick: (data: any) => {
         openForm(data);
+      },
+    },
+    {
+      label: "View",
+      type: "icon",
+      leftIcon: "fa fa-file",
+      classList: ["smart-efl-table-view-icon", ""],
+      onClick: (data: any) => {
+        downloadInvoice(data["ID"]);
       },
     },
   ];
