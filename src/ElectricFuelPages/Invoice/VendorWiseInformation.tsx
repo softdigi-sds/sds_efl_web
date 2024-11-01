@@ -87,7 +87,7 @@ const VendorWiseInformation = () => {
     return () => subscription.unsubscribe();
   };
   const handleDelete = (rowData: any) => {
-    console.log("Delete action for row:", rowData);
+    //console.log("Delete action for row:", rowData);
   };
 
   const buttons = [
@@ -214,14 +214,17 @@ const VendorWiseInformation = () => {
     return (
       <>
         <div className="columns is-multiline">
-          <div className="column is-8 is-flex">  <div
+          <div className="column is-8 is-flex">
+            {" "}
+            <div
               className=" mt-1 has-text-link is-clickable is-size-5 "
               onClick={navigateBack}
             >
               <i className="fa fa-arrow-left" aria-hidden="true"></i>
             </div>
-            <p className="is-size-4 is-italic has-text-link ml-4">Bill Details</p>
-           
+            <p className="is-size-4 is-italic has-text-link ml-4">
+              Bill Details
+            </p>
           </div>
 
           <div className="column is-4">
