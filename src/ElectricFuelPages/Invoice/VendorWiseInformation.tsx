@@ -100,6 +100,7 @@ const VendorWiseInformation = () => {
         openForm(data);
       },
     },
+
     {
       label: "View",
       type: "icon",
