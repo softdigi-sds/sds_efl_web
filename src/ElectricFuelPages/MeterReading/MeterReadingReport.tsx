@@ -171,23 +171,34 @@ const MeterReadingReport = () => {
               <tbody>
                 {filteredData &&
                   filteredData.map((hub) => (
-                    <tr>
+                    <tr key={hub.hub_name}>
+                      {" "}
+                      {/* Add a key prop to avoid React warnings */}
                       <td>
                         <div className="is-flex ">
                           <p>{hub.hub_name}</p>
                         </div>
                       </td>
-
-                      {numberArray.map((item: any) => {
+                      {numberArray.map((item: any, index) => {
                         let _count = getDayobj(item, hub.meter_data);
                         return _count && _count.meter_reading ? (
-                          <td>
-                            <span className="sd-cursor has-text-danger">
+                          <td key={index}>
+                            <span className="sd-cursor">
                               {_count.meter_reading}
+                              <div className="">{_count.cms_reading}</div>
+                              <hr />
+                              <span
+                                style={{
+                                  color:
+                                    _count.deviation > 10 ? "red" : "green",
+                                }}
+                              >
+                                {_count.deviation}
+                              </span>
                             </span>
                           </td>
                         ) : (
-                          <td>
+                          <td key={index}>
                             <span className="sd-cursor has-text-white">+</span>
                           </td>
                         );
