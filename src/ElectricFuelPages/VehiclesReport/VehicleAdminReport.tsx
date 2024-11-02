@@ -339,7 +339,10 @@ const VehicleAdminReport: React.FC<VehicleReportProps> = ({
                               <span>{hub.vendor_count}</span>
                             )}
                           </div>
+                    
                         </div>
+                        <label className="is-7">({hub.office_city})
+                        </label>
                       </td>
                       <td  onClick={() => openForm(changeDateTimeZone(startDate.toISOString(), "YYYY-MM-DD"), hub,changeDateTimeZone(endDate.toISOString(), "YYYY-MM-DD"))}>{hub.average}</td>
                       {numberArray.map((item: any) => {
