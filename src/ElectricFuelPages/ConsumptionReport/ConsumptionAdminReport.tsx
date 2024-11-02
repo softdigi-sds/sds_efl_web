@@ -142,7 +142,7 @@ const ConsumptionAdminReport: React.FC<VehicleReportProps> = ({
   };
   const openVendorsView = (data: any) => {
     let options = {
-      title: "Vendors Details",
+      title: "",
       content: <VendorRatesTable hubId={data} />,
       width: 80,
     };

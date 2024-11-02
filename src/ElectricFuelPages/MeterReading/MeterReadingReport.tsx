@@ -65,8 +65,10 @@ const MeterReadingReport = () => {
     setSearchTerm(event.target.value);
   };
 
-  const filteredData = data.filter((item) =>
-    item.hub_name.toLowerCase().includes(searchTerm.toLowerCase())
+  const filteredData = data.filter(
+    (item) =>
+      item.hub_name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      item.office_city.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   useEffect(() => {
@@ -178,6 +180,9 @@ const MeterReadingReport = () => {
                         <div className="is-flex ">
                           <p>{hub.hub_name}</p>
                         </div>
+                        <label className="is-size-7 has-text-info">
+                          ({hub.office_city})
+                        </label>
                       </td>
                       {numberArray.map((item: any, index) => {
                         let _count = getDayobj(item, hub.meter_data);
