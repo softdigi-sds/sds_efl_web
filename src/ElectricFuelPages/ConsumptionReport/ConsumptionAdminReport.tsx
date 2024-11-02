@@ -77,10 +77,11 @@ const ConsumptionAdminReport: React.FC<VehicleReportProps> = ({
   const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(event.target.value);
   };
-  const filteredData = data.filter((item) =>
-    item.hub_name.toLowerCase().includes(searchTerm.toLowerCase())
+  const filteredData = data.filter(
+    (item) =>
+      item.hub_name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      item.office_city.toLowerCase().includes(searchTerm.toLowerCase())
   );
-
   const dateRange = () => {
     return (
       <div className="date-navigation">
@@ -237,14 +238,14 @@ const ConsumptionAdminReport: React.FC<VehicleReportProps> = ({
                                 className="is-clickable has-text-link sd-cursor"
                                 onClick={() => openVendorsView(hub.ID)}
                               >
-                                {hub.vendor_count}
+                                ({hub.vendor_count})
                               </p>
                             ) : (
-                              <span>{hub.vendor_count}</span>
+                              <span>({hub.vendor_count})</span>
                             )}
                           </div>
                         </div>
-                        <label className="is-7">({hub.office_city})
+                        <label className="is-size-7 has-text-info">({hub.office_city})
                         </label>
                       </td>
                       <td 

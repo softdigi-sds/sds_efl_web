@@ -64,8 +64,10 @@ const VehicleAdminReport: React.FC<VehicleReportProps> = ({
   const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(event.target.value);
   };
-  const filteredData = data.filter((item) =>
-    item.hub_name.toLowerCase().includes(searchTerm.toLowerCase())
+  const filteredData = data.filter(
+    (item) =>
+      item.hub_name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      item.office_city.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   useEffect(() => {
@@ -333,15 +335,15 @@ const VehicleAdminReport: React.FC<VehicleReportProps> = ({
                                 className="is-clickable has-text-link"
                                 onClick={() => openVendorsView(hub.ID)}
                               >
-                                {hub.vendor_count}
+                               ( {hub.vendor_count})
                               </p>
                             ) : (
-                              <span>{hub.vendor_count}</span>
+                              <span>({hub.vendor_count})</span>
                             )}
                           </div>
                     
                         </div>
-                        <label className="is-7">({hub.office_city})
+                        <label className="is-size-7 has-text-info">({hub.office_city})
                         </label>
                       </td>
                       <td  onClick={() => openForm(changeDateTimeZone(startDate.toISOString(), "YYYY-MM-DD"), hub,changeDateTimeZone(endDate.toISOString(), "YYYY-MM-DD"))}>{hub.average}</td>
