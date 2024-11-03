@@ -199,7 +199,7 @@ const VendorWiseInformation = () => {
 
   const openImportForm = () => {
     let options = {
-      title: "Vendor Details",
+      title: "Invoice IRN/ACK import",
       content: <VendorDetailsImport loadData={loadData} id={id} />,
       width: 50,
       className: "sd-efl-modal",

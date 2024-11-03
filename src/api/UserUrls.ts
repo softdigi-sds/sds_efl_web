@@ -38,7 +38,7 @@ const VENDER_RATE_URLS = {
   UPDATE: "/vendor_rate/update",
   GET_ONE: "/vendor_rate/get_one",
   DELETE: "/vendor_rate/delete_one",
-  EXPORT_EXCEL:"/vendor_rate/export_excel"
+  EXPORT_EXCEL: "/vendor_rate/export_excel",
 };
 const CONSUMPTION_URL = {
   INSERT: "/efl_consumption/insert",
@@ -75,6 +75,7 @@ const INVOICE_URLS = {
   GET_ONE_BILL: "bill/get_one",
   EXPORT_EXCEL: "bill/export_excel",
   IMPORT_ZIP: "bill/import_zip",
+  IMPORT_EXCEL: "bill/import_excel",
   DOWNLOAD_INVOICE: "invoice/download_invoice",
   DELETE: "bill/delete_one",
 };
@@ -102,13 +103,14 @@ const CUSTOMER_URLS = {
 };
 
 export {
-  CONSUMPTION_URL, CUSTOMER_URLS, HUBS_URLS,
+  CONSUMPTION_URL,
+  CUSTOMER_URLS,
+  HUBS_URLS,
   HUB_GROUPS_URLS,
   INVOICE_URLS,
   METER_READINGS_URLS,
   OFFICE_URLS,
   VEHICLES_URL,
   VENDERS_URLS,
-  VENDER_RATE_URLS
+  VENDER_RATE_URLS,
 };
-

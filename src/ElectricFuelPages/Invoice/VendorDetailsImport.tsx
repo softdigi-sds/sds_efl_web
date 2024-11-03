@@ -3,7 +3,7 @@ import {
   SmartFormInterFace,
   SmartSoftForm,
   SmartTable,
-  SmartTableNewInterface
+  SmartTableNewInterface,
 } from "soft_digi";
 import { INVOICE_URLS } from "../../api/UserUrls";
 import { useSiteContext } from "../../contexts/SiteProvider";
@@ -29,13 +29,13 @@ const VendorDetailsImport: React.FC<componentProps> = ({ loadData, id }) => {
 
   const handleSubmit = () => {
     setFormSubmit(true);
-    let URL = INVOICE_URLS.IMPORT_ZIP;
+    let URL = INVOICE_URLS.IMPORT_EXCEL;
     let _data = { ...formData };
     _data["id"] = id;
     const subscription = post(URL, _data).subscribe((response) => {
-      //setData(response.data);
+      setData(response.data);
       loadData();
-      closeModal();
+      // closeModal();
       // loadTableData()
     });
     return () => {
@@ -128,18 +128,8 @@ const VendorDetailsImport: React.FC<componentProps> = ({ loadData, id }) => {
   const columns: SmartTableNewInterface.SmartTableNewColumnConfig[] = [
     { title: "S.NO", index: "s_no", type: "sno", width: "5" },
     {
-      title: "Vendors",
-      index: "vendor",
-      width: "15",
-    },
-    {
-      title: "Date",
-      index: "date",
-      width: "15",
-    },
-    {
-      title: "Vehicle Count",
-      index: "count",
+      title: "Invoice Number",
+      index: "invoice_number",
       width: "15",
     },
     {
