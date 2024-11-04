@@ -539,6 +539,17 @@ font-weight: bold;
 .smart-efl-report-calender{
   .calendar-header{
     padding-top: 2px !important;
+    background-color: rgba(0, 0, 0, 0.1) !important;
+  }
+}
+.calendar-header{
+  background-color: rgba(0, 0, 0, 0.1) !important;
+  color:$white-color;
+  .dropdown{
+    .button{
+      color: $white-color !important;
+    }
+    
   }
 }
 
