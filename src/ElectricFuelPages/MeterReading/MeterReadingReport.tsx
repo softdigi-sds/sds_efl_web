@@ -187,8 +187,8 @@ const MeterReadingReport = () => {
                       {numberArray.map((item: any, index) => {
                         let _count = getDayobj(item, hub.meter_data);
                         return _count && _count.meter_reading ? (
-                          <td key={index}>
-                            <span className="sd-cursor">
+                          <td key={index} className="has-text-centered">
+                            <span className="">
                               {_count.meter_reading}
                               <div className="">{_count.cms_reading}</div>
                               <hr />
