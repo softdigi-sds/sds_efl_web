@@ -547,7 +547,7 @@ font-weight: bold;
   color:$white-color;
   .dropdown{
     .button{
-      color: $white-color !important;
+color: $white-color !important;
     }
     
   }
@@ -565,6 +565,9 @@ font-weight: bold;
     background-color: #ffcc00!important;
     padding:38px 34px !important;
     color: black !important;
+    @media screen and (max-width: 768px) {
+      padding:26px !important;
+    }
   }
 .has-background-danger{
   background-color: #ff0000!important;

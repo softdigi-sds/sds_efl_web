@@ -59,15 +59,18 @@
 
 .efl-main-div {
   margin-left: 40px;
-  margin-top: 60px;
+  margin-top: 55px;
   padding: 10px;
   transition: margin-left 0.3s ease;
   min-height: 100vh;
+  background-color: rgba(0, 0, 0, 0.3);
   width: calc(100% - 136px);
   &.expanded {
     margin-left: 168px;
-    background-color: rgba(0, 0, 0, 0.3);
+    
+    // width: calc(100% - 60px);
     // width: 200px; // Expanded width on hover
+   
   }
   @media screen and (max-width: 768px) {
     margin-left: 0 !important;
@@ -131,6 +134,7 @@
       width: 250px;
       display: flex;
       z-index: 1001;
+      background-color: rgba(0, 0, 0,.9);
     }
   }
   .brand-logo {

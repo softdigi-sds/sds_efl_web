@@ -77,7 +77,7 @@ const EFHeader: React.FC<HeaderProps> = ({ setIsOpen, isOpen }) => {
       </div>
         <a
           role="button"
-          className="navbar-burger"
+          className="navbar-burger has-text-white"
           aria-label="menu"
           aria-expanded="false"
           data-target="navbarBasicExample"
