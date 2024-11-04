@@ -19,7 +19,7 @@
   width: calc(100% - 40px);
   transition: left 0.3s ease;
   background:  $body-background-image;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3), 0 8px 20px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3), 0 8px 20px rgba(0, 0, 0, 0.15);
   background-size: cover;
   z-index: 956;
   &.expanded {
@@ -42,7 +42,7 @@
   .navbar {
     // border-bottom: 1px solid #91076d;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.3);
+    background-color: rgba(0, 0, 0, 0.6);
     color:$white-color;
   }
   @media screen and (max-width: 768px) {
@@ -108,7 +108,7 @@
   width: 60px; // Shrinked width
   height: 100vh;
   // background-color: #91076d;
-  background-color: rgba(0, 0, 0, 0.3);
+  background-color: rgba(0, 0, 0, 0.6);
   position: fixed;
   top: 0;
   left: 0;
@@ -118,6 +118,8 @@
   flex-direction: column;
   align-items: center;
   box-shadow: 4px 0 12px rgba(0, 0, 0, 0.5), 8px 0 20px rgba(0, 0, 0, 0.15);
+
+
   &.expanded {
     width: 200px; // Expanded width on hover
     @media screen and (max-width: 768px) {
