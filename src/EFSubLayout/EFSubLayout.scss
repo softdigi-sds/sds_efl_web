@@ -1,4 +1,14 @@
+@import "../index.scss";
+
 .efl-main-sidenav {
+}
+
+.smart-efl-container{
+  background: $body-background-image;
+ 
+  background-size: 100% 100%;
+  min-height: 100vh;
+  background-attachment: fixed;
 }
 
 .efl-main-header {
@@ -8,11 +18,16 @@
   top: 0;
   width: calc(100% - 40px);
   transition: left 0.3s ease;
-
+  background:  $body-background-image;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3), 0 8px 20px rgba(0, 0, 0, 0.15);
+  background-size: cover;
   z-index: 956;
   &.expanded {
-    width: calc(100% - 220px);
+    width: calc(100% - 200px);
     left: 200px;
+
+
+    
     @media screen and (max-width: 768px) {
       left: 0;
       width: 100%;
@@ -25,8 +40,10 @@
     }
   }
   .navbar {
-    border-bottom: 1px solid #91076d;
+    // border-bottom: 1px solid #91076d;
     height: 100%;
+    background-color: rgba(0, 0, 0, 0.3);
+    color:$white-color;
   }
   @media screen and (max-width: 768px) {
     left: 0;
@@ -45,8 +62,11 @@
   margin-top: 60px;
   padding: 10px;
   transition: margin-left 0.3s ease;
+  min-height: 100vh;
+  width: calc(100% - 136px);
   &.expanded {
-    margin-left: 180px;
+    margin-left: 168px;
+    background-color: rgba(0, 0, 0, 0.3);
     // width: 200px; // Expanded width on hover
   }
   @media screen and (max-width: 768px) {
@@ -70,7 +90,7 @@
 .header-brand-logo {
   margin-bottom: 10px;
   padding: 10px;
-  background-color: #ffffff;
+ 
   height: 50px;
   img {
     height: 100%;
@@ -84,7 +104,8 @@
 .smart-sidenav {
   width: 60px; // Shrinked width
   height: 100vh;
-  background-color: #91076d;
+  // background-color: #91076d;
+  background-color: rgba(0, 0, 0, 0.3);
   position: fixed;
   top: 0;
   left: 0;
@@ -93,6 +114,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  box-shadow: 4px 0 12px rgba(0, 0, 0, 0.3), 8px 0 20px rgba(0, 0, 0, 0.15);
   &.expanded {
     width: 200px; // Expanded width on hover
     @media screen and (max-width: 768px) {
@@ -115,7 +137,8 @@
     // height:60px;
     margin-bottom: 10px;
     padding: 10px;
-    background-color: #ffffff;
+    // background-color: #ffffff; 
+  background-color:rgb(0,0,1);
     height: 60px;
     img {
       height: 100%;
@@ -135,7 +158,7 @@
     align-items: center;
     transition: all 0.5s;
     &:hover {
-      background-color: #ffffff;
+      background-color: rgba(0, 0, 0, 0.8);
       color: #91076d;
       border-top: 1px solid #91076d;
       border-bottom-right-radius: 10px;
@@ -151,7 +174,7 @@
       display: none; // Initially hidden
     }
     &.active-link {
-      background-color: #ffffff;
+      background-color: rgba(0, 0, 0, 0.8);
       color: #91076d;
       border-radius: 10px;
     }

@@ -113,7 +113,7 @@ const Notification = () => {
         onClick={() => setActive((prevActive) => !prevActive)}
       >
         <i
-          className="fa fa-bell"
+          className="fa fa-bell has-text-white"
           aria-hidden="true"
           aria-controls="dropdown-menu"
         ></i>

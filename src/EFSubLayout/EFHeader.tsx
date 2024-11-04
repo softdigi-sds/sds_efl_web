@@ -93,7 +93,7 @@ const EFHeader: React.FC<HeaderProps> = ({ setIsOpen, isOpen }) => {
       <div id="navbarBasicExample" className="navbar-menu">
         <div className="navbar-start">
           <a onClick={() => setIsOpen(!isOpen)} className="navbar-item">
-            <i className="fa fa-bars"></i>
+            <i className="fa fa-bars has-text-white"></i>
           </a>
         </div>
 
@@ -105,7 +105,9 @@ const EFHeader: React.FC<HeaderProps> = ({ setIsOpen, isOpen }) => {
           </div>
           <div className="navbar-item has-dropdown is-hoverable ">
             <a className="navbar-link">
-              {user?.ename}
+             <span className="has-text-white mr-2">
+             {user?.ename}
+              </span>
               <img
                 src={ADMIN_USER_LOGO}
                 alt=""
