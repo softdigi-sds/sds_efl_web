@@ -562,7 +562,7 @@ color: $white-color !important;
 }
 .smart-elf-dashboard{
   .has-background-warning{
-    background-color: #ffcc00!important;
+    background-color: rgba(255, 204, 0,.8)!important;
     padding:38px 34px !important;
     color: black !important;
     @media screen and (max-width: 768px) {
