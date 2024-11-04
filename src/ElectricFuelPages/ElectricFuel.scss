@@ -350,25 +350,25 @@
   
   
   .gradient-blue {
-    background: linear-gradient(45deg, rgba(106, 17, 203,1), rgba(37, 117, 252, 1));
+    background: linear-gradient(45deg, rgba(106, 17, 203,.8), rgba(37, 117, 252, .8));
     box-shadow: 0 4px 8px rgba(255, 255, 255, 0.2);
     border: .5px solid rgba(255, 255, 255, 0.2);
   }
   
   .gradient-pink {
-    background: linear-gradient(45deg, #ff758c, #ff7eb3);
+    background: linear-gradient(45deg, rgba(255, 117, 140,.8), rgba(255, 126, 179,.8));
     box-shadow: 0 4px 8px rgba(255, 255, 255, 0.2);
     border: .5px solid rgba(255, 255, 255, 0.2);
   }
   
   .gradient-green {
-    background: linear-gradient(45deg, #43e97b, #38f9d7);
+    background: linear-gradient(45deg, rgba(67, 233, 123,.8), rgb(56, 249, 215,.8));
     box-shadow: 0 4px 8px rgba(255, 255, 255, 0.2);
     border: .5px solid rgba(255, 255, 255, 0.2);
   }
   
   .gradient-orange {
-    background: linear-gradient(45deg, #ff9a44, #fc6076);
+    background: linear-gradient(45deg, rgba(255, 154, 68,.8), rgba(252, 96, 118,0.8));
     box-shadow: 0 4px 8px rgba(255, 255, 255, 0.2);
     border: .5px solid rgba(255, 255, 255, 0.2);
   }
@@ -582,4 +582,7 @@ font-weight: bold;
   p{
     color: white !important;
   }
+}
+.sd_efl-calender{
+  background-color:rgba(0, 0, 0, 0.1);
 }

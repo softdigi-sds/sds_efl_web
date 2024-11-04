@@ -204,7 +204,7 @@ const MeterReadingReport = () => {
                           </td>
                         ) : (
                           <td key={index}>
-                            <span className="sd-cursor has-text-white">+</span>
+                            <span className="sd-cursor has-text-white"></span>
                           </td>
                         );
                       })}
