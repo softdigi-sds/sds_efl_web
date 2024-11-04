@@ -19,7 +19,7 @@
   width: calc(100% - 40px);
   transition: left 0.3s ease;
   background:  $body-background-image;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3), 0 8px 20px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3), 0 8px 20px rgba(0, 0, 0, 0.15);
   background-size: cover;
   z-index: 956;
   &.expanded {
@@ -63,7 +63,7 @@
   padding: 10px;
   transition: margin-left 0.3s ease;
   min-height: 100vh;
-  background-color: rgba(0, 0, 0, 0.3);
+  background-color: rgba(0, 0, 0, 0.5);
   width: calc(100% - 136px);
   &.expanded {
     margin-left: 168px;
@@ -117,7 +117,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  box-shadow: 4px 0 12px rgba(0, 0, 0, 0.3), 8px 0 20px rgba(0, 0, 0, 0.15);
+  box-shadow: 4px 0 12px rgba(0, 0, 0, 0.5), 8px 0 20px rgba(0, 0, 0, 0.15);
   &.expanded {
     width: 200px; // Expanded width on hover
     @media screen and (max-width: 768px) {
