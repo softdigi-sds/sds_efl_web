@@ -38,7 +38,7 @@ const Notification = () => {
     return (
       <div className="card p-0">
         <header className="card-header">
-          <p className="card-header-title">
+          <p className="card-header-title has-text-white">
             <span>Notifications</span>{" "}
           </p>
         </header>
@@ -121,7 +121,7 @@ const Notification = () => {
       </span>
       {active && (
         <div className="dropdown-menu" id="dropdown-menu" role="menu">
-          <div className="dropdown-content">{notificationCard()}</div>
+          <div className="smart-notification">{notificationCard()}</div>
         </div>
       )}
     </div>

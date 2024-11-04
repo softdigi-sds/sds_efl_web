@@ -600,3 +600,12 @@ color: $white-color !important;
 .sd_efl-calender{
   background-color:rgba(0, 0, 0, 0.1);
 }
+.smart-notification{
+  backdrop-filter: blur(10px);
+  background-color: rgba(160, 159, 159, 0.2);
+  border: 1px solid rgba(50, 15, 206, 0.3);
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  color: #ffffff;
+  width: 360px;
+}
