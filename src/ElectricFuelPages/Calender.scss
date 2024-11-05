@@ -3,14 +3,23 @@
     .calendar-body{
         .calendar-weekdays{
             .calendar-weekday{
-                background-color:$secondary-color;
+                background-color:rgba(0,0,0,.4);
                 color:#ffffff;
                 margin-bottom: 0;
+                border: 1px solid white;
+                &:nth-child(1){
+                    border:1px solid white;
+                }
               
             }
         }
     }
-    .calendar-days {        
+    .calendar-days {   
+        .calendar-day--future{
+            background-color: rgba(255, 244, 244, 0.208) ;
+            color: white;
+           
+        }     
         .calendar-day {
             align-items: center;
             display: flex;

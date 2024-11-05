@@ -1,5 +1,28 @@
 /** variables */
 $primary-color: #a64167; /* Define your primary color */
+  /* Define your secondary color */
+  $secondary-color: #08a95c;
+  /* Define your third color */
+  $third-color: #3b3b3b;
+  /* Define your white color */
+  $white-color: #fffffe;
+  /* Define your text color */
+  $text-color: #3b3b3b;
+  /* Define your text white color */
+  $text-white-color: #fffffe;
+  /* Define your link color */
+  $link-color: #007bff;
+  /* Define your link hover color */
+  $link-hover-color: #0056b3;
+  /* Define your body background color */
+  $body-background: $white-color;
+  /* Define your smart action button background color */
+  $smart-action-button-background: $primary-color;
+  /* Define your smart action button text color */
+
+  $body-dark-background-image:url(../src/assets/images/Background/car-69.jpg);
+  $body-background-image:url(../src/assets/images/Background/fiat-500.jpg);
+
 
 :root {
   --primary-color: #a64167;

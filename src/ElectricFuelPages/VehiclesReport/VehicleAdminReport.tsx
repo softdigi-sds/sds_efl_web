@@ -335,7 +335,7 @@ const VehicleAdminReport: React.FC<VehicleReportProps> = ({
                                 className="is-clickable has-text-link"
                                 onClick={() => openVendorsView(hub.ID)}
                               >
-                               ( {hub.vendor_count})
+                               ({hub.vendor_count})
                               </p>
                             ) : (
                               <span>({hub.vendor_count})</span>

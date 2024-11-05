@@ -3,18 +3,22 @@ import { useNavigate } from "react-router-dom";
 import { useSiteContext } from "../contexts/SiteProvider";
 import { ADMIN_USER_LOGO, LOGO } from "../services/ImageService";
 import Notificaton from "../ElectricFuelPages/Notification/Notificaton";
+import ToggleSwitch from "./ToggleSwitch";
 
 interface HeaderProps {
   setIsOpen: (open: boolean) => void;
+  setIsDark:(open: boolean) =>void;
   isOpen: boolean;
+  isDark: boolean;
 }
-const EFHeader: React.FC<HeaderProps> = ({ setIsOpen, isOpen }) => {
+const EFHeader: React.FC<HeaderProps> = ({ setIsOpen, isOpen,setIsDark ,isDark}) => {
   const navigate = useNavigate();
   const basenav = "/";
   const { user, setUser, logout, setLoading } = useSiteContext();
   const [mobileScreen, setMobileScreen] = useState<boolean>(
     window.innerWidth <= 768
   );
+  const toggleTheme = () => setIsDark(!isDark);
   //console.log("user ", user);
   const navigateLink = (index: any) => {
     // navigate(basenav + "/" + index);
@@ -40,6 +44,7 @@ const EFHeader: React.FC<HeaderProps> = ({ setIsOpen, isOpen }) => {
       // console.log("Mobile Screen")
     }
   },[mobileScreen])
+ 
 
   // return (
   //   <div>
@@ -77,7 +82,7 @@ const EFHeader: React.FC<HeaderProps> = ({ setIsOpen, isOpen }) => {
       </div>
         <a
           role="button"
-          className="navbar-burger"
+          className="navbar-burger has-text-white"
           aria-label="menu"
           aria-expanded="false"
           data-target="navbarBasicExample"
@@ -93,11 +98,14 @@ const EFHeader: React.FC<HeaderProps> = ({ setIsOpen, isOpen }) => {
       <div id="navbarBasicExample" className="navbar-menu">
         <div className="navbar-start">
           <a onClick={() => setIsOpen(!isOpen)} className="navbar-item">
-            <i className="fa fa-bars"></i>
+            <i className="fa fa-bars has-text-white"></i>
           </a>
         </div>
 
         <div className="navbar-end">
+          <div className="dark-switch-item mt-4">
+          <ToggleSwitch isDark={isDark} toggleTheme={toggleTheme} />
+          </div>
           <div className=" navbar-item  mr-1 smart-elf-notification">
             <Notificaton />
 
@@ -105,7 +113,9 @@ const EFHeader: React.FC<HeaderProps> = ({ setIsOpen, isOpen }) => {
           </div>
           <div className="navbar-item has-dropdown is-hoverable ">
             <a className="navbar-link">
-              {user?.ename}
+             <span className="has-text-white mr-2">
+             {user?.ename}
+              </span>
               <img
                 src={ADMIN_USER_LOGO}
                 alt=""
