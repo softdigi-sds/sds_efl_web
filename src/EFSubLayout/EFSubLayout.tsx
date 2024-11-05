@@ -8,6 +8,7 @@ interface childrenProps {
 const EFSubLayout: React.FC<childrenProps> = (props) => {
   const { children } = props;
   const [isOpen, setIsOpen] = useState<boolean>(true);
+  const [isDark, setIsDark] = useState<boolean>(true);
 
   const toggleSidebar = () => {
     setIsOpen(!isOpen); // Toggle the state
@@ -27,12 +28,14 @@ const EFSubLayout: React.FC<childrenProps> = (props) => {
   //   </div>
   // )
   return (
-    <div className="container is-fluid smart-efl-container">
+    <div className={`container is-fluid ${isDark ? "smart-dark-efl-container":"smart-efl-container"}`}>
       <div className="efl-main-sidenav">
         <EFSideNav isOpen={isOpen} setIsOpen={setIsOpen} />
       </div>
       <div className={`efl-main-header ${isOpen ? "expanded" : ""}`}>
-        <EFHeader setIsOpen={(value) => setIsOpen(value)} isOpen={isOpen} />
+        <EFHeader setIsOpen={(value) => setIsOpen(value)} isOpen={isOpen} 
+        setIsDark={setIsDark} isDark={isDark}
+          />
       </div>
       <div className={`efl-main-div ${isOpen ? "expanded" : ""}`}>
         {children}

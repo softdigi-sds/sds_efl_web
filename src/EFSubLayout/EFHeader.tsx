@@ -3,18 +3,22 @@ import { useNavigate } from "react-router-dom";
 import { useSiteContext } from "../contexts/SiteProvider";
 import { ADMIN_USER_LOGO, LOGO } from "../services/ImageService";
 import Notificaton from "../ElectricFuelPages/Notification/Notificaton";
+import ToggleSwitch from "./ToggleSwitch";
 
 interface HeaderProps {
   setIsOpen: (open: boolean) => void;
+  setIsDark:(open: boolean) =>void;
   isOpen: boolean;
+  isDark: boolean;
 }
-const EFHeader: React.FC<HeaderProps> = ({ setIsOpen, isOpen }) => {
+const EFHeader: React.FC<HeaderProps> = ({ setIsOpen, isOpen,setIsDark ,isDark}) => {
   const navigate = useNavigate();
   const basenav = "/";
   const { user, setUser, logout, setLoading } = useSiteContext();
   const [mobileScreen, setMobileScreen] = useState<boolean>(
     window.innerWidth <= 768
   );
+  const toggleTheme = () => setIsDark(!isDark);
   //console.log("user ", user);
   const navigateLink = (index: any) => {
     // navigate(basenav + "/" + index);
@@ -40,6 +44,7 @@ const EFHeader: React.FC<HeaderProps> = ({ setIsOpen, isOpen }) => {
       // console.log("Mobile Screen")
     }
   },[mobileScreen])
+ 
 
   // return (
   //   <div>
@@ -98,6 +103,9 @@ const EFHeader: React.FC<HeaderProps> = ({ setIsOpen, isOpen }) => {
         </div>
 
         <div className="navbar-end">
+          <div className="dark-switch-item mt-4">
+          <ToggleSwitch isDark={isDark} toggleTheme={toggleTheme} />
+          </div>
           <div className=" navbar-item  mr-1 smart-elf-notification">
             <Notificaton />
 
