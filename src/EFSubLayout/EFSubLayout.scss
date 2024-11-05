@@ -62,9 +62,12 @@
   transition: margin-left 0.3s ease;
   min-height: 100vh;
   background-color: rgba(0, 0, 0, 0.5);
-  width: calc(100% - 136px);
+ 
+  min-width: calc(100% - 136px);
+  width: 100%;
   &.expanded {
     margin-left: 168px;
+    width: calc(100% - 136px);
     
     // width: calc(100% - 60px);
     // width: 200px; // Expanded width on hover
@@ -264,9 +267,12 @@
   transition: margin-left 0.3s ease;
   min-height: 100vh;
   background-color: rgba(0, 0, 0, 0.5);
-  width: calc(100% - 136px);
+  min-width: calc(100% - 136px);
+  width: 100%;
+
   &.expanded {
     margin-left: 168px;
+    width: calc(100% - 136px);
     
     // width: calc(100% - 60px);
     // width: 200px; // Expanded width on hover
