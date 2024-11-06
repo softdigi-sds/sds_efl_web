@@ -20,6 +20,7 @@ import ConsumptionAdminReport from "./ConsumptionReport/ConsumptionAdminReport";
 import VehicleAdminReport from "./VehiclesReport/VehicleAdminReport";
 import MeterReadingReport from "./MeterReading/MeterReadingReport";
 import CustomersTables from "./Customers/CustomersTables";
+import Payment from './Payments/Payment'
 export {
   Dashboard,
   HomePage,
@@ -41,4 +42,5 @@ export {
   VehicleAdminReport,
   MeterReadingReport,
   CustomersTables,
+  Payment
 };
