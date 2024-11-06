@@ -3,7 +3,7 @@ import { useSiteContext } from "../contexts/SiteProvider";
 import EFHeader from "./EFHeader";
 import EFSideNav from "./EFSideNav";
 import "./EFSubLayout.scss";
-import "./EFlTheme.scss";
+import "./EFLTheme.scss";
 interface childrenProps {
   children: any;
 }
@@ -30,7 +30,7 @@ const EFSubLayout: React.FC<childrenProps> = (props) => {
   //   </div>
   // )
   return (
-    <div className={`container is-fluid ${isDark ? "smart-dark-efl-container":"smart-efl-container"}`}>
+    <div className={`container is-fluid smart-dark-efl-container ${!isDark ? "smart-efl-container":""}`}>
       <div className="efl-main-sidenav">
         <EFSideNav isOpen={isOpen} setIsOpen={setIsOpen} />
       </div>

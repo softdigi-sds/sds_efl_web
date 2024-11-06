@@ -1,0 +1,348 @@
+@import "../index.scss";
+
+.smart-efl-container {
+  background: $body-dark-background-image;
+
+  .efl-main-header {
+    background: $body-dark-background-image;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3), 0 8px 20px rgba(0, 0, 0, 0.15);
+
+    .navbar {
+  
+
+      background-color: rgba(0, 0, 0, 0.6);
+      color: $white-color;
+    }
+
+  }
+
+  .efl-main-div {
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+
+  /*** side nav styles ***/
+  // Base sidenav styles
+  .smart-sidenav {
+    width: 60px; // Shrinked width
+    height: 100vh;
+    // background-color: #91076d;
+    background-color: rgba(0, 0, 0, 0.6);
+    position: fixed;
+    top: 0;
+    left: 0;
+    transition: width 0.3s ease;
+    transition: display 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 4px 0 12px rgba(0, 0, 0, 0.5), 8px 0 20px rgba(0, 0, 0, 0.15);
+    // border-right: 1px solid rgba(255, 255, 255,.2);
+
+    &.expanded {
+      width: 200px; // Expanded width on hover
+
+      @media screen and (max-width: 768px) {
+        position: fixed;
+        top: 0;
+        width: 200px;
+        display: flex;
+        z-index: 1001;
+      }
+
+      // Extra small devices (e.g. phones)
+      @media screen and (max-width: 480px) {
+        position: fixed;
+        top: 0;
+        width: 250px;
+        display: flex;
+        z-index: 1001;
+        background-color: rgba(0, 0, 0, 0.9);
+      }
+    }
+
+    .brand-logo {
+      // height:60px;
+      margin-bottom: 10px;
+      padding: 10px;
+      // background-color: #ffffff;
+      background-color: rgb(0, 0, 1);
+      // background-color: transparent;
+      // filter: blur(5px);
+      // background-color:rgba(46,44,27,1);
+      height: 60px;
+
+      img {
+        height: 100%;
+        display: block;
+        object-fit: fill !important;
+      }
+    }
+
+    &.expanded .brand-logo img {
+      max-width: 100%;
+    }
+
+    .sidenav-link {
+      width: 100%;
+      padding: 9px;
+      text-decoration: none;
+      color: white;
+      display: flex;
+      align-items: center;
+      transition: all 0.5s;
+
+      &:hover {
+        background-color: rgba(0, 0, 0, 0.8);
+        color: #91076d;
+        border-top: 1px solid #91076d;
+        border-bottom-right-radius: 10px;
+        border-top-right-radius: 10px;
+        border-radius: 10px;
+      }
+
+      .icon {
+        font-size: 24px;
+        margin-right: 16px;
+        // margin-top: 5px;
+      }
+
+      .link-text {
+        display: none; // Initially hidden
+      }
+
+      &.active-link {
+        background-color: rgba(0, 0, 0, 0.8);
+        color: #91076d;
+        border-radius: 10px;
+      }
+    }
+
+    // Show the text when sidenav is expanded
+    &.expanded .link-text {
+      display: inline-block;
+    }
+
+    // Mobile view styles
+    @media screen and (max-width: 768px) {
+      display: none;
+    }
+
+    // Extra small devices (e.g. phones)
+    @media screen and (max-width: 480px) {
+      display: none;
+    }
+  }
+
+  .card {
+    box-shadow: 0 4px 8px rgba(255, 255, 255, 0.2) !important;
+    border: 0.5px solid rgba(255, 255, 255, 0.2) !important;
+    background-color: rgba(0, 0, 0, 0.2) !important;
+    color: white !important;
+  }
+
+  .smart-table-head {
+    p {
+      color: white !important;
+    }
+  }
+
+  .sd_efl-calender {
+    background-color: rgba(0, 0, 0, 0.1);
+  }
+
+  .calendar-header {
+    background-color: rgba(0, 0, 0, 0.1) !important;
+    color: $white-color;
+
+    .dropdown {
+      .button {
+        color: $white-color !important;
+      }
+    }
+  }
+
+  .scrollable-table {
+    overflow-x: auto;
+    /* Enables horizontal scrolling */
+    white-space: nowrap;
+    /* Prevents table contents from wrapping */
+    height: 75vh;
+
+    .table {
+      background-color: rgba(0, 0, 0, 0.4);
+      backdrop-filter: blur(5px);
+
+      th {
+        color: white;
+      }
+
+      tr td {
+        color: $white-color;
+      }
+    }
+  }
+
+  .smart-table-head-buttons {
+    .icon {
+      color: $white-color;
+    }
+  }
+
+  .smart-efl-table_main_container {
+    .smart-table-head {
+      div.column {
+        display: flex;
+        align-items: center;
+      }
+
+      .smart-table-head-buttons {
+        @media screen and (max-width: 768px) {
+          .label {
+            display: none;
+          }
+
+          .button {
+            padding: 5px;
+          }
+
+          .icon {
+            margin: 0;
+            font-size: 1em;
+          }
+        }
+      }
+    }
+
+    .smart-table-container {
+      min-height: 300px;
+
+      table {
+        width: 100%;
+        font-size: 1em;
+        border-radius: 3px;
+        overflow: hidden;
+
+        /* Apply the frosted glass effect */
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        background: rgba(
+          255,
+          255,
+          255,
+          0.1
+        ); // Transparent background for glass effect
+        backdrop-filter: blur(10px); // Blur effect for the glass look
+
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        border-radius: 5px;
+        // margin-bottom: 20px;
+
+        thead {
+          // background: var(--secondary-color);
+          font-size: 14px;
+          border-bottom: 2px solid rgba(0, 0, 0, 0.8);
+          background: rgba(255, 255, 255, 0.15);
+
+          tr {
+            th {
+              color: var(--white-color);
+              font-weight: bold;
+
+              color: #fff;
+            }
+          }
+        }
+
+        tbody {
+          tr {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+            font-size: 14px;
+            color: black;
+            background: rgba(255, 255, 255, 0.05);
+            color: white;
+
+            // border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            // background-color: rgb(225, 243, 232);
+            td {
+              padding: 10px 10px;
+            }
+
+            .smart-efl-table-view-icon {
+              font-size: 1rem;
+              color: rgb(35, 225, 130);
+              cursor: pointer;
+            }
+
+            .smart-efl-table-edit-icon {
+              font-size: 1rem;
+              color: #00dd;
+              cursor: pointer;
+            }
+
+            .smart-efl-table-delete-icon {
+              font-size: 1rem;
+              color: #ff1d58;
+              cursor: pointer;
+            }
+
+            &:hover {
+              //  background-color: #3dca88 !important;
+              background: rgba(0, 0, 0, 0.5) !important;
+
+              // color: white !important;
+              color: $white-color;
+
+              .smart-efl-table-view-icon {
+                color: rgb(53, 255, 70);
+              }
+
+              .smart-efl-table-edit-icon {
+                color: rgb(0, 0, 255);
+              }
+
+              .smart-efl-table-delete-icon {
+                color: #ff0447;
+              }
+            }
+
+            &:nth-of-type(even) {
+              font-size: 14px;
+              // background-color: rgb(248, 248, 248);
+              background: rgba(255, 255, 255, 0.05) !important;
+              backdrop-filter: blur(5px);
+
+              &:hover {
+                background: rgba(0, 0, 0, 0.5) !important;
+              }
+            }
+
+            &:last-of-type {
+              border-bottom: 2px solid rgba(255, 255, 255, 0.8);
+            }
+          }
+        }
+      }
+    }
+
+    .smart-table-pagination {
+      .pagination-list {
+        .pagination-link.is-current {
+          background-color: var(--secondary-color);
+        }
+      }
+    }
+
+    .smart-table-footer {
+      margin-left: 0;
+      margin-right: 0;
+      margin-top: 0;
+      margin-bottom: 20px;
+
+      .column {
+        margin: 0;
+        padding: 0 !important;
+      }
+    }
+  }
+
+  //// end
+}

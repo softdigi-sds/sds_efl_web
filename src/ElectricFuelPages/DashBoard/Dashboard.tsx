@@ -10,7 +10,7 @@ import MarketSlots from './MarketSlots'
 const Dashboard = () => {
   return (
     <>
-    <p className='is-size-4 has-text-weight-bold mb-1 smart-top-header-text'>Dashboard</p>
+    <p className='is-size-4 has-text-weight-bold mb-1 has-text-white'>Dashboard</p>
     <div className=""><DashBoardCard/></div>
       <div className="columns is-multiline">  
       <div className="column is-6 "> < DashboardMapView /></div>

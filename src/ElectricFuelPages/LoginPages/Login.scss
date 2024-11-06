@@ -43,9 +43,15 @@ color: blue;
   }
   .is-success.input:focus{
     box-shadow: none;
+    .control.has-icons-left .icon, .control.has-icons-right .icon{
+      color:  $primary-color;
+    }
   }
   .is-danger.input:focus{
     box-shadow: none;
+    .control.has-icons-left .icon, .control.has-icons-right .icon{
+      color:  $primary-color;
+    }
   }
 
   input:active {
@@ -53,6 +59,9 @@ color: blue;
   }
   input:focus {
    box-shadow: none;
+   .control.has-icons-left .icon, .control.has-icons-right .icon{
+    color:  $primary-color;
+  }
   }
   .control.has-icons-left .icon, .control.has-icons-right .icon{
     color:  $primary-color;
