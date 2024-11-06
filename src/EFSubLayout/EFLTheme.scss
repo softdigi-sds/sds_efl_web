@@ -2,7 +2,6 @@
 
 .smart-efl-container {
   background: $body-dark-background-image;
-
   .efl-main-header {
     background: $body-dark-background-image;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3), 0 8px 20px rgba(0, 0, 0, 0.15);
@@ -143,7 +142,6 @@
             &:hover {
               //  background-color: #3dca88 !important;
               background: rgba(0, 0, 0, 0.5) !important;
-
               // color: white !important;
               color: $white-color;
             }
@@ -161,6 +159,18 @@
             &:last-of-type {
               border-bottom: 2px solid rgba(255, 255, 255, 0.8);
             }
+          }
+        }
+      }
+    }
+    .smart-table-footer{
+      .smart-select{
+        .smart-select-input{
+          div{
+            background-color: rgba(255, 255, 255, 0.05);
+            color:$white-color;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+
           }
         }
       }
