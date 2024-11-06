@@ -309,3 +309,13 @@
     transition: transform 0.3s ease-in-out;
   }
 }
+
+.scrollable-table {
+  overflow-x: auto;
+  /* Enables horizontal scrolling */
+  white-space: nowrap;
+  /* Prevents table contents from wrapping */
+  height: 75vh;
+
+ 
+}
