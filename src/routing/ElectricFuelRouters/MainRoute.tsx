@@ -12,6 +12,7 @@ import {
   MeterReadingReport,
   Msireports,
   OfficesTable,
+  Payment,
   Profile,
   RoleTable,
   UsersTable,
@@ -77,6 +78,7 @@ const EFSiteRoute = () => {
             />
             <Route path="/invoices" element={<InvoiceTable />} />
             <Route path="/customers" element={<CustomersTables />} />
+            <Route path="/payment" element={<Payment />} />
           </Routes>
 
           <ToastContainer />
