@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { useSiteContext } from "../contexts/SiteProvider";
 import EFHeader from "./EFHeader";
+import "./EFLTheme.scss";
 import EFSideNav from "./EFSideNav";
 import "./EFSubLayout.scss";
-import "./EFlTheme.scss";
 interface childrenProps {
   children: any;
 }
