@@ -61,7 +61,7 @@ const RecentPayment = () => {
       index: "invoice",
     },
     {
-      title: "customer",
+      title: "Customer",
       index: "customer_name",
     },
     { title: "Date", index: "hub_id" },
@@ -115,7 +115,7 @@ const RecentPayment = () => {
   const tableTop: SmartTableNewInterface.SmartTableNewTopProps[] = [
     {
       type: "CUSTOM",
-      widthClass: "is-9",
+      widthClass: "is-10",
       custom: (
         <p className="is-size-4">
           {" "}
@@ -126,7 +126,7 @@ const RecentPayment = () => {
     },
     {
       type: "BUTTONS",
-      widthClass: "is-3",
+      widthClass: "is-2",
       align: "CENTER",
       buttons: [
         {

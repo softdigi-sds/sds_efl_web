@@ -61,7 +61,7 @@ const PaymentInvoice = () => {
       index: "invoice",
     },
     {
-      title: "customer",
+      title: "Customer",
       index: "customer_name",
     },
     { title: "Hub", index: "hub_id" },
