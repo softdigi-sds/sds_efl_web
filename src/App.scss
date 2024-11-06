@@ -38,6 +38,7 @@
       border: 1px solid rgba(255, 255, 255, 0.2);
       background: rgba(255, 255, 255, 0.1); // Transparent background for glass effect
       backdrop-filter: blur(10px);           // Blur effect for the glass look
+   
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
       border-radius: 5px;
       // margin-bottom: 20px;
@@ -46,14 +47,15 @@
         // background: var(--secondary-color);
         font-size: 14px;
         border-bottom: 2px solid rgba(0, 0, 0, 0.8);
-        background: rgba(255, 255, 255, 0.15);
+       // background:#05da77;
+        background:#05da77b9;
 
         tr {
           th {
             color: var(--white-color);
             font-weight: bold;
          
-            color: #fff;  
+            color:black;  
           }
         }
       }
@@ -64,16 +66,16 @@
           font-size: 14px;
           color: black;
           background: rgba(255, 255, 255, 0.05);
-          color: white;
+          color: black;
           // border-bottom: 1px solid rgba(255, 255, 255, 0.2);
           // background-color: rgb(225, 243, 232);
           td{
-            padding: 10px 10px;
+            padding: 5px 10px;
           }
 
           .smart-efl-table-view-icon {
             font-size: 1rem;
-            color: rgb(35, 225, 130);
+            color: rgb(53, 255, 70);
             cursor: pointer;
           }
 
@@ -91,10 +93,10 @@
 
           &:hover {
             //  background-color: #3dca88 !important;
-             background: rgba(0, 0, 0, 0.5) !important;
+             background: #05da77c3 !important;
         
             // color: white !important;
-            color:$white-color;
+             color:$white-color;
 
             .smart-efl-table-view-icon {
               color: rgb(53, 255, 70);
@@ -112,10 +114,10 @@
           &:nth-of-type(even) {
             font-size: 14px;
             // background-color: rgb(248, 248, 248);
-            background: rgba(255, 255, 255, 0.05) !important;
-            backdrop-filter: blur(5px);
+            background:#05da77b9 !important;
+            // backdrop-filter: blur(5px);
             &:hover{
-              background: rgba(0, 0, 0, 0.5) !important;
+              background: #05da77c3 !important;
             }
           }
 
@@ -262,14 +264,3 @@ hr{ margin: 0 !important; background-color: black}
   color: $white-color;
 }
 
-.card{
-  box-shadow: 0 4px 8px rgba(255, 255, 255, 0.2) !important;
-  border: .5px solid rgba(255, 255, 255, 0.2 )!important;
-  background-color: rgba(0, 0, 0, 0.2) !important;
-  color: white !important;
-}
-.smart-table-head-buttons{
-  .icon{
-    color: $white-color;
-  }
-}

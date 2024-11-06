@@ -2,13 +2,14 @@ import React, { useState } from "react";
 import EFHeader from "./EFHeader";
 import EFSideNav from "./EFSideNav";
 import "./EFSubLayout.scss";
+import { useSiteContext } from "../contexts/SiteProvider";
 interface childrenProps {
   children: any;
 }
 const EFSubLayout: React.FC<childrenProps> = (props) => {
   const { children } = props;
   const [isOpen, setIsOpen] = useState<boolean>(true);
-  const [isDark, setIsDark] = useState<boolean>(true);
+  const {  isDark, setIsDark} = useSiteContext(); 
 
   const toggleSidebar = () => {
     setIsOpen(!isOpen); // Toggle the state

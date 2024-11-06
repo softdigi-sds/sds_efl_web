@@ -492,21 +492,7 @@ font-weight: bold;
 
 }
 
-.scrollable-table {
-  overflow-x: auto; /* Enables horizontal scrolling */
-  white-space: nowrap; /* Prevents table contents from wrapping */
-  height:75vh;
-  .table{
-    background-color: rgba(0, 0, 0, 0.4);
-    backdrop-filter: blur(5px);
-    th{
-      color: white;
-    }
-    tr td{
-      color:$white-color;
-    }
-  }
-}
+
 
 
 
@@ -542,16 +528,7 @@ font-weight: bold;
     background-color: rgba(0, 0, 0, 0.1) !important;
   }
 }
-.calendar-header{
-  background-color: rgba(0, 0, 0, 0.1) !important;
-  color:$white-color;
-  .dropdown{
-    .button{
-color: $white-color !important;
-    }
-    
-  }
-}
+
 
 .smart-table-filter-form .dropdown-content{
   background-color: rgba(255, 255, 255, 0.5);
@@ -592,14 +569,7 @@ color: $white-color !important;
 }
 
 
-.smart-table-head{
-  p{
-    color: white !important;
-  }
-}
-.sd_efl-calender{
-  background-color:rgba(0, 0, 0, 0.1);
-}
+
 .smart-notification{
   backdrop-filter: blur(10px);
   background-color: rgba(160, 159, 159, 0.2);

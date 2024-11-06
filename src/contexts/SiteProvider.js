@@ -24,6 +24,7 @@ export const SiteProvider = ({ children }) => {
   // these are modal contexts
   const [modalOptions, setModalOptions] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isDark, setIsDark] = useState(true);
 
   const handleUserChange = (name, value) => {
     // console.log("name ", name , "value " , value)
@@ -80,6 +81,8 @@ export const SiteProvider = ({ children }) => {
         modalOptions,
         logout,
         handleUserChange,
+        setIsDark,
+        isDark
       }}
     >
       {children}

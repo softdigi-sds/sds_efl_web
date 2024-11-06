@@ -4,7 +4,8 @@
 }
 
 .smart-efl-container{
-  background: $body-dark-background-image;
+   background: $body-dark-background-image;
+
   transition: background-color 0.3s ease, color 0.3s ease;
   background-size: 100% 100%;
   min-height: 100vh;
@@ -205,11 +206,206 @@
     display: none;
   }
 }
+
+.card{
+  box-shadow: 0 4px 8px rgba(255, 255, 255, 0.2) !important;
+  border: .5px solid rgba(255, 255, 255, 0.2 )!important;
+  background-color: rgba(0, 0, 0, 0.2) !important;
+  color: white !important;
+}
+.smart-table-head{
+  p{
+    color: white !important;
+  }
+}
+.sd_efl-calender{
+  background-color:rgba(0, 0, 0, 0.1);
+}
+
+.calendar-header{
+  background-color: rgba(0, 0, 0, 0.1) !important;
+  color:$white-color;
+  .dropdown{
+    .button{
+color: $white-color !important;
+    }
+    
+  }
+}
+.scrollable-table {
+  overflow-x: auto; /* Enables horizontal scrolling */
+  white-space: nowrap; /* Prevents table contents from wrapping */
+  height:75vh;
+  .table{
+    background-color: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(5px);
+    th{
+      color: white;
+    }
+    tr td{
+      color:$white-color;
+    }
+  }
+}
+
+
+.smart-table-head-buttons{
+  .icon{
+    color: $white-color;
+  }
+}
+
+.smart-efl-table_main_container {
+  .smart-table-head {
+    div.column {
+      display: flex;
+      align-items: center;
+    }
+    .smart-table-head-buttons {
+      @media screen and (max-width: 768px) {
+        .label {
+          display: none;
+        }
+        .button {
+          padding: 5px;
+        }
+        .icon {
+          margin: 0;
+          font-size: 1em;
+        }
+      }
+    }
+  }
+
+  .smart-table-container {
+    min-height: 300px;
+    table {
+      width: 100%;
+      font-size: 1em;
+      border-radius: 3px;
+      overflow: hidden;
+   
+      /* Apply the frosted glass effect */
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      background: rgba(255, 255, 255, 0.1); // Transparent background for glass effect
+      backdrop-filter: blur(10px);           // Blur effect for the glass look
+   
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      border-radius: 5px;
+      // margin-bottom: 20px;
+
+      thead {
+        // background: var(--secondary-color);
+        font-size: 14px;
+        border-bottom: 2px solid rgba(0, 0, 0, 0.8);
+        background: rgba(255, 255, 255, 0.15);
+
+        tr {
+          th {
+            color: var(--white-color);
+            font-weight: bold;
+         
+            color: #fff;  
+          }
+        }
+      }
+
+      tbody {
+        tr {
+          border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+          font-size: 14px;
+          color: black;
+          background: rgba(255, 255, 255, 0.05);
+          color: white;
+          // border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+          // background-color: rgb(225, 243, 232);
+          td{
+            padding: 10px 10px;
+          }
+
+          .smart-efl-table-view-icon {
+            font-size: 1rem;
+            color: rgb(35, 225, 130);
+            cursor: pointer;
+          }
+
+          .smart-efl-table-edit-icon {
+            font-size: 1rem;
+            color: #00dd;
+            cursor: pointer;
+          }
+
+          .smart-efl-table-delete-icon {
+            font-size: 1rem;
+            color: #ff1d58;
+            cursor: pointer;
+          }
+
+          &:hover {
+            //  background-color: #3dca88 !important;
+             background: rgba(0, 0, 0, 0.5) !important;
+        
+            // color: white !important;
+            color:$white-color;
+
+            .smart-efl-table-view-icon {
+              color: rgb(53, 255, 70);
+            }
+
+            .smart-efl-table-edit-icon {
+              color: rgb(0, 0, 255);
+            }
+
+            .smart-efl-table-delete-icon {
+              color: #ff0447;
+            }
+          }
+
+          &:nth-of-type(even) {
+            font-size: 14px;
+            // background-color: rgb(248, 248, 248);
+            background: rgba(255, 255, 255, 0.05) !important;
+            backdrop-filter: blur(5px);
+            &:hover{
+              background: rgba(0, 0, 0, 0.5) !important;
+            }
+          }
+
+          &:last-of-type {
+            border-bottom: 2px solid rgba(255, 255, 255, 0.8);
+          }
+        }
+      }
+    }
+  }
+
+  .smart-table-pagination {
+    .pagination-list {
+      .pagination-link.is-current {
+        background-color: var(--secondary-color);
+      }
+    }
+  }
+
+  .smart-table-footer {
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 0;
+    margin-bottom: 20px;
+    .column {
+      margin: 0;
+      padding: 0 !important;
+    }
+  }
+}
+
+//// end
 }
 
 
 .smart-dark-efl-container{
-  background: $body-background-image;
+  // background: $body-background-image;
+background-color: rgba(255,255,255,0.8);
   transition: background-color 0.3s ease, color 0.3s ease;
   background-size: 100% 100%;
   min-height: 100vh;
@@ -221,7 +417,7 @@
   top: 0;
   width: calc(100% - 40px);
   transition: left 0.3s ease;
-  background:  $body-background-image;
+  background: rgb(171,29,83) ;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3), 0 8px 20px rgba(0, 0, 0, 0.15);
   background-size: cover;
   z-index: 956;
@@ -245,7 +441,7 @@
   .navbar {
     // border-bottom: 1px solid #91076d;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.6);
+    background-color:rgb(171,29,83);
     color:$white-color;
   }
   @media screen and (max-width: 768px) {
@@ -260,13 +456,17 @@
   }
 }
 
+.has-text-white{
+  color: black !important;
+}
+
 .efl-main-div {
   margin-left: 40px;
   margin-top: 55px;
   padding: 10px;
   transition: margin-left 0.3s ease;
   min-height: 100vh;
-  background-color: rgba(0, 0, 0, 0.5);
+   background-color: rgba(255, 255, 255, 0.9);
   min-width: calc(100% - 136px);
   width: 100%;
 
@@ -314,7 +514,8 @@
   width: 60px; // Shrinked width
   height: 100vh;
   // background-color: #91076d;
-  background-color: rgba(0, 0, 0, 0.6);
+  // background-color: rgba(0, 0, 0, 0.6);
+  background-color: rgb(171,29,83);
   position: fixed;
   top: 0;
   left: 0;
@@ -353,7 +554,7 @@
     // background-color: #ffffff; 
    // background-color: rgb(0,0,1);
     // filter: blur(5px);
-   background-color:rgb(53,48,38);
+   background-color:$white-color;
     height: 60px;
     img {
       height: 100%;
@@ -373,7 +574,7 @@
     align-items: center;
     transition: all 0.5s;
     &:hover {
-      background-color: rgba(0, 0, 0, 0.8);
+      background-color: white;
       color: #91076d;
       border-top: 1px solid #91076d;
       border-bottom-right-radius: 10px;
@@ -389,7 +590,7 @@
       display: none; // Initially hidden
     }
     &.active-link {
-      background-color: rgba(0, 0, 0, 0.8);
+      background-color:$white-color;
       color: #91076d;
       border-radius: 10px;
     }
@@ -408,6 +609,26 @@
   @media screen and (max-width: 480px) {
     display: none;
   }
+}
+
+.gradient-blue {
+  background: linear-gradient(45deg, rgba(106, 17, 203,1), rgba(37, 117, 252,1));
+
+}
+
+.gradient-pink {
+  background: linear-gradient(45deg, rgba(255, 117, 140,1), rgba(255, 126, 179,1));
+
+}
+
+.gradient-green {
+  background: linear-gradient(45deg, rgba(67, 233, 123,1), rgb(56, 249, 215,1));
+
+}
+
+.gradient-orange {
+  background: linear-gradient(45deg, rgba(255, 154, 68,1), rgba(252, 96, 118,1));
+
 }
 }
 .smart-elf-notification .dropdown-content {

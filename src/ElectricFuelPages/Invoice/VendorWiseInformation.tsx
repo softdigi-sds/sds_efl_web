@@ -15,7 +15,7 @@ import VendorDetailsImport from "./VendorDetailsImport";
 const VendorWiseInformation = () => {
   const { id } = useParams<{ id: string }>();
   const [data, setData] = useState<any>({});
-  const { openModal } = useSiteContext();
+  const { openModal,isDark } = useSiteContext();
   const navigate = useNavigate();
   const loadData = () => {
     let URL = INVOICE_URLS.GET_ONE_BILL;
@@ -303,7 +303,7 @@ const VendorWiseInformation = () => {
           data={data.invoice_data || []}
           tableTop={tableTop}
           tableProps={{
-            className: " is-hoverable  is-striped ",
+            className:` is-hoverable  is-striped ${!isDark ?"smart-efl-table":""}`,
             isResponsive: true,
             searchPlaceHolder: "Search",
           }}
