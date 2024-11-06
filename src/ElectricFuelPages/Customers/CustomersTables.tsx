@@ -142,10 +142,10 @@ const CustomersTables: React.FC<headerProps> = ({ hubId }) => {
       </div>
     );
   };
-  const openinvoiceForm_data = (data: any) => {
+  const openinvoiceForm_data = (rowID: any) => {
     let options = {
-      title: "Bill Form",
-      content: <CustomerInvoices />,
+      title: "Invoice Details",
+      content: <CustomerInvoices  rowId={rowID}/>,
       width: 60,
       className: "sd-efl-modal",
       closeBody: false,
@@ -153,13 +153,13 @@ const CustomersTables: React.FC<headerProps> = ({ hubId }) => {
     openModal(options);
   };
   
-  const open_invoice = (data: any) => {
+  const open_invoice = (row: any) => {
     return (
       <>
        <div className="has-text-centered">
           <SmartSoftButton
-          label={data.invoice_count}
-          onClick={() => openinvoiceForm_data(data)}
+          label={row.invoice_count}
+          onClick={() => openinvoiceForm_data(row.ID)}
           classList={["button is-small is-primary is-light"]}
         />
     </div>
@@ -282,7 +282,7 @@ const CustomersTables: React.FC<headerProps> = ({ hubId }) => {
     },
 
     { title: "Pan No.", index: "pan_no" },
-    { title: " invoices of customer", index: "invoice_count",valueFunction: open_invoice, },
+    { title: " Invoices of Customer", index: "invoice_count",valueFunction: open_invoice, },
     {
       title: "Address",
       index: "status",
