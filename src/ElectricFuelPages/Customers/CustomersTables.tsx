@@ -17,6 +17,7 @@ import { post } from "../../services/smartApiService";
 import AddressTable from "./AddressTable";
 import CustomersForm from "./CustomersForm";
 import ViewDetails from "./ViewDetails";
+import InvoicebillForm from "../Invoice/InvoicebillForm";
 interface headerProps {
   hubId?: string;
 }
@@ -140,7 +141,31 @@ const CustomersTables: React.FC<headerProps> = ({ hubId }) => {
       </div>
     );
   };
-
+  const openinvoiceForm_data = (data: any) => {
+    let options = {
+      title: "Bill Form",
+      content: <InvoicebillForm />,
+      width: 60,
+      className: "sd-efl-modal",
+      closeBody: false,
+    };
+    openModal(options);
+  };
+  
+  const open_invoice = (data: any) => {
+    return (
+      <>
+       <div className="has-text-centered">
+          <SmartSoftButton
+          label={data.address_count}
+          onClick={() => openinvoiceForm_data(data)}
+          classList={["button is-small is-primary is-light"]}
+        />
+    </div>
+      </>
+    );
+  };
+  
   const StatusUpdate = (id: number, status: any) => {
     const subscription = post(CUSTOMER_URLS.STATUS_UPDATE, {
       id: id,
@@ -256,6 +281,7 @@ const CustomersTables: React.FC<headerProps> = ({ hubId }) => {
     },
 
     { title: "Pan No.", index: "pan_no" },
+    { title: " invoices of customer", index: "address_count",valueFunction: open_invoice, },
     {
       title: "Address",
       index: "status",
