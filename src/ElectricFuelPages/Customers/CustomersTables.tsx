@@ -18,6 +18,7 @@ import AddressTable from "./AddressTable";
 import CustomersForm from "./CustomersForm";
 import ViewDetails from "./ViewDetails";
 import InvoicebillForm from "../Invoice/InvoicebillForm";
+import CustomerInvoices from "./CustomerInvoices";
 interface headerProps {
   hubId?: string;
 }
@@ -144,7 +145,7 @@ const CustomersTables: React.FC<headerProps> = ({ hubId }) => {
   const openinvoiceForm_data = (data: any) => {
     let options = {
       title: "Bill Form",
-      content: <InvoicebillForm />,
+      content: <CustomerInvoices />,
       width: 60,
       className: "sd-efl-modal",
       closeBody: false,
@@ -157,7 +158,7 @@ const CustomersTables: React.FC<headerProps> = ({ hubId }) => {
       <>
        <div className="has-text-centered">
           <SmartSoftButton
-          label={data.address_count}
+          label={data.invoice_count}
           onClick={() => openinvoiceForm_data(data)}
           classList={["button is-small is-primary is-light"]}
         />
@@ -281,7 +282,7 @@ const CustomersTables: React.FC<headerProps> = ({ hubId }) => {
     },
 
     { title: "Pan No.", index: "pan_no" },
-    { title: " invoices of customer", index: "address_count",valueFunction: open_invoice, },
+    { title: " invoices of customer", index: "invoice_count",valueFunction: open_invoice, },
     {
       title: "Address",
       index: "status",
