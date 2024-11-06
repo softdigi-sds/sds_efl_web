@@ -72,7 +72,10 @@ const company_address_all_select = (customer_id: any, call_back: any) => {
   let url = CUSTOMER_URLS.GET_ALL_SELECT_ADDRESS;
   admin_generic_select_post(url, { customer_id: customer_id }, call_back);
 };
-
+const costomer_invoice_all_select = (sd_customer_id: any, call_back: any) => {
+  let url = CUSTOMER_URLS.GET_ALL_INVOICE;
+  admin_generic_select_post(url, { sd_customer_id: sd_customer_id }, call_back);
+};
 export {
   admin_states_select,
   hubs_get_all_select,
@@ -82,4 +85,5 @@ export {
   vendors_get_all_select,
   company_get_all_select,
   company_address_all_select,
+  costomer_invoice_all_select,
 };

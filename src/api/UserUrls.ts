@@ -92,7 +92,7 @@ const CUSTOMER_URLS = {
   DELETE: "/customer/delete_one",
   GET_ALL_SELECT: "/customer/get_all_select",
   STATUS_UPDATE: "/customer/update_status",
-GET_ALL_INVOICE:"/invoice/get_all_customer",
+GET_ALL_INVOICE:"/invoice/get_all_customer", 
   INSERT_ADDRESS: "/customer/insert_address",
   GET_ALL_ADDRESS: "/customer/get_all_address",
   UPDATE_ADDRESS: "/customer/update_address",
