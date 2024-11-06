@@ -59,7 +59,7 @@ color: blue;
   }
   input:focus {
    box-shadow: none;
-   .control.has-icons-left .icon, .control.has-icons-right .icon{
+    &.control.has-icons-left .icon, .control.has-icons-right .icon{
     color:  $primary-color;
   }
   }
