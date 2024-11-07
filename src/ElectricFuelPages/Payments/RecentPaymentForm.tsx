@@ -11,8 +11,11 @@ import { costomer_invoice_all_select, vendors_get_all_select } from "../../servi
 interface FormErrors {
   [key: string]: string | null;
 }
+interface HeaderProps {
+  loadTableData: () => void;
 
-const RecentPaymentForm = () => {
+}
+const RecentPaymentForm: React.FC<HeaderProps> = ({ loadTableData}) => {
   const [formData, setFormData] = useState<any>({});
   const [formSubmit, setFormSubmit] = useState<boolean>(false);
   const [formErrors, setFormErrors] = useState<FormErrors>({});
@@ -47,6 +50,7 @@ const RecentPaymentForm = () => {
       (response) => {
         showAlertAutoClose("Data Saved Successfully", "success");
         closeModal();
+        loadTableData();
       }
     );
     return () => {
@@ -60,18 +64,15 @@ const RecentPaymentForm = () => {
   }, []);
   
   useEffect(() => {
-    let customer_id = formData?.sd_customer_id?.value; console.log("data", customer_id)
+    let customer_id = formData?.sd_customer_id?.value;
+    //  console.log("data", customer_id)
     if (customer_id && customer_id > 0){
       costomer_invoice_all_select(customer_id, (data: any) =>
         setInvoice(data)
       );
     }
   }, [formData?.sd_customer_id]);
-  const options = [
-    { value: "1", label: "Test" },
-    { value: "2", label: "Test" },
-    { value: "3", label: "test" },
-  ];
+
 
   const formElements: SmartFormInterFace.SmartFormElementProps[] = [
     {
@@ -89,7 +90,7 @@ const RecentPaymentForm = () => {
     {
       type: "SELECT_BOX",
       width: "6",
-      name: "invoice",
+      name: "sd_invoice_id",
       element: {
         label: "Select Invoice",
         isRequired: true,
@@ -137,7 +138,7 @@ const RecentPaymentForm = () => {
     {
       type: "TEXT_BOX",
       width: "6",
-      name: "amount_ent",
+      name: "payment_amount",
       element: {
         label: "Enter Amount",
         isRequired: true,
@@ -148,7 +149,7 @@ const RecentPaymentForm = () => {
     {
       type: "TEXT_BOX",
       width: "12",
-      name: "payment_method_details",
+      name: "payment_mode",
       element: {
         label: "Payment Method Details",
         isRequired: true,

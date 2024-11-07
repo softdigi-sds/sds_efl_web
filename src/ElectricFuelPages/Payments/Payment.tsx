@@ -49,7 +49,7 @@ const Payment = () => {
         isRequired:true,
         options: options,
         inputProps: { isFocussed: true },
-        // inputType: "BORDER_LABEL",
+        inputType: "BORDER_LABEL",
       },
     },
     {
@@ -61,7 +61,7 @@ const Payment = () => {
           isRequired:true,
           options: options,
           inputProps: { isFocussed: true },
-        //   inputType: "BORDER_LABEL",
+          inputType: "BORDER_LABEL",
         },
       },
       {
@@ -73,7 +73,7 @@ const Payment = () => {
           isRequired:true,
           options: options,
           inputProps: { isFocussed: true },
-        //   inputType: "BORDER_LABEL",
+          inputType: "BORDER_LABEL",
         },
       },
       {
@@ -82,7 +82,7 @@ const Payment = () => {
         name: "",
         // class_name: "has-text-right",
         element: {
-          classList: ["smart-action-button mt-5"],
+          classList: ["smart-action-button"],
           label: "Apply Filter",
           onClick:() => console.log("data", formData),
         },
@@ -97,8 +97,8 @@ const Payment = () => {
       <div className="has-text-right ">
         <SmartSoftButton
           label="Filter"
-          leftIcon="fa fa-filter"
-          classList={["button", "mt-1", "smart-action-button"]}
+          leftIcon={isFormVisible ? "fa fa-times" : "fa fa-filter"}
+          classList={["button", "mt-1", ]}
           onClick={handleFilterClick}
         /></div>
       </div>   </div>

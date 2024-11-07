@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   SmartFormInterFace,
   SmartTable,
@@ -6,83 +6,51 @@ import {
 } from "soft_digi";
 import { useSiteContext } from "../../contexts/SiteProvider";
 import RecentPaymentForm from "./RecentPaymentForm";
+import { PAYMENT_URLS } from "../../api/UserUrls";
+import { get } from "../../services/smartApiService";
 
 const RecentPayment = () => {
 
     const { openModal, closeModal, setLoading } = useSiteContext();
-  const tableData = [
-    {
-      s_no: 1,
-      invoice: "INV-00123",
-      customer_name: "John Doe",
-      hub_id: "Hub A",
-      amount: "$500",
-      paid_amount: "$300",
-      pending_amount: "$200",
-    },
-    {
-      s_no: 2,
-      invoice: "INV-00124",
-      customer_name: "Jane Smith",
-      hub_id: "Hub B",
-      amount: "$750",
-      paid_amount: "$500",
-      pending_amount: "$250",
-    },
-    {
-      s_no: 3,
-      invoice: "INV-00125",
-      customer_name: "Michael Brown",
-      hub_id: "Hub C",
-      amount: "$1,000",
-      paid_amount: "$600",
-      pending_amount: "$400",
-    },
-    {
-      s_no: 4,
-      invoice: "INV-00126",
-      customer_name: "Emily Davis",
-      hub_id: "Hub D",
-      amount: "$450",
-      paid_amount: "$450",
-      pending_amount: "$0",
-    },
-    {
-      s_no: 5,
-      invoice: "INV-00127",
-      customer_name: "Chris Johnson",
-      hub_id: "Hub E",
-      amount: "$850",
-      paid_amount: "$500",
-      pending_amount: "$350",
-    },
-  ];
+    const [tabData, setTabData] = useState([]);
+  const loadTableData = () => {
+    let URL = PAYMENT_URLS.GET_ALL;
+    const subscription = get(URL).subscribe((response) => {
+      setTabData(response.data);
+    });
+    return () => {
+      subscription.unsubscribe();
+    };
+  };
+
+  useEffect(() => {
+    loadTableData();
+  }, []);
 
   const columns: SmartTableNewInterface.SmartTableNewColumnConfig[] = [
     { title: "S.NO", index: "s_no", type: "sno", width: "5" },
     {
       title: "Invoice Number",
-      index: "invoice",
+      index: "invoice_number",
     },
     {
       title: "Customer",
-      index: "customer_name",
+      index: "vendor_company",
     },
     {
       title: "Date",
-      index: "order_time",
+      index: "payment_date",
       type: "date",
       dateFormat: "DD-MM-YYYY",
-      width: "10",
    
     },
     {
       title: " Mode Of payment",
-      index: "amount",
+      index: "payment_mode",
     },
     {
       title: "Payment (Rs.)",
-      index: "paid_amount",
+      index: "payment_amount",
     },
     //  {
     //     title: "Pending",
@@ -125,7 +93,7 @@ const RecentPayment = () => {
   const openbillForm = (data: any) => {
     let options = {
       title: "Payment",
-      content: <RecentPaymentForm  />,
+      content: <RecentPaymentForm  loadTableData={loadTableData}  />,
       width: 60,
       className: "sd-efl-modal",
       closeBody: false,
@@ -164,7 +132,7 @@ const RecentPayment = () => {
       <div className="smart-elf-table">
         <SmartTable
           columns={columns}
-          data={tableData}
+          data={tabData}
           tableTop={tableTop}
           filterFields={filterFields}
           tableProps={{
