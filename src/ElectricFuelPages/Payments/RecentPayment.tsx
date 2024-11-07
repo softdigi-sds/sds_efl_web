@@ -68,7 +68,14 @@ const RecentPayment = () => {
       title: "Customer",
       index: "customer_name",
     },
-    { title: "Date", index: "hub_id" },
+    {
+      title: "Date",
+      index: "order_time",
+      type: "date",
+      dateFormat: "DD-MM-YYYY",
+      width: "10",
+   
+    },
     {
       title: " Mode Of payment",
       index: "amount",
