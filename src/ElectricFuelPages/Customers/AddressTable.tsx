@@ -203,15 +203,15 @@ const AddressTable: React.FC<headerProps> = ({ dataIn }) => {
   };
 
   const buttons = [
-    {
-      label: "",
-      type: "icon",
-      leftIcon: "fa fa-eye",
-      classList: ["smart-efl-table-view-icon"],
-      onClick: (data: any) => {
-        // openViewdetails(data);
-      },
-    },
+    // {
+    //   label: "",
+    //   type: "icon",
+    //   leftIcon: "fa fa-eye",
+    //   classList: ["smart-efl-table-view-icon"],
+    //   onClick: (data: any) => {
+    //     // openViewdetails(data);
+    //   },
+    // },
     {
       label: "",
       type: "icon",
