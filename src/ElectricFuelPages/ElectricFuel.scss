@@ -579,3 +579,26 @@ font-weight: bold;
   color: #ffffff;
   width: 360px;
 }
+.smart-payment-card-one{
+  background-color: rgba(209, 160, 255, 0.3);
+  color: rgb(180, 18, 255) !important;
+  .title { color:  rgb(180, 18, 255) !important;}
+  
+}
+.smart-payment-card-tow{
+  background-color: rgba(255, 192, 203, 0.3);
+  color: rgb(255, 134, 154);
+  .title { color:  rgb(255, 134, 154) !important;}
+ 
+}
+.smart-payment-card-three{
+  background-color: rgba(255, 204, 0, 0.3);
+  color: rgb(255, 221, 0);
+  .title { color: rgb(255, 221, 0) !important;}
+  
+}
+.smart-payment-card-four{
+  background-color: rgba(255, 140, 74, 0.3);
+  color: orangered;
+  .title{color:orangered ;}
+}
