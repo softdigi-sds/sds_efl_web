@@ -3,6 +3,7 @@ import {
   CUSTOMER_URLS,
   HUBS_URLS,
   OFFICE_URLS,
+  PAYMENT_URLS,
   VENDERS_URLS,
 } from "../../api/UserUrls";
 import { get, post } from "../smartApiService";
@@ -73,7 +74,7 @@ const company_address_all_select = (customer_id: any, call_back: any) => {
   admin_generic_select_post(url, { customer_id: customer_id }, call_back);
 };
 const costomer_invoice_all_select = (sd_customer_id: any, call_back: any) => {
-  let url = CUSTOMER_URLS.GET_ALL_INVOICE;
+  let url = PAYMENT_URLS.GET_ALL_INVOICE;
   admin_generic_select_post(url, { sd_customer_id: sd_customer_id }, call_back);
 };
 export {

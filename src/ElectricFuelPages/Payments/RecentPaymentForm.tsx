@@ -2,19 +2,26 @@ import React, { useEffect, useState } from "react";
 import { SmartFormInterFace, SmartSoftButton, SmartSoftForm } from "soft_digi";
 import { useSiteContext } from "../../contexts/SiteProvider";
 import { costomer_invoice_all_select } from "../../services/site/SelectBoxServices";
+import { ValidateFormNew } from "soft_digi/dist/services/smartValidationService";
+import { post } from "../../services/smartApiService";
+import { showAlertAutoClose } from "../../services/notifyService";
+import { PAYMENT_URLS } from "../../api/UserUrls";
 
 interface FormErrors {
   [key: string]: string | null;
 }
+
 const RecentPaymentForm = () => {
-  const [formData, setFormData] = useState({});
+  const [formData, setFormData] = useState<any>({});
   const [formSubmit, setFormSubmit] = useState<boolean>(false);
   const [formErrors, setFormErrors] = useState<FormErrors>({});
   const { setLoading, closeModal } = useSiteContext();
   const [allRole, setAllRole] = useState([]);
+  
   const handleInputChange = (name: string, value: any) => {
     setFormData((prev: any) => ({ ...prev, [name]: value }));
   };
+
   const handleErrorChange = (name: string | any, value: any) => {
     setFormErrors((prev) => {
       const updatedFormData = { ...prev };
@@ -26,15 +33,36 @@ const RecentPaymentForm = () => {
       return updatedFormData;
     });
   };
+
   useEffect(() => {
-    costomer_invoice_all_select((data: any) => setAllRole(data), {});
-  }, []);
-  
+    const cus_data = formData?.sd_customer_id?.value;
+      costomer_invoice_all_select(cus_data, (data: any) => setAllRole(data));
+  }, [formData?.sd_customer_id]);
+
+  const handleSubmit = () => {
+    setFormSubmit(true);
+    if (!ValidateFormNew(formData, formElements)) {
+      return false;
+    }
+    let url = PAYMENT_URLS.INSERT;
+
+    const subscription = post(url, formData).subscribe(
+      (response) => {
+        showAlertAutoClose("Data Saved Successfully", "success");
+        closeModal();
+      }
+    );
+    return () => {
+      subscription.unsubscribe();
+    };
+  };
+
   const options = [
     { value: "1", label: "Test" },
     { value: "2", label: "Test" },
     { value: "3", label: "test" },
   ];
+
   const formElements: SmartFormInterFace.SmartFormElementProps[] = [
     {
       type: "SELECT_BOX",
@@ -69,6 +97,7 @@ const RecentPaymentForm = () => {
         isRequired: true,
         inputType: "BORDER_LABEL",
         max: 15,
+        inputProps: { disabled: true },
       },
     },
     {
@@ -80,7 +109,6 @@ const RecentPaymentForm = () => {
         isRequired: true,
         inputProps: { disabled: true },
         inputType: "BORDER_LABEL",
-
         max: 15,
       },
     },
@@ -93,7 +121,6 @@ const RecentPaymentForm = () => {
         isRequired: true,
         inputProps: { disabled: true },
         inputType: "BORDER_LABEL",
-
         max: 15,
       },
     },
@@ -104,27 +131,23 @@ const RecentPaymentForm = () => {
       element: {
         label: "Enter Amount",
         isRequired: true,
-        inputProps: { disabled: true },
         inputType: "BORDER_LABEL",
-
         max: 15,
       },
     },
     {
       type: "TEXT_BOX",
       width: "12",
-      name: "amount_ent",
+      name: "payment_method_details",
       element: {
         label: "Payment Method Details",
         isRequired: true,
-   
         inputType: "BORDER_LABEL",
-
         max: 15,
       },
     },
-    
   ];
+
   return (
     <div>
       <div className="sd-efl-input">
@@ -144,8 +167,8 @@ const RecentPaymentForm = () => {
           <SmartSoftButton
             label="Save"
             rightIcon="fa fa-arrow-right"
-            classList={["button ", "mt-4", "smart-action-button"]}
-            onClick={() => console.log("data", formData)}
+            classList={["button", "mt-4", "smart-action-button"]}
+            onClick={handleSubmit}
           />
         </div>
       </div>
