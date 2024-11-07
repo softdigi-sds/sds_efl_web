@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { SmartFormInterFace, SmartSoftButton, SmartSoftForm } from "soft_digi";
 import { useSiteContext } from "../../contexts/SiteProvider";
-import { costomer_invoice_all_select } from "../../services/site/SelectBoxServices";
+
 import { ValidateFormNew } from "soft_digi/dist/services/smartValidationService";
 import { post } from "../../services/smartApiService";
 import { showAlertAutoClose } from "../../services/notifyService";
 import { PAYMENT_URLS } from "../../api/UserUrls";
+import { costomer_invoice_all_select, vendors_get_all_select } from "../../services/site/SelectBoxServices";
 
 interface FormErrors {
   [key: string]: string | null;
@@ -17,7 +18,7 @@ const RecentPaymentForm = () => {
   const [formErrors, setFormErrors] = useState<FormErrors>({});
   const { setLoading, closeModal } = useSiteContext();
   const [allRole, setAllRole] = useState([]);
-  
+  const [invoice, setInvoice] = useState([]);
   const handleInputChange = (name: string, value: any) => {
     setFormData((prev: any) => ({ ...prev, [name]: value }));
   };
@@ -34,10 +35,6 @@ const RecentPaymentForm = () => {
     });
   };
 
-  useEffect(() => {
-    const cus_data = formData?.sd_customer_id?.value;
-      costomer_invoice_all_select(cus_data, (data: any) => setAllRole(data));
-  }, [formData?.sd_customer_id]);
 
   const handleSubmit = () => {
     setFormSubmit(true);
@@ -56,7 +53,12 @@ const RecentPaymentForm = () => {
       subscription.unsubscribe();
     };
   };
-
+  useEffect(() => {
+    costomer_invoice_all_select((data: any) => setInvoice(data), {}); 
+    vendors_get_all_select((data: any) => setAllRole(data));
+  
+  }, []);
+  
   const options = [
     { value: "1", label: "Test" },
     { value: "2", label: "Test" },
@@ -83,7 +85,7 @@ const RecentPaymentForm = () => {
       element: {
         label: "Select Invoice",
         isRequired: true,
-        options: options,
+        options: invoice,
         inputProps: { isFocussed: true },
         inputType: "BORDER_LABEL",
       },

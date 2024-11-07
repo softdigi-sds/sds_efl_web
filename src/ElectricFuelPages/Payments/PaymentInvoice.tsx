@@ -1,11 +1,27 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   SmartFormInterFace,
   SmartTable,
   SmartTableNewInterface,
 } from "soft_digi";
+import { PAYMENT_URLS } from "../../api/UserUrls";
+import { get } from "../../services/smartApiService";
 
 const PaymentInvoice = () => {
+  const [tabData, setTabData] = useState([]);
+  const loadTableData = () => {
+    let URL = PAYMENT_URLS.GET_ALL;
+    const subscription = get(URL).subscribe((response) => {
+      setTabData(response.data);
+    });
+    return () => {
+      subscription.unsubscribe();
+    };
+  };
+
+  useEffect(() => {
+    loadTableData();
+  }, []);
   const tableData = [
     {
       s_no: 1,

@@ -86,5 +86,5 @@ export {
   vendors_get_all_select,
   company_get_all_select,
   company_address_all_select,
-  costomer_invoice_all_select,
+  costomer_invoice_all_select
 };

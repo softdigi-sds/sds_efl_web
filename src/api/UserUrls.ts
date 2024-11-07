@@ -103,7 +103,7 @@ const CUSTOMER_URLS = {
 };
 const PAYMENT_URLS = {
   INSERT: "/payment/insert",
-  GET_ALL: "/meter_readings/get_all",
+  GET_ALL: "/payment/get_all",
   GET_ALL_INVOICE:"/invoice/get_all_customer", 
 };
 
