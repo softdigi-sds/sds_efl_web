@@ -118,9 +118,9 @@ const HubsTables = () => {
   };
   const openVendorsView = (data: any) => {
     let options = {
-      //title: "Customer Details",
+      title: "  ",
       content: <VendorRatesTable hubId={data} />,
-      width: 80,
+      width: 90,
     };
     openModal(options);
   };

@@ -7,6 +7,8 @@ interface HubsViewProps {
 
 const HubsView: React.FC<HubsViewProps> = ({ hubData }) => {
 
+  console.log("hub data",hubData)
+
   const nameFunction = (row: any) => {
     switch (row.status) {
       case 5:
@@ -39,7 +41,11 @@ const HubsView: React.FC<HubsViewProps> = ({ hubData }) => {
           </tr> */}
           <tr>
             <th>Access Group</th>
-            <td>{hubData.sd_efl_office_id}</td>
+            <td>{hubData?.role && hubData.role.map((item:any)=>(
+              <>
+              {item.label}
+              </>
+            ))}</td>
           </tr>
           <tr>
             <th>Status</th>

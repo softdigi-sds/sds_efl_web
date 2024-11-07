@@ -140,7 +140,7 @@
 
     .brand-logo {
       // height:60px;
-      margin-bottom: 20px;
+      margin-bottom: 0px;
       padding: 10px;
       // background-color: #ffffff; 
       // background-color: rgb(0,0,1);
@@ -171,7 +171,7 @@
 
       &:hover {
         background-color: white;
-        color: #91076d;
+        color:  $primary-color;
         border-top: 1px solid #91076d;
         border-bottom-right-radius: 10px;
         border-top-right-radius: 10px;
@@ -190,7 +190,7 @@
 
       &.active-link {
         background-color: $white-color;
-        color: #91076d;
+        color: $primary-color;
         border-radius: 10px;
       }
     }
