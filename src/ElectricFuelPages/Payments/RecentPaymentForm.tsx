@@ -2,11 +2,12 @@ import React, { useEffect, useState } from "react";
 import { SmartFormInterFace, SmartSoftButton, SmartSoftForm } from "soft_digi";
 import { useSiteContext } from "../../contexts/SiteProvider";
 
-import { ValidateFormNew } from "soft_digi/dist/services/smartValidationService";
+import { SmartValid, ValidateFormNew } from "soft_digi/dist/services/smartValidationService";
 import { post } from "../../services/smartApiService";
 import { showAlertAutoClose } from "../../services/notifyService";
 import { PAYMENT_URLS } from "../../api/UserUrls";
 import { costomer_invoice_all_select, vendors_get_all_select } from "../../services/site/SelectBoxServices";
+
 
 interface FormErrors {
   [key: string]: string | null;
@@ -58,7 +59,7 @@ const RecentPaymentForm: React.FC<HeaderProps> = ({ loadTableData}) => {
     };
   };
   useEffect(() => {
-    // costomer_invoice_all_select((data: any) => setInvoice(data), {}); 
+    
     vendors_get_all_select((data: any) => setAllRole(data));
   
   }, []);
@@ -73,7 +74,13 @@ const RecentPaymentForm: React.FC<HeaderProps> = ({ loadTableData}) => {
     }
   }, [formData?.sd_customer_id]);
 
+  const payFormValidations = {
+    cus: [SmartValid.required("Select Customer is Required")],
+    invoi: [SmartValid.required("Select Invoice is Required")],
+    amoun: [SmartValid.required("Amount is Required")],
+    methods: [SmartValid.required("Payment Method is Required")],
 
+  };
   const formElements: SmartFormInterFace.SmartFormElementProps[] = [
     {
       type: "SELECT_BOX",
@@ -85,6 +92,7 @@ const RecentPaymentForm: React.FC<HeaderProps> = ({ loadTableData}) => {
         options: allRole,
         inputProps: { isFocussed: true },
         inputType: "BORDER_LABEL",
+        validations: payFormValidations.cus,
       },
     },
     {
@@ -97,6 +105,7 @@ const RecentPaymentForm: React.FC<HeaderProps> = ({ loadTableData}) => {
         options: invoice,
         inputProps: { isFocussed: true },
         inputType: "BORDER_LABEL",
+        validations: payFormValidations.invoi,
       },
     },
     {
@@ -144,8 +153,20 @@ const RecentPaymentForm: React.FC<HeaderProps> = ({ loadTableData}) => {
         isRequired: true,
         inputType: "BORDER_LABEL",
         max: 15,
+        validations: payFormValidations.amoun,
       },
     },
+    // {
+    //   type: "DATE",
+    //   width: "6",
+    //   name: "payment_date",
+    //   element: {
+    //     label: "Select Date",
+    //     placeHolder: "DD-MM-YYYY",
+    //     isRequired: true,
+    //     inputType: "BORDER_LABEL",
+    //   },
+    // },
     {
       type: "TEXT_BOX",
       width: "12",
@@ -155,6 +176,7 @@ const RecentPaymentForm: React.FC<HeaderProps> = ({ loadTableData}) => {
         isRequired: true,
         inputType: "BORDER_LABEL",
         max: 15,
+        validations: payFormValidations.methods,
       },
     },
   ];

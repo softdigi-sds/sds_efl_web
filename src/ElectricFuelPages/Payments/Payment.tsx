@@ -92,7 +92,7 @@ const Payment = () => {
     <div className="is-size-3 has-text-font-bold ">
     
       <div className=" is-flex is-justify-content-space-between mb-2">
-      <span className="">Payment</span> 
+      <span className="is-size-4 has-text-weight-bold mb-1 has-text-white">Payment</span> 
 
       <div className="has-text-right ">
         <SmartSoftButton
@@ -102,7 +102,7 @@ const Payment = () => {
           onClick={handleFilterClick}
         /></div>
       </div>   </div>
-      {isFormVisible && ( // Conditionally render the form
+      {isFormVisible && ( 
         <div className="sd-efl-input mt-4">
           <SmartSoftForm
             formData={formData}
