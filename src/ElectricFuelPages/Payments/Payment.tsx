@@ -91,14 +91,14 @@ const Payment = () => {
     <>
     <div className="is-size-3 has-text-font-bold ">
     
-      <div className="mb-6">
-      <span className="">Payment</span>
+      <div className=" is-flex is-justify-content-space-between mb-2">
+      <span className="">Payment</span> 
 
       <div className="has-text-right ">
         <SmartSoftButton
           label="Filter"
           leftIcon="fa fa-filter"
-          classList={["button", "mt-4", "smart-action-button"]}
+          classList={["button", "mt-1", "smart-action-button"]}
           onClick={handleFilterClick}
         /></div>
       </div>   </div>
