@@ -92,7 +92,6 @@ const CUSTOMER_URLS = {
   DELETE: "/customer/delete_one",
   GET_ALL_SELECT: "/customer/get_all_select",
   STATUS_UPDATE: "/customer/update_status",
-GET_ALL_INVOICE:"/invoice/get_all_customer", 
   INSERT_ADDRESS: "/customer/insert_address",
   GET_ALL_ADDRESS: "/customer/get_all_address",
   UPDATE_ADDRESS: "/customer/update_address",
@@ -100,6 +99,12 @@ GET_ALL_INVOICE:"/invoice/get_all_customer",
   DELETE_ADDRESS: "/customer/delete_one_address",
   GET_ALL_SELECT_ADDRESS: "/customer/get_all_select_address",
   STATUS_UPDATE_ADDRESS: "/customer/update_status_address",
+  GET_ALL_INVOICE:"/invoice/get_all_customer", 
+};
+const PAYMENT_URLS = {
+  INSERT: "/payment/insert",
+  GET_ALL: "/meter_readings/get_all",
+  GET_ALL_INVOICE:"/invoice/get_all_customer", 
 };
 
 export {
@@ -112,5 +117,5 @@ export {
   OFFICE_URLS,
   VEHICLES_URL,
   VENDERS_URLS,
-  VENDER_RATE_URLS,
+  VENDER_RATE_URLS,PAYMENT_URLS
 };
