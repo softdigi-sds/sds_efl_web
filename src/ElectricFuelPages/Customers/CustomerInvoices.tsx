@@ -109,7 +109,7 @@ const CustomerInvoices:React.FC<IDProps> = ({rowId}) => {
               tableTop={tableTop}
               filterFields={filterFields}
               tableProps={{
-                className: " is-hoverable is-bordered is-striped smart-efl-table",
+                className: " is-hoverable is-bordered is-striped ",
                 isResponsive: true,
                 searchPlaceHolder: "Search",
               }}

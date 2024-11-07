@@ -155,17 +155,20 @@ const CustomersTables: React.FC<headerProps> = ({ hubId }) => {
   
   const open_invoice = (row: any) => {
     return (
-      <>
-       <div className="has-text-centered">
+      <div className="has-text-centered">
+        {row.invoice_count > 0 ? (
           <SmartSoftButton
-          label={row.invoice_count}
-          onClick={() => openinvoiceForm_data(row.ID)}
-          classList={["button is-small is-primary is-light"]}
-        />
-    </div>
-      </>
+            label={row.invoice_count}
+            onClick={() => openinvoiceForm_data(row.ID)}
+            classList={["button is-small is-primary is-light"]}
+          />
+        ) : (
+          <span>{row.invoice_count}</span>
+        )}
+      </div>
     );
   };
+  
   
   const StatusUpdate = (id: number, status: any) => {
     const subscription = post(CUSTOMER_URLS.STATUS_UPDATE, {

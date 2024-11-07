@@ -42,10 +42,9 @@ const RecentPayment = () => {
       index: "payment_date",
       type: "date",
       dateFormat: "DD-MM-YYYY",
-   
     },
     {
-      title: " Mode Of payment",
+      title: " Mode of Payment",
       index: "payment_mode",
     },
     {
