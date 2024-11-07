@@ -2,6 +2,9 @@
 
 .smart-efl-container {
   background: $body-dark-background-image;
+  background-size: 100% 100%;
+  min-height: 100vh;
+  background-attachment: fixed;
   .efl-main-header {
     background: $body-dark-background-image;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3), 0 8px 20px rgba(0, 0, 0, 0.15);
