@@ -54,11 +54,19 @@ const RecentPaymentForm = () => {
     };
   };
   useEffect(() => {
-    costomer_invoice_all_select((data: any) => setInvoice(data), {}); 
+    // costomer_invoice_all_select((data: any) => setInvoice(data), {}); 
     vendors_get_all_select((data: any) => setAllRole(data));
   
   }, []);
   
+  useEffect(() => {
+    let customer_id = formData?.sd_customer_id?.value; console.log("data", customer_id)
+    if (customer_id && customer_id > 0){
+      costomer_invoice_all_select(customer_id, (data: any) =>
+        setInvoice(data)
+      );
+    }
+  }, [formData?.sd_customer_id]);
   const options = [
     { value: "1", label: "Test" },
     { value: "2", label: "Test" },
