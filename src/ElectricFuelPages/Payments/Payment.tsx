@@ -12,6 +12,12 @@ const Payment = () => {
     const [formSubmit, setFormSubmit] = useState<boolean>(false);
     const [formErrors, setFormErrors] = useState<FormErrors>({});
     const {setLoading,closeModal } = useSiteContext();
+
+    const [isFormVisible, setIsFormVisible] = useState(false);
+
+    const handleFilterClick = () => {
+      setIsFormVisible((prev) => !prev); 
+    };
     const handleInputChange = (name: string, value: any) => {
   
         setFormData((prev:any) => ({ ...prev, [name]: value }));
@@ -83,18 +89,31 @@ const Payment = () => {
       },]
   return (
     <>
-    <div className="is-size-3 has-text-font-bold"> Payment</div>
-    <div className="">
-    <div className="sd-efl-input">
-        <SmartSoftForm
-          formData={formData}
-          setFormData={handleInputChange}
-          elements={formElements}
-          formSubmit={formSubmit}
-          handleErrorChange={handleErrorChange}
-        />
+    <div className="is-size-3 has-text-font-bold ">
+    
+      <div className="mb-6">
+      <span className="">Payment</span>
+
+      <div className="has-text-right ">
+        <SmartSoftButton
+          label="Filter"
+          leftIcon="fa fa-filter"
+          classList={["button", "mt-4", "smart-action-button"]}
+          onClick={handleFilterClick}
+        /></div>
+      </div>   </div>
+      {isFormVisible && ( // Conditionally render the form
+        <div className="sd-efl-input mt-4">
+          <SmartSoftForm
+            formData={formData}
+            setFormData={handleInputChange}
+            elements={formElements}
+            formSubmit={formSubmit}
+            handleErrorChange={handleErrorChange}
+          />
         </div>
-    </div>
+      )}
+  
       <div className="has-text-white">
 
         <div className="">
