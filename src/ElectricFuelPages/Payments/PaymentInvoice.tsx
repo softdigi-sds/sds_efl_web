@@ -63,20 +63,20 @@ const PaymentInvoice = () => {
     },
     {
       title: "Customer",
-      index: "customer_name",
+      index: "sd_customer_id",
     },
-    { title: "Hub", index: "hub_id" },
+    { title: "Hub", index: "sd_hub_id" },
     {
       title: "Amount",
-      index: "amount",
+      index: "invoice_amount",
     },
     {
       title: "Paid",
-      index: "paid_amount",
+      index: "paid",
     },
     {
       title: "Pending",
-      index: "pending_amount",
+      index: "pending",
     },
     // { title: "Status", index: "status", type: "tags", tags: statusTags },
     // {
