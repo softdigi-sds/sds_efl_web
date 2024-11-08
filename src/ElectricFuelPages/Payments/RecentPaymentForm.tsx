@@ -7,6 +7,7 @@ import { post } from "../../services/smartApiService";
 import { showAlertAutoClose } from "../../services/notifyService";
 import { PAYMENT_URLS } from "../../api/UserUrls";
 import { costomer_invoice_all_select, vendors_get_all_select } from "../../services/site/SelectBoxServices";
+import { ALLOW_NUMERIC } from "../../services/PatternSerivce";
 
 
 interface FormErrors {
@@ -153,20 +154,21 @@ const RecentPaymentForm: React.FC<HeaderProps> = ({ loadTableData}) => {
         isRequired: true,
         inputType: "BORDER_LABEL",
         max: 15,
+        pattern:  ALLOW_NUMERIC ,
         validations: payFormValidations.amoun,
       },
     },
-    // {
-    //   type: "DATE",
-    //   width: "6",
-    //   name: "payment_date",
-    //   element: {
-    //     label: "Select Date",
-    //     placeHolder: "DD-MM-YYYY",
-    //     isRequired: true,
-    //     inputType: "BORDER_LABEL",
-    //   },
-    // },
+    {
+      type: "DATE",
+      width: "6",
+      name: "payment_date",
+      element: {
+        label: "Select Date",
+        placeHolder: "DD-MM-YYYY",
+        isRequired: true,
+        inputType: "BORDER_LABEL",
+      },
+    },
     {
       type: "TEXT_BOX",
       width: "12",
@@ -175,7 +177,8 @@ const RecentPaymentForm: React.FC<HeaderProps> = ({ loadTableData}) => {
         label: "Payment Method Details",
         isRequired: true,
         inputType: "BORDER_LABEL",
-        max: 15,
+        max: 25,
+     
         validations: payFormValidations.methods,
       },
     },
