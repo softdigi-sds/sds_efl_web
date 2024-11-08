@@ -136,7 +136,16 @@ const VendorWiseInformation = () => {
       index: "hub_id",
       width: "20",
     },
-
+    {
+      title: "Billing To",
+      index: "",
+      width: "15",
+    },
+    {
+      title: "City",
+      index: "",
+      width: "15",
+    },
     {
       title: "Customer",
       index: "vendor_company",
@@ -148,30 +157,30 @@ const VendorWiseInformation = () => {
       width: "15",
       valueFunction: amountDisplay,
     },
-    {
-      title: "ACK No",
-      index: "ack_no",
-      width: "10",
-      valueFunction: (data) => {
-        return data["status"] == 10 ? (
-          <span
-            className="has-text-link sd-cursor"
-            onClick={() => {
-              downloadInvoice(data["ID"]);
-            }}
-          >
-            {data["ack_no"]}
-          </span>
-        ) : null;
-      },
-    },
-    {
-      title: "Status",
-      index: "status",
-      width: "10",
-      type: "tags",
-      tags: statusTags,
-    },
+    // {
+    //   title: "ACK No",
+    //   index: "ack_no",
+    //   width: "10",
+    //   valueFunction: (data) => {
+    //     return data["status"] == 10 ? (
+    //       <span
+    //         className="has-text-link sd-cursor"
+    //         onClick={() => {
+    //           downloadInvoice(data["ID"]);
+    //         }}
+    //       >
+    //         {data["ack_no"]}
+    //       </span>
+    //     ) : null;
+    //   },
+    // },
+    // {
+    //   title: "Status",
+    //   index: "status",
+    //   width: "10",
+    //   type: "tags",
+    //   tags: statusTags,
+    // },
     {
       title: "Details",
       index: "action",
