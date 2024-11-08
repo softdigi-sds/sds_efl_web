@@ -171,7 +171,7 @@ const RecentPaymentForm: React.FC<HeaderProps> = ({ loadTableData}) => {
     },
     {
       type: "TEXT_BOX",
-      width: "12",
+      width: "6",
       name: "payment_mode",
       element: {
         label: "Payment Method Details",
