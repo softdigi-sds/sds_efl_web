@@ -1,6 +1,8 @@
 import React from "react";
-
-const PaymentsCount = () => {
+interface props {
+  data: any
+}
+const PaymentsCount:React.FC<props>  = ({data}) => {
   return (
     <div className="container">
       <div className="columns is-multiline">
@@ -9,7 +11,7 @@ const PaymentsCount = () => {
             <span className="icon is-large is-size-3 ">
               <i className="fas fa-inr"></i>
             </span>
-            <p className="title is-4 ">5,000</p>
+            <p className="title is-4 ">{data?.invoice_count}</p>
             <p className="subtitle is-6">Invoices</p>
           </div>
         </div>
@@ -19,7 +21,7 @@ const PaymentsCount = () => {
             <span className="icon is-large is-size-3 ">
               <i className="fas fa-file-invoice"></i>
             </span>
-            <p className="title is-4">420/900</p>
+            <p className="title is-4">{data?.invoice_amount}</p>
             <p className="subtitle is-6">Invoiced Amount</p>
           </div>
         </div>
@@ -29,7 +31,7 @@ const PaymentsCount = () => {
             <span className="icon is-large is-size-3">
               <i className="fas fa-eye"></i>
             </span>
-            <p className="title is-4 ">1,000</p>
+            <p className="title is-4 ">{data?.paid_amount}</p>
             <p className="subtitle is-6">Received Payment</p>
           </div>
         </div>
@@ -39,7 +41,7 @@ const PaymentsCount = () => {
             <span className="icon is-large is-size-3 ">
               <i className="fas fa-share-alt"></i>
             </span>
-            <p className="title is-4 ">200</p>
+            <p className="title is-4 ">{data?.rem_amount}</p>
             <p className="subtitle is-6">Pending Payment</p>
           </div>
         </div>

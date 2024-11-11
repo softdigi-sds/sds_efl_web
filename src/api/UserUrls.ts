@@ -72,6 +72,7 @@ const INVOICE_URLS = {
   GET_ONE_DETAILS: "/invoice/get_one",
   INSERT: "/efl_vehicles/insert",
   GET_ALL_BILLS: "/bill/get_all",
+  GET_ALL_BILLS_SELECT:"/bill/get_all_select",
   GET_ONE_BILL: "bill/get_one",
   EXPORT_EXCEL: "bill/export_excel",
   IMPORT_ZIP: "bill/import_zip",
@@ -105,6 +106,7 @@ const PAYMENT_URLS = {
   INSERT: "/payment/insert",
   GET_ALL: "/payment/get_all",
   GET_ALL_INVOICE:"/invoice/get_all_select", 
+  GET_ALL_REPORT:"/payment/get_all_report"
 };
 
 export {
@@ -114,8 +116,8 @@ export {
   HUB_GROUPS_URLS,
   INVOICE_URLS,
   METER_READINGS_URLS,
-  OFFICE_URLS,
-  VEHICLES_URL,
+  OFFICE_URLS, PAYMENT_URLS, VEHICLES_URL,
   VENDERS_URLS,
-  VENDER_RATE_URLS,PAYMENT_URLS
+  VENDER_RATE_URLS
 };
+

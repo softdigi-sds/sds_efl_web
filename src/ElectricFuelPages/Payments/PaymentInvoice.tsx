@@ -1,11 +1,14 @@
-import React, { useEffect, useState } from "react";
 import {
   SmartFormInterFace,
   SmartTable,
   SmartTableNewInterface,
 } from "soft_digi";
 
-const PaymentInvoice = () => {
+interface props {
+  data: any
+}
+
+const PaymentInvoice:React.FC<props>  = ({data}) => {
 
   const tableData = [
     {
@@ -59,16 +62,16 @@ const PaymentInvoice = () => {
     { title: "S.NO", index: "s_no", type: "sno", width: "5" },
     {
       title: "Invoice Number",
-      index: "invoice",
+      index: "invoice_number",
     },
     {
       title: "Customer",
-      index: "sd_customer_id",
+      index: "vendor_company",
     },
-    { title: "Hub", index: "sd_hub_id" },
+    { title: "Hub", index: "hub_id" },
     {
       title: "Amount",
-      index: "invoice_amount",
+      index: "total_amount",
     },
     {
       title: "Paid",
@@ -76,7 +79,7 @@ const PaymentInvoice = () => {
     },
     {
       title: "Pending",
-      index: "pending",
+      index: "rem",
     },
     // { title: "Status", index: "status", type: "tags", tags: statusTags },
     // {
@@ -115,7 +118,7 @@ const PaymentInvoice = () => {
   const tableTop: SmartTableNewInterface.SmartTableNewTopProps[] = [
     {
       type: "CUSTOM",
-      widthClass: "is-10",
+      widthClass: "is-6",
       custom: (
         <p className="is-size-4">
           {" "}
@@ -123,6 +126,11 @@ const PaymentInvoice = () => {
           <span className="ml-3"> Invoice / Payment</span>
         </p>
       ),
+    },
+    {
+      type: "SEARCH",
+      widthClass: "is-6",
+      align: "JUSTIFY",
     },
     // {
     //     type: "CUSTOM",
@@ -135,7 +143,7 @@ const PaymentInvoice = () => {
       <div className="smart-elf-table">
         <SmartTable
           columns={columns}
-          data={tableData}
+          data={data}
           tableTop={tableTop}
           filterFields={filterFields}
           tableProps={{

@@ -2,6 +2,7 @@ import { ROLE_URLS, STATE_URLS, USER_URLS } from "../../api/AdminUrls";
 import {
   CUSTOMER_URLS,
   HUBS_URLS,
+  INVOICE_URLS,
   OFFICE_URLS,
   PAYMENT_URLS,
   VENDERS_URLS,
@@ -77,14 +78,16 @@ const costomer_invoice_all_select = (sd_customer_id: any, call_back: any) => {
   let url = PAYMENT_URLS.GET_ALL_INVOICE;
   admin_generic_select_post(url, { sd_customer_id: sd_customer_id }, call_back);
 };
-export {
-  admin_states_select,
-  hubs_get_all_select,
-  role_get_select,
-  user_get_select,
-  office_get_all_select,
-  vendors_get_all_select,
-  company_get_all_select,
-  company_address_all_select,
-  costomer_invoice_all_select
+
+const bills_all_select = (call_back: any) => {
+  let url = INVOICE_URLS.GET_ALL_BILLS_SELECT;
+  admin_generic_select_post(url, { }, call_back);
 };
+
+
+
+export {
+  admin_states_select, bills_all_select, company_address_all_select, company_get_all_select, costomer_invoice_all_select, hubs_get_all_select, office_get_all_select, role_get_select,
+  user_get_select, vendors_get_all_select
+};
+

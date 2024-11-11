@@ -1,18 +1,18 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import {
   SmartFormInterFace,
   SmartTable,
   SmartTableNewInterface,
 } from "soft_digi";
-import { useSiteContext } from "../../contexts/SiteProvider";
-import RecentPaymentForm from "./RecentPaymentForm";
 import { PAYMENT_URLS } from "../../api/UserUrls";
+import { useSiteContext } from "../../contexts/SiteProvider";
 import { get } from "../../services/smartApiService";
+import RecentPaymentForm from "./RecentPaymentForm";
 
 const RecentPayment = () => {
 
-    const { openModal, closeModal, setLoading } = useSiteContext();
-    const [tabData, setTabData] = useState([]);
+  const { openModal, closeModal, setLoading } = useSiteContext();
+  const [tabData, setTabData] = useState([]);
   const loadTableData = () => {
     let URL = PAYMENT_URLS.GET_ALL;
     const subscription = get(URL).subscribe((response) => {
@@ -92,7 +92,7 @@ const RecentPayment = () => {
   const openbillForm = (data: any) => {
     let options = {
       title: "Payment",
-      content: <RecentPaymentForm  loadTableData={loadTableData}  />,
+      content: <RecentPaymentForm loadTableData={loadTableData} />,
       width: 60,
       className: "sd-efl-modal",
       closeBody: false,
