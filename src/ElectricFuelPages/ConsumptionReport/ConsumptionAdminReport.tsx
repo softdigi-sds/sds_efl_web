@@ -248,9 +248,10 @@ const ConsumptionAdminReport: React.FC<VehicleReportProps> = ({
                         <label className="is-size-7 has-text-info">({hub.office_city})
                         </label>
                       </td>
-                      <td 
+                      <td
                       onClick={() => openForm(changeDateTimeZone(startDate.toISOString(), "YYYY-MM-DD"), hub,changeDateTimeZone(endDate.toISOString(), "YYYY-MM-DD"))}
-                      >{hub.total}</td>
+                      >
+                        <span className="is-clickable">{hub.total}</span></td>
                       {numberArray.map((item: any) => {
                         let _count = getDayCount(item, hub.sub_data);
                         const isNotGreaterThanToday = isDateWithinDays(item, 0);
