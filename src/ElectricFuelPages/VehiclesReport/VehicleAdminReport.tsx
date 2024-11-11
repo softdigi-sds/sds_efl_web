@@ -338,7 +338,7 @@ const VehicleAdminReport: React.FC<VehicleReportProps> = ({
                                ({hub.vendor_count})
                               </p>
                             ) : (
-                              <span>({hub.vendor_count})</span>
+                              <span className="">({hub.vendor_count})</span>
                             )}
                           </div>
                     
@@ -346,7 +346,8 @@ const VehicleAdminReport: React.FC<VehicleReportProps> = ({
                         <label className="is-size-7 has-text-info">({hub.office_city})
                         </label>
                       </td>
-                      <td  onClick={() => openForm(changeDateTimeZone(startDate.toISOString(), "YYYY-MM-DD"), hub,changeDateTimeZone(endDate.toISOString(), "YYYY-MM-DD"))}>{hub.average}</td>
+                      <td  onClick={() => openForm(changeDateTimeZone(startDate.toISOString(), "YYYY-MM-DD"), hub,changeDateTimeZone(endDate.toISOString(), "YYYY-MM-DD"))}>
+                        <span className="is-clickable">{hub.average}</span></td>
                       {numberArray.map((item: any) => {
                         let _count = getDayCount(item, hub.sub_data);
                         const isNotGreaterThanToday = isDateWithinDays(item, 0);
