@@ -7,7 +7,7 @@ interface childrenProps {
   isOpen: boolean;
   setIsOpen: (open: boolean) => void;
 }
-const EFSideNav: React.FC<childrenProps> = ({ isOpen ,setIsOpen}) => {
+const EFSideNav: React.FC<childrenProps> = ({ isOpen, setIsOpen }) => {
   const ref = useRef<HTMLDivElement | null>(null);
   const listItems = [
     {
@@ -58,17 +58,16 @@ const EFSideNav: React.FC<childrenProps> = ({ isOpen ,setIsOpen}) => {
       label: "Consumption  Report",
       icon: "fa-calendar-check-o",
       link: "/e-fuel/consumption-report",
-      roles: ["ADMIN", "City Incharge", "ACCOUNTS"],
+      roles: ["ADMIN", "ACCOUNTS"],
     },
     {
       id: 7,
       label: "Invoices",
       icon: "fa-inr",
       link: "/e-fuel/invoices",
-      roles: ["ADMIN", "City Incharge", "ACCOUNTS"],
+      roles: ["ADMIN", "ACCOUNTS"],
     },
 
- 
     // {
     //   id: 8,
     //   label: "Meter Reading",
@@ -81,7 +80,7 @@ const EFSideNav: React.FC<childrenProps> = ({ isOpen ,setIsOpen}) => {
       label: "Meter Reading",
       icon: "fa-tachometer",
       link: "/e-fuel/meter-reading-report",
-      roles: ["ADMIN"],
+      roles: ["ADMIN", "ACCOUNTS"],
     },
     {
       id: 9,
@@ -89,13 +88,13 @@ const EFSideNav: React.FC<childrenProps> = ({ isOpen ,setIsOpen}) => {
       icon: "fa-inr",
       link: "/e-fuel/msi-reports",
       roles: ["ADMIN"],
-    },  
+    },
     {
       id: 12,
       label: "Payment",
       icon: "fa-inr",
       link: "/e-fuel/payment",
-      roles: ["ADMIN"],
+      roles: ["ADMIN", "ACCOUNTS"],
     },
     {
       id: 10,
@@ -118,10 +117,9 @@ const EFSideNav: React.FC<childrenProps> = ({ isOpen ,setIsOpen}) => {
   // console.log("logged in user ", user);
   const navigateLink = (index: any) => {
     navigate(index);
-    if(window.innerWidth <= 768){
-      setIsOpen(false)
+    if (window.innerWidth <= 768) {
+      setIsOpen(false);
     }
- 
   };
 
   const handleClickOutside = (event: MouseEvent) => {
