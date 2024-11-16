@@ -1,8 +1,9 @@
 import React from "react";
 interface props {
-  data: any
+  data: any;
 }
-const PaymentsCount:React.FC<props>  = ({data}) => {
+
+const PaymentsCount: React.FC<props> = ({ data }) => {
   return (
     <div className="container">
       <div className="columns is-multiline">
