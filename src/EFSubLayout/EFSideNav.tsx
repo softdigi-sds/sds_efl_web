@@ -15,7 +15,7 @@ const EFSideNav: React.FC<childrenProps> = ({ isOpen, setIsOpen }) => {
       label: "Dashboard",
       icon: "fa-tachometer",
       link: "/e-fuel/dashboard",
-      roles: ["ADMIN"],
+      roles: ["ADMIN", "ACCOUNTS"],
     },
 
     {
