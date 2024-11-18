@@ -294,7 +294,7 @@ const VendorRatesForms: React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
     },
     {
       type: "TEXT_BOX",
-      width: "6",
+      width: "4",
       name: "vendor_code",
       element: {
         label: "Customer Code",
@@ -305,13 +305,30 @@ const VendorRatesForms: React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
     },
     {
       type: "TEXT_BOX",
-      width: "6",
+      width: "4",
       name: "cms_name",
       element: {
         label: "CMS Name",
         isRequired: true,
         inputType: "BORDER_LABEL",
         inputProps: { isFocussed: true },
+      },
+    },
+    {
+      type: "SELECT_BOX",
+      width: "4",
+      name: "bill_type",
+      element: {
+        label: "Select Unit Billing Type",
+        isRequired: true,
+       // validations: vendorFormValidations.company,
+        options: [
+          {value:"CMS",label:"CMS"},
+          {value:"SUB_METER",label:"SUB_METER"},
+        ],
+        inputType: "BORDER_LABEL",
+       // inputProps: { disabled: formData.ID && formData.ID ? true : false },
+        //options: options,
       },
     },
     /*
