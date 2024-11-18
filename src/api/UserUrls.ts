@@ -80,6 +80,7 @@ const INVOICE_URLS = {
   IMPORT_EXCEL: "bill/import_excel",
   DOWNLOAD_INVOICE: "invoice/download_invoice",
   DELETE: "bill/delete_one",
+  SIGN_START:"/invoice/get_sign_info"
 };
 const METER_READINGS_URLS = {
   INSERT: "/meter_readings/insert",

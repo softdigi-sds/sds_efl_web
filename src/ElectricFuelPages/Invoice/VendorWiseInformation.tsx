@@ -68,6 +68,20 @@ const VendorWiseInformation = () => {
     };
   };
 
+  const startDigitalSign = (invoice_id: number) => {
+    let URL = INVOICE_URLS.SIGN_START;
+    const subscription = post(URL, { id: invoice_id }).subscribe((response) => {
+      window.location.href  ="http://localhost:4000/open/digital-sign?token=" + response.data.data;
+      // console.log(response);
+      //setData(response.data);
+    });
+    return () => {
+      subscription.unsubscribe();
+    };
+  };
+
+
+
   useEffect(() => {
     loadData();
   }, [id]);
@@ -107,6 +121,16 @@ const VendorWiseInformation = () => {
       classList: ["smart-efl-table-view-icon", ""],
       onClick: (data: any) => {
         downloadInvoice(data["ID"]);
+      },
+    },
+
+    {
+      label: "Sign",
+      type: "icon",
+      leftIcon: "fa fa-file",
+      classList: ["smart-efl-table-view-icon", ""],
+      onClick: (data: any) => {
+        startDigitalSign(data["ID"]);
       },
     },
   ];
@@ -302,13 +326,13 @@ const VendorWiseInformation = () => {
   return (
     <>
       {BillInformation()}
-      <div>
+      <div className="is-size-7">
         <SmartTable
           columns={columns}
           data={data.invoice_data || []}
           tableTop={tableTop}
           tableProps={{
-            className:` is-hoverable  is-striped ${!isDark ?"smart-efl-table":""}`,
+            className:` is-hoverable  is-striped is-narrow smart-small-table ${!isDark ?"smart-efl-table":""}`,
             isResponsive: true,
             searchPlaceHolder: "Search",
           }}
