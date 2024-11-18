@@ -287,6 +287,11 @@ const HubsTables = () => {
       width: "15",
     },
     {
+      index:"hub_capacity",
+      title: "Capacity",
+      width: "10",
+    },
+    {
       title: "Number of Customer",
       index: "vendor_count",
       valueFunction: vendorsDisplay,

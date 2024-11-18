@@ -64,6 +64,7 @@ const VEHICLES_URL = {
   IMPORT_EXCEL: "/efl_vehicles/import_excel",
   GET_ALL_DASH: "/efl_vehicles/get_report_dashboard",
   GET_ALL_DATE: "/efl_vehicles/get_report_date",
+  GET_ALL_HUB_CAPACITY:"/efl_vehicles/get_hub_capacity_report"
 };
 
 const INVOICE_URLS = {
@@ -106,7 +107,8 @@ const PAYMENT_URLS = {
   INSERT: "/payment/insert",
   GET_ALL: "/payment/get_all",
   GET_ALL_INVOICE:"/invoice/get_all_select", 
-  GET_ALL_REPORT:"/payment/get_all_report"
+  GET_ALL_REPORT:"/payment/get_all_report",
+  GET_CUSTOMER_LEDGER:"/payment/get_customer_ledger"
 };
 
 export {

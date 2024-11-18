@@ -1,46 +1,31 @@
 import "./Calender.scss";
+import ConsumptionAdminReport from "./ConsumptionReport/ConsumptionAdminReport";
+import ConsumptionReportTable from "./ConsumptionReport/ConsumptionReportTable";
+import CustomersTables from "./Customers/CustomersTables";
 import Dashboard from "./DashBoard/Dashboard";
 import "./ElectricFuel.scss";
 import HomePage from "./Home/HomePage";
 import HubsTables from "./Hubs/HubsTables";
+import InvoiceTable from "./Invoice/InvoiceTable";
+import VendorWiseInformation from "./Invoice/VendorWiseInformation";
+import MeterReading from "./MeterReading/MeterReading";
+import MeterReadingReport from "./MeterReading/MeterReadingReport";
+import Msireports from "./MisReports";
+import Notification from "./Notification/Notificaton";
 import OfficesTable from "./Offices/OfficesTable";
+import Payment from './Payments/Payment';
+import Profile from "./Profile/Profile";
 import RoleTable from "./Role/RoleTable";
 import UsersTable from "./Users/UsersTable";
+import VehicleAdminReport from "./VehiclesReport/VehicleAdminReport";
 import VehiclesReportTable from "./VehiclesReport/VehiclesReportTable";
 import VendorRatesTable from "./VendorRates/VendorRatesTable";
 import VendorsTable from "./Vendors/VendorsTable";
-import ConsumptionReportTable from "./ConsumptionReport/ConsumptionReportTable";
-import InvoiceTable from "./Invoice/InvoiceTable";
-import VendorWiseInformation from "./Invoice/VendorWiseInformation";
-import Profile from "./Profile/Profile";
-import Notification from "./Notification/Notificaton";
-import MeterReading from "./MeterReading/MeterReading";
-import Msireports from "./MSIReports/MsiReports";
-import ConsumptionAdminReport from "./ConsumptionReport/ConsumptionAdminReport";
-import VehicleAdminReport from "./VehiclesReport/VehicleAdminReport";
-import MeterReadingReport from "./MeterReading/MeterReadingReport";
-import CustomersTables from "./Customers/CustomersTables";
-import Payment from './Payments/Payment'
 export {
-  Dashboard,
+  ConsumptionAdminReport, ConsumptionReportTable, CustomersTables, Dashboard,
   HomePage,
-  HubsTables,
-  OfficesTable,
-  RoleTable,
-  UsersTable,
-  VehiclesReportTable,
-  VendorRatesTable,
-  VendorsTable,
-  ConsumptionReportTable,
-  InvoiceTable,
-  VendorWiseInformation,
-  Profile,
-  Notification,
-  MeterReading,
-  Msireports,
-  ConsumptionAdminReport,
-  VehicleAdminReport,
-  MeterReadingReport,
-  CustomersTables,
-  Payment
+  HubsTables, InvoiceTable, MeterReading, MeterReadingReport, Msireports, Notification, OfficesTable, Payment, Profile, RoleTable,
+  UsersTable, VehicleAdminReport, VehiclesReportTable,
+  VendorRatesTable, VendorWiseInformation, VendorsTable
 };
+

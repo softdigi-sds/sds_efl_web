@@ -11,8 +11,7 @@ import { useSiteContext } from "../../contexts/SiteProvider";
 import { showAlertAutoClose } from "../../services/notifyService";
 import {
   office_get_all_select,
-  role_get_select,
-  user_get_select,
+  user_get_select
 } from "../../services/site/SelectBoxServices";
 import { post } from "../../services/smartApiService";
 
@@ -84,6 +83,7 @@ const HubsForms: React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
     hub_id: [SmartValid.required("Hub Id is Required")],
     role: [SmartValid.required("City In-charge is Required")],
     hub_name: [SmartValid.required("Hub Name is Required")],
+    hub_capacity: [SmartValid.required("Hub Capacity is Required")],
     locations: [SmartValid.required("Location is Required")],
     pin_code: [SmartValid.required("Pin Code is Required")],
     lon: [SmartValid.required("longitude is Required")],
@@ -138,6 +138,18 @@ const HubsForms: React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
         // inputProps: { isFocussed: true },
         inputType: "BORDER_LABEL",
         validations: hubFormValidations.hub_name,
+      },
+    },
+    {
+      type: "TEXT_BOX",
+      width: "6",
+      name: "hub_capacity",
+      element: {
+        label: "Hub Vehicle Capacity",
+        isRequired: true,
+        // inputProps: { isFocussed: true },
+        inputType: "BORDER_LABEL",
+        validations: hubFormValidations.hub_capacity,
       },
     },
 

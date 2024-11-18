@@ -1,62 +1,120 @@
-import React, { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   SmartFormInterFace,
-  SmartSoftButton,
   SmartSoftForm,
-  SmartTable,
-  SmartTableNewInterface,
+  SmartTableNewInterface
 } from "soft_digi";
+import { vendors_get_all_select } from "../../services/site/SelectBoxServices";
+import CustomerLedger from "./CustomerLedger";
+import HubCapacity from "./HubCapacity";
 
 interface FormErrors {
   [key: string]: string | null;
 }
 
-const Msireports = () => {
-  const [formData, setFormData] = useState({});
+const Index = () => {
+  const [formData, setFormData] = useState<any>({});
   const [formSubmit, setFormSubmit] = useState<boolean>(false);
-  const [formErrors, setFormErrors] = useState<FormErrors>({});
   const [minEndDate, setMinEndDate] = useState<Date | null>(null);
-  const [showTable, setShowTable] = useState<boolean>(false);
+  const [type, setType] = useState<string>("");
+  const [year, setYear] = useState<string>("");
+  const [customers, setCustomers] = useState([]);
 
   const categoryOptions = [
-    { label: "vendor (vs) vehicles", value: "1" },
-    { label: "vendor (vs) CMS", value: "2" },
+    { label: "Hub Capacity", value: "1" },
+    { label: "Customer Ledger", value: "2" },
   ];
+  const yearOptions = [
+    {value:"2025",label:"2025"},
+    {value:"2024",label:"2024"},
+  ]
 
   const handleInputChange = (name: string, value: any) => {
     setFormData((prev: any) => ({ ...prev, [name]: value }));
   };
 
-  const handleErrorChange = (name: string | any, value: any) => {
-    setFormErrors((prev) => {
-      const updatedFormData = { ...prev };
-      if (value === null || value === "") {
-        delete updatedFormData[name];
-      } else {
-        updatedFormData[name] = value;
-      }
-      return updatedFormData;
-    });
-  };
+
+  useEffect(() => {
+    vendors_get_all_select((data: any) => setCustomers(data));
+  }, []);
+
+
+  // const handleErrorChange = (name: string | any, value: any) => {
+  //   setFormErrors((prev) => {
+  //     const updatedFormData = { ...prev };
+  //     if (value === null || value === "") {
+  //       delete updatedFormData[name];
+  //     } else {
+  //       updatedFormData[name] = value;
+  //     }
+  //     return updatedFormData;
+  //   });
+  // };
 
   const handleSubmit = () => {
     setFormSubmit(true);
-    setShowTable(true); // Ensure this is called
-    console.log("Form submitted, table visibility set to true."); // Debugging log
+    let stage = formData.stage && formData.stage.value ? formData.stage.value : "";
+    setType(stage);
+    if(stage==="1"){
+      setYear(formData.year && formData.year.value ? formData.year.value : "" );
+    }
+    if(stage==="2"){
+      setYear(formData.sd_customer_id && formData.sd_customer_id.value ? formData.sd_customer_id.value : "" );
+    }
+    //setShowTable(true); // Ensure this is called
+   // console.log("Form submitted, table visibility set to true."); // Debugging log
   };
 
-  const titleDisTwo = () => {
+  const reportForm = () => {
     const filterFieldsOne: SmartFormInterFace.SmartFormElementProps[] = [
       {
         type: "SELECT_BOX",
         width: "3",
-        name: "state_data",
+        name: "stage",
         element: {
           label: "Select",
           options: categoryOptions,
           inputProps: { isFocussed: true },
           inputType: "BORDER_LABEL",
         },
+      },
+      {
+        type: "SELECT_BOX",
+        width: "3",
+        name: "year",
+        element: {
+          label: "Select Year",
+          options: yearOptions,
+          inputProps: { isFocussed: true },
+          inputType: "BORDER_LABEL",
+        },
+        hideFunction:(value)=>{
+          let stage = formData.stage && formData.stage.value ? formData.stage.value : "";
+          console.log("stage value selected " , stage, formData.stage);
+          if(stage==="1"){
+            return false;
+          }
+          return true;
+        }
+      },
+      {
+        type: "SELECT_BOX",
+        width: "3",
+        name: "sd_customer_id",
+        element: {
+          label: "Customer",
+          isRequired: true,
+          options: customers,
+          inputProps: { isFocussed: true },
+          inputType: "BORDER_LABEL",
+        },
+        hideFunction:(value)=>{
+          let stage = formData.stage && formData.stage.value ? formData.stage.value : "";        
+          if(stage==="2"){
+            return false;
+          }
+          return true;
+        }
       },
       {
         type: "DATE",
@@ -67,6 +125,13 @@ const Msireports = () => {
           placeHolder: "DD-MM-YYYY",
           inputType: "BORDER_LABEL",
         },
+        hideFunction:(value)=>{
+          let stage = formData.stage && formData.stage.value ? formData.stage.value : "";
+          if(stage=="3"){
+            return false;
+          }
+          return true;
+        }
       },
       {
         type: "DATE",
@@ -78,13 +143,20 @@ const Msireports = () => {
           minDate: minEndDate,
           inputType: "BORDER_LABEL",
         },
+        hideFunction:(value)=>{
+          let stage = formData.stage && formData.stage.value ? formData.stage.value : "";
+          if(stage=="3"){
+            return false;
+          }
+          return true;
+        }
       },
       {
         type: "BUTTON",
         width: "3",
         name: "Generate",
         element: {
-          label: "Submit",
+          label: "Generate Report",
           classList: ["has-text-right  mr-2", "smart-action-button"],
           onClick: handleSubmit,
         },
@@ -93,18 +165,18 @@ const Msireports = () => {
 
     return (
       <>
-        <div className="columns">
-          <div className="column is-4 smart-efl-table_main_container is-size-4">
+        <div className="columns is-multiline">
+          <div className="column is-12 smart-efl-table_main_container is-size-4">
             <p className="has-text-white"> MIS Report</p>
           </div>
-          <div className="column is-8">
+          <div className="column is-12">
             <div className="mt-1">
               <SmartSoftForm
                 formData={formData}
                 setFormData={handleInputChange}
                 elements={filterFieldsOne}
                 formSubmit={formSubmit}
-                handleErrorChange={handleErrorChange}
+                //handleErrorChange={handleErrorChange}
               />
             </div>
           </div>
@@ -182,8 +254,11 @@ const Msireports = () => {
 
   return (
     <div>
-      {titleDisTwo()}
-      {showTable && (
+      {reportForm()}
+      {type==="1" && <HubCapacity year={year} />}
+      {type==="2" && <CustomerLedger sd_customer_id={year} />}
+
+      {/* {showTable && (
         <>
           <SmartTable
             columns={columns}
@@ -199,9 +274,9 @@ const Msireports = () => {
             }}
           />
         </>
-      )}
+      )} */}
     </div>
   );
 };
 
-export default Msireports;
+export default Index;

@@ -125,62 +125,58 @@ const VendorWiseInformation = () => {
   };
 
   const columns: SmartTableNewInterface.SmartTableNewColumnConfig[] = [
-    { title: "S.NO", index: "s_no", type: "sno", width: "5" },
+    { title: "S.NO", index: "s_no", type: "sno", width: "3" },
     {
       title: "Invoice Number",
       index: "invoice_number",
-      width: "15",
+      width: "10",
     },
     {
       title: "Hub",
       index: "hub_id",
-      width: "20",
-    },
-    {
-      title: "Billing To",
-      index: "",
       width: "15",
-    },
-    {
-      title: "City",
-      index: "",
-      width: "15",
-    },
+      valueFunction:(data)=>{
+        return <span>{data["hub_id"]}<br/><span className="is-size-7">({data["office_city"]})</span></span>
+      }
+    }, 
     {
       title: "Customer",
       index: "vendor_company",
-      width: "15",
+      width: "10",
+      // valueFunction:(data)=>{
+      //   return <span>{data["vendor_company"]}<br/><span className="is-size-7">({data["billing_to"]})</span></span>
+      // }
     },
     {
       title: "Total Amount",
       index: "total_amount",
-      width: "15",
+      width: "10",
       valueFunction: amountDisplay,
     },
-    // {
-    //   title: "ACK No",
-    //   index: "ack_no",
-    //   width: "10",
-    //   valueFunction: (data) => {
-    //     return data["status"] == 10 ? (
-    //       <span
-    //         className="has-text-link sd-cursor"
-    //         onClick={() => {
-    //           downloadInvoice(data["ID"]);
-    //         }}
-    //       >
-    //         {data["ack_no"]}
-    //       </span>
-    //     ) : null;
-    //   },
-    // },
-    // {
-    //   title: "Status",
-    //   index: "status",
-    //   width: "10",
-    //   type: "tags",
-    //   tags: statusTags,
-    // },
+    {
+      title: "ACK No",
+      index: "ack_no",
+      width: "10",
+      valueFunction: (data) => {
+        return data["status"] == 10 ? (
+          <span
+            className="has-text-link sd-cursor"
+            onClick={() => {
+              downloadInvoice(data["ID"]);
+            }}
+          >
+            {data["ack_no"]}
+          </span>
+        ) : null;
+      },
+    },
+    {
+      title: "Status",
+      index: "status",
+      width: "10",
+      type: "tags",
+      tags: statusTags,
+    },
     {
       title: "Details",
       index: "action",
