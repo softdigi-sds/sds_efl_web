@@ -1,6 +1,11 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { SmartAlert, SmartLoaderInterface, SmartTable, SmartTableNewInterface } from "soft_digi";
+import {
+  SmartAlert,
+  SmartLoaderInterface,
+  SmartTable,
+  SmartTableNewInterface,
+} from "soft_digi";
 import { INVOICE_URLS } from "../../api/UserUrls";
 import { useSiteContext } from "../../contexts/SiteProvider";
 import SignPad from "../../core/general/SignPad";
@@ -23,10 +28,12 @@ const InvoiceTable = () => {
   };
   // https://dummyjson.com/
   const LoadTableData = () => {
-    const subscription = get(INVOICE_URLS.GET_ALL_BILLS).subscribe((response) => {
-      setTabData(response.data);
-      //console.log("data", response.data.users)
-    });
+    const subscription = get(INVOICE_URLS.GET_ALL_BILLS).subscribe(
+      (response) => {
+        setTabData(response.data);
+        //console.log("data", response.data.users)
+      }
+    );
     return () => {
       subscription.unsubscribe();
     };
@@ -36,39 +43,44 @@ const InvoiceTable = () => {
     LoadTableData();
   }, []);
 
-  const deleteData = (id:any) => {    
-    const subscription = post(
-      INVOICE_URLS.DELETE,
-      { id: id }
-    ).subscribe((response) => {
-      showAlertAutoClose("Removed Successfully","success");
-      closeModal();
-      LoadTableData();
-      // setLoading(false);
-    });
+  const deleteData = (id: any) => {
+    const subscription = post(INVOICE_URLS.DELETE, { id: id }).subscribe(
+      (response) => {
+        showAlertAutoClose("Removed Successfully", "success");
+        closeModal();
+        LoadTableData();
+        // setLoading(false);
+      }
+    );
     return () => {
       subscription.unsubscribe();
     };
   };
 
-
-  const openDeleteModal = (id:any) => {
+  const openDeleteModal = (id: any) => {
     let alertProps: SmartLoaderInterface.SmartAlertInterface = {
-        title: <span className="has-text-danger"><i className="fa fa-check"></i> Invoice Remove!</span>,
-        alertFunction: (option) => {
-            if (option == "yes") {
-              deleteData(id);
-                SmartAlert.hide()
-            }
-        },
-         content:<p>Note: Do you wish to remove this invoice? This action cannot be reverted</p>,
-          className:"custom-alert"
+      title: (
+        <span className="has-text-danger">
+          <i className="fa fa-check"></i> Invoice Remove!
+        </span>
+      ),
+      alertFunction: (option) => {
+        if (option == "yes") {
+          deleteData(id);
+          SmartAlert.hide();
+        }
+      },
+      content: (
+        <p>
+          Note: Do you wish to remove this invoice? This action cannot be
+          reverted
+        </p>
+      ),
+      className: "custom-alert",
     };
-    
-    SmartAlert.show(alertProps)
-}
 
-
+    SmartAlert.show(alertProps);
+  };
 
   const downloadInvoice = (data: any) => {
     console.log("Download Invoice:", data);
@@ -96,66 +108,59 @@ const InvoiceTable = () => {
         downloadInvoice(data);
       },
     },
-    
   ];
+
   const ImportButtons = [
-   
     {
       label: "View",
       type: "icon",
       leftIcon: " fa fa-eye",
       classList: ["smart-efl-table-view-icon"],
       onClick: (data: any) => {
-        navigate("/e-fuel/vendor-wish/" +data["ID"]);
+        navigate("/e-fuel/vendor-wish/" + data["ID"]);
       },
     },
-     {
+    {
       label: "Download",
       type: "icon",
-       leftIcon: "fa fa-trash",
+      leftIcon: "fa fa-trash",
       classList: ["smart-efl-table-delete-icon"],
-      onClick: (data:any) => {
+      onClick: (data: any) => {
         openDeleteModal(data["ID"]);
-        
       },
     },
-
   ];
-  const amountDisplay =(row:any)=>{
-    return(
+  const amountDisplay = (row: any) => {
+    return (
       <>
-      <div>
-        {formatCurrency(row?.total_amount)}
-      </div>
+        <div>{formatCurrency(row?.total_amount)}</div>
       </>
-    )
-  }
-  const GstDisplay =(row:any)=>{
-    return(
+    );
+  };
+  const GstDisplay = (row: any) => {
+    return (
       <>
-      <div>
-        {formatCurrency(row?.gst_amount)}
-      </div>
+        <div>{formatCurrency(row?.gst_amount)}</div>
       </>
-    )
-  }
+    );
+  };
   const columns: SmartTableNewInterface.SmartTableNewColumnConfig[] = [
-    { title: "S.NO", index: "s_no", type: "sno",width:"5" },
+    { title: "S.NO", index: "s_no", type: "sno", width: "5" },
     {
       title: "Start Date",
       index: "bill_start_date",
       type: "date",
       dateFormat: "DD-MM-YYYY",
-      width:"10"
+      width: "10",
     },
     {
       title: "End  Date",
       type: "date",
-       dateFormat: "DD-MM-YYYY",
+      dateFormat: "DD-MM-YYYY",
       index: "bill_end_date",
-        width:"10"
+      width: "10",
     },
-    { title: "Total Invoices", index: "total_invoices"  , width:"15"},
+    { title: "Total Invoices", index: "total_invoices", width: "15" },
     // { title: "Parking Amount(Rs) ", index: "vehicle_amount" ,  width:"15"},
     // {
     //   title: "Units Amount (Rs)",
@@ -170,14 +175,14 @@ const InvoiceTable = () => {
     {
       title: "GST(Rs)",
       index: "gst_amount",
-        width:"5",
-        valueFunction:GstDisplay
+      width: "5",
+      valueFunction: GstDisplay,
     },
     {
       title: "Total (Rs)",
       index: "total_amount",
-        width:"10",
-        valueFunction:amountDisplay
+      width: "10",
+      valueFunction: amountDisplay,
     },
     // {
     //   title: "",
@@ -220,16 +225,17 @@ const InvoiceTable = () => {
       type: "BUTTONS",
       widthClass: "is-3",
       align: "CENTER",
-      buttons: [   {
-        type: "REFRESH",
-        action: LoadTableData,
-      },
+      buttons: [
+        {
+          type: "REFRESH",
+          action: LoadTableData,
+        },
         {
           label: "Create Bill",
           icon: "fa-plus",
           type: "CUSTOM",
-          className:"smart-third-button",
-          action: openOfficesForm
+          className: "smart-third-button",
+          action: openOfficesForm,
         },
         // {
         //   label: "Next",
@@ -251,8 +257,6 @@ const InvoiceTable = () => {
     <>
       {!showInvoiceBottom && (
         <div className="smart-elf-table">
-
-
           <SmartTable
             columns={columns}
             data={tabData}
@@ -265,7 +269,6 @@ const InvoiceTable = () => {
             paginationProps={{
               pageSize: 10,
             }}
-
           />
         </div>
       )}
@@ -275,8 +278,6 @@ const InvoiceTable = () => {
           <InvoicebottomTable setShowInvoiceBottom={setShowInvoiceBottom} />
         </div>
       )}
-
-
 
       {showSignPad && (
         <div>
