@@ -152,6 +152,30 @@ const HubsForms: React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
         validations: hubFormValidations.hub_capacity,
       },
     },
+    {
+      type: "TEXT_BOX",
+      width: "6",
+      name: "hub_area",
+      element: {
+        label: "Hub Area",
+        isRequired: true,
+        // inputProps: { isFocussed: true },
+        inputType: "BORDER_LABEL",
+        //validations: hubFormValidations.hub_capacity,
+      },
+    },
+    {
+      type: "TEXT_BOX",
+      width: "6",
+      name: "hub_rental",
+      element: {
+        label: "Hub Rent(Rs)",
+        isRequired: true,
+        // inputProps: { isFocussed: true },
+        inputType: "BORDER_LABEL",
+        //validations: hubFormValidations.hub_capacity,
+      },
+    },
 
     {
       type: "TEXT_BOX",

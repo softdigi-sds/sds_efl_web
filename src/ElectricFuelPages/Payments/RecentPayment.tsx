@@ -1,12 +1,15 @@
 import { useEffect, useState } from "react";
 import {
+  SmartAlert,
   SmartFormInterFace,
+  SmartLoaderInterface,
   SmartTable,
   SmartTableNewInterface,
 } from "soft_digi";
 import { PAYMENT_URLS } from "../../api/UserUrls";
 import { useSiteContext } from "../../contexts/SiteProvider";
-import { get } from "../../services/smartApiService";
+import { showAlertAutoClose } from "../../services/notifyService";
+import { get, post } from "../../services/smartApiService";
 import RecentPaymentForm from "./RecentPaymentForm";
 
 const RecentPayment = () => {
@@ -26,6 +29,80 @@ const RecentPayment = () => {
   useEffect(() => {
     loadTableData();
   }, []);
+
+
+
+  const openbillForm = (data: any) => {
+    let options = {
+      title: "Payment",
+      content: <RecentPaymentForm loadTableData={loadTableData} dataIn={data} />,
+      width: 60,
+      className: "sd-efl-modal",
+      closeBody: false,
+    };
+    openModal(options);
+  };
+
+  const deleteData = (id: any) => {
+    const subscription = post(PAYMENT_URLS.DELETE, { id: id }).subscribe(
+      (response) => {
+        showAlertAutoClose("Deleted Successfully...", "success");
+        closeModal();
+        loadTableData();
+        // setLoading(false);
+      }
+    );
+    return () => {
+      subscription.unsubscribe();
+    };
+  };
+
+
+  const openDeleteModal = (id: any) => {
+    let alertProps: SmartLoaderInterface.SmartAlertInterface = {
+      title: (
+        <span className="has-text-danger">
+          <i className="fa fa-check"></i> Payment Deletion!
+        </span>
+      ),
+      alertFunction: (option) => {
+        if (option == "yes") {
+          deleteData(id);
+          SmartAlert.hide();
+        }
+      },
+      content: (
+        <p>
+          Note: Do you wish to delete this Payment Transaction? This action cannot be
+          reverted
+        </p>
+      ),
+      className: "custom-alert",
+    };
+
+    SmartAlert.show(alertProps);
+  };
+
+  const buttons = [  
+    // {
+    //   label: "",
+    //   type: "icon",
+    //   leftIcon: " fa-pencil-square-o",
+    //   classList: ["smart-efl-table-edit-icon"],
+    //   onClick: (data: any) => {
+    //     openbillForm(data);
+    //   },
+    // },
+    {
+      label: "",
+      type: "icon",
+      leftIcon: "fa fa-trash",
+      classList: ["smart-efl-table-delete-icon"],
+      onClick: (data: any) => {
+        openDeleteModal(data["ID"]);
+      },
+    },
+  ];
 
   const columns: SmartTableNewInterface.SmartTableNewColumnConfig[] = [
     { title: "S.NO", index: "s_no", type: "sno", width: "5" },
@@ -57,13 +134,13 @@ const RecentPayment = () => {
 
     //   },
     // { title: "Status", index: "status", type: "tags", tags: statusTags },
-    // {
-    //   title: "Action",
-    //   index: "action",
-    //   type: "buttons",
-    //   buttons: buttons,
-    //   width: "10",
-    // },
+    {
+      title: "Action",
+      index: "action",
+      type: "buttons",
+      buttons: buttons,
+      width: "10",
+    },
   ];
   const options = [
     { value: "1", label: "Test" },
@@ -89,16 +166,7 @@ const RecentPayment = () => {
       },
     },
   ];
-  const openbillForm = (data: any) => {
-    let options = {
-      title: "Payment",
-      content: <RecentPaymentForm loadTableData={loadTableData} />,
-      width: 60,
-      className: "sd-efl-modal",
-      closeBody: false,
-    };
-    openModal(options);
-  };
+
   const tableTop: SmartTableNewInterface.SmartTableNewTopProps[] = [
     {
       type: "CUSTOM",

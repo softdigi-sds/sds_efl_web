@@ -30,6 +30,18 @@ const HubsView: React.FC<HubsViewProps> = ({ hubData }) => {
             <td>{hubData.hub_id}</td>
           </tr>
           <tr>
+            <th>Hub Capacity</th>
+            <td>{hubData.hub_capacity}</td>
+          </tr>
+          <tr>
+            <th>Hub Area</th>
+            <td>{hubData.hub_area}</td>
+          </tr>
+          <tr>
+            <th>Hub Rental</th>
+            <td>{hubData.hub_rental}</td>
+          </tr>
+          <tr>
             <th>City</th>
             <td>
               {typeof hubData.office_city === 'object' ? hubData.office_city.label : hubData.office_city}

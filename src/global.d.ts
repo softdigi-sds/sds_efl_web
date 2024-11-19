@@ -7,6 +7,7 @@ declare global {
     interface siteConfig{
         REACT_APP_API_URL:string,
         ENCRYPTION_KEY?:string,
-        ENCRYPTION?:boolean       
+        ENCRYPTION?:boolean,
+        DIGI_SERVER_URL?:string       
     }
 }

@@ -80,7 +80,8 @@ const INVOICE_URLS = {
   IMPORT_EXCEL: "bill/import_excel",
   DOWNLOAD_INVOICE: "invoice/download_invoice",
   DELETE: "bill/delete_one",
-  SIGN_START:"/invoice/get_sign_info"
+  SIGN_START:"/invoice/get_sign_info",
+  SIGN_VERIFY:"/invoice/verify_sign"
 };
 const METER_READINGS_URLS = {
   INSERT: "/meter_readings/insert",
@@ -106,6 +107,7 @@ const CUSTOMER_URLS = {
 };
 const PAYMENT_URLS = {
   INSERT: "/payment/insert",
+  DELETE:"/payment/delete_one",
   GET_ALL: "/payment/get_all",
   GET_ALL_INVOICE:"/invoice/get_all_select", 
   GET_ALL_REPORT:"/payment/get_all_report",

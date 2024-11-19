@@ -3,11 +3,11 @@ import { SmartFormInterFace, SmartSoftButton, SmartSoftForm } from "soft_digi";
 import { useSiteContext } from "../../contexts/SiteProvider";
 
 import { SmartValid, ValidateFormNew } from "soft_digi/dist/services/smartValidationService";
-import { post } from "../../services/smartApiService";
-import { showAlertAutoClose } from "../../services/notifyService";
 import { PAYMENT_URLS } from "../../api/UserUrls";
-import { costomer_invoice_all_select, vendors_get_all_select } from "../../services/site/SelectBoxServices";
+import { showAlertAutoClose } from "../../services/notifyService";
 import { ALLOW_NUMERIC } from "../../services/PatternSerivce";
+import { costomer_invoice_all_select, vendors_get_all_select } from "../../services/site/SelectBoxServices";
+import { post } from "../../services/smartApiService";
 
 
 interface FormErrors {
@@ -15,9 +15,10 @@ interface FormErrors {
 }
 interface HeaderProps {
   loadTableData: () => void;
+  dataIn?:any
 
 }
-const RecentPaymentForm: React.FC<HeaderProps> = ({ loadTableData}) => {
+const RecentPaymentForm: React.FC<HeaderProps> = ({ loadTableData,dataIn}) => {
   const [formData, setFormData] = useState<any>({});
   const [formSubmit, setFormSubmit] = useState<boolean>(false);
   const [formErrors, setFormErrors] = useState<FormErrors>({});
@@ -59,10 +60,11 @@ const RecentPaymentForm: React.FC<HeaderProps> = ({ loadTableData}) => {
       subscription.unsubscribe();
     };
   };
-  useEffect(() => {
-    
-    vendors_get_all_select((data: any) => setAllRole(data));
-  
+  useEffect(() => {    
+    vendors_get_all_select((data: any) => setAllRole(data)); 
+    if(dataIn){
+      setFormData(dataIn)
+    } 
   }, []);
   
   useEffect(() => {

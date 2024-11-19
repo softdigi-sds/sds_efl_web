@@ -279,12 +279,12 @@ const HubsTables = () => {
     {
       title: "Hub Id",
       index: "hub_id",
-      width: "20",
+      width: "15",
     },
     {
       title: "City",
       index: "office_city",
-      width: "15",
+      width: "10",
     },
     {
       index:"hub_capacity",
@@ -292,7 +292,17 @@ const HubsTables = () => {
       width: "10",
     },
     {
-      title: "Number of Customer",
+      index:"hub_area",
+      title: "Area",
+      width: "10",
+    },
+    {
+      index:"hub_rental",
+      title: "Rent(Rs)",
+      width: "10",
+    },
+    {
+      title: "Customers",
       index: "vendor_count",
       valueFunction: vendorsDisplay,
     },

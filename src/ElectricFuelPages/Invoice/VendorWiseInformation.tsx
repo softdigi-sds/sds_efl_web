@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams, useSearchParams } from "react-router-dom";
 import { SmartSoftButton, SmartTable, SmartTableNewInterface } from "soft_digi";
 import { INVOICE_URLS } from "../../api/UserUrls";
+import config from "../../config/config";
 import { useSiteContext } from "../../contexts/SiteProvider";
 import {
   changeDateTimeZoneFormat,
@@ -14,8 +15,11 @@ import VendorDetailsImport from "./VendorDetailsImport";
 
 const VendorWiseInformation = () => {
   const { id } = useParams<{ id: string }>();
+  const [searchParams] = useSearchParams();
+  const token = searchParams.get("token");
+  const invoice_ret_id = searchParams.get("invoice_id");
   const [data, setData] = useState<any>({});
-  const { openModal,isDark } = useSiteContext();
+  const { openModal, isDark } = useSiteContext();
   const navigate = useNavigate();
   const loadData = () => {
     let URL = INVOICE_URLS.GET_ONE_BILL;
@@ -71,19 +75,30 @@ const VendorWiseInformation = () => {
   const startDigitalSign = (invoice_id: number) => {
     let URL = INVOICE_URLS.SIGN_START;
     const subscription = post(URL, { id: invoice_id }).subscribe((response) => {
-      window.location.href  ="http://localhost:4000/open/digital-sign?token=" + response.data.data;
-      // console.log(response);
-      //setData(response.data);
+      window.location.href = config.DIGI_SERVER_URL + "open/digital-sign?token=" + response.data.data;
     });
     return () => {
       subscription.unsubscribe();
     };
   };
 
-
+  const verifyDigitalSign = (id: any, token: string) => {
+    let URL = INVOICE_URLS.SIGN_VERIFY;
+    const subscription = post(URL, { id: id, token: token }).subscribe((response) => {
+      loadData();
+    });
+    return () => {
+      subscription.unsubscribe();
+    };
+  };
 
   useEffect(() => {
-    loadData();
+    if (token) {
+      verifyDigitalSign(invoice_ret_id, token)
+    } else {
+      loadData();
+    }
+
   }, [id]);
 
   const openForm = (data: any) => {
@@ -117,8 +132,8 @@ const VendorWiseInformation = () => {
     {
       label: "View",
       type: "icon",
-      leftIcon: "fa fa-file",
-      classList: ["smart-efl-table-view-icon", ""],
+      leftIcon: "fa-file-pdf-o",
+      classList: ["smart-efl-table-view-icon has-text-danger", ""],
       onClick: (data: any) => {
         downloadInvoice(data["ID"]);
       },
@@ -127,17 +142,21 @@ const VendorWiseInformation = () => {
     {
       label: "Sign",
       type: "icon",
-      leftIcon: "fa fa-file",
+      leftIcon: "fa fa-pencil",
       classList: ["smart-efl-table-view-icon", ""],
       onClick: (data: any) => {
         startDigitalSign(data["ID"]);
       },
+      hideFunction:(data:any)=>{
+        return data["status"]>=5 ? false : true; 
+      }
     },
   ];
 
   const statusTags = [
-    { value: 5, label: "Active", class: "has-text-link" },
-    { value: 10, label: "Active", class: "has-text-link" },
+    { value: 0, label: "Generated", class: "has-text-link" },
+    { value: 5, label: "E-INVOICE", class: "has-text-primary" },
+    { value: 10, label: "DIGITALLY SIGNED", class: "has-text-success" },
   ];
 
   const amountDisplay = (row: any) => {
@@ -151,18 +170,21 @@ const VendorWiseInformation = () => {
   const columns: SmartTableNewInterface.SmartTableNewColumnConfig[] = [
     { title: "S.NO", index: "s_no", type: "sno", width: "3" },
     {
-      title: "Invoice Number",
-      index: "invoice_number",
-      width: "10",
+      title: "City",
+      index: "office_city",
+      width: "8",
     },
     {
       title: "Hub",
       index: "hub_id",
-      width: "15",
-      valueFunction:(data)=>{
-        return <span>{data["hub_id"]}<br/><span className="is-size-7">({data["office_city"]})</span></span>
-      }
-    }, 
+      width: "10",   
+    },
+    
+    {
+      title: "Invoice Number",
+      index: "invoice_number",
+      width: "10",
+    },
     {
       title: "Customer",
       index: "vendor_company",
@@ -182,7 +204,7 @@ const VendorWiseInformation = () => {
       index: "ack_no",
       width: "10",
       valueFunction: (data) => {
-        return data["status"] == 10 ? (
+        return data["status"] >=5 ? (
           <span
             className="has-text-link sd-cursor"
             onClick={() => {
@@ -332,7 +354,7 @@ const VendorWiseInformation = () => {
           data={data.invoice_data || []}
           tableTop={tableTop}
           tableProps={{
-            className:` is-hoverable  is-striped is-narrow smart-small-table ${!isDark ?"smart-efl-table":""}`,
+            className: ` is-hoverable  is-striped is-narrow smart-small-table ${!isDark ? "smart-efl-table" : ""}`,
             isResponsive: true,
             searchPlaceHolder: "Search",
           }}
