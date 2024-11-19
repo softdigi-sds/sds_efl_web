@@ -6,6 +6,7 @@ import {
 import { PAYMENT_URLS } from "../../api/UserUrls";
 import { sumOfArrayObjectsWithIndex } from "../../services/core/FilterService";
 import { post } from "../../services/smartApiService";
+import { formatCurrency } from "../../services/core/CommonService";
 
 interface props {
   sd_customer_id: any
@@ -50,7 +51,7 @@ const CustomerLedger:React.FC<props>  = ({sd_customer_id}) => {
       index: "invoice_amount",
       classBody:"has-text-success",
       valueFunction:(data)=>{
-        return data["status"]==="1" ?  data["amount"] : "";
+        return  data["status"]==="1" ?  formatCurrency(data["amount"]) : "";
       }
     },
     {
@@ -58,7 +59,7 @@ const CustomerLedger:React.FC<props>  = ({sd_customer_id}) => {
       index: "amount",
       classBody:"has-text-danger",
       valueFunction:(data)=>{
-        return data["status"]==="2" ?  data["amount"] : "";
+        return data["status"]==="2" ?  formatCurrency(data["amount"]) : "";
       }
     },
     // {
@@ -101,9 +102,9 @@ const CustomerLedger:React.FC<props>  = ({sd_customer_id}) => {
             <td>Pending Amount</td>
           </tr>
           <tr>
-            <td className="has-text-primary">{invoice_amount}</td>
-            <td className="has-text-success">{paid_amount}</td>
-            <td className="has-text-danger">{rem_amount}</td>
+            <td className="has-text-primary">{formatCurrency(invoice_amount)}</td>
+            <td className="has-text-success">{formatCurrency(paid_amount)}</td>
+            <td className="has-text-danger">{formatCurrency(rem_amount)}</td>
           </tr>
         </table>
       </div>

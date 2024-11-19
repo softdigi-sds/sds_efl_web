@@ -238,10 +238,10 @@ const ConsumptionAdminReport: React.FC<VehicleReportProps> = ({
                                 className="is-clickable has-text-link sd-cursor"
                                 onClick={() => openVendorsView(hub.ID)}
                               >
-                                ({hub.vendor_count})
+                                ({roundNumber(hub.vendor_count)} )
                               </p>
                             ) : (
-                              <span>({hub.vendor_count})</span>
+                              <span>({roundNumber(hub.vendor_count)})  </span>
                             )}
                           </div>
                         </div>
@@ -251,7 +251,7 @@ const ConsumptionAdminReport: React.FC<VehicleReportProps> = ({
                       <td
                       onClick={() => openForm(changeDateTimeZone(startDate.toISOString(), "YYYY-MM-DD"), hub,changeDateTimeZone(endDate.toISOString(), "YYYY-MM-DD"))}
                       >
-                        <span className="is-clickable">{hub.total}</span></td>
+                        <span className="is-clickable">{roundNumber(hub.total)}</span></td>
                       {numberArray.map((item: any) => {
                         let _count = getDayCount(item, hub.sub_data);
                         const isNotGreaterThanToday = isDateWithinDays(item, 0);
@@ -264,6 +264,7 @@ const ConsumptionAdminReport: React.FC<VehicleReportProps> = ({
                               onClick={() => openForm(item, hub)}
                             >
                               {roundNumber(_count)}
+                            
                             </span>
                           </td>
                         ) : (
