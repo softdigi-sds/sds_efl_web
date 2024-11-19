@@ -107,20 +107,21 @@ const EFHeader: React.FC<HeaderProps> = ({ setIsOpen, isOpen,setIsDark ,isDark})
           <ToggleSwitch isDark={isDark} toggleTheme={toggleTheme} />
           </div>
           <div className=" navbar-item  mr-1 smart-elf-notification">
-            <Notificaton />
+            {/* <Notificaton /> */}
 
             <div className="dropdown is-active" key="s2"></div>
           </div>
           <div className="navbar-item has-dropdown is-hoverable ">
             <a className="navbar-link">
-             <span className="has-text-white mr-2">
-             {user?.ename}
-              </span>
+            
               <img
                 src={ADMIN_USER_LOGO}
                 alt=""
                 className="is-64x64 is-rounded with-out-pointer"
               />
+               <span className="has-text-white ml-2">
+             {user?.ename}
+              </span>
             </a>
             {/* <SmartImageDisplay
                         srcType="DATA"
