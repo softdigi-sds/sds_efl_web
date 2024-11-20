@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
 import {
   SmartFormInterFace,
-  SmartSoftForm,
-  SmartTableNewInterface
+  SmartSoftForm
 } from "soft_digi";
 import { vendors_get_all_select } from "../../services/site/SelectBoxServices";
 import CustomerLedger from "./CustomerLedger";
@@ -33,23 +32,9 @@ const Index = () => {
     setFormData((prev: any) => ({ ...prev, [name]: value }));
   };
 
-
   useEffect(() => {
     vendors_get_all_select((data: any) => setCustomers(data));
   }, []);
-
-
-  // const handleErrorChange = (name: string | any, value: any) => {
-  //   setFormErrors((prev) => {
-  //     const updatedFormData = { ...prev };
-  //     if (value === null || value === "") {
-  //       delete updatedFormData[name];
-  //     } else {
-  //       updatedFormData[name] = value;
-  //     }
-  //     return updatedFormData;
-  //   });
-  // };
 
   const handleSubmit = () => {
     setFormSubmit(true);
@@ -185,96 +170,13 @@ const Index = () => {
     );
   };
 
-  let data = [
-    {
-      s_no: 1,
-      vendor_name: "City1",
-      hub_id: "HUB001",
-      vendor_code: "V001",
-      vendor_company: "",
-    },
-    {
-      s_no: 2,
-      vendor_name: "City2",
-      hub_id: "HUB002",
-      vendor_code: "V002",
-      vendor_company: "",
-    },
-    {
-      s_no: 3,
-      vendor_name: "City3",
-      hub_id: "HUB003",
-      vendor_code: "V003",
-      vendor_company: "",
-    },
-    {
-      s_no: 4,
-      vendor_name: "City4",
-      hub_id: "HUB004",
-      vendor_code: "V004",
-      vendor_company: "",
-    },
-    {
-      s_no: 5,
-      vendor_name: "City5",
-      hub_id: "HUB005",
-      vendor_code: "V005",
-      vendor_company: "",
-    },
-  ];
-
-  const columns: SmartTableNewInterface.SmartTableNewColumnConfig[] = [
-    { title: "S.NO", index: "s_no", type: "sno" },
-    { title: "City", index: "vendor_name" },
-    { title: "Hub Id", index: "hub_id" },
-    { title: "Vendor", index: "vendor_code" },
-    { title: "Units", index: "vendor_company" },
-  ];
-
-  const filterFields: SmartFormInterFace.SmartFormElementProps[] = [
-    {
-      type: "TEXT_BOX",
-      width: "12",
-      name: "hub_id",
-      element: { label: "Hub" },
-    },
-    {
-      type: "TEXT_BOX",
-      width: "12",
-      name: "vendor_company",
-      element: { label: "City" },
-    },
-    {
-      type: "TEXT_BOX",
-      width: "12",
-      name: "vendor_company",
-      element: { label: "Vendor" },
-    },
-  ];
+  
 
   return (
     <div>
       {reportForm()}
       {type==="1" && <HubCapacity year={year} />}
-      {type==="2" && <CustomerLedger sd_customer_id={year} />}
-
-      {/* {showTable && (
-        <>
-          <SmartTable
-            columns={columns}
-            data={data}
-            filterFields={filterFields}
-            tableProps={{
-              className: "is-hoverable is-bordered smart-efl-table",
-              isResponsive: true,
-              searchPlaceHolder: "Search",
-            }}
-            paginationProps={{
-              pageSize: 10,
-            }}
-          />
-        </>
-      )} */}
+      {type==="2" && <CustomerLedger sd_customer_id={year} />}   
     </div>
   );
 };
