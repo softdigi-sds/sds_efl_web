@@ -12,6 +12,8 @@ import { downloadFile } from "../../services/core/FileService";
 import { post } from "../../services/smartApiService";
 import InvoiceVendorDetailsTable from "./InvoiceVendorDetailsTable";
 import VendorDetailsImport from "./VendorDetailsImport";
+import InvoiceAddingForm from "./InvoiceAddingForm";
+// import InvoiceForm from "./InvoiceAddingForm";
 
 const VendorWiseInformation = () => {
   const { id } = useParams<{ id: string }>();
@@ -236,17 +238,37 @@ const VendorWiseInformation = () => {
       type: "CUSTOM",
       widthClass: "is-8",
       custom: (
+        <div className="is-flex is-justify-content-space-between">
+
         <p className="is-size-4 is-italic has-text-link is-underlined">
-          Customer Invoices
+         Invoices
         </p>
+         <p
+         className="has-text-link mr-2 mt-2 is-clickable"
+         onClick={() => openInvoiceForm()}
+       >
+         {" "}
+         <i className="fa fa-plus-square-o is-size-4" aria-hidden="true"></i>
+       </p>
+       </div>
       ),
     },
     {
       type: "SEARCH",
       widthClass: "is-4",
-      align: "JUSTIFY",
+      align: "JUSTIFY", 
     },
   ];
+  const openInvoiceForm = () => {
+    let options = {
+      title: "Invoice Form",
+      content: <InvoiceAddingForm loadTableData={loadData} dataIn={id} />,
+      width: 90,
+      className: "sd-efl-modal",
+      closeBody: false,
+    };
+    openModal(options);
+  };
 
   const openImportForm = () => {
     let options = {
