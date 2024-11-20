@@ -44,7 +44,7 @@ const InvoiceSubForm: React.FC<HeaderProps> = ({
   
 
   const totalPrice = () => {
-    if (formData.discount) {
+    if (formData.price) {
       let taxAmount = (formData.price * formData.tax) / 100; // Calculate tax amount
       let total_price = formData.price + taxAmount; // Add tax to the base price
       if (isNaN(total_price)) {

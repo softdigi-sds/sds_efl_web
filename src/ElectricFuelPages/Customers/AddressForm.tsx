@@ -87,7 +87,7 @@ const AddressForm: React.FC<HeaderProps> = ({
     name: [SmartValid.required("Name is Required")],
     address: [SmartValid.required("Address is Required")],
     gst_no: [SmartValid.required("GST No is Required")],
-    pan_no: [SmartValid.required("Pan No is Required")],
+    pan_no: [SmartValid.required("Billing To is Required")],
     pin_code: [SmartValid.required("Pin Code is Required")],
     code: [SmartValid.required("Code is Required")],
     statee: [SmartValid.required("State is Required")],
@@ -109,7 +109,7 @@ const AddressForm: React.FC<HeaderProps> = ({
 
     {
       type: "TEXT_BOX",
-      width: "4",
+      width: "6",
       name: "gst_no",
       element: {
         label: "GST No.",
@@ -123,7 +123,7 @@ const AddressForm: React.FC<HeaderProps> = ({
 
     {
       type: "TEXT_BOX",
-      width: "4",
+      width: "6",
       name: "billing_to",
       element: {
         label: "Billing To",
@@ -135,7 +135,7 @@ const AddressForm: React.FC<HeaderProps> = ({
     },
     {
       type: "SELECT_BOX",
-      width: "4",
+      width: "6",
       name: "state_name",
       element: {
         label: "State",
@@ -148,7 +148,7 @@ const AddressForm: React.FC<HeaderProps> = ({
 
     {
       type: "TEXT_BOX",
-      width: "4",
+      width: "6",
       name: "pin_code",
       element: {
         label: "Pin Code",
@@ -163,7 +163,7 @@ const AddressForm: React.FC<HeaderProps> = ({
     },
     {
       type: "TEXTAREA",
-      width: "4",
+      width: "6",
       name: "address_one",
       element: {
         label: "Address-1",
@@ -176,7 +176,7 @@ const AddressForm: React.FC<HeaderProps> = ({
     },
     {
       type: "TEXTAREA",
-      width: "4",
+      width: "6",
       name: "address_two",
       element: {
         label: "Address-2",
