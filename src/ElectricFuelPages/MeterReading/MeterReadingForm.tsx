@@ -51,11 +51,11 @@ const MeterReadingForm: React.FC<HeaderProps> = ({
   };
 
   useEffect(() => {
-    setFormData({
-      meter_year: `${currentDate.getMonth() + 1}-${currentDate.getFullYear()}`,
+    // setFormData({
+    //   meter_year: `${currentDate.getMonth() + 1}-${currentDate.getFullYear()}`,
 
-      sd_hub_id: dataIn?.sd_hub_id || "",
-    });
+    //   sd_hub_id: dataIn?.sd_hub_id || "",
+    // });
   }, [dataIn]);
 
   const handleErrorChange = (name: string | any, value: any) => {

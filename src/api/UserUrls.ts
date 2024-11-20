@@ -88,6 +88,7 @@ const METER_READINGS_URLS = {
   GET_ONE: "/meter_readings/get_one",
   GET_ALL: "/meter_readings/get_all",
   UPDATE: "/meter_readings/update",
+  IMPORT_EXCEL:"/meter_readings/import_excel"
 };
 
 const CUSTOMER_URLS = {

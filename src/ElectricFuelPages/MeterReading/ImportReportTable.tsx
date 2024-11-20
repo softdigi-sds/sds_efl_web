@@ -6,7 +6,7 @@ import {
   SmartTable,
   SmartTableNewInterface,
 } from "soft_digi";
-import { CONSUMPTION_URL } from "../../api/UserUrls";
+import {  METER_READINGS_URLS } from "../../api/UserUrls";
 import SmartFileDisplay from "../../components/site/SmartFileDisplay";
 import { useSiteContext } from "../../contexts/SiteProvider";
 import { post } from "../../services/smartApiService";
@@ -26,7 +26,7 @@ const ImportReportTable: React.FC<HeaderProps> = ({ loadTableData }) => {
   const [data, setData] = useState<any[]>([]);
   const handleSubmit = () => {
     setFormSubmit(true);
-    let URL = CONSUMPTION_URL.IMPORT_EXCEL;
+    let URL = METER_READINGS_URLS.IMPORT_EXCEL;
     const subscription = post(URL, formData, {
       loadingMsg: MSG.LOADING.IMPORT,
     }).subscribe((response) => {
@@ -133,15 +133,27 @@ const ImportReportTable: React.FC<HeaderProps> = ({ loadTableData }) => {
       width: "15",
     },
     {
-      title: "Customer",
-      index: "vendor",
+      title: "Meter Start",
+      index: "meter_start",
       width: "15",
     },
     {
-      title: "Date",
-      index: "date",
-      width: "15",
+        title: "Meter End",
+        index: "meter_end",
+        width: "15",
+      },
+    {
+      title: "Start Date",
+      index: "start_date",
+      width: "10",
+      type:"date"
     },
+    {
+        title: "End Date",
+        index: "end_date",
+        width: "10",
+        type:"date"
+      },
     {
       title: "Units",
       index: "count",

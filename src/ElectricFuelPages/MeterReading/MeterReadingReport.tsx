@@ -83,7 +83,7 @@ const MeterReadingReport = () => {
       title:<>{"Meter Addition"}</> ,
       content: (
         <MeterReadingForm
-          dataIn={{dataIn}}
+          dataIn={dataIn}
           loadTableData={loadData}
           currentDate={currentDate}
         />
@@ -221,10 +221,10 @@ const MeterReadingReport = () => {
                         // console.log("Meter Data ",filteredData)
                         let _count = getDayobj(item, hub.meter_data);
                         return _count && _count.meter_reading ? (
-                          <td key={index} className="has-text-centered">
-                            <span className="" onClick={()=>viewEditForm(_count.ID)}>
+                          <td key={index} className="has-text-centered ">
+                            <span className="sd-cursor" onClick={()=>viewEditForm(_count.ID)}>
                               {_count.meter_reading}
-                              <div className="">{_count.cms_reading}</div>
+                              <div className="has-text-link ">{_count.cms_reading}</div>
                               <hr />
                               <span
                                 style={{
