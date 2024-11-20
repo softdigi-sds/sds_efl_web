@@ -179,7 +179,7 @@ const RecentPaymentForm: React.FC<HeaderProps> = ({ loadTableData,dataIn}) => {
     {
       type: "SELECT_BOX",
       width: "6",
-      name: "sd_invoice_id",
+      name: "payment_mode",
       element: {
         label: "Payment Mode",
         isRequired: true,
@@ -192,7 +192,7 @@ const RecentPaymentForm: React.FC<HeaderProps> = ({ loadTableData,dataIn}) => {
     {
       type: "TEXT_BOX",
       width: "6",
-      name: "payment_mode",
+      name: "payment_method",
       element: {
         label: "Payment Method Details",
         isRequired: true,
@@ -200,6 +200,14 @@ const RecentPaymentForm: React.FC<HeaderProps> = ({ loadTableData,dataIn}) => {
         max: 25,
      
         validations: payFormValidations.methods,
+      },
+      hideFunction: (data) => {
+        // console.log("formdata " , formData)
+        return formData.payment_mode &&
+          formData.payment_mode.value &&
+          formData.payment_mode.value === "Payment"
+          ? false
+          : true;
       },
     },
   ];

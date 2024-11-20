@@ -17,6 +17,7 @@ import {
 } from "../../services/site/SelectBoxServices";
 import { post } from "../../services/smartApiService";
 import InvoiceSubForm from "./InvoiceAddingSubForm";
+import { sumOfMultiArrayObjectsWithIndex } from "../../services/core/FilterService";
 
 
 interface FormErrors {
@@ -35,6 +36,7 @@ const InvoiceAddingForm: React.FC<HeaderProps> = ({ loadTableData, dataIn }) => 
   const [allVendors, setAllVendors] = useState([]);
   const [custAddress, setCustAddress] = useState([]);
   const { closeModal } = useSiteContext();
+  const [types, setTypes] = useState<any[]>([]);
 
   //  console.log("Formdata",formData)
 
@@ -71,6 +73,7 @@ const InvoiceAddingForm: React.FC<HeaderProps> = ({ loadTableData, dataIn }) => 
     min_end: "",
     price: "",
     extra_price: "",
+    tax:""
   };
 
   const addItem = () => {
@@ -160,7 +163,7 @@ const InvoiceAddingForm: React.FC<HeaderProps> = ({ loadTableData, dataIn }) => 
           <div className="column is-4">Description</div>
           <div className="column is-1">Quantity</div>
           <div className="column is-2">Price</div>
-          <div className="column is-1">Tax</div>
+          <div className="column is-1">Tax (%)</div>
           <div className="column is-2">Total</div>
           
        
@@ -257,7 +260,7 @@ const InvoiceAddingForm: React.FC<HeaderProps> = ({ loadTableData, dataIn }) => 
       width: "6",
       name: "sd_customer_id",
       element: {
-        label: "Company",
+        label: "Customer Name",
         isRequired: true,
         validations: vendorFormValidations.company,
         options: allVendors,
@@ -414,6 +417,41 @@ const InvoiceAddingForm: React.FC<HeaderProps> = ({ loadTableData, dataIn }) => 
     },
     */
   ];
+  
+  const footerCount=()=>{
+    return (
+      <table className="smart-table-column-width-100">
+        <tbody>
+          <tr>
+            {types.map((obj: any, key: number) => {
+              let _total_count = sumOfMultiArrayObjectsWithIndex(formData,"sub_data","ID",obj.ID);
+              return (
+                <td key={`foot_count_${key}`} className="smart-table-column-width-20 has-text-centered">
+                  {_total_count}
+                 </td>
+              );
+            })}
+          </tr>
+        </tbody>
+      </table>
+    )
+  }
+
+  const footerComponent = (sortdata: any[]) => {   
+    return (
+      <tfoot>
+        <tr>
+          <td colSpan={2} className="has-text-right">
+            Total Count
+          </td>
+          <td>
+              {footerCount()}
+            </td>     
+        </tr>
+      </tfoot>
+    );
+  };
+
 
   return (
     <>
@@ -445,6 +483,8 @@ const InvoiceAddingForm: React.FC<HeaderProps> = ({ loadTableData, dataIn }) => 
           </div>
         </div>
         {subFormDisplay()}
+        {footerComponent(formData)}
+        
         <div className="has-text-right">
           <SmartSoftButton
             label="Cancel"

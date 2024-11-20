@@ -261,7 +261,7 @@ const VendorWiseInformation = () => {
   ];
   const openInvoiceForm = () => {
     let options = {
-      title: "Invoice Form",
+      title: "New Invoice Form",
       content: <InvoiceAddingForm loadTableData={loadData} dataIn={id} />,
       width: 90,
       className: "sd-efl-modal",
