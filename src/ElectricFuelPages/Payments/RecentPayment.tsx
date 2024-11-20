@@ -11,9 +11,10 @@ import { useSiteContext } from "../../contexts/SiteProvider";
 import { showAlertAutoClose } from "../../services/notifyService";
 import { get, post } from "../../services/smartApiService";
 import RecentPaymentForm from "./RecentPaymentForm";
+import ImportReportTable from "../ConsumptionReport/ImportReportTable";
+import ImportTable from "./ImportTable";
 
 const RecentPayment = () => {
-
   const { openModal, closeModal, setLoading } = useSiteContext();
   const [tabData, setTabData] = useState([]);
   const loadTableData = () => {
@@ -30,13 +31,23 @@ const RecentPayment = () => {
     loadTableData();
   }, []);
 
-
-
   const openbillForm = (data: any) => {
     let options = {
       title: "Payment",
-      content: <RecentPaymentForm loadTableData={loadTableData} dataIn={data} />,
+      content: (
+        <RecentPaymentForm loadTableData={loadTableData} dataIn={data} />
+      ),
       width: 60,
+      className: "sd-efl-modal",
+      closeBody: false,
+    };
+    openModal(options);
+  };
+
+  const openImportForm = (date: any) => {
+    let options = {
+      title: "Importing Form",
+      content: <ImportTable loadTableData={loadTableData} />,
       className: "sd-efl-modal",
       closeBody: false,
     };
@@ -57,7 +68,6 @@ const RecentPayment = () => {
     };
   };
 
-
   const openDeleteModal = (id: any) => {
     let alertProps: SmartLoaderInterface.SmartAlertInterface = {
       title: (
@@ -73,8 +83,8 @@ const RecentPayment = () => {
       },
       content: (
         <p>
-          Note: Do you wish to delete this Payment Transaction? This action cannot be
-          reverted
+          Note: Do you wish to delete this Payment Transaction? This action
+          cannot be reverted
         </p>
       ),
       className: "custom-alert",
@@ -83,7 +93,7 @@ const RecentPayment = () => {
     SmartAlert.show(alertProps);
   };
 
-  const buttons = [  
+  const buttons = [
     // {
     //   label: "",
     //   type: "icon",
@@ -172,11 +182,20 @@ const RecentPayment = () => {
       type: "CUSTOM",
       widthClass: "is-10",
       custom: (
-        <p className="is-size-4">
-          {" "}
-          <i className="fa fa-inr is-link"></i>{" "}
-          <span className="ml-3">Recent Payment</span>
-        </p>
+        <div className="is-flex is-justify-content-space-between">
+          <p className="is-size-4">
+            {" "}
+            <i className="fa fa-inr is-link"></i>{" "}
+            <span className="ml-3">Recent Payment</span>
+          </p>
+          <p
+            className="has-text-link mr-2 mt-2 is-clickable"
+            onClick={() => openImportForm("")}
+          >
+            {" "}
+            <i className="fa fa-download is-size-4 ml-4" aria-hidden="true"></i>
+          </p>
+        </div>
       ),
     },
     {

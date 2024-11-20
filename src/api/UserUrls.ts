@@ -85,7 +85,9 @@ const INVOICE_URLS = {
 };
 const METER_READINGS_URLS = {
   INSERT: "/meter_readings/insert",
+  GET_ONE: "/meter_readings/get_one",
   GET_ALL: "/meter_readings/get_all",
+  UPDATE: "/meter_readings/update",
 };
 
 const CUSTOMER_URLS = {

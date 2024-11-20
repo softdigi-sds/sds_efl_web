@@ -47,6 +47,7 @@ const RoleTable = () => {
     const subscription = post(ROLE_URLS.GET_ONE, { id: id }).subscribe(
       (response: any) => {
         openForm(response.data);
+        
       }
     );
     return () => {

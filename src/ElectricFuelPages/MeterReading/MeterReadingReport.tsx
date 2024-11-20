@@ -7,6 +7,8 @@ import { changeDateTimeZone } from "../../services/core/CommonService";
 import { isDateWithinDays } from "../../services/site/DateService";
 import { post } from "../../services/smartApiService";
 import MeterReadingForm from "./MeterReadingForm";
+import ImportReportTable from "./ImportReportTable";
+
 
 const MeterReadingReport = () => {
   const { openModal } = useSiteContext();
@@ -75,12 +77,13 @@ const MeterReadingReport = () => {
     loadData();
   }, [startYear]);
 
-  const openMeterForm = () => {
+  const openMeterForm = (dataIn:any) => {
+    // console.log("dataIn", dataIn);
     let options = {
-      title: "Meter Addition Form",
+      title:<>{"Meter Addition"}</> ,
       content: (
         <MeterReadingForm
-          dataIn={{}}
+          dataIn={{dataIn}}
           loadTableData={loadData}
           currentDate={currentDate}
         />
@@ -90,6 +93,18 @@ const MeterReadingReport = () => {
       closeBody: false,
     };
     openModal(options);
+  };
+  const viewEditForm = (id: any) => {
+    // console.log("id",id)
+    const subscription = post(METER_READINGS_URLS.GET_ONE, { id: id }).subscribe(
+      (response: any) => {
+        openMeterForm(response.data);
+        console.log("data received",response.data)
+      }
+    );
+    return () => {
+      subscription.unsubscribe();
+    };
   };
 
   const dateRange = () => {
@@ -116,19 +131,35 @@ const MeterReadingReport = () => {
     }
     return 0;
   };
+  const openImportForm = (date: any) => {
+    let options = {
+      title: "Importing Form",
+      content: <ImportReportTable loadTableData={loadData} />,
+      className: "sd-efl-modal",
+      closeBody: false,
+    };
+    openModal(options);
+  };
 
   return (
     <div className="p-2 card">
       <div className="columns is-multiline">
-        <div className="column is-6 ">
+        <div className="column is-5 ">
           <div className="is-flex is-justify-content-space-between is-align-items-center">
             <h2 className="mt-1 is-size-4 site-title has-text-weight-bold">
               Meter Reading Report
             </h2>
           </div>
         </div>
-        <div className="column is-3">
+        <div className="column is-4">
           <div className="is-flex ">
+          <p
+                className="has-text-link mr-2 mt-2 is-clickable"
+                onClick={() => openImportForm(data)}
+              >
+                {" "}
+                <i className="fa fa-download is-size-3" aria-hidden="true"></i>
+              </p>
             <div className="search-box sd-efl-input">
               <input
                 className="input"
@@ -149,7 +180,7 @@ const MeterReadingReport = () => {
             </div>
             <SmartSoftButton
               label="Add"
-              onClick={() => openMeterForm()}
+              onClick={ openMeterForm}
               leftIcon="fa fa-plus"
               classList={["smart-third-button"]}
             />
@@ -172,7 +203,9 @@ const MeterReadingReport = () => {
               </thead>
               <tbody>
                 {filteredData &&
-                  filteredData.map((hub) => (
+                  filteredData.map((hub) => {
+                    // console.log("hubs",hub)
+                    return(
                     <tr key={hub.hub_name}>
                       {" "}
                       {/* Add a key prop to avoid React warnings */}
@@ -185,10 +218,11 @@ const MeterReadingReport = () => {
                         </label>
                       </td>
                       {numberArray.map((item: any, index) => {
+                        // console.log("Meter Data ",filteredData)
                         let _count = getDayobj(item, hub.meter_data);
                         return _count && _count.meter_reading ? (
                           <td key={index} className="has-text-centered">
-                            <span className="">
+                            <span className="" onClick={()=>viewEditForm(_count.ID)}>
                               {_count.meter_reading}
                               <div className="">{_count.cms_reading}</div>
                               <hr />
@@ -209,7 +243,7 @@ const MeterReadingReport = () => {
                         );
                       })}
                     </tr>
-                  ))}
+)})}
               </tbody>
             </table>
           </div>

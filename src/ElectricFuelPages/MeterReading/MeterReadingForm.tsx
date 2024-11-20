@@ -40,6 +40,7 @@ const MeterReadingForm: React.FC<HeaderProps> = ({
   const [allHubs, setAllHubs] = useState([]);
   const [minEndDate, setMinEndDate] = useState();
 
+  console.log("datain",formData)
   
 
   const handleInputChange = (name: string, value: any) => {
@@ -75,6 +76,11 @@ const MeterReadingForm: React.FC<HeaderProps> = ({
     }
 
     let url = METER_READINGS_URLS.INSERT;
+    if (formData.ID !== undefined) {
+      formData["id"] = formData.ID;
+      url =METER_READINGS_URLS.UPDATE;
+    }
+
     let _data = { ...formData };
     _data["meter_start_date"] = changeDateTimeZoneFormat(
       formData.meter_start_date,
@@ -100,6 +106,7 @@ const MeterReadingForm: React.FC<HeaderProps> = ({
   const hubFormValidations = {
     hub_id: [SmartValid.required("Hub Name is Required")],
     start: [SmartValid.required("Meter Start Reading is Required")], 
+    cost: [SmartValid.required("Meter Cost Reading is Required")], 
     start_date: [SmartValid.required("Date is Required")],
     end_date: [SmartValid.required("Date is Required")],
     end: [
@@ -191,6 +198,7 @@ const MeterReadingForm: React.FC<HeaderProps> = ({
         
       },
     },
+  
     {
       type: "TEXT_BOX",
       width: "12",
@@ -206,6 +214,21 @@ const MeterReadingForm: React.FC<HeaderProps> = ({
         },
         // validations: hubFormValidations.hub_name,
         inputProps: { disabled: true },
+      },
+    },
+    {
+      type: "TEXT_BOX",
+      width: "12",
+      name: "meter_cost",
+      element: {
+        label: "Meter Cost",
+        // isRequired: true,
+        // inputProps: { isFocussed: true },
+        // isHorizontal: true,
+        inputType: "BORDER_LABEL",
+        // validations: hubFormValidations.cost,
+        pattern: ALLOW_NUMERIC,
+        
       },
     },
   ];
