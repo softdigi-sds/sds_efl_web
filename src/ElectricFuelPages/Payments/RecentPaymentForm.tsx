@@ -84,6 +84,11 @@ const RecentPaymentForm: React.FC<HeaderProps> = ({ loadTableData,dataIn}) => {
     methods: [SmartValid.required("Payment Method is Required")],
 
   };
+
+  const PaymentMode=[
+    { value: "Payment", label: "Payment" },
+    { value: "TDS", label: "TDS" },
+  ]
   const formElements: SmartFormInterFace.SmartFormElementProps[] = [
     {
       type: "SELECT_BOX",
@@ -169,6 +174,19 @@ const RecentPaymentForm: React.FC<HeaderProps> = ({ loadTableData,dataIn}) => {
         placeHolder: "DD-MM-YYYY",
         isRequired: true,
         inputType: "BORDER_LABEL",
+      },
+    },
+    {
+      type: "SELECT_BOX",
+      width: "6",
+      name: "sd_invoice_id",
+      element: {
+        label: "Payment Mode",
+        isRequired: true,
+        options: PaymentMode,
+        inputProps: { isFocussed: true },
+        inputType: "BORDER_LABEL",
+        // validations: payFormValidations.invoi,
       },
     },
     {

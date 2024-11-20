@@ -158,9 +158,11 @@ const InvoiceAddingForm: React.FC<HeaderProps> = ({ loadTableData, dataIn }) => 
         <div className="columns">
           <div className="column is-2">HSN</div>
           <div className="column is-4">Description</div>
+          <div className="column is-1">Quantity</div>
           <div className="column is-2">Price</div>
-          <div className="column is-2">Tax</div>
-          <div className="column is-2">Quantity</div>
+          <div className="column is-1">Tax</div>
+          <div className="column is-2">Total</div>
+          
        
         </div>
         {sub_data.map((item, index) => {
@@ -278,58 +280,7 @@ const InvoiceAddingForm: React.FC<HeaderProps> = ({ loadTableData, dataIn }) => 
         //options: options,
       },
     },
-    {
-      type: "DATE",
-      width: "6",
-      name: "effective_date",
-      element: {
-        label: "Effective Date",
-        placeHolder: "DD-MM-YYYY",
-        isRequired: true,
-        inputType: "BORDER_LABEL",
-        inputProps: { isFocussed: true },
-        validations: vendorFormValidations.dates,
-      },
-    },
-    {
-      type: "TEXT_BOX",
-      width: "4",
-      name: "vendor_code",
-      element: {
-        label: "Customer Code",
-        isRequired: true,
-        inputType: "BORDER_LABEL",
-        inputProps: { isFocussed: true },
-      },
-    },
-    {
-      type: "TEXT_BOX",
-      width: "4",
-      name: "cms_name",
-      element: {
-        label: "CMS Name",
-        isRequired: true,
-        inputType: "BORDER_LABEL",
-        inputProps: { isFocussed: true },
-      },
-    },
-    {
-      type: "SELECT_BOX",
-      width: "4",
-      name: "bill_type",
-      element: {
-        label: "Select Unit Billing Type",
-        isRequired: true,
-       // validations: vendorFormValidations.company,
-        options: [
-          {value:"CMS",label:"CMS"},
-          {value:"SUB_METER",label:"SUB_METER"},
-        ],
-        inputType: "BORDER_LABEL",
-       // inputProps: { disabled: formData.ID && formData.ID ? true : false },
-        //options: options,
-      },
-    },
+  
     /*
     {
       type: "LABEL",
