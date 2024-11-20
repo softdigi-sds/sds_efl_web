@@ -291,7 +291,7 @@ const VendorRatesTable: React.FC<headerProps> = ({ hubId }) => {
       },
       {
         label: "Export",
-        icon: "fa-plus",
+        icon: "fa-arrow-up",
         type: "CUSTOM",
         className: "smart-third-button",
         action: () => exportExcel(),

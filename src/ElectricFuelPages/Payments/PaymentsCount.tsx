@@ -10,7 +10,7 @@ const PaymentsCount: React.FC<props> = ({ data }) => {
         <div className="column is-12-mobile is-6-tablet is-one-quarter-desktop">
           <div className="box has-text-centered smart-payment-card-one">
             <span className="icon is-large is-size-3 ">
-              <i className="fas fa-inr"></i>
+              <i className="fas fa-file-invoice"></i>
             </span>
             <p className="title is-4 ">{data?.invoice_count}</p>
             <p className="subtitle is-6">Invoices</p>
@@ -20,7 +20,7 @@ const PaymentsCount: React.FC<props> = ({ data }) => {
         <div className="column is-12-mobile is-6-tablet is-one-quarter-desktop">
           <div className="box has-text-centered smart-payment-card-tow">
             <span className="icon is-large is-size-3 ">
-              <i className="fas fa-file-invoice"></i>
+              <i className=" fas fa-inr"></i>
             </span>
             <p className="title is-4">{data?.invoice_amount}</p>
             <p className="subtitle is-6">Invoiced Amount</p>
@@ -30,7 +30,7 @@ const PaymentsCount: React.FC<props> = ({ data }) => {
         <div className="column is-12-mobile is-6-tablet is-one-quarter-desktop">
           <div className="box has-text-centered smart-payment-card-three">
             <span className="icon is-large is-size-3">
-              <i className="fas fa-eye"></i>
+              <i className="fas fa-inr"></i>
             </span>
             <p className="title is-4 ">{data?.paid_amount}</p>
             <p className="subtitle is-6">Received Payment</p>
@@ -40,7 +40,7 @@ const PaymentsCount: React.FC<props> = ({ data }) => {
         <div className="column is-12-mobile is-6-tablet is-one-quarter-desktop">
           <div className="box has-text-centered smart-payment-card-four">
             <span className="icon is-large is-size-3 ">
-              <i className="fas fa-share-alt"></i>
+              <i className="fas fa-inr"></i>
             </span>
             <p className="title is-4 ">{data?.rem_amount}</p>
             <p className="subtitle is-6">Pending Payment</p>
