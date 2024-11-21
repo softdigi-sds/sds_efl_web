@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams, useSearchParams } from "react-router-dom";
-import { SmartSoftButton, SmartTable, SmartTableNewInterface } from "soft_digi";
+import { SmartAlert, SmartLoaderInterface, SmartSoftButton, SmartTable, SmartTableNewInterface } from "soft_digi";
 import { INVOICE_URLS } from "../../api/UserUrls";
 import config from "../../config/config";
 import { useSiteContext } from "../../contexts/SiteProvider";
@@ -9,10 +9,11 @@ import {
   formatCurrency,
 } from "../../services/core/CommonService";
 import { downloadFile } from "../../services/core/FileService";
+import { showAlertAutoClose } from "../../services/notifyService";
 import { post } from "../../services/smartApiService";
+import InvoiceAddingForm from "./InvoiceAddingForm";
 import InvoiceVendorDetailsTable from "./InvoiceVendorDetailsTable";
 import VendorDetailsImport from "./VendorDetailsImport";
-import InvoiceAddingForm from "./InvoiceAddingForm";
 // import InvoiceForm from "./InvoiceAddingForm";
 
 const VendorWiseInformation = () => {
@@ -32,6 +33,40 @@ const VendorWiseInformation = () => {
     return () => {
       subscription.unsubscribe();
     };
+  };
+
+  const deleteData = (invoice_id: any) => {
+    const subscription = post(INVOICE_URLS.INVOICE_DELETE, { id: invoice_id }).subscribe(
+      (response) => {
+        showAlertAutoClose("Deleted Successfully...", "success");
+        loadData();
+        // setLoading(false);
+      }
+    );
+    return () => {
+      subscription.unsubscribe();
+    };
+  };
+
+
+  const openDeleteModal = (invoice_id: any) => {
+    let alertProps: SmartLoaderInterface.SmartAlertInterface = {
+      title: "Invoice Deletion?",
+      alertFunction: (option) => {
+        if (option == "yes") {
+          deleteData(invoice_id);
+          SmartAlert.hide();
+        }
+      },
+      content: (
+        <p>
+          Note: Do you wish to delete this Invoice
+        </p>
+      ),
+      className: "custom-alert",
+    };
+
+    SmartAlert.show(alertProps);
   };
 
   const refresh = () => {
@@ -130,6 +165,18 @@ const VendorWiseInformation = () => {
       onClick: (data: any) => {
         openForm(data);
       },
+    },
+    {
+      label: "View",
+      type: "icon",
+      leftIcon: "fa fa-close",
+      classList: ["smart-efl-table-view-icon", ""],
+      onClick: (data: any) => {
+        openDeleteModal(data["ID"])
+      },
+      hideFunction:(data:any)=>{
+        return data["status"]>=5 ? true : false; 
+      }
     },
     {
       label: "View",
@@ -262,7 +309,7 @@ const VendorWiseInformation = () => {
   const openInvoiceForm = () => {
     let options = {
       title: "New Invoice Form",
-      content: <InvoiceAddingForm loadTableData={loadData} dataIn={id} />,
+      content: <InvoiceAddingForm loadTableData={loadData} id={id} />,
       width: 90,
       className: "sd-efl-modal",
       closeBody: false,

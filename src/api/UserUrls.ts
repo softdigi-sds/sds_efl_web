@@ -81,7 +81,9 @@ const INVOICE_URLS = {
   DOWNLOAD_INVOICE: "invoice/download_invoice",
   DELETE: "bill/delete_one",
   SIGN_START:"/invoice/get_sign_info",
-  SIGN_VERIFY:"/invoice/verify_sign"
+  SIGN_VERIFY:"/invoice/verify_sign",
+  INSERT_MANUAL:"/invoice/insert_manual",
+  INVOICE_DELETE:"/invoice/delete_one"
 };
 const METER_READINGS_URLS = {
   INSERT: "/meter_readings/insert",

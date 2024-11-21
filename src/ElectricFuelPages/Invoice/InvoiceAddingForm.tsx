@@ -6,9 +6,10 @@ import {
   SmartValid,
 } from "soft_digi";
 import { ValidateFormNew } from "soft_digi/dist/services/smartValidationService";
-import { VENDER_RATE_URLS } from "../../api/UserUrls";
+import { INVOICE_URLS } from "../../api/UserUrls";
 import { useSiteContext } from "../../contexts/SiteProvider";
 import { changeDateTimeZoneFormat } from "../../services/core/CommonService";
+import { sumOfMultiArrayObjectsWithIndex } from "../../services/core/FilterService";
 import { showAlertAutoClose } from "../../services/notifyService";
 import {
   company_address_all_select,
@@ -17,7 +18,6 @@ import {
 } from "../../services/site/SelectBoxServices";
 import { post } from "../../services/smartApiService";
 import InvoiceSubForm from "./InvoiceAddingSubForm";
-import { sumOfMultiArrayObjectsWithIndex } from "../../services/core/FilterService";
 
 
 interface FormErrors {
@@ -26,11 +26,11 @@ interface FormErrors {
 
 interface HeaderProps {
   loadTableData: () => void;
-  dataIn: any;
+  id: any;
 }
 
-const InvoiceAddingForm: React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
-  const [formData, setFormData] = useState<any>(dataIn ? dataIn : {});
+const InvoiceAddingForm: React.FC<HeaderProps> = ({ loadTableData, id }) => {
+  const [formData, setFormData] = useState<any>({});
   const [formSubmit, setFormSubmit] = useState<boolean>(false);
   const [allHubs, setAllHubs] = useState([]);
   const [allVendors, setAllVendors] = useState([]);
@@ -38,7 +38,7 @@ const InvoiceAddingForm: React.FC<HeaderProps> = ({ loadTableData, dataIn }) => 
   const { closeModal } = useSiteContext();
   const [types, setTypes] = useState<any[]>([]);
 
-  //  console.log("Formdata",formData)
+   console.log("Formdata",id)
 
   const handleInputChange = (name: string, value: any) => {
     console.log("Name",name,"Value", value);
@@ -108,51 +108,15 @@ const InvoiceAddingForm: React.FC<HeaderProps> = ({ loadTableData, dataIn }) => 
       company_address_all_select(customer_id, (data: any) =>
         setCustAddress(data)
       );
-      if(!formData.cms_name || formData.cms_name.length < 1){
-        handleInputChange("cms_name", formData?.sd_customer_id?.label);
-      }
     }
  
       
    
   }, [formData?.sd_customer_id]);
 
-  useEffect(() => {
-    const sdHsnIdValue = formData?.rate_data?.sd_hsn_id?.value ?? ""; 
-  
-    if (sdHsnIdValue === "1" || sdHsnIdValue === "2") {
-      setFormData((prev: any) => ({ ...prev }));
-    } else {
-      setFormData((prev: any) => ({
-        ...prev,
-        sd_vehicle_types_id: {
-          ...prev.sd_vehicle_types_id,
-          value: "" 
-        }
-      }));
-    }
-  }, [formData]);
+
   
 
-  // useEffect(() => {
-  //   let hub_data =formData?.sd_hubs_id?.value
-  //   console.log("Hub data",hub_data)
-  //    company_get_all_select(hub_data,(data:any,) => setAllVendors(data));
-  // }, [formData]);
-  const options = [
-    { value: "Minimum", label: "Minimum" },
-    { value: "Per Unit", label: "Per Unit" },
-  ];
-  const options_parking = [
-    { value: "Minimum", label: "Minimum" },
-    { value: "Per Unit", label: "Per Unit" },
-  ];
-
-  const options_select = [
-    { value: "1", label: "Fixed" },
-    { value: "2", label: "Minimum" },
-    { value: "3", label: "Per Unit" },
-  ];
 
   const subFormDisplay = () => {
     const sub_data = formData.rate_data ? [...formData.rate_data] : [];
@@ -183,39 +147,14 @@ const InvoiceAddingForm: React.FC<HeaderProps> = ({ loadTableData, dataIn }) => 
     );
   };
 
-  const Interrogation = () => {
-    return (
-      <>
-        <div className="">
-          <u>Consumption Rates :</u>
-        </div>
-      </>
-    );
-  };
-
-  const Interrogation_two = () => {
-    return (
-      <>
-        <div className="">
-          <u>Parking Rates :</u>
-        </div>
-      </>
-    );
-  };
   const handleSubmit = () => {
     setFormSubmit(true);
     if (!ValidateFormNew(formData, formElements)) {
       return false;
     }
-    let url = VENDER_RATE_URLS.INSERT;
-    if (formData.ID !== undefined) {
-      formData["id"] = formData.ID;
-      url = VENDER_RATE_URLS.UPDATE;
-    }
+    let url = INVOICE_URLS.INSERT_MANUAL;   
     let data_in = { ...formData };
-    // data_in["unit_rate_type"] = data_in["unit_rate_type"].value;
-    //data_in["parking_rate_type"] = data_in["parking_rate_type"].value;
-
+    data_in["bill_id"] = id;
     data_in["effective_date"] = changeDateTimeZoneFormat(
       data_in.effective_date,
       "YYYY-MM-DD"

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { SmartFormInterFace, SmartSoftForm } from "soft_digi";
 
 interface FormErrors {
@@ -44,23 +44,15 @@ const InvoiceSubForm: React.FC<HeaderProps> = ({
   
 
   const totalPrice = () => {
-    if (formData.price) {
-      let taxAmount = (formData.price * formData.tax) / 100; // Calculate tax amount
-      let total_price = formData.price + taxAmount; // Add tax to the base price
+    if (formData.tax) {
+      let taxAmount = parseFloat(formData.price) * (parseFloat(formData.tax) / 100); // Calculate tax amount
+      let total_price = parseFloat(formData.price) + taxAmount; // Add tax to the base price
       if (isNaN(total_price)) {
         total_price = 0; // Handle invalid or NaN values
-      }
-      let total_discount = Number(total_price).toLocaleString(undefined, {
-        minimumFractionDigits: 2,
-        maximumFractionDigits: 2,
-      });
-      return total_discount;
-    } else {
-      let total_price = Number(formData.price).toLocaleString(undefined, {
-        minimumFractionDigits: 2,
-        maximumFractionDigits: 2,
-      });
-      return !isNaN(parseInt(total_price)) ? total_price : 0;
+      }    
+      return total_price;
+    } else {      
+      return !isNaN(parseFloat(formData.price)) ? parseFloat(formData.price) : 0;
     }
   };
 
