@@ -63,7 +63,7 @@ const EFSideNav: React.FC<childrenProps> = ({ isOpen, setIsOpen }) => {
     {
       id: 7,
       label: "Invoices",
-      icon: "fa-inr",
+      icon: "fa-solid fa-file-invoice-dollar",
       link: "/e-fuel/invoices",
       roles: ["ADMIN", "ACCOUNTS"],
     },
@@ -85,7 +85,7 @@ const EFSideNav: React.FC<childrenProps> = ({ isOpen, setIsOpen }) => {
     {
       id: 9,
       label: "MIS Reports",
-      icon: "fa-inr",
+      icon: "fa-solid fa-file-invoice",
       link: "/e-fuel/msi-reports",
       roles: ["ADMIN"],
     },
