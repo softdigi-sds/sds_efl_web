@@ -602,3 +602,12 @@ font-weight: bold;
   color: orangered;
   .title{color:orangered ;}
 }
+.smart-third-button-add-button {
+  .fa {
+    color: #fff;
+
+    &:hover {
+      color:rgba(255, 140, 74, 0.3); 
+    }
+  }
+}

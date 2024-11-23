@@ -290,13 +290,13 @@ const VendorWiseInformation = () => {
         <p className="is-size-4 is-italic has-text-link is-underlined">
          Invoices
         </p>
-         <p
-         className="has-text-link mr-2 mt-2 is-clickable"
+         <div
+         className="has-text-link mr-2 mt-2 is-clickable smart-third-button-add-button"
          onClick={() => openInvoiceForm()}
        >
          {" "}
-         <i className="fa fa-plus-square-o is-size-4" aria-hidden="true"></i>
-       </p>
+         <i className="fa fa-plus-square-o is-size-4 has-text-white " aria-hidden="true"></i>
+       </div>
        </div>
       ),
     },
