@@ -2,10 +2,10 @@ import React, { useEffect, useState } from "react";
 import { SmartSoftButton, SmartSoftInput, SmartTable, SmartTableNewInterface } from "soft_digi";
 import { CONSUMPTION_URL } from "../../api/UserUrls";
 import { useSiteContext } from "../../contexts/SiteProvider";
+import { roundNumber } from "../../services/core/CommonService";
 import { sumOfMultiArrayObjectsWithIndex } from "../../services/core/FilterService";
 import { showAlertAutoClose } from "../../services/notifyService";
 import { post } from "../../services/smartApiService";
-import { roundNumber } from "../../services/core/CommonService";
 
 interface FormErrors {
   [key: string]: string | null;
@@ -14,7 +14,7 @@ interface HeaderProps {
   loadTableData: () => void;
   date: any;
   hub_id: any;
-  endDate?:any
+  endDate?: any
 }
 const ConsumptionReportForm: React.FC<HeaderProps> = ({
   loadTableData,
@@ -30,12 +30,12 @@ const ConsumptionReportForm: React.FC<HeaderProps> = ({
     let _data = {
       hub_id: hub_id,
       date: date,
-      end_date:endDate
+      end_date: endDate
     };
-    let URL = endDate ?  CONSUMPTION_URL.GET_ALL_CALENDER_GET_ONE_HUB :  CONSUMPTION_URL.GET_ALL_CALENDER_GET_ONE ;
+    let URL = endDate ? CONSUMPTION_URL.GET_ALL_CALENDER_GET_ONE_HUB : CONSUMPTION_URL.GET_ALL_CALENDER_GET_ONE;
     const subscription = post(URL, _data).subscribe((response) => {
-      setFormData(response.data.data||[]);
-      setTypes(response.data.types||[])
+      setFormData(response.data.data || []);
+      setTypes(response.data.types || [])
     });
     return () => {
       subscription.unsubscribe();
@@ -93,11 +93,11 @@ const ConsumptionReportForm: React.FC<HeaderProps> = ({
       prevData.map((mainItem) =>
         mainItem.sd_customer_id === mainId
           ? {
-              ...mainItem,
-              sub_data: mainItem.sub_data.map((subItem: any) =>
-                subItem.ID === subId ? { ...subItem, count: count } : subItem
-              ),
-            }
+            ...mainItem,
+            sub_data: mainItem.sub_data.map((subItem: any) =>
+              subItem.ID === subId ? { ...subItem, count: count } : subItem
+            ),
+          }
           : mainItem
       )
     );
@@ -108,14 +108,13 @@ const ConsumptionReportForm: React.FC<HeaderProps> = ({
       <table>
         <tbody>
           <tr>
-            {sub_data.map((obj: any, key: number) => {
-let roundedCount = String(roundNumber(obj?.count) ?? '');
-         
+            {sub_data.sort((a:any, b:any) => b.ID - a.ID).map((obj: any, key: number) => {
+              let roundedCount = String(roundNumber(obj?.count) ?? '');
               return (
                 <td className="smart-table-column-width-20">
                   <SmartSoftInput
-                   // label={obj.vehicle_type}
-                   // inputType="BORDER_LABEL"
+                    // label={obj.vehicle_type}
+                    // inputType="BORDER_LABEL"
                     classList={["is-small"]}
                     value={roundedCount}
                     onChange={(value) =>
@@ -131,7 +130,7 @@ let roundedCount = String(roundNumber(obj?.count) ?? '');
     );
   };
 
-  const headerLabel=()=>{
+  const headerLabel = () => {
     return (
       <table className="smart-table-column-width-100">
         <tbody>
@@ -140,7 +139,7 @@ let roundedCount = String(roundNumber(obj?.count) ?? '');
               return (
                 <td className="smart-table-column-width-20 has-text-centered">
                   {obj.type}
-                 </td>
+                </td>
               );
             })}
           </tr>
@@ -149,17 +148,17 @@ let roundedCount = String(roundNumber(obj?.count) ?? '');
     )
   }
 
-  const footerCount=()=>{
+  const footerCount = () => {
     return (
       <table className="smart-table-column-width-100">
         <tbody>
           <tr>
             {types.map((obj: any, key: number) => {
-              let _total_count = sumOfMultiArrayObjectsWithIndex(formData,"sub_data","ID",obj.ID);
+              let _total_count = sumOfMultiArrayObjectsWithIndex(formData, "sub_data", "ID", obj.ID);
               return (
                 <td key={`foot_count_${key}`} className="smart-table-column-width-20 has-text-centered">
                   {roundNumber(_total_count)}
-                 </td>
+                </td>
               );
             })}
           </tr>
@@ -176,17 +175,17 @@ let roundedCount = String(roundNumber(obj?.count) ?? '');
       width: "70",
     },
     {
-      title:headerLabel(),
+      title: headerLabel(),
       index: "unit_count",
       width: "25",
       valueFunction: (item) => {
         let _sub_data = item["sub_data"];
-        return countReport(_sub_data, item["sd_customer_id"]);       
+        return countReport(_sub_data, item["sd_customer_id"]);
       },
     },
   ];
 
-  const footerComponent = (sortdata: any[]) => {   
+  const footerComponent = (sortdata: any[]) => {
     return (
       <tfoot>
         <tr>
@@ -194,8 +193,8 @@ let roundedCount = String(roundNumber(obj?.count) ?? '');
             Total Count
           </td>
           <td>
-              {footerCount()}
-            </td>     
+            {footerCount()}
+          </td>
         </tr>
       </tfoot>
     );
