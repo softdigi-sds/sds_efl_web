@@ -108,7 +108,27 @@ const ConsumptionReportForm: React.FC<HeaderProps> = ({
       <table>
         <tbody>
           <tr>
-            {sub_data.sort((a:any, b:any) => b.ID - a.ID).map((obj: any, key: number) => {
+          {types.map((obj: any, key: number) => {
+             // console.log(obj, " sub   item " , sub_data  );
+              let _total = sub_data.find((item:any)=>item.ID==obj.ID)?.count||0;
+              //let _total_count = sumOfMultiArrayObjectsWithIndex(formData, "sub_data", "ID", obj.ID);
+              return (
+                <td className="smart-table-column-width-20">
+                <SmartSoftInput
+                  // label={obj.vehicle_type}
+                  // inputType="BORDER_LABEL"
+                  classList={["is-small"]}
+                  value={_total}
+                  onChange={(value) =>
+                    updateCountNested(id, obj.ID, value)
+                  }
+                />   
+                  </td>          
+              );
+            })}
+
+
+            {/* {sub_data.sort((a:any, b:any) => b.ID - a.ID).map((obj: any, key: number) => {
               let roundedCount = String(roundNumber(obj?.count) ?? '');
               return (
                 <td className="smart-table-column-width-20">
@@ -123,7 +143,7 @@ const ConsumptionReportForm: React.FC<HeaderProps> = ({
                   />
                 </td>
               );
-            })}
+            })} */}
           </tr>
         </tbody>
       </table>
