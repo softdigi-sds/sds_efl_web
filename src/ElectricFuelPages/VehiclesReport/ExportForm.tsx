@@ -6,25 +6,26 @@ import {
   SmartValid,
 } from "soft_digi";
 import { ValidateFormNew } from "soft_digi/dist/services/smartValidationService";
-import { VENDERS_URLS } from "../../api/UserUrls";
-import { post } from "../../services/smartApiService";
-import { showAlertAutoClose } from "../../services/notifyService";
+import { VEHICLES_URL } from "../../api/UserUrls";
 import { useSiteContext } from "../../contexts/SiteProvider";
+import { changeDateTimeZone } from "../../services/core/CommonService";
+import { downloadFile } from "../../services/core/FileService";
 import {
-  admin_states_select,
   hubs_get_all_select,
-  vendors_get_all_select,
+  vendors_get_all_select
 } from "../../services/site/SelectBoxServices";
-import { ALLOW_ALPHABET_SPACE, ALLOW_NUMERIC } from "../../services/PatternSerivce";
+import { post } from "../../services/smartApiService";
 
 interface FormErrors {
   [key: string]: string | null;
 }
 interface HeaderProps {
   loadTableData: () => void;
+  startDate:any,
+  endDate:any
   
 }
-const ExportForm: React.FC<HeaderProps> = ({ loadTableData,  }) => {
+const ExportForm: React.FC<HeaderProps> = ({ loadTableData,startDate,endDate  }) => {
   const [formData, setFormData] = useState( {});
   const [formSubmit, setFormSubmit] = useState<boolean>(false);
   const [formErrors, setFormErrors] = useState<FormErrors>({});
@@ -56,14 +57,18 @@ const ExportForm: React.FC<HeaderProps> = ({ loadTableData,  }) => {
     if (!ValidateFormNew(formData, formElements)) {
       return false;
     }
-    let url = VENDERS_URLS.INSERT;
-  
-
-    const subscription = post(url, formData).subscribe((response) => {
+    let url = VEHICLES_URL.EXPORT_EXCEL; 
+    let _data:any = {...formData};
+    _data["start_date"] =changeDateTimeZone(startDate.toISOString(), "YYYY-MM-DD");
+    _data["end_date"] = changeDateTimeZone(endDate.toISOString(), "YYYY-MM-DD");
+    const subscription = post(url, _data).subscribe((response) => {
+      if (response.data && response.data.content) {
+        downloadFile(response.data.content, "vehicleReport.xlsx");
+      }
       //console.log("response form ", response.data);
-      loadTableData();
-      showAlertAutoClose("Data Saved Successfully", "success");
-      closeModal();
+    //  loadTableData();
+      //showAlertAutoClose("Data Saved Successfully", "success");
+      //closeModal();
     });
     return () => {
       subscription.unsubscribe();
@@ -98,16 +103,16 @@ const ExportForm: React.FC<HeaderProps> = ({ loadTableData,  }) => {
   
 
     
-    {
-      type: "SELECT_BOX",
-      width: "6",
-      name: "company_name",
-      element: {
-        label: "Company",
-        options: allVendors,
-        inputType: "BORDER_LABEL",
-      },
-    },
+    // {
+    //   type: "SELECT_BOX",
+    //   width: "6",
+    //   name: "company_name",
+    //   element: {
+    //     label: "Company",
+    //     options: allVendors,
+    //     inputType: "BORDER_LABEL",
+    //   },
+    // },
    
   
     

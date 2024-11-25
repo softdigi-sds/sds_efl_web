@@ -7,9 +7,9 @@ import { changeDateTimeZone } from "../../services/core/CommonService";
 import { isDateWithinDays } from "../../services/site/DateService";
 import { post } from "../../services/smartApiService";
 import VendorRatesTable from "../VendorRates/VendorRatesTable";
+import ExportForm from "./ExportForm";
 import ImportVehiclesReport from "./ImportVehiclesReport";
 import VehicleReportFrom from "./VehicleReportFrom";
-import ExportForm from "./ExportForm";
 interface VehicleReportProps {
   stage: any;
   setStage: any;
@@ -236,7 +236,7 @@ const VehicleAdminReport: React.FC<VehicleReportProps> = ({
   const openExportForm = (date: any) => {
     let options = {
       title: "Exporting Form",
-      content: <ExportForm loadTableData={loadData} />,
+      content: <ExportForm loadTableData={loadData} startDate={startDate} endDate={endDate}  />,
       className: "sd-efl-modal",
       closeBody: false,
     };

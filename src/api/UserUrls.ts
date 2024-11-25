@@ -62,9 +62,10 @@ const VEHICLES_URL = {
   GET_ALL_WITH_HUB: "/efl_vehicles/get_all_parking_data_hub",
   GET_ALL_CALENDER_GET_ONE: "/efl_vehicles/get_one_parking_data",
   IMPORT_EXCEL: "/efl_vehicles/import_excel",
+  EXPORT_EXCEL: "/efl_vehicles/export_excel",
   GET_ALL_DASH: "/efl_vehicles/get_report_dashboard",
   GET_ALL_DATE: "/efl_vehicles/get_report_date",
-  GET_ALL_HUB_CAPACITY:"/efl_vehicles/get_hub_capacity_report"
+  GET_ALL_HUB_CAPACITY: "/efl_vehicles/get_hub_capacity_report",
 };
 
 const INVOICE_URLS = {
@@ -73,24 +74,24 @@ const INVOICE_URLS = {
   GET_ONE_DETAILS: "/invoice/get_one",
   INSERT: "/efl_vehicles/insert",
   GET_ALL_BILLS: "/bill/get_all",
-  GET_ALL_BILLS_SELECT:"/bill/get_all_select",
+  GET_ALL_BILLS_SELECT: "/bill/get_all_select",
   GET_ONE_BILL: "bill/get_one",
   EXPORT_EXCEL: "bill/export_excel",
   IMPORT_ZIP: "bill/import_zip",
   IMPORT_EXCEL: "bill/import_excel",
   DOWNLOAD_INVOICE: "invoice/download_invoice",
   DELETE: "bill/delete_one",
-  SIGN_START:"/invoice/get_sign_info",
-  SIGN_VERIFY:"/invoice/verify_sign",
-  INSERT_MANUAL:"/invoice/insert_manual",
-  INVOICE_DELETE:"/invoice/delete_one"
+  SIGN_START: "/invoice/get_sign_info",
+  SIGN_VERIFY: "/invoice/verify_sign",
+  INSERT_MANUAL: "/invoice/insert_manual",
+  INVOICE_DELETE: "/invoice/delete_one",
 };
 const METER_READINGS_URLS = {
   INSERT: "/meter_readings/insert",
   GET_ONE: "/meter_readings/get_one",
   GET_ALL: "/meter_readings/get_all",
   UPDATE: "/meter_readings/update",
-  IMPORT_EXCEL:"/meter_readings/import_excel"
+  IMPORT_EXCEL: "/meter_readings/import_excel",
 };
 
 const CUSTOMER_URLS = {
@@ -108,15 +109,15 @@ const CUSTOMER_URLS = {
   DELETE_ADDRESS: "/customer/delete_one_address",
   GET_ALL_SELECT_ADDRESS: "/customer/get_all_select_address",
   STATUS_UPDATE_ADDRESS: "/customer/update_status_address",
-  GET_ALL_INVOICE:"/invoice/get_all_customer", 
+  GET_ALL_INVOICE: "/invoice/get_all_customer",
 };
 const PAYMENT_URLS = {
   INSERT: "/payment/insert",
-  DELETE:"/payment/delete_one",
+  DELETE: "/payment/delete_one",
   GET_ALL: "/payment/get_all",
-  GET_ALL_INVOICE:"/invoice/get_all_select", 
-  GET_ALL_REPORT:"/payment/get_all_report",
-  GET_CUSTOMER_LEDGER:"/payment/get_customer_ledger"
+  GET_ALL_INVOICE: "/invoice/get_all_select",
+  GET_ALL_REPORT: "/payment/get_all_report",
+  GET_CUSTOMER_LEDGER: "/payment/get_customer_ledger",
 };
 
 export {
@@ -126,7 +127,9 @@ export {
   HUB_GROUPS_URLS,
   INVOICE_URLS,
   METER_READINGS_URLS,
-  OFFICE_URLS, PAYMENT_URLS, VEHICLES_URL,
+  OFFICE_URLS,
+  PAYMENT_URLS,
+  VEHICLES_URL,
   VENDERS_URLS,
   VENDER_RATE_URLS
 };
