@@ -5,6 +5,7 @@ import { useSiteContext } from "../../contexts/SiteProvider";
 import { sumOfMultiArrayObjectsWithIndex } from "../../services/core/FilterService";
 import { showAlertAutoClose } from "../../services/notifyService";
 import { post } from "../../services/smartApiService";
+import { roundNumber } from "../../services/core/CommonService";
 
 interface FormErrors {
   [key: string]: string | null;
@@ -108,13 +109,15 @@ const ConsumptionReportForm: React.FC<HeaderProps> = ({
         <tbody>
           <tr>
             {sub_data.map((obj: any, key: number) => {
+let roundedCount = String(roundNumber(obj?.count) ?? '');
+         
               return (
                 <td className="smart-table-column-width-20">
                   <SmartSoftInput
                    // label={obj.vehicle_type}
                    // inputType="BORDER_LABEL"
                     classList={["is-small"]}
-                    value={obj?.count}
+                    value={roundedCount}
                     onChange={(value) =>
                       updateCountNested(id, obj.ID, value)
                     }
@@ -155,7 +158,7 @@ const ConsumptionReportForm: React.FC<HeaderProps> = ({
               let _total_count = sumOfMultiArrayObjectsWithIndex(formData,"sub_data","ID",obj.ID);
               return (
                 <td key={`foot_count_${key}`} className="smart-table-column-width-20 has-text-centered">
-                  {_total_count}
+                  {roundNumber(_total_count)}
                  </td>
               );
             })}
