@@ -9,6 +9,7 @@ import { post } from "../../services/smartApiService";
 import VendorRatesTable from "../VendorRates/VendorRatesTable";
 import ImportVehiclesReport from "./ImportVehiclesReport";
 import VehicleReportFrom from "./VehicleReportFrom";
+import ExportForm from "./ExportForm";
 interface VehicleReportProps {
   stage: any;
   setStage: any;
@@ -232,6 +233,16 @@ const VehicleAdminReport: React.FC<VehicleReportProps> = ({
     };
     openModal(options);
   };
+  const openExportForm = (date: any) => {
+    let options = {
+      title: "Exporting Form",
+      content: <ExportForm loadTableData={loadData} />,
+      className: "sd-efl-modal",
+      closeBody: false,
+    };
+    openModal(options);
+  };
+
 
   const openVendorsView = (data: any) => {
     let options = {
@@ -260,22 +271,22 @@ const VehicleAdminReport: React.FC<VehicleReportProps> = ({
           <div className="is-flex">
             <div className="is-flex">
               <p
-                className="has-text-link mr-2 mt-2 is-clickable"
+                className="has-text-link mr-2 mt-2 is-clickable" title="Import"
                 onClick={() => openImportForm(data)}
               >
                 {" "}
                 <i className="fa fa-download is-size-3" aria-hidden="true"></i>
               </p>
-              {/* <p
-                className="has-text-danger mt-2 is-clickable mr-3"
-                onClick={() => openImportForm(data)}
+              <p
+                className="has-text-danger mt-2 is-clickable mr-3" title="Export"
+                onClick={() => openExportForm(data) }
               >
                 {" "}
                 <i
-                  className="fa fa-download is-size-3"
+                  className="fa fa-upload is-size-3"
                   aria-hidden="true"
                 ></i>
-              </p> */}
+              </p>
             </div>
             <div className="search-box sd-efl-input">
               <input
