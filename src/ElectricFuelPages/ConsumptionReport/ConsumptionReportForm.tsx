@@ -124,7 +124,7 @@ const ConsumptionReportForm: React.FC<HeaderProps> = ({
                     updateCountNested(id, obj.ID, value)
                   }
                  
-                /> :    <span >{_total}</span>
+                /> :    <span >{roundNumber(_total)}</span>
           }
                   </td>          
               );

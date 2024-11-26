@@ -117,12 +117,14 @@ const VehicleReportFrom: React.FC<HeaderProps> = ({
 
   const countReport = (sub_data: any, id: number) => {
     return (
-      <table>
+      <table className="smart-table-column-width-100">
         <tbody>
           <tr>
             {sub_data.map((obj: any, key: number) => {
               return (
-                <td className="smart-table-column-width-20">
+                <td className="smart-table-column-width-20 has-text-centered">
+                  {!endDate ?
+                  
                   <SmartSoftInput
                    // label={obj.vehicle_type}
                    // inputType="BORDER_LABEL"
@@ -132,6 +134,8 @@ const VehicleReportFrom: React.FC<HeaderProps> = ({
                       updateVehicleCountNested(id, obj.ID, value)
                     }
                   />
+                  :    <span >{obj?.count}</span>
+  }
                 </td>
               );
             })}

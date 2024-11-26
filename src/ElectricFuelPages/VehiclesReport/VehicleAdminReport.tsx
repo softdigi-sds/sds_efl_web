@@ -211,8 +211,10 @@ const VehicleAdminReport: React.FC<VehicleReportProps> = ({
           </span>{" "}
         </div>
       ),
+      width: 90,
       className: "sd-efl-modal",
       closeBody: false,
+    
       content: (
         <VehicleReportFrom
           loadTableData={loadData}
@@ -358,7 +360,7 @@ const VehicleAdminReport: React.FC<VehicleReportProps> = ({
                         </label>
                       </td>
                       <td  onClick={() => openForm(changeDateTimeZone(startDate.toISOString(), "YYYY-MM-DD"), hub,changeDateTimeZone(endDate.toISOString(), "YYYY-MM-DD"))}>
-                        <span className="is-clickable">{hub.average}</span></td>
+                        <span className="is-clickable  has-text-link">{hub.average}</span></td>
                       {numberArray.map((item: any) => {
                         let _count = getDayCount(item, hub.sub_data);
                         const isNotGreaterThanToday = isDateWithinDays(item, 0);
