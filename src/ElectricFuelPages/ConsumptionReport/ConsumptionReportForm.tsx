@@ -129,8 +129,7 @@ const ConsumptionReportForm: React.FC<HeaderProps> = ({
                   </td>          
               );
             })}
-
-
+            
             {/* {sub_data.sort((a:any, b:any) => b.ID - a.ID).map((obj: any, key: number) => {
               let roundedCount = String(roundNumber(obj?.count) ?? '');
               return (
