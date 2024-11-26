@@ -30,6 +30,7 @@ const VendorRatesSubForm: React.FC<HeaderProps> = ({
     { value: "4", label: "Rent" },
     { value: "6", label: "Infra Sharing" },
     { value: "7", label: "Charging(Office)" },
+    { value: "8", label: "Support Services" },
 
   ];
 

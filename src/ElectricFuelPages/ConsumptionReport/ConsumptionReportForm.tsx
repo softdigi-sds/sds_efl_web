@@ -105,7 +105,7 @@ const ConsumptionReportForm: React.FC<HeaderProps> = ({
 
   const countReport = (sub_data: any, id: number) => {
     return (
-      <table>
+      <table className="smart-table-column-width-100">
         <tbody>
           <tr>
           {types.map((obj: any, key: number) => {
@@ -113,7 +113,8 @@ const ConsumptionReportForm: React.FC<HeaderProps> = ({
               let _total = sub_data.find((item:any)=>item.ID==obj.ID)?.count||0;
               //let _total_count = sumOfMultiArrayObjectsWithIndex(formData, "sub_data", "ID", obj.ID);
               return (
-                <td className="smart-table-column-width-20">
+                <td className="smart-table-column-width-20 has-text-centered">
+                {!endDate ? 
                 <SmartSoftInput
                   // label={obj.vehicle_type}
                   // inputType="BORDER_LABEL"
@@ -122,7 +123,9 @@ const ConsumptionReportForm: React.FC<HeaderProps> = ({
                   onChange={(value) =>
                     updateCountNested(id, obj.ID, value)
                   }
-                />   
+                 
+                /> :    <span >{_total}</span>
+          }
                   </td>          
               );
             })}
