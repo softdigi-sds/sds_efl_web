@@ -9,6 +9,7 @@ import {
   formatCurrency,
 } from "../../services/core/CommonService";
 import { downloadFile } from "../../services/core/FileService";
+import { openExternalWindow } from "../../services/core/WindowService";
 import { showAlertAutoClose } from "../../services/notifyService";
 import { post } from "../../services/smartApiService";
 import InvoiceAddingForm from "./InvoiceAddingForm";
@@ -109,10 +110,36 @@ const VendorWiseInformation = () => {
     };
   };
 
+  const downloadZip = () => {
+    let URL = INVOICE_URLS.EXPORT_ZIP;
+    const subscription = post(URL, { id: id }).subscribe((response) => {
+      if (response.data && response.data.content) {
+        downloadFile(response.data.content, "invoices.zip");
+      }
+      return ;
+      //console.log(response);
+      //setData(response.data);
+    });
+    return () => {
+      subscription.unsubscribe();
+    };
+  };
+
+  const signStatus = (status: string, invoide_id: number, token_str: string) => {
+    if (status == "COMPLETED") {
+      verifyDigitalSign(invoide_id, token_str)
+      // console.log("sign Completed") 
+    } else {
+      console.log("sign aborted")
+    }
+  }
+
   const startDigitalSign = (invoice_id: number) => {
     let URL = INVOICE_URLS.SIGN_START;
     const subscription = post(URL, { id: invoice_id }).subscribe((response) => {
-      window.location.href = config.DIGI_SERVER_URL + "open/digital-sign?token=" + response.data.data;
+      let url = config.DIGI_SERVER_URL + "open/digital-sign?token=" + response.data.data;
+      openExternalWindow(url, (status) => signStatus(status, invoice_id, response.data.data));
+      // openNewWindow(url);
     });
     return () => {
       subscription.unsubscribe();
@@ -174,8 +201,8 @@ const VendorWiseInformation = () => {
       onClick: (data: any) => {
         openDeleteModal(data["ID"])
       },
-      hideFunction:(data:any)=>{
-        return data["status"]>=5 ? true : false; 
+      hideFunction: (data: any) => {
+        return data["status"] >= 5 ? true : false;
       }
     },
     {
@@ -196,8 +223,8 @@ const VendorWiseInformation = () => {
       onClick: (data: any) => {
         startDigitalSign(data["ID"]);
       },
-      hideFunction:(data:any)=>{
-        return data["status"]>=5 ? false : true; 
+      hideFunction: (data: any) => {
+        return data["status"] >= 5 ? false : true;
       }
     },
   ];
@@ -226,9 +253,9 @@ const VendorWiseInformation = () => {
     {
       title: "Hub",
       index: "hub_id",
-      width: "10",   
+      width: "10",
     },
-    
+
     {
       title: "Invoice Number",
       index: "invoice_number",
@@ -253,7 +280,7 @@ const VendorWiseInformation = () => {
       index: "ack_no",
       width: "10",
       valueFunction: (data) => {
-        return data["status"] >=5 ? (
+        return data["status"] >= 5 ? (
           <span
             className="has-text-link sd-cursor"
             onClick={() => {
@@ -283,27 +310,46 @@ const VendorWiseInformation = () => {
   const tableTop: SmartTableNewInterface.SmartTableNewTopProps[] = [
     {
       type: "CUSTOM",
-      widthClass: "is-8",
+      widthClass: "is-6",
       custom: (
         <div className="is-flex is-justify-content-space-between">
 
-        <p className="is-size-4 is-italic has-text-link is-underlined">
-         Invoices
-        </p>
-         <div
-         className="has-text-link mr-2 mt-2 is-clickable smart-third-button-add-button"
-         onClick={() => openInvoiceForm()}
-       >
-         {" "}
-         <i className="fa fa-plus-square-o is-size-4 has-text-white " aria-hidden="true"></i>
-       </div>
-       </div>
+          <p className="is-size-4 is-italic has-text-link is-underlined">
+            Invoices
+          </p>
+          {/* <div
+            className="has-text-link mr-2 mt-2 is-clickable smart-third-button-add-button"
+            onClick={() => openInvoiceForm()}
+          >
+            {" "}
+            <i className="fa fa-plus-square-o is-size-4 has-text-white " aria-hidden="true"></i>
+          </div> */}
+        </div>
       ),
+    },
+    {
+      type: "BUTTONS",
+      widthClass: "is-2 mr-4",
+      align: "RIGHT",
+      buttons: [
+        {
+          label: "",
+          icon: "fa-plus mr-5",
+          type: "CUSTOM",
+          action: () => openInvoiceForm()
+        },
+        {
+          label: "",
+          icon: "fa-download ml-4 has-text-danger",
+          type: "CUSTOM",
+          action: () => downloadZip(),
+        },
+      ],
     },
     {
       type: "SEARCH",
       widthClass: "is-4",
-      align: "JUSTIFY", 
+      align: "JUSTIFY",
     },
   ];
   const openInvoiceForm = () => {

@@ -23,6 +23,7 @@ const ConsumptionReportForm: React.FC<HeaderProps> = ({
   endDate
 }) => {
   const [formData, setFormData] = useState<any[]>([]);
+  const [extData, setExtData] = useState<any[]>([]);
   const [types, setTypes] = useState<any[]>([]);
   const [formSubmit, setFormSubmit] = useState<boolean>(false);
   const { closeModal } = useSiteContext();
@@ -36,6 +37,9 @@ const ConsumptionReportForm: React.FC<HeaderProps> = ({
     const subscription = post(URL, _data).subscribe((response) => {
       setFormData(response.data.data || []);
       setTypes(response.data.types || [])
+      if (endDate) {
+        setExtData(response.data.data || []);
+      }
     });
     return () => {
       subscription.unsubscribe();
@@ -103,33 +107,69 @@ const ConsumptionReportForm: React.FC<HeaderProps> = ({
     );
   };
 
-  const countReport = (sub_data: any, id: number) => {
+
+  const updateCountNestedExtra = (
+    mainId: number,
+    subId: number,
+    count: any
+  ) => {
+    setFormData((prevData) =>
+      prevData.map((mainItem) =>
+        mainItem.sd_customer_id === mainId
+          ? {
+            ...mainItem,
+            ext_data: mainItem.sub_data.map((subItem: any) =>
+              subItem.ID === subId ? { ...subItem, count: count } : subItem
+            ),
+          }
+          : mainItem
+      )
+    );
+  };
+
+  const countReport = (sub_data: any, _extra_data: any, id: number) => {
     return (
       <table className="smart-table-column-width-100">
         <tbody>
           <tr>
-          {types.map((obj: any, key: number) => {
-             // console.log(obj, " sub   item " , sub_data  );
-              let _total = sub_data.find((item:any)=>item.ID==obj.ID)?.count||0;
+            {types.map((obj: any, key: number) => {
+              // console.log(obj, " sub   item " , sub_data  );
+              let _total = sub_data.find((item: any) => item.ID == obj.ID)?.count || 0;
+           //   let _extra = _extra_data.find((item: any) => item.ID == obj.ID)?.count || 0;
               //let _total_count = sumOfMultiArrayObjectsWithIndex(formData, "sub_data", "ID", obj.ID);
               return (
                 <td className="smart-table-column-width-20 has-text-centered">
-                {!endDate ? 
-                <SmartSoftInput
-                  // label={obj.vehicle_type}
-                  // inputType="BORDER_LABEL"
-                  classList={["is-small"]}
-                  value={_total}
-                  onChange={(value) =>
-                    updateCountNested(id, obj.ID, value)
+                  {!endDate ?
+                    <SmartSoftInput
+                      // label={obj.vehicle_type}
+                      // inputType="BORDER_LABEL"
+                      classList={["is-small"]}
+                      value={_total}
+                      onChange={(value) =>
+                        updateCountNested(id, obj.ID, value)
+                      }
+
+                    /> : (
+                      <>
+                        <span >{roundNumber(_total)}</span>
+                        <SmartSoftInput
+                          // label={obj.vehicle_type}
+                          // inputType="BORDER_LABEL"
+                          classList={["is-small"]}
+                          value={_total}
+                          onChange={(value) =>
+                            updateCountNestedExtra(id, obj.ID, value)
+                          }
+
+                        />
+                      </>
+
+                    )
                   }
-                 
-                /> :    <span >{roundNumber(_total)}</span>
-          }
-                  </td>          
+                </td>
               );
             })}
-            
+
             {/* {sub_data.sort((a:any, b:any) => b.ID - a.ID).map((obj: any, key: number) => {
               let roundedCount = String(roundNumber(obj?.count) ?? '');
               return (
@@ -202,7 +242,8 @@ const ConsumptionReportForm: React.FC<HeaderProps> = ({
       width: "25",
       valueFunction: (item) => {
         let _sub_data = item["sub_data"];
-        return countReport(_sub_data, item["sd_customer_id"]);
+        let _extra_data = item["ext_data"];
+        return countReport(_sub_data, _extra_data, item["sd_customer_id"]);
       },
     },
   ];
