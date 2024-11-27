@@ -10,6 +10,10 @@ import {
 import { ALLOW_NUMERIC } from "../../services/PatternSerivce";
 import { getImageContent } from "../../services/core/FileService";
 import { ADMIN_USER_LOGO } from "../../services/ImageService";
+import { ValidateFormNew } from "soft_digi/dist/services/smartValidationService";
+import { showAlertAutoClose } from "../../services/notifyService";
+import { post } from "../../services/smartApiService";
+import { PASS_URL } from "../../api/AdminUrls";
 
 interface FormData {
   ename?: string;
@@ -48,20 +52,44 @@ const Profile = () => {
   };
 
   const loginFormValidations = {
-    ename: [SmartValid.required("User Name is Required")],
-    age: [SmartValid.required("Age is Required")],
-    email: [
-      SmartValid.required("Email ID is Required"),
-      SmartValid.email("Please Enter a Valid Email Address"),
-    ],
     password: [SmartValid.required("Password is Required")],
   };
-
+  const handleFormSubmit = () => {
+    setFormSubmit(true);
+    if (!ValidateFormNew(formData,formElements)) {
+      return false;
+    }
+    let url = PASS_URL.CHANGE_PASSWORD;
+    const subscription = post(url, formData,).subscribe(
+      (response) => {
+        setFormSubmit(false);
+         showAlertAutoClose("Password Changed Successfully","success" );
+         setTimeout(() => {
+          window.scrollTo(0, 0);
+        }, 2500);
+        setFormData({});
+      }
+    );
+    return () => {
+      subscription.unsubscribe();
+    };
+  };
   const formElements: SmartFormInterFace.SmartFormElementProps[] = [
     {
       type: "PASSWORD", 
       width: "12",
-      name: "ename",
+      name: "currentPassword",
+      element: {
+        label: "Current Password",
+        inputType: "BORDER_LABEL",
+        isRequired: true,
+        validations: loginFormValidations.password,
+      },
+    },
+    {
+      type: "PASSWORD", 
+      width: "12",
+      name: "newPassword",
       element: {
         label: "New Password",
         inputType: "BORDER_LABEL",
@@ -72,7 +100,7 @@ const Profile = () => {
     {
       type: "PASSWORD", 
       width: "12",
-      name: "age",
+      name: "confirmPassword",
       element: {
         label: "Confirm Password",
         inputType: "BORDER_LABEL",
@@ -83,15 +111,7 @@ const Profile = () => {
     },
   ];
 
-  const handleSubmit = () => {
-    setFormSubmit(true);
-    if (Object.keys(formErrors).length === 0) {
-      // Submit the form data if no errors
-      console.log("Form submitted", formData);
-    } else {
-      console.log("Form contains errors", formErrors);
-    }
-  };
+  
 
   return (
     <>
@@ -153,7 +173,7 @@ const Profile = () => {
               label="Change Password"
               rightIcon="fa fa-arrow-right"
               classList={["button", "smart-action-button"]}
-              onClick={handleSubmit} 
+              onClick={handleFormSubmit} 
             />
           </div>
         </div>
