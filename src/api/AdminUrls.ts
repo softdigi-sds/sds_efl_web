@@ -25,6 +25,6 @@ const STATE_URLS = {
   GET_ALL_SELECT_STATES: "/state_db/get_all_select",
 };
 const PASS_URL = {
-  CHANGE_PASSWORD:" /user/user_reset"
+  CHANGE_PASSWORD:"/user/user_reset"
 }
 export { ROLE_URLS, USER_URLS, STATE_URLS, PASS_URL };
