@@ -166,18 +166,18 @@ const VendorWiseInformation = () => {
         openForm(data);
       },
     },
-    {
-      label: "View",
-      type: "icon",
-      leftIcon: "fa fa-close",
-      classList: ["smart-efl-table-view-icon", ""],
-      onClick: (data: any) => {
-        openDeleteModal(data["ID"])
-      },
-      hideFunction:(data:any)=>{
-        return data["status"]>=5 ? true : false; 
-      }
-    },
+    // {
+    //   label: "View",
+    //   type: "icon",
+    //   leftIcon: "fa fa-close",
+    //   classList: ["smart-efl-table-view-icon", ""],
+    //   onClick: (data: any) => {
+    //     openDeleteModal(data["ID"])
+    //   },
+    //   hideFunction:(data:any)=>{
+    //     return data["status"]>=5 ? true : false; 
+    //   }
+    // },
     {
       label: "View",
       type: "icon",
