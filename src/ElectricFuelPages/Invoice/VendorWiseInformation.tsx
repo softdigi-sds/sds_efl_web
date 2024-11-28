@@ -146,8 +146,10 @@ const VendorWiseInformation = () => {
         config.DIGI_SERVER_URL +
         "open/digital-sign?token=" +
         response.data.data;
-      window.location.href = url;
-      //openExternalWindow(url, (status) => signStatus(status, invoice_id, response.data.data));
+      // window.location.href = url;
+      openExternalWindow(url, (status) =>
+        signStatus(status, invoice_id, response.data.data)
+      );
       // openNewWindow(url);
     });
     return () => {
