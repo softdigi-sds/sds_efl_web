@@ -1,6 +1,12 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams, useSearchParams } from "react-router-dom";
-import { SmartAlert, SmartLoaderInterface, SmartSoftButton, SmartTable, SmartTableNewInterface } from "soft_digi";
+import {
+  SmartAlert,
+  SmartLoaderInterface,
+  SmartSoftButton,
+  SmartTable,
+  SmartTableNewInterface,
+} from "soft_digi";
 import { INVOICE_URLS } from "../../api/UserUrls";
 import config from "../../config/config";
 import { useSiteContext } from "../../contexts/SiteProvider";
@@ -37,18 +43,17 @@ const VendorWiseInformation = () => {
   };
 
   const deleteData = (invoice_id: any) => {
-    const subscription = post(INVOICE_URLS.INVOICE_DELETE, { id: invoice_id }).subscribe(
-      (response) => {
-        showAlertAutoClose("Deleted Successfully...", "success");
-        loadData();
-        // setLoading(false);
-      }
-    );
+    const subscription = post(INVOICE_URLS.INVOICE_DELETE, {
+      id: invoice_id,
+    }).subscribe((response) => {
+      showAlertAutoClose("Deleted Successfully...", "success");
+      loadData();
+      // setLoading(false);
+    });
     return () => {
       subscription.unsubscribe();
     };
   };
-
 
   const openDeleteModal = (invoice_id: any) => {
     let alertProps: SmartLoaderInterface.SmartAlertInterface = {
@@ -59,11 +64,7 @@ const VendorWiseInformation = () => {
           SmartAlert.hide();
         }
       },
-      content: (
-        <p>
-          Note: Do you wish to delete this Invoice
-        </p>
-      ),
+      content: <p>Note: Do you wish to delete this Invoice</p>,
       className: "custom-alert",
     };
 
@@ -116,7 +117,7 @@ const VendorWiseInformation = () => {
       if (response.data && response.data.content) {
         downloadFile(response.data.content, "invoices.zip");
       }
-      return ;
+      return;
       //console.log(response);
       //setData(response.data);
     });
@@ -125,20 +126,28 @@ const VendorWiseInformation = () => {
     };
   };
 
-  const signStatus = (status: string, invoide_id: number, token_str: string) => {
+  const signStatus = (
+    status: string,
+    invoide_id: number,
+    token_str: string
+  ) => {
     if (status == "COMPLETED") {
-      verifyDigitalSign(invoide_id, token_str)
-      // console.log("sign Completed") 
+      verifyDigitalSign(invoide_id, token_str);
+      // console.log("sign Completed")
     } else {
-      console.log("sign aborted")
+      console.log("sign aborted");
     }
-  }
+  };
 
   const startDigitalSign = (invoice_id: number) => {
     let URL = INVOICE_URLS.SIGN_START;
     const subscription = post(URL, { id: invoice_id }).subscribe((response) => {
-      let url = config.DIGI_SERVER_URL + "open/digital-sign?token=" + response.data.data;
-      openExternalWindow(url, (status) => signStatus(status, invoice_id, response.data.data));
+      let url =
+        config.DIGI_SERVER_URL +
+        "open/digital-sign?token=" +
+        response.data.data;
+      window.location.href = url;
+      //openExternalWindow(url, (status) => signStatus(status, invoice_id, response.data.data));
       // openNewWindow(url);
     });
     return () => {
@@ -148,9 +157,11 @@ const VendorWiseInformation = () => {
 
   const verifyDigitalSign = (id: any, token: string) => {
     let URL = INVOICE_URLS.SIGN_VERIFY;
-    const subscription = post(URL, { id: id, token: token }).subscribe((response) => {
-      loadData();
-    });
+    const subscription = post(URL, { id: id, token: token }).subscribe(
+      (response) => {
+        loadData();
+      }
+    );
     return () => {
       subscription.unsubscribe();
     };
@@ -158,11 +169,10 @@ const VendorWiseInformation = () => {
 
   useEffect(() => {
     if (token) {
-      verifyDigitalSign(invoice_ret_id, token)
+      verifyDigitalSign(invoice_ret_id, token);
     } else {
       loadData();
     }
-
   }, [id]);
 
   const openForm = (data: any) => {
@@ -199,11 +209,11 @@ const VendorWiseInformation = () => {
       leftIcon: "fa fa-close",
       classList: ["smart-efl-table-view-icon", ""],
       onClick: (data: any) => {
-        openDeleteModal(data["ID"])
+        openDeleteModal(data["ID"]);
       },
       hideFunction: (data: any) => {
         return data["status"] >= 5 ? true : false;
-      }
+      },
     },
     {
       label: "View",
@@ -225,7 +235,7 @@ const VendorWiseInformation = () => {
       },
       hideFunction: (data: any) => {
         return data["status"] >= 5 ? false : true;
-      }
+      },
     },
   ];
 
@@ -313,7 +323,6 @@ const VendorWiseInformation = () => {
       widthClass: "is-6",
       custom: (
         <div className="is-flex is-justify-content-space-between">
-
           <p className="is-size-4 is-italic has-text-link is-underlined">
             Invoices
           </p>
@@ -336,7 +345,7 @@ const VendorWiseInformation = () => {
           label: "",
           icon: "fa-plus mr-5",
           type: "CUSTOM",
-          action: () => openInvoiceForm()
+          action: () => openInvoiceForm(),
         },
         {
           label: "",
@@ -469,7 +478,9 @@ const VendorWiseInformation = () => {
           data={data.invoice_data || []}
           tableTop={tableTop}
           tableProps={{
-            className: ` is-hoverable  is-striped is-narrow smart-small-table ${!isDark ? "smart-efl-table" : ""}`,
+            className: ` is-hoverable  is-striped is-narrow smart-small-table ${
+              !isDark ? "smart-efl-table" : ""
+            }`,
             isResponsive: true,
             searchPlaceHolder: "Search",
           }}
