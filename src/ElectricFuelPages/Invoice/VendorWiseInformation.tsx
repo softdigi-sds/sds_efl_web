@@ -19,6 +19,7 @@ import { openExternalWindow } from "../../services/core/WindowService";
 import { showAlertAutoClose } from "../../services/notifyService";
 import { post } from "../../services/smartApiService";
 import InvoiceAddingForm from "./InvoiceAddingForm";
+import InvoiceRemarks from "./InvoiceRemarks";
 import InvoiceVendorDetailsTable from "./InvoiceVendorDetailsTable";
 import VendorDetailsImport from "./VendorDetailsImport";
 // import InvoiceForm from "./InvoiceAddingForm";
@@ -177,6 +178,7 @@ const VendorWiseInformation = () => {
     }
   }, [id]);
 
+
   const openForm = (data: any) => {
     let URL = INVOICE_URLS.GET_ONE_DETAILS;
     const subscription = post(URL, { id: data["ID"] }).subscribe((response) => {
@@ -193,6 +195,17 @@ const VendorWiseInformation = () => {
   };
   const handleDelete = (rowData: any) => {
     //console.log("Delete action for row:", rowData);
+  };
+
+  const openInvoiceRemarksForm = (_id:number,remarks:string) => {
+    let options = {
+      title: "Invoice Remarks",
+      content: <InvoiceRemarks loadTableData={loadData} id={_id} remarks={remarks} />,
+      width: 50,
+      className: "sd-efl-modal",
+      closeBody: false,
+    };
+    openModal(options);
   };
 
   const buttons = [
@@ -237,6 +250,15 @@ const VendorWiseInformation = () => {
       },
       hideFunction: (data: any) => {
         return data["status"] >= 5 ? false : true;
+      },
+    },
+    {
+      label: "View",
+      type: "icon",
+      leftIcon: "fa-file",
+      classList: ["smart-efl-table-view-icon has-text-link", ""],
+      onClick: (data: any) => {
+        openInvoiceRemarksForm(data["ID"],data["remarks"]);
       },
     },
   ];
