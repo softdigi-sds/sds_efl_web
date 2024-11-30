@@ -296,7 +296,7 @@ const VendorWiseInformation = () => {
         startDigitalSign(data["ID"]);
       },
       hideFunction: (data: any) => {
-        return data["status"] >= 5 ? false : true;
+        return data["status"] >= 5 || data["invoice_type"] == 2 ? false : true;
       },
     },
     {
