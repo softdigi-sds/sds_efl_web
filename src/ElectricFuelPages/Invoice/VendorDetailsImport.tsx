@@ -10,6 +10,7 @@ import { useSiteContext } from "../../contexts/SiteProvider";
 
 import SmartFileDisplay from "../../components/site/SmartFileDisplay";
 import { post } from "../../services/smartApiService";
+import { showAlertAutoClose } from "../../services/notifyService";
 // interface HeaderProps {
 //   loadTableData: () => void;
 // }
@@ -32,9 +33,35 @@ const VendorDetailsImport: React.FC<componentProps> = ({ loadData, id }) => {
     let URL = INVOICE_URLS.IMPORT_EXCEL;
     let _data = { ...formData };
     _data["id"] = id;
+    //console.log(formData);
     const subscription = post(URL, _data).subscribe((response) => {
       setData(response.data);
       loadData();
+      if (response.data.length < 1) {
+        showAlertAutoClose("imported", "success");
+        closeModal();
+      }
+      // closeModal();
+      // loadTableData()
+    });
+    return () => {
+      subscription.unsubscribe();
+    };
+  };
+
+  const handleSubmitZip = () => {
+    setFormSubmit(true);
+    let URL = INVOICE_URLS.IMPORT_ZIP;
+    let _data = { ...formData };
+    _data["id"] = id;
+    // console.log(formData);
+    const subscription = post(URL, _data).subscribe((response) => {
+      setData(response.data);
+      loadData();
+      if (response.data.length < 1) {
+        showAlertAutoClose("imported", "success");
+        closeModal();
+      }
       // closeModal();
       // loadTableData()
     });
@@ -47,11 +74,11 @@ const VendorDetailsImport: React.FC<componentProps> = ({ loadData, id }) => {
     const handleInputChange = (name: string, value: any) => {
       setFormData((prev: any) => ({ ...prev, [name]: value }));
     };
-    const filePreviewFunctionDisplay = () => {
+    const filePreviewFunctionDisplay = (name: string = "excel") => {
       return (
         <SmartFileDisplay
-          files={formData.excel || []}
-          updateImages={(images: any) => handleInputChange("excel", images)}
+          files={formData[name] || []}
+          updateImages={(images: any) => handleInputChange(name, images)}
           isMulti={false}
           index={0}
         />
@@ -72,7 +99,7 @@ const VendorDetailsImport: React.FC<componentProps> = ({ loadData, id }) => {
     const formElements: SmartFormInterFace.SmartFormElementProps[] = [
       {
         type: "FILE",
-        width: "4",
+        width: "6",
         name: "excel",
         element: {
           placeHolder: (
@@ -86,10 +113,44 @@ const VendorDetailsImport: React.FC<componentProps> = ({ loadData, id }) => {
           //  isMulti: true,
           isRequired: true,
           filePreview: true,
-          filePreviewFunction: filePreviewFunctionDisplay,
+          filePreviewFunction: () => filePreviewFunctionDisplay("excel"),
           classList: [""],
         },
       },
+      {
+        type: "BUTTON",
+        width: "6",
+        name: "button",
+        element: {
+          classList: ["button ", "smart-action-button"],
+          label: "Upload",
+          onClick: () => {
+            handleSubmit();
+          },
+        },
+      },
+
+      {
+        type: "FILE",
+        width: "6",
+        name: "import_zip",
+        element: {
+          placeHolder: (
+            <p>
+              Browser ZIP <span className="smart-error">*</span>
+            </p>
+          ),
+          fileNameEnable: false,
+          leftIcon: "fa fa-cloud-upload",
+          accept: "application/zip",
+          //  isMulti: true,
+          isRequired: true,
+          filePreview: true,
+          filePreviewFunction: () => filePreviewFunctionDisplay("import_zip"),
+          classList: [""],
+        },
+      },
+
       // {
       //   type: "LABEL",
       //   width: "4",
@@ -100,13 +161,13 @@ const VendorDetailsImport: React.FC<componentProps> = ({ loadData, id }) => {
       // },
       {
         type: "BUTTON",
-        width: "2",
+        width: "6",
         name: "button",
         element: {
           classList: ["button ", "smart-action-button"],
           label: "Upload",
           onClick: () => {
-            handleSubmit();
+            handleSubmitZip();
           },
         },
       },
