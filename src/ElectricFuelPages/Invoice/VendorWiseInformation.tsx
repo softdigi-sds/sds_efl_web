@@ -102,7 +102,10 @@ const VendorWiseInformation = () => {
     let URL = INVOICE_URLS.DOWNLOAD_INVOICE;
     const subscription = post(URL, { id: invoice_id }).subscribe((response) => {
       if (response.data && response.data.content) {
-        downloadFile(response.data.content, "invoice.pdf");
+        let file_name = response.data.file_name
+          ? response.data.file_name
+          : "invoice.pdf";
+        downloadFile(response.data.content, file_name);
       }
       //console.log(response);
       //setData(response.data);
@@ -178,7 +181,6 @@ const VendorWiseInformation = () => {
     }
   }, [id]);
 
-
   const openForm = (data: any) => {
     let URL = INVOICE_URLS.GET_ONE_DETAILS;
     const subscription = post(URL, { id: data["ID"] }).subscribe((response) => {
@@ -197,10 +199,12 @@ const VendorWiseInformation = () => {
     //console.log("Delete action for row:", rowData);
   };
 
-  const openInvoiceRemarksForm = (_id:number,remarks:string) => {
+  const openInvoiceRemarksForm = (_id: number, remarks: string) => {
     let options = {
       title: "Invoice Remarks",
-      content: <InvoiceRemarks loadTableData={loadData} id={_id} remarks={remarks} />,
+      content: (
+        <InvoiceRemarks loadTableData={loadData} id={_id} remarks={remarks} />
+      ),
       width: 50,
       className: "sd-efl-modal",
       closeBody: false,
@@ -258,7 +262,7 @@ const VendorWiseInformation = () => {
       leftIcon: "fa-file",
       classList: ["smart-efl-table-view-icon has-text-link", ""],
       onClick: (data: any) => {
-        openInvoiceRemarksForm(data["ID"],data["remarks"]);
+        openInvoiceRemarksForm(data["ID"], data["remarks"]);
       },
     },
   ];
