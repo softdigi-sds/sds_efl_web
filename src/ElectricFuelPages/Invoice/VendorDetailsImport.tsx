@@ -123,7 +123,7 @@ const VendorDetailsImport: React.FC<componentProps> = ({ loadData, id }) => {
         name: "button",
         element: {
           classList: ["button ", "smart-action-button"],
-          label: "Upload",
+          label: "Upload EXCEL",
           onClick: () => {
             handleSubmit();
           },
@@ -165,7 +165,7 @@ const VendorDetailsImport: React.FC<componentProps> = ({ loadData, id }) => {
         name: "button",
         element: {
           classList: ["button ", "smart-action-button"],
-          label: "Upload",
+          label: "Upload ZIP",
           onClick: () => {
             handleSubmitZip();
           },

@@ -14,11 +14,10 @@ import { showAlertAutoClose } from "../../services/notifyService";
 import {
   company_address_all_select,
   hubs_get_all_select,
-  vendors_get_all_select
+  vendors_get_all_select,
 } from "../../services/site/SelectBoxServices";
 import { post } from "../../services/smartApiService";
 import InvoiceSubForm from "./InvoiceAddingSubForm";
-
 
 interface FormErrors {
   [key: string]: string | null;
@@ -27,10 +26,15 @@ interface FormErrors {
 interface HeaderProps {
   loadTableData: () => void;
   id: any;
+  dataIn?: any;
 }
 
-const InvoiceAddingForm: React.FC<HeaderProps> = ({ loadTableData, id }) => {
-  const [formData, setFormData] = useState<any>({});
+const InvoiceAddingForm: React.FC<HeaderProps> = ({
+  loadTableData,
+  id,
+  dataIn,
+}) => {
+  const [formData, setFormData] = useState<any>(dataIn ? dataIn : {});
   const [formSubmit, setFormSubmit] = useState<boolean>(false);
   const [allHubs, setAllHubs] = useState([]);
   const [allVendors, setAllVendors] = useState([]);
@@ -38,10 +42,10 @@ const InvoiceAddingForm: React.FC<HeaderProps> = ({ loadTableData, id }) => {
   const { closeModal } = useSiteContext();
   const [types, setTypes] = useState<any[]>([]);
 
-   console.log("Formdata",id)
+  //console.log("Formdata", id);
 
   const handleInputChange = (name: string, value: any) => {
-    console.log("Name",name,"Value", value);
+    console.log("Name", name, "Value", value);
     setFormData((prev: any) => ({ ...prev, [name]: value }));
     //  console.log("formData updated", value);
   };
@@ -53,7 +57,7 @@ const InvoiceAddingForm: React.FC<HeaderProps> = ({ loadTableData, id }) => {
   ) => {
     const _data = { ...formData };
     // Create a copy of the items array
-    const updatedItems = _data?.rate_data ? [..._data?.rate_data] : [];
+    const updatedItems = _data?.sub_data ? [..._data?.sub_data] : [];
     // Create a copy of the object at the specific index
     const updatedItem = { ...updatedItems[index] };
     // Update the dynamic property
@@ -61,7 +65,7 @@ const InvoiceAddingForm: React.FC<HeaderProps> = ({ loadTableData, id }) => {
     // Replace the object in the array with the updated object
     updatedItems[index] = updatedItem;
     //
-    _data.rate_data = updatedItems;
+    _data.sub_data = updatedItems;
     // Update the state with the new array
     setFormData(_data);
   };
@@ -73,27 +77,27 @@ const InvoiceAddingForm: React.FC<HeaderProps> = ({ loadTableData, id }) => {
     min_end: "",
     price: "",
     extra_price: "",
-    tax:""
+    tax: "",
   };
 
   const addItem = () => {
     const _data = { ...formData };
-    const updatedItems = _data?.rate_data
-      ? [..._data?.rate_data, subFormDataObj]
+    const updatedItems = _data?.sub_data
+      ? [..._data?.sub_data, subFormDataObj]
       : [subFormDataObj];
-    _data.rate_data = updatedItems;
+    _data.sub_data = updatedItems;
     // console.log("data added " , _data);
     setFormData(_data);
   };
 
   const removeItemAndLast = () => {
     const _data = { ...formData };
-    const updatedItems = _data?.rate_data ? [..._data?.rate_data] : [];
+    const updatedItems = _data?.sub_data ? [..._data?.sub_data] : [];
     const finalItems =
       updatedItems.length > 0
         ? updatedItems.slice(0, updatedItems.length - 1)
         : [];
-    _data.rate_data = finalItems;
+    _data.sub_data = finalItems;
     setFormData(_data);
   };
 
@@ -104,22 +108,15 @@ const InvoiceAddingForm: React.FC<HeaderProps> = ({ loadTableData, id }) => {
 
   useEffect(() => {
     let customer_id = formData?.sd_customer_id?.value;
-    if (customer_id && customer_id > 0){
+    if (customer_id && customer_id > 0) {
       company_address_all_select(customer_id, (data: any) =>
         setCustAddress(data)
       );
     }
- 
-      
-   
   }, [formData?.sd_customer_id]);
 
-
-  
-
-
   const subFormDisplay = () => {
-    const sub_data = formData.rate_data ? [...formData.rate_data] : [];
+    const sub_data = formData.sub_data ? [...formData.sub_data] : [];
     return (
       <>
         <div className="columns">
@@ -129,8 +126,6 @@ const InvoiceAddingForm: React.FC<HeaderProps> = ({ loadTableData, id }) => {
           <div className="column is-2">Price</div>
           <div className="column is-1">Tax (%)</div>
           <div className="column is-2">Total</div>
-          
-       
         </div>
         {sub_data.map((item, index) => {
           return (
@@ -152,7 +147,7 @@ const InvoiceAddingForm: React.FC<HeaderProps> = ({ loadTableData, id }) => {
     if (!ValidateFormNew(formData, formElements)) {
       return false;
     }
-    let url = INVOICE_URLS.INSERT_MANUAL;   
+    let url = INVOICE_URLS.INSERT_MANUAL;
     let data_in = { ...formData };
     data_in["bill_id"] = id;
     data_in["effective_date"] = changeDateTimeZoneFormat(
@@ -222,7 +217,7 @@ const InvoiceAddingForm: React.FC<HeaderProps> = ({ loadTableData, id }) => {
         //options: options,
       },
     },
-  
+
     /*
     {
       type: "LABEL",
@@ -356,41 +351,46 @@ const InvoiceAddingForm: React.FC<HeaderProps> = ({ loadTableData, id }) => {
     },
     */
   ];
-  
-  const footerCount=()=>{
+
+  const footerCount = () => {
     return (
       <table className="smart-table-column-width-100">
         <tbody>
           <tr>
             {types.map((obj: any, key: number) => {
-              let _total_count = sumOfMultiArrayObjectsWithIndex(formData,"sub_data","ID",obj.ID);
+              let _total_count = sumOfMultiArrayObjectsWithIndex(
+                formData,
+                "sub_data",
+                "ID",
+                obj.ID
+              );
               return (
-                <td key={`foot_count_${key}`} className="smart-table-column-width-20 has-text-centered">
+                <td
+                  key={`foot_count_${key}`}
+                  className="smart-table-column-width-20 has-text-centered"
+                >
                   {_total_count}
-                 </td>
+                </td>
               );
             })}
           </tr>
         </tbody>
       </table>
-    )
-  }
+    );
+  };
 
-  const footerComponent = (sortdata: any[]) => {   
+  const footerComponent = (sortdata: any[]) => {
     return (
       <tfoot>
         <tr>
           <td colSpan={2} className="has-text-right">
             Total Count
           </td>
-          <td>
-              {footerCount()}
-            </td>     
+          <td>{footerCount()}</td>
         </tr>
       </tfoot>
     );
   };
-
 
   return (
     <>
@@ -423,7 +423,7 @@ const InvoiceAddingForm: React.FC<HeaderProps> = ({ loadTableData, id }) => {
         </div>
         {subFormDisplay()}
         {footerComponent(formData)}
-        
+
         <div className="has-text-right">
           <SmartSoftButton
             label="Cancel"
@@ -442,6 +442,4 @@ const InvoiceAddingForm: React.FC<HeaderProps> = ({ loadTableData, id }) => {
   );
 };
 
-
-
-export default InvoiceAddingForm
+export default InvoiceAddingForm;

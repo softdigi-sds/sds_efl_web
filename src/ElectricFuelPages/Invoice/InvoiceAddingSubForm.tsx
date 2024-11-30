@@ -10,13 +10,7 @@ interface HeaderProps {
   formData: any;
 }
 
-const InvoiceSubForm: React.FC<HeaderProps> = ({
-  formData,
-  setFormData,
-}) => {
-
-
-  
+const InvoiceSubForm: React.FC<HeaderProps> = ({ formData, setFormData }) => {
   const options_select = [
     { value: "1", label: "Fixed" },
     { value: "2", label: "Minimum" },
@@ -30,7 +24,6 @@ const InvoiceSubForm: React.FC<HeaderProps> = ({
     { value: "4", label: "Rent" },
     { value: "6", label: "Infra Sharing" },
     { value: "7", label: "Charging(Office)" },
-
   ];
 
   const options_vehicle = [
@@ -41,22 +34,22 @@ const InvoiceSubForm: React.FC<HeaderProps> = ({
     { value: "5", label: "TATA_ACE" },
   ];
 
-  
-
   const totalPrice = () => {
-    if (formData.tax) {
-      let taxAmount = parseFloat(formData.price) * (parseFloat(formData.tax) / 100); // Calculate tax amount
-      let total_price = parseFloat(formData.price) + taxAmount; // Add tax to the base price
+    if (formData.tax_value) {
+      let qty = formData.count ? parseFloat(formData.count) : 0;
+      let taxAmount =
+        parseFloat(formData.price) * (parseFloat(formData.tax_value) / 100); // Calculate tax amount
+      let total_price = (parseFloat(formData.price) + taxAmount) * qty; // Add tax to the base price
       if (isNaN(total_price)) {
         total_price = 0; // Handle invalid or NaN values
-      }    
+      }
       return total_price;
-    } else {      
-      return !isNaN(parseFloat(formData.price)) ? parseFloat(formData.price) : 0;
+    } else {
+      return !isNaN(parseFloat(formData.price))
+        ? parseFloat(formData.price)
+        : 0;
     }
   };
-
-
 
   const formElements: SmartFormInterFace.SmartFormElementProps[] = [
     // {
@@ -77,7 +70,7 @@ const InvoiceSubForm: React.FC<HeaderProps> = ({
     //       disabled:
     //         formData.sd_hsn_id &&
     //         formData.sd_hsn_id.value &&(
-    //         formData.sd_hsn_id.value == "1"|| 
+    //         formData.sd_hsn_id.value == "1"||
     //          formData.sd_hsn_id.value == "2")
     //           ? false
     //           : true,
@@ -97,9 +90,7 @@ const InvoiceSubForm: React.FC<HeaderProps> = ({
       width: "2",
       name: "type_hsn",
       element: {
-        inputProps: {
-          
-        },
+        inputProps: {},
       },
     },
     {
@@ -107,9 +98,7 @@ const InvoiceSubForm: React.FC<HeaderProps> = ({
       width: "4",
       name: "type_desc",
       element: {
-        inputProps: {
-          
-        },
+        inputProps: {},
       },
     },
     {
@@ -117,7 +106,7 @@ const InvoiceSubForm: React.FC<HeaderProps> = ({
       width: "1",
       name: "count",
     },
-    
+
     {
       type: "TEXT_BOX",
       width: "2",
@@ -126,7 +115,7 @@ const InvoiceSubForm: React.FC<HeaderProps> = ({
     {
       type: "TEXT_BOX",
       width: "1",
-      name: "tax",
+      name: "tax_value",
     },
     {
       type: "TEXT_BOX",
@@ -137,13 +126,10 @@ const InvoiceSubForm: React.FC<HeaderProps> = ({
           return "" + totalPrice();
         },
         inputProps: {
-          disabled:true,
-
+          disabled: true,
         },
       },
     },
-   
-    
   ];
 
   return (
@@ -157,5 +143,4 @@ const InvoiceSubForm: React.FC<HeaderProps> = ({
   );
 };
 
-
-export default InvoiceSubForm
+export default InvoiceSubForm;

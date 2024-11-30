@@ -181,6 +181,38 @@ const VendorWiseInformation = () => {
     }
   }, [id]);
 
+  const openInvoiceForm = () => {
+    let options = {
+      title: "New Invoice Form",
+      content: <InvoiceAddingForm loadTableData={loadData} id={id} />,
+      width: 90,
+      className: "sd-efl-modal",
+      closeBody: false,
+    };
+    openModal(options);
+  };
+
+  const EditInvoiceForm = (data: any) => {
+    let URL = INVOICE_URLS.GET_ONE_DETAILS;
+    const subscription = post(URL, { id: data["ID"] }).subscribe((response) => {
+      let options = {
+        title: ` ${data.hub_id} - ${data.invoice_number}  `,
+        content: (
+          <InvoiceAddingForm
+            loadTableData={loadData}
+            id={id}
+            dataIn={response.data}
+          />
+        ),
+        width: 60,
+        className: "sd-efl-modal",
+        closeBody: false,
+      };
+      openModal(options);
+    });
+    return () => subscription.unsubscribe();
+  };
+
   const openForm = (data: any) => {
     let URL = INVOICE_URLS.GET_ONE_DETAILS;
     const subscription = post(URL, { id: data["ID"] }).subscribe((response) => {
@@ -243,11 +275,22 @@ const VendorWiseInformation = () => {
         downloadInvoice(data["ID"]);
       },
     },
-
     {
       label: "Sign",
       type: "icon",
       leftIcon: "fa fa-pencil",
+      classList: ["smart-efl-table-view-icon has-text-success", ""],
+      onClick: (data: any) => {
+        EditInvoiceForm(data);
+      },
+      hideFunction: (data: any) => {
+        return data["invoice_type"] == 2 ? false : true;
+      },
+    },
+    {
+      label: "Sign",
+      type: "icon",
+      leftIcon: "fa fa-play",
       classList: ["smart-efl-table-view-icon", ""],
       onClick: (data: any) => {
         startDigitalSign(data["ID"]);
@@ -389,16 +432,6 @@ const VendorWiseInformation = () => {
       align: "JUSTIFY",
     },
   ];
-  const openInvoiceForm = () => {
-    let options = {
-      title: "New Invoice Form",
-      content: <InvoiceAddingForm loadTableData={loadData} id={id} />,
-      width: 90,
-      className: "sd-efl-modal",
-      closeBody: false,
-    };
-    openModal(options);
-  };
 
   const openImportForm = () => {
     let options = {
