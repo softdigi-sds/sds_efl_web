@@ -215,12 +215,15 @@ const ConsumptionAdminReport: React.FC<VehicleReportProps> = ({
               <thead>
                 <tr>
                   <th>Hub Name</th>
+                  <th> Meter Reading </th>
+                  <th>deviation</th>
                   <th>Total</th>
                   {numberArray.map((item: any) => (
                     <>
                       <th>{changeDateTimeZone(item, "DD")}</th>
                     </>
                   ))}
+                    
                 </tr>
               </thead>
               <tbody>
@@ -248,6 +251,8 @@ const ConsumptionAdminReport: React.FC<VehicleReportProps> = ({
                         <label className="is-size-7 has-text-info">({hub.office_city})
                         </label>
                       </td>
+                      <td> Meter Reading </td>
+                      <td>deviation</td>
                       <td
                       onClick={() => openForm(changeDateTimeZone(startDate.toISOString(), "YYYY-MM-DD"), hub,changeDateTimeZone(endDate.toISOString(), "YYYY-MM-DD"))}
                       >
