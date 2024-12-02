@@ -15,6 +15,8 @@ import {
   hubs_get_all_select,
 } from "../../services/site/SelectBoxServices";
 import { ALLOW_ALPHABET_SPACE, ALLOW_NUMERIC } from "../../services/PatternSerivce";
+import VendorRatesSubForm from "../VendorRates/VendorRatesSubForm";
+import CustomerSubForm from "./CustomerSubForm";
 
 interface FormErrors {
   [key: string]: string | null;
@@ -72,10 +74,84 @@ const CustomersForm: React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
     };
   };
   const options = [
-    { value: "1", label: "Test" },
-    { value: "2", label: "Test" },
-    { value: "3", label: "test" },
+    { value: "Yes", label: "Yes" },
+    { value: "No", label: "No" },
+
   ];
+
+  const addItem = () => {
+    const _data = { ...formData };
+    const updatedItems = _data?.rate_data
+      ? [..._data?.rate_data, subFormDataObj]
+      : [subFormDataObj];
+    _data.rate_data = updatedItems;
+    // console.log("data added " , _data);
+    setFormData(_data);
+  };
+
+  const removeItemAndLast = () => {
+    const _data = { ...formData };
+    const updatedItems = _data?.rate_data ? [..._data?.rate_data] : [];
+    const finalItems =
+      updatedItems.length > 0
+        ? updatedItems.slice(0, updatedItems.length - 1)
+        : [];
+    _data.rate_data = finalItems;
+    setFormData(_data);
+  };
+  const updateItemProperty = (
+    index: number,
+    dynamicKey: string,
+    newValue: any
+  ) => {
+    const _data = { ...formData };
+    // Create a copy of the items array
+    const updatedItems = _data?.rate_data ? [..._data?.rate_data] : [];
+    // Create a copy of the object at the specific index
+    const updatedItem = { ...updatedItems[index] };
+    // Update the dynamic property
+    updatedItem[dynamicKey] = newValue;
+    // Replace the object in the array with the updated object
+    updatedItems[index] = updatedItem;
+    //
+    _data.rate_data = updatedItems;
+    // Update the state with the new array
+    setFormData(_data);
+  };
+
+  const subFormDataObj = {
+    sd_hsn_id: "",
+    rate_type: "",
+    des: "",
+
+  };
+
+  
+  const subFormDisplay = () => {
+    const sub_data = formData.rate_data ? [...formData.rate_data] : [];
+    return (
+      <>
+        <div className="columns">
+          <div className="column is-4">Select Type</div>
+          <div className="column is-4">HSN</div>
+          <div className="column is-4">Description</div>
+      
+        </div>
+        {sub_data.map((item, index) => {
+          return (
+            <CustomerSubForm
+              key={`subform${index}`}
+              formData={item}
+              setFormData={(name, value) =>
+                updateItemProperty(index, name, value)
+              }
+            />
+          );
+        })}
+      </>
+    );
+  };
+
   const vendorFormValidations = {
     hub_id: [SmartValid.required("Hub Id is Required")],
     company: [SmartValid.required("Company is Required")],
@@ -87,6 +163,32 @@ const CustomersForm: React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
     code: [SmartValid.required("Code is Required")],
     statee: [SmartValid.required("State is Required")],
   };
+
+  const SubForms =()=>{
+    return(
+      <>
+       <div className="columns">
+          <div className="column is-6">
+            <span className="is-size-5 has-text-weight-bold">Types:</span>
+          </div>
+          <div className="column is-6 has-text-right">
+            <SmartSoftButton
+              label="Add"
+              classList={["button", "mr-1", "is-small is-success"]}
+              onClick={addItem}
+            />
+
+            <SmartSoftButton
+              label="Remove"
+              classList={["button", "mr-1", "is-small is-danger"]}
+              onClick={removeItemAndLast}
+            />
+          </div>
+        </div>
+        {subFormDisplay()}
+      </>
+    )
+  }
   const formElements: SmartFormInterFace.SmartFormElementProps[] = [
 
     {
@@ -129,6 +231,64 @@ const CustomersForm: React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
         max: 10,
       },
     },
+    {
+      type: "SELECT_BOX",
+      width: "12",
+      name: "item_billing",
+      element: {
+        label: "Is Single Item Billing",
+        isRequired: true,
+        validations: vendorFormValidations.statee,
+        options: options,
+        inputType: "BORDER_LABEL",
+      },
+    },
+
+     
+    {
+      type: "TEXT_BOX",
+      width: "6",
+      name: "hsn",
+      element: {
+        label: "Enter HSN(Single Item)",
+        isRequired: true,
+        // inputProps: { isFocussed: true },
+        // validations: vendorFormValidations.pan_no,
+        inputType: "BORDER_LABEL",
+        max: 10,
+      },
+      hideFunction: () => {
+        return formData?.item_billing?.value === "Yes" ? false : true;
+      },
+    },
+     
+    {
+      type: "TEXT_BOX",
+      width: "6",
+      name: "description",
+      element: {
+        label: "Enter Description(Single Item)",
+        isRequired: true,
+        // inputProps: { isFocussed: true },
+        // validations: vendorFormValidations.pan_no,
+        inputType: "BORDER_LABEL",
+        max: 10,
+      },
+      hideFunction: () => {
+        return formData?.item_billing?.value === "Yes" ? false : true;
+      },
+    },
+    {
+      type: "LABEL",
+      width: "12",
+      name: "test",
+      labelFunction:SubForms,
+  
+      hideFunction: () => {
+        return formData?.item_billing?.value === "No" ? false : true;
+      },
+    },
+  
   
    
   ];

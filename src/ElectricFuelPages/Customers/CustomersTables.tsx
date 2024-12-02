@@ -48,7 +48,7 @@ const CustomersTables: React.FC<headerProps> = ({ hubId }) => {
         <>{dataIn.ID ? "Customer Update Form" : "Customer Addition Form"}</>
       ),
       content: <CustomersForm loadTableData={loadTableData} dataIn={dataIn} />,
-      width: 60,
+      width: 80,
       className: "sd-efl-modal",
       closeBody: false,
     };
