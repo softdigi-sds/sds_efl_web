@@ -13,7 +13,7 @@ import { get, post } from "../../services/smartApiService";
 import ImportInvoice from "./ImportInvoice";
 import InvoicebillForm from "./InvoicebillForm";
 import InvoicebottomTable from "./InvoicebottomTable";
-import { showAlertAutoClose } from "../../services/notifyService";
+import { showAlertAutoClose, showYesOrNoAlert } from "../../services/notifyService";
 import { formatCurrency } from "../../services/core/CommonService";
 
 const InvoiceTable = () => {
@@ -122,15 +122,15 @@ const InvoiceTable = () => {
         navigate("/e-fuel/vendor-wish/" + data["ID"]);
       },
     },
-    {
-      label: "Download",
-      type: "icon",
-      leftIcon: "fa fa-trash",
-      classList: ["smart-efl-table-delete-icon"],
-      onClick: (data: any) => {
-        openDeleteModal(data["ID"]);
-      },
-    },
+    // {
+    //   label: "Download",
+    //   type: "icon",
+    //   leftIcon: "fa fa-trash",
+    //   classList: ["smart-efl-table-delete-icon"],
+    //   onClick: (data: any) => {
+    //     openDeleteModal(data["ID"]);
+    //   },
+    // },
   ];
   const amountDisplay = (row: any) => {
     return (
@@ -144,6 +144,66 @@ const InvoiceTable = () => {
       <>
         <div>{formatCurrency(row?.gst_amount)}</div>
       </>
+    );
+  };
+  const StatusUpdate = (id: number, status: any) => {
+    const subscription = post(INVOICE_URLS.STATUS_UPDATE, {
+      id: id,
+      status: status,
+    }).subscribe((response) => {
+      LoadTableData();
+    });
+    return () => {
+      subscription.unsubscribe();
+    };
+  };
+
+  const updateStatus = (itemIn: any) => {
+    let new_status: number = itemIn.status === 5 ? 10 : 5;
+    let msg: string =
+      new_status === 0
+        ? "Do you wish to mark invoice is open?"
+        : "Do you wish to mark invoice is close?";
+    //console.log("check in value ", check_value);
+
+    // Trigger alert for confirmation
+    showYesOrNoAlert(
+      msg,
+      (selection: Selection) =>
+        updateStatusFinal(selection, itemIn, new_status),
+      "info"
+    );
+  };
+
+  const updateStatusFinal = (
+    selection: any,
+    itemIn: any,
+    new_status: number
+  ) => {
+    if (selection === "yes") {
+      // Post data to the backend
+      StatusUpdate(itemIn.ID, new_status);
+    }
+  };
+
+
+  const SwitchForm = (item: any) => {
+    return (
+      item.ID && (
+        <>
+          <div className="field">
+            <input
+              id={`switchExample_${item.ID}`}
+              type="checkbox"
+              name={`switchExample_${item.ID}`}
+              className="switch is-small"
+              checked={item.status == 5 ? true : false}
+              onChange={() => updateStatus(item)}
+            />
+            <label htmlFor={`switchExample_${item.ID}`}></label>
+          </div>
+        </>
+      )
     );
   };
   const columns: SmartTableNewInterface.SmartTableNewColumnConfig[] = [
@@ -186,6 +246,7 @@ const InvoiceTable = () => {
       width: "10",
       valueFunction: amountDisplay,
     },
+    { title: "Status", index: "status", valueFunction: SwitchForm,    width: "10", },
     // {
     //   title: "",
     //   index: "action",

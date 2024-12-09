@@ -98,7 +98,7 @@ const InvoicebillForm = () => {
   const filterFields: SmartFormInterFace.SmartFormElementProps[] = [
     {
       type: "DATE",
-      width: "4",
+      width: "6",
       name: "bill_start_date",
       element: {
         label: "Start Date",
@@ -111,7 +111,7 @@ const InvoicebillForm = () => {
     },
     {
       type: "DATE",
-      width: "4",
+      width: "6",
       name: "bill_end_date",
       element: {
         label: "End Date",
@@ -124,12 +124,40 @@ const InvoicebillForm = () => {
       },
     },
     {
+      type: "DATE",
+      width: "6",
+      name: "invoice_date",
+      element: {
+        label: "Invoice Date",
+        placeHolder: "DD-MM-YYYY",
+        isRequired: true,
+        minDate: minEndDate,
+        // inputProps: { disabled: true },
+        inputType: "BORDER_LABEL",
+        // validations: hubFormValidations.end,
+      },
+    },
+    {
+      type: "DATE",
+      width: "6",
+      name: "due_date",
+      element: {
+        label: "Due Date",
+        placeHolder: "DD-MM-YYYY",
+        isRequired: true,
+        minDate: minEndDate,
+        // inputProps: { disabled: true },
+        inputType: "BORDER_LABEL",
+        // validations: hubFormValidations.end,
+      },
+    },
+    {
       type: "BUTTON",
-      width: "2",
+      width: "12",
       name: "invoice_button",
       element: {
         label: "Create Bill",
-        classList: ["smart-action-button mt-0 "],
+        classList: ["smart-action-button mt-0 has-text-right"],
         onClick: handleSubmit,
       },
     },

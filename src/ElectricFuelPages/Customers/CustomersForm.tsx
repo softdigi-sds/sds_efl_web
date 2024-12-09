@@ -131,12 +131,12 @@ const CustomersForm: React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
     const sub_data = formData.rate_data ? [...formData.rate_data] : [];
     return (
       <>
-        <div className="columns">
-          <div className="column is-4">Select Type</div>
-          <div className="column is-4">HSN</div>
-          <div className="column is-4">Description</div>
+        {/* <div className="columns is-multiline">
+          <div className="column is-6">Select Bill Item</div>
+          <div className="column is-6">HSN</div>
+          <div className="column is-6">Description</div>
       
-        </div>
+        </div> */}
         {sub_data.map((item, index) => {
           return (
             <CustomerSubForm

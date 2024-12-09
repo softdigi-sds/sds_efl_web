@@ -44,9 +44,9 @@ const CustomerSubForm: React.FC<HeaderProps> = ({
   const formElements: SmartFormInterFace.SmartFormElementProps[] = [
     {
       type: "SELECT_BOX",
-      width: "4",
+      width: "6",
       name: "sd_hsn_id",
-      element: {
+      element: {  label: "Select Bill Item",
         options: options_hsn,
       },
     },
@@ -54,19 +54,20 @@ const CustomerSubForm: React.FC<HeaderProps> = ({
   
     {
       type: "TEXT_BOX",
-      width: "4",
+      width: "6",
       name: "min_start",
-      element: {
+      element: {  label: "HSN",
         inputProps: {
         
         },
       },
     },
     {
-      type: "TEXT_BOX",
-      width: "4",
+      type: "TEXTAREA",
+      width: "12",
       name: "min_end",
       element: {
+        label: "Description",
         inputProps: {
         
         },
