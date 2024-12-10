@@ -2,6 +2,7 @@ import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import EFSubLayout from "../../EFSubLayout/EFSubLayout";
 import {
+  CameraAccess,
   ConsumptionAdminReport,
   ConsumptionReportTable,
   CustomersTables,
@@ -79,6 +80,7 @@ const EFSiteRoute = () => {
             <Route path="/invoices" element={<InvoiceTable />} />
             <Route path="/customers" element={<CustomersTables />} />
             <Route path="/payment" element={<Payment />} />
+            <Route path="/cameras" element={<CameraAccess />} /> 
           </Routes>
 
           <ToastContainer />

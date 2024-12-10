@@ -21,11 +21,12 @@ import VehicleAdminReport from "./VehiclesReport/VehicleAdminReport";
 import VehiclesReportTable from "./VehiclesReport/VehiclesReportTable";
 import VendorRatesTable from "./VendorRates/VendorRatesTable";
 import VendorsTable from "./Vendors/VendorsTable";
+import CameraAccess from "./CamaraAccess/CameraAccess"
 export {
   ConsumptionAdminReport, ConsumptionReportTable, CustomersTables, Dashboard,
   HomePage,
   HubsTables, InvoiceTable, MeterReading, MeterReadingReport, Msireports, Notification, OfficesTable, Payment, Profile, RoleTable,
   UsersTable, VehicleAdminReport, VehiclesReportTable,
-  VendorRatesTable, VendorWiseInformation, VendorsTable
+  VendorRatesTable, VendorWiseInformation, VendorsTable, CameraAccess
 };
 
