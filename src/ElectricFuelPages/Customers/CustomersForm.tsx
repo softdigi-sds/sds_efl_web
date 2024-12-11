@@ -6,16 +6,15 @@ import {
   SmartValid,
 } from "soft_digi";
 import { ValidateFormNew } from "soft_digi/dist/services/smartValidationService";
-import { CUSTOMER_URLS, VENDERS_URLS } from "../../api/UserUrls";
-import { post } from "../../services/smartApiService";
-import { showAlertAutoClose } from "../../services/notifyService";
+import { CUSTOMER_URLS } from "../../api/UserUrls";
 import { useSiteContext } from "../../contexts/SiteProvider";
+import { showAlertAutoClose } from "../../services/notifyService";
+import { ALLOW_ALPHABET_SPACE } from "../../services/PatternSerivce";
 import {
   admin_states_select,
   hubs_get_all_select,
 } from "../../services/site/SelectBoxServices";
-import { ALLOW_ALPHABET_SPACE, ALLOW_NUMERIC } from "../../services/PatternSerivce";
-import VendorRatesSubForm from "../VendorRates/VendorRatesSubForm";
+import { post } from "../../services/smartApiService";
 import CustomerSubForm from "./CustomerSubForm";
 
 interface FormErrors {
@@ -74,29 +73,29 @@ const CustomersForm: React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
     };
   };
   const options = [
-    { value: "Yes", label: "Yes" },
-    { value: "No", label: "No" },
+    { value: "2", label: "Yes" },
+    { value: "1", label: "No" },
 
   ];
 
   const addItem = () => {
     const _data = { ...formData };
-    const updatedItems = _data?.rate_data
-      ? [..._data?.rate_data, subFormDataObj]
+    const updatedItems = _data?.sub_data
+      ? [..._data?.sub_data, subFormDataObj]
       : [subFormDataObj];
-    _data.rate_data = updatedItems;
+    _data.sub_data = updatedItems;
     // console.log("data added " , _data);
     setFormData(_data);
   };
 
   const removeItemAndLast = () => {
     const _data = { ...formData };
-    const updatedItems = _data?.rate_data ? [..._data?.rate_data] : [];
+    const updatedItems = _data?.sub_data ? [..._data?.sub_data] : [];
     const finalItems =
       updatedItems.length > 0
         ? updatedItems.slice(0, updatedItems.length - 1)
         : [];
-    _data.rate_data = finalItems;
+    _data.sub_data = finalItems;
     setFormData(_data);
   };
   const updateItemProperty = (
@@ -106,7 +105,7 @@ const CustomersForm: React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
   ) => {
     const _data = { ...formData };
     // Create a copy of the items array
-    const updatedItems = _data?.rate_data ? [..._data?.rate_data] : [];
+    const updatedItems = _data?.sub_data ? [..._data?.sub_data] : [];
     // Create a copy of the object at the specific index
     const updatedItem = { ...updatedItems[index] };
     // Update the dynamic property
@@ -114,29 +113,29 @@ const CustomersForm: React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
     // Replace the object in the array with the updated object
     updatedItems[index] = updatedItem;
     //
-    _data.rate_data = updatedItems;
+    _data.sub_data = updatedItems;
     // Update the state with the new array
     setFormData(_data);
   };
 
   const subFormDataObj = {
-    sd_hsn_id: "",
-    rate_type: "",
-    des: "",
+    sd_efl_hsns_id : "",
+    hsn: "",
+    title: "",
 
   };
 
   
   const subFormDisplay = () => {
-    const sub_data = formData.rate_data ? [...formData.rate_data] : [];
+    const sub_data = formData.sub_data ? [...formData.sub_data] : [];
     return (
       <>
-        {/* <div className="columns is-multiline">
-          <div className="column is-6">Select Bill Item</div>
-          <div className="column is-6">HSN</div>
+         <div className="columns is-multiline">
+          <div className="column is-3">Select Bill Item</div>
+          <div className="column is-3">HSN</div>
           <div className="column is-6">Description</div>
       
-        </div> */}
+        </div> 
         {sub_data.map((item, index) => {
           return (
             <CustomerSubForm
@@ -234,7 +233,7 @@ const CustomersForm: React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
     {
       type: "SELECT_BOX",
       width: "12",
-      name: "item_billing",
+      name: "single_bill",
       element: {
         label: "Is Single Item Billing",
         isRequired: true,
@@ -247,35 +246,35 @@ const CustomersForm: React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
      
     {
       type: "TEXT_BOX",
-      width: "6",
-      name: "hsn",
+      width: "4",
+      name: "single_bill_hsn",
       element: {
-        label: "Enter HSN(Single Item)",
+        label: "Enter Bill HSN(Single Item)",
         isRequired: true,
         // inputProps: { isFocussed: true },
         // validations: vendorFormValidations.pan_no,
         inputType: "BORDER_LABEL",
-        max: 10,
+        //max: 10,
       },
       hideFunction: () => {
-        return formData?.item_billing?.value === "Yes" ? false : true;
+        return formData?.single_bill?.value === "2" ? false : true;
       },
     },
      
     {
       type: "TEXT_BOX",
-      width: "6",
-      name: "description",
+      width: "8",
+      name: "single_bill_title",
       element: {
-        label: "Enter Description(Single Item)",
+        label: "Enter Bill Description(Single Item)",
         isRequired: true,
         // inputProps: { isFocussed: true },
         // validations: vendorFormValidations.pan_no,
         inputType: "BORDER_LABEL",
-        max: 10,
+      //  max: 10,
       },
       hideFunction: () => {
-        return formData?.item_billing?.value === "Yes" ? false : true;
+        return formData?.single_bill?.value === "2" ? false : true;
       },
     },
     {
@@ -285,7 +284,7 @@ const CustomersForm: React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
       labelFunction:SubForms,
   
       hideFunction: () => {
-        return formData?.item_billing?.value === "No" ? false : true;
+        return formData?.single_bill?.value === "1" ? false : true;
       },
     },
   

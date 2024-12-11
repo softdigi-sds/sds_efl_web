@@ -8,11 +8,13 @@ interface FormErrors {
 interface HeaderProps {
   setFormData: (index: any, value: any) => void;
   formData: any;
+  hsnData:any[]
 }
 
 const VendorRatesSubForm: React.FC<HeaderProps> = ({
   formData,
   setFormData,
+  hsnData
 }) => {
 
  
@@ -47,7 +49,7 @@ const VendorRatesSubForm: React.FC<HeaderProps> = ({
       width: "2",
       name: "sd_hsn_id",
       element: {
-        options: options_hsn,
+        options: hsnData,
       },
     },
     {

@@ -12,6 +12,7 @@ import { changeDateTimeZoneFormat } from "../../services/core/CommonService";
 import { showAlertAutoClose } from "../../services/notifyService";
 import {
   company_address_all_select,
+  hsn_all_select,
   hubs_get_all_select,
   vendors_get_all_select
 } from "../../services/site/SelectBoxServices";
@@ -33,6 +34,7 @@ const VendorRatesForms: React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
   const [allHubs, setAllHubs] = useState([]);
   const [allVendors, setAllVendors] = useState([]);
   const [custAddress, setCustAddress] = useState([]);
+  const [allHsns, setAllHsn] = useState([]);
   const { closeModal } = useSiteContext();
 
   //  console.log("Formdata",formData)
@@ -96,6 +98,8 @@ const VendorRatesForms: React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
   useEffect(() => {
     hubs_get_all_select((data: any) => setAllHubs(data));
     vendors_get_all_select((data: any) => setAllVendors(data));
+    hsn_all_select((data: any) => setAllHsn(data));
+    
   }, []);
 
   useEffect(() => {
@@ -172,6 +176,7 @@ const VendorRatesForms: React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
               setFormData={(name, value) =>
                 updateItemProperty(index, name, value)
               }
+              hsnData={allHsns}
             />
           );
         })}

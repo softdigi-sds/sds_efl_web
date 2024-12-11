@@ -5,6 +5,7 @@ import {
   INVOICE_URLS,
   OFFICE_URLS,
   PAYMENT_URLS,
+  VENDER_RATE_URLS,
   VENDERS_URLS,
 } from "../../api/UserUrls";
 import { get, post } from "../smartApiService";
@@ -84,10 +85,15 @@ const bills_all_select = (call_back: any) => {
   admin_generic_select_post(url, { }, call_back);
 };
 
+const hsn_all_select = (call_back: any) => {
+  let url = VENDER_RATE_URLS.GET_ALL_SELECT_HSN;
+  admin_generic_select_post(url, { }, call_back);
+};
+
 
 
 export {
-  admin_states_select, bills_all_select, company_address_all_select, company_get_all_select, costomer_invoice_all_select, hubs_get_all_select, office_get_all_select, role_get_select,
+  admin_states_select, bills_all_select, company_address_all_select, company_get_all_select, costomer_invoice_all_select, hsn_all_select, hubs_get_all_select, office_get_all_select, role_get_select,
   user_get_select, vendors_get_all_select
 };
 
