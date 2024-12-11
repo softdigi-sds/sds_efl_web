@@ -87,7 +87,8 @@ const INVOICE_URLS = {
   INSERT_MANUAL: "/invoice/insert_manual",
   INVOICE_DELETE: "/invoice/delete_one",
   UPDATE_REMARKS:"/invoice/update_remarks",
-  STATUS_UPDATE:"/bill/status_update"
+  STATUS_UPDATE:"/bill/status_update", 
+INVOICE_GET_ONE:"/invoice/get_one"
 };
 const METER_READINGS_URLS = {
   INSERT: "/meter_readings/insert",
