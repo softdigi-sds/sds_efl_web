@@ -1,4 +1,3 @@
-import moment from "moment";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { SmartFormInterFace, SmartSoftForm } from "soft_digi";
@@ -8,11 +7,16 @@ import { changeDateTimeZoneFormat } from "../../services/core/CommonService";
 import { post } from "../../services/smartApiService";
 import { ValidateFormNew } from "soft_digi/dist/services/smartValidationService";
 import { SmartValid } from "../../core";
+import moment from "moment";
 interface FormErrors {
   [key: string]: string | null;
 }
-const InvoicebillForm = () => {
-  const [formData, setFormData] = useState<any>({});
+interface HeaderProps {
+  loadTableData: () => void;
+  dataIn: any;
+}
+const InvoicebillForm: React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
+  const [formData, setFormData] = useState(dataIn ? dataIn : {});
   const [formSubmit, setFormSubmit] = useState<boolean>(false);
   const [formErrors, setFormErrors] = useState<FormErrors>({});
   const [states, setStates] = useState([]);
@@ -85,7 +89,7 @@ const InvoicebillForm = () => {
       closeModal();
       //showAlertAutoClose("Bill Cre")
       // setData(response.data);
-      // loadTableData()
+      loadTableData()
     });
     return () => {
       subscription.unsubscribe();

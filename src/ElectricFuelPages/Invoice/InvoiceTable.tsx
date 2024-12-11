@@ -122,6 +122,15 @@ const InvoiceTable = () => {
         navigate("/e-fuel/vendor-wish/" + data["ID"]);
       },
     },
+    {
+      label: "",
+      type: "icon",
+      leftIcon: " fa-pencil-square-o",
+      classList: ["smart-efl-table-edit-icon"],
+      onClick: (data: any) => {
+        viewEditForm(data["ID"]);
+      },
+    },
     // {
     //   label: "Download",
     //   type: "icon",
@@ -206,6 +215,16 @@ const InvoiceTable = () => {
       )
     );
   };
+  const viewEditForm = (id: any) => {
+    const subscription = post(INVOICE_URLS.INVOICE_GET_ONE, { id: id }).subscribe(
+      (response: any) => {
+        openOfficesForm(response.data);
+      }
+    );
+    return () => {
+      subscription.unsubscribe();
+    };
+  };
   const columns: SmartTableNewInterface.SmartTableNewColumnConfig[] = [
     { title: "S.NO", index: "s_no", type: "sno", width: "5" },
     {
@@ -264,8 +283,8 @@ const InvoiceTable = () => {
   ];
   const openOfficesForm = (data: any) => {
     let options = {
-      title: "Bill Form",
-      content: <InvoicebillForm />,
+      title: <>{data.ID ? "Bill Update Form" : "Bill Addition Form"}</>,
+      content: <InvoicebillForm dataIn={data} loadTableData= {LoadTableData}/>,
       width: 60,
       className: "sd-efl-modal",
       closeBody: false,
