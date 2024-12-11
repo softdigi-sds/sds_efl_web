@@ -14,13 +14,15 @@ interface HeaderProps {
   loadTableData: () => void;
   date: any;
   hub_id: any;
-  endDate?: any
+  endDate?: any,
+  extra?: boolean
 }
 const ConsumptionReportForm: React.FC<HeaderProps> = ({
   loadTableData,
   date,
   hub_id,
-  endDate
+  endDate,
+  extra = false
 }) => {
   const [formData, setFormData] = useState<any[]>([]);
   const [extData, setExtData] = useState<any[]>([]);
@@ -31,7 +33,8 @@ const ConsumptionReportForm: React.FC<HeaderProps> = ({
     let _data = {
       hub_id: hub_id,
       date: date,
-      end_date: endDate
+      end_date: endDate,
+      extra:extra ? 1 :0 
     };
     let URL = endDate ? CONSUMPTION_URL.GET_ALL_CALENDER_GET_ONE_HUB : CONSUMPTION_URL.GET_ALL_CALENDER_GET_ONE;
     const subscription = post(URL, _data).subscribe((response) => {
@@ -75,6 +78,7 @@ const ConsumptionReportForm: React.FC<HeaderProps> = ({
       hub_id: hub_id,
       date: date,
       data: formData,
+      extra:extra ? 1 : 0
     };
     let URL = CONSUMPTION_URL.INSERT;
     const subscription = post(URL, _data).subscribe((response) => {
@@ -135,7 +139,7 @@ const ConsumptionReportForm: React.FC<HeaderProps> = ({
             {types.map((obj: any, key: number) => {
               // console.log(obj, " sub   item " , sub_data  );
               let _total = sub_data.find((item: any) => item.ID == obj.ID)?.count || 0;
-           //   let _extra = _extra_data.find((item: any) => item.ID == obj.ID)?.count || 0;
+              //   let _extra = _extra_data.find((item: any) => item.ID == obj.ID)?.count || 0;
               //let _total_count = sumOfMultiArrayObjectsWithIndex(formData, "sub_data", "ID", obj.ID);
               return (
                 <td className="smart-table-column-width-20 has-text-centered">
@@ -152,7 +156,7 @@ const ConsumptionReportForm: React.FC<HeaderProps> = ({
                     /> : (
                       <>
                         <span >{roundNumber(_total)}</span>
-                        <SmartSoftInput
+                        {/* <SmartSoftInput
                           // label={obj.vehicle_type}
                           // inputType="BORDER_LABEL"
                           classList={["is-small"]}
@@ -161,7 +165,7 @@ const ConsumptionReportForm: React.FC<HeaderProps> = ({
                             updateCountNestedExtra(id, obj.ID, value)
                           }
 
-                        />
+                        /> */}
                       </>
 
                     )
@@ -280,11 +284,13 @@ const ConsumptionReportForm: React.FC<HeaderProps> = ({
           classList={["button", "mt-4 mr-4", "smart-third-button"]}
           onClick={closeModal}
         />
-        <SmartSoftButton
-          label="Submit"
-          classList={["button ", "mt-4", "smart-action-button"]}
-          onClick={handleSubmit}
-        />
+        {!endDate &&
+          <SmartSoftButton
+            label="Submit"
+            classList={["button ", "mt-4", "smart-action-button"]}
+            onClick={handleSubmit}
+          />
+        }
       </div>
     </>
   );

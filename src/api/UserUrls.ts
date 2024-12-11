@@ -75,6 +75,7 @@ const INVOICE_URLS = {
   GET_ONE_DETAILS: "/invoice/get_one",
   INSERT: "/efl_vehicles/insert",
   GET_ALL_BILLS: "/bill/get_all",
+  BILL_UPDATE: "/bill/update",
   GET_ALL_BILLS_SELECT: "/bill/get_all_select",
   GET_ONE_BILL: "bill/get_one",
   EXPORT_EXCEL: "bill/export_excel",

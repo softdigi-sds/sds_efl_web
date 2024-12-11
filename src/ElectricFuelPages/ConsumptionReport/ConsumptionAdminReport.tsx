@@ -99,15 +99,15 @@ const ConsumptionAdminReport: React.FC<VehicleReportProps> = ({
     );
   };
 
-  const getDayCount = (date: string, subData: any[]) => {
+  const getDayCount = (date: string, subData: any[],extra_units=0) => {
     if (subData && subData.length > 0) {
-      let _date_obj: any = subData.find((obj) => obj.date == date);
+      let _date_obj: any = subData.find((obj) => obj.date == date && obj.extra_units==extra_units);
       return _date_obj && _date_obj?.count ? _date_obj.count : 0;
     }
     return 0;
   };
 
-  const openForm = (date: any, hub: any,endDate?:any) => {
+  const openForm = (date: any, hub: any, endDate?: any, extra: boolean = false) => {
     let options = {
       title: (
         <div>
@@ -126,6 +126,8 @@ const ConsumptionAdminReport: React.FC<VehicleReportProps> = ({
           date={date}
           hub_id={{ value: hub.ID }}
           endDate={endDate}
+          extra={extra}
+
         />
       ),
     };
@@ -215,15 +217,16 @@ const ConsumptionAdminReport: React.FC<VehicleReportProps> = ({
               <thead>
                 <tr>
                   <th>Hub Name</th>
-                  <th> Meter Reading </th>
-                  <th>deviation</th>
+                  <th>MR</th>
                   <th>Total</th>
+                  <th>Deviation</th>
+                  <th>Extra</th>
                   {numberArray.map((item: any) => (
                     <>
                       <th>{changeDateTimeZone(item, "DD")}</th>
                     </>
                   ))}
-                    
+
                 </tr>
               </thead>
               <tbody>
@@ -232,8 +235,8 @@ const ConsumptionAdminReport: React.FC<VehicleReportProps> = ({
                     <tr>
                       <td>
                         <div className="is-flex ">
-                          <p>{hub.hub_name} 
-                          
+                          <p>{hub.hub_name}
+
                           </p>
                           <div className="ml-2">
                             {hub.vendor_count !== 0 ? (
@@ -251,12 +254,16 @@ const ConsumptionAdminReport: React.FC<VehicleReportProps> = ({
                         <label className="is-size-7 has-text-info">({hub.office_city})
                         </label>
                       </td>
-                      <td> Meter Reading </td>
-                      <td>deviation</td>
+                      <td> {hub.meter_reading} </td>
                       <td
-                      onClick={() => openForm(changeDateTimeZone(startDate.toISOString(), "YYYY-MM-DD"), hub,changeDateTimeZone(endDate.toISOString(), "YYYY-MM-DD"))}
+                        onClick={() => openForm(changeDateTimeZone(startDate.toISOString(), "YYYY-MM-DD"), hub, changeDateTimeZone(endDate.toISOString(), "YYYY-MM-DD"))}
                       >
                         <span className="is-clickable has-text-link">{roundNumber(hub.total)}</span></td>
+                      <td>{hub.deviation}</td>
+                      <td className="is-clickable has-text-link"
+                        onClick={() => openForm(changeDateTimeZone(startDate.toISOString(), "YYYY-MM-DD"), hub, undefined, true)}
+
+                      >{getDayCount(changeDateTimeZone(startDate.toISOString(), "YYYY-MM-DD"), hub.sub_data,1)}</td>
                       {numberArray.map((item: any) => {
                         let _count = getDayCount(item, hub.sub_data);
                         const isNotGreaterThanToday = isDateWithinDays(item, 0);
@@ -269,7 +276,7 @@ const ConsumptionAdminReport: React.FC<VehicleReportProps> = ({
                               onClick={() => openForm(item, hub)}
                             >
                               {roundNumber(_count)}
-                            
+
                             </span>
                           </td>
                         ) : (

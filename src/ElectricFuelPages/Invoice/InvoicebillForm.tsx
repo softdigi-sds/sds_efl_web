@@ -1,13 +1,13 @@
+import moment from "moment";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { SmartFormInterFace, SmartSoftForm } from "soft_digi";
+import { ValidateFormNew } from "soft_digi/dist/services/smartValidationService";
 import { INVOICE_URLS } from "../../api/UserUrls";
 import { useSiteContext } from "../../contexts/SiteProvider";
+import { SmartValid } from "../../core";
 import { changeDateTimeZoneFormat } from "../../services/core/CommonService";
 import { post } from "../../services/smartApiService";
-import { ValidateFormNew } from "soft_digi/dist/services/smartValidationService";
-import { SmartValid } from "../../core";
-import moment from "moment";
 interface FormErrors {
   [key: string]: string | null;
 }
@@ -73,7 +73,7 @@ const InvoicebillForm: React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
     if (!ValidateFormNew(formData, filterFields)) {
       return false;
     }
-    let URL = INVOICE_URLS.GENERATE;
+    let URL = formData.ID ? INVOICE_URLS.BILL_UPDATE : INVOICE_URLS.GENERATE;
     let _data = {
       bill_start_date: changeDateTimeZoneFormat(
         formData.bill_start_date || "",
@@ -83,6 +83,9 @@ const InvoicebillForm: React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
         formData.bill_end_date || "",
         "YYYY-MM-DD"
       ),
+      invoice_date: formData.invoice_date,
+      due_date: formData.due_date,
+      id:formData?.ID
     };
     const subscription = post(URL, _data).subscribe((response) => {
       navigate("/e-fuel/vendor-wish/" + response.data);
@@ -110,6 +113,7 @@ const InvoicebillForm: React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
         isRequired: true,
         inputType: "BORDER_LABEL",
         validations: hubFormValidations.start,
+        inputProps: { disabled: formData.ID ? true : false},
         // inputProps: { isFocussed: true },
       },
     },

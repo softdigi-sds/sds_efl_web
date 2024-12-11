@@ -9,12 +9,12 @@ import {
 import { INVOICE_URLS } from "../../api/UserUrls";
 import { useSiteContext } from "../../contexts/SiteProvider";
 import SignPad from "../../core/general/SignPad";
+import { formatCurrency } from "../../services/core/CommonService";
+import { showAlertAutoClose, showYesOrNoAlert } from "../../services/notifyService";
 import { get, post } from "../../services/smartApiService";
 import ImportInvoice from "./ImportInvoice";
 import InvoicebillForm from "./InvoicebillForm";
 import InvoicebottomTable from "./InvoicebottomTable";
-import { showAlertAutoClose, showYesOrNoAlert } from "../../services/notifyService";
-import { formatCurrency } from "../../services/core/CommonService";
 
 const InvoiceTable = () => {
   const [tabData, setTabData] = useState([]);
@@ -130,6 +130,9 @@ const InvoiceTable = () => {
       onClick: (data: any) => {
         viewEditForm(data["ID"]);
       },
+      hideFunction:(data:any)=>{
+        return data && data.status==5 ? true : false;
+      }
     },
     // {
     //   label: "Download",
@@ -216,7 +219,7 @@ const InvoiceTable = () => {
     );
   };
   const viewEditForm = (id: any) => {
-    const subscription = post(INVOICE_URLS.INVOICE_GET_ONE, { id: id }).subscribe(
+    const subscription = post(INVOICE_URLS.GET_ONE_BILL, { id: id }).subscribe(
       (response: any) => {
         openOfficesForm(response.data);
       }
