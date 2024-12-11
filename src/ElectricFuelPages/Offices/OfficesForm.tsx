@@ -8,17 +8,13 @@ import {
 import { OFFICE_URLS } from "../../api/UserUrls";
 import { useSiteContext } from "../../contexts/SiteProvider";
 
-import { showAlertAutoClose } from "../../services/notifyService";
-import { admin_states_select } from "../../services/site/SelectBoxServices";
-import { post } from "../../services/smartApiService";
-import { max } from "date-fns";
-import {
-  ALLOW_NUMERIC,
-  ALPHA_NUMERIC_CAPITAL,
-  GST,
-  GST_PATTERN,
-} from "../../services/PatternSerivce";
 import { ValidateFormNew } from "soft_digi/dist/services/smartValidationService";
+import { showAlertAutoClose } from "../../services/notifyService";
+import {
+  ALLOW_NUMERIC
+} from "../../services/PatternSerivce";
+import { admin_states_select, user_get_select } from "../../services/site/SelectBoxServices";
+import { post } from "../../services/smartApiService";
 
 interface FormErrors {
   [key: string]: string | null;
@@ -29,6 +25,7 @@ interface HeaderProps {
 }
 const OfficesForm: React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
   const [formData, setFormData] = useState(dataIn ? dataIn : {});
+  const [allRole, setAllRole] = useState([]);
   const [formSubmit, setFormSubmit] = useState<boolean>(false);
   const [formErrors, setFormErrors] = useState<FormErrors>({});
   const { setLoading, closeModal } = useSiteContext();
@@ -53,6 +50,7 @@ const OfficesForm: React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
 
   useEffect(() => {
     admin_states_select((data: any) => setStates(data));
+    user_get_select((data: any) => setAllRole(data));
     //  loadData();
   }, []);
   const handleSubmit = () => {
@@ -238,6 +236,19 @@ const OfficesForm: React.FC<HeaderProps> = ({ loadTableData, dataIn }) => {
         max: 255,
         rows: 2,
         validations: loginFormValidations.address,
+        inputType: "BORDER_LABEL",
+      },
+    },
+    {
+      type: "SELECT_BOX",
+      width: "6",
+      name: "role",
+      element: {
+        label: "City In-charge",
+        isRequired: true,
+        options: allRole,
+        isMulti: true,
+      //  validations: hubFormValidations.role,
         inputType: "BORDER_LABEL",
       },
     },
