@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { VEHICLES_URL } from "../../api/UserUrls";
 import { post } from "../../services/smartApiService";
+import { downloadFile } from "../../services/core/FileService";
 
 interface Props {
   year?: string;
@@ -55,7 +56,20 @@ const HubCapacity: React.FC<Props> = ({ year }) => {
   useEffect(() => {
     loadData();
   }, [year]);
-
+  const handleSubmit = () => {
+   
+    let url = VEHICLES_URL.EXPORT_EXCEL; 
+  
+    const subscription = post(url, {}).subscribe((response) => {
+      if (response.data && response.data.content) {
+        downloadFile(response.data.content, "Hub.xlsx");
+      }
+    
+    });
+    return () => {
+      subscription.unsubscribe();
+    };
+  };
 
 
   const getDayobj = (date: string, subData: any[]) => {
@@ -86,7 +100,7 @@ const HubCapacity: React.FC<Props> = ({ year }) => {
                 value={searchTerm}
                 onChange={handleSearch}
               />
-            </div>
+            </div><div className="ml-6 is-size-3 mb-0" onClick={handleSubmit}> <i className="fas fa-file-upload"></i></div>
           </div>
         </div>
         <div className="column is-12">
