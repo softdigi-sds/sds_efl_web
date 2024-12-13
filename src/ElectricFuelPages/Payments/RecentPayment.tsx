@@ -10,9 +10,8 @@ import { PAYMENT_URLS } from "../../api/UserUrls";
 import { useSiteContext } from "../../contexts/SiteProvider";
 import { showAlertAutoClose } from "../../services/notifyService";
 import { get, post } from "../../services/smartApiService";
-import RecentPaymentForm from "./RecentPaymentForm";
-import ImportReportTable from "../ConsumptionReport/ImportReportTable";
 import ImportTable from "./ImportTable";
+import RecentPaymentForm from "./RecentPaymentForm";
 
 const RecentPayment = () => {
   const { openModal, closeModal, setLoading } = useSiteContext();
@@ -31,11 +30,11 @@ const RecentPayment = () => {
     loadTableData();
   }, []);
 
-  const openbillForm = (data: any) => {
+  const openbillForm = (_data: any) => {
     let options = {
       title: "Payment",
       content: (
-        <RecentPaymentForm loadTableData={loadTableData} dataIn={data} />
+        <RecentPaymentForm loadTableData={loadTableData} dataIn={_data} />
       ),
       width: 60,
       className: "sd-efl-modal",
