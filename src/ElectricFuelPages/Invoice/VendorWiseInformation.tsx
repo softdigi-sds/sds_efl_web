@@ -19,6 +19,7 @@ import { openExternalWindow } from "../../services/core/WindowService";
 import { showAlertAutoClose } from "../../services/notifyService";
 import { post } from "../../services/smartApiService";
 import InvoiceAddingForm from "./InvoiceAddingForm";
+import InvoiceNumberUpdate from "./InvoiceNumberUpdate";
 import InvoiceRemarks from "./InvoiceRemarks";
 import InvoiceVendorDetailsTable from "./InvoiceVendorDetailsTable";
 import VendorDetailsImport from "./VendorDetailsImport";
@@ -213,6 +214,28 @@ const VendorWiseInformation = () => {
     return () => subscription.unsubscribe();
   };
 
+  const InvoiceNumberUpdateForm = (_dt: any) => {
+    let URL = INVOICE_URLS.GET_ONE_DETAILS;
+    const subscription = post(URL, { id: _dt["ID"] }).subscribe((response) => {
+      let options = {
+        title: ` ${_dt.hub_id} - ${_dt.vendor_company}  `,
+        content: (
+          <>
+            <InvoiceNumberUpdate
+              loadTableData={loadData}
+              dataIn={response.data}
+            />
+          </>
+        ),
+        width: 60,
+        className: "sd-efl-modal",
+        closeBody: false,
+      };
+      openModal(options);
+    });
+    return () => subscription.unsubscribe();
+  };
+
   const openForm = (data: any) => {
     let URL = INVOICE_URLS.GET_ONE_DETAILS;
     const subscription = post(URL, { id: data["ID"] }).subscribe((response) => {
@@ -261,6 +284,18 @@ const VendorWiseInformation = () => {
       classList: ["smart-efl-table-view-icon", ""],
       onClick: (data: any) => {
         openDeleteModal(data["ID"]);
+      },
+      hideFunction: (data: any) => {
+        return data["status"] >= 5 ? true : false;
+      },
+    },
+    {
+      label: "View",
+      type: "icon",
+      leftIcon: "fa fa-mobile",
+      classList: ["has-text-warning", ""],
+      onClick: (dat: any) => {
+        InvoiceNumberUpdateForm(dat);
       },
       hideFunction: (data: any) => {
         return data["status"] >= 5 ? true : false;

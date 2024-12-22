@@ -39,7 +39,7 @@ const VENDER_RATE_URLS = {
   GET_ONE: "/vendor_rate/get_one",
   DELETE: "/vendor_rate/delete_one",
   EXPORT_EXCEL: "/vendor_rate/export_excel",
-  GET_ALL_SELECT_HSN:"/vendor_rate/get_all_select_hsn"
+  GET_ALL_SELECT_HSN: "/vendor_rate/get_all_select_hsn",
 };
 const CONSUMPTION_URL = {
   INSERT: "/efl_consumption/insert",
@@ -80,7 +80,7 @@ const INVOICE_URLS = {
   GET_ONE_BILL: "bill/get_one",
   EXPORT_EXCEL: "bill/export_excel",
   IMPORT_ZIP: "bill/import_zip",
-  EXPORT_ZIP:"bill/export_zip",
+  EXPORT_ZIP: "bill/export_zip",
   IMPORT_EXCEL: "bill/import_excel",
   DOWNLOAD_INVOICE: "invoice/download_invoice",
   DELETE: "bill/delete_one",
@@ -88,9 +88,10 @@ const INVOICE_URLS = {
   SIGN_VERIFY: "/invoice/verify_sign",
   INSERT_MANUAL: "/invoice/insert_manual",
   INVOICE_DELETE: "/invoice/delete_one",
-  UPDATE_REMARKS:"/invoice/update_remarks",
-  STATUS_UPDATE:"/bill/status_update", 
-INVOICE_GET_ONE:"/invoice/get_one"
+  UPDATE_REMARKS: "/invoice/update_remarks",
+  STATUS_UPDATE: "/bill/status_update",
+  INVOICE_GET_ONE: "/invoice/get_one",
+  UPDATE_INVOICE_NUMBER: "/invoice/update_number",
 };
 const METER_READINGS_URLS = {
   INSERT: "/meter_readings/insert",
@@ -137,6 +138,5 @@ export {
   PAYMENT_URLS,
   VEHICLES_URL,
   VENDERS_URLS,
-  VENDER_RATE_URLS
+  VENDER_RATE_URLS,
 };
-
