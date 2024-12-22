@@ -40,8 +40,7 @@ const MeterReadingForm: React.FC<HeaderProps> = ({
   const [allHubs, setAllHubs] = useState([]);
   const [minEndDate, setMinEndDate] = useState();
 
-  console.log("datain",formData)
-  
+  console.log("datain", formData);
 
   const handleInputChange = (name: string, value: any) => {
     setFormData((prev: any) => ({ ...prev, [name]: value }));
@@ -53,7 +52,6 @@ const MeterReadingForm: React.FC<HeaderProps> = ({
   useEffect(() => {
     // setFormData({
     //   meter_year: `${currentDate.getMonth() + 1}-${currentDate.getFullYear()}`,
-
     //   sd_hub_id: dataIn?.sd_hub_id || "",
     // });
   }, [dataIn]);
@@ -78,7 +76,7 @@ const MeterReadingForm: React.FC<HeaderProps> = ({
     let url = METER_READINGS_URLS.INSERT;
     if (formData.ID !== undefined) {
       formData["id"] = formData.ID;
-      url =METER_READINGS_URLS.UPDATE;
+      url = METER_READINGS_URLS.UPDATE;
     }
 
     let _data = { ...formData };
@@ -87,7 +85,7 @@ const MeterReadingForm: React.FC<HeaderProps> = ({
       "YYYY-MM-DD"
     );
     _data["meter_end_date"] = changeDateTimeZoneFormat(
-      formData.meter_start_date,
+      formData.meter_end_date,
       "YYYY-MM-DD"
     );
     const subscription = post(url, _data).subscribe((response) => {
@@ -105,18 +103,18 @@ const MeterReadingForm: React.FC<HeaderProps> = ({
   }, []);
   const hubFormValidations = {
     hub_id: [SmartValid.required("Hub Name is Required")],
-    start: [SmartValid.required("Meter Start Reading is Required")], 
-    cost: [SmartValid.required("Meter Cost Reading is Required")], 
+    start: [SmartValid.required("Meter Start Reading is Required")],
+    cost: [SmartValid.required("Meter Cost Reading is Required")],
     start_date: [SmartValid.required("Date is Required")],
     end_date: [SmartValid.required("Date is Required")],
     end: [
       SmartValid.required("Meter End Reading is Required"),
-      SmartValid.custom((value:any) => {
+      SmartValid.custom((value: any) => {
         return parseFloat(formData.meter_start) > parseFloat(value)
           ? "End Reading cannot be less than Start Reading"
           : "";
       }),
-    ], 
+    ],
   };
 
   const totalPrice = () => {
@@ -195,10 +193,9 @@ const MeterReadingForm: React.FC<HeaderProps> = ({
         inputType: "BORDER_LABEL",
         validations: hubFormValidations.end,
         pattern: ALLOW_NUMERIC,
-        
       },
     },
-  
+
     {
       type: "TEXT_BOX",
       width: "12",
@@ -228,7 +225,6 @@ const MeterReadingForm: React.FC<HeaderProps> = ({
         inputType: "BORDER_LABEL",
         // validations: hubFormValidations.cost,
         pattern: ALLOW_NUMERIC,
-        
       },
     },
   ];
