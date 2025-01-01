@@ -14,7 +14,7 @@ RUN npm install
 COPY . .
 
 # Build the React app for production
-RUN npm run build
+RUN REACT_APP_ENV=production npm run build
 
 # Step 2: Serve the React app using a lightweight web server (Nginx)
 FROM nginx:alpine
